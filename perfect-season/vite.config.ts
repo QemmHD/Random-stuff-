@@ -11,6 +11,8 @@ export default defineConfig(({ mode }) => {
     base: './',
     plugins: [react({ jsxRuntime: 'classic' }), ...(artifact ? [viteSingleFile()] : [])],
     test: { globals: true, environment: 'node' },
+    // icons and launch images are for the installed web app, not the single-page artifact
+    publicDir: artifact ? false : 'public',
     build: artifact
       ? {
           outDir: 'dist-artifact',

@@ -58,6 +58,7 @@ Research on the game we're learning from is in [`../82-0/README.md`](../82-0/REA
 | On-court players | Mini player cards in team colors (initials, decade, rating) |
 | Next step | **Clickable design mockup** before real code, delivered as a private web link |
 | First playable build | `perfect-season/` (Vite + React + TypeScript, client-only, progress saved in the browser). Next.js + Supabase come with accounts (§15, step 3) |
+| Phone fit | Built for the iPhone 15 Pro Max first, and every other phone too: full width, height-adaptive, clear of the Dynamic Island and home indicator, installable to the home screen |
 
 ---
 
@@ -209,7 +210,9 @@ A typical C–B game with one series win earns about 40–50 coins. That's an ex
 
 - **Palette:** background `#04121A`, card `#0A1F2A`, line `#16323F`, **primary teal `#19E3C9`** (actions, active tab, eligible slots), **gold `#F5B83D`** (wins, champion, S grades), text `#F2F6F7` / `#8FA6B2`. TEAM reel in teal, ERA reel in gold.
 - **Type:** a heavy condensed italic display face for PLAY / SPIN / records, and a clean sans for UI. Avoid 82-0's exact fonts; candidates are Oswald or Anton for display and Inter for UI.
-- **Layout:** a fixed 390×844 design frame scaled to the screen, portrait only, safe-area aware.
+- **Layout:** a 390px-wide design frame scaled to the phone's width (×1.10 on a 430px iPhone 15 Pro Max). Height is flexible, with four spacing classes from compact (iPhone SE in Safari) to roomy.
+  - Backgrounds run under the Dynamic Island and home indicator; content and controls stay inside the safe area.
+  - Portrait only: sideways phones get a prompt. Tablets and desktops get a phone-shaped frame.
 - **Motion:** reel wind-up → blur → ease-out → 6 px bounce; jersey drop and glint on placement; ticker and confetti on results, with confetti density by grade.
 - **Sounds:** spin start, reel tick, reel stop, pick, place, draft complete, ticker, playoff win and loss stings, title fanfare, coin, level up, button.
 - **Hero art:** **stylized poster/comic illustration** of generic athletes in teal and gold (not photoreal like 82-0). The same style works for every sport.

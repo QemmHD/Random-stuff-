@@ -16,7 +16,17 @@ Product spec: [`../research/perfect-season/SPEC.md`](../research/perfect-season/
 - **Season and playoffs:** an 82-game ticker reveal, then four best-of-7 series against real historical teams with 53 or more wins (normalized to 82 games), ending with a Finals boss.
 - **Results:** grade and tier, playoff outcome, category breakdown, rewards, XP and levels, a share card image and share text.
 - **Other pages:** Daily, Ranks (your best runs), Boosters store (earned coins only), Profile and history, Settings (sound, vibration, booster hints, reset), How to play.
-- **Sound and saving:** synthesized sound effects and vibration. Progress is saved in the browser (localStorage).
+- **Sound and saving:** synthesized sound effects, vibration on Android, and haptic ticks on iPhone (iOS 18+). Progress is saved in the browser (localStorage).
+- **Fits every phone:** the 390px-wide layout scales to the screen width (an iPhone 15 Pro Max gets it 10% larger), and the height adapts, with tighter spacing on shorter screens.
+  - Content stays clear of the Dynamic Island, the status bar and the home indicator, while backgrounds run edge to edge.
+  - Tablets and desktops show a phone-shaped frame. Phones held sideways get a "turn your phone upright" screen.
+- **Motion:**
+  - Screen transitions, and slot-machine reels with wind-up, blur and overshoot. The team reel takes on the team's color when it lands.
+  - A spring-loaded player drawer you can drag down to close. Player cards drop in with a burst and slide when moved.
+  - The season ticker slows down for an unbeaten finish, and grades land with a stamp.
+  - Playoff games flip in, and a title brings a champion screen. Results count up and a level-up popup appears.
+  - Animations are reduced when the phone asks for reduced motion.
+- **Installable:** add it to the home screen for a full-screen app with its own icon and launch screen (manifest, Apple meta tags and launch images in `public/`).
 
 ## Run it
 
@@ -26,7 +36,14 @@ npm run dev          # local dev server
 npm test             # engine rules + calibration simulation
 npm run build        # static site in dist/ (e.g. for Vercel)
 node scripts/make-artifact.mjs   # single page in dist-artifact/perfect-season.html
+node scripts/make-icons.mjs      # re-render icons and iPhone launch images into public/ (needs Playwright)
 ```
+
+`make-icons.mjs` writes full-color PNGs; the committed ones were then reduced to 256 colors with Pillow (`Image.quantize(256)`), which keeps each launch image under 80 KB.
+
+### Deploying
+
+`vercel.json` builds the static site (`npm run build` → `dist/`). When importing the repository on Vercel, set the project's root directory to `perfect-season`.
 
 ## Data
 
@@ -44,7 +61,9 @@ node scripts/make-artifact.mjs   # single page in dist-artifact/perfect-season.h
 |---|---|
 | `src/engine/` | Pure game logic with no UI: `data` (player database), `rating` (score, balance, win curve, grades), `draft` (rules reducer, respins, bot, boosters), `season`, `playoffs`, `economy` |
 | `src/engine/*.test.ts` | Rule tests, plus `sim.test.ts`, which prints win and title distributions for random, best-available and smart drafting |
-| `src/ui/` | React screens: `Draft`, `Season` (reveal + playoffs), `Results`, `Pages` (home, tabs, settings, how to play) |
+| `src/stage.tsx` | Fits the 390px-wide frame to the screen, reads the safe-area insets, and picks a height class (`fit-compact`, `fit-tight`, `fit-normal`, `fit-roomy`) |
+| `src/ui/` | React screens: `Draft`, `Season` (reveal, playoffs, champion screen), `Results`, `Pages` (home, tabs, settings, how to play) |
+| `src/ui/motion.tsx`, `src/ui/Hero.tsx` | View transitions, count-ups and sparks; the animated arena behind the home scoreboard |
 | `src/lib/` | `profile` (saved progress), `sound` (Web Audio + vibration), `share` (share text and card image) |
 
 ## Tuning (all in `src/engine`)

@@ -9,9 +9,10 @@ import { dailyNumber, easternDateKey, lineupKey, playSeason, type Season } from 
 import { type Booster, type BotLevel, type Mode, SLOTS } from './engine/types';
 import { freshProfile, loadProfile, type Profile, type RunRecord, saveProfile } from './lib/profile';
 import { setFeedback, sfx } from './lib/sound';
-import { Toast } from './ui/common';
+import { Toast, TopBar } from './ui/common';
+import { Transition } from './ui/motion';
 import { Draft } from './ui/Draft';
-import { BoostersPage, DailyPage, HomePage, HowToSheet, ProfilePage, RanksPage, SettingsSheet, type Tab } from './ui/Pages';
+import { BoostersPage, DailyPage, HomePage, HowToSheet, ProfilePage, RanksPage, SettingsSheet, type Tab, Tabs } from './ui/Pages';
 import { type ResultInfo, Results } from './ui/Results';
 import { Playoffs, Reveal } from './ui/Season';
 
@@ -48,8 +49,9 @@ export function App() {
   const [screen, setScreen] = useState<Screen>('tab');
   const [run, setRun] = useState<Run | null>(null);
   const [modal, setModal] = useState<'settings' | 'howto' | null>(null);
-  const [toast, setToast] = useState<string | null>(null);
-  const toastT = useRef<number | null>(null);
+  const [toast, setToast] = useState<{ text: string; id: number; out: boolean } | null>(null);
+  const toastT = useRef<number[]>([]);
+  const toastN = useRef(0);
   const runCounter = useRef(0);
 
   const todayKey = easternDateKey();
@@ -58,14 +60,17 @@ export function App() {
 
   useEffect(() => saveProfile(profile), [profile]);
   useEffect(() => {
-    if (screen !== 'draft') setToast(null);
+    if (screen === 'draft') return;
+    toastT.current.forEach(clearTimeout);
+    setToast((t) => t && { ...t, out: true });
+    toastT.current = [window.setTimeout(() => setToast(null), 250)];
   }, [screen]);
   useEffect(() => setFeedback(profile.settings.sound, profile.settings.haptics), [profile.settings]);
 
-  const showToast = (t: string) => {
-    setToast(t);
-    if (toastT.current) clearTimeout(toastT.current);
-    toastT.current = window.setTimeout(() => setToast(null), 2600);
+  const showToast = (text: string) => {
+    toastT.current.forEach(clearTimeout);
+    setToast({ text, id: ++toastN.current, out: false });
+    toastT.current = [window.setTimeout(() => setToast((t) => t && { ...t, out: true }), 2500), window.setTimeout(() => setToast(null), 2750)];
   };
 
   const update = (fn: (p: Profile) => Profile) => setProfile((p) => fn(p));
@@ -167,13 +172,58 @@ export function App() {
   };
 
   const goTab = (t: Tab) => {
+    if (screen === 'tab' && t === tab) return;
     sfx.click();
     setTab(t);
     setScreen('tab');
   };
 
-  let body: React.ReactNode = null;
+  // tab pages share one shell: top bar, page views that cross-fade, and the tab bar
+  let page: React.ReactNode;
+  if (tab === 'daily') page = <DailyPage profile={profile} dailyNo={dailyNo} dailyKey={todayKey} onPlay={() => startRun('daily')} />;
+  else if (tab === 'ranks') page = <RanksPage profile={profile} />;
+  else if (tab === 'boosters')
+    page = (
+      <BoostersPage
+        profile={profile}
+        onBuy={(b) => {
+          if (!spend(BOOSTER_PRICES[b])) {
+            showToast('Not enough coins yet. Each draft earns 20 to 100.');
+            sfx.nope();
+            return;
+          }
+          sfx.coin();
+          update((p) => ({ ...p, inventory: { ...p.inventory, [b]: p.inventory[b] + 1 } }));
+          showToast('Bought 1.');
+        }}
+      />
+    );
+  else if (tab === 'profile') page = <ProfilePage profile={profile} />;
+  else
+    page = (
+      <HomePage
+        profile={profile}
+        dailyNo={dailyNo}
+        dailyDone={dailyDone}
+        onMode={(m) => {
+          sfx.click();
+          update((p) => ({ ...p, mode: m }));
+        }}
+        onBot={(b) => {
+          sfx.click();
+          update((p) => ({ ...p, botLevel: b }));
+        }}
+        onPlay={() => startRun()}
+        onToast={showToast}
+      />
+    );
+
+  let body: React.ReactNode;
+  let viewId = 'shell';
+  let enter = 'fade';
   if (screen === 'draft' && run) {
+    viewId = 'draft:' + run.id;
+    enter = 'up';
     body = (
       <Draft
         key={run.id}
@@ -194,57 +244,38 @@ export function App() {
       />
     );
   } else if (screen === 'reveal' && run?.season && run.draft) {
+    viewId = 'reveal:' + run.id;
+    enter = 'zoom';
     body = <Reveal season={run.season} lineup={run.draft.lineup} label={MODE_LABEL[run.mode]} onDone={onRevealDone} />;
   } else if (screen === 'playoffs' && run?.season && run.bracket) {
+    viewId = 'playoffs:' + run.id;
+    enter = 'up';
     body = <Playoffs season={run.season} bracket={run.bracket} onDone={() => finish(run, run.season!, run.bracket!, null)} />;
   } else if (screen === 'results' && run?.result) {
+    viewId = 'results:' + run.id;
+    enter = 'zoom';
     body = <Results info={run.result} xp={profile.xp} coins={profile.coins} onAgain={() => startRun(run.mode)} onHome={() => goTab('home')} onToast={showToast} />;
-  } else if (tab === 'daily') {
-    body = <DailyPage profile={profile} dailyNo={dailyNo} dailyKey={todayKey} onPlay={() => startRun('daily')} onTab={goTab} />;
-  } else if (tab === 'ranks') {
-    body = <RanksPage profile={profile} onTab={goTab} />;
-  } else if (tab === 'boosters') {
-    body = (
-      <BoostersPage
-        profile={profile}
-        onTab={goTab}
-        onBuy={(b) => {
-          if (!spend(BOOSTER_PRICES[b])) {
-            showToast('Not enough coins yet. Each draft earns 20 to 100.');
-            sfx.nope();
-            return;
-          }
-          sfx.coin();
-          update((p) => ({ ...p, inventory: { ...p.inventory, [b]: p.inventory[b] + 1 } }));
-          showToast('Bought 1.');
-        }}
-      />
-    );
-  } else if (tab === 'profile') {
-    body = <ProfilePage profile={profile} onTab={goTab} onSettings={() => setModal('settings')} />;
   } else {
     body = (
-      <HomePage
-        profile={profile}
-        dailyNo={dailyNo}
-        dailyDone={dailyDone}
-        onMode={(m) => {
-          sfx.click();
-          update((p) => ({ ...p, mode: m }));
-        }}
-        onBot={(b) => update((p) => ({ ...p, botLevel: b }))}
-        onPlay={() => startRun()}
-        onTab={goTab}
-        onSettings={() => setModal('settings')}
-        onHelp={() => setModal('howto')}
-        onToast={showToast}
-      />
+      <div className="shell">
+        <div className="shell-top">
+          <TopBar xp={profile.xp} coins={profile.coins} onProfile={() => goTab('profile')} onSettings={() => setModal('settings')} onHelp={() => setModal('howto')} />
+        </div>
+        <div className="shell-views">
+          <Transition id={tab} enter="tab" exitMs={160}>
+            {page}
+          </Transition>
+        </div>
+        <Tabs tab={tab} onTab={goTab} />
+      </div>
     );
   }
 
   return (
     <>
-      {body}
+      <Transition id={viewId} enter={enter} exitMs={260}>
+        {body}
+      </Transition>
       {modal === 'settings' && (
         <SettingsSheet
           profile={profile}
@@ -259,7 +290,7 @@ export function App() {
         />
       )}
       {modal === 'howto' && <HowToSheet onClose={() => setModal(null)} />}
-      {toast && <Toast text={toast} />}
+      {toast && <Toast key={toast.id} text={toast.text} out={toast.out} />}
     </>
   );
 }

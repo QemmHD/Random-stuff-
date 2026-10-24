@@ -62,12 +62,49 @@ function noise(dur: number, opts: { gain?: number; at?: number; freq?: number } 
   src.start(t0);
 }
 
+const IOS = typeof navigator !== 'undefined' && (/iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+let iosSwitch: HTMLLabelElement | null = null;
+
+/* iPhones have no vibration API, but Safari 18 plays a light haptic tick when a
+   switch-style checkbox toggles. A hidden one gives us taps on iOS. */
+function iosTick() {
+  try {
+    if (!iosSwitch) {
+      const label = document.createElement('label');
+      label.setAttribute('aria-hidden', 'true');
+      label.style.cssText = 'position:fixed;left:-60px;top:0;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none';
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.setAttribute('switch', '');
+      input.tabIndex = -1;
+      label.appendChild(input);
+      document.body.appendChild(label);
+      iosSwitch = label;
+    }
+    iosSwitch.click();
+  } catch {
+    // not supported
+  }
+}
+
 export function vibrate(pattern: number | number[]) {
   if (!hapticsOn) return;
   try {
-    navigator.vibrate?.(pattern);
+    if (typeof navigator.vibrate === 'function' && !IOS) {
+      navigator.vibrate(pattern);
+      return;
+    }
   } catch {
     // not supported
+  }
+  if (!IOS) return;
+  // one tick per pulse of the pattern
+  const p = Array.isArray(pattern) ? pattern : [pattern];
+  let t = 0;
+  for (let i = 0; i < p.length; i += 2) {
+    if (t === 0) iosTick();
+    else window.setTimeout(iosTick, t);
+    t += p[i] + (p[i + 1] ?? 0);
   }
 }
 
@@ -83,20 +120,29 @@ export const sfx = {
     noise(0.06, { gain: 0.06, freq: 2500 });
     vibrate(12);
   },
-  select: () => tone(880, 0.06, { type: 'triangle', gain: 0.08 }),
+  select: () => {
+    tone(880, 0.06, { type: 'triangle', gain: 0.08 });
+    vibrate(8);
+  },
   place: () => {
     tone(196, 0.16, { type: 'sine', gain: 0.25, slide: 0.7 });
     tone(1046, 0.08, { type: 'triangle', gain: 0.06, at: 0.02 });
     vibrate(18);
   },
-  nope: () => tone(180, 0.12, { type: 'square', gain: 0.05 }),
+  nope: () => {
+    tone(180, 0.12, { type: 'square', gain: 0.05 });
+    vibrate([10, 60, 10]);
+  },
   coin: () => {
     tone(1318, 0.08, { type: 'square', gain: 0.05 });
     tone(1760, 0.14, { type: 'square', gain: 0.05, at: 0.07 });
   },
   tickerWin: () => tone(990, 0.03, { type: 'triangle', gain: 0.03 }),
   tickerLoss: () => tone(330, 0.03, { type: 'triangle', gain: 0.03 }),
-  gameWin: () => tone(784, 0.1, { type: 'triangle', gain: 0.09 }),
+  gameWin: () => {
+    tone(784, 0.1, { type: 'triangle', gain: 0.09 });
+    vibrate(8);
+  },
   gameLoss: () => tone(220, 0.14, { type: 'sawtooth', gain: 0.05 }),
   seriesWin: () => {
     [523, 659, 784].forEach((f, i) => tone(f, 0.16, { type: 'triangle', gain: 0.1, at: i * 0.09 }));
@@ -117,6 +163,17 @@ export const sfx = {
     [659, 784, 988, 1318].forEach((f, i) => tone(f, 0.14, { type: 'square', gain: 0.05, at: i * 0.08 }));
     vibrate([20, 30, 20]);
   },
+  heartbeat: () => {
+    tone(70, 0.12, { type: 'sine', gain: 0.35, slide: 0.8 });
+    tone(64, 0.12, { type: 'sine', gain: 0.25, slide: 0.8, at: 0.16 });
+    vibrate([12, 140, 10]);
+  },
+  stamp: () => {
+    tone(110, 0.22, { type: 'sine', gain: 0.35, slide: 0.5 });
+    noise(0.12, { gain: 0.1, freq: 600 });
+    vibrate(24);
+  },
+  whoosh: () => noise(0.22, { gain: 0.05, freq: 1800 }),
   title: () => {
     [523, 659, 784, 1046, 784, 1046, 1318].forEach((f, i) => tone(f, 0.22, { type: 'triangle', gain: 0.12, at: i * 0.11 }));
     vibrate([40, 60, 40, 60, 120]);
