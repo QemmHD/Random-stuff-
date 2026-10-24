@@ -130,6 +130,11 @@ function Reel({ label, caption, era, reel, ms, tint }: { label: string; caption:
   );
 }
 
+/** Long last names are set narrower so they fit the card instead of being cut. */
+function nameFit(n: string): string {
+  return n.length >= 15 ? ' xnarrow' : n.length >= 12 ? ' narrow' : '';
+}
+
 /** Card tops for the five spots, fitted to the court's height. */
 function courtLayout(h: number, ch: number): Record<Slot, number> {
   const pad = 8;
@@ -751,7 +756,7 @@ export function Draft(props: DraftProps) {
                   {!blind && <b className="num">{p.val.toFixed(0)}</b>}
                 </span>
                 <span className="ini">{initials(p.name)}</span>
-                <span className="nm">{lastName(p.name)}</span>
+                <span className={'nm' + nameFit(lastName(p.name))}>{lastName(p.name)}</span>
                 <span className="sub">
                   {p.abbr} {shortEra(p.era)}
                 </span>
