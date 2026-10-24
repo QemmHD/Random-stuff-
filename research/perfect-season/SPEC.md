@@ -57,6 +57,7 @@ Research on the game we're learning from is in [`../82-0/README.md`](../82-0/REA
 | Hero art | Stylized poster/comic illustration (not photoreal) |
 | On-court players | Mini player cards in team colors (initials, decade, rating) |
 | Next step | **Clickable design mockup** before real code, delivered as a private web link |
+| First playable build | `perfect-season/` (Vite + React + TypeScript, client-only, progress saved in the browser). Next.js + Supabase come with accounts (§15, step 3) |
 
 ---
 
