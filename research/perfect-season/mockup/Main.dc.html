@@ -1,0 +1,1332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Perfect Season prototype</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #04121A; color: #F2F6F7; font-family: Inter, system-ui, sans-serif;">
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; background: radial-gradient(120% 55% at 50% 28%, #0C3340 0%, #04121A 62%);">
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 0 16px; height: 50px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div style="width: 42px; height: 42px; box-sizing: border-box; border-radius: 50%; border: 2px solid #19E3C9; background: #0A1F2A; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; color: #19E3C9;">{{ levelShort }}</div>
+      <div style="display: flex; flex-direction: column; gap: 5px;">
+        <span style="font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #8FA6B2;">{{ levelLabel }}</span>
+        <div style="width: 100px; height: 6px; border-radius: 3px; background: #16323F; overflow: hidden;"><div style="height: 100%; border-radius: 3px; background: #19E3C9; width: {{ xpPct }};"></div></div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px; padding: 6px 12px 6px 8px; border-radius: 999px; background: #0A1F2A; border: 1px solid #16323F; font-weight: 800; font-size: 14px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#F5B83D"></circle><circle cx="12" cy="12" r="6" fill="none" stroke="#9A6A06" stroke-width="2"></circle></svg>
+      <span>{{ coins }}</span>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; align-items: center; margin-top: 16px; line-height: 0.88;">
+    <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 60px; letter-spacing: 1px; color: #19E3C9;">PERFECT</span>
+    <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 60px; letter-spacing: 1px; color: #F2F6F7;">SEASON</span>
+  </div>
+
+  <div style="position: relative; margin: 16px 16px 0 16px; height: 196px; border-radius: 18px; border: 1px solid #16323F; background: linear-gradient(160deg, #0B2A35 0%, #06161E 100%); overflow: hidden;">
+    <svg width="358" height="196" viewBox="0 0 358 196" style="position: absolute; left: 0; top: 0;" aria-hidden="true">
+      <circle cx="179" cy="236" r="150" fill="none" stroke="#19E3C9" stroke-opacity="0.18" stroke-width="2"></circle>
+      <circle cx="179" cy="236" r="64" fill="none" stroke="#19E3C9" stroke-opacity="0.18" stroke-width="2"></circle>
+      <line x1="0" y1="186" x2="358" y2="186" stroke="#19E3C9" stroke-opacity="0.18" stroke-width="2"></line>
+      <circle cx="306" cy="44" r="70" fill="#F5B83D" fill-opacity="0.07"></circle>
+      <circle cx="44" cy="40" r="56" fill="#19E3C9" fill-opacity="0.06"></circle>
+    </svg>
+    <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 14px;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 80px; line-height: 0.9; color: #19E3C9;">82–0</span>
+        <span style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #8FA6B2;">REGULAR SEASON</span>
+      </div>
+      <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 36px; color: #8FA6B2;">+</span>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 80px; line-height: 0.9; color: #F5B83D;">16–0</span>
+        <span style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #8FA6B2;">PLAYOFFS</span>
+      </div>
+    </div>
+  </div>
+  <p style="margin: 12px 24px 0 24px; text-align: center; font-size: 14px; line-height: 1.4; color: #8FA6B2;">Spin a team and a decade. Draft five legends. Go perfect.</p>
+
+  <div style="display: flex; justify-content: center; gap: 8px; margin-top: 12px;">
+    <button style="height: 34px; padding: 0 14px; border-radius: 999px; border: 2px solid #19E3C9; background: rgba(25,227,201,.12); color: #19E3C9; font: inherit; font-size: 12px; font-weight: 800; letter-spacing: 1px; cursor: pointer;">NBA</button>
+    <button onClick="{{ soonSport }}" style="height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid #16323F; background: #0A1F2A; color: #8FA6B2; font: inherit; font-size: 12px; font-weight: 700; letter-spacing: 1px; cursor: pointer;">NFL · SOON</button>
+    <button onClick="{{ soonSport }}" style="height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid #16323F; background: #0A1F2A; color: #8FA6B2; font: inherit; font-size: 12px; font-weight: 700; letter-spacing: 1px; cursor: pointer;">SOCCER · SOON</button>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 14px 16px 0 16px;">
+    <sc-for list="{{ modes }}" as="m" hint-placeholder-count="4">
+      <button onClick="{{ m.pick }}" aria-pressed="{{ m.pressed }}" style="box-sizing: border-box; {{ m.style }}">
+        <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 24px; letter-spacing: .5px; text-transform: uppercase;">{{ m.title }}</span>
+        <span style="font-size: 12px; line-height: 1.3; color: #8FA6B2;">{{ m.sub }}</span>
+      </button>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ showBotLevels }}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 10px;">
+      <span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #8FA6B2;">BOT</span>
+      <sc-for list="{{ botLevels }}" as="b" hint-placeholder-count="3">
+        <button onClick="{{ b.pick }}" aria-pressed="{{ b.pressed }}" style="box-sizing: border-box; {{ b.style }}">{{ b.label }}</button>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <div style="flex-grow: 1;"></div>
+  <div style="padding: 0 16px 12px 16px;">
+    <button onClick="{{ onPlay }}" style="box-sizing: border-box; {{ playStyle }}">{{ playLabel }}</button>
+  </div>
+  <nav aria-label="Main" style="display: flex; height: 62px; border-top: 1px solid #16323F; background: #061820;">
+    <button aria-label="Home" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: none; background: rgba(25,227,201,.10); color: #19E3C9; font: inherit; font-size: 10px; font-weight: 800; letter-spacing: 1px; cursor: pointer;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"></path></svg>
+      <span>HOME</span>
+    </button>
+    <button onClick="{{ tabSoon }}" aria-label="Daily" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: none; background: none; color: #8FA6B2; font: inherit; font-size: 10px; font-weight: 800; letter-spacing: 1px; cursor: pointer;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>
+      <span>DAILY</span>
+    </button>
+    <button onClick="{{ tabSoon }}" aria-label="Leaderboards" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: none; background: none; color: #8FA6B2; font: inherit; font-size: 10px; font-weight: 800; letter-spacing: 1px; cursor: pointer;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20V11M12 20V4M18 20v-6"></path></svg>
+      <span>RANKS</span>
+    </button>
+    <button onClick="{{ tabSoon }}" aria-label="Boosters" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: none; background: none; color: #8FA6B2; font: inherit; font-size: 10px; font-weight: 800; letter-spacing: 1px; cursor: pointer;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg>
+      <span>BOOSTERS</span>
+    </button>
+    <button onClick="{{ tabSoon }}" aria-label="Profile" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: none; background: none; color: #8FA6B2; font: inherit; font-size: 10px; font-weight: 800; letter-spacing: 1px; cursor: pointer;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>
+      <span>PROFILE</span>
+    </button>
+  </nav>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDraft }}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column;">
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px 0 16px; height: 50px;">
+    <button onClick="{{ goHome }}" aria-label="Back to home" style="width: 44px; height: 44px; box-sizing: border-box; padding: 0; border-radius: 10px; border: 1px solid #16323F; background: #0A1F2A; color: #F2F6F7; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+    </button>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+      <span style="font-weight: 800; font-size: 13px; letter-spacing: 1px;">{{ roundLabel }}</span>
+      <div style="display: flex; gap: 5px;">
+        <sc-for list="{{ segs }}" as="sg" hint-placeholder-count="5"><span style="width: 32px; height: 4px; border-radius: 2px; background: {{ sg.bg }};"></span></sc-for>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px; padding: 6px 12px 6px 8px; border-radius: 999px; background: #0A1F2A; border: 1px solid #16323F; font-weight: 800; font-size: 14px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#F5B83D"></circle><circle cx="12" cy="12" r="6" fill="none" stroke="#9A6A06" stroke-width="2"></circle></svg>
+      <span>{{ coins }}</span>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 14px; padding: 14px 16px 0 16px;">
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <span style="text-align: center; font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #032027; background: #19E3C9; border-radius: 10px 10px 0 0; padding: 3px 0;">TEAM</span>
+      <div style="height: 84px; box-sizing: border-box; border: 3px solid #19E3C9; border-top: none; border-radius: 0 0 12px 12px; background: linear-gradient(180deg, #123341 0%, #061820 50%, #123341 100%); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+        <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 46px; color: #F2F6F7; {{ teamFx }}">{{ teamText }}</span>
+      </div>
+    </div>
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <span style="text-align: center; font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #261A00; background: #F5B83D; border-radius: 10px 10px 0 0; padding: 3px 0;">DECADE</span>
+      <div style="height: 84px; box-sizing: border-box; border: 3px solid #F5B83D; border-top: none; border-radius: 0 0 12px 12px; background: linear-gradient(180deg, #2A2412 0%, #0F0C05 50%, #2A2412 100%); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+        <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 46px; color: #F2F6F7; {{ eraFx }}">{{ eraText }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 14px; padding: 8px 16px 0 16px;">
+    <button onClick="{{ respinTeam }}" aria-label="Respin team" style="box-sizing: border-box; {{ respinTeamStyle }}">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.9-3M4 4v4h4M4 13a8 8 0 0 0 14.9 3M20 20v-4h-4"></path></svg>
+      <span>{{ respinTeamLabel }}</span>
+    </button>
+    <button onClick="{{ respinEra }}" aria-label="Respin decade" style="box-sizing: border-box; {{ respinEraStyle }}">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.9-3M4 4v4h4M4 13a8 8 0 0 0 14.9 3M20 20v-4h-4"></path></svg>
+      <span>{{ respinEraLabel }}</span>
+    </button>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 12px 16px 0 16px;">
+    <sc-for list="{{ bars }}" as="b" hint-placeholder-count="4">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div style="display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; color: #8FA6B2;"><span>{{ b.label }}</span><span style="color: #F2F6F7;">{{ b.pct }}</span></div>
+        <div style="height: 6px; border-radius: 3px; background: #16323F; overflow: hidden;"><div style="height: 100%; border-radius: 3px; transition: width .45s ease; background: {{ b.color }}; width: {{ b.w }};"></div></div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="position: relative; height: 330px; margin-top: 10px;">
+    <svg width="390" height="330" viewBox="0 0 390 330" style="position: absolute; left: 0; top: 0;" aria-hidden="true">
+      <rect x="0" y="0" width="390" height="330" fill="#071B24"></rect>
+      <path d="M25 0 L25 95 A178 178 0 0 0 365 95 L365 0" fill="none" stroke="#19E3C9" stroke-opacity="0.22" stroke-width="2"></path>
+      <rect x="135" y="0" width="120" height="150" fill="#19E3C9" fill-opacity="0.04" stroke="#19E3C9" stroke-opacity="0.22" stroke-width="2"></rect>
+      <circle cx="195" cy="150" r="58" fill="none" stroke="#19E3C9" stroke-opacity="0.22" stroke-width="2"></circle>
+      <line x1="165" y1="18" x2="225" y2="18" stroke="#F2F6F7" stroke-opacity="0.5" stroke-width="3"></line>
+      <circle cx="195" cy="30" r="10" fill="none" stroke="#F5B83D" stroke-width="2.5"></circle>
+      <line x1="0" y1="329" x2="390" y2="329" stroke="#19E3C9" stroke-opacity="0.22" stroke-width="2"></line>
+      <path d="M135 330 A60 60 0 0 1 255 330" fill="none" stroke="#19E3C9" stroke-opacity="0.22" stroke-width="2"></path>
+    </svg>
+    <sc-for list="{{ slots }}" as="s" hint-placeholder-count="5">
+      <button onClick="{{ s.tap }}" aria-label="{{ s.aria }}" style="box-sizing: border-box; {{ s.style }}">
+        <sc-if value="{{ s.filled }}" hint-placeholder-val="{{ false }}">
+          <span style="display: flex; justify-content: space-between; width: 100%; padding: 0 4px; box-sizing: border-box; font-size: 10px; font-weight: 800; letter-spacing: .5px;"><span>{{ s.key }}</span><span style="color: #FFE29A;">{{ s.rating }}</span></span>
+          <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 34px; line-height: 1;">{{ s.initials }}</span>
+          <span style="max-width: 76px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; font-weight: 700;">{{ s.last }}</span>
+          <span style="font-size: 10px; font-weight: 700; opacity: .85;">{{ s.sub }}</span>
+        </sc-if>
+        <sc-if value="{{ s.empty }}" hint-placeholder-val="{{ true }}">
+          <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 28px; color: {{ s.labelColor }};">{{ s.key }}</span>
+          <sc-if value="{{ s.eligible }}" hint-placeholder-val="{{ false }}"><span style="font-size: 24px; font-weight: 800; line-height: 1; color: #19E3C9;">+</span></sc-if>
+        </sc-if>
+      </button>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ showTray }}" hint-placeholder-val="{{ true }}">
+    <div style="display: flex; justify-content: center; gap: 8px; padding: 8px 16px 0 16px;">
+      <sc-for list="{{ boosters }}" as="bo" hint-placeholder-count="3">
+        <button onClick="{{ bo.tap }}" style="height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid #16323F; background: #0A1F2A; font: inherit; font-size: 11px; font-weight: 800; letter-spacing: .5px; cursor: pointer; display: flex; align-items: center; gap: 6px; color: {{ bo.color }};">
+          <sc-if value="{{ bo.locked }}" hint-placeholder-val="{{ true }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></sc-if>
+          <span>{{ bo.label }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{ showBot }}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 16px 0 16px;">
+      <span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #B9A4FF; margin-right: 4px;">{{ botName }}</span>
+      <sc-for list="{{ botChips }}" as="bc" hint-placeholder-count="5"><span style="box-sizing: border-box; {{ bc.style }}">{{ bc.text }}</span></sc-for>
+    </div>
+  </sc-if>
+
+  <div style="flex-grow: 1;"></div>
+  <div style="padding: 0 16px 16px 16px;">
+    <button onClick="{{ onAction }}" aria-disabled="{{ actionOff }}" style="box-sizing: border-box; {{ actionStyle }}">{{ actionLabel }}</button>
+  </div>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 610px; display: flex; flex-direction: column; background: #071A23; border-top: 2px solid #19E3C9; border-radius: 18px 18px 0 0; box-shadow: 0 -14px 40px rgba(0,0,0,.55); transition: transform .35s ease; transform: {{ drawerTf }};">
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px 8px 16px;">
+    <div style="display: flex; flex-direction: column; gap: 2px;">
+      <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 28px;">{{ cellTitle }}</span>
+      <span style="font-size: 12px; color: #8FA6B2;">{{ cellName }}</span>
+    </div>
+    <button onClick="{{ closeDrawer }}" aria-label="Hide players" style="width: 44px; height: 44px; box-sizing: border-box; padding: 0; border-radius: 10px; border: 1px solid #16323F; background: #0A1F2A; color: #F5B83D; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
+    </button>
+  </div>
+  <div style="display: flex; gap: 6px; padding: 0 16px 10px 16px;">
+    <sc-for list="{{ sorts }}" as="so" hint-placeholder-count="6">
+      <button onClick="{{ so.tap }}" aria-pressed="{{ so.active }}" style="box-sizing: border-box; {{ so.style }}">{{ so.label }}</button>
+    </sc-for>
+  </div>
+  <div style="flex: 1; overflow-y: auto; padding: 0 12px 16px 12px; display: flex; flex-direction: column; gap: 8px;">
+    <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+      <button onClick="{{ r.tap }}" aria-disabled="{{ r.off }}" style="box-sizing: border-box; {{ r.style }}">
+        <span style="display: flex; flex-direction: column; align-items: flex-start; gap: 3px; min-width: 0; flex: 1;">
+          <span style="max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 15px; font-weight: 800;">{{ r.name }}</span>
+          <span style="font-size: 10px; font-weight: 700; color: #8FA6B2;">{{ r.meta }}</span>
+          <sc-if value="{{ r.hasTag }}" hint-placeholder-val="{{ false }}"><span style="font-size: 9px; font-weight: 800; letter-spacing: .5px; color: #F5B83D;">{{ r.tag }}</span></sc-if>
+        </span>
+        <span style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2px; width: 196px;">
+          <sc-for list="{{ r.cols }}" as="c" hint-placeholder-count="5">
+            <span style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+              <span style="font-size: 9px; font-weight: 700; letter-spacing: .5px; color: #8FA6B2;">{{ c.k }}</span>
+              <span style="font-size: 14px; font-weight: 800; color: {{ c.vc }};">{{ c.v }}</span>
+            </span>
+          </sc-for>
+        </span>
+      </button>
+    </sc-for>
+  </div>
+</div>
+
+<sc-if value="{{ showCoach }}" hint-placeholder-val="{{ false }}">
+  <div style="position: absolute; left: 20px; right: 20px; display: flex; align-items: center; gap: 10px; padding: 12px 12px 12px 14px; border-radius: 14px; background: #F5B83D; color: #1C1400; box-shadow: 0 10px 30px rgba(0,0,0,.5); {{ coachPos }}">
+    <span style="flex: 1; font-size: 14px; font-weight: 700; line-height: 1.3;">{{ coachText }}</span>
+    <button onClick="{{ skipTips }}" style="flex-shrink: 0; height: 36px; padding: 0 10px; border: none; border-radius: 8px; background: rgba(0,0,0,.14); color: #1C1400; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer;">SKIP TIPS</button>
+  </div>
+</sc-if>
+</sc-if>
+
+<sc-if value="{{ isReveal }}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; padding: 26px 16px 16px 16px; background: radial-gradient(100% 50% at 50% 22%, #0C3340 0%, #04121A 70%);">
+  <span style="font-size: 12px; font-weight: 800; letter-spacing: 3px; color: #8FA6B2;">{{ revealHead }}</span>
+  <div style="display: flex; gap: 6px; margin-top: 12px;">
+    <sc-for list="{{ teamChips }}" as="tc" hint-placeholder-count="5"><span style="box-sizing: border-box; {{ tc.style }}">{{ tc.text }}</span></sc-for>
+  </div>
+  <div style="margin-top: 26px; padding: 14px 22px; border-radius: 18px; background: #020B10; border: 2px solid #16323F; display: flex; align-items: center; gap: 12px;">
+    <span style="min-width: 118px; text-align: right; font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 104px; line-height: 1; color: #19E3C9;">{{ tickW }}</span>
+    <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 56px; color: #8FA6B2;">–</span>
+    <span style="min-width: 118px; font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 104px; line-height: 1; color: #FF8F8F;">{{ tickL }}</span>
+  </div>
+  <span style="margin-top: 10px; font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #8FA6B2;">{{ gameLabel }}</span>
+  <div style="display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 5px; width: 100%; margin-top: 18px;">
+    <sc-for list="{{ dots }}" as="d" hint-placeholder-count="82"><span style="height: 14px; border-radius: 4px; background: {{ d.bg }};"></span></sc-for>
+  </div>
+  <sc-if value="{{ revealDone }}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="width: 58px; height: 58px; box-sizing: border-box; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #061820; font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 30px; {{ seasonGradeStyle }}">{{ seasonGrade }}</span>
+        <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 30px; text-transform: uppercase;">{{ seasonTier }}</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
+        <sc-for list="{{ highlights }}" as="h" hint-placeholder-count="3"><span style="padding: 8px 12px; border-radius: 999px; background: #0A1F2A; border: 1px solid #16323F; font-size: 13px; font-weight: 700;">{{ h.text }}</span></sc-for>
+      </div>
+    </div>
+  </sc-if>
+  <div style="flex-grow: 1;"></div>
+  <button onClick="{{ revealAction }}" style="box-sizing: border-box; {{ revealStyle }}">{{ revealLabel }}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPlayoffs }}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; box-sizing: border-box; display: flex; flex-direction: column; padding: 20px 16px 16px 16px; background: radial-gradient(100% 40% at 50% 0%, #2A2412 0%, #04121A 70%);">
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+    <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 42px; color: #F5B83D;">PLAYOFFS</span>
+    <span style="text-align: center; font-size: 13px; line-height: 1.4; color: #8FA6B2;">{{ poSub }}</span>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
+    <sc-for list="{{ series }}" as="se" hint-placeholder-count="4">
+      <div style="box-sizing: border-box; {{ se.style }}">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #8FA6B2;">{{ se.round }}</span>
+          <span style="font-size: 12px; font-weight: 800; color: {{ se.statusColor }};">{{ se.status }}</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; margin-top: 8px;">
+          <span style="width: 8px; height: 34px; border-radius: 3px; background: {{ se.color }};"></span>
+          <div style="display: flex; flex-direction: column; min-width: 0; flex: 1;">
+            <span style="font-size: 16px; font-weight: 800;">{{ se.opp }}</span>
+            <span style="font-size: 12px; color: #8FA6B2;">{{ se.oppSub }}</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 6px; margin-top: 10px;">
+          <sc-for list="{{ se.dots }}" as="g" hint-placeholder-count="7"><span style="flex: 1; height: 22px; box-sizing: border-box; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; background: {{ g.bg }}; color: {{ g.fg }}; border: 1px solid {{ g.bd }};">{{ g.t }}</span></sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="flex-grow: 1;"></div>
+  <button onClick="{{ poAction }}" aria-disabled="{{ poOff }}" style="box-sizing: border-box; {{ poStyle }}">{{ poLabel }}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isResults }}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column;">
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px 0 16px; height: 50px;">
+    <button onClick="{{ goHome }}" aria-label="Home" style="height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 10px; border: 1px solid #16323F; background: #0A1F2A; color: #F2F6F7; display: flex; align-items: center; gap: 6px; font: inherit; font-size: 12px; font-weight: 800; letter-spacing: 1px; cursor: pointer;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      <span>HOME</span>
+    </button>
+    <span style="font-size: 12px; font-weight: 800; letter-spacing: 2px; color: #8FA6B2;">{{ resTag }}</span>
+    <div style="display: flex; align-items: center; gap: 6px; padding: 6px 12px 6px 8px; border-radius: 999px; background: #0A1F2A; border: 1px solid #16323F; font-weight: 800; font-size: 14px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#F5B83D"></circle><circle cx="12" cy="12" r="6" fill="none" stroke="#9A6A06" stroke-width="2"></circle></svg>
+      <span>{{ coins }}</span>
+    </div>
+  </div>
+
+  <div style="flex: 1; overflow-y: auto; padding: 6px 16px 12px 16px; display: flex; flex-direction: column; gap: 12px;">
+    <sc-if value="{{ isPerfect }}" hint-placeholder-val="{{ false }}">
+      <div style="padding: 10px; border-radius: 12px; text-align: center; background: linear-gradient(90deg, #F5B83D 0%, #FFE29A 50%, #F5B83D 100%); color: #261A00; font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 26px;">PERFECT SEASON · 98–0</div>
+    </sc-if>
+
+    <sc-if value="{{ isVs }}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <span style="font-size: 12px; font-weight: 800; letter-spacing: 3px; color: #8FA6B2;">1 VS 1 · SNAKE DRAFT</span>
+        <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 56px; color: {{ vsColor }};">{{ vsTitle }}</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+        <div style="padding: 12px; border-radius: 14px; background: #0A1F2A; border: 2px solid #19E3C9; display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #19E3C9;">YOU</span>
+          <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 38px;">{{ meRecord }}</span>
+          <span style="font-size: 12px; color: #8FA6B2;">{{ meRating }}</span>
+        </div>
+        <div style="padding: 12px; border-radius: 14px; background: #0A1F2A; border: 2px solid #9B7BFF; display: flex; flex-direction: column; gap: 4px;">
+          <span style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #B9A4FF;">{{ botName }}</span>
+          <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 38px;">{{ botRecord }}</span>
+          <span style="font-size: 12px; color: #8FA6B2;">{{ botRating }}</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #B9A4FF;">BOT LINEUP</span>
+        <sc-for list="{{ botRows }}" as="br" hint-placeholder-count="5">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 10px; background: #0A1F2A; border: 1px solid #2B2552;">
+            <span style="width: 28px; font-size: 12px; font-weight: 800; color: #B9A4FF;">{{ br.slot }}</span>
+            <span style="flex: 1; font-size: 14px; font-weight: 700;">{{ br.name }}</span>
+            <span style="font-size: 12px; color: #8FA6B2;">{{ br.sub }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ notVs }}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 6px 0 2px 0;">
+        <div style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 92px; line-height: .95; color: #F2F6F7;">{{ recW }}</span>
+          <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 60px; color: #19E3C9;">–</span>
+          <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 92px; line-height: .95; color: #F2F6F7;">{{ recL }}</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #061820; font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 24px; {{ gradeStyle }}">{{ gradeLetter }}</span>
+          <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 26px; text-transform: uppercase; color: {{ gradeColor }};">{{ gradeTier }}</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: #0A1F2A; border: 1px solid #16323F;">
+          <sc-if value="{{ isChampion }}" hint-placeholder-val="{{ false }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5B83D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"></path><path d="M17 6h3a3 3 0 0 1-3 4M7 6H4a3 3 0 0 0 3 4"></path></svg></sc-if>
+          <span style="font-size: 13px; font-weight: 700; color: {{ poLineColor }};">{{ poLine }}</span>
+        </div>
+      </div>
+    </sc-if>
+
+    <div style="padding: 12px; border-radius: 14px; background: #0A1F2A; border: 1px solid #16323F; display: flex; flex-direction: column; gap: 10px;">
+      <span style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #8FA6B2;">TEAM BREAKDOWN VS A NEAR-PERFECT TEAM</span>
+      <sc-for list="{{ resultBars }}" as="rb" hint-placeholder-count="4">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="width: 82px; font-size: 11px; font-weight: 700; color: #8FA6B2;">{{ rb.label }}</span>
+          <div style="flex: 1; height: 8px; border-radius: 4px; background: #16323F; overflow: hidden;"><div style="height: 100%; border-radius: 4px; background: {{ rb.color }}; width: {{ rb.w }};"></div></div>
+          <span style="width: 40px; text-align: right; font-size: 12px; font-weight: 800;">{{ rb.pct }}</span>
+        </div>
+      </sc-for>
+      <span style="font-size: 12px; color: #8FA6B2;">{{ balanceLine }}</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 6px;">
+      <sc-for list="{{ resultRows }}" as="rr" hint-placeholder-count="5">
+        <div style="box-sizing: border-box; {{ rr.style }}">
+          <span style="width: 34px; font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 20px;">{{ rr.slot }}</span>
+          <div style="flex: 1; display: flex; flex-direction: column; min-width: 0;">
+            <span style="font-size: 15px; font-weight: 800;">{{ rr.name }}</span>
+            <span style="font-size: 11px; font-weight: 600; opacity: .85;">{{ rr.sub }}</span>
+          </div>
+          <span style="font-size: 13px; font-weight: 800; color: #FFE29A;">{{ rr.v }}</span>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="padding: 12px; border-radius: 14px; background: #0A1F2A; border: 1px solid #16323F; display: flex; flex-direction: column; gap: 8px;">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-size: 11px; font-weight: 800; letter-spacing: 2px; color: #8FA6B2;">REWARDS</span>
+        <span style="font-size: 14px; font-weight: 800; color: #F5B83D;">{{ rewardLine }}</span>
+      </div>
+      <div style="height: 8px; border-radius: 4px; background: #16323F; overflow: hidden;"><div style="height: 100%; border-radius: 4px; background: #19E3C9; width: {{ xpPct }};"></div></div>
+      <span style="font-size: 12px; color: #8FA6B2;">{{ levelLine }}</span>
+      <sc-if value="{{ showLevelUp }}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; font-weight: 800; color: #19E3C9;">{{ levelUpText }}</span></sc-if>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 10px; padding: 0 16px 16px 16px;">
+    <button onClick="{{ openShare }}" style="box-sizing: border-box; {{ shareBtnStyle }}">SHARE</button>
+    <button onClick="{{ onAgain }}" style="box-sizing: border-box; {{ againBtnStyle }}">DRAFT AGAIN</button>
+  </div>
+
+  <sc-if value="{{ shareOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; background: rgba(2,8,12,.82); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 16px; box-sizing: border-box;">
+      <div style="width: 320px; box-sizing: border-box; padding: 18px; border-radius: 18px; background: linear-gradient(160deg, #0F3A44 0%, #061820 100%); border: 2px solid #19E3C9; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 20px; color: #19E3C9;">PERFECT SEASON</span>
+          <span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #8FA6B2;">{{ resTag }}</span>
+        </div>
+        <span style="font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: 64px; line-height: 1;">{{ shareRecord }}</span>
+        <span style="font-size: 14px; font-weight: 800; color: {{ gradeColor }};">{{ shareGrade }}</span>
+        <span style="font-size: 13px; color: #F2F6F7;">{{ sharePo }}</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <sc-for list="{{ teamChips }}" as="tc" hint-placeholder-count="5"><span style="box-sizing: border-box; {{ tc.style }}">{{ tc.text }}</span></sc-for>
+        </div>
+        <span style="font-size: 12px; color: #8FA6B2;">Can you go perfect? perfectseason.gg</span>
+      </div>
+      <div style="width: 320px; box-sizing: border-box; padding: 10px 12px; border-radius: 12px; background: #0A1F2A; border: 1px solid #16323F; font-size: 12px; line-height: 1.45; color: #C9D6DC; white-space: pre-line;">{{ shareText }}</div>
+      <div style="display: flex; gap: 10px; width: 320px;">
+        <button onClick="{{ closeShare }}" style="flex: 1; height: 48px; border-radius: 12px; border: 1px solid #16323F; background: #0A1F2A; color: #F2F6F7; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer;">CLOSE</button>
+        <button onClick="{{ copyShare }}" style="flex: 1; height: 48px; border-radius: 12px; border: none; background: #19E3C9; color: #032027; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer;">COPY TEXT</button>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ toastOn }}" hint-placeholder-val="{{ false }}">
+  <div style="position: absolute; left: 30px; right: 30px; top: 66px; padding: 10px 14px; border-radius: 12px; background: #0E2833; border: 1px solid #19E3C9; color: #F2F6F7; font-size: 13px; font-weight: 700; line-height: 1.35; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,.45);">{{ toast }}</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"demo":{"editor":"enum","options":["live","home","drawer","placed","reveal","playoffs","results"],"default":"live"},"$preview":{"width":390,"height":844}}'>
+const RAW = [{"abbr":"NYK","era":"1990s","name":"New York Knicks","c1":"#006BB6","c2":"#F58426","players":[["Patrick Ewing","C/PF",24.1,11.0,2.2,0.9,2.7],["Charles Oakley","C/PF",10.0,10.0,2.3,1.1,0.2],["Mark Jackson","PG",10.1,3.5,7.5,1.2,0.1],["Latrell Sprewell","SF/SG",16.4,4.2,2.5,1.2,0.1],["Anthony Mason","C/PF/SF",9.9,7.7,2.6,0.6,0.2],["Larry Johnson","PF/SF/SG",13.6,5.5,2.2,0.7,0.3],["Xavier McDaniel","PF/SF",13.7,5.6,1.8,0.7,0.3],["John Starks","SG",14.1,2.6,4.0,1.2,0.1],["Gerald Wilkins","SF/SG",13.6,3.4,3.5,1.1,0.3]]},{"abbr":"GSW","era":"2010s","name":"Golden State Warriors","c1":"#1D428A","c2":"#FFC72C","players":[["Kevin Durant","PF/SF/SG",25.9,7.1,5.4,0.8,1.5],["Stephen Curry","PG/SG",23.5,4.5,6.6,1.7,0.2],["Monta Ellis","SG",24.1,3.7,5.6,2.0,0.3],["DeMarcus Cousins","C",16.3,8.2,3.6,1.3,1.5],["David Lee","C/PF/SF",16.7,9.3,2.8,0.8,0.4],["Draymond Green","PF/SF",9.1,7.0,4.9,1.4,1.1],["Corey Maggette","PF/SF/SG",19.8,5.3,2.5,0.7,0.1],["Anthony Tolliver","PF/SF",12.3,7.3,2,0.7,0.8],["Klay Thompson","SF/SG",19.5,3.5,2.3,0.9,0.5]]},{"abbr":"BOS","era":"1990s","name":"Boston Celtics","c1":"#007A33","c2":"#BA9653","players":[["Larry Bird","PF/SF",21.6,9.2,7.2,1.4,0.8],["Antoine Walker","PF",19.7,9.4,3.2,1.5,0.7],["Dino Radja","C/PF",16.7,8.4,1.6,0.9,1.2],["Paul Pierce","SF/SG",16.5,6.4,2.4,1.7,1],["Reggie Lewis","SF/SG",19.3,4.7,2.8,1.3,1.1],["Brian Shaw","PG/SG",13.2,4.6,7.2,1.2,0.4],["Robert Parish","C",13.8,9.3,1.0,0.7,1.2],["Kevin McHale","PF",16.3,6.7,1.6,0.3,1.5],["David Wesley","PG/SG",12.7,3.1,5.8,1.7,0.2]]},{"abbr":"HOU","era":"1980s","name":"Houston Rockets","c1":"#CE1141","c2":"#000000","players":[["Moses Malone","C",28.2,14.7,1.8,1.0,1.6],["Hakeem Olajuwon","C",23,12.1,2.0,2.0,3.1],["Ralph Sampson","C/PF",19.7,10.4,2.7,1.0,1.9],["Otis Thorpe","C/PF",16.7,9.6,2.5,1,0.5],["Sleepy Floyd","PG/SG",13.7,3.6,7.6,1.4,0.1],["Rodney McCray","PF/SF",12.5,6.7,3.8,0.8,0.7],["John Lucas","PG/SG",13.8,2.0,8.0,1.2,0.1],["Caldwell Jones","C/PF",9.7,7.7,1.8,0.6,1.3],["Joe Barry Carroll","C",12,6.3,1.5,0.6,1.3]]},{"abbr":"SAS","era":"2010s","name":"San Antonio Spurs","c1":"#000000","c2":"#C4CED4","players":[["DeMar DeRozan","PF/SF/SG",21.2,6,6.2,1.1,0.5],["Tim Duncan","C/PF",14.7,9.2,2.8,0.7,1.8],["LaMarcus Aldridge","C/PF",20.0,8.4,2.0,0.6,1.2],["Kawhi Leonard","SF/SG/PF",16.4,6.2,2.3,1.8,0.7],["Pau Gasol","C/PF",10.0,7.4,2.6,0.3,1.0],["Tony Parker","PG",14.9,2.4,5.8,0.7,0.1],["Rudy Gay","PF/SF",12.7,6.0,2.0,0.8,0.6],["Manu Ginóbili","SG",12.1,3.0,4.0,1.1,0.3],["George Hill","PG/SG",12.0,2.6,2.7,0.9,0.3]]},{"abbr":"UTA","era":"2000s","name":"Utah Jazz","c1":"#002B5C","c2":"#F9A01B","players":[["Karl Malone","PF",22.9,8.6,4.3,1.4,0.7],["Carlos Boozer","C/PF",19.2,10.3,2.8,1,0.4],["Deron Williams","PG",16.2,2.9,8.7,1,0.2],["Andrei Kirilenko","PF/SF",12.5,5.8,2.8,1.4,2.2],["John Stockton","PG",11.9,2.8,8.3,1.7,0.2],["Mehmet Okur","C/PF",16,7.8,2.0,0.6,0.7],["Donyell Marshall","PF/SF",14.1,7.2,1.6,1.0,1.1],["Bryon Russell","SF/SG",12.1,4.7,2.0,1.3,0.3],["Paul Millsap","C/PF",9.4,6.4,1.2,0.9,0.9]]},{"abbr":"SEA","era":"2000s","name":"Seattle SuperSonics","c1":"#00653A","c2":"#FFC200","players":[["Gary Payton","PG",22.7,5.2,8.7,1.7,0.2],["Ray Allen","SG",24.6,4.6,4.2,1.3,0.2],["Kevin Durant","PF/SF/SG",22.7,5.4,2.6,1.1,0.8],["Russell Westbrook","PG",15.3,4.9,5.3,1.3,0.2],["Rashard Lewis","PF/SF",17.1,6.0,1.8,1.2,0.6],["Vin Baker","C/PF",14.3,6.6,1.5,0.5,0.8],["Brent Barry","SF/SG",11.3,4.2,4.6,1.4,0.3],["Kurt Thomas","C/PF",7.5,8.8,1.3,0.8,1],["Horace Grant","C/PF",8.1,7.8,2.5,0.7,0.8]]},{"abbr":"ATL","era":"2020s","name":"Atlanta Hawks","c1":"#E03A3E","c2":"#C1D32F","players":[["Trae Young","PG",26,3.3,10.3,1.1,0.2],["Dejounte Murray","PG/SG",21.5,5.3,6.2,1.4,0.3],["Dyson Daniels","PG/SG",13,6.3,5.2,2.5,0.6],["Clint Capela","C",11.7,11.3,1,0.7,1.4],["Nickeil Alexander-Walker","SG",20.8,3.4,3.7,1.3,0.5],["Jalen Johnson","PF/SF",13.1,6.8,3.6,0.9,0.6],["John Collins","PF",15.6,7.2,1.4,0.6,1],["CJ McCollum","PG/SG",18.7,3.3,3.9,0.8,0.5],["Bogdan Bogdanović","SG",15.6,3.5,3.1,1.1,0.3]]},{"abbr":"IND","era":"1990s","name":"Indiana Pacers","c1":"#041E42","c2":"#FDBB30","players":[["Detlef Schrempf","PF/SF",17.2,8.8,4.2,0.8,0.3],["Micheal Williams","PG",13.1,3.0,6.6,2.5,0.2],["Chuck Person","PF/SF",18.9,5.4,3.6,0.7,0.2],["Reggie Miller","SG",21.0,3.1,3.2,1.2,0.2],["Mark Jackson","PG",8.5,3.8,8.2,1.2,0.1],["Rik Smits","C",15.4,6.2,1.5,0.4,1.2],["Dale Davis","C/PF",9.3,8.8,0.8,0.7,1.4],["Pooh Richardson","PG",10.3,3.4,7.3,1.2,0.2],["Derrick McKey","SF",10.5,4.7,3.1,1.2,0.6]]},{"abbr":"NOJ","era":"1970s","name":"New Orleans Jazz","c1":"#5A2D81","c2":"#FDB927","players":[["Truck Robinson","PF",23.2,14.9,2.0,0.8,1.2],["Spencer Haywood","PF",24,9.6,2.1,0.9,1.6],["Pete Maravich","SG",25.7,4.4,5.8,1.4,0.3],["Rich Kelley","C",10.0,9.2,2.8,1.0,1.3],["Otto Moore","C",7.4,8.7,2.4,0.8,1.4],["Neal Walk","C",9.9,7.1,2.7,0.8,0.5],["Ron Behagen","PF",10.1,7.8,1.8,0.9,0.3],["Gail Goodrich","PG/SG",14.2,2.3,4.5,1.1,0.2],["Joe Meriweather","C/PF",7.7,6.2,1.0,0.4,1.8]]}];
+const TEAMS = ["ATL","BAL","BKN","BOS","BUF","CHA","CHI","CIN","CLE","DAL","DEN","DET","GSW","HOU","IND","KCK","LAC","LAL","MEM","MIA","MIL","MIN","NJN","NOH","NOJ","NOP","NYK","NYN","OKC","ORL","PHI","PHX","POR","SAC","SAS","SDR","SEA","SFW","STL","TOR","UTA","VAN","WAS","WSB"];
+const ERAS = ['1960s', '1970s', '1980s', '1990s', '2000s', '2010s', '2020s'];
+const SLOTS = ['PG', 'SG', 'SF', 'PF', 'C'];
+const POS_PREF = ['C', 'PG', 'PF', 'SG', 'SF'];
+const SLOT_XY = { C: [70, 64], PF: [236, 64], SF: [26, 176], SG: [280, 176], PG: [153, 214] };
+const BENCH = { pts: 125, reb: 55, ast: 32, def: 18.71 };
+const BAR_LABELS = ['SCORING', 'REBOUNDS', 'PASSING', 'DEFENSE'];
+const RES_LABELS = ['Scoring', 'Rebounding', 'Playmaking', 'Defense'];
+const GRADES = [
+  { min: 82, g: 'S+', t: 'Perfect', c: '#F5B83D' },
+  { min: 75, g: 'S', t: 'Legendary', c: '#F5B83D' },
+  { min: 69, g: 'A+', t: 'Dynasty', c: '#19E3C9' },
+  { min: 63, g: 'A', t: 'Juggernaut', c: '#3FD6C2' },
+  { min: 57, g: 'B', t: 'Contender', c: '#6CB4FF' },
+  { min: 50, g: 'C', t: 'Playoff Team', c: '#F2A33A' },
+  { min: 38, g: 'D', t: 'Lottery Bound', c: '#A3B1BC' },
+  { min: 0, g: 'F', t: 'Rebuilding', c: '#FF7A7A' }
+];
+const GRADE_COINS = { 'S+': 100, 'S': 60, 'A+': 55, 'A': 50, 'B': 40, 'C': 30, 'D': 25, 'F': 20 };
+const BOT_WIN = { rookie: 15, pro: 30, legend: 50 };
+const UNLOCKS = { 2: 'Double Pick unlocked', 3: 'Trade unlocked', 4: 'Prime unlocked' };
+const MODE_NAMES = { classic: 'CLASSIC', blind: 'BLIND', daily: 'DAILY', '1v1': '1 VS 1' };
+const ROUNDS = ['FIRST ROUND', 'CONF. SEMIFINALS', 'CONF. FINALS', 'NBA FINALS'];
+const ROUND_WORDS = ['first round', 'conference semifinals', 'conference finals', 'NBA Finals'];
+const OPP = [
+  [['2021-22', 'Golden State Warriors', 53, 29, '#1D428A'], ['2022-23', 'Denver Nuggets', 53, 29, '#0E2240'], ['2003-04', 'Detroit Pistons', 54, 28, '#C8102E'], ['2000-01', 'Los Angeles Lakers', 56, 26, '#552583'], ['2010-11', 'Dallas Mavericks', 57, 25, '#00538C']],
+  [['1993-94', 'Houston Rockets', 58, 24, '#CE1141'], ['2004-05', 'San Antonio Spurs', 59, 23, '#8A8D8F'], ['1980-81', 'Boston Celtics', 62, 20, '#007A33'], ['1997-98', 'Utah Jazz', 62, 20, '#002B5C'], ['2013-14', 'San Antonio Spurs', 62, 20, '#8A8D8F']],
+  [['1988-89', 'Detroit Pistons', 63, 19, '#C8102E'], ['2023-24', 'Boston Celtics', 64, 18, '#007A33'], ['1982-83', 'Philadelphia 76ers', 65, 17, '#006BB6'], ['1986-87', 'Los Angeles Lakers', 65, 17, '#552583'], ['2012-13', 'Miami Heat', 66, 16, '#98002E']],
+  [['1985-86', 'Boston Celtics', 67, 15, '#007A33'], ['2016-17', 'Golden State Warriors', 67, 15, '#1D428A'], ['1966-67', 'Philadelphia 76ers', 68, 13, '#006BB6'], ['1971-72', 'Los Angeles Lakers', 69, 13, '#552583'], ['1996-97', 'Chicago Bulls', 69, 13, '#CE1141'], ['1995-96', 'Chicago Bulls', 72, 10, '#CE1141'], ['2015-16', 'Golden State Warriors', 73, 9, '#1D428A']]
+];
+const TEAL = '#19E3C9';
+const GOLD = '#F5B83D';
+const RIVAL = '#9B7BFF';
+
+function val(p) { return p.pts * 0.33 + p.reb * 0.67 + p.ast * 0.64 + p.stl * 1.2 + p.blk * 1.13; }
+
+const CELLS = RAW.map(function (c, ci) {
+  return {
+    idx: ci, abbr: c.abbr, era: c.era, name: c.name, c1: c.c1, c2: c.c2,
+    players: c.players.map(function (a, pi) {
+      const p = { id: ci + '-' + pi, name: a[0], pos: a[1].split('/'), pts: a[2], reb: a[3], ast: a[4], stl: a[5], blk: a[6], team: c.abbr, era: c.era, c1: c.c1, c2: c.c2 };
+      p.val = val(p);
+      return p;
+    })
+  };
+});
+
+function rng(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function rateTeam(players) {
+  const t = { pts: 0, reb: 0, ast: 0, stl: 0, blk: 0 };
+  players.forEach(function (p) {
+    if (!p) return;
+    t.pts += p.pts; t.reb += p.reb; t.ast += p.ast; t.stl += p.stl; t.blk += p.blk;
+  });
+  const base = val(t);
+  const ratios = [t.pts / BENCH.pts, t.reb / BENCH.reb, t.ast / BENCH.ast, (t.stl * 1.2 + t.blk * 1.13) / BENCH.def];
+  const mean = (ratios[0] + ratios[1] + ratios[2] + ratios[3]) / 4;
+  const balance = mean > 0 ? Math.min(ratios[0], ratios[1], ratios[2], ratios[3]) / mean : 1;
+  const rating = base * (0.85 + 0.15 * balance);
+  const wins = Math.max(0, Math.min(82, Math.round(0.332 * Math.pow(rating, 1.15))));
+  return { totals: t, base: base, ratios: ratios, balance: balance, rating: rating, wins: wins };
+}
+
+function gradeFor(w) {
+  for (let i = 0; i < GRADES.length; i++) { if (w >= GRADES[i].min) return GRADES[i]; }
+  return GRADES[GRADES.length - 1];
+}
+
+function ratingForWins(w) { return Math.pow(Math.max(1, w) / 0.332, 1 / 1.15); }
+
+function levelInfo(xp) {
+  const steps = [70, 110, 140, 170];
+  let lvl = 1, acc = 0, i = 0, need = steps[0];
+  while (xp >= acc + need) {
+    acc += need; lvl++; i++;
+    need = i < steps.length ? steps[i] : need + 30;
+  }
+  return { lvl: lvl, into: xp - acc, need: need };
+}
+
+function shuffle(arr, rand) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    const x = a[i]; a[i] = a[j]; a[j] = x;
+  }
+  return a;
+}
+
+function seasonSeq(w, rand) {
+  const a = [];
+  for (let i = 0; i < 82; i++) a.push(i < w ? 1 : 0);
+  return shuffle(a, rand);
+}
+
+function longest(seq, v) {
+  let best = 0, cur = 0;
+  seq.forEach(function (x) { if (x === v) { cur++; if (cur > best) best = cur; } else { cur = 0; } });
+  return best;
+}
+
+function simSeries(ourR, ourW, oppR, oppW, rand) {
+  const games = [];
+  let a = 0, b = 0;
+  const highSeed = ourW >= oppW;
+  const p = 1 / (1 + Math.exp(-(ourR - oppR) / 14));
+  for (let g = 0; a < 4 && b < 4; g++) {
+    const highHome = g === 0 || g === 1 || g === 4 || g === 6;
+    const ourHome = highSeed ? highHome : !highHome;
+    const pg = Math.min(0.97, Math.max(0.03, p + (ourHome ? 0.04 : -0.04)));
+    if (rand() < pg) { games.push(1); a++; } else { games.push(0); b++; }
+  }
+  return games;
+}
+
+function buildBracket(season, rand) {
+  const out = [];
+  let alive = true;
+  for (let r = 0; r < 4; r++) {
+    const pool = OPP[r];
+    const o = pool[Math.floor(rand() * pool.length)];
+    const oppW = Math.round(o[2] * 82 / (o[2] + o[3]));
+    const ser = { r: r, year: o[0], team: o[1], w: o[2], l: o[3], color: o[4], games: [], played: alive, won: false };
+    if (alive) {
+      ser.games = simSeries(season.rating, season.wins, ratingForWins(oppW), oppW, rand);
+      ser.won = ser.games.filter(function (x) { return x === 1; }).length === 4;
+      if (!ser.won) alive = false;
+    }
+    out.push(ser);
+  }
+  return out;
+}
+
+function playoffResult(bracket, season) {
+  const played = bracket.filter(function (b) { return b.played; });
+  const seriesWon = played.filter(function (b) { return b.won; }).length;
+  const title = seriesWon === 4;
+  const sweeps = played.filter(function (b) { return b.won && b.games.length === 4; }).length;
+  const perfect = title && sweeps === 4 && season.wins === 82;
+  const lost = played.filter(function (b) { return !b.won; })[0] || null;
+  return { seriesWon: seriesWon, title: title, perfect: perfect, lost: lost, finals: bracket[3] };
+}
+
+function rewardsFor(o) {
+  const g = gradeFor(o.wins);
+  let coins = GRADE_COINS[g.g], xp = 40;
+  coins += 10 * o.series + (o.title ? 25 : 0);
+  xp += 10 * o.series + (o.title ? 20 : 0);
+  if (o.vsWon === 1) { coins += BOT_WIN[o.botLevel] || 0; xp += 20; }
+  if (o.dailyFirst) { coins += 25; xp += 20; }
+  if (o.runMode === 'blind') { coins = Math.round(coins * 1.5); xp = Math.round(xp * 1.5); }
+  return { coins: coins, xp: xp };
+}
+
+function lastName(n) { const parts = n.split(' '); return parts[parts.length - 1]; }
+
+function initials(n) {
+  const parts = n.split(/[\s-]+/).filter(Boolean);
+  const first = parts[0] ? parts[0].charAt(0) : '';
+  const last = parts.length > 1 ? parts[parts.length - 1].charAt(0) : '';
+  return (first + last).toUpperCase();
+}
+
+function shortYear(y) { return "'" + y.slice(2, 4); }
+
+function etDateKey() {
+  try { return new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' }); }
+  catch (e) { return new Date().toISOString().slice(0, 10); }
+}
+
+function dailyNumber() {
+  const k = etDateKey();
+  const d = Date.UTC(Number(k.slice(0, 4)), Number(k.slice(5, 7)) - 1, Number(k.slice(8, 10)));
+  return Math.floor((d - Date.UTC(2026, 9, 1)) / 86400000) + 1;
+}
+
+function bigStyle(kind, off, size) {
+  const bg = kind === 'gold' ? 'linear-gradient(180deg, #FFD36B 0%, #E9A21F 100%)' : (kind === 'ghost' ? '#0A1F2A' : 'linear-gradient(180deg, #45F5DD 0%, #10BFA8 100%)');
+  const fg = kind === 'ghost' ? TEAL : '#03201F';
+  const border = kind === 'ghost' ? '2px solid ' + TEAL : 'none';
+  const h = size === 'small' ? 54 : 64;
+  const fs = size === 'small' ? 24 : 30;
+  return 'width: 100%; height: ' + h + 'px; border: ' + border + '; cursor: ' + (off ? 'default' : 'pointer') + '; background: ' + bg + '; color: ' + fg + '; opacity: ' + (off ? '0.55' : '1') + '; clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%); font-family: Archivo, sans-serif; font-stretch: 68%; font-style: italic; font-weight: 900; font-size: ' + fs + 'px; letter-spacing: 1px;';
+}
+
+function chipStyle(active, off) {
+  return 'height: 32px; padding: 0 10px; border-radius: 999px; font: inherit; font-size: 11px; font-weight: 800; letter-spacing: .5px; cursor: ' + (off ? 'default' : 'pointer') + '; opacity: ' + (off ? '0.4' : '1') + '; color: ' + (active ? '#032027' : '#C9D6DC') + '; background: ' + (active ? TEAL : '#0C222D') + '; border: 1px solid ' + (active ? TEAL : '#16323F') + ';';
+}
+
+function teamChip(p) {
+  return { text: initials(p.name), style: 'min-width: 46px; height: 32px; padding: 0 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #FFFFFF; background: ' + p.c1 + '; border: 1px solid ' + p.c2 + ';' };
+}
+
+class Component extends DCLogic {
+  constructor(props, context) {
+    super(props, context);
+    this._timers = [];
+    this._seeded = null;
+    this._toastT = null;
+    this._tickIv = null;
+    this.state = this.makeState('live');
+  }
+
+  componentDidMount() { this.applyDemo(this.props ? this.props.demo : null); }
+
+  componentDidUpdate(prev) {
+    const before = prev ? prev.demo : null;
+    const now = this.props ? this.props.demo : null;
+    if (before !== now) this.applyDemo(now || 'live');
+  }
+
+  componentWillUnmount() { this.clearTimers(); }
+
+  clearTimers() {
+    this._timers.forEach(function (t) { clearTimeout(t); clearInterval(t); });
+    this._timers = [];
+  }
+
+  later(fn, ms) { const t = setTimeout(fn, ms); this._timers.push(t); return t; }
+
+  every(fn, ms) { const t = setInterval(fn, ms); this._timers.push(t); return t; }
+
+  rand() { return this._seeded || Math.random; }
+
+  applyDemo(demo) {
+    if (!demo) return;
+    this.clearTimers();
+    this.setState(this.makeState(demo));
+  }
+
+  runState(mode, firstRun, dailyDone) {
+    return {
+      runMode: mode,
+      rankedRun: mode === 'daily' && !dailyDone,
+      lineup: { PG: null, SG: null, SF: null, PF: null, C: null },
+      botLineup: { PG: null, SG: null, SF: null, PF: null, C: null },
+      used: [], cell: null, spinning: false, teamText: '?', eraText: '?', teamSpin: false, eraSpin: false,
+      drawer: false, selected: null, swapFrom: null, freeTeam: 1, freeEra: 1, round: 0,
+      youPicked: false, botPicked: false, taken: [],
+      order: mode === 'daily' ? shuffle(CELLS.map(function (c) { return c.idx; }), rng(dailyNumber() * 7919)) : null,
+      ptr: 0, season: null, tick: 0, bracket: null, poIdx: 0, poShown: 0, poRunning: false,
+      result: null, shareOpen: false, sortKey: 'val', coach: firstRun ? 0 : -1
+    };
+  }
+
+  makeState(demo) {
+    const st = Object.assign({ screen: 'home', mode: 'classic', botLevel: 'pro', coins: 50, xp: 20, firstRun: true, dailyDone: false, toast: '', toastOn: false }, this.runState('classic', true, false));
+    if (!demo || demo === 'live' || demo === 'home') { this._seeded = null; return st; }
+    const r = rng(20261024);
+    this._seeded = r;
+    const P = function (ci, pi) { return CELLS[ci].players[pi]; };
+    st.firstRun = false; st.coach = -1; st.screen = 'draft';
+    if (demo === 'drawer') {
+      st.lineup = { PG: P(1, 1), SG: null, SF: null, PF: null, C: P(3, 1) };
+      st.round = 2; st.used = [3, 1]; st.cell = 2; st.drawer = true; st.teamText = 'BOS'; st.eraText = '1990s';
+      return st;
+    }
+    st.lineup = { PG: P(1, 1), SG: null, SF: P(2, 0), PF: P(0, 0), C: P(3, 1) };
+    st.used = [3, 1, 2, 0]; st.round = 4; st.freeTeam = 0;
+    if (demo === 'placed') {
+      st.cell = 4; st.selected = P(4, 0).id; st.teamText = 'SAS'; st.eraText = '2010s';
+      return st;
+    }
+    st.lineup = Object.assign({}, st.lineup, { SG: P(4, 0) });
+    st.used = [3, 1, 2, 0, 4]; st.round = 5; st.teamText = 'SAS'; st.eraText = '2010s';
+    const rt = rateTeam(SLOTS.map(function (k) { return st.lineup[k]; }));
+    st.season = Object.assign({ seq: seasonSeq(rt.wins, r) }, rt);
+    st.tick = 82;
+    if (demo === 'reveal') { st.screen = 'reveal'; return st; }
+    st.bracket = buildBracket(st.season, r);
+    let last = 0;
+    st.bracket.forEach(function (b, i) { if (b.played) last = i; });
+    if (demo === 'playoffs') {
+      st.screen = 'playoffs'; st.poIdx = Math.min(2, last); st.poShown = st.bracket[st.poIdx].games.length;
+      return st;
+    }
+    st.screen = 'results'; st.poIdx = last; st.poShown = st.bracket[last].games.length;
+    const pr = playoffResult(st.bracket, st.season);
+    st.result = Object.assign({ levelUp: 0, vs: null, rewards: rewardsFor({ wins: st.season.wins, series: pr.seriesWon, title: pr.title, vsWon: null, botLevel: st.botLevel, runMode: 'classic', dailyFirst: false }) }, pr);
+    return st;
+  }
+
+  toast(msg) {
+    if (this._toastT) clearTimeout(this._toastT);
+    this.setState({ toast: msg, toastOn: true });
+    this._toastT = this.later(() => { this.setState({ toastOn: false }); }, 2200);
+  }
+
+  startRun(mode) {
+    const s = this.state;
+    this.clearTimers();
+    this._seeded = null;
+    this.setState(Object.assign({ screen: 'draft', mode: mode }, this.runState(mode, s.firstRun, s.dailyDone)));
+    if (mode === '1v1') this.later(() => { this.toast('Coin flip: you pick first. First pick alternates every round.'); }, 250);
+    if (mode === 'daily') this.later(() => { this.toast(s.dailyDone ? 'Practice run: same spins as today, not ranked.' : 'Daily #' + dailyNumber() + ': everyone gets these same spins today.'); }, 250);
+  }
+
+  goHome() {
+    const s = this.state;
+    this.clearTimers();
+    this._seeded = null;
+    this.setState(Object.assign({ screen: 'home' }, this.runState(s.mode, s.firstRun, s.dailyDone)));
+  }
+
+  currentCell() { return this.state.cell !== null ? CELLS[this.state.cell] : null; }
+
+  selectedPlayer() {
+    const c = this.currentCell();
+    if (!c || !this.state.selected) return null;
+    return c.players.filter((p) => p.id === this.state.selected)[0] || null;
+  }
+
+  nextCell(kind) {
+    const s = this.state;
+    const cur = this.currentCell();
+    const blocked = s.used.concat(cur ? [cur.idx] : []);
+    if (s.runMode === 'daily' && s.order) {
+      let ptr = s.ptr;
+      while (ptr < s.order.length && blocked.indexOf(s.order[ptr]) >= 0) ptr++;
+      const idx = ptr < s.order.length ? s.order[ptr] : s.order[0];
+      return { idx: idx, ptr: ptr + 1 };
+    }
+    let pool = CELLS.filter((c) => blocked.indexOf(c.idx) < 0);
+    if (!pool.length) pool = CELLS.filter((c) => !cur || c.idx !== cur.idx);
+    if (kind === 'team' && cur) { const f = pool.filter((c) => c.era === cur.era); if (f.length) pool = f; }
+    if (kind === 'era' && cur) { const f = pool.filter((c) => c.abbr === cur.abbr); if (f.length) pool = f; }
+    return { idx: pool[Math.floor(Math.random() * pool.length)].idx, ptr: s.ptr };
+  }
+
+  spin(kind) {
+    const s = this.state;
+    if (s.spinning) return;
+    let freeTeam = s.freeTeam, freeEra = s.freeEra, paid = 0;
+    const cur = this.currentCell();
+    if (kind === 'team' || kind === 'era') {
+      if (!cur || s.youPicked || s.botPicked) { this.toast(cur ? 'Respins are only before anyone picks this round.' : 'Spin first, then you can respin.'); return; }
+      const free = kind === 'team' ? freeTeam : freeEra;
+      if (free > 0) { if (kind === 'team') freeTeam = 0; else freeEra = 0; }
+      else if (s.coins >= 25) { paid = 25; }
+      else { this.toast('Not enough coins for a respin (25).'); return; }
+    }
+    if (kind === 'nofit' && !cur) return;
+    const nx = this.nextCell(kind);
+    const target = CELLS[nx.idx];
+    const used = cur ? s.used.concat([cur.idx]) : s.used;
+    const teamSpin = kind !== 'era' || !cur || target.abbr !== cur.abbr;
+    const eraSpin = kind !== 'team' || !cur || target.era !== cur.era;
+    this.setState({ spinning: true, teamSpin: teamSpin, eraSpin: eraSpin, cell: null, ptr: nx.ptr, used: used, drawer: false, selected: null, swapFrom: null, taken: [], youPicked: false, botPicked: false, freeTeam: freeTeam, freeEra: freeEra, coins: s.coins - paid });
+    if (paid) this.toast('Respin bought for 25 coins.');
+    const iv = this.every(() => {
+      const st = this.state;
+      const patch = {};
+      if (st.teamSpin) patch.teamText = TEAMS[Math.floor(Math.random() * TEAMS.length)];
+      if (st.eraSpin) patch.eraText = ERAS[Math.floor(Math.random() * ERAS.length)];
+      this.setState(patch);
+    }, 70);
+    if (teamSpin) {
+      this.later(() => {
+        this.setState({ teamSpin: false, teamText: target.abbr });
+        if (!eraSpin) this.landed(iv, nx.idx);
+      }, 900);
+    }
+    if (eraSpin) {
+      this.later(() => {
+        this.setState({ eraSpin: false, eraText: target.era });
+        this.landed(iv, nx.idx);
+      }, teamSpin ? 1200 : 900);
+    }
+  }
+
+  landed(iv, idx) {
+    clearInterval(iv);
+    const s = this.state;
+    const patch = { spinning: false, cell: idx, drawer: true, teamText: CELLS[idx].abbr, eraText: CELLS[idx].era };
+    if (s.coach === 0) patch.coach = 1;
+    if (s.runMode === '1v1' && s.round % 2 === 1) {
+      const bp = this.botChoose(idx, null);
+      patch.botLineup = Object.assign({}, s.botLineup, { [bp.slot]: bp.pick });
+      patch.taken = [bp.pick.id];
+      patch.botPicked = true;
+      this.setState(patch);
+      this.toast('Bot picks first this round: ' + bp.pick.name + '.');
+      return;
+    }
+    this.setState(patch);
+  }
+
+  botChoose(cellIdx, excludeId) {
+    const s = this.state;
+    const open = SLOTS.filter((k) => !s.botLineup[k]);
+    const names = SLOTS.map((k) => (s.botLineup[k] ? s.botLineup[k].name : null)).filter(Boolean);
+    const all = CELLS[cellIdx].players.filter((p) => p.id !== excludeId && names.indexOf(p.name) < 0).slice().sort((a, b) => b.val - a.val);
+    let c = all.filter((p) => p.pos.some((x) => open.indexOf(x) >= 0));
+    let anySlot = false;
+    if (!c.length) { c = all; anySlot = true; }
+    let pick;
+    if (s.botLevel === 'rookie') pick = c[Math.floor(Math.random() * Math.max(1, Math.ceil(c.length / 2)))];
+    else if (s.botLevel === 'pro') pick = (c.length > 1 && Math.random() < 0.3) ? c[1] : c[0];
+    else pick = c[0];
+    const slot = anySlot ? open[0] : POS_PREF.filter((x) => open.indexOf(x) >= 0 && pick.pos.indexOf(x) >= 0)[0];
+    return { slot: slot, pick: pick };
+  }
+
+  pickRow(p, off, why) {
+    const s = this.state;
+    if (s.youPicked) return;
+    if (off) { this.toast(p.name + ': ' + why.toLowerCase() + '.'); return; }
+    this.setState({ selected: p.id, drawer: false, swapFrom: null, coach: s.coach === 1 ? 2 : s.coach });
+  }
+
+  tapSlot(k) {
+    const s = this.state;
+    const sel = this.selectedPlayer();
+    if (sel) {
+      if (s.lineup[k]) { this.toast(k + ' is already filled. Pick a glowing spot.'); return; }
+      if (sel.pos.indexOf(k) < 0) { this.toast(sel.name + " can't play " + k + '.'); return; }
+      this.place(k, sel);
+      return;
+    }
+    const here = s.lineup[k];
+    if (s.swapFrom !== null) {
+      const mover = s.lineup[s.swapFrom];
+      if (s.swapFrom === k) { this.setState({ swapFrom: null }); return; }
+      if (!here) {
+        if (mover.pos.indexOf(k) >= 0) {
+          this.setState({ lineup: Object.assign({}, s.lineup, { [k]: mover, [s.swapFrom]: null }), swapFrom: null });
+          this.toast(lastName(mover.name) + ' moved to ' + k + '.');
+        } else { this.toast(mover.name + " can't play " + k + '.'); this.setState({ swapFrom: null }); }
+        return;
+      }
+      if (here.pos.indexOf(s.swapFrom) >= 0 && mover.pos.indexOf(k) >= 0) {
+        this.setState({ lineup: Object.assign({}, s.lineup, { [k]: mover, [s.swapFrom]: here }), swapFrom: null });
+        this.toast('Swapped ' + lastName(mover.name) + ' and ' + lastName(here.name) + '.');
+      } else {
+        this.toast(lastName(mover.name) + ' and ' + lastName(here.name) + " can't swap spots.");
+        this.setState({ swapFrom: null });
+      }
+      return;
+    }
+    if (here) {
+      this.setState({ swapFrom: k });
+      this.toast('Tap another spot to move ' + lastName(here.name) + '.');
+      return;
+    }
+    if (s.cell !== null && !s.youPicked) { this.setState({ drawer: true }); return; }
+    this.toast('Spin to get a team and a decade.');
+  }
+
+  place(k, p) {
+    const s = this.state;
+    const lineup = Object.assign({}, s.lineup, { [k]: p });
+    const round = s.round + 1;
+    const used = s.used.concat([s.cell]);
+    const coach = s.coach === 2 ? -1 : s.coach;
+    if (s.runMode === '1v1' && !s.botPicked) {
+      const cellIdx = s.cell;
+      this.setState({ lineup: lineup, round: round, used: used, selected: null, youPicked: true, coach: coach });
+      this.later(() => {
+        const st = this.state;
+        const bp = this.botChoose(cellIdx, p.id);
+        this.setState({ botLineup: Object.assign({}, st.botLineup, { [bp.slot]: bp.pick }), botPicked: false, youPicked: false, cell: null });
+        this.toast('Bot took ' + bp.pick.name + ' for ' + bp.slot + '.');
+      }, 800);
+      return;
+    }
+    this.setState({ lineup: lineup, round: round, used: used, selected: null, cell: null, youPicked: false, botPicked: false, taken: [], coach: coach });
+  }
+
+  playSeason() {
+    const s = this.state;
+    const rt = rateTeam(SLOTS.map((k) => s.lineup[k]));
+    const season = Object.assign({ seq: seasonSeq(rt.wins, this.rand()) }, rt);
+    this.setState({ screen: 'reveal', season: season, tick: 0 });
+    const iv = this.every(() => {
+      const t = this.state.tick + 1;
+      if (t >= 82) { clearInterval(iv); this.setState({ tick: 82 }); }
+      else this.setState({ tick: t });
+    }, 32);
+    this._tickIv = iv;
+  }
+
+  revealAction() {
+    const s = this.state;
+    if (s.tick < 82) { if (this._tickIv) clearInterval(this._tickIv); this.setState({ tick: 82 }); return; }
+    const bracket = buildBracket(s.season, this.rand());
+    this.setState({ screen: 'playoffs', bracket: bracket, poIdx: 0, poShown: 0, poRunning: false });
+  }
+
+  playRound() {
+    const s = this.state;
+    const ser = s.bracket[s.poIdx];
+    if (!ser || !ser.played || s.poRunning) return;
+    this.setState({ poRunning: true, poShown: 0 });
+    const iv = this.every(() => {
+      const n = this.state.poShown + 1;
+      if (n >= ser.games.length) { clearInterval(iv); this.setState({ poShown: ser.games.length, poRunning: false }); }
+      else this.setState({ poShown: n });
+    }, 420);
+  }
+
+  poAction() {
+    const s = this.state;
+    if (s.poRunning) return;
+    const cur = s.bracket[s.poIdx];
+    const done = s.poShown >= cur.games.length;
+    if (!done) { this.playRound(); return; }
+    if (cur.won && s.poIdx < 3) {
+      this.setState({ poIdx: s.poIdx + 1, poShown: 0 });
+      this.later(() => { this.playRound(); }, 60);
+      return;
+    }
+    const pr = playoffResult(s.bracket, s.season);
+    const rewards = rewardsFor({ wins: s.season.wins, series: pr.seriesWon, title: pr.title, vsWon: null, botLevel: s.botLevel, runMode: s.runMode, dailyFirst: s.rankedRun });
+    this.finish(Object.assign({ vs: null, rewards: rewards }, pr));
+  }
+
+  matchup() {
+    const s = this.state;
+    const me = rateTeam(SLOTS.map((k) => s.lineup[k]));
+    const bot = rateTeam(SLOTS.map((k) => s.botLineup[k]));
+    const won = me.rating > bot.rating ? 1 : (me.rating < bot.rating ? -1 : 0);
+    const rewards = rewardsFor({ wins: me.wins, series: 0, title: false, vsWon: won, botLevel: s.botLevel, runMode: s.runMode, dailyFirst: false });
+    this.setState({ season: Object.assign({ seq: [] }, me) });
+    this.finish({ vs: { me: me, bot: bot, won: won }, rewards: rewards, seriesWon: 0, title: false, perfect: false, lost: null, finals: null });
+  }
+
+  finish(result) {
+    const s = this.state;
+    const before = levelInfo(s.xp).lvl;
+    const xp = s.xp + result.rewards.xp;
+    const after = levelInfo(xp).lvl;
+    const bonus = after > before ? 50 * (after - before) : 0;
+    const patch = { screen: 'results', result: Object.assign({ levelUp: after > before ? after : 0 }, result), coins: s.coins + result.rewards.coins + bonus, xp: xp, firstRun: false, coach: -1 };
+    if (s.rankedRun) patch.dailyDone = true;
+    this.setState(patch);
+  }
+
+  shareParts() {
+    const s = this.state;
+    const res = s.result;
+    if (!res || !s.season) return null;
+    const season = res.vs ? res.vs.me : s.season;
+    const gr = gradeFor(season.wins);
+    let po = '';
+    if (res.vs) po = (res.vs.won === 1 ? 'Beat' : (res.vs.won === -1 ? 'Lost to' : 'Tied')) + ' the ' + s.botLevel.toUpperCase() + ' bot in 1 vs 1';
+    else if (res.perfect) po = 'PERFECT SEASON: 82–0 and 16–0';
+    else if (res.title) po = 'Champions: beat the ' + res.finals.year + ' ' + res.finals.team + ' ' + res.finals.games.filter((x) => x === 1).length + '–' + res.finals.games.filter((x) => x === 0).length;
+    else if (res.lost) po = 'Lost in the ' + ROUND_WORDS[res.lost.r] + ' to the ' + res.lost.year + ' ' + res.lost.team + ' ' + res.lost.games.filter((x) => x === 1).length + '–4';
+    const tag = s.runMode === 'daily' ? 'DAILY #' + dailyNumber() + (s.rankedRun ? ' · RANKED' : ' · PRACTICE') : MODE_NAMES[s.runMode];
+    const names = SLOTS.map((k) => (s.lineup[k] ? lastName(s.lineup[k].name) : '')).join(' · ');
+    const head = s.runMode === 'daily' ? 'Perfect Season Daily #' + dailyNumber() : 'Perfect Season';
+    const record = season.wins + '–' + (82 - season.wins);
+    const text = head + ' · ' + record + ' · ' + gr.g + ' ' + gr.t + '\n' + po + '\n' + names + '\nCan you go perfect? perfectseason.gg';
+    return { season: season, gr: gr, po: po, tag: tag, text: text, record: record };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const lv = levelInfo(s.xp);
+    const v = {
+      coins: s.coins,
+      level: lv.lvl,
+      levelShort: 'LV' + lv.lvl,
+      levelLabel: 'LEVEL ' + lv.lvl + ' · ' + lv.into + '/' + lv.need + ' XP',
+      xpPct: Math.round((lv.into / lv.need) * 100) + '%',
+      toastOn: !!s.toastOn,
+      toast: s.toast,
+      isHome: s.screen === 'home',
+      isDraft: s.screen === 'draft',
+      isReveal: s.screen === 'reveal',
+      isPlayoffs: s.screen === 'playoffs',
+      isResults: s.screen === 'results',
+      goHome: () => this.goHome(),
+      soonSport: () => this.toast('NFL and soccer arrive after the NBA launch.'),
+      tabSoon: () => this.toast('That tab is part of the full build, not this mockup.')
+    };
+
+    // Home
+    const dn = dailyNumber();
+    const modeDefs = [
+      { key: 'classic', title: 'Classic', sub: 'Stats visible' },
+      { key: 'blind', title: 'Blind', sub: 'Stats hidden · +50% rewards' },
+      { key: 'daily', title: 'Daily #' + dn, sub: s.dailyDone ? 'Done today · practice only' : 'Same spins for everyone' },
+      { key: '1v1', title: '1 vs 1', sub: 'Snake draft vs a bot' }
+    ];
+    v.modes = modeDefs.map((m) => {
+      const sel = s.mode === m.key;
+      return {
+        title: m.title, sub: m.sub, pressed: sel,
+        pick: () => this.setState({ mode: m.key }),
+        style: 'display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; height: 82px; padding: 12px 14px; border-radius: 14px; cursor: pointer; text-align: left; font: inherit; color: #F2F6F7; background: ' + (sel ? 'linear-gradient(160deg, #0F3A44 0%, #0A1F2A 100%)' : '#0A1F2A') + '; border: 2px solid ' + (sel ? TEAL : '#16323F') + '; box-shadow: ' + (sel ? '0 0 18px rgba(25,227,201,.32)' : 'none') + ';'
+      };
+    });
+    v.showBotLevels = s.mode === '1v1';
+    v.botLevels = [['rookie', 'ROOKIE'], ['pro', 'PRO'], ['legend', 'LEGEND']].map((b) => ({
+      label: b[1], pressed: s.botLevel === b[0], pick: () => this.setState({ botLevel: b[0] }),
+      style: 'height: 32px; padding: 0 12px; border-radius: 999px; font: inherit; font-size: 11px; font-weight: 800; letter-spacing: 1px; cursor: pointer; color: ' + (s.botLevel === b[0] ? '#FFFFFF' : '#C9D6DC') + '; background: ' + (s.botLevel === b[0] ? RIVAL : '#0C222D') + '; border: 1px solid ' + (s.botLevel === b[0] ? RIVAL : '#16323F') + ';'
+    }));
+    v.playLabel = s.mode === 'daily' ? (s.dailyDone ? 'PRACTICE DAILY' : 'PLAY DAILY #' + dn) : (s.mode === '1v1' ? 'FIND A MATCH' : 'PLAY');
+    v.playStyle = bigStyle('primary', false, 'big');
+    v.onPlay = () => this.startRun(s.mode);
+
+    // Draft
+    const cell = this.currentCell();
+    const selP = this.selectedPlayer();
+    const openSlots = SLOTS.filter((k) => !s.lineup[k]);
+    const names = SLOTS.map((k) => (s.lineup[k] ? s.lineup[k].name : null)).filter(Boolean);
+    const blind = s.runMode === 'blind';
+    v.roundLabel = 'ROUND ' + Math.min(5, s.round + 1) + ' / 5 · ' + MODE_NAMES[s.runMode];
+    v.segs = [0, 1, 2, 3, 4].map((i) => ({ bg: i < s.round ? TEAL : '#16323F' }));
+    v.teamText = s.teamText;
+    v.eraText = s.eraText;
+    v.teamFx = s.teamSpin ? 'filter: blur(2px); opacity: .7;' : 'filter: none;';
+    v.eraFx = s.eraSpin ? 'filter: blur(2px); opacity: .7;' : 'filter: none;';
+    const respinOff = s.spinning || !cell || s.youPicked || s.botPicked;
+    const respinBtn = (free, off, color) => 'flex: 1; height: 38px; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 10px; font: inherit; font-size: 12px; font-weight: 800; letter-spacing: 1px; cursor: ' + (off ? 'default' : 'pointer') + '; opacity: ' + (off ? '0.4' : '1') + '; color: ' + color + '; background: #0A1F2A; border: 1px solid ' + (free ? color : '#16323F') + ';';
+    v.respinTeamLabel = 'TEAM · ' + (s.freeTeam > 0 ? 'FREE' : '25 COINS');
+    v.respinEraLabel = 'DECADE · ' + (s.freeEra > 0 ? 'FREE' : '25 COINS');
+    v.respinTeamStyle = respinBtn(s.freeTeam > 0, respinOff, TEAL);
+    v.respinEraStyle = respinBtn(s.freeEra > 0, respinOff, GOLD);
+    v.respinTeam = () => this.spin('team');
+    v.respinEra = () => this.spin('era');
+
+    const live = rateTeam(SLOTS.map((k) => s.lineup[k]));
+    v.bars = live.ratios.map((x, i) => ({ label: BAR_LABELS[i], pct: Math.round(x * 100) + '%', w: Math.min(100, Math.round(x * 100)) + '%', color: x >= 1 ? GOLD : TEAL }));
+
+    v.slots = ['C', 'PF', 'SF', 'SG', 'PG'].map((k) => {
+      const p = s.lineup[k];
+      const xy = SLOT_XY[k];
+      const mover = s.swapFrom !== null ? s.lineup[s.swapFrom] : null;
+      const eligibleNew = !!(selP && !p && selP.pos.indexOf(k) >= 0);
+      const swapSel = s.swapFrom === k;
+      const swapTarget = !!(mover && s.swapFrom !== k && (p ? (p.pos.indexOf(s.swapFrom) >= 0 && mover.pos.indexOf(k) >= 0) : mover.pos.indexOf(k) >= 0));
+      const glow = eligibleNew || swapTarget;
+      let style = 'position: absolute; left: ' + xy[0] + 'px; top: ' + xy[1] + 'px; width: 84px; height: 104px; padding: 6px 4px; border-radius: 12px; cursor: pointer; font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; transition: box-shadow .2s, border-color .2s, transform .2s;';
+      if (p) {
+        style += ' color: #FFFFFF; background: linear-gradient(160deg, ' + p.c1 + ' 0%, #061016 140%); border: 2px solid ' + (swapSel ? TEAL : p.c2) + '; box-shadow: ' + (swapSel ? '0 0 0 3px rgba(25,227,201,.45), 0 0 22px rgba(25,227,201,.5)' : (swapTarget ? '0 0 18px rgba(25,227,201,.5)' : '0 8px 18px rgba(0,0,0,.45)')) + '; transform: ' + (swapSel ? 'translateY(-4px)' : 'none') + ';';
+      } else {
+        style += ' color: #F2F6F7; background: ' + (glow ? 'rgba(25,227,201,.14)' : 'rgba(6,22,30,.85)') + '; border: 2px dashed ' + (glow ? TEAL : '#24505C') + '; box-shadow: ' + (glow ? '0 0 22px rgba(25,227,201,.55)' : 'none') + '; transform: ' + (glow ? 'scale(1.06)' : 'none') + ';';
+      }
+      return {
+        key: k, filled: !!p, empty: !p, eligible: glow,
+        initials: p ? initials(p.name) : '', last: p ? lastName(p.name) : '', sub: p ? p.team + ' ’' + p.era.slice(2) : '',
+        rating: p ? p.val.toFixed(0) : '', labelColor: glow ? TEAL : '#6F98A6', style: style,
+        aria: p ? k + ': ' + p.name + '. Tap to move.' : k + ': empty',
+        tap: () => this.tapSlot(k)
+      };
+    });
+
+    v.showTray = s.runMode === 'classic' || s.runMode === 'blind';
+    v.boosters = [['DOUBLE PICK', 2], ['TRADE', 3], ['PRIME', 4]].map((b) => ({
+      label: lv.lvl >= b[1] ? b[0] + ' ×1' : b[0] + ' · LV' + b[1],
+      locked: lv.lvl < b[1],
+      color: lv.lvl >= b[1] ? GOLD : '#8FA6B2',
+      tap: () => this.toast(lv.lvl >= b[1] ? b[0] + ' is wired up in the real build. This mockup shows the tray only.' : b[0] + ' unlocks at level ' + b[1] + '.')
+    }));
+    v.showBot = s.runMode === '1v1';
+    v.botName = 'BOT · ' + s.botLevel.toUpperCase();
+    v.botChips = SLOTS.map((k) => {
+      const p = s.botLineup[k];
+      return { text: p ? initials(p.name) : k, style: 'width: 46px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; ' + (p ? 'color: #FFFFFF; background: ' + p.c1 + '; border: 1px solid ' + RIVAL + ';' : 'color: #8FA6B2; background: #0A1F2A; border: 1px dashed #4A3C80;') };
+    });
+
+    let rows = [];
+    if (cell) {
+      const list = cell.players.slice();
+      if (blind) list.sort((a, b) => a.name.localeCompare(b.name));
+      else list.sort((a, b) => (s.sortKey === 'val' ? b.val - a.val : b[s.sortKey] - a[s.sortKey]));
+      rows = list.map((p) => {
+        const taken = s.taken.indexOf(p.id) >= 0;
+        const dup = names.indexOf(p.name) >= 0;
+        const fits = p.pos.some((x) => openSlots.indexOf(x) >= 0);
+        const tag = taken ? 'TAKEN BY THE BOT' : (dup ? 'ALREADY ON YOUR TEAM' : (!fits ? 'NO OPEN SPOT FOR HIM' : ''));
+        const off = !!tag;
+        const sel = s.selected === p.id;
+        const cols = [['PTS', p.pts], ['REB', p.reb], ['AST', p.ast], ['STL', p.stl], ['BLK', p.blk]].map((c) => ({
+          k: c[0], v: blind ? '?' : c[1].toFixed(1), vc: (!blind && s.sortKey === c[0].toLowerCase()) ? TEAL : '#F2F6F7'
+        }));
+        return {
+          name: p.name, meta: p.pos.join(' • ') + (blind ? '' : ' · value ' + p.val.toFixed(1)), tag: tag, hasTag: off, cols: cols, off: off,
+          tap: () => this.pickRow(p, off, tag),
+          style: 'display: flex; align-items: center; gap: 8px; width: 100%; min-height: 62px; padding: 10px 12px; border-radius: 14px; cursor: pointer; text-align: left; font: inherit; color: #F2F6F7; background: ' + (sel ? '#0F3A44' : '#0C222D') + '; border: 1px solid ' + (sel ? TEAL : '#16323F') + '; opacity: ' + (off ? '0.42' : '1') + ';'
+        };
+      });
+    }
+    v.rows = rows;
+    const noFit = !!cell && !s.youPicked && rows.length > 0 && rows.every((r) => r.off);
+    v.cellTitle = cell ? cell.abbr + ' · ' + cell.era : '';
+    v.cellName = cell ? cell.name + (blind ? ' · stats hidden' : ' · tap a player') : '';
+    v.drawerTf = s.screen === 'draft' && s.drawer && cell ? 'translateY(0)' : 'translateY(112%)';
+    v.closeDrawer = () => this.setState({ drawer: false });
+    v.sorts = [['val', 'VALUE'], ['pts', 'PTS'], ['reb', 'REB'], ['ast', 'AST'], ['stl', 'STL'], ['blk', 'BLK']].map((so) => ({
+      label: so[1], active: !blind && s.sortKey === so[0],
+      tap: () => { if (blind) { this.toast('Sorting is off in Blind mode.'); return; } this.setState({ sortKey: so[0] }); },
+      style: chipStyle(!blind && s.sortKey === so[0], blind)
+    }));
+
+    const full = s.round >= 5;
+    const botFull = SLOTS.every((k) => !!s.botLineup[k]);
+    let actionLabel = 'SPIN', actionKind = 'primary', actionOff = false;
+    let actionFn = () => this.spin('spin');
+    if (s.spinning) { actionLabel = 'SPINNING…'; actionOff = true; actionFn = () => {}; }
+    else if (full && (s.runMode !== '1v1' || botFull)) {
+      actionKind = 'gold';
+      if (s.runMode === '1v1') { actionLabel = 'SEE THE MATCHUP'; actionFn = () => this.matchup(); }
+      else { actionLabel = 'PLAY THE SEASON'; actionFn = () => this.playSeason(); }
+    }
+    else if (s.runMode === '1v1' && s.youPicked) { actionLabel = 'BOT IS PICKING…'; actionOff = true; actionFn = () => {}; }
+    else if (cell) {
+      if (noFit) { actionLabel = 'NO ONE FITS · FREE RESPIN'; actionFn = () => this.spin('nofit'); }
+      else if (selP) { actionLabel = 'TAP A GLOWING SPOT'; actionOff = true; actionFn = () => this.toast('Tap one of the glowing spots on the court.'); }
+      else { actionLabel = 'SHOW PLAYERS'; actionKind = 'ghost'; actionFn = () => this.setState({ drawer: true }); }
+    }
+    v.actionLabel = actionLabel;
+    v.actionOff = actionOff;
+    v.actionStyle = bigStyle(actionKind, actionOff, 'big');
+    v.onAction = actionFn;
+
+    const coachOn = s.screen === 'draft' && s.coach >= 0 && !s.spinning;
+    v.showCoach = coachOn && ((s.coach === 0 && !cell && s.round === 0) || (s.coach === 1 && s.drawer && !!cell) || (s.coach === 2 && !!selP));
+    v.coachText = s.coach === 0 ? 'Tap SPIN to roll a random team and decade.' : (s.coach === 1 ? 'Pick any player. Faded players don’t fit an open spot.' : 'Now tap a glowing spot on the court to place him.');
+    v.coachPos = s.coach === 0 ? 'bottom: 96px;' : (s.coach === 1 ? 'top: 160px;' : 'top: 222px;');
+    v.skipTips = () => this.setState({ coach: -1, firstRun: false });
+
+    // Reveal
+    const se = s.season;
+    v.revealHead = 'REGULAR SEASON · ' + MODE_NAMES[s.runMode];
+    v.teamChips = SLOTS.filter((k) => !!s.lineup[k]).map((k) => teamChip(s.lineup[k]));
+    if (se && se.seq) {
+      const shown = se.seq.slice(0, s.tick);
+      const w = shown.filter((x) => x === 1).length;
+      const done = s.tick >= 82;
+      const firstHalf = se.seq.slice(0, 41).filter((x) => x === 1).length;
+      const gr = gradeFor(se.wins);
+      v.tickW = w;
+      v.tickL = shown.length - w;
+      v.dots = se.seq.map((x, i) => ({ bg: i < s.tick ? (x === 1 ? TEAL : '#8A3443') : '#12303B' }));
+      v.revealDone = done;
+      v.gameLabel = done ? 'FINAL RECORD' : 'GAME ' + Math.max(1, s.tick) + ' OF 82';
+      v.highlights = ['Longest win streak: ' + longest(se.seq, 1), 'First half: ' + firstHalf + '–' + (41 - firstHalf), 'Team rating ' + se.rating.toFixed(1)].map((t) => ({ text: t }));
+      v.seasonGrade = gr.g;
+      v.seasonTier = gr.t;
+      v.seasonGradeStyle = 'border: 3px solid ' + gr.c + '; color: ' + gr.c + ';';
+      v.revealLabel = done ? 'START THE PLAYOFFS' : 'SKIP';
+      v.revealStyle = bigStyle(done ? 'gold' : 'ghost', false, 'big');
+    } else {
+      v.tickW = 0; v.tickL = 0; v.dots = []; v.revealDone = false; v.gameLabel = ''; v.highlights = [];
+      v.seasonGrade = ''; v.seasonTier = ''; v.seasonGradeStyle = ''; v.revealLabel = 'SKIP'; v.revealStyle = bigStyle('ghost', false, 'big');
+    }
+    v.revealAction = () => this.revealAction();
+
+    // Playoffs
+    const br = s.bracket;
+    if (br && se) {
+      const cur = br[s.poIdx];
+      const curDone = cur.played && s.poShown >= cur.games.length;
+      v.poSub = 'Your ' + se.wins + '–' + (82 - se.wins) + ' team vs the all-time greats. Go 16–0 for a Perfect Season.';
+      v.series = br.map((b, i) => {
+        const isCur = i === s.poIdx;
+        const shownN = i < s.poIdx ? b.games.length : (isCur ? s.poShown : 0);
+        const g = b.games.slice(0, shownN);
+        const a = g.filter((x) => x === 1).length;
+        const l = g.length - a;
+        let status = 'LOCKED', statusColor = '#8FA6B2', dim = false;
+        if (i < s.poIdx || (isCur && curDone)) { status = (b.won ? 'WON ' : 'LOST ') + a + '–' + l; statusColor = b.won ? TEAL : '#FF7A7A'; }
+        else if (isCur) { status = shownN === 0 ? 'UP NEXT' : 'LIVE · ' + a + '–' + l; statusColor = GOLD; }
+        else if (curDone && !cur.won) { status = 'ELIMINATED'; dim = true; }
+        else if (i === s.poIdx + 1 && curDone) { status = 'UP NEXT'; statusColor = GOLD; }
+        else { dim = true; }
+        const dots = [0, 1, 2, 3, 4, 5, 6].map((j) => {
+          if (j < g.length) return { t: g[j] === 1 ? 'W' : 'L', bg: g[j] === 1 ? TEAL : '#6B2633', fg: g[j] === 1 ? '#032027' : '#FFD9D9', bd: g[j] === 1 ? TEAL : '#6B2633' };
+          return { t: '', bg: 'transparent', fg: '#8FA6B2', bd: '#1E3E4A' };
+        });
+        return {
+          round: ROUNDS[i], status: status, statusColor: statusColor, color: b.color,
+          opp: b.year + ' ' + b.team, oppSub: b.w + '–' + b.l + (i === 3 ? ' · Finals boss' : ' · all-time great'),
+          dots: dots,
+          style: 'padding: 12px 14px; border-radius: 14px; background: #0A1F2A; border: ' + (isCur ? '2px solid ' + GOLD : '1px solid #16323F') + '; opacity: ' + (dim ? '0.5' : '1') + ';'
+        };
+      });
+      let poLabel = 'SEE RESULTS', poOff = false;
+      if (s.poRunning) { poLabel = 'PLAYING…'; poOff = true; }
+      else if (!curDone) poLabel = 'PLAY THE ' + ROUNDS[s.poIdx];
+      else if (cur.won && s.poIdx < 3) poLabel = 'NEXT: ' + ROUNDS[s.poIdx + 1];
+      v.poLabel = poLabel;
+      v.poOff = poOff;
+      v.poStyle = bigStyle(poLabel === 'SEE RESULTS' ? 'gold' : 'primary', poOff, poLabel.length > 22 ? 'small' : 'big');
+    } else {
+      v.poSub = ''; v.series = []; v.poLabel = ''; v.poOff = true; v.poStyle = bigStyle('primary', true, 'big');
+    }
+    v.poAction = () => this.poAction();
+
+    // Results
+    const res = s.result;
+    const sp = this.shareParts();
+    v.isVs = !!(res && res.vs);
+    v.notVs = !v.isVs;
+    v.isPerfect = !!(res && res.perfect);
+    v.isChampion = !!(res && res.title);
+    if (res && sp) {
+      const season = sp.season;
+      v.recW = season.wins;
+      v.recL = 82 - season.wins;
+      v.gradeLetter = sp.gr.g;
+      v.gradeTier = sp.gr.t;
+      v.gradeColor = sp.gr.c;
+      v.gradeStyle = 'border: 3px solid ' + sp.gr.c + '; color: ' + sp.gr.c + ';';
+      v.poLine = sp.po;
+      v.poLineColor = res.title ? GOLD : '#F2F6F7';
+      v.resTag = sp.tag;
+      v.resultBars = season.ratios.map((x, i) => ({ label: RES_LABELS[i], pct: Math.round(x * 100) + '%', w: Math.min(100, Math.round(x * 100)) + '%', color: x >= 1 ? GOLD : TEAL }));
+      v.balanceLine = 'Balance ' + Math.round(season.balance * 100) + '% · team rating ' + season.rating.toFixed(1) + (season.balance < 0.8 ? ' · a weak category is costing you wins' : '');
+      v.resultRows = SLOTS.filter((k) => !!s.lineup[k]).map((k) => {
+        const p = s.lineup[k];
+        return { slot: k, name: p.name, sub: p.team + ' · ' + p.era + ' · ' + p.pos.join('/'), v: p.val.toFixed(1), style: 'display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; color: #FFFFFF; background: linear-gradient(90deg, ' + p.c1 + ' 0%, #0A1F2A 78%); border: 1px solid ' + p.c2 + ';' };
+      });
+      v.rewardLine = '+' + res.rewards.coins + ' coins · +' + res.rewards.xp + ' XP' + (s.runMode === 'blind' ? ' (×1.5 blind)' : '');
+      v.levelLine = 'Level ' + lv.lvl + ' · ' + lv.into + '/' + lv.need + ' XP to level ' + (lv.lvl + 1);
+      v.showLevelUp = !!res.levelUp;
+      v.levelUpText = res.levelUp ? 'LEVEL UP! Level ' + res.levelUp + ' · +50 coins' + (UNLOCKS[res.levelUp] ? ' · ' + UNLOCKS[res.levelUp] : '') : '';
+      v.shareRecord = sp.record;
+      v.shareGrade = sp.gr.g + ' · ' + sp.gr.t.toUpperCase();
+      v.sharePo = sp.po;
+      v.shareText = sp.text;
+      if (res.vs) {
+        v.vsTitle = res.vs.won === 1 ? 'YOU WON!' : (res.vs.won === -1 ? 'YOU LOST' : 'DRAW');
+        v.vsColor = res.vs.won === 1 ? GOLD : (res.vs.won === -1 ? '#FF7A7A' : '#F2F6F7');
+        v.meRecord = res.vs.me.wins + '–' + (82 - res.vs.me.wins);
+        v.botRecord = res.vs.bot.wins + '–' + (82 - res.vs.bot.wins);
+        v.meRating = 'Rating ' + res.vs.me.rating.toFixed(1);
+        v.botRating = 'Rating ' + res.vs.bot.rating.toFixed(1);
+        v.botRows = SLOTS.filter((k) => !!s.botLineup[k]).map((k) => ({ slot: k, name: s.botLineup[k].name, sub: s.botLineup[k].team + ' ’' + s.botLineup[k].era.slice(2) }));
+      } else {
+        v.vsTitle = ''; v.vsColor = '#F2F6F7'; v.meRecord = ''; v.botRecord = ''; v.meRating = ''; v.botRating = ''; v.botRows = [];
+      }
+    } else {
+      v.recW = 0; v.recL = 0; v.gradeLetter = ''; v.gradeTier = ''; v.gradeColor = '#F2F6F7'; v.gradeStyle = ''; v.poLine = ''; v.poLineColor = '#F2F6F7';
+      v.resTag = ''; v.resultBars = []; v.balanceLine = ''; v.resultRows = []; v.rewardLine = ''; v.levelLine = ''; v.showLevelUp = false; v.levelUpText = '';
+      v.shareRecord = ''; v.shareGrade = ''; v.sharePo = ''; v.shareText = ''; v.vsTitle = ''; v.vsColor = '#F2F6F7';
+      v.meRecord = ''; v.botRecord = ''; v.meRating = ''; v.botRating = ''; v.botRows = [];
+    }
+    v.shareOpen = !!s.shareOpen;
+    v.openShare = () => this.setState({ shareOpen: true });
+    v.closeShare = () => this.setState({ shareOpen: false });
+    v.copyShare = () => {
+      const text = sp ? sp.text : '';
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(() => this.toast('Copied. Paste it anywhere.'), () => this.toast('Copy is blocked here. Select the text instead.'));
+        } else { this.toast('Copy is blocked here. Select the text instead.'); }
+      } catch (e) { this.toast('Copy is blocked here. Select the text instead.'); }
+    };
+    v.shareBtnStyle = bigStyle('ghost', false, 'small');
+    v.againBtnStyle = bigStyle('primary', false, 'small');
+    v.onAgain = () => this.startRun(s.runMode);
+    return v;
+  }
+}
+</script>
+</body>
+</html>

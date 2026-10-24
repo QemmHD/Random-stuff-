@@ -99,11 +99,10 @@ A lopsided team (huge scoring, no rim protection) loses up to 15%. This is the "
 **Step 3. Regular-season wins:** a power curve that flattens near the top:
 
 ```
-raw  = 0.332 × rating^1.15                         (82-0's measured curve)
-wins = 82 × (1 − e^(−raw/82 × 1.6)) / (1 − e^(−1.6))   then clamp to 0..82
+wins = clamp(round(0.332 × rating^1.15), 0, 82)        (82-0's measured curve; used in the mockup)
 ```
 
-The soft cap makes the last few wins much harder. We'll calibrate it once the data pipeline exists, so that:
+82-0 needs a rating of about 120. Once the data pipeline exists we'll tune the exponent and the benchmark, and optionally flatten the top above about 70 wins, so that:
 - a random team lands at about 38–45 wins;
 - the best pick every round with no boosters lands at about 58–66;
 - 70+ needs good luck plus smart respins;
