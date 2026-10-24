@@ -99,6 +99,10 @@ A lopsided team (huge scoring, no rim protection) loses up to 15%. This is the "
 
 **Step 3. Regular-season wins:** a power curve that flattens near the top:
 
+> **Tuned in the build** (`perfect-season/src/engine/rating.ts`, `sim.test.ts`): a piecewise-linear curve through anchor points replaced the formula below.
+> - Measured on 3,000 simulated drafts each: random picks give a median of 30 wins, best available 58, smart drafting with respins 59, and 82-0 happens in about 0.1–0.2% of unboosted drafts.
+> - Playoffs use `SERIES_K = 16` and opponent pools of 50–55 / 55–59 / 59–63 / 64+ wins. Title odds are about 11% at 62 wins, 47% at 70 and 91% at 82-0.
+
 ```
 wins = clamp(round(0.332 × rating^1.15), 0, 82)        (82-0's measured curve; used in the mockup)
 ```
