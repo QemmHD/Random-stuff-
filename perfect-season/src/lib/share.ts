@@ -8,7 +8,7 @@ export function shareText(r: RunRecord, dailyNo: number | null): string {
 }
 
 export function lastName(n: string): string {
-  const parts = n.split(' ');
+  const parts = n.replace(/\s*\([^)]*\)\s*$/, '').split(' ');
   return parts[parts.length - 1];
 }
 

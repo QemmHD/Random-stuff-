@@ -3,7 +3,7 @@ import { BOOSTER_HELP, BOOSTER_NAMES, BOOSTER_PRICES, BOOSTER_UNLOCK_LEVEL, RESP
 import { gradeFor } from '../engine/rating';
 import { type Booster, BOOSTERS, type BotLevel, type Mode } from '../engine/types';
 import { bestRuns, type Profile, type RunRecord } from '../lib/profile';
-import { Fit, Sheet } from './common';
+import { Fit, lastName, Sheet } from './common';
 import { ArenaHero } from './Hero';
 import { Bolt, Calendar, Crown, Home as HomeIcon, Lock, Ranks as RanksIcon, User } from './icons';
 
@@ -148,7 +148,7 @@ function HistRow({ r, i = 0 }: { r: RunRecord; i?: number }) {
           {r.title ? ' · Champions' : ''}
           {r.vs ? (r.vs.won ? ' · beat bot' : r.vs.won === false ? ' · lost to bot' : ' · tied') : ''}
         </strong>
-        <small>{r.lineup.map((x) => x.name.split(' ').slice(-1)[0]).join(' · ')}</small>
+        <small>{r.lineup.map((x) => lastName(x.name)).join(' · ')}</small>
       </div>
       <small className="mode-tag">{r.mode === '1v1' ? '1v1' : r.mode}</small>
     </div>
@@ -304,7 +304,7 @@ export function ProfilePage(props: { profile: Profile }) {
   );
 }
 
-export function SettingsSheet(props: { profile: Profile; onChange: (k: 'sound' | 'haptics' | 'hints', v: boolean) => void; onReset: () => void; onClose: () => void; source: string }) {
+export function SettingsSheet(props: { profile: Profile; onChange: (k: 'sound' | 'haptics' | 'hints', v: boolean) => void; onReset: () => void; onClose: () => void; source: string; latest: number }) {
   const [confirm, setConfirm] = useState(false);
   const row = (k: 'sound' | 'haptics' | 'hints', label: string) => (
     <div className="toggle">
@@ -336,7 +336,9 @@ export function SettingsSheet(props: { profile: Profile; onChange: (k: 'sound' |
               RESET PROGRESS
             </button>
           )}
-          <p className="note">Player stats: {props.source}. Steals and blocks before 1973-74 weren’t recorded and are estimated.</p>
+          <p className="note">
+            Every NBA player from 1959–60 through {props.latest - 1}–{String(props.latest).slice(2)}, from {props.source}. Steals and blocks before 1973–74 weren’t recorded and are estimated.
+          </p>
           <button className="btn primary" onClick={() => close()}>
             DONE
           </button>

@@ -17,8 +17,13 @@ Rules (see research/perfect-season/SPEC.md §11):
     with that franchise in that decade; traded-season "2TM"/"TOT" rows skipped
   - steals/blocks before 1973-74 are estimated from a regression on the
     player's other per-game stats and position, and flagged
-  - positions are every position the player was listed at in a season
-    with 10+ games, across his career
+  - positions: each season's listed position(s) weighted by games across
+    the player's NBA career; positions with 12%+ of his games are kept, up
+    to 3 (LeBron SF/PF, Magic PG/SG, Jordan SG). The few players with no
+    listed position at all get the nearest one by their stat profile
+  - when different players share a name (Patrick Ewing and his son), the one
+    with the longest career keeps the plain name and the others get the
+    years they spent with that team, e.g. "Patrick Ewing (2010–11)"
   - prime = the player's best cell (20+ games) by rating value
 
 Usage: python3 scripts/build_nba_data.py [raw_dir]
@@ -39,6 +44,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "src", "data", "nba.json")
 FIRST_SEASON = 1960
 STL_BLK_FIRST = 1974
+POS_SHARE = 0.12
+POS_MAX = 3
+SLOT_ORDER = ["PG", "SG", "SF", "PF", "C"]
 W = {"pts": 0.33, "reb": 0.67, "ast": 0.64, "stl": 1.2, "blk": 1.13}
 
 # B-Ref abbreviation -> franchise id
@@ -160,7 +168,8 @@ def main():
     paths = fetch(raw_dir)
 
     rows = []
-    positions = defaultdict(set)
+    pos_games = defaultdict(lambda: defaultdict(float))
+    career = defaultdict(lambda: {"g": 0.0, "pts": 0.0, "reb": 0.0, "ast": 0.0})
     for r in csv.DictReader(open(paths["totals"], encoding="utf-8")):
         if r["lg"] != "NBA" or r["team"] not in FRANCHISE:
             continue
@@ -168,9 +177,14 @@ def main():
         g = num(r["g"]) or 0
         if g <= 0:
             continue
-        if g >= 10:
-            for p in norm_positions(r["pos"]):
-                positions[r["player_id"]].add(p)
+        listed = norm_positions(r["pos"])
+        for p in listed:
+            pos_games[r["player_id"]][p] += g / len(listed)
+        c = career[r["player_id"]]
+        c["g"] += g
+        c["pts"] += num(r["pts"]) or 0.0
+        c["reb"] += num(r["trb"]) or 0.0
+        c["ast"] += num(r["ast"]) or 0.0
         if season < FIRST_SEASON:
             continue
         rows.append({
@@ -191,6 +205,27 @@ def main():
             if r["blk"] is None:
                 r["blk"] = max(0.0, float(feats @ wb)) * g
             r["est"] = True
+
+    # career positions, weighted by games
+    def profile(c):
+        t = c["pts"] + c["reb"] + c["ast"] or 1.0
+        return np.array([c["reb"] / t, c["ast"] / t])
+
+    centroids = {}
+    for p in SLOT_ORDER:
+        pts = [profile(career[pid]) for pid, by in pos_games.items() if by and max(by, key=by.get) == p and career[pid]["g"] >= 40]
+        centroids[p] = np.mean(pts, axis=0)
+
+    def positions_for(pid):
+        by = pos_games.get(pid)
+        if not by:
+            # no listed position anywhere: nearest stat profile (rebound and assist share)
+            v = profile(career[pid])
+            return [min(SLOT_ORDER, key=lambda p: float(np.sum((centroids[p] - v) ** 2)))]
+        total = sum(by.values())
+        ranked = sorted(by.items(), key=lambda kv: -kv[1])
+        keep = [p for p, gm in ranked if gm / total >= POS_SHARE][:POS_MAX] or [ranked[0][0]]
+        return sorted(keep, key=SLOT_ORDER.index)
 
     # team-season records (for labels and playoff opponents)
     team_seasons = {}
@@ -250,6 +285,15 @@ def main():
     for (pid, fr, dec), a in agg.items():
         cells[(fr, dec)].append((pid, a))
 
+    by_name = defaultdict(set)
+    for (pid, fr, dec), a in agg.items():
+        by_name[a["name"]].add(pid)
+    namesakes = set()
+    for pids in by_name.values():
+        if len(pids) > 1:
+            best = max(pids, key=lambda x: career[x]["g"])
+            namesakes |= pids - {best}
+
     teams = []
     for (fr, dec) in sorted(cells):
         ident = identity[(fr, dec)]
@@ -257,7 +301,7 @@ def main():
         plist = []
         for pid, a in cells[(fr, dec)]:
             s = line(a)
-            pos = sorted(positions.get(pid) or norm_positions("C"), key=["PG", "SG", "SF", "PF", "C"].index)
+            pos = positions_for(pid)
             pr = prime.get(pid)
             pr_ref = None
             if pr and (pr[1], pr[2]) != (fr, dec):
@@ -269,6 +313,10 @@ def main():
                 1 if a["est"] else 0, pr_ref, pid,
             ])
         plist.sort(key=lambda p: -(p[2] * W["pts"] + p[3] * W["reb"] + p[4] * W["ast"] + p[5] * W["stl"] + p[6] * W["blk"]))
+        # same name, different players: all but the best-known get their years with this team
+        for p in plist:
+            if p[13] in namesakes:
+                p[0] = p[0] + " (" + str(p[9] - 1) + "–" + str(p[10])[2:] + ")"
         if len(plist) < 6:
             continue
         teams.append({
@@ -278,9 +326,6 @@ def main():
 
     # playoff opponents: great real teams, normalised to 82 games
     playoff = []
-    best_player = {}
-    for (pid, fr, dec), a in agg.items():
-        pass
     season_best = {}
     for r in rows:
         if r["g"] < 30:

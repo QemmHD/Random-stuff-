@@ -21,7 +21,7 @@ import { BOOSTER_NAMES, BOOSTER_PRICES, BOOSTER_UNLOCK_LEVEL, RESPIN_PRICE, leve
 import { rateTeam } from '../engine/rating';
 import { type Booster, BOOSTERS, type BotLevel, type Mode, type Player, type Slot, SLOTS } from '../engine/types';
 import { sfx } from '../lib/sound';
-import { useLayout } from '../stage';
+import { frameY, useLayout } from '../stage';
 import { CoinChip, Confirm, Fit, initials, lastName, seasonLabel, shortEra } from './common';
 import { Back, Crown, Down, Lock, Refresh } from './icons';
 import { CountUp, reducedMotion, Sparks } from './motion';
@@ -185,7 +185,7 @@ function CourtLines({ h, ys, ch }: { h: number; ys: Record<Slot, number>; ch: nu
 
 export function Draft(props: DraftProps) {
   const { mode, botLevel, dailyKey } = props;
-  const { k: scale } = useLayout();
+  const layout = useLayout();
   const [s, dispatch] = useReducer(draftReducer, undefined, () => newDraft(mode, botLevel, dailyKey));
   const sRef = useRef(s);
   sRef.current = s;
@@ -496,13 +496,13 @@ export function Draft(props: DraftProps) {
   // drag the drawer's header down to close it
   const onGripDown = (e: React.PointerEvent) => {
     if (e.pointerType === 'mouse' && e.button !== 0) return;
-    drag.current = { y0: e.clientY, t0: performance.now(), dy: 0, id: e.pointerId, active: false };
+    drag.current = { y0: frameY(e, layout), t0: performance.now(), dy: 0, id: e.pointerId, active: false };
   };
   const onGripMove = (e: React.PointerEvent) => {
     const d = drag.current;
     const el = drawerRef.current;
     if (!d || !el || e.pointerId !== d.id) return;
-    d.dy = Math.max(0, (e.clientY - d.y0) / scale);
+    d.dy = Math.max(0, frameY(e, layout) - d.y0);
     if (!d.active && d.dy > 6) {
       d.active = true;
       (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);

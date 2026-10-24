@@ -6,6 +6,8 @@ import './styles.css';
 
 // iOS Safari only shows :active press states when the page listens for touches
 document.addEventListener('touchstart', () => {}, { passive: true });
+// no pinch-zoom, like a native app (iOS ignores user-scalable=no, so stop its gesture events)
+document.addEventListener('gesturestart', (e) => e.preventDefault());
 
 /** Waits for the Archivo faces (the condensed display type has no good fallback), at most 2.2s. */
 function fontsReady(): Promise<void> {

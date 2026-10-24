@@ -212,7 +212,7 @@ A typical C–B game with one series win earns about 40–50 coins. That's an ex
 - **Type:** a heavy condensed italic display face for PLAY / SPIN / records, and a clean sans for UI. Avoid 82-0's exact fonts; candidates are Oswald or Anton for display and Inter for UI.
 - **Layout:** a 390px-wide design frame scaled to the phone's width (×1.10 on a 430px iPhone 15 Pro Max). Height is flexible, with four spacing classes from compact (iPhone SE in Safari) to roomy.
   - Backgrounds run under the Dynamic Island and home indicator; content and controls stay inside the safe area.
-  - Portrait only: sideways phones get a prompt. Tablets and desktops get a phone-shaped frame.
+  - Portrait only, like a native app. iOS can't lock a website's rotation, so on a sideways phone the frame turns itself back to stay upright relative to the phone, with the island still at its top. Tablets and desktops get a phone-shaped frame.
 - **Motion:** reel wind-up → blur → ease-out → 6 px bounce; jersey drop and glint on placement; ticker and confetti on results, with confetti density by grade.
 - **Sounds:** spin start, reel tick, reel stop, pick, place, draft complete, ticker, playoff win and loss stings, title fanfare, coin, level up, button.
 - **Hero art:** **stylized poster/comic illustration** of generic athletes in teal and gold (not photoreal like 82-0). The same style works for every sport.
@@ -227,7 +227,7 @@ A typical C–B game with one series win earns about 40–50 coins. That's an ex
 2. **Decades:** a season belongs to the decade it **ends** in (1989-90 counts as the 1990s). This is 82-0's rule, verified: Ewing's NYK 1990s line of 24.08 ppg / 11.02 rpg is exactly the games-weighted average of his 1989-90 → 1998-99 seasons.
 3. **Aggregate** per (player, franchise identity, decade): games-weighted per-game averages over **all** of that player's seasons with that team in that decade (not a best-N stretch), plus games and seasons played.
 4. **Estimate STL/BLK before 1973-74** (regression; flagged in the data and the UI).
-5. **Positions:** the set of positions the player was listed at with meaningful minutes. Reviewed by hand for stars.
+5. **Positions:** career positions weighted by games: every listed position with at least 12% of the player's games, up to three (LeBron SF/PF, Magic PG/SG, Jordan SG/SF, Ewing C). Players with no listed position get the nearest one by stat profile. Checked by hand for the stars.
 6. **Franchise identities:** about 45 historical names with decade ranges and colors (St. Louis Hawks 1960s → Atlanta, Buffalo Braves → Clippers, Vancouver → Memphis, Seattle SuperSonics, New Jersey Nets, Charlotte Bobcats…).
 7. **Prime line:** each player's best team-decade line by base value.
 8. **Output:** a versioned JSON or DB seed, with spot-check reports (top 10 per team-decade).

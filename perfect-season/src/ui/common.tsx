@@ -5,15 +5,20 @@ import { useLayout } from '../stage';
 import { Coin, Gear, Help } from './icons';
 import { CountUp, reducedMotion, usePulse } from './motion';
 
+/** The name without the "(1988–92)" label that tells namesakes apart. */
+export function baseName(name: string): string {
+  return name.replace(/\s*\([^)]*\)\s*$/, '');
+}
+
 export function initials(name: string): string {
-  const parts = name.replace(/\./g, '').split(/[\s-]+/).filter(Boolean);
+  const parts = baseName(name).replace(/\./g, '').split(/[\s-]+/).filter(Boolean);
   const first = parts[0]?.charAt(0) ?? '';
   const last = parts.length > 1 ? parts[parts.length - 1].charAt(0) : '';
   return (first + last).toUpperCase();
 }
 
 export function lastName(name: string): string {
-  const parts = name.split(' ');
+  const parts = baseName(name).split(' ');
   const last = parts[parts.length - 1];
   return /^(Jr\.?|Sr\.?|II|III|IV)$/.test(last) && parts.length > 2 ? parts[parts.length - 2] : last;
 }

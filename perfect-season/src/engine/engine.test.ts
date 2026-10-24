@@ -30,6 +30,21 @@ describe('data', () => {
       }
     }
   });
+  it('gives every player 1 to 3 positions and a unique name in his cell', () => {
+    for (const c of CELLS) {
+      const names = new Set<string>();
+      for (const p of c.players) {
+        expect(p.pos.length).toBeGreaterThanOrEqual(1);
+        expect(p.pos.length).toBeLessThanOrEqual(3);
+        expect(names.has(p.name)).toBe(false);
+        names.add(p.name);
+      }
+    }
+    expect(find('CLE-2000', 'LeBron James').pos).toEqual(['SF', 'PF']);
+    expect(find('LAL-1980', 'Magic Johnson').pos).toEqual(['PG', 'SG']);
+    expect(find('CHI-1990', 'Michael Jordan').pos).toEqual(['SG', 'SF']);
+    expect(find('LAC-1990', 'Charles Smith (1997–99)').pos).toEqual(['SG']);
+  });
   it('primes a player to his best line', () => {
     const lin = find('BKN-2010', 'Jeremy Lin');
     const up = primeVersion(lin)!;
@@ -68,7 +83,8 @@ describe('draft rules', () => {
     let s = newDraft('classic', 'pro', null);
     s = draftReducer(s, { type: 'land', cellId: 'NYK-1990', ptr: 0 });
     const ewing = find('NYK-1990', 'Patrick Ewing');
-    expect(eligibleSlots(s, ewing)).toEqual(['PF', 'C']);
+    // 95% of his career games were at center
+    expect(eligibleSlots(s, ewing)).toEqual(['C']);
     s = draftReducer(s, { type: 'place', playerId: ewing.id, slot: 'C' });
     expect(s.lineup.C?.name).toBe('Patrick Ewing');
     expect(s.youDone).toBe(true);
@@ -141,12 +157,12 @@ describe('draft rules', () => {
   });
   it('moves players only between slots both can play', () => {
     let s = newDraft('classic', 'pro', null);
-    s = draftReducer(s, { type: 'land', cellId: 'NYK-1990', ptr: 0 });
-    s = draftReducer(s, { type: 'place', playerId: find('NYK-1990', 'Patrick Ewing').id, slot: 'C' });
+    s = draftReducer(s, { type: 'land', cellId: 'SAS-2000', ptr: 0 });
+    s = draftReducer(s, { type: 'place', playerId: find('SAS-2000', 'Tim Duncan').id, slot: 'C' });
     expect(canMove(s.lineup, 'C', 'PF')).toBe(true);
     expect(canMove(s.lineup, 'C', 'PG')).toBe(false);
     s = draftReducer(s, { type: 'move', from: 'C', to: 'PF' });
-    expect(s.lineup.PF?.name).toBe('Patrick Ewing');
+    expect(s.lineup.PF?.name).toBe('Tim Duncan');
     expect(s.lineup.C).toBeNull();
   });
   it('daily order is the same for everyone that day', () => {

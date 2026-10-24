@@ -3111,6 +3111,10 @@ button:focus-visible {
   transform: translateX(22px);
 }
 .sharecard {
+  /* long-press saves the image on iPhone */
+  -webkit-touch-callout: default;
+  -webkit-user-select: auto;
+  user-select: auto;
   width: auto;
   max-width: 100%;
   align-self: center;
@@ -3218,43 +3222,6 @@ button:focus-visible {
   stroke-width: 3;
   stroke-linecap: round;
 }
-.rotate {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--body);
-  text-align: center;
-  padding: 0 24px;
-}
-.rotate b {
-  font-size: 18px;
-}
-.rotate span {
-  font-size: 14px;
-  color: var(--sub);
-}
-.rotate-phone {
-  transform-origin: 32px 28px;
-  animation: rot 2.2s var(--ease-out) infinite;
-}
-@keyframes rot {
-  0%,
-  20% {
-    transform: rotate(-90deg);
-  }
-  60%,
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

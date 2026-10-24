@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { DATA_SOURCE } from './engine/data';
+import { DATA_SOURCE, LATEST_SEASON } from './engine/data';
 import type { DraftState } from './engine/draft';
 import { BOOSTER_PRICES, LEVEL_UP_COINS, levelInfo, rewardsFor, unlockedAt } from './engine/economy';
 import { buildBracket, playoffOutcome, ROUND_NAMES, type Series, seriesScore } from './engine/playoffs';
@@ -280,6 +280,7 @@ export function App() {
         <SettingsSheet
           profile={profile}
           source={DATA_SOURCE}
+          latest={LATEST_SEASON}
           onClose={() => setModal(null)}
           onChange={(k, v) => update((p) => ({ ...p, settings: { ...p.settings, [k]: v } }))}
           onReset={() => {

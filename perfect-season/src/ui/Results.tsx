@@ -6,7 +6,7 @@ import { SLOTS } from '../engine/types';
 import type { RunRecord } from '../lib/profile';
 import { copyText, drawCard, nativeShare, shareText } from '../lib/share';
 import { sfx } from '../lib/sound';
-import { useLayout } from '../stage';
+import { frameRect, useLayout } from '../stage';
 import { CoinChip, Confetti, Sheet } from './common';
 import { Back, Coin, Share, Trophy } from './icons';
 import { CountUp, reducedMotion } from './motion';
@@ -68,14 +68,14 @@ function CoinFlight({ from, to, n }: { from: React.RefObject<HTMLElement>; to: R
     const a = from.current;
     const b = to.current;
     if (!root || !a || !b || reducedMotion()) return;
-    const rr = root.getBoundingClientRect();
-    const k = rr.width / 390;
-    const ra = a.getBoundingClientRect();
-    const rb = b.getBoundingClientRect();
-    const x0 = (ra.left + ra.width / 2 - rr.left) / k;
-    const y0 = (ra.top + ra.height / 2 - rr.top) / k;
-    const x1 = (rb.left + 18 - rr.left) / k;
-    const y1 = (rb.top + rb.height / 2 - rr.top) / k;
+    // frame coordinates, so this works on a scaled or sideways-turned frame
+    const rr = frameRect(root);
+    const ra = frameRect(a);
+    const rb = frameRect(b);
+    const x0 = ra.x + ra.w / 2 - rr.x;
+    const y0 = ra.y + ra.h / 2 - rr.y;
+    const x1 = rb.x + 18 - rr.x;
+    const y1 = rb.y + rb.h / 2 - rr.y;
     const coins = [...(box.current?.children ?? [])] as HTMLElement[];
     coins.forEach((c, i) => {
       const sx = x0 + (Math.random() - 0.5) * 120;
