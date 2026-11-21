@@ -10,8 +10,9 @@ import { ownerArt } from './owners';
 import { iconArt } from './icons';
 import { avatarArt } from './avatars';
 import { extraArt } from './extra';
+import { hiddenArt } from './hidden';
 
-const REGISTRY: Record<string, string> = { ...extraArt, ...iconArt, ...avatarArt, ...case1Art, ...case2Art, ...case3Art, ...case4Art, ...case5Art, ...case6Art, ...case7Art, ...ownerArt };
+const REGISTRY: Record<string, string> = { ...extraArt, ...iconArt, ...avatarArt, ...case1Art, ...case2Art, ...case3Art, ...case4Art, ...case5Art, ...case6Art, ...case7Art, ...ownerArt, ...hiddenArt };
 const urlCache = new Map<string, string>();
 
 export function registerArt(more: Record<string, string>): void {

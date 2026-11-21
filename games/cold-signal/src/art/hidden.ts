@@ -757,7 +757,7 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
   const toes = (x: number, y: number): string => dots([[x - 12, y + 2], [x - 4, y], [x + 4, y], [x + 11, y + 2]], '#e8203c', 8);
   const legs =
     S('M336 600L424 644L520 780', '#d8ae92', 46) + S('M356 580L442 624L540 760', f.rim, 4, 'opacity=".8"') +
-    S('M290 604L232 512L212 640', f.skin, 46) + E(208, 656, 21, 27, f.skin) + toes(208, 678) + S('M214 520L198 624', '#fff', 5, 'opacity=".3"');
+    S('M312 598L232 512L212 640', f.skin, 46) + E(208, 656, 21, 27, f.skin) + toes(208, 678) + S('M214 520L198 624', '#fff', 5, 'opacity=".3"');
   const PK = '#ff7aa8', PD = '#e0508a';
   A[k] = frame(
     k,
