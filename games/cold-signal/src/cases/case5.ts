@@ -153,6 +153,8 @@ export const case5: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c5_nadia2', art: 'hp_c5_nadia2', t: '2026-09-18T23:10', place: "Nadia Fenn's loft", orientation: 'portrait', caption: "Sent by Nadia Fenn. Sheer black robe over lingerie, holding a glass of red, a tarot card in her teeth. 'reading your future. it's me'", hidden: true },
+    { id: 'hp_c5_mira', art: 'hp_c5_mira', t: '2026-10-28T20:15', place: "Mira's apartment — closet mirror", orientation: 'portrait', caption: "Sent by Mira to her sister. Leopard-print lingerie mirror selfie, price tag still on. 'asking for a friend: send it to the waiter or no'", hidden: true },
     { id: 'hp_c5_nadia', art: 'hp_c5_nadia', t: '2026-10-05T22:30', place: "Nadia Fenn's loft", orientation: 'portrait', caption: "Sent by Nadia Fenn. Black lingerie boudoir shot on a velvet chaise, red lamp, a half-eaten pizza on the floor. 'for the anniversary calendar. too much?'", hidden: true },
     { id: 'hp_c5_owen', art: 'hp_c5_owen', t: '2026-10-12T01:15', place: 'Lisk & Key — Room 3', orientation: 'portrait', caption: "Sent by Owen Blake. Shirtless in a lab coat, dramatic red escape-room lighting, holding a giant prop key. 'escape THIS'.", hidden: true },
     { id: 'c5_ph_room9', art: 'c5_ph_room9', t: '2026-10-30T23:50', place: 'Lisk & Key — Room 9', orientation: 'landscape', caption: 'QUARRY, finished. The old bank vault painted quarry-blue, a fibreglass rock ledge jutting out over a pool of rippling blue light. On the far wall, a beige 1970s push-button wall phone. In the corner, a squat steel lockbox with a red LED timer.' },

@@ -133,6 +133,8 @@ export const case1: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c1_june2', art: 'hp_c1_june2', t: '2026-09-30T19:42', place: 'Cove St. apartment — bedroom mirror', orientation: 'portrait', caption: "Sent by June Okafor. Red lace lingerie fit-check mirror selfie, one heel on, the other missing. 'too slutty for a tuesday? (correct answer: no)'", hidden: true },
+    { id: 'hp_c1_bumble', art: 'hp_c1_bumble', t: '2026-09-24T22:15', place: 'Screenshot — dating app', orientation: 'portrait', caption: "Forwarded by June. A shirtless man's dating profile photo, holding a tote bag stuffed with his own bedsheets. 'THIS is the sheets guy'", hidden: true },
     { id: 'hp_c1_theo', art: 'hp_c1_theo', t: '2026-09-19T23:48', place: "The Anchor — men's room", orientation: 'portrait', caption: 'Mirror selfie sent by Theo Vance. Shirtless, flexing, beanie on, hand-dryer sign behind him.', hidden: true },
     { id: 'hp_c1_june', art: 'hp_c1_june', t: '2026-09-27T21:10', place: 'Cove St. apartment — bathroom', orientation: 'portrait', caption: "Sent by June Okafor. Bubble bath, sheet face mask, wine glass, 'self care sunday (it is saturday)'.", hidden: true },
     { id: 'ph_biscuit', art: 'ph_biscuit', t: '2018-02-14T15:20', place: 'Quill family home', orientation: 'portrait', caption: 'Lock screen wallpaper. A golden retriever puppy with a red bow. Old-style camera date stamp in the corner.', device: 'Scanned print' },

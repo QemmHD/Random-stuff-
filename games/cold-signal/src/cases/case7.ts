@@ -144,6 +144,8 @@ export const case7: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c7_bea2', art: 'hp_c7_bea2', t: '2026-09-05T21:45', place: "Bea's apartment — bedroom", orientation: 'portrait', caption: "Sent by Bea Ostrowski. Lingerie pin-up pose on the bed, cat-eye glasses, her cactus wearing a tiny bow tie on the nightstand. 'calendar shoot for the cactus society'", hidden: true },
+    { id: 'hp_c7_sami2', art: 'hp_c7_sami2', t: '2026-08-30T23:20', place: 'Kade home — kitchen', orientation: 'portrait', caption: "Sent by Sami. Wearing nothing but an apron and oven mitts, holding a burnt lasagna. 'dinner is ruined but I am not'", hidden: true },
     { id: 'hp_c7_bea', art: 'hp_c7_bea', t: '2026-07-14T14:12', place: 'Ostrowski backyard pool', orientation: 'portrait', caption: 'Sent by Bea Ostrowski. Bikini on a giant flamingo float, cocktail with three umbrellas, her potted cactus on its own tiny float beside her.', hidden: true },
     { id: 'hp_c7_sami', art: 'hp_c7_sami', t: '2026-10-20T22:05', place: 'Kade home — bedroom', orientation: 'portrait', caption: "Sent by Sami. Silk robe, rose between his teeth, candles everywhere, cat glaring from the pillow. 'the good sheets are ON'.", hidden: true },
     { id: 'c7_ph_gallery6', art: 'c7_ph_gallery6', t: '2026-09-18T03:10', place: 'Hollin Museum — Gallery 6', orientation: 'landscape', caption: 'Gallery 6 at night under guard lighting. On the far wall, the Lorne: a girl on a dark shore holding up a four-paned storm lantern. Left of it, a gilt bracket clock on a bracket. In the foreground, a leather bench with a thermos and a guard radio.' },

@@ -147,6 +147,8 @@ export const case2: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c2_cass2', art: 'hp_c2_cass2', t: '2026-09-12T03:20', place: 'The Coop — transmitter room', orientation: 'portrait', caption: "Sent by Cass Rourke. Satin slip and studio headphones, leaning on the mixing desk under fairy lights. 'face for radio my ass'", hidden: true },
+    { id: 'hp_c2_moth', art: 'hp_c2_moth', t: '2026-10-01T01:05', place: 'Mailed to the show', orientation: 'portrait', caption: "A listener 'fan photo' from Mothwing: shirtless, wearing a homemade moth mask, posing with a candle. Deeply unsettling.", hidden: true },
     { id: 'hp_c2_cass', art: 'hp_c2_cass', t: '2026-08-23T16:40', place: 'Riverbend Fest — lakeside', orientation: 'portrait', caption: "Sent by Cass Rourke. String bikini, festival glitter, sunglasses, beer in hand, a goose behind her mid-attack. 'rate my fest fit. ignore the goose'.", hidden: true },
     { id: 'hp_c2_jonah', art: 'hp_c2_jonah', t: '2026-10-09T02:31', place: "Jonah's apartment — hallway mirror", orientation: 'portrait', caption: 'Mirror selfie. Boxer briefs, owl slippers, headphones round the neck, a soldering iron in his free hand.', hidden: true },
     { id: 'c2_ph_sign', art: 'c2_ph_sign', t: '2026-10-03T01:58', place: 'Carraway Mill — the Coop', orientation: 'portrait', caption: 'Hand-painted station sign on the mill roof. Paint still wet.' },

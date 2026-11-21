@@ -143,6 +143,8 @@ export const case6: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c6_toni', art: 'hp_c6_toni', t: '2026-08-09T13:00', place: 'Rockaway — beach', orientation: 'portrait', caption: "Sent by Toni Grant, by accident, to the chess group chat. Bikini beach selfie, big hat, a seagull stealing her fries mid-shot. 'MEANT FOR HINGE. DO NOT.'", hidden: true },
+    { id: 'hp_c6_vic', art: 'hp_c6_vic', t: '2026-08-11T18:30', place: "Vic Sallow's living room", orientation: 'portrait', caption: "Sent by Vic Sallow. Shirtless, oiled, posing next to a chessboard. 'bring that energy to table 4 old man'", hidden: true },
     { id: 'hp_c6_hank', art: 'hp_c6_hank', t: '2026-08-02T15:20', place: 'Halsey Park — public pool', orientation: 'portrait', caption: "Sent by Hank. Shirtless at the pool in a sun hat and black socks with sandals. 'new profile pic for the apps. rate it honest'.", hidden: true },
     { id: 'c6_ph_tables', art: 'c6_ph_tables', t: '2026-08-15T18:40', place: 'Halsey Park — chess plaza', orientation: 'landscape', caption: 'The stone chess tables at sunset in a shimmer of heat; a lamppost thermometer reads 104°F. A banner over the plaza: HALSEY HEAT BLITZ OPEN · FINAL 9PM.' },
     { id: 'c6_ph_count', art: 'c6_ph_count', t: '2026-08-15T22:44', place: 'Halsey Park — pavilion', orientation: 'landscape', caption: 'Recovered. Banded bundles of $100 bills fanned on a folding table beside a cash envelope; two people at the table. Deleted Aug 16, 05:36.', clue: 'count_photo', deletedUntil: 'recovered:photos' },
