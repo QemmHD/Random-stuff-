@@ -84,6 +84,8 @@ export const case6: CaseFile = {
         { from: 'them', text: "Professor! Still unlocking your phone with Scholar's Mate? I watched you do it at the board meeting 😂 your secret's safe with me", t: '2026-07-21T19:15', clue: 'curtis_knew_code' },
         { from: 'me', text: 'Nothing on this phone worth stealing, Curtis. Unlike the board account.', t: '2026-07-21T19:30' },
         { from: 'them', text: 'Final at 9. Dunmore drops the cash at 6, I sign for it. Big crowd, big check, big photo. Wear the hat.', t: '2026-08-15T12:04' },
+        { from: 'them', text: "Dunmore's VP is coming. Guy's got veneers you could read by. Smile, hold the big cheque, let the rich people feel like saints for one night. That's the whole business model, Professor 😎", t: '2026-08-15T12:06' },
+        { from: 'me', text: 'I will wear the hat. I will not kiss the ring.', t: '2026-08-15T12:15' },
         { from: 'them', text: "Cash stays in the pavilion safe till the bank opens Monday, champ. Two-person rule, schmo-person rule. Only I've got the code 😎", t: '2026-08-15T23:05', clue: 'curtis_safe_text', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: "Fine by me. It's the kid's money anyway. Count it again Monday in front of Toni.", t: '2026-08-15T23:07', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: "you still at the tables? go home old man, it's 95 out", t: '2026-08-16T00:50', clue: 'curtis_knew_where', deletedUntil: 'recovered:msgfrag' },
@@ -93,8 +95,9 @@ export const case6: CaseFile = {
     },
     {
       id: 'th_abena', contact: 'abena', messages: [
-        { from: 'them', text: "It's 104. Go to the cooling centre at the library. Don't be proud.", t: '2026-08-15T14:10' },
+        { from: 'them', text: "It's 104. Go to the cooling centre at the library. Don't be proud. Pride is what killed Uncle Kwame, and he was only fixing his own damn gutter.", t: '2026-08-15T14:10' },
         { from: 'me', text: 'Proud is my whole game. Final at 9. Come watch your brother be a legend.', t: '2026-08-15T14:22' },
+        { from: 'them', text: 'A legend with heatstroke is just an old man lying on hot concrete, Desmond. Pigeons will not care about your rating.', t: '2026-08-15T14:24' },
         { from: 'me', text: "Won. Flat's an oven, Pak says the AC part comes Tuesday. Sleeping out by table 4 like summer '89. Don't fuss.", t: '2026-08-16T00:12', photo: 'c6_ph_bench', clue: 'at_tables' },
         { from: 'them', text: "Dez. I'm at St. Agnes. If you can hear the phone buzz, squeeze somebody's hand.", t: '2026-08-16T07:55' },
         { from: 'them', text: "The EMS sheet says the 911 call came from YOUR phone at 5:44. Curtis told me he found you at 5:43 and dialled 'that second'. He held my hand and cried. I don't know why that bothers me.", t: '2026-08-17T10:30', clue: 'call_544' },
@@ -103,18 +106,18 @@ export const case6: CaseFile = {
     },
     {
       id: 'th_vic', contact: 'vic', messages: [
-        { from: 'them', text: "You cheated, old man. Your phone was buzzing in your pocket the whole armageddon. I'll get my money back one way or another.", t: '2026-08-15T22:41', clue: 'vic_threat' },
+        { from: 'them', text: "You cheated, you senile old fuck. Your phone was buzzing in your pocket the whole armageddon. I'll get my money back one way or another.", t: '2026-08-15T22:41', clue: 'vic_threat' },
         { from: 'me', text: "My phone buzzes because my sister worries. You lost on time with a won position. That's not cheating, that's blitz.", t: '2026-08-15T22:45' },
-        { from: 'them', text: 'They gave me a TICKET for kicking a clock. Escorted me out the gate like a criminal. Banned 30 days.', t: '2026-08-15T23:02' },
+        { from: 'them', text: 'They gave me a TICKET for kicking a clock. A CLOCK. Escorted me out the gate like a goddamn criminal. Banned 30 days.', t: '2026-08-15T23:02' },
         { from: 'them', text: "Rook & Pawn, across the river. 100 games tonight against anyone with a pulse. Come and play me sober and honest, Professor.", t: '2026-08-15T23:46', photo: 'c6_ph_cafe', clue: 'vic_cafe' },
-        { from: 'them', text: "Heard you're in the hospital. I'm not a monster. Get well, and then I want a rematch.", t: '2026-08-17T12:00' },
+        { from: 'them', text: "Heard you're in the hospital. I'm not a monster. Get well, and then I want a rematch, you lucky bastard.", t: '2026-08-17T12:00' },
       ],
     },
     {
       id: 'th_toni', contact: 'toni', messages: [
         { from: 'them', text: "Mr. Boateng, I can't let you pay for nationals. It's too much.", t: '2026-08-10T20:05' },
         { from: 'me', text: "Toni, I've been saving since he beat me the first time. It's his. I'm only holding it.", t: '2026-08-10T20:20' },
-        { from: 'them', text: 'I watched Curtis count it with you. Eight stacks. I have never seen eight thousand dollars in one place in my life 😳', t: '2026-08-15T22:50' },
+        { from: 'them', text: 'I watched Curtis count it with you. Eight stacks. I have never seen eight thousand dollars in one place in my life 😳 Curtis licked his thumb for every single bill. I need to wash my eyes.', t: '2026-08-15T22:50' },
         { from: 'them', text: "I'm going to tell the police exactly that. He didn't have any money on him when he walked back to the tables. He had a bottle of water and Malik's hat.", t: '2026-08-16T12:40' },
       ],
     },
@@ -122,6 +125,7 @@ export const case6: CaseFile = {
       id: 'th_pak', contact: 'pak', messages: [
         { from: 'me', text: "Mr. Pak, the AC in 4F died again. It's 96 in here at midnight.", t: '2026-08-13T00:20', photo: 'c6_ph_thermostat', clue: 'ac_broken' },
         { from: 'them', text: 'Compressor part on backorder. Tuesday latest. Sleep at your sister?', t: '2026-08-13T08:10', clue: 'ac_broken' },
+        { from: 'them', text: 'Also if you see 3B tell him walls are thin. Nobody needs "relaxing massage music" at 2am with that much... enthusiasm. Whole building knows. Whole building.', t: '2026-08-13T08:12' },
         { from: 'me', text: 'My sister has opinions. I have a park.', t: '2026-08-13T08:15' },
         { from: 'them', text: 'Part came. AC fixed. Everyone in building says get well, Mr. Dez.', t: '2026-08-18T15:30' },
       ],
@@ -130,7 +134,10 @@ export const case6: CaseFile = {
       id: 'th_hank', contact: 'hank', messages: [
         { from: 'them', text: "Saw Curtis at the OTB again Weds. You saw him too, didn't you? Man had that look. The look we had in '79.", t: '2026-08-13T11:00' },
         { from: 'me', text: "I saw him. I'm going to talk to him before I talk to the board. A man gets one warning.", t: '2026-08-13T11:20' },
-        { from: 'them', text: "That's why you're a better man than me. I'd just take his money at the board.", t: '2026-08-13T11:22' },
+        { from: 'them', text: "That's why you're a better man than me. I'd just take his money at the board. And his watch.", t: '2026-08-13T11:22' },
+        { from: 'them', text: "Also my date off that senior dating app cancelled. Said my picture was 'misleading.' It's from 1983. That's not misleading, that's vintage.", t: '2026-08-13T11:25' },
+        { from: 'me', text: 'Hank, in that picture you have hair, a mustache and a Trans Am. You currently have none of those things.', t: '2026-08-13T11:31' },
+        { from: 'them', text: 'The mustache is spiritually still there. Ladies can sense it.', t: '2026-08-13T11:32' },
       ],
     },
   ],
@@ -183,7 +190,7 @@ export const case6: CaseFile = {
   voicemails: [
     { id: 'vm_curtis_otb', contact: 'curtis', t: '2026-08-13T09:45', duration: '0:31', voice: { pitch: 1.0, rate: 1.15, female: false }, clue: 'curtis_otb', deletedUntil: 'recovered:voice', transcript: "Dez. Curtis. Listen, about Fulton Avenue yesterday. That was a one-time thing, a buddy's birthday, okay? I'm handling it. Do me a solid and keep it off the board's radar till after Saturday. Tournament goes great, everybody wins. Including you, Professor. Call me." },
     { id: 'vm_curtis_story', contact: 'curtis', t: '2026-08-16T07:10', duration: '0:24', voice: { pitch: 1.0, rate: 1.1, female: false }, clue: 'curtis_story', transcript: "Dez, it's Curtis. If you get this, the police are asking where the purse is. You told me you wanted it on you overnight, you remember? You insisted. I said don't. Just... call me when you're up, buddy. We'll sort it out." },
-    { id: 'vm_hank', contact: 'hank', t: '2026-08-16T13:00', duration: '0:19', voice: { pitch: 0.75, rate: 0.85, female: false }, transcript: "It's Hank. They got yellow tape round table 4. Somebody put flowers on it like you're dead, so I moved 'em to table 2. You owe me a game. Don't you dare die owing me a game." },
+    { id: 'vm_hank', contact: 'hank', t: '2026-08-16T13:00', duration: '0:19', voice: { pitch: 0.75, rate: 0.85, female: false }, transcript: "It's Hank. They got yellow tape round table 4. Somebody put flowers on it like you're dead, so I moved 'em to table 2. You owe me a game. Don't you dare die owing me a game. Also the pigeons miss you. They've been shitting on table 2 out of pure spite." },
     { id: 'vm_abena', contact: 'abena', t: '2026-08-15T14:31', duration: '0:15', voice: { pitch: 1.05, rate: 1.0, female: true }, transcript: "Desmond. Water. Shade. If you get dizzy and you stop sweating, that is not a feeling, that is an emergency. I love you. Win." },
   ],
 
@@ -222,9 +229,9 @@ export const case6: CaseFile = {
   ],
 
   glimpse: [
-    { id: 'g6_champ', author: 'malik', photo: 'c6_ph_check', caption: 'MY COACH IS THE CHAMPION OF HALSEY PARK 🏆♟️ armageddon, 9 seconds left. vic who', t: '2026-08-15T22:47', likes: 412, comments: [{ author: 'toni', text: 'So proud of you both ❤️' }, { author: 'hank', text: 'he still owes me a game' }, { author: 'curtis', text: 'What a night for Halsey Park!' }], clue: 'champion' },
+    { id: 'g6_champ', author: 'malik', photo: 'c6_ph_check', caption: 'MY COACH IS THE CHAMPION OF HALSEY PARK 🏆♟️ armageddon, 9 seconds left. vic who', t: '2026-08-15T22:47', likes: 412, comments: [{ author: 'toni', text: 'So proud of you both ❤️' }, { author: 'hank', text: 'he still owes me a game' }, { author: 'curtis', text: 'What a night for Halsey Park! 🏆💰 Proudly brought to you by Dunmore Properties #community #giveback' }], clue: 'champion' },
     { id: 'g6_vic', author: 'malik', photo: 'c6_ph_viccart', caption: 'bye vic 👋 kicked the clock, got the cart. park police said 30 day ban', t: '2026-08-15T22:53', likes: 230, comments: [{ author: 'vic', text: 'delete this' }, { author: 'hank', text: 'blitz is a gentleman\'s game son' }], clue: 'vic_escorted' },
-    { id: 'g6_simul', author: 'vic', photo: 'c6_ph_cafe', caption: 'Lost a final to a coffeehouse grandpa. Fine. 100-board simul at Rook & Pawn till 2am. Come lose to me.', t: '2026-08-15T23:44', likes: 58, comments: [{ author: 'malik', text: 'he was still there at 2 my cousin went' }], clue: 'vic_cafe' },
+    { id: 'g6_simul', author: 'vic', photo: 'c6_ph_cafe', caption: 'Lost a final to a coffeehouse grandpa and a bullshit clock. Fine. 100-board simul at Rook & Pawn till 2am. Come lose to me.', t: '2026-08-15T23:44', likes: 58, comments: [{ author: 'malik', text: 'he was still there at 2 my cousin went' }, { author: 'hank', text: 'a hundred boards and still can\'t beat one old man' }], clue: 'vic_cafe' },
     { id: 'g6_first', author: 'me', photo: 'c6_ph_malik', caption: 'First trophy. Lost to him in 19 moves the next day. Proudest loss of my life.', t: '2025-09-20T18:00', likes: 87, comments: [{ author: 'malik', text: 'it was 18 moves' }, { author: 'abena', text: '😂❤️' }] },
   ],
 
@@ -369,11 +376,11 @@ export const case6: CaseFile = {
 
   events: [
     { id: 'e6_malik', kind: 'text', when: ['unlocked'], delayMs: 4000, thread: 'th_malik', contact: 'malik', text: "is this professor's phone? ms abena said the police gave it to u. he's not a thief. he made me give back a quarter i found under table 3." },
-    { id: 'e6_h_story', kind: 'handler', when: ['pinned:curtis_story'], delayMs: 3000, text: "Brennick has told this story on two channels now: the old man begged to keep the cash, and he called 911 the second he found him. Check it against what the phone itself saw that morning. TRACE can rebuild cleared locations." },
-    { id: 'e6_luz1', kind: 'text', when: ['recovered:photos'], minPins: 6, delayMs: 6000, thread: 'th_c6unknown', contact: 'c6unknown', text: "this is Dez's phone? I'm Luz, nights on the grounds crew. Didn't tell the cops, Curtis signs my timesheet. 1:20 am he came out the pavilion with a gym bag. Walked right past Dez asleep by table 4. Didn't even look.", clue: 'luz_witness' },
-    { id: 'e6_h_wifi', kind: 'handler', when: ['pinned:phone_moved'], delayMs: 3500, text: "Dispatch confirms the 911 call came at 05:44 from Mr. Boateng's own number. Line that up against where his phone spent the ten minutes before it." },
+    { id: 'e6_h_story', kind: 'handler', when: ['pinned:curtis_story'], delayMs: 3000, text: "Brennick has told this story on two channels now: the old man begged to keep the cash, and he called 911 the second he found him. Funny thing about rehearsed stories — they come out word for word, like a hostage video. Check it against what the phone itself saw that morning. TRACE can rebuild cleared locations." },
+    { id: 'e6_luz1', kind: 'text', when: ['recovered:photos'], minPins: 6, delayMs: 6000, thread: 'th_c6unknown', contact: 'c6unknown', text: "this is Dez's phone? I'm Luz, nights on the grounds crew. Didn't tell the cops, Curtis signs my timesheet, the slimy little shit. 1:20 am he came out the pavilion with a gym bag. Walked right past Dez asleep by table 4. Didn't even look.", clue: 'luz_witness' },
+    { id: 'e6_h_wifi', kind: 'handler', when: ['pinned:phone_moved'], delayMs: 3500, text: "Dispatch confirms the 911 call came at 05:44 from Mr. Boateng's own number. Line that up against where his phone spent the ten minutes before it. Phones don't take little strolls on their own while their owner's cooking on a bench." },
     { id: 'e6_luz2', kind: 'text', when: ['event:e6_luz1', 'recovered:locate'], delayMs: 5000, thread: 'th_c6unknown', contact: 'c6unknown', text: "one more thing. I clock in 5:15. Curtis's Camry was already in the lot at 5:20, engine running, AC on. He didn't call nobody till way after. I'll say it to a detective. Dez taught my boy to play.", clue: 'luz_car' },
-    { id: 'e6_h_ready', kind: 'handler', when: ['unlocked'], minPins: 15, delayMs: 3000, text: "Precinct wants to close this as a theft by the victim. Let's not let them. When every answer has a pin behind it, file the Case Report." },
+    { id: 'e6_h_ready', kind: 'handler', when: ['unlocked'], minPins: 15, delayMs: 3000, text: "Precinct wants to close this as a theft by the victim. Course they do — it's August, the squad-room AC is broken too, and nobody wants to do paperwork with swamp ass. Let's not let them. When every answer has a pin behind it, file the Case Report." },
   ],
 
   hints: [
@@ -392,7 +399,7 @@ export const case6: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'Open the Case Report. Back every answer with a pinned clue. Dez can\'t do it himself.' },
   ],
 
-  handlerIntro: "Not cold, this one — it's still warm: a sixty-six-year-old in the ICU is about to be charged with stealing his own prize. His sister says the passcode is a chess move. I don't play. Hopefully you do.",
+  handlerIntro: "Not cold, this one — it's still warm: a sixty-six-year-old in the ICU is about to be charged with stealing his own prize. That's prime-cut bullshit, even for this city. His sister says the passcode is a chess move. I don't play. Only board game I know is Sorry, and I never am. Hopefully you do.",
 
   epilogue: {
     solved: [
