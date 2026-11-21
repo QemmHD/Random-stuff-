@@ -147,6 +147,7 @@ export const case2: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c2_cass', art: 'hp_c2_cass', t: '2026-08-23T16:40', place: 'Riverbend Fest — lakeside', orientation: 'portrait', caption: "Sent by Cass Rourke. String bikini, festival glitter, sunglasses, beer in hand, a goose behind her mid-attack. 'rate my fest fit. ignore the goose'.", hidden: true },
     { id: 'hp_c2_jonah', art: 'hp_c2_jonah', t: '2026-10-09T02:31', place: "Jonah's apartment — hallway mirror", orientation: 'portrait', caption: 'Mirror selfie. Boxer briefs, owl slippers, headphones round the neck, a soldering iron in his free hand.', hidden: true },
     { id: 'c2_ph_sign', art: 'c2_ph_sign', t: '2026-10-03T01:58', place: 'Carraway Mill — the Coop', orientation: 'portrait', caption: 'Hand-painted station sign on the mill roof. Paint still wet.' },
     { id: 'c2_ph_duo', art: 'c2_ph_duo', t: '2026-10-03T02:05', place: 'Carraway Mill — the Coop', orientation: 'landscape', caption: 'Recovered. Selfie of Jonah and Cass on the mill roof, paint on their hands, the sign behind them. Deleted Oct 10, 08:24.', clue: 'cass_raincoat', deletedUntil: 'recovered:photos' },

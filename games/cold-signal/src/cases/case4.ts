@@ -151,6 +151,7 @@ export const case4: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c4_mags', art: 'hp_c4_mags', t: '2026-02-21T23:58', place: 'Silverpine staff housing — bathroom mirror', orientation: 'portrait', caption: "Sent by Mags Okafor at 23:58, then 'WRONG CHAT. DELETE THAT.' Lace lingerie mirror selfie, ski goggles still on her head, a moose head mounted behind her.", hidden: true },
     { id: 'hp_c4_kessler', art: 'hp_c4_kessler', t: '2026-02-14T22:40', place: 'Silverpine — summit hot tub', orientation: 'portrait', caption: "Sent to all staff by Bram Kessler. Hot tub, aviators at night, champagne flute, chest hair, '#alphalife #valentines'.", hidden: true },
     { id: 'c4_ph_dad', art: 'c4_ph_dad', t: '2019-02-10T11:00', place: 'Eagle lift', orientation: 'portrait', caption: 'Rafi at twenty and his father on an Eagle chair, frosted beards, matching Silverpine Lift Ops jackets. His father is pointing up the line.' },
     { id: 'c4_ph_tower9', art: 'c4_ph_tower9', t: '2026-03-01T06:58', place: 'Ptarmigan Bowl', orientation: 'landscape', caption: 'Sunrise below an Eagle lift tower. A wide untouched bowl, a small cairn with a faded Lift Ops beanie on top, a trail sign at the edge.' },
