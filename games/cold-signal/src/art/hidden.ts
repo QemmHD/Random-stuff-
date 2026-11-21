@@ -105,8 +105,8 @@ const fig = (x: number, y: number, s: number, body: string, rot = 0): string =>
 const MT = (b: number): string =>
   `M80 146C60 149 44 155 40 172L46 216Q${50 - b} 252 ${56 - b * 0.6} 284Q54 304 54 332H146Q146 304 ${144 + b * 0.6} 284Q${150 + b} 252 154 216L160 172C156 155 140 149 120 146Z`;
 const MT_R = (b: number): string => `M120 146C140 149 156 155 160 172L154 216Q${150 + b} 252 ${144 + b * 0.6} 284Q146 304 146 332`;
-const FT = 'M83 146C68 149 54 155 50 170L55 206Q59 238 67 262Q50 292 46 332H154Q150 292 133 262Q141 238 145 206L150 170C146 155 132 149 117 146Z';
-const FT_R = 'M117 146C132 149 146 155 150 170L145 206Q141 238 133 262Q150 292 154 332';
+const FT = 'M83 146C68 149 54 155 50 170L55 206Q58 238 68 260Q46 292 42 332H158Q154 292 132 260Q142 238 145 206L150 170C146 155 132 149 117 146Z';
+const FT_R = 'M117 146C132 149 146 155 150 170L145 206Q142 238 132 260Q154 292 158 332';
 /** Bare torso with the avatar-style half shade + rim light. `b` = belly (men), `fem` = hourglass. */
 function torso(k: string, o: Face, det: string, b = 0, fem = false): string {
   const d = fem ? FT : MT(b);
@@ -143,17 +143,30 @@ const fuzz = (seed: number, n: number, x0: number, y0: number, w: number, h: num
   }
   return S(d, c, 1.2, 'opacity=".8"');
 };
-/** Bikini / bra cups + brief for the ladies (smooth fabric shapes only). */
-const cups = (c: string, hi: string): string =>
-  P('M62 214Q64 196 80 192Q94 198 99 218Q82 234 62 214Z', c) + P('M138 214Q136 196 120 192Q106 198 101 218Q118 234 138 214Z', c) +
-  S('M66 210Q70 198 80 196', hi, 1.6, 'opacity=".7"') + S('M134 210Q130 198 120 196', hi, 1.6, 'opacity=".35"');
-const brief = (c: string, top = 314): string => `M47 ${top}Q100 ${top + 14} 153 ${top}L154 334H46Z`;
+/** Round dots as one path. */
+const dots = (pts: number[][], c: string, w: number, ex = ''): string => S(pts.map(([x, y]) => `M${x} ${y}h.01`).join(''), c, w, ex);
+/** Soft capsule petals as one path. */
+const petals = (seed: number, n: number, x0: number, y0: number, w: number, h: number, c: string): string => {
+  const r = rng(seed);
+  let d = '';
+  for (let i = 0; i < n; i++) d += `M${r0(x0 + r() * w)} ${r0(y0 + r() * h)}l${r0(r() * 16 - 8)} ${r0(r() * 12 - 6)}`;
+  return S(d, c, 9);
+};
+/** Curves for the ladies: collarbones, bust contour, waist, navel (no anatomy beyond silhouettes). */
 const femDet = (c: string): string =>
-  S('M72 160Q88 167 97 163M103 163Q112 167 128 160', c, 1.6, 'opacity=".55"') + S('M100 190Q98 204 100 216', c, 1.8, 'opacity=".7"') +
-  S('M62 216Q80 238 99 220M101 220Q120 238 138 216', c, 2, 'opacity=".6"') + S('M100 276v6M96 240Q100 256 98 268', c, 1.6, 'opacity=".5"');
+  S('M72 160Q88 167 97 163M103 163Q112 167 128 160', c, 1.6, 'opacity=".55"') + S('M100 190Q98 206 100 222', c, 1.9, 'opacity=".75"') +
+  S('M58 200Q55 226 72 235Q92 240 100 222M142 200Q145 226 128 235Q108 240 100 222', c, 2.1, 'opacity=".65"') + E(74, 207, 9, 6, '#fff', 'opacity=".14"') +
+  S('M100 278v6M97 244Q101 258 99 270M58 296Q65 306 63 318M142 296Q135 306 137 318', c, 1.6, 'opacity=".45"');
+/** String-triangle top + matching tie-side bottom (smooth fabric shapes only). */
+const TRI = 'M80 186L98 224Q84 233 67 226ZM120 186L102 224Q116 233 133 226Z';
+const BOT = 'M56 302Q100 326 144 302L103 356H97Z';
+const strings = (c: string): string => S('M80 186L92 150M120 186L108 150M67 226L54 220M133 226L146 220M98 224h4M56 302L42 297M144 302L158 297', c, 1.8);
+const bows = (c: string): string => S('M44 298q-12-8-14 4q8 4 14-4q-10 10-8 24M156 298q12-8 14 4q-8 4-14-4q10 10 8 24', c, 2.2);
+const fLegs = (f: Face): string =>
+  P('M42 332Q38 392 50 456H97L100 354L103 456H150Q162 392 158 332Z', f.skin) + P('M108 332H158Q162 392 150 456H103Z', f.shade, 'opacity=".55"') + S('M158 332Q162 392 150 456', f.rim, 3.5, 'opacity=".7"');
 const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
-  C(x, y - h - 10, 46, `url(#${g})`) + R(x - w / 2, y - h, w, h, '#efe2c4', 'rx="3"') + R(x, y - h, w / 2, h, '#000', 'opacity=".18"') +
-  P(`M${x} ${y - h - 24}Q${x + 7} ${y - h - 8} ${x} ${y - h - 2}Q${x - 7} ${y - h - 8} ${x} ${y - h - 24}Z`, '#ffd76a') + E(x, y - h - 7, 2.2, 4, '#fff');
+  C(x, y - h - 10, 46, `url(#${g})`) + R(x - w / 2, y - h, w, h, '#efe2c4', 'rx="3"') +
+  P(`M${x} ${y - h - 24}q7 16 0 22q-7-6 0-22Z`, '#ffd76a');
 
 // ════════════════════════════════════════════════════════════════ CASE 1
 {
