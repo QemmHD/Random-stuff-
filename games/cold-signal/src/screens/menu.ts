@@ -273,8 +273,8 @@ function dialogue(lines: string[]): HTMLElement[] {
     const m = /^([^:]{1,24}):\s+(.+)$/s.exec(line);
     if (!m) return h('p', { style: delay }, line);
     const me = /^you$/i.test(m[1].trim());
-    return h('div', { class: `dlg-row ${me ? 'me' : 'them'}`, style: delay },
-      me ? null : h('span', { class: 'dlg-name' }, m[1]),
-      h('div', { class: 'dlg-bubble' }, m[2]));
+    return h('div', { class: `dlg-line ${me ? 'me' : 'them'}`, style: delay },
+      h('span', { class: 'dlg-speaker' }, me ? S.you : m[1].trim()),
+      h('div', { class: 'dlg-said' }, m[2]));
   });
 }

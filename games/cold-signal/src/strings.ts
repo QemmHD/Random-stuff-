@@ -205,6 +205,7 @@ export const S = {
   playtime: 'Time on case',
   hintsUsed: (n: number) => (n === 0 ? 'No hints' : `${n} hint${n === 1 ? '' : 's'}`),
   cleanSolve: 'Clean solve — no hints used',
+  you: 'YOU',
   whatNow: 'What do you do now?',
   hintConfirm: 'Hints cost the Clean Solve badge — tap again',
 

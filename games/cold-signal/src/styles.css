@@ -1238,3 +1238,14 @@ kbd { display: inline-grid; place-items: center; min-width: 24px; height: 22px; 
 .dlg-row.them .dlg-bubble { background: #262c31; color: #f1f4f5; border-bottom-left-radius: 6px; }
 .dlg-row.me .dlg-bubble { background: linear-gradient(180deg, #7c5cff, #5a3ee6); color: #fff; border-bottom-right-radius: 6px; }
 .dlg-stage { align-self: center; max-width: 90%; text-align: center; font-family: var(--type); font-style: italic; font-size: 13px; color: #ffb3c7; padding: 4px 8px; }
+
+/* in-person dialogue: a scene, not a chat */
+.ep-story.chosen { gap: 18px; padding: 22px 18px; border-radius: 18px; background: radial-gradient(ellipse at 50% 0%, rgba(255,64,129,.08), transparent 60%), rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.06); }
+.dlg-line { display: grid; gap: 4px; animation: storyIn .8s var(--ease) both; }
+.dlg-speaker { font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #ff8fb4; }
+.dlg-line.me .dlg-speaker { color: var(--accent); }
+.dlg-said { font-family: Georgia, 'Times New Roman', serif; font-size: 1.12em; line-height: 1.45; color: #f3eef0; }
+.dlg-said::before { content: '“'; color: rgba(255,255,255,.35); }
+.dlg-said::after { content: '”'; color: rgba(255,255,255,.35); }
+.dlg-line.me .dlg-said { color: #dff9f6; }
+.dlg-stage { align-self: stretch; text-align: left; font-size: 13.5px; color: #c9a3b2; padding: 0 0 0 12px; border-left: 2px solid rgba(255,64,129,.35); animation: storyIn .8s var(--ease) both; }
