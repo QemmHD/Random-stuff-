@@ -10,12 +10,14 @@
   - case report with an evidence picker
   - live events, handler comms, hints, scoring, stars and rank
   - autosave, offline play (service worker) and PWA install
-- **5 cases, each with full art:**
+- **7 cases, each with full art:**
   - 01 Low Tide
   - 02 Dead Air
   - 03 The Long Quiet
   - 04 Last Chair
   - 05 The Last Room
+  - 06 Touch Move
+  - 07 The Copyist
 - **Tests:**
   - `npm test` checks every case's references and runs a simulated full solve, so a case cannot ship soft-locked.
   - `tests/play.mjs` and `tests/solve.mjs` play cases through the real UI at desktop 1440×900 and phone 390×844. All 7 cases solve with zero console errors.
