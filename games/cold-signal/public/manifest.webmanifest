@@ -1,0 +1,12 @@
+{
+  "name": "Cold Signal",
+  "short_name": "Cold Signal",
+  "description": "A found-phone detective mystery.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#05090c",
+  "theme_color": "#05090c",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

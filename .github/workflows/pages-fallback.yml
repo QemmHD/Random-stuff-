@@ -47,6 +47,13 @@ jobs:
           VITE_OFFLINE_ONLY: '1'
           VITE_BASE: /${{ github.event.repository.name }}/
         run: npm run build
+      - name: Build Cold Signal (served at /cold-signal/)
+        working-directory: games/cold-signal
+        run: |
+          npm ci
+          npm run build
+          rm -rf ../../apps/game/dist/cold-signal
+          cp -r dist ../../apps/game/dist/cold-signal
       - name: Enable Pages
         uses: actions/configure-pages@v6
         with:
