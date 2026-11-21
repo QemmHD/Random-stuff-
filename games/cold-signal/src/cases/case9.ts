@@ -80,7 +80,7 @@ export const case9: CaseFile = {
         { from: 'them', text: "u have, i'm ur alibi. also we're out of tots and a guy named 'knuckles' asked if we do 'private events'. i said yes. i don't know what i agreed to", t: '2026-10-09T19:07' },
         { from: 'them', text: "cops came to the commissary. they're saying u took 212 grand from a dead mobster's funeral", t: '2026-10-10T11:15' },
         { from: 'me', text: "i can't even take a compliment. i once returned a lighter to a guy who called me a 'useless hippie'", t: '2026-10-10T11:20' },
-        { from: 'me', text: 'eetmay atay ethay ommissarycay omorrowtay. on'tday elltay unior-jay', t: '2026-10-11T00:40' },
+        { from: 'me', text: "eetmay atay ethay ommissarycay omorrowtay. on'tday elltay unior-jay", t: '2026-10-11T00:40' },
         { from: 'them', text: "ur 'dewey code' is literally pig latin. first sound goes to the back, add 'ay'. 'unchiemay agonway' is not encryption bro my GRANDMA can read it. she reads it out loud at dinner", t: '2026-10-11T00:42', clue: 'dewey_code' },
         { from: 'them', text: 'meet SPLASH DADDY 🌊🍆 my new girlfriend', t: '2026-10-12T15:00', photo: 'c9_ph_jetski' },
         { from: 'me', text: 'BRO where did u get money for a jet ski. JUNIOR IS GOING TO THINK', t: '2026-10-12T15:04' },
@@ -102,7 +102,7 @@ export const case9: CaseFile = {
     },
     {
       id: 'th_junior', contact: 'junior', messages: [
-        { from: 'them', text: 'Caterer. My father\'s friends are coming. Nobody eats till my mother eats. Nobody photographs ANYTHING. Some of these guys are legally not here.', t: '2026-10-09T15:02' },
+        { from: 'them', text: "Caterer. My father's friends are coming. Nobody eats till my mother eats. Nobody photographs ANYTHING. Some of these guys are legally not here.", t: '2026-10-09T15:02' },
         { from: 'them', text: "The Wishing Well had 212 thousand dollars in it. My mother counted the cards. I saw you in my father's study, taco boy.", t: '2026-10-09T19:08', clue: 'tribute_box' },
         { from: 'me', text: "i was looking for a bathroom at like 5:40!! the box was still there at 6:20, ur cousin tommy posted it. i was at the truck window the WHOLE time, ask the 40 guys who ate my tots", t: '2026-10-09T19:12' },
         { from: 'them', text: "You have till Monday to bring back my father's money or the next wake gets catered by somebody else, and it's yours.", t: '2026-10-09T19:40', clue: 'junior_threat' },
