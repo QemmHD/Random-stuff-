@@ -258,3 +258,13 @@ Each case uses at least three real-world discovery channels: texts/DMs, call his
 - **C1:** Jessa's "can't stop thinking about your hands" sent to YOU, then "wrong chat, hand-cream thing" (`wrong_recipient`, static). Live wrong recipient: Jules texts Jessa a message meant for Sasha after `sasha` is pinned (`jules_wrong`). Third party: Sasha (live, after the `dms` recovery). Memory: 'Wednesday Nights' (`memory`). Also car Bluetooth, StreamBox, a new passcode and Kayla's story.
 - **C2:** Live wrong recipient: Tiffani's "greg come over... WRONG PRUITT" after `motel_charges` (`tiffani_wrong`). Third parties: Tiffani's pregnancy text, Gary, Bea's story. Memory: 'Thursdays' (`memory`).
 - **C3:** Live wrong recipient: Rafe's "can you take lucy thursday night?" meant for Tara, after `lakeview` (`rafe_wrong`). Third parties: Tara (live), Bo, Mom → Aunt Pat. Memory: 'Thursday Doubles' (`memory`). Also Doug's synced iPad tab group.
+
+### Caught — endings and build-up arcs
+- **Choices:** each case has `choices` with 4 endings (3–5 solved paragraphs, 2–3 partial). The first two `epilogue` paragraphs are now neutral "before you decide" setup; the older paragraphs remain after them as the fallback.
+  - **C1:** wait on the bed and confront · play dumb and show up at the Marisol as Mr. Smith · text Jules back as her · call Sasha back.
+  - **C2:** confronting her backfires (she turns the joint statement around) · confess first · text Tiffani as Nora · say nothing and fail her 28th test.
+  - **C3:** honesty about your regret (the best ending) · confront her about Rafe (she reads your rules back to you) · text Rafe "it's over" as her · forward the rules to the family chat (chaotic comedy).
+- **Escalation arcs** at the top of each main thread. They follow the same beats: banter → "we shouldn't" → late-night confession → "what do I tell him" → "parking now / my heart is pounding / door's open" → a 3-hour silence → "my legs won't work / I can still smell you on me / how do I act normal" → a settled, bolder rhythm.
+  - **C1:** Jules, Sept 13 – Oct 21. Deleted; restored by recovering `msgfrag`. New clue `first_meet`.
+  - **C2:** Mystery Man, Jan 2026. Visible red herring; the 'first night' is her signing with her agent.
+  - **C3:** Rafe, from June 2, the day after your calendar invite.

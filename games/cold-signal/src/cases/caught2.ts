@@ -72,6 +72,18 @@ export const caught2: CaseFile = {
   threads: [
     {
       id: 'th_mystery', contact: 'mystery', messages: [
+        { from: 'them', text: "Ms. Rush. I've read your first three chapters four times. I'm a grown man with a new hip and I had to open a window.", t: '2026-01-08T21:00' },
+        { from: 'me', text: "is that... good? nobody's ever read them. my husband doesn't even know they exist", t: '2026-01-08T22:10' },
+        { from: 'them', text: "Darling, I've been doing this for forty years. Nobody has made me loosen a bow tie since 1991. We should meet.", t: '2026-01-08T22:12' },
+        { from: 'me', text: "we shouldn't. if anyone finds out it's me, I'm done. I code invoices for an orthopedic clinic. I have a LANYARD", t: '2026-01-09T00:30' },
+        { from: 'them', text: "Then nobody finds out. I'll be the only one. Thursday? Hotel Corvina bar. I'll be the man in the bow tie looking nervous.", t: '2026-01-09T00:32', clue: 'mystery_texts' },
+        { from: 'me', text: "parking now. my heart is pounding. I've changed outfits four times. I'm wearing the cardigan. it's my power cardigan", t: '2026-01-14T18:52' },
+        { from: 'them', text: "I'm at the corner table. I ordered you a champagne. Ruth says I'm not allowed to be this excited about anyone but her and the grandchildren.", t: '2026-01-14T18:53' },
+        { from: 'me', text: "my legs won't work. three hours. I signed SEVEN things. I'm in the car shaking", t: '2026-01-14T22:01' },
+        { from: 'them', text: "Delphine Rush is officially represented. How do you feel?", t: '2026-01-14T22:03' },
+        { from: 'me', text: "like I'm going to go home and act normal and stir a risotto and not tell a single soul that a man in a bow tie just bought my soul for 15% 🥹", t: '2026-01-14T22:05' },
+        { from: 'them', text: "Twelve percent. I'm sentimental.", t: '2026-01-14T22:06' },
+        { from: 'them', text: "Book nine hit number one at 6:14 a.m. I'm crying into a croissant. Same table Thursday? Bring that voice.", t: '2026-03-02T09:00' },
         { from: 'them', text: "Read chapter 14 on the train. Had to get off two stops early and walk it off. Ruth asked why I was sweating. I said 'the train'.", t: '2026-10-29T20:14', clue: 'chapter_talk', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: 'too much?', t: '2026-10-29T20:20', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: 'My dear, there is no such thing. The publisher wants MORE. More hayloft. More thunder. More of whatever the captain does with that rope.', t: '2026-10-29T20:22', clue: 'chapter_talk', deletedUntil: 'recovered:msgfrag' },
@@ -476,15 +488,78 @@ export const caught2: CaseFile = {
 
   epilogue: {
     solved: [
+      "You know everything now. Delphine Rush. The suite with the mattresses on the walls. The dedication 'For G.' The test with one line and the one left in the box for the 28th. And on the other side of the ledger: Room 6, the vest, Gary's vasectomy, and two pink lines from across the street.",
+      "Nora's breathing slowly. The rice bag is on the floor where you dropped it. Your own phone buzzes in your pocket. It's Tiffani. It's always going to be Tiffani now.",
       "You put the phone back in the rice. You lay down. You didn't sleep. At 7 a.m. Nora made coffee and hummed something and said, 'Saturday. Nice shirt. Not the vest.' You said okay. It was the most honest thing you'd said in four months, and it was one word.",
       "On the 28th, at Pine Hollow, she handed you a hardback. The cover said DELPHINE RUSH. The dedication said 'For G. Ten years, and every hero I write still has your laugh.' She was wearing the Midnight Confession set under a cabin robe and holding a mortgage payoff letter and a test with one line on it, and she said, 'I have something to tell you.' You said, 'Me first.'",
       "She listened all the way through Room 6, the vest and the two lines. Then she said, 'Gary had the snip, didn't he,' and you realised she'd read the HOA chat before you ever touched her phone. She just hadn't decided to know yet. She tore up the payoff letter. She bought a house on Lake Wyeth instead. It has a dock and no Room 6.",
       "Tidewater Heat #11 came out in spring. The villain is a harbor-master who sells waterbeds and says he's 'at bowling'. He is crushed by a falling mattress display in chapter 30. It went to #1 in four countries. Tiffani was removed as HOA president after Gary read the group chat into the minutes. You bowl now, for real, on Wednesdays, alone. The shoes still have the tags.",
     ],
     partial: [
+      "You have a Mystery Man, a hotel suite, a bank balance and a lot of feelings, most of them about yourself, though you'd never say so.",
+      "Nora's breathing slowly. The rice is on the floor. Your phone buzzes in your pocket and you don't look at it.",
       'You blew it.',
       "You woke her up at 2 a.m. and said, 'Who is the Mystery Man.' She sat up, very calm, picked up her phone, opened Mail, and turned the joint statement around to face you. 'Who,' she said, 'is Room 6.'",
       "You never found out about Delphine Rush. You read about her in a magazine at the dentist a year later, a profile of a reclusive novelist with a lake house and a dedication 'For nobody, now.' Go back to Suite 512 and look at the walls. Then look at card 2291.",
     ],
   },
+  choices: [
+    {
+      id: "confront",
+      label: "Wake her up and demand who the Mystery Man is",
+      solved: [
+        "You turned on the lamp. You said, 'Who is the Mystery Man, Nora.' She sat up, very calm, the way she gets when a hospital code doesn't match an invoice. She looked at the rice on the floor and at her phone in your hand.",
+        "'He's my agent,' she said. 'His name is Bernard. He's sixty-eight. I'm Delphine Rush. I was going to tell you on Saturday with a book and a cabin and a letter that pays off this house.' Then she held out her hand for the phone, opened Mail, scrolled to the joint statement and turned it around to face you. 'Your turn. Who is Room 6.'",
+        "You had nothing. You had a vest. She read the HOA chat in front of you, all of it, including the part about Gary. She didn't cry. She said, 'I gave you until Saturday. I wanted you to choose to tell me. You chose to read my phone.'",
+        "She slept at Bea's. On the 28th she went to Pine Hollow alone and tore up the payoff letter on the dock. Tidewater Heat #11's villain sells waterbeds, says he's 'at bowling', and gets crushed by a falling mattress display in chapter 30. Reviewers called it 'oddly specific'.",
+      ],
+      partial: [
+        "You woke her up shouting about the Mystery Man. She said, 'Greg, he's my AGENT,' and you said, 'Your WHAT,' and she said, 'You've never once asked what I do after nine p.m.' Then she saw the joint statement on the screen behind your thumb.",
+        "You'd been so busy catching her that you'd scrolled straight past yourself. She hadn't. She left before sunrise with the cardigan and the bracelet. You don't know the code. You never listened.",
+      ],
+    },
+    {
+      id: "confess",
+      label: "Put the phone back in the rice and confess first",
+      solved: [
+        "You put the phone back in the rice exactly as you found it. You lay down. At 6 a.m. you made coffee for the first time in a year, the way she likes it, which you had to look up in her Notes app, which you'd already read, which you also decided to confess.",
+        "When she came down you said, 'Before Saturday. Before anything. I don't bowl.' She put the mug down. 'I know,' she said. 'I know you don't bowl, Greg.' You told her about Room 6, the vest and Tiffani. You told her about the two lines. You told her you'd read her phone at 1:40 a.m. You told her about Gary.",
+        "She was quiet for a long time. Then she said, 'Thank you for saying it before I had to.' Then she said, 'Get out,' and you understood both sentences were true.",
+        "On the 28th she went to the cabin alone. She sent you one photo: the dedication page, 'For G.', with a line through the G and nothing written in its place. Two weeks later a package came with a signed hardback. Inside the cover: 'You finally told me something first. It was the wrong thing. But it was first. — N.'",
+        "You go to bowling now. Wednesdays. The real league. The shoes still have the tags.",
+      ],
+      partial: [
+        "You put the phone back and confessed over coffee — to the Mystery Man thing. 'I know about him, Nora. I forgive you.' She stared at you. 'Forgive me for what, Greg.' You said 'Bernard'. She laughed so hard she had to sit on the floor.",
+        "Then she stopped laughing and said, 'You read my phone.' You said yes. She said, 'Then you read the HOA chat too.' You hadn't. She had.",
+      ],
+    },
+    {
+      id: "asher",
+      label: "Text Tiffani back as Nora",
+      solved: [
+        "You opened Tiffani's thread on Nora's phone and typed: 'Hi Tiffani. It's Nora. I know.' Three dots for ninety seconds. Then: 'Know what 🙂' Then: 'NORA I AM SO SORRY.' Then: 'HOA BUSINESS.' Then a voice note of pure weeping.",
+        "You kept going. You didn't know how to stop. 'Leave my husband alone.' Tiffani replied: 'he told me you were separated?? he said you sleep at your sister's??' You looked at Nora asleep two feet away, in your bed, in the cardigan.",
+        "At 2:15 Gary texted Nora's phone directly: 'Nora. Tiffani just woke me up crying and said \"Nora knows\". Know what.' You put the phone down. Then you picked up your own and called Gary, because it was the only clean thing left to do. You told him. He said, 'I had the snip, Greg.' You said, 'I know.'",
+        "By morning, Nora had a phone full of other people's confessions. She read them over coffee, one by one, while you sat across from her in the vest. 'You used my phone,' she said, 'to break up with your girlfriend for me.' She said it without any expression. She left on the 28th with a book, a lingerie set nobody ever saw and two lines that weren't hers to raise.",
+      ],
+      partial: [
+        "You texted Tiffani as Nora: 'I know about the HOA.' Tiffani replied: 'oh good!! the inflatables thing? 🙂' You had no idea what you were doing. She sent a link to the bylaws.",
+        "In the morning Nora found forty HOA messages on her phone, all from her, all about inflatables, all sent at 2 a.m. She looked at you. 'Greg. Why are you fighting Tiffani about a turkey.' You said 'principle'. She didn't believe you, and she was right not to.",
+      ],
+    },
+    {
+      id: "wait",
+      label: "Say nothing and wait for the 28th",
+      solved: [
+        "You put it back. You said nothing on Monday or Tuesday. On Tuesday at 6:45 you went 'bowling' because Tiffani needed to talk about the test, and Nora watched your location go dark from the kitchen window and wrote nothing down.",
+        "On the 28th, in the cabin, she gave you everything: the hardback, the dedication, 'I'm Delphine Rush', the payoff letter and the lingerie under a robe. Then she sat down across from you and said, 'Now you. Tell me everything.' This was the chance her unsent draft had promised. You'd read the draft.",
+        "You said, 'There's nothing to tell.' She nodded slowly. 'Okay.' She went to the bathroom. She came back with the last test in the box, unopened, and put it on the table between you. 'I was going to take this today,' she said. 'I'm not going to.'",
+        "She drove home alone on the 29th. You found the hardback on the cabin porch. The dedication had a new line under it in her handwriting: 'If you'd said anything. Anything at all.'",
+      ],
+      partial: [
+        "You waited for the 28th to 'catch her'. At the cabin she handed you a book and said, 'I'm Delphine Rush.' You said, 'And who's the Mystery Man?' She said, 'My agent, Greg. Who's Room 6?'",
+        "It turned out she'd been waiting too. She'd just been waiting for something better from you.",
+      ],
+    },
+  ],
 };

@@ -75,6 +75,29 @@ export const caught1: CaseFile = {
   threads: [
     {
       id: 'th_jules', contact: 'jules', messages: [
+        { from: 'them', text: "so. paint & sip wednesday. I have two easels and a dog who will judge you. bring nothing. I mean it, I have snacks", t: '2026-09-13T21:02', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "I can't believe I'm doing this. I can't paint. I can barely floss and that's my JOB", t: '2026-09-13T21:20', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "you floss great. I've seen your hands. that sounded weird. it's a compliment about your hands", t: '2026-09-13T21:21', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "we shouldn't. you know we shouldn't. he thinks you're his friend. he thinks you're GAY jules", t: '2026-09-14T23:40', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "I know. I keep typing 'we shouldn't' and deleting it. I've deleted it like nine times. it's the only thing I've ever painted well", t: '2026-09-14T23:44', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "can I tell you something. I haven't felt nervous about a wednesday since I was 19. I feel 19. it's horrible. I bought a new perfume. the fig one", t: '2026-09-15T01:10', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "I'm going to know which one is the fig one. I'm going to remember it for the rest of my life. go to sleep jess", t: '2026-09-15T01:12', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "what do I tell him. he booked the class. he's SO proud. he made a playlist called 'Art Mode 🎨'", t: '2026-09-16T17:30', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "tell him it's paint and sip. it's true. there's paint. I bought wine. I'm sipping it right now because my hands are shaking", t: '2026-09-16T17:32', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "parking now", t: '2026-09-16T18:52', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "my heart is pounding. like actually. like a cardio class", t: '2026-09-16T18:53', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "door's open. 4B. marco is at the neighbour's. I lit a candle and then blew it out because it felt like too much and then lit it again", t: '2026-09-16T18:53', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "coming up", t: '2026-09-16T18:55', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "my legs won't work", t: '2026-09-16T22:04', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "I'm in my car. I can still smell you on me. on my wrists. how do I go home and act normal. he's going to ask about the painting", t: '2026-09-16T22:05', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "I'll paint you a lighthouse tonight. you'll have it by friday. say it's about loneliness. jess. are you ok", t: '2026-09-16T22:06', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "I'm not ok. I'm the most ok I've been in a year. both. same time. delete this", t: '2026-09-16T22:09', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "same time? 🎨", t: '2026-09-23T18:40', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "same time. I told him I'm getting really into 'negative space'", t: '2026-09-23T18:41', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "you don't knock anymore. I noticed. I liked it", t: '2026-10-07T23:10', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "parking validated. coming up. don't put a shirt on. that's not a request it's a policy", t: '2026-10-14T19:01', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "halloween. marisol. you, me, the smiths. I booked it. I've never been a smith before", t: '2026-10-21T23:40', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "I'll tell him I'm at kayla's. god listen to me. I have a SYSTEM now", t: '2026-10-21T23:42', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: "you left your hotel robe energy all over my car. also your earring 😏 the gold one. it's in my cupholder. i'm keeping it as a hostage", t: '2026-11-01T11:20' },
         { from: 'me', text: "that robe was a GIFT from the marisol. I liberated it", t: '2026-11-01T11:22' },
         { from: 'them', text: 'you stole a bathrobe from a hotel we checked into as the smiths. we are not good people, mrs smith', t: '2026-11-01T11:23' },
@@ -461,6 +484,7 @@ export const caught1: CaseFile = {
     { id: 'wrong_recipient', title: "The hand-cream text", text: "Nov 13, 13:02, to YOU: 'can't stop thinking about your hands 🥵 same time wednesday? wear the hoodie. only the hoodie.' 13:03: 'OMG wrong chat lol. that was for kayla. a hand-cream thing.' 13:05, to Jules: 'I just sent it to TRENT.'", kind: 'document' },
     { id: 'memory', title: "Auto-Memory: 'Wednesday Nights'", text: "Photos built her a Memory at 01:00: 'Wednesday Nights' — 23 photos at Calloway Lofts, a fire helmet, two toothbrushes, soundtrack 'Slow Tide'. Same email: On This Day, 1 year ago — 'Trent & me 💕 first anniversary'.", kind: 'event' },
     { id: 'excuses', title: 'Her excuses, in her voice', text: "Nov 11, 23:20: 'my phone died sorry!!' (it said delivered). 'why are you being so weird lately.' 'it's literally just painting trent. you're being paranoid, it's kinda unattractive.' Nov 15, 22:48: 'kayla's car broke down so I'm staying at hers 🥺' — four minutes later, to Jules: 'he offered to bring JUMPER CABLES.'", kind: 'document' },
+    { id: 'first_meet', title: 'The first Wednesday', text: "Deleted, Sept 13–16: 'we shouldn't' typed and deleted nine times; the fig perfume; 'what do I tell him. he made a playlist called Art Mode'; 18:52 'parking now', 'my heart is pounding', 'door's open. 4B.' Then three hours of nothing. 22:04: 'my legs won't work.' 'I can still smell you on me. how do I go home and act normal.'", kind: 'event', art: 'av_cg1_jules' },
     { id: 'juxtapose', title: "'night babe ❤️' → 'he's asleep. call me'", text: "23:02, to you: 'night babe ❤️ love you. so tired. bed.' 23:04, to Jules: 'he's asleep. call me.' 19:10 to you: 'kayla's tonight 😇'. 19:12 to him: 'I told him I'm at kayla's 😇'. Then: 'you make me feel things he never has', 'I think about you when I'm with him... delete this after', 'we have to stop... ok one more time'.", kind: 'document' },
     { id: 'jules_wrong', title: "Jules's wrong recipient", text: "While you're holding her phone, Jules sends Jessa a text meant for Sasha: 'on shift til 8am, big night, love u, kiss the cat for me 🚒❤️'. Then: 'ignore that. wrong.'", kind: 'person', art: 'av_cg1_jules' },
     { id: 'drift', title: 'A year, in her texts to you', text: "Nov 2025: 'I love you, you big sincere idiot.' Jan: a 2 a.m. voice note — 'I love you. that's the note.' March: 'miss u ❤️❤️ come home early?' July: 'k'. September: 'working late again 👍'.", kind: 'event', art: 'av_cg1_trent' },
@@ -480,7 +504,7 @@ export const caught1: CaseFile = {
         { id: 'no', label: 'No — she really is that into lighthouses' },
         { id: 'emotional', label: 'Only emotionally — nothing physical' },
       ],
-      answer: 'yes', evidence: ['juxtapose', 'excuses', 'wrong_recipient', 'memory', 'bed_selfie', 'helmet_selfie', 'not_gay', 'pros_cons', 'jules_live', 'pulse_spike', 'hotel_smith', 'aftermath', 'nightstand', 'noise', 'lingerie_haul', 'blue_box'],
+      answer: 'yes', evidence: ['first_meet', 'juxtapose', 'excuses', 'wrong_recipient', 'memory', 'bed_selfie', 'helmet_selfie', 'not_gay', 'pros_cons', 'jules_live', 'pulse_spike', 'hotel_smith', 'aftermath', 'nightstand', 'noise', 'lingerie_haul', 'blue_box'],
       explain: "A duvet selfie, two toothbrushes in his cup, a hidden selfie in his helmet and his bathroom, and a fitness band that clocked nine minutes at 160 bpm in his loft. The lighthouses were never the point.",
     },
     {
@@ -583,15 +607,77 @@ export const caught1: CaseFile = {
 
   epilogue: {
     solved: [
+      "You have everything. The duvet, the toothbrushes, the hand-cream text, the Marisol booking for the night before your anniversary, and the thread where Dez said 'zero threat' and knew. You've screenshotted it all to a folder called 'GYM' because it was the first word your thumbs found.",
+      "The water is off. You can hear the hair dryer. You have maybe ninety seconds, a phone that isn't yours, and a hallway of seven lighthouses you hung yourself.",
       "She came out in a towel and a hair turban and found you sitting on the edge of the bed with her phone in your hand and the hallway light on all seven lighthouses. You didn't yell. You said, 'Booth four, Jess.' She sat down. The turban came undone. Neither of you fixed it.",
       "You asked one question: 'Is he gay?' She said, 'No.' You said, 'I asked him four times.' She said, 'I know, babe. He said it was the worst part.' Somehow that was the part that made you cry.",
       "Dez came over at 3:30 with wings and stood on the mat outside, not knocking. You opened the door eventually. You ate the wings in silence. Around four he said, 'I should've told you at the car wash.' You said, 'Yeah.' He said, 'Zero threat, huh.' You both laughed, which was worse. On Saturday, Jessa didn't go to the Marisol. Jules went alone, in the XL robe, and posted 'self-care 🕯️'. Tía Rosa commented 'LIAR' in all caps. Abuela liked it.",
       "Jessa moved to Calloway Lofts 4B with seven lighthouses she didn't paint. You kept the hallway hooks. Brushstrokes refunded your $240 and handed you eight blank canvases. You took the class yourself. You've painted eleven lighthouses. They're good. They're about loneliness. The paper bag Jules hung on the door handle at 02:31 held her gold earring and a note: 'sorry man.' Gerald the turkey was served at Thanksgiving at Dez's mom's. Dez carved.",
     ],
     partial: [
+      "You have pieces. A firefighter, a dog, some Wednesdays, and a feeling in your chest like you swallowed a protein scoop dry. You don't have the whole shape of it.",
+      "The water is off. The hair dryer is on. You have ninety seconds and half a story.",
       "You blew it.",
       "She came out of the shower and you said, 'Hey, so, is Marco... a dog?' She laughed for a really long time. She kissed your forehead like a nephew. 'Babe, you're so cute when you're jealous.' You apologised. You apologised to HER.",
       "Saturday she went to 'Kayla's bachelorette'. Sunday you took her to booth 4 for your anniversary and she checked her phone eleven times. Go back to Wednesday nights. Follow the car, not the paint.",
     ],
   },
+  choices: [
+    {
+      id: "confront",
+      label: "Wait on the bed with her phone in your hand",
+      solved: [
+        "She came out in a towel and a hair turban and found you on the edge of the bed with her phone in your hand and the hallway light on all seven lighthouses. You didn't yell. You said, 'Booth four, Jess.' She sat down. The turban came undone. Neither of you fixed it.",
+        "You asked one question: 'Is he gay?' She said, 'No.' You said, 'I asked him four times.' She said, 'I know, babe. He said it was the worst part.' That was the part that made you cry, not the duvet, not the helmet. The asking.",
+        "She didn't lie again. She showed you the draft she'd edited fourteen times, 'you deserve a face', and then she gave you one, red and wrecked, at 2:20 in the morning. You told her about Denver before she could. She said, 'How do you—' and you said, 'Your calendar is very organised, Jess.'",
+        "She left on Sunday with the robe she stole from the Marisol and none of the lighthouses. You kept the hooks. Dez came over with wings and stood on the mat not knocking until you opened the door. You haven't decided if you forgive him. You ate the wings.",
+      ],
+      partial: [
+        "She came out in a towel and you said, 'Is it Marco?' She laughed for a really long time. 'Babe. Marco is a DOG.' You knew that. That's not what you meant. You couldn't find what you meant.",
+        "She kissed your forehead like a nephew and took her phone back and said, 'You're so cute when you're paranoid. It's kinda unattractive, but cute.' On Wednesday she went to Paint & Sip. She came home with a sunset.",
+      ],
+    },
+    {
+      id: "trap",
+      label: "Play dumb. Show up at the Marisol on Saturday as Mr. Smith",
+      solved: [
+        "You put the phone back face-down at the exact angle, cable looped the way she loops it. When she came out you were 'asleep'. You'd never been more awake in your life.",
+        "Saturday, 'Kayla's bachelorette'. At 9 p.m. you walked into the Hotel Marisol in the blue shirt she'd told you to wear to your anniversary and said, 'Smith. King Suite. I'm the Mr.' The clerk looked at you, then at the reservation, then at the XL robe request, then back at you, and said very gently, 'Sir, I think you're the other Mr.'",
+        "You went up anyway. Jules opened the door in the robe, holding Marco like a shield. Jessa was behind him in the Lace Theory emerald set and your hoodie. Nobody spoke. Marco sneezed. You said, 'Happy anniversary eve,' and put the hotel key card you'd asked for at the desk on the minibar, next to the champagne for two.",
+        "On the way out you paid the room's minibar on your card, because it was the only power move you had, and the clerk comped your parking out of pity. Sunday you ate at booth four alone. The bartender brought you a Filthy Martini and truffle fries and said, 'On the house. Twenty-three seventy-five of happiness.'",
+      ],
+      partial: [
+        "You played dumb. You were good at it, because you were. On Saturday you went to Kayla's place with flowers for the 'bachelorette'. Kayla opened the door in pyjamas, alone, holding a cat named Gordon, and the look on her face told you everything your report didn't.",
+        "You stood on her doormat holding carnations while Kayla said, 'Trent. Come in. I'll make tea. I'm so sorry.' You never went to the Marisol. You never had to.",
+      ],
+    },
+    {
+      id: "textback",
+      label: "Text Jules back as her",
+      solved: [
+        "You opened the thread and typed with her thumbs-up habit and her lowercase: 'can u come over. now. door's unlocked 🔥'. He replied in four seconds. 'omw. marco's coming. he misses u.' You put the phone back. You turned on every light in the apartment.",
+        "At 2:31 the doorbell camera caught him: red Engine 9 hoodie, French bulldog, a paper bag. He reached for the bell. The door opened before he touched it. It was you. In a tank top. Holding the bag of chicken treats from her grocery list.",
+        "He said, 'Bro.' You said, 'Rate my abs.' He said, 'Trent—' You said, 'RATE THEM.' He said, 'Seven. They were always a seven. I lied about everything except that I'm sorry.' Behind you, the bathroom door opened, and Jessa said, very quietly, 'Oh no.'",
+        "Marco walked past all three of you, got on your bed and fell asleep in the exact middle. Nobody had the heart to move him. That was the night it ended, and the dog was the only one who slept.",
+      ],
+      partial: [
+        "You texted him as her: 'are you gay or not.' He replied, 'jess?? why are you asking me that at 2am lol. so gay 🌈. is trent ok?' Then he texted Dez: 'trent's on her phone'. Dez texted you: 'bro put it DOWN.'",
+        "By the time she came out of the bathroom, her phone had eleven new messages and you had a face she'd learned to read. She said, 'Babe. Did you text Jules?' You said, 'No.' She believed you exactly as much as you'd believed her.",
+      ],
+    },
+    {
+      id: "sasha",
+      label: "Call Sasha back",
+      solved: [
+        "You took her phone into the kitchen, opened the message request from (555) 212-8812 and pressed call. Sasha answered on the first ring like she'd been holding the phone in both hands. 'Jess?' 'No,' you said. 'I'm Trent. I'm the boyfriend. Of the gay best friend's... I'm the boyfriend.'",
+        "There was a long silence and then she laughed, a horrible, relieved, wet laugh. 'He told you he was GAY?' 'For fourteen months.' 'He told me he works Wednesdays.' 'He paints on Wednesdays.' 'He can't PAINT, Trent, he painted my bathroom and it looked like a crime scene.' 'The lighthouses are actually pretty good,' you said, and you both lost it.",
+        "You talked for an hour on the kitchen floor. She told you about his watch with the red strap; you told her it had been on your nightstand. She went quiet. Then she said, 'I'm going to the Marisol on Saturday.' You said, 'I'll drive.'",
+        "On Saturday Jules opened a hotel door to his girlfriend and his 'gay best friend's' boyfriend standing side by side, holding a lighthouse painting each. Jessa came home on Sunday. Sasha and you started a group chat called 'Zero Threat'. It's mostly memes now. It's the best thing that came out of all of it.",
+      ],
+      partial: [
+        "You called the unknown number. Sasha said, 'Who is this?' and you said, 'I think your boyfriend is gay.' She said, 'He's WHAT?' and hung up, and blocked Jessa's number, and that was the only lead you had.",
+        "Jules didn't come to the barbecue on Saturday. Jessa said he was 'going through a breakup'. You said, 'Oh no, with Marco?' She patted your hand.",
+      ],
+    },
+  ],
 };

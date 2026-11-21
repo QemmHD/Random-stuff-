@@ -106,6 +106,24 @@ export const caught3: CaseFile = {
     },
     {
       id: 'th_rafe', contact: 'rafe', messages: [
+        { from: 'them', text: "hey. so. doug texted me a calendar invite called 'dana's thursdays 🏈' and a thumbs up. I've read it eleven times. is this real", t: '2026-06-02T22:00' },
+        { from: 'me', text: "it's real. he made rules. there are eight. he's a systems guy", t: '2026-06-02T22:15' },
+        { from: 'them', text: "I don't know what to say. I've been in love with your third shot drop for two years. that sounds like a metaphor. it's partly a metaphor", t: '2026-06-02T22:16' },
+        { from: 'me', text: "we shouldn't. even with the rules. even with the calendar. I keep thinking we shouldn't and then I keep thinking about your forearms on a net post", t: '2026-06-03T00:40' },
+        { from: 'them', text: "I keep typing 'we shouldn't' and deleting it. we can just get dinner. we can just talk. we can do whatever you want and nothing you don't", t: '2026-06-03T00:42' },
+        { from: 'me', text: "what do I tell him. he TOLD me what to tell him. 'have fun 👍'. I want to throw up", t: '2026-06-04T17:50' },
+        { from: 'them', text: "tell him whatever's true. I'll be honest, I bought new sheets. that's the most nervous I've ever been about bedding", t: '2026-06-04T17:51' },
+        { from: 'me', text: "parking now", t: '2026-06-04T18:58' },
+        { from: 'me', text: "my heart is pounding. room 214? the one by the ice machine?", t: '2026-06-04T18:59' },
+        { from: 'them', text: "door's open. I got the little chocolates. I didn't know what else rich people do in hotels", t: '2026-06-04T18:59' },
+        { from: 'me', text: "my legs won't work", t: '2026-06-04T22:11' },
+        { from: 'me', text: "I can still smell you on me. sunscreen and court dust. how do I go home and act normal. he's going to give me a thumbs up. he's going to ask nothing", t: '2026-06-04T22:12' },
+        { from: 'them', text: "text me when you're home. even if it's just a dot. dana. are you okay? really?", t: '2026-06-04T22:14' },
+        { from: 'me', text: ".", t: '2026-06-04T22:40' },
+        { from: 'them', text: "thursday again. you're early. you're never early", t: '2026-06-18T19:01' },
+        { from: 'me', text: "I stopped pretending I'm not counting the days. door?", t: '2026-06-18T19:02' },
+        { from: 'them', text: "you laughed so hard at the headboard thing that the guy next door banged on the wall and you laughed HARDER. I'll never recover", t: '2026-07-09T23:30' },
+        { from: 'me', text: "I didn't even check the calendar today. I just knew it was thursday. is that bad. that feels bad", t: '2026-08-20T19:00' },
         { from: 'them', text: 'good game today. your third shot drop is illegal in four states', t: '2026-11-03T14:10' },
         { from: 'me', text: 'you stood in the kitchen the whole time. that\'s against the rules rafe', t: '2026-11-03T14:12' },
         { from: 'them', text: "I like the kitchen. you're always in it", t: '2026-11-03T14:12' },
@@ -478,15 +496,77 @@ export const caught3: CaseFile = {
 
   epilogue: {
     solved: [
+      "You know all of it now. Draft night. 'I picked him.' The eight rules in your own words, the calendar you named, the rooms you paid for. The 3 a.m. searches from your iPad. The parking lot and the chicken. And her: the unsent 'I miss when you were jealous', the courts booked instead of the room, every dollar sent back to you with 'please talk to me'.",
+      "The TV has switched itself off. She's breathing slowly on the couch in a hoodie that says CASTELLANO 12. Rule 1 was 'I will never look at her phone', and it's in your hand.",
       "You put the phone face-down on the counter, exactly where it was. You sat on the edge of the couch. Dana opened her eyes, saw you, saw your face, and said, 'You read it.' You said, 'Rule 1.' She said, 'Rule 7,' and you said 'ok', and for the first time since May you meant it.",
       "You talked until the sun came up. Not a single thumb. You told her about the parking lot and the chicken and the 63 location checks. She told you about the courts and the refund and the 'I'm saying stop'. Around six she laughed so hard at 'can you be jealous of a golden retriever (man)' that she cried, and then you both just cried.",
       "On Thursday Dana met Rafe at the courts and ended it. He hugged her, then drove to your house, hugged you, gave you the hoodie, and said, 'You were right. I am a golden retriever.' Bo sent a fruit basket with a card that said 'thank you for the silence'. Your mother told Aunt Pat. Aunt Pat told Gloria.",
       "At Thanksgiving you stood up, unprompted, and said: 'Dana and I tried something, it didn't work for me, I'm sorry I said fine forty times, please pass the stuffing.' Sully paid out the side pot to Big Paulie. You moved back in from the garage. You deleted the calendar. The scorecard still says 41 and 38. You've started golfing with her on Sundays — Rule 6.",
     ],
     partial: [
+      "You have a hoodie, a motel, a man you call a golden retriever and a lot of anger. You haven't read your own words yet.",
+      "The TV has switched itself off. She's asleep on the couch. You're holding the phone, and you've never once looked at your own messages in it.",
       'You blew it.',
       "You woke her up with the phone in your hand and said, 'How LONG has this been going on.' She looked at you for a long time and said, 'Since you paid for it, Doug.' Then she showed you your own text from May 30, with the thumbs up, while you stood there in the hoodie you'd grabbed off the couch without looking. It said CASTELLANO 12.",
       "Go back to the gap in your own thread. Start on May 30. Read your words before you read his.",
     ],
   },
+  choices: [
+    {
+      id: "honest",
+      label: "Wake her up and tell her you're not fine",
+      solved: [
+        "You put the phone face-down on the counter, exactly where it was. You sat on the edge of the couch. She opened her eyes, saw your face and said, 'You read it.' You said, 'Rule 1.' She said, 'Rule 7.' You said, 'I'm not fine. I was never fine. I said fine forty times because I thought fine was what a good husband says.'",
+        "You talked until the sun came up. No thumbs. You told her about the parking lot and the chicken and the 63 location checks. She told you about the courts and the refund and 'I'm saying stop.' Around six she read 'can you be jealous of a golden retriever (man)' out loud and laughed until she cried, and then you both just cried.",
+        "On Thursday she met Rafe at the courts and ended it. He hugged her, then drove to your house, hugged you, handed you the hoodie and said, 'You were right. I am a golden retriever.' Lucy drew you both a card with a pickle on it.",
+        "In December you went to the Reconnect Retreat, Cabin 3, no Wi-Fi on purpose. On the intake form, under 'What do you hope to leave behind?', you wrote 'a calendar'. She wrote 'a thumbs-up emoji'. You haven't sent one since.",
+      ],
+      partial: [
+        "You woke her up to say you weren't fine, but it came out as 'How LONG has this been going on.' She looked at you for a long time. 'Since you paid for it, Doug.' Then she showed you your own text from May 30, thumbs-up and all.",
+        "You never got to the part about being scared. You got as far as being right, and you weren't. Go back to the gap in your own thread.",
+      ],
+    },
+    {
+      id: "confront",
+      label: "Confront her about Rafe",
+      solved: [
+        "You woke her up holding the hoodie like evidence. 'CASTELLANO 12, Dana?' She sat up, blinked, and said very carefully, 'Doug. You picked him.' You said, 'That's not the point.' She said, 'It's literally the first rule you wrote.'",
+        "Then she did the thing you'd been afraid of since May. She took the phone, opened her thread with you, scrolled to May 30 and read your words out loud in your own voice. 'I picked him. I'm fine with it. Thumbs up.' She read the rules. She read 'I will never look at her phone.' Then she put it down and waited.",
+        "You had nothing left except the truth, and it came out ugly: the chicken, the parking lot, 'how to un-open a relationship' at 3:02 a.m. She said, 'Why didn't you just SAY it?' You said, 'Because I made a calendar, Dana. You don't cancel a calendar.'",
+        "She cancelled it in front of you. Deleted 'Dana's Thursdays 🏈' with one tap. It took you six months to make a thing it took her one second to end. The retreat is still booked. You're both going. You're both nervous. That's the first honest thing in a year.",
+      ],
+      partial: [
+        "You confronted her about Rafe. She showed you your own texts. You said, 'I was drunk.' She said, 'You were drunk on May 30. You were sober on June 2 when you made a calendar.'",
+        "She slept in the guest room. You slept in the garage, which at least was familiar. Go back to May 30. Read your own words first.",
+      ],
+    },
+    {
+      id: "textrafe",
+      label: "Text Rafe as her: 'it's over'",
+      solved: [
+        "You typed it in her voice, lowercase, no emoji: 'it's over. don't text me. don't come to the courts.' Rafe replied in seconds: 'ok. I'm so sorry. is doug ok? tell him I'm sorry too. I'll give the hoodie back.' You read 'is doug ok' four times.",
+        "At 8 a.m. Rafe was on your porch with the hoodie folded like a flag. Dana opened the door in her robe, confused. He said, 'You said it's over, so—' She said, 'I didn't say anything.' They both turned and looked at you in the kitchen holding her phone and a coffee you hadn't drunk.",
+        "There was a silence so long the coffee went cold. Then Dana said, 'Rule 1, Doug.' And then, worse and softer: 'I was going to end it on Thursday. For you. You didn't have to steal it. You just had to ask.'",
+        "Rafe left the hoodie on the porch rail. Dana left it there too. It rained on Saturday. Nobody brought it in. It's still out there, CASTELLANO 12, getting greyer, and every morning you walk past it on the way to the truck.",
+      ],
+      partial: [
+        "You texted Rafe as her: 'it's over.' He replied: 'what's over? the league? did doug finally trade me? 😂' You didn't know what else to say. You sent '👍'.",
+        "In the morning Dana read the thread over coffee and said, 'Only one person in this house sends that thumb, Doug.'",
+      ],
+    },
+    {
+      id: "family",
+      label: "Forward the rules to the Hoyt family chat",
+      solved: [
+        "You don't know why. It was 3:40 a.m. You copied all eight rules from the calculator note and pasted them into 'Hoyt Family 🦃' from your own phone with the caption 'I need everyone to know I'm NOT fine.'",
+        "Aunt Pat replied first, at 3:41, because Aunt Pat does not sleep: 'RULE 4????' Cousin Trevor: 'this is the family chat.' Your mother: 'Douglas I told no one.' Aunt Pat: 'She told me.' Gloria, who isn't even in the chat, somehow replied: 'I KNEW IT WAS THE PICKLEBALL MAN.'",
+        "Dana woke up to forty-one notifications and her mother-in-law's voice note crying 'I'm making the good stuffing anyway.' She walked into the kitchen, looked at you and said, 'You told your FAMILY you're not fine before you told ME?' You said, 'They're less scary.' She laughed. She actually laughed. It was the first time in months.",
+        "Thanksgiving was a disaster in the best way. Aunt Pat brought a pickleball. Rafe wasn't invited; Lucy's drawing of a pickle was. You stood up before the turkey and said, 'Dana and I tried something, it didn't work for me, I'm sorry I said fine forty times, please pass the stuffing.' Everyone clapped. Cousin Trevor muted the family chat forever.",
+      ],
+      partial: [
+        "You forwarded the hoodie photo to the family chat with 'GUESS WHO'S CHEATING.' Your mother replied, 'Douglas, you told us about the arrangement at Sunday dinner.' Aunt Pat replied, 'With your actual thumb.'",
+        "Dana woke up to her mother-in-law defending her in all caps. Nobody, in the end, was on your side, including the version of you from May 30.",
+      ],
+    },
+  ],
 };
