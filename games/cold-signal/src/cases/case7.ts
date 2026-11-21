@@ -144,6 +144,7 @@ export const case7: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c7_sami', art: 'hp_c7_sami', t: '2026-10-20T22:05', place: 'Kade home — bedroom', orientation: 'portrait', caption: "Sent by Sami. Silk robe, rose between his teeth, candles everywhere, cat glaring from the pillow. 'the good sheets are ON'.", hidden: true },
     { id: 'c7_ph_gallery6', art: 'c7_ph_gallery6', t: '2026-09-18T03:10', place: 'Hollin Museum — Gallery 6', orientation: 'landscape', caption: 'Gallery 6 at night under guard lighting. On the far wall, the Lorne: a girl on a dark shore holding up a four-paned storm lantern. Left of it, a gilt bracket clock on a bracket. In the foreground, a leather bench with a thermos and a guard radio.' },
     { id: 'c7_ph_moth', art: 'c7_ph_moth', t: '2025-03-19T03:22', place: 'Hollin Museum — Gallery 6', orientation: 'portrait', caption: 'Recovered. Macro photo through a jeweller\'s loupe of the lantern in the Lorne, a torch beam raking across the varnish. Deleted Mar 2025.', clue: 'moth_macro', deletedUntil: 'recovered:photos' },
     { id: 'c7_ph_easel1996', art: 'c7_ph_easel1996', t: '1996-04-22T14:00', place: 'Hollin Museum — conservation studio', orientation: 'portrait', caption: 'Recovered. Scan of a 1996 print: a woman at a tall easel in a skylit studio, an unframed canvas on a second easel beside her. Pencil writing on the border.', clue: 'hanne_easel', deletedUntil: 'recovered:photos' },

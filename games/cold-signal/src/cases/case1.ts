@@ -133,6 +133,8 @@ export const case1: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c1_theo', art: 'hp_c1_theo', t: '2026-09-19T23:48', place: "The Anchor — men's room", orientation: 'portrait', caption: 'Mirror selfie sent by Theo Vance. Shirtless, flexing, beanie on, hand-dryer sign behind him.', hidden: true },
+    { id: 'hp_c1_june', art: 'hp_c1_june', t: '2026-09-27T21:10', place: 'Cove St. apartment — bathroom', orientation: 'portrait', caption: "Sent by June Okafor. Bubble bath, sheet face mask, wine glass, 'self care sunday (it is saturday)'.", hidden: true },
     { id: 'ph_biscuit', art: 'ph_biscuit', t: '2018-02-14T15:20', place: 'Quill family home', orientation: 'portrait', caption: 'Lock screen wallpaper. A golden retriever puppy with a red bow. Old-style camera date stamp in the corner.', device: 'Scanned print' },
     { id: 'ph_selfie', art: 'ph_selfie', t: '2026-08-15T17:02', place: 'Harrow Beach', orientation: 'portrait', caption: 'Mara and June at low tide.' },
     { id: 'ph_seawren', art: 'ph_seawren', t: '2025-07-04T11:40', place: 'Harbor Row', orientation: 'landscape', caption: "Old wooden fishing boat at the Harbor Row dock. Mara's caption draft: 'nana's girl, still floating.'" },

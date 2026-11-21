@@ -144,6 +144,7 @@ export const case3: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c3_marcus', art: 'hp_c3_marcus', t: '2026-10-30T07:55', place: "Marcus Bell's apartment", orientation: 'portrait', caption: "Sent by Marcus Bell. Towel around the waist, holding a 'THE LONG QUIET' merch mug like a trophy. 'new merch drop 👀'.", hidden: true },
     { id: 'c3_ph_homecoming', art: 'c3_ph_homecoming', t: '2006-10-21T15:40', place: 'Pinecrest High — Lakers field', orientation: 'portrait', caption: "Scanned print. Eli Calloway in his Lakers jersey, grass-stained, with nine-year-old Wren on his shoulders. A shaggy dog at his feet.", device: 'Scanned print' },
     { id: 'c3_ph_yearbook', art: 'c3_ph_yearbook', t: '2026-10-12T20:15', place: 'Cedar St. apartment', orientation: 'landscape', caption: "Photo of an open 2007 Pinecrest High yearbook, the homecoming '06 spread.", clue: 'travis_truck' },
     { id: 'c3_ph_roster', art: 'c3_ph_roster', t: '2026-10-14T11:05', place: 'Ashby County Records', orientation: 'landscape', caption: "Photocopied duty roster from the 2006 Calloway file, one row highlighted.", clue: 'ray_on_duty' },

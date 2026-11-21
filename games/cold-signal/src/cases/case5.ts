@@ -153,6 +153,7 @@ export const case5: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c5_owen', art: 'hp_c5_owen', t: '2026-10-12T01:15', place: 'Lisk & Key — Room 3', orientation: 'portrait', caption: "Sent by Owen Blake. Shirtless in a lab coat, dramatic red escape-room lighting, holding a giant prop key. 'escape THIS'.", hidden: true },
     { id: 'c5_ph_room9', art: 'c5_ph_room9', t: '2026-10-30T23:50', place: 'Lisk & Key — Room 9', orientation: 'landscape', caption: 'QUARRY, finished. The old bank vault painted quarry-blue, a fibreglass rock ledge jutting out over a pool of rippling blue light. On the far wall, a beige 1970s push-button wall phone. In the corner, a squat steel lockbox with a red LED timer.' },
     { id: 'c5_ph_finalbox', art: 'c5_ph_finalbox', t: '2026-10-31T22:43', place: 'Lisk & Key — Room 9', orientation: 'portrait', caption: "QUARRY's final box, lid open: a foam insert, a red LED display, a strip of tape with handwriting on the lid.", clue: 'phone_room' },
     { id: 'c5_ph_camera', art: 'c5_ph_camera', t: '2026-09-14T15:30', place: "Ruth Price's house", orientation: 'landscape', caption: "A yellow disposable camera on a kitchen table, 'LOW' in silver marker on the body. Beside it, a sheriff's property bag.", clue: 'ruth_camera' },

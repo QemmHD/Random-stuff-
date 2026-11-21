@@ -143,6 +143,7 @@ export const case6: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c6_hank', art: 'hp_c6_hank', t: '2026-08-02T15:20', place: 'Halsey Park — public pool', orientation: 'portrait', caption: "Sent by Hank. Shirtless at the pool in a sun hat and black socks with sandals. 'new profile pic for the apps. rate it honest'.", hidden: true },
     { id: 'c6_ph_tables', art: 'c6_ph_tables', t: '2026-08-15T18:40', place: 'Halsey Park — chess plaza', orientation: 'landscape', caption: 'The stone chess tables at sunset in a shimmer of heat; a lamppost thermometer reads 104°F. A banner over the plaza: HALSEY HEAT BLITZ OPEN · FINAL 9PM.' },
     { id: 'c6_ph_count', art: 'c6_ph_count', t: '2026-08-15T22:44', place: 'Halsey Park — pavilion', orientation: 'landscape', caption: 'Recovered. Banded bundles of $100 bills fanned on a folding table beside a cash envelope; two people at the table. Deleted Aug 16, 05:36.', clue: 'count_photo', deletedUntil: 'recovered:photos' },
     { id: 'c6_ph_safe', art: 'c6_ph_safe', t: '2026-08-15T22:58', place: 'Halsey Park — pavilion office', orientation: 'portrait', caption: 'Recovered. A grey office safe under a desk, a man crouched in front of it. Deleted Aug 16, 05:36.', clue: 'safe_photo', deletedUntil: 'recovered:photos' },

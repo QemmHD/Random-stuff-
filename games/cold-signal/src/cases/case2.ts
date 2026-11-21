@@ -147,6 +147,7 @@ export const case2: CaseFile = {
   ],
 
   photos: [
+    { id: 'hp_c2_jonah', art: 'hp_c2_jonah', t: '2026-10-09T02:31', place: "Jonah's apartment — hallway mirror", orientation: 'portrait', caption: 'Mirror selfie. Boxer briefs, owl slippers, headphones round the neck, a soldering iron in his free hand.', hidden: true },
     { id: 'c2_ph_sign', art: 'c2_ph_sign', t: '2026-10-03T01:58', place: 'Carraway Mill — the Coop', orientation: 'portrait', caption: 'Hand-painted station sign on the mill roof. Paint still wet.' },
     { id: 'c2_ph_duo', art: 'c2_ph_duo', t: '2026-10-03T02:05', place: 'Carraway Mill — the Coop', orientation: 'landscape', caption: 'Recovered. Selfie of Jonah and Cass on the mill roof, paint on their hands, the sign behind them. Deleted Oct 10, 08:24.', clue: 'cass_raincoat', deletedUntil: 'recovered:photos' },
     { id: 'c2_ph_festival', art: 'c2_ph_festival', t: '2026-08-22T16:30', place: 'Riverbend Fest', orientation: 'portrait', caption: 'Saved from Glimpse. Cass Rourke at Riverbend Fest, in the rain.', clue: 'cass_raincoat' },
