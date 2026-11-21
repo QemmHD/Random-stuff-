@@ -22,12 +22,14 @@ const top = '.view.app:last-child';
 const sleep = (ms) => page.waitForTimeout(ms);
 
 async function pinAll() {
-  for (let i = 0; i < 30; i++) {
-    const btn = page.locator(`.phone-overlay .pin-btn:not(.on), ${top} .pin-btn:not(.on)`).first();
-    if (!(await btn.count())) return;
-    await btn.scrollIntoViewIfNeeded();
-    await btn.click();
-    await sleep(120);
+  // Only real case clues (data-pin without the "n:" player-note prefix).
+  const real = ':not(.on):not([data-pin^="n:"])';
+  for (let i = 0; i < 40; i++) {
+    const row = page.locator(`${top} .bubble-row:not(.show-pin):has(.pin-btn${real}) .bubble`).first();
+    if (await row.count()) { await row.click(); await page.waitForTimeout(80); }
+    const b = page.locator(`.phone-overlay .pin-btn${real}, ${top} .pin-btn${real}`).first();
+    if (!(await b.count())) return;
+    await b.scrollIntoViewIfNeeded(); await b.click(); await page.waitForTimeout(90);
   }
 }
 async function home() {
@@ -122,7 +124,14 @@ await home();
 // messages
 await openApp('messages');
 await shot('08-messages');
-await eachRow(async (i) => { if (i === 0) await shot('09-thread'); });
+await eachRow(async (i) => {
+  if (i === 0) {
+    // pin a decoy (a player note) to exercise the non-clue path
+    await page.locator(`${top} .bubble`).first().click(); await sleep(150);
+    await page.locator(`${top} .bubble-row.show-pin .pin-btn`).first().click(); await sleep(150);
+    await shot('09-thread');
+  }
+});
 await home();
 
 await photosPass();

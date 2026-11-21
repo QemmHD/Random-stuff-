@@ -7,7 +7,7 @@ import type { AppId, BrowserEntry, CalEvent, Mail, Note, Photo, Thread, Voicemai
 import { S } from '../strings';
 import { byTimeAsc, byTimeDesc, clock, listLabel, longDate, parse, sameDay, shortDate, stamp } from '../time';
 import type { Phone, View } from './phone';
-import { avatar, contactOf, emptyState, ownerAvatar, pinButton, recoveredTag, sectionTitle } from './widgets';
+import { avatar, contactOf, emptyState, flyToast, ownerAvatar, pinButton, recoveredTag, sectionTitle } from './widgets';
 
 export function appRoot(app: AppId, phone: Phone, arg?: string): View {
   const g = phone.game;
@@ -78,15 +78,25 @@ function threadView(g: Game, threadId: string): View {
         prevT = m.t;
         const recovered = !!m.deletedUntil;
         const isLive = liveIds.has(m.t + m.text);
-        const bubble = h('div', { class: `bubble ${m.from}${recovered ? ' recovered' : ''}${m.clue ? ' clue' : ''}${isLive ? ' live' : ''}` },
+        const bubble = h('div', { class: `bubble ${m.from}${recovered ? ' recovered' : ''}${isLive ? ' live' : ''}` },
           m.photo ? photoThumb(g, phone, m.photo, 'bubble-photo') : null,
           m.text ? h('span', null, m.text) : null,
         );
-        const row = h('div', { class: `bubble-row ${m.from}` }, bubble, pinButton(g, m.clue, true));
+        const who = m.from === 'me' ? g.c.owner.name.split(' ')[0] : c.name;
+        const ref = { key: `${threadId}@${m.t}@${m.text.slice(0, 12)}`, title: `${who}: "${clip(m.text || 'Photo', 34)}"`, text: `${who}, ${stamp(m.t)}: ${m.text || '(photo)'}`, kind: 'event' as const };
+        const pin = pinButton(g, m.clue, true, ref);
+        const row = h('div', { class: `bubble-row ${m.from}${pin?.classList.contains('on') ? ' show-pin' : ''}` }, bubble, pin);
+        bubble.addEventListener('click', () => {
+          wrap.querySelectorAll('.bubble-row.show-pin').forEach((r) => { if (r !== row && !r.querySelector('.pin-btn.on')) r.classList.remove('show-pin'); });
+          row.classList.toggle('show-pin');
+          audio.play('tap');
+        });
         if (recovered) row.prepend(h('div', { class: 'bubble-meta' }, recoveredTag(), h('span', { class: 'muted' }, clock(m.t))));
         wrap.appendChild(row);
       }
-      wrap.appendChild(h('div', { class: 'compose' }, h('span', null, 'Text Message'), glyph('send')));
+      const compose = h('button', { class: 'compose', type: 'button', onclick: () => { audio.play('error'); flyToast(compose, S.cantSend); } }, h('span', null, S.textMessage), glyph('send'));
+      if (!g.has('tip:bubbles')) { wrap.insertBefore(h('div', { class: 'thread-tip' }, glyph('pin'), S.bubbleTip), wrap.children[1] ?? null); g.markSeenFlag('tip:bubbles'); }
+      wrap.appendChild(compose);
       requestAnimationFrame(() => {
         const body = wrap.closest('.app-body');
         if (body && !body.closest('.no-anim')) body.scrollTop = body.scrollHeight;
@@ -117,9 +127,9 @@ function photosView(g: Game): View {
       const own = g.c.photos.filter((p) => !othersOnly(p));
       const normal = own.filter((p) => !p.deletedUntil).sort(byTimeAsc);
       const rec = own.filter((p) => p.deletedUntil && g.visible(p)).sort(byTimeAsc);
-      const tile = (p: Photo) => h('button', { class: `ph-tile${p.clue ? ' has-clue' : ''}${g.has(`seen:${p.id}`) ? '' : ' unseen'}`, type: 'button', onclick: () => { audio.play('tap'); phone.viewArt(p.art, p); } },
+      const tile = (p: Photo) => h('button', { class: `ph-tile${g.has(`seen:${p.id}`) ? '' : ' unseen'}`, type: 'button', onclick: () => { audio.play('tap'); phone.viewArt(p.art, p); } },
         artImg(p.art),
-        p.clue && g.isPinned(p.clue) ? h('span', { class: 'ph-pin' }, glyph('pin')) : null);
+        g.isPinned(p.clue ?? `n:${p.id}`) ? h('span', { class: 'ph-pin' }, glyph('pin')) : null);
       const pendingDeleted = own.filter((p) => p.deletedUntil && !g.visible(p)).length;
       return h('div', { class: 'photos' },
         sectionTitle(`${S.allPhotos} · ${normal.length}`),
@@ -189,14 +199,13 @@ function openNote(g: Game, phone: Phone, n: Note): void {
 function noteView(g: Game, n: Note): View {
   return {
     key: `note:${n.id}`, title: '', app: 'notes',
-    actions: () => [pinButton(g, n.clue, true)].filter((x): x is HTMLElement => !!x),
     render: () => {
       g.markSeen(n.id);
       return h('article', { class: 'note' },
         h('div', { class: 'note-date' }, `${longDate(n.t)} at ${clock(n.t)}`),
         h('h2', null, n.title),
         ...n.body.split('\n').map((line) => (line ? h('p', null, line) : h('br'))),
-        n.clue ? h('div', { class: 'note-pin' }, pinButton(g, n.clue)) : null);
+        h('div', { class: 'note-pin' }, pinButton(g, n.clue, false, { key: n.id, title: `Note: ${clip(n.title, 30)}`, text: clip(n.body.replace(/\n+/g, ' '), 160), kind: 'document' })));
     },
   };
 }
@@ -224,7 +233,6 @@ function mailList(g: Game, folder: Mail['folder']): View {
 function mailView(g: Game, m: Mail): View {
   return {
     key: `mailv:${m.id}`, title: '', app: 'mail',
-    actions: () => [pinButton(g, m.clue, true)].filter((x): x is HTMLElement => !!x),
     render: (phone) => {
       g.markSeen(m.id);
       const c = h('article', { class: 'mail' },
@@ -235,7 +243,7 @@ function mailView(g: Game, m: Mail): View {
           h('span', { class: 'muted small' }, stamp(m.t))),
         ...m.body.split('\n').map((line) => (line ? h('p', null, line) : h('br'))),
         m.attachment ? h('div', { class: 'mail-att' }, h('span', { class: 'muted' }, S.attachment), photoThumb(g, phone, m.attachment, 'att-thumb')) : null,
-        m.clue ? h('div', { class: 'note-pin' }, pinButton(g, m.clue)) : null,
+        h('div', { class: 'note-pin' }, pinButton(g, m.clue, false, { key: m.id, title: `Mail: ${clip(m.subject, 30)}`, text: `${m.from}, ${stamp(m.t)}: ${clip(m.body.replace(/\n+/g, ' '), 140)}`, kind: 'document', art: m.attachment ? g.c.photos.find((p) => p.id === m.attachment)?.art : undefined })),
       );
       return c;
     },
@@ -308,7 +316,7 @@ function voicemailRow(g: Game, phone: Phone, v: Voicemail): HTMLElement {
     h('div', { class: 'vm-player' }, btn, wave),
     h('div', { class: 'vm-label' }, S.transcript),
     tx,
-    h('div', { class: 'vm-actions' }, pinButton(g, v.clue)),
+    h('div', { class: 'vm-actions' }, pinButton(g, v.clue, false, { key: v.id, title: `Voicemail: ${c.name}`, text: `${stamp(v.t)}: ${clip(v.transcript, 150)}`, kind: 'person', art: c.avatar })),
   );
   return row;
 }
@@ -346,11 +354,11 @@ function mapsView(g: Game): View {
         const chips = h('div', { class: 'chips' }, ...days.map((d) => h('button', { type: 'button', class: d === day ? 'on' : '', onclick: () => { day = d; audio.play('tap'); draw(); } }, shortDate(`${d}T00:00`))));
         const list = h('div', { class: 'timeline' }, ...todays.map((s, i) => {
           const place = g.c.map.places.find((p) => p.id === s.place);
-          return h('div', { class: `tl-item${s.clue ? ' clue' : ''}${i === todays.length - 1 ? ' last' : ''}`, onmouseenter: () => hi(s.place), onclick: () => hi(s.place) },
+          return h('div', { class: `tl-item${i === todays.length - 1 ? ' last' : ''}`, onmouseenter: () => hi(s.place), onclick: () => hi(s.place) },
             h('span', { class: 'tl-time' }, clock(s.t)),
             h('span', { class: 'tl-dot' }),
             h('div', { class: 'tl-main' }, h('b', null, place?.name ?? s.place), h('span', { class: 'muted' }, s.detail)),
-            pinButton(g, s.clue, true));
+            pinButton(g, s.clue, true, { key: `stop@${s.t}`, title: `${clip(place?.name ?? s.place, 22)}, ${clock(s.t)}`, text: `${longDate(s.t)} ${clock(s.t)} — ${place?.name ?? s.place}: ${s.detail}`, kind: 'place' }));
         }));
         const hi = (placeId: string) => {
           mapBox.querySelectorAll('.map-pin').forEach((el) => el.classList.toggle('hi', (el as HTMLElement).dataset.place === placeId));
@@ -377,7 +385,7 @@ function browserView(g: Game): View {
         out.appendChild(tapRow(() => phone.push(pageView(g, b)),
           h('span', { class: 'fav' }, b.url.startsWith('search') ? glyph('search') : b.title[0]),
           h('div', { class: 'row-main' }, h('b', null, b.title), h('div', { class: 'row-sub' }, `${clock(b.t)} · ${b.url}`)),
-          b.clue && g.isPinned(b.clue) ? glyph('pin', 'tiny cyan') : null));
+          g.isPinned(b.clue ?? `n:web@${b.t}`) ? glyph('pin', 'tiny cyan') : null));
       }
       return out;
     },
@@ -394,10 +402,9 @@ function pageView(g: Game, b: BrowserEntry): View {
         h('div', { class: 'page-card' },
           h('div', { class: 'muted small' }, `${S.cachedPage} · ${stamp(b.t)}`),
           h('h2', null, b.title),
-          isSearch
-            ? h('div', { class: 'serp' }, ...[0, 1, 2].map((i) => h('div', { class: 'serp-item' }, h('i', { style: `width:${70 - i * 12}%` }), h('i', { style: `width:${90 - i * 8}%` }), h('i', { style: `width:${55 + i * 9}%` }))))
-            : h('div', { class: 'serp' }, h('div', { class: 'page-hero' }), ...[0, 1, 2, 3].map((i) => h('i', { class: 'line', style: `width:${92 - i * 9}%` }))),
-          h('div', { class: 'note-pin' }, pinButton(g, b.clue))));
+          h('div', { class: 'page-lost' }, glyph('info'), h('p', null, isSearch ? S.searchOnly : S.pageNotCached)),
+          h('div', { class: 'page-meta' }, h('span', null, S.visited), h('b', null, `${longDate(b.t)} · ${clock(b.t)}`)),
+          h('div', { class: 'note-pin' }, pinButton(g, b.clue, false, { key: `web@${b.t}`, title: `${isSearch ? 'Searched' : 'Visited'}: ${clip(b.title, 26)}`, text: `${stamp(b.t)} — ${b.title} (${b.url})`, kind: 'document' }))));
     },
   };
 }
@@ -417,10 +424,10 @@ function glimpseView(g: Game): View {
         ...posts.map((p) => {
           const a = p.author === 'me' ? { name: me.name, avatar: ownerAvatar(g) } : contactOf(g, p.author);
           const photo = g.c.photos.find((x) => x.id === p.photo);
-          return h('div', { class: `gl-post${p.clue ? ' clue' : ''}` },
+          return h('div', { class: 'gl-post' },
             h('div', { class: 'gl-head' }, avatar(a.avatar, 32), h('b', null, handle(p.author)), h('span', { class: 'muted' }, listLabel(p.t, g.nowStamp()))),
             photo ? h('button', { class: 'gl-img', type: 'button', onclick: () => { audio.play('tap'); phone.viewArt(photo.art, photo); } }, artImg(photo.art)) : null,
-            h('div', { class: 'gl-actions' }, glyph('heart'), glyph('comment'), glyph('send'), h('span', { class: 'gl-spacer' }), pinButton(g, p.clue, true)),
+            h('div', { class: 'gl-actions' }, glyph('heart'), glyph('comment'), glyph('send'), h('span', { class: 'gl-spacer' }), pinButton(g, p.clue, true, { key: p.id, title: `Post: ${clip(p.caption, 28)}`, text: `${handle(p.author)}, ${stamp(p.t)}: ${p.caption}`, kind: 'event', art: photo?.art })),
             h('div', { class: 'gl-likes' }, S.likes(p.likes)),
             h('div', { class: 'gl-cap' }, h('b', null, handle(p.author)), ' ', p.caption),
             ...p.comments.map((cm) => h('div', { class: 'gl-cmt' }, h('b', null, handle(cm.author)), ' ', cm.text)),
@@ -442,11 +449,11 @@ function bankView(g: Game): View {
       for (const t of tx) {
         const d = t.t.slice(0, 10);
         if (d !== curDay) { curDay = d; list.appendChild(sectionTitle(longDate(t.t))); }
-        list.appendChild(h('div', { class: `tx${t.clue ? ' clue' : ''}` },
+        list.appendChild(h('div', { class: 'tx' },
           h('span', { class: `tx-ico${t.amount > 0 ? ' in' : ''}` }, t.amount > 0 ? '↓' : '↑'),
           h('div', { class: 'row-main' }, h('b', null, t.desc), h('div', { class: 'row-sub' }, clock(t.t))),
           h('span', { class: `tx-amt${t.amount > 0 ? ' pos' : ''}` }, `${t.amount > 0 ? '+' : '−'}$${Math.abs(t.amount).toFixed(2)}`),
-          pinButton(g, t.clue, true)));
+          pinButton(g, t.clue, true, { key: `tx@${t.t}@${t.desc.slice(0, 10)}`, title: `${clip(t.desc, 24)} ${t.amount < 0 ? '−' : '+'}$${Math.abs(t.amount).toFixed(0)}`, text: `${stamp(t.t)}: ${t.desc}, ${t.amount < 0 ? '−' : '+'}$${Math.abs(t.amount).toFixed(2)}`, kind: 'event' })));
       }
       return h('div', { class: 'bank' },
         h('div', { class: 'bank-card' },
@@ -505,10 +512,10 @@ function calendarView(g: Game): View {
 }
 
 function calEvent(g: Game, _phone: Phone, e: CalEvent): HTMLElement {
-  return h('div', { class: `cal-ev${e.clue ? ' clue' : ''}` },
+  return h('div', { class: 'cal-ev' },
     h('div', { class: 'ce-time' }, h('b', null, shortDate(e.t)), h('span', null, clock(e.t))),
     h('div', { class: 'ce-main' }, h('b', null, e.title), h('span', { class: 'muted' }, e.detail)),
-    pinButton(g, e.clue, true));
+    pinButton(g, e.clue, true, { key: e.id, title: `${shortDate(e.t)}: ${clip(e.title, 24)}`, text: `${stamp(e.t)} — ${e.title}. ${e.detail}`, kind: 'event' }));
 }
 
 // ======================= SETTINGS =======================
@@ -519,9 +526,9 @@ function settingsView(g: Game): View {
       h('div', { class: 'set-profile' }, avatar(ownerAvatar(g), 56), h('div', null, h('b', null, g.c.owner.name), h('div', { class: 'muted' }, 'Account, Cloud & Backup'))),
       sectionTitle(S.knownNetworks),
       h('div', { class: 'group' }, ...[...g.c.wifi].sort((a, b) => (a.lastJoined < b.lastJoined ? 1 : -1)).map((w) =>
-        h('div', { class: `set-row${w.clue ? ' clue' : ''}` }, glyph('wifi'),
+        h('div', { class: 'set-row' }, glyph('wifi'),
           h('div', { class: 'row-main' }, h('b', null, w.name), h('div', { class: 'row-sub' }, `${S.lastJoined} ${longDate(w.lastJoined)} · ${clock(w.lastJoined)}`)),
-          pinButton(g, w.clue, true)))),
+          pinButton(g, w.clue, true, { key: `wifi@${w.name}`, title: `Wi-Fi: ${clip(w.name, 24)}`, text: `Known network "${w.name}", last joined ${stamp(w.lastJoined)}.`, kind: 'place' })))),
       sectionTitle(S.battery),
       h('div', { class: 'group' }, h('div', { class: 'set-row' }, glyph('battery'), h('div', { class: 'row-main' }, h('b', null, `${g.battery()}%`), h('div', { class: 'row-sub warn' }, g.c.deviceCondition ? `${S.batteryNote}: ${g.c.deviceCondition.split(' · ')[0].toLowerCase()}` : S.batteryOk)))),
       sectionTitle(S.about),
@@ -547,7 +554,7 @@ function traceView(g: Game): View {
         h('div', { class: 'tr-device' },
           h('div', null, h('span', null, S.traceDevice), h('b', null, `${S.modelName} · ${g.c.owner.name}`)),
           h('div', null, h('span', null, 'Integrity'), h('b', { class: 'amber' }, g.c.deviceCondition ?? 'OK')),
-          h('div', null, h('span', null, 'Evidence pinned'), h('b', null, `${g.pins.length} / ${g.c.clues.length}`))),
+          h('div', null, h('span', null, 'Evidence pinned'), h('b', null, String(g.pins.length)))),
         ...g.c.trace.map((job) => {
           const done = g.has(`recovered:${job.id}`);
           const running = g.running.has(job.id);
@@ -559,7 +566,7 @@ function traceView(g: Game): View {
             h('div', { class: 'tr-job-head' },
               h('span', { class: 'tr-state' }, state === 'done' ? S.traceDone : state === 'running' ? S.traceRunning : state === 'ready' ? 'READY' : S.traceLocked),
               h('b', null, job.label)),
-            h('p', null, state === 'locked' ? job.needsHint ?? job.detail : job.detail),
+            h('p', null, state === 'locked' ? S.traceNeedsLead : job.detail),
             state === 'running' ? h('div', null, bar, hex) : null,
             state === 'done' ? h('div', { class: 'tr-result' }, glyph('check'), `${restoredCount(job.id)} ${S.traceRestored}`) : null,
             state === 'ready' ? h('button', { class: 'btn trace-run', type: 'button', onclick: () => { audio.play('scan'); g.startTrace(job.id); } }, glyph('search'), S.traceRun) : null,
@@ -690,4 +697,9 @@ function highlight(text: string, q: string): (string | HTMLElement)[] {
   const i = text.toLowerCase().indexOf(needle);
   if (!needle || i < 0) return [text];
   return [text.slice(0, i), h('mark', null, text.slice(i, i + needle.length)), text.slice(i + needle.length)];
+}
+
+function clip(t: string, n: number): string {
+  const one = t.replace(/\s+/g, ' ').trim();
+  return one.length > n ? `${one.slice(0, n - 1).trimEnd()}…` : one;
 }

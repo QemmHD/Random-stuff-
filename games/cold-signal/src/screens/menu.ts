@@ -147,7 +147,7 @@ export function briefingScreen(c: CaseFile, onBegin: () => void, onBack: () => v
       paras.appendChild(el);
       const fast = document.documentElement.classList.contains('reduce-motion');
       if (fast) { el.textContent = p; continue; }
-      for (let i = 0; i <= p.length; i += 2) {
+      for (let i = 0; i <= p.length; i += 4) {
         if (!root.isConnected || skipped) return;
         el.textContent = p.slice(0, i);
         if (i % 8 === 0) audio.play('type');

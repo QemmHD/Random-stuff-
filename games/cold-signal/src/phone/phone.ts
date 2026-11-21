@@ -443,7 +443,7 @@ export class Phone {
         h('div', { class: 'zv-row' }, h('span', null, S.photoPlace), h('b', null, photo.place)),
         photo.device ? h('div', { class: 'zv-row' }, h('span', null, S.photoDevice), h('b', null, photo.device)) : null,
         photo.caption ? h('p', { class: 'zv-cap' }, photo.caption) : null,
-        h('div', { class: 'zv-actions' }, game.isNewlyRecovered(photo) ? recoveredTag() : null, pinButton(game, photo.clue)),
+        h('div', { class: 'zv-actions' }, game.isNewlyRecovered(photo) ? recoveredTag() : null, pinButton(game, photo.clue, false, { key: photo.id, title: `Photo: ${photo.place.length > 26 ? photo.place.slice(0, 25) + '…' : photo.place}`, text: `${photo.place}, ${longDate(photo.t)} ${clock(photo.t)}.`, kind: 'object', art: photo.art })),
       );
       game.markSeen(photo.id);
     }

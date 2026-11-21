@@ -120,15 +120,15 @@ export const case1: CaseFile = {
   photos: [
     { id: 'ph_biscuit', art: 'ph_biscuit', t: '2018-02-14T15:20', place: 'Quill family home', orientation: 'portrait', caption: 'Lock screen wallpaper. A golden retriever puppy with a red bow. Old-style camera date stamp in the corner.', device: 'Scanned print' },
     { id: 'ph_selfie', art: 'ph_selfie', t: '2026-08-15T17:02', place: 'Harrow Beach', orientation: 'portrait', caption: 'Mara and June at low tide.' },
-    { id: 'ph_seawren', art: 'ph_seawren', t: '2025-07-04T11:40', place: 'Harbor Row', orientation: 'landscape', caption: "Old wooden fishing boat. The name on the hull is clear. Mara's caption draft: 'nana's girl, still floating.'" },
+    { id: 'ph_seawren', art: 'ph_seawren', t: '2025-07-04T11:40', place: 'Harbor Row', orientation: 'landscape', caption: "Old wooden fishing boat at the Harbor Row dock. Mara's caption draft: 'nana's girl, still floating.'" },
     { id: 'ph_tidepool', art: 'ph_tidepool', t: '2026-09-14T08:12', place: 'Gull Point', orientation: 'portrait', caption: 'Ochre sea star in a tide pool. Field photo.' },
     { id: 'ph_blackrock', art: 'ph_blackrock', t: '2026-09-21T10:48', place: 'Blackrock Marina site', orientation: 'landscape', caption: 'Site visit. A discharge pipe runs from the construction pad straight into the bay. Water near the outflow is discolored.', clue: 'blackrock_pipe' },
-    { id: 'ph_labsheets', art: 'ph_labsheets', t: '2026-09-27T22:03', place: 'Harrow Marine Station — Lab B', orientation: 'landscape', caption: 'Two printouts for batch HB-17. Raw instrument log: lead 48 ppb. Signed report: 4.8 ppb. Someone moved the decimal.', clue: 'lab_data' },
+    { id: 'ph_labsheets', art: 'ph_labsheets', t: '2026-09-27T22:03', place: 'Harrow Marine Station — Lab B', orientation: 'landscape', caption: 'Two printouts for batch HB-17. Raw instrument log and the signed report, side by side under a desk lamp.', clue: 'lab_data' },
     { id: 'ph_coffee', art: 'ph_coffee', t: '2026-10-01T08:31', place: 'Dockside Café', orientation: 'portrait', caption: 'Latte. A wave in the foam.' },
     { id: 'ph_key', art: 'ph_key', t: '2026-10-03T17:41', place: "June Okafor's apartment", orientation: 'portrait', caption: 'Recovered. A brass key on a heron keychain. Tag reads "LH-4".', clue: 'cabin_key', deletedUntil: 'recovered:photos' },
     { id: 'ph_station', art: 'ph_station', t: '2026-10-03T18:12', place: 'Harrow Marine Station', orientation: 'landscape', caption: 'Station exterior at dusk. Lab B lights on.' },
     { id: 'ph_drybag', art: 'ph_drybag', t: '2026-10-03T22:30', place: 'Harrow Marine Station — Lab B', orientation: 'portrait', caption: 'Recovered. An orange 20L dry bag, open. Three sample vials labelled HB-17 and a folded printout inside.', clue: 'drybag', deletedUntil: 'recovered:photos' },
-    { id: 'ph_gullpoint', art: 'ph_gullpoint', t: '2026-10-03T23:31', place: 'Gull Point', orientation: 'portrait', caption: 'Last photo on the device. The lighthouse beam. On the cliff path behind, a second figure holding a flashlight.', clue: 'gullpoint_last' },
+    { id: 'ph_gullpoint', art: 'ph_gullpoint', t: '2026-10-03T23:31', place: 'Gull Point', orientation: 'portrait', caption: 'Last photo on the device. The lighthouse beam over Gull Point, the cliff path behind.', clue: 'gullpoint_last' },
     { id: 'ph_anchor', art: 'ph_anchor', t: '2026-10-03T23:47', place: 'The Anchor', orientation: 'portrait', caption: "Posted by June Okafor. Theo Vance at the bar. The clock over the taps reads 11:47." },
   ],
 
@@ -334,7 +334,7 @@ export const case1: CaseFile = {
     { id: 'e_h_burner', kind: 'handler', when: ['event:e_burner'], delayMs: 5000, text: "That number just went live again. Someone knows this phone was recovered. Keep going — and keep pinning." },
     { id: 'e_h_lab', kind: 'handler', when: ['pinned:lab_data'], delayMs: 2500, text: '48 versus 4.8. That\'s not a typo, that\'s a motive. Who signed that report?' },
     { id: 'e_mara', kind: 'text', when: ['recovered:msgfrag', 'note:n_insurance'], delayMs: 7000, thread: 'th_mara', contact: 'mara2', text: "if this is the police… it's me. M. I'm okay. I couldn't trust anyone from the station. the dry bag is safe. ask June — only June.", clue: 'mara_alive' },
-    { id: 'e_h_mara', kind: 'handler', when: ['event:e_mara'], delayMs: 4500, text: "...Is that her? If Mara's alive, we need to know exactly where. Don't reply — we can't spook her. Find the place." },
+    { id: 'e_h_mara', kind: 'handler', when: ['event:e_mara'], delayMs: 4500, text: "A new number just texted the phone. Read it before you do anything else — and don't reply." },
     { id: 'e_h_ready', kind: 'handler', when: ['unlocked'], minPins: 10, delayMs: 3000, text: "Your board's getting heavy. When you can back every answer with evidence, open the Case Report." },
   ],
 

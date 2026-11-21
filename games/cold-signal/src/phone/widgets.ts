@@ -2,7 +2,7 @@ import { h, vibrate } from '../dom';
 import { artImg, glyph, hasArt } from '../art';
 import { audio } from '../audio';
 import type { Game } from '../game';
-import type { Contact } from '../types';
+import type { Clue, Contact } from '../types';
 import { S } from '../strings';
 
 export function contactOf(game: Game, id: string): Contact {
@@ -25,29 +25,41 @@ export function avatar(id: string, size = 40): HTMLElement {
   return wrap;
 }
 
-/** Pin-to-board button for anything carrying a clue. */
-export function pinButton(game: Game, clueId: string | undefined, compact = false): HTMLElement | null {
-  if (!clueId || !game.clue(clueId)) return null;
-  const btn = h('button', { class: `pin-btn${compact ? ' compact' : ''}`, type: 'button', 'aria-label': S.pinAria });
+/** What a pin creates when the item is not one of the case's clues. */
+export interface PinRef { key: string; title: string; text: string; kind: Clue['kind']; art?: string }
+
+/**
+ * Pin-to-board button. Every item gets one: case clues pin as themselves,
+ * everything else pins as a player note. Choosing what matters is the game.
+ */
+export function pinButton(game: Game, clueId: string | undefined, compact = false, ref?: PinRef): HTMLElement | null {
+  const id = clueId && game.clue(clueId) ? clueId : ref ? `n:${ref.key}` : undefined;
+  if (!id) return null;
+  const btn = h('button', { class: `pin-btn${compact ? ' compact' : ''}`, type: 'button', 'aria-label': S.pinAria, 'data-pin': id });
   const sync = () => {
-    const on = game.isPinned(clueId);
+    const on = game.isPinned(id);
     btn.classList.toggle('on', on);
     btn.replaceChildren(glyph(on ? 'check' : 'pin'), compact ? '' : h('span', null, on ? S.pinned : S.pin));
   };
   sync();
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (game.isPinned(clueId)) {
+    if (game.isPinned(id)) {
       flyToast(btn, S.alreadyPinned);
       audio.play('tap');
       return;
     }
-    if (game.pin(clueId)) {
+    const fallback: Clue | undefined = ref ? { id, title: ref.title, text: ref.text, kind: ref.kind, art: ref.art } : undefined;
+    if (game.pin(id, fallback)) {
       audio.play('pin');
       vibrate(18);
       btn.classList.add('pop');
-      flyCard(btn, game.clue(clueId)!.title);
-      sync();
+      flyCard(btn, game.clue(id)!.title);
+      // keep every button for the same item in sync (e.g. header + footer)
+      document.querySelectorAll<HTMLElement>(`.pin-btn[data-pin="${CSS.escape(id)}"]`).forEach((b) => {
+        b.classList.add('on');
+        b.replaceChildren(glyph('check'), b.classList.contains('compact') ? '' : h('span', null, S.pinned));
+      });
     }
   });
   return btn;

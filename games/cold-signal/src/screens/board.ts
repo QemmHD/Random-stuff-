@@ -16,6 +16,8 @@ export class Board {
   private detail: HTMLElement | null = null;
   private lastCount = -1;
   private flow = false;
+  private connectFrom = '';
+  private banner: HTMLElement | null = null;
 
   constructor(private game: Game, opts: { onClose?: () => void; docked?: boolean } = {}) {
     this.surface = h('div', { class: 'board-surface' });
@@ -41,25 +43,12 @@ export class Board {
     this.unsub();
   }
 
-  private relatedPairs(): [string, string][] {
-    const pinned = new Set(this.game.pins.map((p) => p.id));
-    const pairs: [string, string][] = [];
-    const seen = new Set<string>();
-    for (const q of this.game.c.questions) {
-      const ev = q.evidence.filter((id) => pinned.has(id));
-      for (let i = 1; i < ev.length; i++) {
-        const k = [ev[i - 1], ev[i]].sort().join('|');
-        if (!seen.has(k)) { seen.add(k); pairs.push([ev[i - 1], ev[i]]); }
-      }
-    }
-    return pairs;
-  }
-
   render(): void {
     const g = this.game;
     this.surface.classList.toggle('flow', this.flow);
+    this.el.querySelector('.bh-tidy')?.toggleAttribute('hidden', this.flow);
     const count = this.el.querySelector('.bh-count');
-    if (count) count.textContent = S.progress(g.pins.length, g.c.clues.length);
+    if (count) count.textContent = S.pinnedCount(g.pins.length);
     [...this.surface.querySelectorAll('.ev-card, .empty')].forEach((n) => n.remove());
     if (!g.pins.length) {
       this.surface.appendChild(h('div', { class: 'empty board-empty' }, h('div', { class: 'be-card' }, h('span', { class: 'ev-tack' }), glyph('pin'), h('b', null, S.boardEmptyTitle), h('span', null, S.boardEmpty))));
@@ -70,7 +59,7 @@ export class Board {
       const clue = g.clue(p.id);
       if (!clue) return;
       const rot = ((i * 37) % 9) - 4;
-      const card = h('div', { class: `ev-card kind-${clue.kind}${fresh === p.id ? ' fresh' : ''}`, style: this.flow ? `--rot:${rot / 2}deg` : `left:${p.x * 100}%;top:${p.y * 100}%;--rot:${rot}deg`, 'data-id': p.id, tabindex: '0' },
+      const card = h('div', { class: `ev-card kind-${clue.kind}${fresh === p.id ? ' fresh' : ''}${this.connectFrom === p.id ? ' connecting' : ''}`, style: this.flow ? `--rot:${rot / 2}deg` : `left:${p.x * 100}%;top:${p.y * 100}%;--rot:${rot}deg`, 'data-id': p.id, tabindex: '0' },
         h('span', { class: 'ev-tack' }),
         clue.art ? h('div', { class: 'ev-img' }, artImg(clue.art)) : h('div', { class: 'ev-img ev-type' }, glyph(kindGlyph(clue.kind))),
         h('div', { class: 'ev-kind' }, KIND_LABEL[clue.kind]),
@@ -91,7 +80,7 @@ export class Board {
       if (!el) return null;
       return { x: el.offsetLeft + el.offsetWidth / 2, y: el.offsetTop + 10 };
     };
-    const paths = this.relatedPairs().map(([a, b]) => {
+    const paths = this.game.links.map(([a, b]) => {
       const A = center(a), B = center(b);
       if (!A || !B) return '';
       const sag = Math.min(60, Math.hypot(B.x - A.x, B.y - A.y) * 0.18);
@@ -129,13 +118,37 @@ export class Board {
         this.game.movePin(id, card.offsetLeft / W, card.offsetTop / H);
         audio.play('pin');
       } else {
-        this.showDetail(id);
+        this.tapCard(id);
       }
     };
     card.addEventListener('pointerup', up);
     card.addEventListener('pointercancel', up);
-    card.addEventListener('click', () => { if (this.flow) this.showDetail(id); });
-    card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') this.showDetail(id); });
+    card.addEventListener('click', () => { if (this.flow) this.tapCard(id); });
+    card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') this.tapCard(id); });
+  }
+
+  private tapCard(id: string): void {
+    if (this.connectFrom) {
+      const from = this.connectFrom;
+      this.connectFrom = '';
+      this.banner?.remove();
+      if (from !== id) {
+        const added = this.game.toggleLink(from, id);
+        audio.play(added ? 'pin' : 'unpin');
+      } else this.render();
+      return;
+    }
+    this.showDetail(id);
+  }
+
+  private startConnect(id: string): void {
+    this.connectFrom = id;
+    audio.play('tap');
+    this.banner?.remove();
+    this.banner = h('div', { class: 'connect-banner' }, glyph('board'), h('span', null, S.connectPrompt),
+      h('button', { type: 'button', onclick: () => { this.connectFrom = ''; this.banner?.remove(); this.render(); } }, S.cancel));
+    this.el.appendChild(this.banner);
+    this.render();
   }
 
   private showDetail(id: string): void {
@@ -152,6 +165,7 @@ export class Board {
         h('p', null, clue.text),
         h('div', { class: 'evd-actions' },
           h('button', { class: 'btn ghost', type: 'button', onclick: () => { this.game.unpin(id); audio.play('unpin'); close(); } }, glyph('trash'), S.unpin),
+          this.game.pins.length > 1 ? h('button', { class: 'btn connect', type: 'button', onclick: () => { close(); this.startConnect(id); } }, glyph('board'), S.connect) : null,
           h('button', { class: 'btn', type: 'button', onclick: close }, S.close))));
     d.addEventListener('click', (e) => { if (e.target === d) close(); });
     this.detail = d;

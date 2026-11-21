@@ -5,6 +5,7 @@ import { audio } from '../audio';
 import { Game } from '../game';
 import { Phone } from '../phone/phone';
 import { Board } from './board';
+import { flyToast } from '../phone/widgets';
 import { openReport } from './report';
 import { openSettings } from './settings';
 import { S } from '../strings';
@@ -34,21 +35,41 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
 
   // ---- toasts (handler) ----
   const toastLayer = h('div', { class: 'toast-layer' });
+  // One toast at a time; the rest wait their turn. Tap to read the full log, swipe to dismiss.
+  const queue: string[] = [];
+  let showing = false;
   const handlerToast = (text: string) => {
+    queue.push(text);
+    if (!showing) nextToast();
+  };
+  const nextToast = () => {
+    const text = queue.shift();
+    if (text === undefined) { showing = false; return; }
+    showing = true;
     audio.play('handler');
     vibrate(10);
     const t = h('button', { class: 'h-toast', type: 'button' },
       h('span', { class: 'avatar' }, artImg('av_ines')),
       h('div', null, h('b', null, `${S.handlerName} · ${S.handlerRole}`), h('p', null, text)));
+    let gone = false;
+    const dismiss = () => {
+      if (gone) return;
+      gone = true;
+      t.classList.add('leave');
+      setTimeout(() => { t.remove(); setTimeout(nextToast, 250); }, 300);
+    };
+    let sy = 0;
+    t.addEventListener('pointerdown', (e) => { sy = e.clientY; });
+    t.addEventListener('pointerup', (e) => { if (Math.abs(e.clientY - sy) > 30) { dismiss(); } });
     t.addEventListener('click', () => {
-      t.classList.add('leave'); setTimeout(() => t.remove(), 300);
+      dismiss();
       if (window.innerWidth <= 1280) openCommsLog();
     });
-    // Only one toast at a time on small screens so the phone stays readable.
-    if (window.innerWidth <= 560) toastLayer.querySelectorAll('.h-toast').forEach((o) => o !== t && o.remove());
     toastLayer.appendChild(t);
-    setTimeout(() => { t.classList.add('leave'); setTimeout(() => t.remove(), 300); }, window.innerWidth <= 560 ? Math.min(7000, Math.max(4200, text.length * 45)) : Math.max(6000, text.length * 70));
+    const small = window.innerWidth <= 560;
+    setTimeout(dismiss, small ? Math.min(6500, Math.max(4000, text.length * 42)) : Math.max(5500, text.length * 60));
   };
+
 
   const openCommsLog = () => {
     audio.play('open');
@@ -90,20 +111,37 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
   const boardBtn = h('button', { class: 'hud-btn', type: 'button', 'data-fly-target': '', onclick: () => openBoard() }, glyph('board'), h('span', null, S.board), h('i', { class: 'hud-badge' }));
   const updateHud = () => {
     const p = game.progress();
-    prog.textContent = S.progress(p.pinned, p.total);
-    ring.style.setProperty('--p', String(p.pinned / Math.max(1, p.total)));
+    prog.textContent = S.pinnedCount(p.pinned);
+    // Ring = how much of the device you've cracked open (unlock, locked notes, TRACE), not how many answers you have.
+    const gates = ['unlocked', ...c.notes.filter((n) => n.lock).map((n) => `note:${n.id}`), ...c.trace.map((j) => `recovered:${j.id}`)];
+    ring.style.setProperty('--p', String(gates.filter((f) => game.has(f)).length / gates.length));
     const badge = boardBtn.querySelector('.hud-badge') as HTMLElement;
     badge.textContent = String(p.pinned);
     badge.toggleAttribute('data-zero', p.pinned === 0);
-    reportBtn.classList.toggle('ready', game.has('unlocked') && p.pinned >= Math.min(8, Math.ceil(p.total * 0.4)));
+    reportBtn.classList.toggle('ready', game.has('unlocked') && p.found >= Math.min(8, Math.ceil(p.total * 0.4)));
   };
+  // First hint asks for confirmation: hints cost the Clean Solve badge.
+  let hintArmed = false;
+  const hintBtn = h('button', { class: 'hud-btn hint', type: 'button', onclick: () => {
+    if (game.hintsUsed === 0 && !hintArmed) {
+      hintArmed = true;
+      audio.play('tap');
+      hintBtn.classList.add('armed');
+      flyToast(hintBtn, S.hintConfirm);
+      setTimeout(() => { hintArmed = false; hintBtn.classList.remove('armed'); }, 3500);
+      return;
+    }
+    hintArmed = false;
+    hintBtn.classList.remove('armed');
+    game.useHint();
+  } }, glyph('hint'), h('span', null, S.hint));
   const reportBtn = h('button', { class: 'hud-btn report', type: 'button', onclick: () => openReport(root, game, { onFiled: (g) => nav.toEpilogue(g) }) }, glyph('report'), h('span', null, S.report));
   const hud = h('header', { class: 'hud' },
     h('button', { class: 'hud-btn icon', type: 'button', 'aria-label': S.menu, onclick: () => openMenu() }, glyph('folder')),
     h('div', { class: 'hud-title' }, h('small', null, `CASE ${c.number}`), h('b', null, c.title)),
     h('div', { class: 'hud-progress' }, ring, prog),
     h('div', { class: 'hud-actions' },
-      h('button', { class: 'hud-btn', type: 'button', onclick: () => { game.useHint(); } }, glyph('hint'), h('span', null, S.hint)),
+      hintBtn,
       boardBtn,
       reportBtn));
 
@@ -140,7 +178,7 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
   audio.ambient('case');
   game.checkEvents();
   // First-time intro toast
-  if (game.handler.length === 1 && !game.has('unlocked')) setTimeout(() => handlerToast(c.handlerIntro), 900);
+  if (game.handler.length === 1 && !game.has('unlocked') && window.innerWidth <= 1280) setTimeout(() => handlerToast(c.handlerIntro), 900);
 
   const onKey = (e: KeyboardEvent) => {
     if ((e.target as HTMLElement)?.tagName === 'INPUT') return;

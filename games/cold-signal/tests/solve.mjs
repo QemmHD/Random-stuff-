@@ -50,10 +50,14 @@ await sleep(1500);
 await shot('05-home');
 
 async function pinAll() {
+  // Only real case clues (data-pin without the "n:" player-note prefix).
+  const real = ':not(.on):not([data-pin^="n:"])';
   for (let i = 0; i < 40; i++) {
-    const b = page.locator(`.phone-overlay .pin-btn:not(.on), ${top} .pin-btn:not(.on)`).first();
+    const row = page.locator(`${top} .bubble-row:not(.show-pin):has(.pin-btn${real}) .bubble`).first();
+    if (await row.count()) { await row.click(); await page.waitForTimeout(80); }
+    const b = page.locator(`.phone-overlay .pin-btn${real}, ${top} .pin-btn${real}`).first();
     if (!(await b.count())) return;
-    await b.scrollIntoViewIfNeeded(); await b.click(); await sleep(90);
+    await b.scrollIntoViewIfNeeded(); await b.click(); await page.waitForTimeout(90);
   }
 }
 const home = async () => { await page.locator('.home-indicator').click(); await sleep(450); };
@@ -115,7 +119,7 @@ for (let round = 0; round < 4; round++) {
   await pass(round);
   const st = await page.evaluate((id) => JSON.parse(localStorage.getItem(`cs.case.${id}`)), c.id);
   console.log(`round ${round}: pins ${st.pins.length}/${c.clues.length}, flags ${st.flags.length}`);
-  if (st.pins.length === c.clues.length && c.trace.every((j) => st.flags.includes(`recovered:${j.id}`)) && c.events.every((e) => st.flags.includes(`event:${e.id}`))) break;
+  if (st.pins.filter((x) => !x.id.startsWith('n:')).length === c.clues.length && c.trace.every((j) => st.flags.includes(`recovered:${j.id}`)) && c.events.every((e) => st.flags.includes(`event:${e.id}`))) break;
   await sleep(9000); // let live events land
 }
 await sleep(4000);

@@ -25,6 +25,11 @@ interface SaveData {
   playMs: number;
   unread: string[]; // thread ids with unread live messages
   hints?: number;
+  /** Player-pinned items that are not case clues (red herrings, noise). */
+  extra?: Record<string, Clue>;
+  /** Red strings the player drew between cards. */
+  links?: [string, string][];
+  lastHint?: string;
 }
 
 export type GameEvent =
@@ -73,6 +78,9 @@ export class Game {
   draft: Record<string, Answer>;
   unread: Set<string>;
   hintsUsed = 0;
+  links: [string, string][];
+  private extra: Record<string, Clue>;
+  private lastHint = '';
   private playMs: number;
   private sessionStart = performance.now();
   private listeners: ((e: GameEvent) => void)[] = [];
@@ -93,9 +101,12 @@ export class Game {
     this.draft = s?.draft ?? {};
     this.unread = new Set(s?.unread ?? []);
     this.hintsUsed = s?.hints ?? 0;
+    this.extra = s?.extra ?? {};
+    this.links = s?.links ?? [];
+    this.lastHint = s?.lastHint ?? '';
     this.clueMap = new Map(c.clues.map((k) => [k.id, k]));
     // pins can be stale if case data changed between versions
-    this.pins = this.pins.filter((p) => this.clueMap.has(p.id));
+    this.pins = this.pins.filter((p) => !!this.clue(p.id));
   }
 
   on(fn: (e: GameEvent) => void): () => void {
@@ -119,6 +130,9 @@ export class Game {
       playMs: this.totalPlayMs(),
       unread: [...this.unread],
       hints: this.hintsUsed,
+      extra: this.extra,
+      links: this.links,
+      lastHint: this.lastHint,
     };
     store(SAVE_PREFIX + this.c.id, data);
   }
@@ -165,21 +179,35 @@ export class Game {
     this.checkEvents();
   }
 
+  /** Set a UI-only flag without re-rendering. */
+  markSeenFlag(flag: string): void {
+    if (this.flags.has(flag)) return;
+    this.flags.add(flag);
+    this.save();
+  }
+
   isNewlyRecovered(item: { deletedUntil?: string }): boolean {
     return !!item.deletedUntil && this.flags.has(item.deletedUntil);
   }
 
   // ---------- clues / pins ----------
   clue(id: string): Clue | undefined {
-    return this.clueMap.get(id);
+    return this.clueMap.get(id) ?? this.extra[id];
+  }
+
+  /** True for real case clues (used for scoring/progress), false for the player's own notes. */
+  isCaseClue(id: string): boolean {
+    return this.clueMap.has(id);
   }
 
   isPinned(id: string): boolean {
     return this.pins.some((p) => p.id === id);
   }
 
-  pin(id: string): boolean {
-    const clue = this.clueMap.get(id);
+  /** Pin a clue. Items that are not case clues pass `fallback` and become player notes. */
+  pin(id: string, fallback?: Clue): boolean {
+    if (!this.clue(id) && fallback && !this.clueMap.has(id)) this.extra[id] = { ...fallback, id };
+    const clue = this.clue(id);
     if (!clue || this.isPinned(id)) return false;
     this.pins.push({ id, ...slot(this.pins.length) });
     this.flags.add(`pinned:${id}`);
@@ -192,9 +220,20 @@ export class Game {
 
   unpin(id: string): void {
     this.pins = this.pins.filter((p) => p.id !== id);
+    this.links = this.links.filter(([a, b]) => a !== id && b !== id);
     // keep the pinned:<id> flag so gated progress never regresses
     this.save();
     this.emit({ kind: 'change' });
+  }
+
+  /** Toggle a red string between two pinned cards. */
+  toggleLink(a: string, b: string): boolean {
+    if (a === b) return false;
+    const i = this.links.findIndex(([x, y]) => (x === a && y === b) || (x === b && y === a));
+    if (i >= 0) this.links.splice(i, 1); else this.links.push([a, b]);
+    this.save();
+    this.emit({ kind: 'change' });
+    return i < 0;
   }
 
   /** Re-arrange every card on a neat grid. */
@@ -303,7 +342,8 @@ export class Game {
   /** Ask the handler for a hint: counted for the end-of-case score. */
   useHint(): string {
     const t = this.hint();
-    this.hintsUsed++;
+    // Asking again for the same hint is free.
+    if (t !== this.lastHint) { this.hintsUsed++; this.lastHint = t; }
     this.pushHandler(t);
     return t;
   }
@@ -330,8 +370,8 @@ export class Game {
   }
 
   // ---------- report ----------
-  progress(): { pinned: number; total: number } {
-    return { pinned: this.pins.length, total: this.c.clues.length };
+  progress(): { pinned: number; total: number; found: number } {
+    return { pinned: this.pins.length, total: this.c.clues.length, found: this.pins.filter((p) => this.clueMap.has(p.id)).length };
   }
 
   fileReport(answers: Record<string, Answer>): ReportResult {
