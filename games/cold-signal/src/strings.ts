@@ -51,7 +51,6 @@ export const S = {
   textSize: 'Text size',
   reduceMotion: 'Reduce motion',
   matureLang: 'Mature language (applies when a case opens)',
-  ratingLine: 'Rated M — strong language, crude humor, violence, drug and alcohol references',
   close: 'Close',
   on: 'On',
   off: 'Off',

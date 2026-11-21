@@ -71,7 +71,7 @@ export function titleScreen(onStart: () => void): HTMLElement {
       h('h1', { class: 'title-word', 'data-text': S.gameTitle }, S.gameTitle),
       h('p', { class: 'title-sub' }, S.gameSub),
       h('button', { class: 'btn primary big pulse title-cta', type: 'button', onclick: () => { audio.unlock(); audio.play('unlock'); onStart(); } }, S.tapToBegin)),
-    h('div', { class: 'title-foot' }, h('span', { class: 'rating' }, 'M'), S.titleFoot, h('div', { class: 'rating-line' }, S.ratingLine)),
+    h('div', { class: 'title-foot' }, S.titleFoot),
   );
   return el;
 }
