@@ -72,7 +72,9 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
     const p = game.progress();
     prog.textContent = S.progress(p.pinned, p.total);
     ring.style.setProperty('--p', String(p.pinned / Math.max(1, p.total)));
-    (boardBtn.querySelector('.hud-badge') as HTMLElement).textContent = String(p.pinned);
+    const badge = boardBtn.querySelector('.hud-badge') as HTMLElement;
+    badge.textContent = String(p.pinned);
+    badge.toggleAttribute('data-zero', p.pinned === 0);
     reportBtn.classList.toggle('ready', game.has('unlocked') && p.pinned >= Math.min(8, Math.ceil(p.total * 0.4)));
   };
   const reportBtn = h('button', { class: 'hud-btn report', type: 'button', onclick: () => openReport(root, game, { onFiled: (g) => nav.toEpilogue(g) }) }, glyph('report'), h('span', null, S.report));

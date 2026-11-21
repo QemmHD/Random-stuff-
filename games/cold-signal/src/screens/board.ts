@@ -23,7 +23,9 @@ export class Board {
     this.surface.appendChild(this.strings);
     const head = h('div', { class: 'board-head' },
       h('div', { class: 'bh-title' }, glyph('board'), h('b', null, S.boardTitle), h('span', { class: 'bh-count' })),
-      opts.onClose ? h('button', { class: 'icon-btn', type: 'button', 'aria-label': S.close, onclick: () => opts.onClose?.() }, glyph('close')) : null);
+      h('div', { class: 'bh-actions' },
+        h('button', { class: 'bh-tidy', type: 'button', onclick: () => { audio.play('page'); game.tidyPins(); } }, S.tidy),
+        opts.onClose ? h('button', { class: 'icon-btn', type: 'button', 'aria-label': S.close, onclick: () => opts.onClose?.() }, glyph('close')) : null));
     this.el = h('section', { class: `board${opts.docked ? ' docked' : ''}` }, head, this.surface);
     this.unsub = game.on((e) => { if (e.kind === 'change' || e.kind === 'pinned') this.render(); });
     this.render();

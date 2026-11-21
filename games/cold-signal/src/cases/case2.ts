@@ -28,7 +28,7 @@ export const case2: CaseFile = {
   briefing: [
     'Jonah Merrick, 34. By day he fixes old radios at Volt Repair. Friday nights, midnight to four, he is "the Owl" — host of The Owl Hours, an unlicensed station broadcasting from the roof of the derelict Carraway Mill.',
     'At 05:52 on Saturday, October 17, an anonymous caller at the payphone outside the Suds & Duds laundromat on Dyer Street reported a man at the foot of the mill stairwell. Jonah is in a coma at St. Brigid\'s. Police call it a fall: old building, iron stairs, a man alone at night.',
-    'Except his phone was found upstairs in the transmitter room — "the Coop" — two floors above where he lay. He ran the whole show off that phone. Why go down without it?',
+    'Except his phone was found upstairs in the transmitter room — "the Coop" — up on the roof, far above where he lay. He ran the whole show off that phone. Why go down without it?',
     'Listeners say the show sounded normal until 2:13 a.m. His co-host Cass Rourke was calling in live from her sickbed. Then eleven minutes of dead air, then an automated loop until dawn.',
     'His sister Ada: "His code is always wherever the show lives on the dial. Four digits, no dot."',
     'Find out what happened on those stairs. Pin what matters. File your report.',

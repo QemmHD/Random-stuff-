@@ -207,7 +207,7 @@ function mailList(g: Game, folder: Mail['folder']): View {
     key: `mail:${folder}`, title: S.appNames.mail, app: 'mail', large: true,
     render: (phone) => {
       const tabs = h('div', { class: 'seg' }, ...(['inbox', 'sent', 'trash'] as const).map((f) =>
-        h('button', { type: 'button', class: f === folder ? 'on' : '', onclick: () => { audio.play('tap'); const v = mailList(g, f); phone.pop(); phone.push(v); } }, S[f])));
+        h('button', { type: 'button', class: f === folder ? 'on' : '', onclick: () => { audio.play('tap'); phone.replace(mailList(g, f)); } }, S[f])));
       const items = g.c.mail.filter((m) => m.folder === folder && g.visible(m)).sort(byTimeDesc);
       return h('div', null, tabs,
         items.length ? h('div', { class: 'list' }, ...items.map((m) => tapRow(() => phone.push(mailView(g, m)),
@@ -248,7 +248,7 @@ function phoneView(g: Game, tab: 'recents' | 'voicemail' | 'contacts'): View {
     key: `phone:${tab}`, title: S.appNames.phone, app: 'phone', large: true,
     render: (phone) => {
       const seg = h('div', { class: 'seg' }, ...(['recents', 'voicemail', 'contacts'] as const).map((t) =>
-        h('button', { type: 'button', class: t === tab ? 'on' : '', onclick: () => { audio.play('tap'); phone.pop(); phone.push(phoneView(g, t)); } }, S[t],
+        h('button', { type: 'button', class: t === tab ? 'on' : '', onclick: () => { audio.play('tap'); phone.replace(phoneView(g, t)); } }, S[t],
           t === 'voicemail' && g.c.voicemails.some((v) => g.visible(v) && !g.has(`seen:${v.id}`)) ? h('i', { class: 'seg-dot' }) : null)));
       let body: HTMLElement;
       if (tab === 'recents') {

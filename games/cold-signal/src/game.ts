@@ -84,10 +84,10 @@ export class Game {
     this.flags = new Set(s?.flags ?? []);
     this.pins = s?.pins ?? [];
     this.live = s?.live ?? [];
+    this.playMs = s?.playMs ?? 0;
     this.handler = s?.handler ?? [{ text: c.handlerIntro, t: this.nowStamp() }];
     this.report = s?.report ?? null;
     this.draft = s?.draft ?? {};
-    this.playMs = s?.playMs ?? 0;
     this.unread = new Set(s?.unread ?? []);
     this.clueMap = new Map(c.clues.map((k) => [k.id, k]));
     // pins can be stale if case data changed between versions
@@ -147,8 +147,13 @@ export class Game {
     this.checkEvents();
   }
 
+  /** Seen-flags never re-render the phone (that would interrupt playback/scroll). */
   markSeen(id: string): void {
-    this.set(`seen:${id}`);
+    const f = `seen:${id}`;
+    if (this.flags.has(f)) return;
+    this.flags.add(f);
+    this.save();
+    this.checkEvents();
   }
 
   isNewlyRecovered(item: { deletedUntil?: string }): boolean {
@@ -167,10 +172,7 @@ export class Game {
   pin(id: string): boolean {
     const clue = this.clueMap.get(id);
     if (!clue || this.isPinned(id)) return false;
-    const n = this.pins.length;
-    // spiral-ish scatter so new cards don't stack
-    const col = n % 4, row = Math.floor(n / 4);
-    this.pins.push({ id, x: 0.08 + col * 0.23 + (Math.random() - 0.5) * 0.04, y: 0.07 + (row % 5) * 0.19 + (Math.random() - 0.5) * 0.04 });
+    this.pins.push({ id, ...slot(this.pins.length) });
     this.flags.add(`pinned:${id}`);
     this.save();
     this.emit({ kind: 'pinned', clue });
@@ -182,6 +184,13 @@ export class Game {
   unpin(id: string): void {
     this.pins = this.pins.filter((p) => p.id !== id);
     // keep the pinned:<id> flag so gated progress never regresses
+    this.save();
+    this.emit({ kind: 'change' });
+  }
+
+  /** Re-arrange every card on a neat grid. */
+  tidyPins(): void {
+    this.pins.forEach((p, i) => Object.assign(p, slot(i, false)));
     this.save();
     this.emit({ kind: 'change' });
   }
@@ -277,7 +286,7 @@ export class Game {
   }
 
   markRead(threadId: string): void {
-    if (this.unread.delete(threadId)) { this.save(); this.emit({ kind: 'change' }); }
+    if (this.unread.delete(threadId)) this.save();
   }
 
   // ---------- hints ----------
@@ -328,6 +337,13 @@ export class Game {
     this.emit({ kind: 'change' });
     return res;
   }
+}
+
+/** Board slot for the n-th card: 5 columns x 6 rows, with slight jitter. */
+function slot(n: number, jitter = true): { x: number; y: number } {
+  const col = n % 5, row = Math.floor(n / 5) % 6;
+  const j = () => (jitter ? (Math.random() - 0.5) * 0.025 : 0);
+  return { x: 0.015 + col * 0.197 + j(), y: 0.02 + row * 0.162 + j() };
 }
 
 function liveToMsg(l: LiveMsg): Msg {

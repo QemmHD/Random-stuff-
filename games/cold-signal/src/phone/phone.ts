@@ -274,6 +274,15 @@ export class Phone {
     this.swap(this.renderView(v), 'push');
   }
 
+  /** Swap the top view (tabs inside an app). */
+  replace(v: View): void {
+    this.stack[this.stack.length - 1] = v;
+    const fresh = this.renderView(v);
+    fresh.classList.add('no-anim');
+    const cur = this.layer.querySelector<HTMLElement>('.view.app:last-child');
+    if (cur) cur.replaceWith(fresh); else this.layer.appendChild(fresh);
+  }
+
   pop(): void {
     this.setSpeechStopper(null);
     if (this.stack.length <= 1) return this.goHome();

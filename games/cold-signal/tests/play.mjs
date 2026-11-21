@@ -1,7 +1,8 @@
 // End-to-end playthrough of Case 01 through the real UI.
 // Usage: node tests/play.mjs [baseUrl] [outDir]
 // Fails (exit 1) on any console error, page error, or if the case is not solved.
-import { chromium } from 'playwright';
+import { createRequire } from 'node:module';
+const { chromium } = createRequire(import.meta.url)('playwright');
 import { mkdirSync } from 'node:fs';
 
 const base = process.argv[2] ?? 'http://localhost:5199/';

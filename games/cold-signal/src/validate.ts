@@ -37,7 +37,7 @@ export function validateCase(c: CaseFile): string[] {
   const clue = (where: string, id?: string) => { if (id && !clueIds.has(id)) errs.push(`${where}: unknown clue ${id}`); };
   const flag = (where: string, f?: string) => { if (f && !flagOk(f)) errs.push(`${where}: unproducible flag ${f}`); };
   const time = (where: string, t: string) => { if (!timeRe.test(t)) errs.push(`${where}: bad time ${t}`); };
-  const contact = (where: string, id: string) => { if (id !== 'me' && !contactIds.has(id)) errs.push(`${where}: unknown contact ${id}`); };
+  const contact = (where: string, id: string) => { if (id !== 'me' && !contactIds.has(id) && !/^[(+\d]/.test(id)) errs.push(`${where}: unknown contact ${id}`); };
 
   if (!/^\d{4}(\d{2})?$/.test(c.lock.passcode)) errs.push('passcode must be 4 or 6 digits');
   if (!photoIds.has(c.lock.wallpaper) && !c.lock.wallpaper) errs.push('lock wallpaper missing');

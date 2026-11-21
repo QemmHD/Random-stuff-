@@ -122,7 +122,8 @@ export function briefingScreen(c: CaseFile, onBegin: () => void, onBack: () => v
           h('div', { class: 'br-subject' }, h('span', null, S.subject), h('b', null, `${c.owner.name}, ${c.owner.age}`), h('span', { class: 'muted' }, c.owner.summary)))),
       paras,
       go));
-  // typewriter reveal
+  // typewriter reveal (tap anywhere to skip)
+  let skipped = false;
   void (async () => {
     await wait(350);
     for (const p of c.briefing) {
@@ -131,7 +132,7 @@ export function briefingScreen(c: CaseFile, onBegin: () => void, onBack: () => v
       const fast = document.documentElement.classList.contains('reduce-motion');
       if (fast) { el.textContent = p; continue; }
       for (let i = 0; i <= p.length; i += 2) {
-        if (!root.isConnected) return;
+        if (!root.isConnected || skipped) return;
         el.textContent = p.slice(0, i);
         if (i % 8 === 0) audio.play('type');
         await wait(9);
@@ -144,9 +145,11 @@ export function briefingScreen(c: CaseFile, onBegin: () => void, onBack: () => v
   })();
   root.addEventListener('click', (e) => {
     // tap anywhere to finish typing instantly
-    if ((e.target as HTMLElement).closest('button')) return;
+    if ((e.target as HTMLElement).closest('button') || skipped) return;
+    skipped = true;
     paras.replaceChildren(...c.briefing.map((p) => h('p', null, p)));
-  }, { once: true });
+    go.classList.add('pulse');
+  });
   return root;
 }
 

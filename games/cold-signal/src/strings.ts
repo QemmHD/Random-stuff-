@@ -121,6 +121,7 @@ export const S = {
   boardTitle: 'Evidence Board',
   boardEmpty: 'Nothing pinned yet. Look for the pin button on messages, photos, notes and more.',
   unpin: 'Remove',
+  tidy: 'Tidy',
   reportTitle: 'Case Report',
   reportIntro: 'Answer each question and back it with one pinned clue. Wrong names get people hurt.',
   chooseAnswer: 'Choose an answer',
