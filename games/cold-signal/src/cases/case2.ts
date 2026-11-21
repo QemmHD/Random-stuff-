@@ -68,6 +68,8 @@ export const case2: CaseFile = {
         { from: 'me', text: 'go to bed you absolute gremlin. wash the paint off first, you look like a crime scene', t: '2026-10-03T02:42' },
         { from: 'me', text: 'use my login for the archive upload, pw is on the fridge', t: '2026-10-08T18:40' },
         { from: 'them', text: 'ok ok ty 💛', t: '2026-10-08T18:41' },
+        { from: 'me', text: 'also whoever left a condom wrapper on the transmitter: the only thing getting screwed on that roof is the Spectrum Bureau', t: '2026-10-08T18:44' },
+        { from: 'them', text: "ok ok it's from like 2019 and it is NOT mine. that roof has a past jo. let it have its secrets", t: '2026-10-08T18:46' },
         { from: 'me', text: 'Rhea from Hearth Audio just congratulated me on SIGNING. Cass what the fuck is this', t: '2026-10-10T08:02' },
         { from: 'them', text: "ok ok don't freak. i was going to tell you. they wanted an answer by friday and you'd just say no like always", t: '2026-10-10T08:15' },
         { from: 'me', text: "because the answer is NO. it's not mine to sell. it's 9 years of people calling at 3am", t: '2026-10-10T08:16' },
@@ -91,6 +93,8 @@ export const case2: CaseFile = {
         { from: 'me', text: 'yes boss. bringing hot sauce. a lot of hot sauce', t: '2026-10-14T19:40' },
         { from: 'them', text: "have a good show 🦉 i'll listen on my break (night shift again. a man already threw up on my shoes. living the dream)", t: '2026-10-16T22:10' },
         { from: 'me', text: 'dedicating the 3am song to the nurses of St B and the guy who puked on your shoes', t: '2026-10-16T22:12' },
+        { from: 'them', text: "if it's Stayin' Alive I'm hanging up. we did compressions to it twice tonight, I can't hear the Bee Gees without counting to thirty", t: '2026-10-16T22:13' },
+        { from: 'me', text: 'noted. going with something nobody has ever been resuscitated to', t: '2026-10-16T22:15' },
         { from: 'them', text: "Jo. Jo they just brought you in. I'm here. I'm right here.", t: '2026-10-17T06:40' },
         { from: 'them', text: "the police say you fell. you've climbed those stairs a thousand times", t: '2026-10-18T09:30' },
         { from: 'them', text: "they're giving your phone to the cold case people. Jo, if you can hear any of this — fight.", t: '2026-10-21T22:14' },
@@ -401,7 +405,7 @@ export const case2: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'You have what you need. Open the Case Report and back every answer with a pinned clue.' },
   ],
 
-  handlerIntro: "New phone, new night. Pirate radio, a condemned mill and a grown man who calls himself the Owl. Christ. His sister swears he'd never leave this thing behind — and yet there it was, upstairs, like a dog left on the porch. Start with the lock screen.",
+  handlerIntro: "New phone, new night. Pirate radio, a condemned mill and a grown-ass man who calls himself the Owl. Christ on a bike. His sister swears he'd never leave this thing behind — and yet there it was, upstairs, like a dog left on the porch. Start with the lock screen.",
 
   epilogue: {
     solved: [

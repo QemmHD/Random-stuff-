@@ -421,7 +421,7 @@ export const case5: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'Her last room has six locks. Open the Case Report and back every answer with a pinned clue.' },
   ],
 
-  handlerIntro: "Last case on my desk this year, and it came out of a locked box. Escape rooms — people pay forty bucks to get locked in a closet with their coworkers. I get that for free at the precinct, plus the smell. The partner says her final codes were always a word on a phone keypad. Look at the first wall you see.",
+  handlerIntro: "Last case on my desk this year, and it came out of a locked box. Escape rooms. Fuck me. People pay forty bucks to get locked in a closet with their coworkers. I get that for free at the precinct, plus the smell. The partner says her final codes were always a word on a phone keypad. Look at the first wall you see.",
 
   epilogue: {
     solved: [

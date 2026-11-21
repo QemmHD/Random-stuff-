@@ -86,6 +86,7 @@ export const case3: CaseFile = {
         { from: 'them', text: 'ep 9 mix is done. it names them. holy shit, wren. you sure?', t: '2026-11-04T18:30' },
         { from: 'me', text: "right of reply goes out tmrw. legal's fine. friday 6am.", t: '2026-11-04T18:41' },
         { from: 'them', text: "live show at the Hideout tonight, wish you were here. green room has free beer and a toilet that hasn't flushed since the 90s. call me after?", t: '2026-11-06T17:40' },
+        { from: 'them', text: "also the sound guy asked if you're single. I said you're married to a cold case. he said 'kinky.' I think he meant it", t: '2026-11-06T17:43' },
         { from: 'me', text: 'meeting someone at the marina. tell you everything tmrw', t: '2026-11-06T21:20' },
         { from: 'them', text: "ep didn't drop. podhost says YOU unscheduled it at 10:36pm?? that's not you. where are you", t: '2026-11-07T06:15', clue: 'unscheduled' },
       ],

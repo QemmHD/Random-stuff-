@@ -57,10 +57,14 @@ export const case1: CaseFile = {
         { from: 'them', text: "it's always lab stuff with you. i'm basically dating a fucking sea cucumber", t: '2026-10-01T19:21' },
         { from: 'me', text: 'sea cucumbers can eject their own organs to escape. something to think about', t: '2026-10-01T19:24' },
         { from: 'them', text: 'cool cool. see you friday then 😐', t: '2026-10-01T19:25' },
+        { from: 'them', text: 'wear the green thing 😏', t: '2026-10-01T19:27' },
+        { from: 'me', text: 'the green thing is my lab coat theo', t: '2026-10-01T19:29' },
+        { from: 'them', text: 'i know what i said', t: '2026-10-01T19:29' },
         { from: 'them', text: "seriously? you're just fucking leaving? we JUST got drinks", t: '2026-10-03T21:44' },
         { from: 'them', text: "you've been weird as shit for two weeks. who is he", t: '2026-10-03T21:45' },
         { from: 'me', text: "it's not like that. there is no he. I can't explain yet. please just trust me", t: '2026-10-03T21:47' },
         { from: 'them', text: "you'll fucking regret walking out on me Mara", t: '2026-10-03T21:49', clue: 'theo_threat' },
+        { from: 'them', text: 'dave just threw up in the urinal and then high-fived himself. this is what my life is without you', t: '2026-10-04T00:28' },
         { from: 'them', text: 'im sorry. that came out so wrong. im an asshole. call me', t: '2026-10-04T00:31' },
         { from: 'them', text: 'mara?', t: '2026-10-04T08:10' },
         { from: 'them', text: "june says you didn't come home. please", t: '2026-10-05T11:42' },
@@ -74,6 +78,10 @@ export const case1: CaseFile = {
         { from: 'them', text: "also someone ate my entire hummus and left the empty tub in the fridge like a goddamn serial killer leaving a calling card", t: '2026-09-28T10:32' },
         { from: 'me', text: 'it was a hummus emergency. I will replace it. with the good one', t: '2026-09-28T10:35' },
         { from: 'them', text: 'the good one or i tell theo you snore', t: '2026-09-28T10:35' },
+        { from: 'them', text: 'UPDATE. the bumble guy brought his own SHEETS. in a tote bag. like a little picnic. i left before he finished making the bed', t: '2026-09-30T01:14' },
+        { from: 'me', text: 'JUNE', t: '2026-09-30T01:20' },
+        { from: 'them', text: "he called it 'the overnight kit.' it had a candle mara. a CANDLE. he'd done this before. many times. professionally", t: '2026-09-30T01:21' },
+        { from: 'me', text: 'so proud of you for fleeing. this is growth', t: '2026-09-30T07:02' },
         { from: 'me', text: "I need to tell you something and you can't freak out. like actually can't", t: '2026-10-02T22:10' },
         { from: 'them', text: '...ok? are you pregnant. is it theo\'s. is it the sea cucumber guy', t: '2026-10-02T22:10' },
         { from: 'me', text: 'Pryce changed the Lab B numbers. the lead readings. I have the originals', t: '2026-10-02T22:12' },
@@ -359,7 +367,7 @@ export const case1: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'You have what you need. Open the Case Report and back every answer with a pinned clue.' },
   ],
 
-  handlerIntro: "You're on. Phone's live, battery's whatever the hell it is, and it smells like a crab died in it. Anything you pin goes to the board — I'll ping you if I see something worth a damn. Start with the lock screen.",
+  handlerIntro: "You're on. Phone's live, battery's whatever the hell it is, and it smells like a crab crawled in there to die. A rich developer, a professor with tenure and a god complex, and a dead-quiet beach town — this shit writes itself. Anything you pin goes to the board — I'll ping you if I see something worth a damn. Start with the lock screen.",
 
   epilogue: {
     solved: [

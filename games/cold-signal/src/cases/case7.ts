@@ -76,10 +76,13 @@ export const case7: CaseFile = {
       id: 'th_sami', contact: 'sami', messages: [
         { from: 'them', text: 'found your mum\'s sketchbooks in the loft. like 40 pages of elephant hawk-moths. the pink and olive ones. want them downstairs?', t: '2026-06-14T11:20', photo: 'c7_ph_sketchbook', clue: 'hawkmoth' },
         { from: 'me', text: 'keep them. she hid one in every copy she ever painted. her signature. "a copy is not allowed to be perfect, Ilsie."', t: '2026-06-14T11:31', clue: 'hawkmoth' },
-        { from: 'them', text: 'you\'re quiet this week. is it the analysis thing?', t: '2026-10-28T19:02' },
+        { from: 'them', text: 'you\'re quiet this week. is it the analysis thing, or did I leave the seat up again', t: '2026-10-28T19:02' },
         { from: 'me', text: "it's happening, Sami. Monday. after 30 years somebody is finally going to look.", t: '2026-10-28T19:10' },
+        { from: 'them', text: 'then monday night we celebrate. wine, the good sheets, and you not smelling like floor polish and old men\'s regret', t: '2026-10-28T19:12' },
+        { from: 'me', text: "it's a date. I'll even shave my legs. both of them. that's how you know it's serious", t: '2026-10-28T19:14' },
+        { from: 'them', text: 'be still my heart (and other organs)', t: '2026-10-28T19:15' },
         { from: 'me', text: 'they scheduled a sprinkler test in Gallery 6. 4am tonight. "do not cover the works". three days before the analysis. Sami they\'re going to drown her.', t: '2026-10-30T23:40', clue: 'sami_tonight', deletedUntil: 'recovered:msgfrag' },
-        { from: 'them', text: 'call the police', t: '2026-10-30T23:44', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: 'call the police. Ilse. call the fucking police', t: '2026-10-30T23:44', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: "and say what? the board chair signed a work order to test the pipes. they'd hand her straight back to him.", t: '2026-10-30T23:46', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: "I'm taking her off the wall. the case is in the car. my phone goes in the locker so nobody can follow it. I love you. don't lie for me, just don't know anything.", t: '2026-10-31T01:58', clue: 'sami_tonight', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: 'Ilse. police at the door. they say a crew took the painting and you might be hurt. please', t: '2026-10-31T09:15' },
@@ -90,7 +93,7 @@ export const case7: CaseFile = {
       id: 'th_anand', contact: 'anand', messages: [
         { from: 'them', text: "Ilse, odd one. Someone sent me an anonymous note about the Lorne: 'test the third pane of the lantern.' You sit in that room every night. Seen anything strange?", t: '2026-10-14T10:05' },
         { from: 'me', text: "Just me and the clock. Maybe somebody loves her as much as I do.", t: '2026-10-14T23:50' },
-        { from: 'them', text: "I'll need G6 after close on Nov 1 to set up the XRF. Analysis is Monday Nov 2, 9am. FYI the board chair asked me for the date personally. In 20 years no chair has ever cared about pigments.", t: '2026-10-26T15:30', clue: 'anand_booked' },
+        { from: 'them', text: "I'll need G6 after close on Nov 1 to set up the XRF. Analysis is Monday Nov 2, 9am. FYI the board chair asked me for the date personally. In 20 years no chair has ever cared about pigments. Usually they only care about the gala bar tab and which donor's wife they're seated next to.", t: '2026-10-26T15:30', clue: 'anand_booked' },
         { from: 'me', text: "I'll keep her company till then.", t: '2026-10-26T23:10' },
         { from: 'them', text: 'Ilse, the police are here. The wall is empty. Please be all right.', t: '2026-10-31T08:20' },
         { from: 'them', text: "If anyone is reading this: I'd still like to test her. If she still exists.", t: '2026-11-01T10:45' },
@@ -100,29 +103,31 @@ export const case7: CaseFile = {
       id: 'th_gil', contact: 'gil', messages: [
         { from: 'them', text: "Heads up. Facilities sprinkler flow test in G6, Fri night 03:55–04:25. Contractor has his own badge. Chair says do NOT cover or move works, test needs 'normal gallery conditions'. His words. Work order's on the desk.", t: '2026-10-29T16:12', clue: 'work_order' },
         { from: 'me', text: 'Gil. That is an 1891 oil on canvas under a sprinkler head.', t: '2026-10-29T16:20' },
-        { from: 'them', text: "Said the same. He says G6 is a 'dry test', nothing discharges. Above my pay grade, Ilse.", t: '2026-10-29T16:24' },
+        { from: 'them', text: "Said the same. He says G6 is a 'dry test', nothing discharges. Above my pay grade, Ilse. Everything's above my pay grade. The vending machine is above my pay grade.", t: '2026-10-29T16:24' },
         { from: 'them', text: 'ILSE. where are you. the Six is empty and soaked.', t: '2026-10-31T06:04' },
         { from: 'them', text: "Vey's already here. Came in at ten to six, said he wanted to see 'the test results'. Before any of us knew. Police on the way.", t: '2026-10-31T06:20', clue: 'gallery_soaked' },
-        { from: 'them', text: "Off the record: he's telling everyone it was a crew. I've watched the tape. There's no crew. Just you, and you were careful. Ilse, what did you do?", t: '2026-10-31T19:40' },
+        { from: 'them', text: "Off the record: he's telling everyone it was a crew. I've watched the tape. There's no crew. Just you, and you were careful. Ilse, what the hell did you do?", t: '2026-10-31T19:40' },
       ],
     },
     {
       id: 'th_felix', contact: 'felix', messages: [
         { from: 'them', text: 'night guard! settle a bet. which sensors are on the Lorne? asking for my painting of the gallery at night, honest', t: '2026-09-03T21:14', clue: 'felix_alarm' },
         { from: 'me', text: 'nice try. paint the clock.', t: '2026-09-03T23:02' },
+        { from: 'them', text: 'the clock is BORING. also i am extremely high. ok the clock is less boring now. the clock is looking at me ilse', t: '2026-09-03T23:05' },
+        { from: 'me', text: 'go home felix. drink water. stop sexting the clock', t: '2026-09-03T23:07' },
         { from: 'them', text: "got a BUYER for my copy!! a Mr. Albrecht, cash, wants it by Nov 1. he asked if I could 'age it a bit'. weird right", t: '2026-10-12T18:30', clue: 'felix_buyer' },
         { from: 'me', text: "Felix. Permit rule 4: a copy must be at least 10% smaller than the original. Don't age anything. Don't be my mother's story.", t: '2026-10-12T23:40' },
         { from: 'them', text: '??? ok. 10% smaller, no aging, got it. your mother painted?', t: '2026-10-12T23:44' },
-        { from: 'them', text: "I just heard. I was at the Hollis drawing marathon ALL NIGHT, forty people saw me. the cops are going to look at me first aren't they", t: '2026-10-31T07:30', photo: 'c7_ph_marathon', clue: 'felix_marathon' },
+        { from: 'them', text: "I just heard. I was at the Hollis drawing marathon ALL NIGHT, forty people saw me. one of them was the nude model, Gary, who can vouch for me with his whole entire everything. the cops are going to look at me first aren't they", t: '2026-10-31T07:30', photo: 'c7_ph_marathon', clue: 'felix_marathon' },
       ],
     },
     {
       id: 'th_bea', contact: 'bea', messages: [
-        { from: 'them', text: "swap? I'll do your Fri if you do my Sun. my sister's in town", t: '2026-10-30T18:00' },
+        { from: 'them', text: "swap? I'll do your Fri if you do my Sun. my sister's in town and she wants to 'go out-out'. last time she went out-out she woke up engaged to a DJ. pray for my liver", t: '2026-10-30T18:00' },
         { from: 'me', text: 'no, I want Friday. I need the quiet. sorry Bea x', t: '2026-10-30T18:12', clue: 'chose_friday' },
         { from: 'them', text: 'Ilse the wall is EMPTY. there is water everywhere. where are you??', t: '2026-10-31T06:01' },
         { from: 'them', text: "the contractor's still here, white as a sheet. he says the heads in 6 were LIVE, not dry. he says 'whoever wrote dry test on that order lied to me'.", t: '2026-10-31T06:40', clue: 'live_heads' },
-        { from: 'them', text: "I'm feeding your cactus in the guard room. Come back and do it yourself.", t: '2026-11-01T14:00' },
+        { from: 'them', text: "I'm feeding your cactus in the guard room. Only prick in this building I actually like. Come back and do it yourself.", t: '2026-11-01T14:00' },
       ],
     },
     {
@@ -186,7 +191,7 @@ export const case7: CaseFile = {
 
   voicemails: [
     { id: 'vm_mum', contact: 'mum', t: '2019-05-11T17:31', duration: '0:44', voice: { pitch: 0.9, rate: 0.85, female: true }, clue: 'hanne_saw', deletedUntil: 'recovered:voice', transcript: "Ilsie, it's Mum. I sat in front of her for an hour. Love... she's mine. The one on the wall. My little moth is in the third pane, plain as day, with their label underneath. I painted her in 1996 for that man Vey, 'while the real one's away being cleaned.' The real one never came back. I don't know what to do. Ring me when you're off." },
-    { id: 'vm_gil', contact: 'gil', t: '2026-10-31T06:10', duration: '0:26', voice: { pitch: 0.85, rate: 1.1, female: false }, clue: 'gallery_soaked', transcript: "Ilse, it's Gil. Gallery Six is empty and there's an inch of water on the floor. The sprinklers ran. Vey's already here. He came in at ten to six asking about 'the test'. Call me. Please. If someone's got you, I don't care about the painting." },
+    { id: 'vm_gil', contact: 'gil', t: '2026-10-31T06:10', duration: '0:26', voice: { pitch: 0.85, rate: 1.1, female: false }, clue: 'gallery_soaked', transcript: "Ilse, it's Gil. Gallery Six is empty and there's an inch of water on the floor. The sprinklers ran. Vey's already here. He came in at ten to six asking about 'the test'. Call me. Please. Christ. If someone's got you, I don't care about the painting." },
     { id: 'vm_sami', contact: 'sami', t: '2026-11-01T12:01', duration: '0:18', voice: { pitch: 1.0, rate: 0.9, female: false }, transcript: "It's me. I know you won't hear this. I'm not telling them anything, because I don't know anything. I fed the cat. I'm sleeping on your side. Come home." },
     { id: 'vm_unknown', contact: 'c7unknown', t: '2026-11-01T09:11', duration: '0:12', voice: { pitch: 0.75, rate: 0.8, female: false }, transcript: "Ms. Kade. This is a friend of the museum. Please check your messages. Time matters." },
   ],
@@ -226,10 +231,10 @@ export const case7: CaseFile = {
   ],
 
   glimpse: [
-    { id: 'g7_clock', author: 'me', photo: 'c7_ph_gallery6', caption: 'night 400. me, her, and a clock that gave up in 1931.', t: '2026-10-27T03:30', likes: 31, comments: [{ author: 'bea', text: "you're so weird I love it" }, { author: 'felix', text: 'paint the clock, she says' }] },
+    { id: 'g7_clock', author: 'me', photo: 'c7_ph_gallery6', caption: 'night 400. me, her, and a clock that gave up in 1931.', t: '2026-10-27T03:30', likes: 31, comments: [{ author: 'bea', text: "you're so weird I love it" }, { author: 'felix', text: 'paint the clock, she says' }, { author: 'sami', text: 'four hundred nights. that clock has spent more nights with my wife than I have. I want a word with it' }] },
     { id: 'g7_mum', author: 'me', photo: 'c7_ph_memorial', caption: "Mum's last show. Hanne Marek, 1952–2024. Forty years of copies, and a moth in every one, so nobody could ever pass hers off as real. 🖤", t: '2024-05-10T21:00', likes: 64, comments: [{ author: 'sami', text: 'she was the best of us' }], clue: 'nee_marek' },
-    { id: 'g7_marathon', author: 'felix', photo: 'c7_ph_marathon', caption: 'HOUR 17. 3AM. my hand is a claw. 40 of us still going 🖤 #hollis24', t: '2026-10-31T03:02', likes: 88, comments: [{ author: 'bea', text: 'go felix!!' }], clue: 'felix_marathon' },
-    { id: 'g7_felixcopy', author: 'felix', photo: 'c7_ph_felixcopy', caption: 'Lorne copy for a private collector, almost done. the lantern is a nightmare', t: '2026-10-10T16:00', likes: 40, comments: [{ author: 'me', text: '10% smaller. rule 4.' }], clue: 'felix_buyer' },
+    { id: 'g7_marathon', author: 'felix', photo: 'c7_ph_marathon', caption: 'HOUR 17. 3AM. my hand is a claw. 40 of us still going 🖤 #hollis24', t: '2026-10-31T03:02', likes: 88, comments: [{ author: 'bea', text: 'go felix!!' }, { author: 'felix', text: 'update: Gary the model fell asleep standing up. still holding the pose. a true professional' }], clue: 'felix_marathon' },
+    { id: 'g7_felixcopy', author: 'felix', photo: 'c7_ph_felixcopy', caption: 'Lorne copy for a private collector, almost done. the lantern is a nightmare', t: '2026-10-10T16:00', likes: 40, comments: [{ author: 'me', text: '10% smaller. rule 4.' }, { author: 'felix', text: 'rule 4 is a buzzkill and so are you 🖤' }], clue: 'felix_buyer' },
   ],
 
   bank: {
@@ -371,11 +376,11 @@ export const case7: CaseFile = {
 
   events: [
     { id: 'e7_vey1', kind: 'text', when: ['unlocked'], minPins: 3, delayMs: 5000, thread: 'th_c7unknown', contact: 'c7unknown', text: 'Ms. Kade, or whoever has this phone. The Hollin will be generous for the quiet return of the Lorne. No police. No tests. No questions.', clue: 'vey_reward' },
-    { id: 'e7_h_order', kind: 'handler', when: ['pinned:work_order'], delayMs: 3000, text: "A sprinkler test over an uncovered 1891 oil. I've worked art fraud a long time. Check that date against everything else on this phone's calendar." },
-    { id: 'e7_h_log', kind: 'handler', when: ['pinned:door_log'], delayMs: 3500, text: "Go through that log one badge at a time. Then read the board's press statement again." },
+    { id: 'e7_h_order', kind: 'handler', when: ['pinned:work_order'], delayMs: 3000, text: "A sprinkler test over an uncovered 1891 oil. I've worked art fraud a long time, and rich men only get this interested in plumbing when something needs to drown. Check that date against everything else on this phone's calendar." },
+    { id: 'e7_h_log', kind: 'handler', when: ['pinned:door_log'], delayMs: 3500, text: "Go through that log one badge at a time. Then read the board's press statement again. Then tell me who's full of shit." },
     { id: 'e7_vey2', kind: 'text', when: ['event:e7_vey1', 'recovered:mailpurge'], delayMs: 6000, thread: 'th_c7unknown', contact: 'c7unknown', text: "I knew your mother, you know. Very talented. It would be a shame for her name to come up in connection with a theft. Bring it back and it never will.", clue: 'vey_knew' },
-    { id: 'e7_h_lab', kind: 'handler', when: ['note:n_anand'], delayMs: 5000, text: "Call from the State Conservation Lab. Their weekend porter just signed for a padded 40×52 case. A woman left it with a note: 'For Dr. Anand only. Third pane. Please look before anyone else does.' She didn't wait. Dr. Anand is on her way in." },
-    { id: 'e7_h_ready', kind: 'handler', when: ['unlocked'], minPins: 18, delayMs: 3000, text: "The press says theft. The board says crew. The phone says something else. When every answer has a pin behind it, file the Case Report, and I'll walk it upstairs myself." },
+    { id: 'e7_h_lab', kind: 'handler', when: ['note:n_anand'], delayMs: 5000, text: "Call from the State Conservation Lab. Their weekend porter just signed for a padded 40×52 case. A woman left it with a note: 'For Dr. Anand only. Third pane. Please look before anyone else does.' She didn't wait. Dr. Anand is on her way in — still in her pajamas, I'm told, and swearing like a sailor. I like her already." },
+    { id: 'e7_h_ready', kind: 'handler', when: ['unlocked'], minPins: 18, delayMs: 3000, text: "The press says theft. The board says crew. The phone says something else. When every answer has a pin behind it, file the Case Report, and I'll walk it upstairs myself — right past the chief, who plays golf with Vey, and I'll be smiling the whole goddamn way." },
   ],
 
   hints: [
@@ -394,7 +399,7 @@ export const case7: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'Open the Case Report. Six questions, and the second one is about her. Back each answer with a pinned clue.' },
   ],
 
-  handlerIntro: "A $14 million painting is gone and the guard has vanished. The board says she's a victim, and the precinct says she's a suspect. Her husband says the passcode is a clock that never moves. Start there.",
+  handlerIntro: "A $14 million painting is gone and the guard has vanished. Fourteen million for a girl holding a lamp — I own a lamp, nobody's insuring my shit. The board says she's a victim, and the precinct says she's a suspect. The precinct also thinks Monet is a cheese. Her husband says the passcode is a clock that never moves. Start there.",
 
   epilogue: {
     solved: [
