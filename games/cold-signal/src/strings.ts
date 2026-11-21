@@ -166,6 +166,8 @@ export const S = {
   backToFiles: 'Case files',
   keepInvestigating: 'Keep investigating',
   playtime: 'Time on case',
+  hintsUsed: (n: number) => (n === 0 ? 'No hints' : `${n} hint${n === 1 ? '' : 's'}`),
+  cleanSolve: 'Clean solve — no hints used',
 
   // misc
   rotate: 'Best played in portrait',

@@ -24,6 +24,7 @@ interface SaveData {
   draft: Record<string, Answer>;
   playMs: number;
   unread: string[]; // thread ids with unread live messages
+  hints?: number;
 }
 
 export type GameEvent =
@@ -71,6 +72,7 @@ export class Game {
   report: ReportResult | null;
   draft: Record<string, Answer>;
   unread: Set<string>;
+  hintsUsed = 0;
   private playMs: number;
   private sessionStart = performance.now();
   private listeners: ((e: GameEvent) => void)[] = [];
@@ -90,6 +92,7 @@ export class Game {
     this.report = s?.report ?? null;
     this.draft = s?.draft ?? {};
     this.unread = new Set(s?.unread ?? []);
+    this.hintsUsed = s?.hints ?? 0;
     this.clueMap = new Map(c.clues.map((k) => [k.id, k]));
     // pins can be stale if case data changed between versions
     this.pins = this.pins.filter((p) => this.clueMap.has(p.id));
@@ -115,6 +118,7 @@ export class Game {
       draft: this.draft,
       playMs: this.totalPlayMs(),
       unread: [...this.unread],
+      hints: this.hintsUsed,
     };
     store(SAVE_PREFIX + this.c.id, data);
   }
@@ -296,6 +300,14 @@ export class Game {
   }
 
   // ---------- hints ----------
+  /** Ask the handler for a hint: counted for the end-of-case score. */
+  useHint(): string {
+    const t = this.hint();
+    this.hintsUsed++;
+    this.pushHandler(t);
+    return t;
+  }
+
   hint(): string {
     for (const h of this.c.hints) {
       if (this.flags.has(h.until)) continue;

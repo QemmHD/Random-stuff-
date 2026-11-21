@@ -1150,3 +1150,5 @@ kbd { display: inline-grid; place-items: center; min-width: 24px; height: 22px; 
 .rp-change { min-height: 40px; padding: 0 12px; border-radius: 18px; font-size: .82em; color: var(--accent); border: 1px dashed rgba(94,242,223,.4); }
 .modal-comms { max-height: 60vh; overflow-y: auto; padding: 4px 0; }
 @media (max-width: 560px) { .h-toast p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; } }
+.ep-badge { display: inline-block; margin: -6px 0 16px; padding: 6px 14px; border-radius: 20px; font-size: .85em; font-weight: 700; color: #2a1600; background: linear-gradient(180deg, #ffd88a, #f3a530); box-shadow: 0 0 24px rgba(255,181,71,.45); animation: starIn .6s var(--spring) 1.9s both; }
+.investigate.bare .stage { padding-bottom: env(safe-area-inset-bottom); }

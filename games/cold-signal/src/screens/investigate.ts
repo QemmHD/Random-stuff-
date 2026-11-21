@@ -103,7 +103,7 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
     h('div', { class: 'hud-title' }, h('small', null, `CASE ${c.number}`), h('b', null, c.title)),
     h('div', { class: 'hud-progress' }, ring, prog),
     h('div', { class: 'hud-actions' },
-      h('button', { class: 'hud-btn', type: 'button', onclick: () => { const t = game.hint(); game.pushHandler(t); } }, glyph('hint'), h('span', null, S.hint)),
+      h('button', { class: 'hud-btn', type: 'button', onclick: () => { game.useHint(); } }, glyph('hint'), h('span', null, S.hint)),
       boardBtn,
       reportBtn));
 
