@@ -75,7 +75,6 @@ const DEW_D = '#b9825c';
 const DEWHAIR = '#5b3a22';
 const SPAT = '#8d5a3b';
 const SPAT_D = '#5e3823';
-const ROBE = '#f4f1ea';
 
 // ════════════════════════════════════════════════════════════════ AVATARS
 interface Bust {
@@ -342,7 +341,7 @@ const well = (plaque = true): string =>
 
 /** Framed oil portrait of Big Lou in his car-wash polo, 110×140 local units. */
 const louPortrait = (): string =>
-  R(0, 0, 110, 140, '#8a6410') + R(3, 3, 104, 134, GOLD) + R(9, 9, 92, 122, '#7a5a10') + R(12, 12, 86, 116, '#16505c') + C(40, 40, 40, '#2a8a96', 'opacity=".6"') +
+  R(0, 0, 110, 140, '#8a6410') + R(3, 3, 104, 134, GOLD) + R(9, 9, 92, 122, '#7a5a10') + R(12, 12, 86, 116, '#16505c') + E(55, 62, 38, 48, '#2a8a96', 'opacity=".6"') +
   P('M14 128Q16 96 55 92Q94 96 96 128Z', '#11a0b8') + P('M44 94L55 108L66 94L55 90Z', '#0c7f95') + R(47, 78, 16, 18, LOU_D) +
   E(55, 60, 25, 28, LOU) + P('M57 32Q82 36 80 62Q78 84 57 88Z', LOU_D, 'opacity=".6"') + C(46, 56, 2.4, '#2a1a12') + C(64, 56, 2.4, '#2a1a12') + S('M41 50q5-3 9 0M60 50q5-3 9 0', '#fff', 2.4) +
   P('M39 71Q47 63 55 68Q63 63 71 71Q65 78 55 72Q45 78 39 71Z', '#f6f3ea') + S('M42 40Q52 33 62 35', '#fff', 3, 'opacity=".4"') + S('M12 12H98V128', '#fff', 1, 'opacity=".25"');
@@ -359,10 +358,14 @@ interface Fig {
   hair?: string; face?: string; w?: number; la?: number[]; ra?: number[];
   over?: string; under?: string; skirt?: string; rim?: string; shoes?: string; belly?: number; sleeve?: string;
 }
-const fig = (x: number, y: number, s: number, o: Fig, flip = false): string => {
+const figHead = (o: Fig): string =>
+  R(-4, -142, 8, 10, o.skin) + C(0, -152, 13, o.skin) + P('M1 -165A13 13 0 0 1 1 -139Z', '#000', 'opacity=".14"') +
+  (o.rim ? S('M9 -162A13 13 0 0 1 9 -142', o.rim, 2.2, 'opacity=".9"') : '') +
+  (o.face ?? C(-5, -153, 1.5, '#1a1318') + C(5, -153, 1.5, '#1a1318') + S('M-4 -146Q0 -144 4 -146', '#3a1a14', 1.5)) + (o.hair ?? '');
+const figBody = (o: Fig, head = ''): string => {
   const w = o.w ?? 17, sl = o.sleeve ?? o.top;
   const arm = (sx: number, p: number[]): string => S(`M${sx} -127L${p[0]} ${p[1]}L${p[2]} ${p[3]}`, sl, 10) + C(p[2], p[3], 5.6, o.skin);
-  return G(`translate(${x} ${y}) scale(${flip ? -s : s} ${s})`,
+  return (
     (o.under ?? '') + E(0, 1, w + 12, 4, '#000', 'opacity=".3"') +
     (o.skirt
       ? R(-w / 2 - 3, -40, 6, 38, o.skin) + R(w / 2 - 3, -40, 6, 38, o.skin) + P(`M${-w + 2} -78H${w - 2}L${w + 3} -34H${-w - 3}Z`, o.skirt)
@@ -372,16 +375,12 @@ const fig = (x: number, y: number, s: number, o: Fig, flip = false): string => {
     P(`M${-w} -131Q0 -138 ${w} -131L${w - 1} -72H${-w + 1}Z`, o.top) + (o.belly ? E(0, -92, w + o.belly, 26, o.top) : '') +
     P(`M2 -134Q0 -136 ${w} -131L${w - 1} -72H5Z`, '#000', 'opacity=".18"') +
     (o.rim ? S(`M${w} -130L${w - 1} -74`, o.rim, 2.4, 'opacity=".9"') : '') +
-    R(-4, -142, 8, 10, o.skin) + C(0, -152, 13, o.skin) + P('M1 -165A13 13 0 0 1 1 -139Z', '#000', 'opacity=".14"') +
-    (o.rim ? S('M9 -162A13 13 0 0 1 9 -142', o.rim, 2.2, 'opacity=".9"') : '') +
-    (o.face ?? C(-5, -153, 1.5, '#1a1318') + C(5, -153, 1.5, '#1a1318') + S('M-4 -146Q0 -144 4 -146', '#3a1a14', 1.5)) +
-    (o.hair ?? '') + arm(w - 2, o.ra ?? [w + 5, -100, w + 3, -72]) + (o.over ?? ''));
+    head + arm(w - 2, o.ra ?? [w + 5, -100, w + 3, -72]) + (o.over ?? ''));
 };
+const fig = (x: number, y: number, s: number, o: Fig, flip = false): string =>
+  G(`translate(${x} ${y}) scale(${flip ? -s : s} ${s})`, figBody(o, figHead(o)));
 const HCAP = 'M-13.5 -153Q-15 -168 0 -167Q15 -168 13.5 -153Q8 -162 0 -161Q-8 -162 -13.5 -153Z';
 const SUITV = P('M-5 -134L0 -116L5 -134Z', '#f4f4f0') + P('M-1.5 -131h3l1 14-2.5 3-2.5-3z', '#0a0a0c');
-/** Dewey's head dressing (bandana, shag, beard) in fig coordinates. */
-const DEWHEAD = P('M-14 -150q-3 16 1 26 5-6 3-24zM14 -150q3 16-1 26-5-6-3-24z', DEWHAIR) + P('M-12 -148q12 20 24 0v6q-12 12-24 0z', DEWHAIR) + P(HCAP, DEWHAIR) + P('M-13.5 -154Q0 -163 13.5 -154V-159Q0 -168 -13.5 -159Z', '#d8352a') + P('M13 -158l8-3-2 6 5 4-9-1z', '#b82a22');
-const DEWFACE = S('M-8 -153h6M2 -153h6', '#1a1318', 1.8) + P('M-5 -146Q0 -139 5 -146Z', '#fff', 'stroke="#2a130c" stroke-width="1"');
 /** Dewey from the chest up (head centre (0,-34), chest to y=62), no arms. */
 const DEWBUST =
   P('M-40 62Q-44 6 0 0Q44 6 40 62Z', '#3f7f6a') + P('M-22 62V16H22V62Z', '#efe6cf') + S('M-22 16L-10 2M22 16L10 2', '#efe6cf', 5) +
@@ -511,7 +510,7 @@ A.c9_wall_lock = ((): string => {
 A.c9_wall_home = ((): string => {
   const k = 'c9_wall_home';
   const defs =
-    lg(`${k}sky`, [[0, '#ff8a4a'], [0.5, '#ffc45a'], [1, '#ffe9a0']]) + lg(`${k}gr`, [[0, '#c98a4a'], [1, '#6a3a2a']]) +
+    lg(`${k}sky`, [[0, '#ff8a4a'], [0.5, '#ffc45a'], [1, '#ffe9a0']]) + lg(`${k}gd`, [[0, '#c98a4a'], [1, '#6a3a2a']]) +
     rg(`${k}sun`, [[0, '#fff8d0', 1], [0.25, '#ffe08a', 0.7], [1, '#ffc45a', 0]]) + bl(`${k}b`, 8) +
     peepDef(`${k}p0`, '#1c1410', DEW, '#fff3c0') + peepDef(`${k}p1`, '#e6c24a', '#f0c4a4', '#fff3c0') + peepDef(`${k}p2`, '#2a1a36', SPAT, '#fff3c0');
   const r = rng(11);
@@ -530,7 +529,7 @@ A.c9_wall_home = ((): string => {
     R(0, 0, 600, 1300, `url(#${k}sky)`) + C(470, 420, 330, `url(#${k}sun)`) + C(470, 420, 46, '#fffbe6') +
     P('M0 580Q80 520 150 570Q230 520 300 572Q400 520 470 570Q540 540 600 566V720H0Z', '#5a4a22', 'opacity=".7"') +
     tent(70, 640, 1.3, '#e2412f') + tent(540, 650, 1.2, '#2f9e8a') +
-    R(0, 716, 600, 584, `url(#${k}gr)`) + P('M0 716H600V740H0Z', '#ffe9a0', 'opacity=".25"') +
+    R(0, 716, 600, 584, `url(#${k}gd)`) + P('M0 716H600V740H0Z', '#ffe9a0', 'opacity=".25"') +
     bulbs(0, 480, 300, 540, 14, 9) + bulbs(300, 540, 600, 470, 14, 9) +
     G('translate(18 532) scale(1.64)', truck({ rim: '#fff6c8' })) + dewey +
     P('M150 820L330 820L260 1300H-60Z', '#000', 'opacity=".12"') + q +
@@ -543,7 +542,6 @@ A.c9_map = ((): string => {
   const k = 'c9_map';
   const defs = lg(`${k}lake`, [[0, '#2f7fa8'], [1, '#174a6a']], 1, 1) + lg(`${k}land`, [[0, '#e9dfc2'], [1, '#d6c9a2']], 1, 1) + bl(`${k}b`, 4);
   const SHORE = 'M700 0C660 120 636 250 650 340C664 420 736 432 746 500C752 550 722 580 730 600';
-  const house = (x: number, y: number, s: number, c: string, roof: string): string => G(`translate(${x} ${y}) scale(${s})`, R(-9, -6, 18, 12, c) + P('M-12 -6L0 -15L12 -6Z', roof));
   let blocks = '';
   for (let i = 0; i < 6; i++) for (let j = 0; j < 5; j++) {
     if ((i === 3 && j === 0) || (i === 5 && j > 2)) continue;
@@ -602,18 +600,18 @@ A.c9_map = ((): string => {
 // ════════════════════════════════════════════════════════════════ PHOTOS
 A.c9_ph_truck = ((): string => {
   const k = 'c9_ph_truck';
-  const defs = lg(`${k}sky`, [[0, '#2f9ee6'], [1, '#bfeaff']]) + lg(`${k}gr`, [[0, '#d8c48a'], [1, '#a08a58']]) + rg(`${k}sun`, [[0, '#fff', 0.9], [1, '#fff', 0]]);
+  const defs = lg(`${k}sky`, [[0, '#2f9ee6'], [1, '#bfeaff']]) + lg(`${k}gd`, [[0, '#d8c48a'], [1, '#a08a58']]) + rg(`${k}sun`, [[0, '#fff', 0.9], [1, '#fff', 0]]);
   const tree = (x: number, y: number, s: number): string => G(`translate(${x} ${y}) scale(${s})`, R(-6, -40, 12, 60, '#6a4a2a') + C(0, -70, 44, '#3c9a3a') + C(-26, -50, 28, '#2f8a34') + C(26, -54, 30, '#4aae42') + C(-8, -84, 20, '#6ac85a'));
   const tent = (x: number, c: string): string => G(`translate(${x} 318)`, P('M-70 2L0 -44L70 2Z', c) + P('M0 -44L70 2H24Z', '#000', 'opacity=".15"') + P('M-70 2H70V14' + 'q-7 8-14 0'.repeat(10) + 'Z', '#fff') + R(-62, 14, 4, 80, '#8a8a8a') + R(58, 14, 4, 80, '#8a8a8a'));
-  const dewey = G('translate(388 372) scale(1.1)',
+  const dewey = G('translate(392 321) scale(.74)',
     S('M-38 22Q-70 0 -72 -40', '#3f7f6a', 16) + C(-72, -44, 10, DEW) + S('M-76 -48L-92 -92M-68 -50L-74 -96', '#cfd6dc', 5) + S('M-76 -48L-92 -92', '#fff', 1.5) + DEWBUST + S('M40 22Q58 40 50 60', '#3f7f6a', 16));
   const body =
     R(0, 0, 800, 420, `url(#${k}sky)`) + C(690, 70, 150, `url(#${k}sun)`) + E(170, 90, 90, 22, '#fff', 'opacity=".8"') + E(230, 74, 60, 20, '#fff', 'opacity=".8"') + E(520, 130, 70, 16, '#fff', 'opacity=".6"') +
     tree(40, 380, 1.5) + tree(760, 390, 1.7) + tree(430, 360, 1.1) + tent(120, '#e2412f') + tent(700, '#ffd23f') +
-    R(0, 400, 800, 200, `url(#${k}gr)`) + P('M0 400H800V416H0Z', '#fff', 'opacity=".2"') +
-    bulbs(0, 150, 400, 190, 16, 12) + bulbs(400, 190, 800, 140, 16, 12) +
+    R(0, 400, 800, 200, `url(#${k}gd)`) + P('M0 400H800V416H0Z', '#fff', 'opacity=".2"') +
+    bulbs(0, 150, 400, 190, 16, 9) + bulbs(400, 190, 800, 140, 16, 9) +
     G('translate(40 150) scale(1.95)', truck({ rim: '#fff' })) + dewey +
-    fig(92, 560, 1.5, { skin: SPAT, top: '#8a4ad8', legs: '#2a3a6a', hair: P(HCAP, '#1c1410'), rim: '#fff', ra: [30, -110, 40, -138], face: C(3, -153, 1.5, '#1a1318') + C(9, -153, 1.5, '#1a1318') + S('M2 -146Q6 -143 10 -147', '#3a1a14', 1.5) }) +
+    fig(66, 566, 1.5, { skin: SPAT, top: '#8a4ad8', legs: '#2a3a6a', hair: P(HCAP, '#1c1410'), rim: '#fff', ra: [30, -110, 40, -138], face: C(3, -153, 1.5, '#1a1318') + C(9, -153, 1.5, '#1a1318') + S('M2 -146Q6 -143 10 -147', '#3a1a14', 1.5) }) +
     // chalkboard A-frame
     G('translate(644 296) rotate(3)', P('M-8 270L6 -6H150L164 270H146L138 232H18L10 270Z', '#7a4a1e') + R(8, 4, 140, 220, '#1e2a26') + R(8, 4, 140, 220, 'none', 'stroke="#a8743a" stroke-width="5"') +
       S('M26 40H130', '#ffd23f', 2) + `<g ${HAND} font-size="20" font-weight="bold" text-anchor="middle">` +
@@ -641,8 +639,8 @@ A.c9_ph_sizzle = ((): string => {
     fig(244, 566, 1.9, { skin: '#f0c4a4', top: '#e86a9a', legs: '#5a4a6a', w: 19, rim: '#fff8e0', hair: perm, la: [-30, -104, -14, -92], ra: [34, -106, 30, -96], face: C(-5, -153, 1.5, '#1a1318') + C(5, -153, 1.5, '#1a1318') + P('M-5 -147Q0 -141 5 -147Z', '#c22a4a'),
       over: G('rotate(8 14 -92)', R(-12, -116, 46, 58, '#fffdf4', 'rx="2" stroke="#c8c2b0"') + S('M-6 -106H28M-6 -96H28M-6 -88H20M-6 -80H28M-6 -72H16', '#c8502a', 2) + P('M-12 -116L10 -116L-12 -80Z', '#fff', 'opacity=".7"')) + C(-12, -92, 5.6, '#f0c4a4') + C(30, -96, 5.6, '#f0c4a4') }) +
     // faded print + camera date stamp
-    R(0, 0, 800, 600, '#e8c890', 'opacity=".2"') + R(0, 0, 800, 600, '#6a7a9a', 'opacity=".12"') + tx(770, 570, 26, "10 10 '16", '#ff8a2a', MONO, `${BOLD} text-anchor="end" opacity=".9"`);
-  return frame(k, 800, 600, defs, body, 0.26, 0.5);
+    R(0, 0, 800, 600, '#e8c890', 'opacity=".16"') + tx(756, 556, 30, "10 10 '16", '#ffb02a', MONO, `${BOLD} text-anchor="end"`) + P('M0 0H800V600H0ZM14 14V586H786V14Z', '#fff8e8', 'opacity=".5"');
+  return frame(k, 800, 600, defs, body, 0.2, 0.45);
 })();
 
 A.c9_ph_lou_order = ((): string => {
@@ -681,11 +679,10 @@ A.c9_ph_menu = ((): string => {
     `<text x="76" y="96" font-size="34" ${fit(590)}>PETTIBONE WAKE — FRI — 200 HEADS:</text>` + S('M76 110Q360 122 668 108', INK, 4) +
     items.map((t, i) => `<circle cx="96" cy="${156 + i * 54}" r="6"/><text x="118" y="${168 + i * 54}" font-size="33" ${fit(Math.min(540, t.length * 19.5))}>${t}</text>`).join('') +
     `</g>` + miniTaco(650, 240, 2.2) + S('M612 262q38 20 76 0', INK, 3) +
-    G('rotate(-2 400 470)', tx(74, 478, 31, 'NO TURKEY?? why does fisk need 180 lbs???', '#d21e1e', HAND, `${BOLD} ${fit(650)}`) + S('M72 492Q400 506 728 488M76 500Q300 510 520 502', '#d21e1e', 4)) +
+    G('rotate(-2 400 450)', tx(74, 456, 31, 'NO TURKEY?? why does fisk need 180 lbs???', '#d21e1e', HAND, `${BOLD} ${fit(650)}`) + S('M72 470Q400 484 728 466M76 478Q300 488 520 480', '#d21e1e', 4)) +
     R(250, 518, 300, 16, '#aab2ba', 'rx="4"') + R(280, 508, 70, 12, INK, 'rx="5"') + R(366, 508, 70, 12, '#d21e1e', 'rx="5"') + R(452, 506, 50, 16, '#55595e', 'rx="3"') +
     // prep table in the foreground
-    R(0, 556, 800, 44, `url(#${k}st)`) + R(0, 556, 800, 5, '#fff', 'opacity=".7"') + P('M40 556V500Q40 490 52 490H168Q180 490 180 500V556Z', '#9aa2aa') + E(110, 492, 64, 12, '#55595e') + S('M150 486L210 420', '#cfd6dc', 7) + R(24, 508, 20, 8, '#55595e', 'rx="3"') + R(176, 508, 20, 8, '#55595e', 'rx="3"') +
-    G('translate(690 560)', R(-50, -30, 100, 30, '#f6f1e6', 'rx="4"') + R(-50, -34, 100, 8, '#d8d2c2', 'rx="3"'));
+    R(0, 556, 800, 44, `url(#${k}st)`) + R(0, 556, 800, 5, '#fff', 'opacity=".7"') + G('translate(560 16)', P('M40 556V520Q40 510 52 510H168Q180 510 180 520V556Z', '#9aa2aa') + E(110, 512, 64, 10, '#55595e') + R(24, 524, 20, 8, '#55595e', 'rx="3"') + R(176, 524, 20, 8, '#55595e', 'rx="3"'));
   return frame(k, 800, 600, defs, body, 0.13, 0.4);
 })();
 
@@ -735,25 +732,394 @@ A.c9_ph_turkeys = ((): string => {
 A.c9_ph_spread = ((): string => {
   const k = 'c9_ph_spread';
   const defs =
-    lg(`${k}wall`, [[0, '#7a1430'], [1, '#3a0a1c']]) + lg(`${k}cloth`, [[0, '#fff'], [1, '#c8c2b8']]) + lg(`${k}dome`, [[0, '#fff'], [0.5, '#b8c0c8'], [1, '#6a727a']], 1, 1) + totPat(`${k}tot`, 0.5) +
+    lg(`${k}wall`, [[0, '#7a1430'], [1, '#3a0a1c']]) + lg(`${k}cloth`, [[0, '#fff'], [1, '#c8c2b8']]) + lg(`${k}dome`, [[0, '#fff'], [0.5, '#b8c0c8'], [1, '#6a727a']], 1, 1) +
     rg(`${k}ch`, [[0, '#fff3c0', 0.7], [1, '#ffd870', 0]]) +
-    `<pattern id="${k}dm" width="60" height="80" patternUnits="userSpaceOnUse"><path d="M30 6Q44 22 30 40Q16 22 30 6ZM0 46Q14 62 0 80M60 46Q46 62 60 80" fill="none" stroke="${GOLD}" stroke-width="2.5" opacity=".4"/></pattern>`;
-  const suit = (x: number, s: number, skin: string, hair: string, flip = false): string => fig(x, 540, s, { skin, top: '#101014', legs: '#0a0a0e', w: 21, rim: '#ffd870', hair, over: SUITV, belly: 2 }, flip);
+    `<pattern id="${k}dm" width="60" height="80" patternUnits="userSpaceOnUse"><path d="M30 6Q44 22 30 40Q16 22 30 6ZM0 46Q14 62 0 80M60 46Q46 62 60 80" fill="none" stroke="${GOLD}" stroke-width="2.5" opacity=".4"/></pattern>` +
+    `<g id="${k}man">${fig(0, 0, 1, { skin: LOU, top: '#101014', legs: '#0a0a0e', w: 22, rim: '#ffd870', hair: P(HCAP, '#17130f'), over: SUITV, belly: 3 })}</g>` +
+    `<g id="${k}vase">` + S('M0 440Q-10 380 -26 350M0 440Q4 370 0 330M0 440Q12 384 30 356', '#3c8a26', 4) + lily(0, 322, 1.7) + `<g id="${k}lily">${lily(-28, 344, 1.5, -30)}</g><use href="#${k}lily" x="60" y="6"/>` + P('M-16 478Q-22 440 -8 420H8Q22 440 16 478Z', GOLD) + P('M2 420H8Q22 440 16 478H6Z', '#8a6410', 'opacity=".5"') + '</g>';
+  const man = (x: number, s: number, flip = false): string => `<use href="#${k}man" transform="translate(${x} 540) scale(${flip ? -s : s} ${s})"/>`;
   const chafer = (x: number, fill: string, open: boolean): string => G(`translate(${x} 0)`,
-    S('M-60 470L-70 520M60 470L70 520', '#8a9098', 5) + R(-74, 440, 148, 32, `url(#${k}dome)`, 'rx="6"') + E(0, 440, 70, 14, fill) + E(0, 440, 70, 14, 'none', 'stroke="#e2e6ea" stroke-width="4"') +
+    S('M-60 470L-70 520M60 470L70 520', '#8a9098', 5) + R(-74, 440, 148, 32, `url(#${k}dome)`, 'rx="6"') + E(0, 440, 70, 14, fill, 'stroke="#e2e6ea" stroke-width="4"') +
     (open ? '' : P('M-70 440A70 46 0 0 1 70 440Z', `url(#${k}dome)`) + R(-10, 388, 20, 8, GOLD, 'rx="4"')) + P('M-10 492h20l-4 16h-12z', '#3a6ae0') + P('M-5 492q5-14 0-22 12 10 5 22z', '#ffb02a'));
-  const vase = (x: number): string => G(`translate(${x} 0)`, S('M0 440Q-10 380 -26 350M0 440Q4 370 0 330M0 440Q12 384 30 356', '#3c8a26', 4) + lily(-28, 344, 1.5, -30) + lily(0, 322, 1.7) + lily(32, 350, 1.5, 30) + P('M-16 478Q-22 440 -8 420H8Q22 440 16 478Z', GOLD) + P('M2 420H8Q22 440 16 478H6Z', '#8a6410', 'opacity=".5"'));
   const body =
     R(0, 0, 800, 600, `url(#${k}wall)`) + R(0, 0, 800, 420, `url(#${k}dm)`) + R(0, 396, 800, 30, '#2a0a14') + R(0, 396, 800, 5, GOLD) + R(0, 426, 800, 174, '#4a2a1a') +
-    [40, 250, 550, 760].map((x) => R(x - 14, 0, 28, 400, '#e8d8b0') + R(x - 14, 0, 9, 400, '#fff', 'opacity=".4"') + R(x - 22, 380, 44, 18, GOLD)).join('') +
+    [40, 250, 550, 760].map((x) => R(x - 14, 0, 28, 400, '#e8d8b0') + R(x - 22, 380, 44, 18, GOLD)).join('') +
     C(400, 0, 190, `url(#${k}ch)`) + S('M400 0V26M340 40Q400 80 460 40M360 34v18M400 44v22M440 34v18', GOLD, 4) + C(360, 58, 6, '#fff8d0') + C(400, 72, 6, '#fff8d0') + C(440, 58, 6, '#fff8d0') +
     G('translate(318 86) scale(1.5)', louPortrait()) + R(346, 302, 110, 20, GOLD, 'rx="3"') + S('M360 312H442', '#8a6410', 2) +
-    suit(120, 1.55, LOU, P(HCAP, '#2a2018')) + suit(236, 1.4, '#d9a680', P(HCAP, '#121014'), true) + suit(540, 1.45, '#c68e62', '') + 
+    man(124, 1.6) + man(236, 1.42, true) + man(548, 1.5) +
     // the Wishing Well on its gold pedestal
     P('M640 536L652 330H716L728 536Z', GOLD) + P('M690 330H716L728 536H700Z', '#8a6410', 'opacity=".5"') + R(636, 318, 96, 14, '#f6d67a', 'rx="4"') + G('translate(612 222) scale(.94)', well(false)) +
     // buffet
     P('M0 470H800V600H0Z', `url(#${k}cloth)`) + P('M0 470H800V482H0Z', '#fff') + S('M90 482V600M300 482V600M520 482V600M710 482V600', '#b8b2a8', 2, 'opacity=".6"') +
-    vase(44) + chafer(170, `url(#${k}tot)`, true) + chafer(350, '#a8281a', true) + chafer(520, '#888', false) + vase(770) +
-    E(350, 438, 40, 6, '#e2603a') + G('translate(640 470)', E(0, 0, 50, 10, '#f6f1e6', 'stroke="#c8c2b8"') + miniTaco(-22, -4, 0.9) + miniTaco(4, -6, 0.9) + miniTaco(26, -3, 0.9));
+    `<use href="#${k}vase" x="44"/><use href="#${k}vase" x="770"/>` + chafer(170, TOT, true) + S('M120 438q8-7 16 0M146 434q8-7 16 0M172 438q8-7 16 0M198 434q8-7 16 0M134 444q8-6 16 0M160 446q8-6 16 0M188 444q8-6 16 0', TOT_D, 3) +
+    chafer(350, '#a8281a', true) + E(350, 438, 40, 6, '#e2603a') + chafer(520, '#888', false) +
+    G('translate(640 470)', E(0, 0, 50, 10, '#f6f1e6', 'stroke="#c8c2b8"') + miniTaco(-22, -4, 0.9) + miniTaco(4, -6, 0.9) + miniTaco(26, -3, 0.9));
   return frame(k, 800, 600, defs, body, 0.15, 0.5);
+})();
+
+/** Red SPLASH DADDY jet ski on its trailer, ≈560×230 local units (bow to the right). */
+const jetski = (trailer = true): string =>
+  (trailer ? R(20, 186, 520, 10, '#55595e', 'rx="4"') + S('M540 191H600', '#55595e', 8) + R(80, 172, 60, 14, '#2a2a30', 'rx="4"') + R(330, 172, 60, 14, '#2a2a30', 'rx="4"') + C(210, 206, 28, '#131316') + C(210, 206, 12, '#c8ccd0') + R(592, 191, 8, 34, '#55595e') : '') +
+  P('M0 118Q60 94 150 90L330 82Q440 78 524 122Q474 172 380 180H70Q20 170 0 118Z', '#e8182c') + P('M10 138Q200 158 506 132Q470 172 380 180H70Q28 172 10 138Z', '#8a0e1a') + S('M10 136Q200 156 508 130', '#fff', 5) +
+  P('M118 92Q128 58 200 56H300Q322 58 332 84Z', '#17171c') + S('M130 80Q140 62 200 60H296', '#4a4a58', 3) +
+  P('M330 84Q352 28 404 40L476 100Q400 84 330 84Z', '#ff4a58') + P('M352 50Q368 30 398 38L420 58Q386 48 352 50Z', '#1a1a2a') + S('M374 42L352 18H326', '#17171c', 8) + S('M20 112Q90 94 150 92', '#ff8a94', 4, 'opacity=".8"') +
+  P('M44 150q-6-34 26-40 26 0 22 22-10-10-20-2-8 10 8 20z', '#3ab8ff', 'stroke="#fff" stroke-width="3"') +
+  tx(378, 132, 30, 'SPLASH DADDY', '#fff', SANS, `${BOLD} ${MID} font-style="italic" stroke="#0a2a6a" stroke-width="5" paint-order="stroke" stroke-linejoin="round" ${fit(226)}`);
+
+/** Spatula astride the jet ski (same local units as `jetski`). */
+const rider = (bare: boolean, arms: string, mouth: string, lap = ''): string => {
+  const sh = bare ? '#19c8d8' : '#19c8d8';
+  return G('translate(-58 0)',
+    S('M250 60L308 88L298 170', SPAT, 30) + E(306, 178, 24, 9, '#ffd23f') +
+    (lap ? S('M244 52L262 70', sh, 26) : S('M240 58L296 84', sh, 36) + S('M262 62l22 10', '#fff', 4, 'opacity=".7"')) +
+    P('M196 64Q180 -20 190 -60Q230 -80 272 -60Q282 -20 264 64Z', SPAT) + P('M236 -72Q272 -70 272 -60Q282 -20 264 64H240Z', SPAT_D, 'opacity=".55"') +
+    (bare
+      ? S('M202 -24Q218 -12 232 -24Q248 -12 262 -24M232 -20V44M212 6h38M214 26h34', SPAT_D, 3) + S('M200 -50Q196 -10 204 30M222 -44q8-4 14 2', '#fff', 5, 'opacity=".45"') + C(214, -26, 3, '#fff', 'opacity=".6"')
+      : P('M200 -62Q214 -30 232 -30Q250 -30 262 -62L274 -56Q282 -20 264 64H196Q182 -20 188 -56Z', '#ff4fa3') + P('M240 -30Q254 -34 262 -62L274 -56Q282 -20 264 64H240Z', '#000', 'opacity=".2"')) +
+    S('M272 -58Q282 -20 266 60', '#ffe9a0', 3, 'opacity=".9"') +
+    R(221, -90, 20, 24, SPAT_D) + C(231, -116, 31, SPAT) + P('M233 -147A31 31 0 0 1 233 -85Z', SPAT_D, 'opacity=".5"') + S('M254 -138A31 31 0 0 1 256 -98', '#ffe9a0', 3) +
+    P('M199 -118Q194 -150 216 -152l4-12 8 10 6-14 7 13 8-10 3 12Q268 -150 263 -118Q254 -138 231 -138Q208 -138 199 -118Z', '#1c1410') + P('M216 -152l4-12 8 12zM228 -154l6-14 7 14zM241 -155l8-10 3 13z', '#f6d743') +
+    P('M203 -126H259V-109Q251 -106 244 -110L237 -119H227L220 -110Q212 -106 203 -109Z', '#fff') + S('M206 -122H226M206 -118H223M206 -114H219M236 -122H256M239 -118H256M243 -114H256', '#141018', 2.2) +
+    mouth + lap + arms);
+};
+const THUMB = (x: number, y: number): string => E(x, y, 13, 12, SPAT) + R(x - 5, y - 28, 10, 22, SPAT, 'rx="5"') + S(`M${x - 8} ${y + 2}h16`, SPAT_D, 1.5);
+
+A.c9_ph_window = ((): string => {
+  const k = 'c9_ph_window';
+  const defs =
+    lg(`${k}sky`, [[0, '#3a3a7a'], [0.6, '#c86a6a'], [1, '#ffb45a']]) + lg(`${k}st`, [[0, '#dfe5ea'], [1, '#6a727a']]) + lg(`${k}suv`, [[0, '#fff'], [1, '#c4ccd6']]) +
+    rg(`${k}gl`, [[0, '#ffe9a0', 0.9], [1, '#ffb45a', 0]]) + totPat(`${k}tot`, 1.15) + bl(`${k}b`, 8);
+  const donna = fig(404, 420, 1.56, {
+    skin: TAN, top: '#0c0c10', legs: '#0c0c10', skirt: '#0c0c10', w: 16, rim: '#ffd08a', shoes: '#c21e3a',
+    la: [-26, -110, 20, -96], ra: [34, -116, 56, -98],
+    hair: C(0, -160, 17, '#f7f0d8') + C(-11, -152, 9, '#f7f0d8') + C(11, -156, 9, '#e2d6b0') + P('M-11 -150Q0 -162 12 -154Q4 -168 -11 -160Z', '#f7f0d8') +
+      G('rotate(-16 6 -174)', E(6, -174, 13, 5, '#0c0c10') + P('M2 -176q-2-14 8-16-4 8 0 16z', '#0c0c10')),
+    face: C(-7, -153, 2.2, '#fff') + C(1, -153, 2.2, '#fff') + C(-8.2, -153, 1.3, '#1a1318') + C(-.2, -153, 1.3, '#1a1318') + S('M-10 -157l5-1M-1 -158l5 1', '#6a4a26', 1.4) + P('M-7 -146q4-2 7 0-3 3-7 0z', '#c21e3a'),
+    over: C(11, -148, 2.4, '#eaf6ff') + S('M-6 -136q6 4 12 0', '#fff', 2, 'stroke-dasharray=".1 3"') + P('M-17 -100Q0 -108 17 -100L15 -74H-15Z', '#0c0c10'),
+  });
+  const body =
+    R(0, 0, 800, 440, `url(#${k}sky)`) + P('M0 250Q60 190 120 240Q170 180 230 236V330H0Z', '#2a2a4a', 'opacity=".7"') +
+    // mansion side + garage
+    R(40, 120, 420, 300, '#e8d8b8') + P('M20 124L250 60L480 124Z', '#a8502a') + R(40, 120, 420, 12, '#fff8e0') + [80, 170].map((x) => R(x, 170, 56, 90, '#ffe9a0') + R(x, 170, 56, 90, 'none', 'stroke="#fff8e0" stroke-width="6"') + S(`M${x + 28} 170v90M${x} 215h56`, '#fff8e0', 3)).join('') +
+    R(262, 190, 84, 230, '#ffd870') + C(304, 300, 120, `url(#${k}gl)`) + P('M262 190L226 204V420H262Z', '#8a6a4a') + R(256, 184, 96, 8, '#fff8e0') +
+    C(30, 400, 40, '#2f6a34') + C(90, 410, 30, '#3c8a3a') + C(200, 414, 26, '#2f6a34') +
+    // driveway
+    P('M0 414H800V440H0Z', '#6a6a72') + P('M210 414H800V440H170Z', '#9a9aa2') +
+    // white SUV, hatch up
+    E(596, 418, 180, 12, '#000', 'opacity=".4"') + R(464, 352, 46, 62, '#131316', 'rx="8"') + R(682, 352, 46, 62, '#131316', 'rx="8"') +
+    P('M468 176L484 92H708L724 176Z', '#e6ecf2') + P('M490 168L500 104H692L702 168Z', '#3a4a6a') + P('M500 104H560L540 168H490Z', '#8aa0c8', 'opacity=".5"') +
+    R(452, 170, 288, 216, `url(#${k}suv)`, 'rx="22"') + R(474, 186, 244, 116, '#17171f', 'rx="8"') + R(484, 262, 224, 40, '#2a2a36') +
+    R(456, 196, 16, 84, '#e21e2a', 'rx="5"') + R(720, 196, 16, 84, '#e21e2a', 'rx="5"') + R(446, 318, 300, 48, '#dfe5ea', 'rx="12"') + R(446, 356, 300, 12, '#8a9098', 'rx="5"') +
+    R(532, 320, 128, 44, '#fff', 'rx="5" stroke="#1a2a6a" stroke-width="3"') + tx(596, 353, 30, 'DONNA 1', '#1a2a6a', SANS, `${BOLD} ${MID} ${fit(108)}`) +
+    S('M740 190Q748 280 742 380', '#ffd08a', 3, 'opacity=".8"') +
+    G('translate(470 196) scale(.7)', well(false)) + donna + C(435, 271, 9, TAN) + C(492, 268, 9, TAN) + C(497, 266, 3, '#eaf6ff') +
+    // truck interior: window frame, awning, counter
+    P('M0 0H800V600H0ZM36 56V440H764V56Z', '#17120e', 'fill-rule="evenodd"') + P('M36 56H764V84' + 'q-13 14-26 0'.repeat(28) + 'Z', CHEESE, 'opacity=".85"') + R(36, 56, 728, 8, '#8a6a0a') +
+    S('M36 56V440M764 56V440', '#5a4a3a', 4) + R(0, 432, 800, 168, `url(#${k}st)`) + R(0, 432, 800, 6, '#fff', 'opacity=".8"') +
+    // tray of loaded tots
+    P('M96 600L60 470H470L520 600Z', '#b8c0c8') + P('M84 600L74 482H458L500 600Z', `url(#${k}tot)`) + S('M100 520Q150 500 200 530T300 520T400 540T460 560M120 570Q200 550 260 580T380 570', '#ffb02a', 9) +
+    [[150, 506], [230, 548], [330, 510], [400, 566], [190, 580], [290, 560], [120, 550], [440, 520]].map(([x, y], i) => R(x, y, 12, 6, i % 2 ? '#4aa83a' : '#b8452a', `rx="2" transform="rotate(${i * 40} ${x} ${y})"`)).join('') + S('M60 470H470', '#fff', 3) +
+    // squeeze bottle
+    G('translate(610 0)', E(0, 592, 44, 10, '#000', 'opacity=".3"') + P('M-34 600V470Q-34 440 -14 432H14Q34 440 34 470V600Z', '#ffd23f') + P('M4 432H14Q34 440 34 470V600H10Z', '#c89a0a', 'opacity=".5"') + P('M-14 432L-5 380H5L14 432Z', '#e2412f') + R(-34, 500, 68, 46, '#fff', 'opacity=".85"') + S('M-22 516H22M-22 530H10', '#c8502a', 4) + S('M-26 470V590', '#fff', 5, 'opacity=".6"'));
+  return frame(k, 800, 600, defs, body, 0.16, 0.5);
+})();
+
+A.c9_ph_box1820 = ((): string => {
+  const k = 'c9_ph_box1820';
+  const defs =
+    lg(`${k}wall`, [[0, '#7a1430'], [1, '#3a0a1c']]) + rg(`${k}gl`, [[0, '#fff3c0', 0.55], [1, '#ffd870', 0]]) + rg(`${k}cf`, [[0, '#fffdf2'], [1, '#e6dcc0']]) + bl(`${k}sh`, 10) +
+    `<pattern id="${k}dm" width="60" height="80" patternUnits="userSpaceOnUse"><path d="M30 6Q44 22 30 40Q16 22 30 6ZM0 46Q14 62 0 80M60 46Q46 62 60 80" fill="none" stroke="${GOLD}" stroke-width="2.5" opacity=".35"/></pattern>`;
+  let ticks = '';
+  for (let i = 0; i < 12; i++) if (i % 3) ticks += `<rect x="-2.5" y="-78" width="5" height="12" fill="#3a2a0a" transform="rotate(${i * 30})"/>`;
+  const env = (x: number, y: number, a: number, c: string): string => G(`translate(${x} ${y}) rotate(${a})`, R(-44, -28, 88, 56, c, 'stroke="#b8a878" stroke-width="2"') + S('M-44 -28L0 6L44 -28', '#b8a878', 2));
+  const body =
+    R(0, 0, 600, 800, `url(#${k}wall)`) + R(0, 0, 600, 800, `url(#${k}dm)`) + C(300, 330, 380, `url(#${k}gl)`) +
+    G('translate(22 70) scale(1.75)', louPortrait()) +
+    // gilded clock, 6:20
+    G('translate(436 150)', C(6, 10, 100, '#000', `opacity=".4" filter="url(#${k}sh)"`) +
+      [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((a) => `<path d="M-12 -92L0 -122L12 -92Z" fill="${a % 60 ? '#b8860b' : GOLD}" transform="rotate(${a})"/>`).join('') +
+      C(0, 0, 98, GOLD) + C(0, 0, 90, '#8a6410') + C(0, 0, 84, `url(#${k}cf)`) + ticks +
+      tx(0, -44, 22, 'XII', '#3a2a0a', SERIF, `${BOLD} ${MID}`) + tx(0, 62, 22, 'VI', '#3a2a0a', SERIF, `${BOLD} ${MID}`) + tx(54, 8, 22, 'III', '#3a2a0a', SERIF, `${BOLD} ${MID}`) + tx(-54, 8, 22, 'IX', '#3a2a0a', SERIF, `${BOLD} ${MID}`) +
+      `<path d="M-4.5 8L-3 -44L0 -50L3 -44L4.5 8Z" fill="#17120a" transform="rotate(190)"/><path d="M-3 10L-2 -66L0 -72L2 -66L3 10Z" fill="#17120a" transform="rotate(120)"/>` + C(0, 0, 7, '#8a6410')) +
+    // pedestal + the Wishing Well
+    P('M196 800L214 580H386L404 800Z', GOLD) + P('M330 580H386L404 800H350Z', '#8a6410', 'opacity=".5"') + R(170, 556, 260, 28, '#f6d67a', 'rx="6"') + S('M230 620V800M300 620V800', '#f6e09a', 4, 'opacity=".6"') +
+    E(300, 560, 190, 18, '#000', `opacity=".35" filter="url(#${k}sh)"`) + env(206, 276, -32, '#f3e7c6') + env(398, 280, 28, '#efe2bd') + env(300, 262, 4, '#fbf3da') +
+    G('translate(134 296) scale(2.6)', well(true)) + env(150, 548, -14, '#fbf3da') + env(452, 552, 18, '#f3e7c6') +
+    // bouquet + card
+    G('translate(486 640)', S('M0 60Q-20 0 -50 -30M0 60Q0 -10 -6 -60M0 60Q20 0 50 -36', '#3c8a26', 6) + lily(-52, -36, 2.3, -30) + lily(-6, -66, 2.5) + lily(52, -42, 2.3, 30)) +
+    G('rotate(-5 470 740)', R(346, 690, 250, 94, '#000', `opacity=".4" filter="url(#${k}sh)"`) + R(340, 684, 250, 94, '#fffdf2', 'stroke="#b8a878" stroke-width="2"') + tx(465, 722, 25, 'WITH RESPECT —', '#2a2018', SERIF, `${MID} font-style="italic" ${fit(190)}`) + tx(465, 758, 19, 'THE BOYS FROM THE DOCKS', '#2a2018', SERIF, `${BOLD} ${MID} ${fit(222)}`));
+  return frame(k, 600, 800, defs, body, 0.16, 0.5);
+})();
+
+A.c9_ph_pallbearers = ((): string => {
+  const k = 'c9_ph_pallbearers';
+  const defs = lg(`${k}sky`, [[0, '#b8c4d2'], [1, '#f0e2c8']]) + lg(`${k}wd`, [[0, '#a8502a'], [0.45, MAHOG], [1, '#2a0e08']]) + lg(`${k}lid`, [[0, '#d8703a'], [1, '#6a2a14']]) + bl(`${k}b`, 9);
+  const RIM = '#fff6e0';
+  const strain = S('M-9 -158l7 3M9 -158l-7 3', '#2a1a12', 2.2) + S('M-7 -152h4M3 -152h4', '#1a1318', 2) + R(-6, -148, 12, 5, '#fff', 'stroke="#3a1a14" stroke-width="1" rx="1"') + S('M-2 -148v5M2 -148v5', '#3a1a14', 0.8) + P('M12 -160q-3 6 0 8 3-2 0-8z', '#9fd8ff') + E(-8, -147, 3, 2, '#e2412f', 'opacity=".4"');
+  const shock = C(-5, -154, 4, '#fff') + C(6, -154, 4, '#fff') + C(-4.5, -153.5, 1.7, '#1a1318') + C(6.5, -153.5, 1.7, '#1a1318') + S('M-10 -161q5-4 9-1M2 -162q5-3 9 1', '#5a3a24', 2) + E(1, -145, 3.2, 4, '#3a0e12') + P('M-12 -150q-3 6 0 8 3-2 0-8z', '#9fd8ff');
+  const SUIT: Fig = { skin: '#f4f4f0', top: '#111116', legs: '#0b0b10', w: 24, belly: 3, rim: RIM, over: SUITV };
+  const defs2 = `<g id="${k}m">${figBody(SUIT)}</g><g id="${k}n">${figBody({ ...SUIT, la: [-30, -98, -8, -70], ra: [30, -98, 10, -70] })}</g><g id="${k}f">${strain}</g>`;
+  const man = (x: number, y: number, s: number, skin: string, hair: string, near: boolean, tommy = false): string =>
+    G(`translate(${x} ${y}) scale(${s})`, `<use href="#${k}${near ? 'n' : 'm'}"/>` + figHead({ skin, top: '', legs: '', rim: RIM, hair, face: tommy ? shock : `<use href="#${k}f"/>` }));
+  const tree = (x: number, y: number, r: number, c: string): string => R(x - 5, y, 10, 90, '#4a3222') + C(x, y, r, c) + C(x - r * 0.5, y + r * 0.3, r * 0.7, c) + C(x + r * 0.5, y + r * 0.2, r * 0.7, c, 'opacity=".85"');
+  let steps = '';
+  for (let i = 0; i < 7; i++) steps += R(i * 133 - 60, 552 - i * 16, 200, 120, i % 2 ? '#a8a296' : '#b8b2a6') + R(i * 133 - 60, 552 - i * 16, 200, 5, '#e2dcd0');
+  const body =
+    R(0, 0, 800, 600, `url(#${k}sky)`) + tree(80, 180, 70, '#d8702a') + tree(250, 150, 54, '#e2a02a') + tree(700, 110, 80, '#c8452a') + tree(540, 130, 50, '#e28a2a') +
+    P('M0 330Q400 250 800 230V600H0Z', '#8aa06a') +
+    [[60, 380], [150, 350], [660, 280], [740, 262], [330, 318]].map(([x, y], i) => i % 2 ? P(`M${x - 4} ${y}v-36h-10v-9h10v-12h8v12h10v9h-10v36z`, '#d8d4c8') : P(`M${x - 14} ${y}v-30q0-16 14-16t14 16v30z`, '#d8d4c8')).join('') +
+    steps +
+    G('rotate(-6.5 400 520)',
+      man(286, 508, 1.82, '#d9a680', P(HCAP, '#2a2018'), false) + man(462, 508, 1.82, SPAT, '', false) + man(636, 508, 1.82, '#f0c4a4', P(HCAP, '#8a8a8a'), false) +
+      // the casket
+      E(380, 528, 300, 12, '#000', 'opacity=".25"') + P('M96 348Q110 316 180 312H590Q650 316 664 348Z', `url(#${k}lid)`) + S('M110 338Q124 320 180 318H590Q640 320 652 338', '#ffb88a', 3, 'opacity=".7"') +
+      P('M92 348H668L654 446H106Z', `url(#${k}wd)`) + P('M92 348H668L666 360H94Z', '#2a0e08', 'opacity=".5"') + P('M130 366H420L400 380H140Z', '#fff', 'opacity=".22"') + S('M108 432H652', '#c06a3a', 2, 'opacity=".6"') +
+      R(128, 392, 504, 9, GOLD, 'rx="4.5"') + [140, 300, 460, 618].map((x) => R(x - 6, 380, 12, 26, '#b8860b', 'rx="3"')).join('') +
+      // frost on the brass
+      R(128, 392, 504, 9, '#dff6ff', 'rx="4.5" opacity=".6"') + S('M130 394H630', '#fff', 2, 'stroke-dasharray="14 9" opacity=".9"') + E(380, 400, 280, 26, '#dff6ff', `opacity=".28" filter="url(#${k}b)"`) +
+      [[150, 384], [240, 406], [330, 386], [470, 408], [560, 386], [610, 408]].map(([x, y]) => S(`M${x - 5} ${y}h10M${x} ${y - 5}v10`, '#fff', 1.6)).join('') +
+      S('M204 404v14M398 404v18M520 404v10', '#dff6ff', 3, 'opacity=".8"') +
+      man(196, 524, 1.95, '#e2b48c', P(HCAP, '#17130f'), true) + man(378, 524, 1.95, '#c68e62', P(HCAP, '#5a2a14'), true) + man(560, 524, 1.95, '#eebf9f', P(HCAP, '#5a3a24'), true, true));
+  return frame(k, 800, 600, defs + defs2, body, 0.15, 0.45);
+})();
+
+A.c9_ph_jetski = ((): string => {
+  const k = 'c9_ph_jetski';
+  const defs = lg(`${k}sky`, [[0, '#2f9ee6'], [1, '#cfeeff']]) + lg(`${k}gd`, [[0, '#8a8e96'], [1, '#55595e']]);
+  let pen = '';
+  for (let i = 0; i < 16; i++) pen += P(`M${i * 52} ${150 + Math.sin(i / 15 * Math.PI) * 26}l14 2-4 30z`, ['#e2412f', '#ffd23f', '#2f7fe0', '#fff'][i % 4]);
+  const body =
+    R(0, 0, 800, 600, `url(#${k}sky)`) + E(140, 80, 100, 22, '#fff', 'opacity=".8"') + E(620, 60, 80, 18, '#fff', 'opacity=".7"') +
+    R(0, 200, 800, 220, '#e6e8ea') + R(0, 200, 800, 44, '#1a4a8a') + tx(780, 230, 20, 'HARLOW MARINE & POWERSPORTS', '#fff', SANS, `${BOLD} text-anchor="end" ${fit(330)}`) + R(40, 270, 300, 150, '#3a5a7a') + R(460, 270, 300, 150, '#3a5a7a') + P('M40 270H200L120 420H40Z', '#9ac0e0', 'opacity=".4"') + P('M460 270H640L560 420H460Z', '#9ac0e0', 'opacity=".4"') +
+    S('M0 150Q400 210 800 150', '#2a2018', 1.5) + pen +
+    R(0, 420, 800, 180, `url(#${k}gd)`) + S('M0 470H800', '#ffd23f', 4, 'stroke-dasharray="40 30" opacity=".6"') + E(400, 556, 330, 16, '#000', 'opacity=".35"') +
+    G('translate(84 284) scale(1.2)', jetski() +
+      rider(false,
+        S('M196 -52Q150 -40 136 -86', SPAT, 22) + THUMB(134, -98) + S('M268 -52Q318 -44 330 -90', SPAT_D, 22) + THUMB(332, -102),
+        P('M214 -100Q232 -84 250 -102Q232 -96 214 -100Z', '#fff', 'stroke="#2a130c" stroke-width="2"')) +
+      S('M92 -130l-14-10M74 -160l-4-16M260 -134l14-10M280 -164l4-16', '#fff', 4, 'opacity=".9"'));
+  return frame(k, 800, 600, defs, body, 0.14, 0.4);
+})();
+
+A.c9_ph_loan = ((): string => {
+  const k = 'c9_ph_loan';
+  const defs = lg(`${k}desk`, [[0, '#7a4a26'], [1, '#3a2010']], 1, 1) + lg(`${k}pp`, [[0, '#fff'], [1, '#ece8dc']], 1, 1) + bl(`${k}sh`, 12);
+  const NAVY = '#12306a';
+  const rows: [string, string][] = [['Borrower:', 'RYAN ODUYA'], ['Amount:', '$11,480'], ['Term:', '84 MONTHS'], ['APR:', '0.00%'], ['Date:', '10/12/2026']];
+  const body =
+    R(0, 0, 600, 800, `url(#${k}desk)`) + S('M0 90Q300 60 600 110M0 300Q300 260 600 320M0 540Q300 500 600 560M0 730Q300 700 600 750', '#2a1608', 3, 'opacity=".4"') +
+    G('rotate(-3 300 400)', R(66, 60, 480, 680, '#000', `opacity=".45" filter="url(#${k}sh)"`) + R(54, 46, 480, 680, `url(#${k}pp)`) +
+      R(54, 46, 480, 96, NAVY) + P('M76 112q10-34 34-30 16 6 8 22-8-10-18-4-8 8 4 18z', '#5ac8ff') + tx(316, 92, 30, 'HARLOW MARINE FINANCE', '#fff', SANS, `${BOLD} ${MID} ${fit(360)}`) + tx(316, 122, 15, 'boats · jet skis · regret', '#9ac8ff', SANS, `${MID} font-style="italic"`) +
+      G('rotate(-7 300 210)', R(140, 166, 320, 80, 'none', 'rx="8" stroke="#1a8a3a" stroke-width="7"') + tx(300, 228, 58, 'APPROVED', '#1a8a3a', SANS, `${BOLD} ${MID} ${fit(280)}`)) +
+      rows.map(([a, b], i) => tx(84, 320 + i * 62, 29, a, '#55595e', SANS, '') + tx(250, 320 + i * 62, 31, b, '#14141a', MONO, `${BOLD} ${fit(Math.min(260, b.length * 24))}`) + S(`M84 ${334 + i * 62}H504`, '#c8c2b0', 1.5)).join('') +
+      S('M90 664q20-40 40-6t30-20 20 30 40-24 30 16', NAVY, 3) + S('M84 680H300', '#55595e', 1.5) + tx(84, 702, 14, 'Borrower signature', '#8a8a84', SANS, '') + tx(504, 702, 14, 'HMF-84/0', '#8a8a84', MONO, 'text-anchor="end"')) +
+    // branded pen
+    G('rotate(-38 470 680)', R(336, 676, 280, 26, '#000', `opacity=".4" filter="url(#${k}sh)"`) + R(330, 664, 250, 24, NAVY, 'rx="12"') + P('M580 664H596L624 676L596 688H580Z', '#cfd6dc') + P('M612 671L624 676L612 681Z', '#17171c') + R(330, 664, 30, 24, '#cfd6dc', 'rx="8"') + R(336, 660, 90, 6, '#cfd6dc', 'rx="3"') + S('M370 669H570', '#5a7ac8', 3, 'opacity=".7"') + tx(470, 682, 13, 'HARLOW MARINE', '#fff', SANS, `${BOLD} ${MID} ${fit(120)}`));
+  return frame(k, 600, 800, defs, body, 0.14, 0.45);
+})();
+
+A.c9_ph_overlook = ((): string => {
+  const k = 'c9_ph_overlook';
+  const defs = lg(`${k}sky`, [[0, '#04061a'], [1, '#1a2248']]) + lg(`${k}lake`, [[0, '#0a1230'], [1, '#04060f']]) + lg(`${k}gd`, [[0, '#3a3a44'], [1, '#17171c']]) + rg(`${k}moon`, [[0, '#dfe8ff', 0.5], [1, '#dfe8ff', 0]]) + rg(`${k}sod`, [[0, '#ffb45a', 0.5], [1, '#ffb45a', 0]]) + bl(`${k}b`, 3);
+  const r = rng(77);
+  let stars = '', lights = '';
+  for (let i = 0; i < 46; i++) stars += `M${n1(r() * 800)} ${n1(r() * 210)}h${r() > 0.8 ? 2.4 : 1.4}`;
+  let la = '', lb = '', refl = '';
+  for (let i = 0; i < 30; i++) { const x = Math.round(r() * 800), d = `M${x} ${Math.round(240 + r() * 10)}h0`; if (i % 2) la += d; else lb += d; if (i % 3 === 0) refl += `M${x} 258v${Math.round(10 + r() * 30)}`; }
+  lights = S(la, '#ffd28a', 4.5) + S(lb, '#fff', 3.5) + S(refl, '#ffd28a', 2, 'opacity=".35"');
+  const body =
+    R(0, 0, 800, 250, `url(#${k}sky)`) + S(stars, '#fff', 1.6, 'opacity=".8"') + C(660, 70, 120, `url(#${k}moon)`) + C(660, 70, 24, '#eef2ff') + C(668, 64, 22, '#0c1030', 'opacity=".25"') +
+    P('M0 244Q200 214 400 236T800 222V260H0Z', '#070a1c') + R(0, 250, 800, 140, `url(#${k}lake)`) + lights + P('M620 256L700 256L740 390H560Z', '#dfe8ff', 'opacity=".07"') +
+    // cliff-edge lot + guard rail
+    P('M0 372Q400 340 800 366V600H0Z', `url(#${k}gd)`) + S('M0 372Q400 340 800 366', '#6a6a78', 3) + C(600, 500, 260, `url(#${k}sod)`) +
+    S('M0 352Q400 320 800 346', '#8a9098', 6) + [40, 160, 280, 400, 520, 640, 760].map((x) => R(x, 344 - Math.sin(x / 800 * Math.PI) * 26, 6, 34, '#55595e')).join('') +
+    G('translate(0 0)', [[90, 520], [300, 560], [520, 540], [700, 570], [420, 500], [180, 580]].map(([x, y]) => E(x, y, 5, 2, '#5a5a66')).join('')) +
+    // the truck, lights off
+    G('translate(36 224) scale(1.52)', truck({ dim: 0.62, rim: '#b8c8ff' }) + R(196, 92, 9, 14, '#dff6ff', 'rx="2" opacity=".9"') + R(195, 90, 11, 4, '#c8ccd0') + S('M200 78v10M195 83h10M197 80l6 6M203 80l-6 6', '#fff', 1.2)) +
+    // road sign
+    R(642, 250, 10, 300, '#6a727a') + R(488, 150, 300, 124, '#fff', 'rx="10"') + R(493, 155, 290, 114, '#6a3814', 'rx="7"') + tx(638, 200, 25, 'LAKESHORE MOTOR INN', '#fff', SANS, `${BOLD} ${MID} ${fit(266)}`) + tx(638, 250, 38, '1.2 MI →', '#fff', SANS, `${BOLD} ${MID} ${fit(176)}`) +
+    // wooden overlook sign
+    R(60, 470, 14, 110, '#3a2414') + R(300, 470, 14, 110, '#3a2414') + R(30, 440, 316, 96, '#5a3a1e', 'rx="8"') + R(30, 440, 316, 96, 'none', 'rx="8" stroke="#2a180a" stroke-width="4"') + S('M40 488H336', '#3a2414', 2, 'opacity=".6"') +
+    tx(188, 480, 27, 'HARLOW FALLS', '#ffd870', SERIF, `${BOLD} ${MID} ${fit(210)}`) + tx(188, 518, 27, 'SCENIC OVERLOOK', '#ffd870', SERIF, `${BOLD} ${MID} ${fit(276)}`) +
+    R(0, 0, 800, 600, '#0a1040', 'opacity=".18"');
+  return frame(k, 800, 600, defs, body, 0.18, 0.6);
+})();
+
+// ════════════════════════════════════════════════════════════════ HIDDEN ALBUM
+// Suggestive, never explicit: lingerie, bare chests and strategically placed props only.
+A.c9_ph_h_donna = ((): string => {
+  const k = 'c9_ph_h_donna';
+  const PINK = '#ff6ac0';
+  const defs =
+    lg(`${k}wall`, [[0, '#8a5a2a'], [1, '#4a2a14']]) + lg(`${k}robe`, [[0, '#fff'], [1, '#cfc8ba']], 1, 0) + lg(`${k}sk`, [[0, '#dc8c4c'], [0.6, TAN], [1, TAN_D]], 1, 0) +
+    rg(`${k}bulb`, [[0, '#fff', 1], [0.4, '#fff3c0', 0.6], [1, '#fff3c0', 0]]) + bl(`${k}sh`, 10) +
+    `<pattern id="${k}fl" width="70" height="60" patternUnits="userSpaceOnUse"><rect width="70" height="60" fill="#6a3a4a"/><circle cx="18" cy="16" r="11" fill="#ff8a5a"/><circle cx="18" cy="16" r="4" fill="#ffd23f"/><circle cx="52" cy="44" r="12" fill="#e24a8a"/><circle cx="52" cy="44" r="4" fill="#ffd23f"/><path d="M34 30q8-10 14 0M2 46q8-10 14 0" stroke="#7a9a3a" stroke-width="4" fill="none"/></pattern>`;
+  const lou = G('translate(500 0)',
+    // legs + robe
+    R(-54, 520, 26, 110, LOU) + R(8, 520, 26, 110, LOU_D) + 
+    P('M-86 392Q-96 300 -30 372L34 372Q98 300 90 392L98 540H-92Z', `url(#${k}robe)`) + P('M-18 372L4 470L30 372Z', LOU) +
+    S('M-22 370L4 472L32 370', '#d8d2c2', 9) + R(-92, 468, 190, 16, '#e2dccc') + S('M92 392L98 540', PINK, 4, 'opacity=".8"') +
+    // head
+    R(-16, 340, 34, 34, LOU_D) + E(2, 306, 46, 50, LOU) + P('M4 256Q48 260 48 306Q48 352 4 356Z', LOU_D, 'opacity=".5"') + E(-34, 322, 14, 16, LOU) + E(36, 322, 13, 15, LOU_D) + S('M-20 268Q0 258 22 266', '#fff', 5, 'opacity=".4"') + S('M36 270Q50 290 46 326', PINK, 3.5) +
+    C(-16, 298, 10, '#fff') + C(18, 298, 10, '#fff') + C(-15, 300, 4.5, '#2a1a12') + C(19, 300, 4.5, '#2a1a12') + S('M-30 282Q-18 272 -6 280M8 280Q20 272 32 282', '#f6f3ea', 5) +
+    P('M-30 326Q-14 312 2 322Q18 312 34 326Q22 340 2 330Q-18 340 -30 326Z', '#f6f3ea', 'stroke="#cfcabc"') +
+    // burrito, caught mid-bite
+    G('rotate(-24 -20 380)', R(-64, 350, 96, 38, '#ecd9b0', 'rx="19"') + R(-64, 350, 60, 38, '#cfd6dc', 'rx="14"') + S('M-52 356l10 14-8 14M-30 354l8 16-6 16', '#8a949e', 2)) +
+    S('M-84 400Q-70 440 -40 400', `url(#${k}robe)`, 30) + E(-36, 392, 17, 15, LOU) + S('M-46 386q10-6 20 0M-46 394q10-6 20 0', LOU_D, 1.6));
+  const donna =
+    // sheer robe behind
+    P('M232 262Q160 420 176 800H470Q470 500 420 330L396 266Z', '#0a0a0c', 'opacity=".42"') +
+    // hair
+    E(322, 142, 88, 84, '#e2d6b0') + C(256, 200, 24, '#e2d6b0') + C(398, 200, 28, '#cfc39c') +
+    // arms
+    S('M246 282Q176 350 184 404Q200 452 250 478', TAN, 36) + S('M392 282Q452 262 458 200L452 130', TAN_D, 34) + S('M474 268Q480 220 468 140', PINK, 4, 'opacity=".9"') +
+    // body
+    P('M240 266Q318 248 396 266Q380 300 388 344Q392 390 366 424Q398 470 404 520Q408 640 398 800H238Q228 640 232 520Q238 470 270 424Q244 390 248 344Q256 300 240 266Z', `url(#${k}sk)`) +
+    S('M396 268Q382 300 389 344Q392 390 367 424Q399 470 405 520Q408 640 400 790', PINK, 4, 'opacity=".9"') + R(298, 214, 40, 50, TAN_D) + P('M298 240Q318 262 338 240V268H298Z', TAN) +
+    S('M318 296V330', TAN_D, 3) + S('M262 306Q290 290 314 304M322 304Q346 290 374 306', '#f0a868', 4, 'opacity=".6"') + E(318, 476, 4, 5, TAN_D, 'opacity=".6"') +
+    // black lace bra + high-waisted briefs
+    P('M248 318Q282 300 316 322Q318 366 284 372Q250 366 248 318ZM320 322Q354 300 388 318Q386 366 352 372Q318 366 320 322Z', '#0c0c10') + S('M262 314V268M374 314V268M250 352H246M388 352H392', '#0c0c10', 6) +
+    S('M250 318Q282 300 316 322M320 322Q354 300 386 318', '#3a3a44', 5, 'stroke-dasharray=".1 7"') +
+    P('M266 430Q318 444 370 430Q398 470 404 520Q366 548 318 640Q270 548 232 520Q238 470 266 430Z', '#0c0c10') + S('M268 432Q318 446 368 432', '#3a3a44', 6, 'stroke-dasharray=".1 8"') + S('M318 640V800', TAN_D, 3) +
+    // robe front edges, one shoulder slipped
+    P('M236 258L266 262Q240 420 250 800H196Q176 480 236 258Z', '#0a0a0c', 'opacity=".6"') + P('M418 330L440 316Q470 520 462 800H404Q420 540 392 372Z', '#0a0a0c', 'opacity=".6"') + S('M266 262Q240 420 250 800M392 372Q420 540 404 800', '#0a0a0c', 4) +
+    // hand on hip
+    E(252, 480, 22, 17, TAN) + S('M238 476q14-8 30 0M236 486q14-8 30 0', TAN_D, 1.8) + C(270, 474, 4, '#c21e3a') + C(272, 486, 4, '#c21e3a') +
+    // face
+    E(318, 178, 44, 54, TAN) + P('M320 124Q362 128 362 178Q362 232 320 232Z', TAN_D, 'opacity=".5"') + S('M352 140Q366 170 358 208', PINK, 3.5) +
+    P('M270 180Q262 96 318 92Q376 96 366 182Q360 132 322 128Q286 128 278 150Q272 164 270 180Z', '#f7f0d8') + S('M282 124Q300 100 336 104', '#cdbf96', 2.5) +
+    E(300, 172, 13, 7, '#5a7ab8', 'opacity=".6"') + E(338, 172, 13, 7, '#5a7ab8', 'opacity=".6"') + P('M288 178Q300 170 312 178Q300 184 288 178ZM326 178Q338 170 350 178Q338 184 326 178Z', '#fff') + C(302, 178, 4, '#2a3a1a') + C(340, 178, 4, '#2a3a1a') +
+    S('M287 176Q300 167 313 177M325 177Q338 167 351 176', '#1a1318', 3.2) + S('M285 162Q298 154 312 160M326 156Q340 146 354 156', '#6a4a26', 3.6) + S('M318 184Q322 198 316 204', TAN_D, 2.5) +
+    P('M302 214Q311 209 318 212Q325 209 336 211Q320 228 302 214Z', '#d21e3a') + S('M304 215Q320 219 334 212', '#7a0e22', 1.6) +
+    P('M270 196l6 10-6 14-6-14zM366 196l6 10-6 14-6-14z', '#eaf6ff', 'stroke="#9cc"') + S('M292 262Q318 284 344 262', '#fff', 6, 'stroke-dasharray=".1 8"') + P('M318 276l7 9-7 11-7-11z', '#eaf6ff', 'stroke="#9cc"') +
+    // chardonnay held high
+    E(452, 132, 20, 18, TAN_D) + S('M438 126q14-8 28 0M438 136q14-8 28 0', '#7a3e1e', 1.8) + S('M452 116V84M436 84h0', '#fff', 4, 'opacity=".8"') +
+    P('M422 22H482Q484 70 452 84Q420 70 422 22Z', '#fff', 'opacity=".3"') + P('M425 42H479Q478 70 452 80Q426 70 425 42Z', '#f2e08a') + S('M430 28Q428 56 440 70', '#fff', 3, 'opacity=".8"');
+  const body =
+    R(0, 0, 600, 800, `url(#${k}wall)`) + S('M290 0V600M370 0V600M450 0V600M530 0V600', '#2a140a', 3, 'opacity=".5"') + R(0, 600, 600, 200, '#5a6a2a') +
+    // room door + fire-exit card
+    R(0, 20, 252, 600, '#6a4424') + R(8, 30, 236, 590, '#8a5a30') + C(226, 380, 11, GOLD) +
+    R(8, 56, 212, 156, '#fffdf2', 'rx="4" stroke="#c8202a" stroke-width="4"') + tx(114, 88, 19, 'LAKESHORE MOTOR INN', '#17171c', SANS, `${BOLD} ${MID} ${fit(194)}`) + tx(114, 144, 50, 'ROOM 9', '#c8202a', SANS, `${BOLD} ${MID} ${fit(176)}`) +
+    tx(114, 178, 23, 'CHECKOUT 11AM', '#17171c', SANS, `${BOLD} ${MID} ${fit(186)}`) + S('M26 196H76L68 190M76 196L68 202', '#1a8a3a', 4) + tx(90, 203, 13, 'FIRE EXIT', '#1a8a3a', SANS, BOLD) +
+    // bed
+    R(376, 250, 224, 190, '#3a2010', 'rx="10"') + P('M360 470Q480 440 600 462V660H372Z', `url(#${k}fl)`) + P('M360 470Q480 440 600 462V486Q480 464 362 494Z', '#fff', 'opacity=".15"') + P('M372 640H600V670H376Z', '#2a1408') +
+    lou + donna +
+    // counter + propped phone on timer
+    P('M0 742H600V800H0Z', '#e88aa8') + R(0, 742, 600, 7, '#fff', 'opacity=".6"') +
+    G('rotate(-10 310 720)', R(278, 660, 62, 112, '#17171c', 'rx="10"') + C(296, 680, 9, '#2a2a36') + C(296, 680, 4, '#5a7ab8') + C(316, 676, 4, '#fff8d0')) + P('M316 650l5 18 18 5-18 5-5 18-5-18-18-5 18-5z', '#fff', 'opacity=".9"') +
+    // mirror: vanity bulbs, glare, frame
+    [100, 300, 500].map((x) => C(x, 14, 44, `url(#${k}bulb)`) + C(x, 14, 9, '#fff')).join('') +
+    P('M0 520L240 0H300L0 650Z', '#fff', 'opacity=".05"') + R(6, 6, 588, 788, 'none', 'stroke="#c8ccd0" stroke-width="12"') + R(13, 13, 574, 774, 'none', 'stroke="#55595e" stroke-width="3"');
+  return frame(k, 600, 800, defs, body, 0.17, 0.5);
+})();
+
+A.c9_ph_h_tots = ((): string => {
+  const k = 'c9_ph_h_tots';
+  const defs =
+    lg(`${k}tub`, [[0, '#fff'], [1, '#b8c4cc']]) + lg(`${k}sk`, [[0, '#f0c49c'], [1, DEW_D]], 1, 0) + rg(`${k}cd`, [[0, '#ffd870', 0.7], [1, '#ffb45a', 0]]) + totPat(`${k}tot`, 1.2) + bl(`${k}sh`, 10) +
+    `<pattern id="${k}tile" width="60" height="60" patternUnits="userSpaceOnUse"><rect width="60" height="60" fill="#3a8a8a"/><rect x="2" y="2" width="56" height="56" fill="#5ab4ac"/><path d="M2 2H58L50 10H10Z" fill="#fff" opacity=".2"/></pattern>`;
+  const candle = (x: number, y: number): string => C(x, y - 34, 40, `url(#${k}cd)`) + R(x - 9, y - 26, 18, 30, '#fff3e0', 'rx="3"') + P(`M${x} ${y - 46}q8 12 0 20-8-8 0-20z`, '#ffb02a') + P(`M${x} ${y - 38}q3 6 0 10-3-4 0-10z`, '#fff8d0');
+  const cat = G('translate(486 168)',
+    P('M-60 34Q-64 -40 -16 -44Q10 -80 44 -44Q70 -30 62 34Z', '#8a8e98') + P('M56 20Q96 10 88 -30', 'none', 'stroke="#8a8e98" stroke-width="13" stroke-linecap="round"') +
+    C(-10, -70, 36, '#9a9ea8') + P('M-42 -84L-40 -122L-16 -100ZM22 -84L20 -122L-4 -100Z', '#9a9ea8') + P('M-37 -92L-36 -112L-24 -100ZM17 -92L16 -112L4 -100Z', '#e8a0a8') +
+    P('M-30 -72h20v8q-10 5-20 0zM0 -72h20v8q-10 5-20 0z', '#e6e23a') + R(-22, -72, 4, 10, '#17171c') + R(8, -72, 4, 10, '#17171c') + S('M-32 -73H-8M-2 -73H22', '#4a4e58', 4) +
+    P('M-8 -58l3 4h-6z', '#e8a0a8') + S('M-5 -54Q-10 -46 -16 -50M-5 -54Q0 -46 6 -50', '#4a4e58', 2) + S('M-26 -56l-26-4M-26 -50l-26 4M16 -56l26-4M16 -50l26 4', '#fff', 1.4));
+  const body =
+    R(0, 0, 600, 800, `url(#${k}tile)`) + R(0, 0, 600, 800, '#1a0a2a', 'opacity=".28"') + R(0, 660, 600, 140, '#3a2a3a') +
+    // sink with a judgmental cat
+    P('M392 196H586V236Q586 276 540 276H438Q392 276 392 236Z', '#f4f6f8') + R(380, 186, 218, 18, '#fff', 'rx="8"') + R(470, 276, 40, 150, '#dfe5ea') + S('M560 186V150Q560 134 544 134H536', '#c8ccd0', 9) + cat + R(380, 186, 218, 18, '#fff', 'rx="8"') +
+    // shower curtain
+    P('M0 0H86Q70 200 90 400T80 640H0Z', '#e24a8a') + S('M28 0Q16 300 30 640M60 0Q48 300 64 640', '#a82a66', 4) + [0, 1, 2, 3].map((i) => C(46, 90 + i * 150, 14, '#ffd23f') + P(`M56 ${88 + i * 150}l12 4-12 5z`, '#ff8a2a') + C(50, 86 + i * 150, 2.5, '#17171c')).join('') +
+    // tub
+    E(300, 760, 300, 26, '#000', `opacity=".5" filter="url(#${k}sh)"`) + P('M18 470Q18 720 110 750H490Q582 720 582 470Z', `url(#${k}tub)`) + P('M90 750L74 786H110L128 750ZM510 750L526 786H490L472 750Z', GOLD) +
+    E(300, 470, 284, 104, '#fff') + E(300, 474, 258, 86, '#8a5210') + E(300, 474, 258, 86, `url(#${k}tot)`) +
+    // Dewey, chest-deep in tots
+    P('M96 470Q90 400 150 384Q200 372 250 392Q300 410 300 470Q200 500 96 470Z', `url(#${k}sk)`) + S('M150 420q10-8 20 0M178 432q10-8 20 0M160 446q10-8 20 0M206 418q8-6 16 0', '#7a4a2a', 2.5) + S('M250 394Q298 412 298 466', '#ffd08a', 4) +
+    R(150, 330, 44, 64, DEW_D) + E(170, 282, 58, 64, DEW) + P('M174 218Q228 224 228 282Q228 344 174 346Z', DEW_D, 'opacity=".45"') + S('M212 232Q232 266 224 310', '#ffd08a', 4) +
+    P('M112 276q-12 44 0 86 18-20 10-80zM228 276q12 44 0 86-18-20-10-80z', DEWHAIR) + P('M118 296Q170 372 222 296V320Q170 366 118 320Z', DEWHAIR) + P('M110 270Q104 206 170 204Q236 206 230 270Q204 234 170 236Q136 234 110 270Z', DEWHAIR) +
+    P('M110 266Q170 228 230 266V242Q170 204 110 242Z', '#d8352a') + P('M228 246l30-12-8 22 18 16-34-4z', '#b82a22') + [128, 150, 170, 190, 212].map((x) => C(x, 246 - (1 - Math.abs(x - 170) / 60) * 12, 3.5, '#fff')).join('') +
+    P('M132 288Q146 280 160 288Q146 294 132 288ZM180 288Q194 280 208 288Q194 294 180 288Z', '#fff') + C(148, 288, 4, '#3a2414') + C(196, 288, 4, '#3a2414') + S('M130 285H162M178 285H210', '#1a1318', 4) + S('M128 272Q144 262 160 270M180 264Q196 252 212 264', '#4a2e1a', 4.5) +
+    // rose between the teeth
+    P('M146 318H196V330H146Z', '#fff', 'stroke="#2a130c" stroke-width="2"') + S('M110 326H250', '#2f7a2a', 5) + P('M222 324q10-14 22-8-8 8-22 8z', '#2f7a2a') + C(98, 322, 20, '#d81e3a') + P('M86 316q12-12 24 0-4 14-12 14-10-2-12-14z', '#a0102a') + S('M92 322q6-6 12 0', '#ff6a7a', 2.5) +
+    // arm raising the ketchup like champagne
+    S('M258 408Q330 380 340 300', DEW, 34) + S('M356 384Q358 340 352 300', '#ffd08a', 4) + G('rotate(14 344 230)', R(322, 190, 44, 100, '#e21e1e', 'rx="10"') + P('M330 190L338 150H350L358 190Z', '#fff') + R(322, 222, 44, 36, '#fff') + tx(344, 246, 14, 'KETCHUP', '#e21e1e', SANS, `${BOLD} ${MID} ${fit(38)}`) + S('M330 196V280', '#ff8a8a', 4)) + E(340, 292, 26, 20, DEW) + S('M322 286q18-10 36 0M322 298q18-10 36 0', DEW_D, 2) +
+    // leg draped over the rim
+    E(300, 470, 284, 104, 'none', 'stroke="#fff" stroke-width="20"') + E(300, 462, 290, 106, 'none', 'stroke="#dfe5ea" stroke-width="3"') +
+    S('M380 480Q440 380 500 470Q520 540 506 640', `url(#${k}sk)`, 44) + S('M410 440l6 10M440 424l4 10M476 440l2 10M504 500l6 6M506 550l6 4', '#7a4a2a', 2.5) + S('M522 480Q536 560 526 640', '#ffd08a', 4) +
+    P('M484 636Q470 690 500 700Q560 706 566 684Q556 660 528 640Z', DEW) + S('M548 676v10M538 680v10M528 682v10', DEW_D, 2) +
+    candle(60, 470) + candle(556, 452) + candle(118, 400) +
+    [[150, 740], [420, 770], [250, 776]].map(([x, y], i) => `<rect x="${x}" y="${y}" width="34" height="22" rx="9" fill="${TOT}" stroke="${TOT_D}" stroke-width="2" transform="rotate(${i * 30 - 20} ${x} ${y})"/>`).join('') +
+    R(0, 0, 600, 800, '#ff5a8a', 'opacity=".07"');
+  return frame(k, 600, 800, defs, body, 0.17, 0.55);
+})();
+
+A.c9_ph_h_taco = ((): string => {
+  const k = 'c9_ph_h_taco';
+  const defs =
+    lg(`${k}wall`, [[0, '#4a2a5a'], [1, '#2a1630']]) + lg(`${k}st`, [[0, '#f0f4f8'], [0.5, '#9aa4ae'], [1, '#4a525a']]) + lg(`${k}sk`, [[0, '#f0c49c'], [1, DEW_D]]) + rg(`${k}neon`, [[0, '#ff4fa3', 0.6], [1, '#ff4fa3', 0]]) + bl(`${k}sh`, 9) +
+    `<pattern id="${k}leo" width="26" height="24" patternUnits="userSpaceOnUse"><rect width="26" height="24" fill="#e8a83a"/><path d="M4 5q5-4 8 1-2 5-7 3zM16 14q6-3 8 2-3 5-8 2zM3 17q3-3 6 0-2 4-5 3zM17 2q4-2 6 1-3 3-6 1z" fill="#5a3410" stroke="#17120a" stroke-width="1.6"/></pattern>`;
+  const INK = '#17171c';
+  const body =
+    R(0, 0, 600, 800, `url(#${k}wall)`) + S('M0 250H600', '#17101c', 4) + C(110, 260, 300, `url(#${k}neon)`) +
+    // fly swatter on a hook
+    S('M96 60V250', '#2f9e4f', 7) + R(62, 30, 68, 84, '#3ad86a', 'rx="8"') + S('M74 40V104M86 40V104M98 40V104M110 40V104M66 54H126M66 72H126M66 90H126', '#1f7a3a', 2) + C(96, 256, 7, '#c8ccd0') +
+    // health certificate
+    G('rotate(3 430 150)', R(286, 46, 300, 208, '#000', `opacity=".4" filter="url(#${k}sh)"`) + R(280, 40, 300, 208, '#3a2414') + R(292, 52, 276, 184, '#fffdf2') + R(300, 60, 260, 168, 'none', 'stroke="#1a4a8a" stroke-width="3"') +
+      tx(430, 92, 19, 'HEALTH INSPECTION', '#1a4a8a', SERIF, `${BOLD} ${MID} ${fit(210)}`) + tx(430, 170, 66, 'GRADE: C', '#c8202a', SANS, `${BOLD} ${MID} ${fit(236)}`) + tx(430, 206, 15, '"we have concerns"', INK, HAND, `${MID} font-style="italic"`) + C(536, 204, 15, GOLD) + P('M528 214l-4 20 12-8 12 8-4-20z', '#c8202a')) +
+    // shelf of squeeze bottles
+    R(0, 300, 250, 10, '#8a9098') + [30, 76, 122].map((x, i) => P(`M${x} 300V262q0-10 8-12l4-22h8l4 22q8 2 8 12V300Z`, ['#e21e1e', CHEESE, '#3ad86a'][i])).join('') +
+    // counter
+    R(0, 520, 600, 280, `url(#${k}st)`) + R(0, 520, 600, 9, '#fff') + S('M0 600H600', '#fff', 2, 'opacity=".4"') + E(320, 540, 280, 16, '#000', `opacity=".4" filter="url(#${k}sh)"`) +
+    // legs: one straight, one bent (sock still on)
+    S('M440 500L600 506', `url(#${k}sk)`, 44) + S('M470 492l8 6M510 494l8 6M550 496l8 6', '#7a4a2a', 2.5) +
+    S('M430 470L506 364L552 480', DEW, 44) + S('M452 430l8 8M480 392l8 8M524 416l4 10', '#7a4a2a', 2.5) + S('M500 344Q524 352 568 468', '#ff8ad0', 4) +
+    P('M530 452L574 448L598 520H548Q526 500 530 452Z', '#f4f4f0') + S('M534 462L576 458M536 474L580 470', '#e21e1e', 5) + P('M548 520H598L594 504Q570 512 548 520Z', '#c8ccd0') +
+    // torso
+    P('M150 372Q226 340 300 388Q352 402 430 404L446 512H130Q112 430 150 372Z', DEW) + P('M150 372Q226 340 300 388Q352 402 430 404L434 440Q300 430 240 404Q190 388 150 372Z', '#f6d0a8', 'opacity=".7"') +
+    S('M200 410q12-9 24 0M236 424q12-9 24 0M214 440q12-9 24 0M262 446q10-8 20 0M180 432q10-8 20 0', '#7a4a2a', 2.6) + S('M300 470q6 4 0 8', DEW_D, 3) + C(238, 452, 4, '#c98a6a') + S('M152 370Q226 338 300 386Q352 400 430 402', '#ff8ad0', 4) +
+    // leopard briefs, mostly behind the taco
+    P('M356 396L440 402L446 512H390Q352 460 356 396Z', `url(#${k}leo)`) + S('M356 396L440 402', '#17120a', 5) +
+    // propping arm + head
+    S('M176 400Q120 440 112 506', DEW_D, 38) + S('M112 500L130 372', DEW, 34) + E(134, 360, 24, 20, DEW) +
+    G('rotate(-10 176 300)', R(160, 340, 40, 44, DEW_D) + E(176, 296, 54, 60, DEW) + P('M180 236Q230 242 230 296Q230 354 180 356Z', DEW_D, 'opacity=".45"') + S('M214 250Q234 282 226 326', '#ff8ad0', 4) +
+      P('M122 290q-12 40 0 80 16-18 10-76zM230 290q12 40 0 80-16-18-10-76z', DEWHAIR) + P('M126 310Q176 380 226 310V332Q176 376 126 332Z', DEWHAIR) + P('M120 284Q114 224 176 222Q238 224 232 284Q208 250 176 252Q144 250 120 284Z', DEWHAIR) +
+      P('M120 280Q176 244 232 280V258Q176 222 120 258Z', '#d8352a') + P('M230 262l28-12-8 20 18 16-32-4z', '#b82a22') + [136, 156, 176, 196, 216].map((x) => C(x, 262 - (1 - Math.abs(x - 176) / 56) * 11, 3.2, '#fff')).join('') +
+      P('M140 302Q154 295 168 302Q154 308 140 302ZM186 302Q200 295 214 302Q200 308 186 302Z', '#fff') + C(156, 302, 4, '#3a2414') + C(202, 302, 4, '#3a2414') + S('M138 299H170M184 299H216', '#1a1318', 4.5) + S('M138 290Q154 284 170 290M186 282Q202 268 218 280', '#4a2e1a', 4.5) +
+      E(178, 334, 11, 8, '#c8505a', 'stroke="#7a1a2a" stroke-width="2"') + S('M170 334h16', '#7a1a2a', 2)) +
+    // giant foam taco across the lap
+    G('translate(380 486) rotate(-6)', E(0, 96, 150, 14, '#000', 'opacity=".35"') + P('M-150 -14q14-44 34-10 12-48 36-8 16-46 40-4 18-44 40 0 20-38 36 8 14-26 30 14z', LETT, `stroke="${LETT_D}" stroke-width="3"`) + C(-80, -22, 17, TOM) + C(-4, -30, 17, TOM) + C(74, -22, 17, TOM) + S('M-50 -30l14-22M30 -34l12-22M104 -22l10-18', CHEESE, 9) +
+      P('M-156 -10a156 122 0 0 0 312 0z', SHELL) + P('M-156 -10a156 122 0 0 0 312 0q-34 84-156 84T-156 -10z', SHELL_D, 'opacity=".55"') + S('M-140 4Q-120 64 -60 92', '#ffd08a', 6, 'opacity=".8"') + [[-70, 30], [-10, 60], [50, 24], [90, 54], [-36, 84], [20, 14]].map(([x, y]) => C(x, y, 3.5, '#a8580e')).join('')) +
+    // free arm draped on the taco
+    S('M250 384Q300 396 316 452', DEW, 36) + S('M250 368Q312 378 334 444', '#ff8ad0', 4) + E(318, 462, 24, 18, DEW) + S('M304 456q14-8 28 0M304 468q14-8 28 0', DEW_D, 2) +
+    R(0, 0, 600, 800, '#ff4fa3', 'opacity=".06"');
+  return frame(k, 600, 800, defs, body, 0.17, 0.55);
+})();
+
+A.c9_ph_h_spatula = ((): string => {
+  const k = 'c9_ph_h_spatula';
+  const defs = lg(`${k}wall`, [[0, '#dfe8f0'], [1, '#aab8c8']]) + lg(`${k}fl`, [[0, '#e6eaee'], [1, '#8a94a0']]) + lg(`${k}win`, [[0, '#6ac0ff'], [1, '#cfeeff']]) + bl(`${k}sh`, 10);
+  const SK = '#f0c4a4', SKD = '#c08c6c';
+  const salesman = G('translate(468 0)',
+    P('M-62 330Q-66 250 -20 240H24Q70 250 66 330Z', '#f4f4f0') + P('M-8 242h16l6 70-14 14-14-14z', '#c8202a') + S('M66 330Q68 256 26 242', '#fff', 3) +
+    R(-12, 212, 24, 34, SKD) + E(0, 180, 36, 42, SK) + P('M2 138Q36 142 36 180Q36 222 2 222Z', SKD, 'opacity=".45"') + P('M-36 176Q-40 136 0 134Q40 136 36 176Q30 152 0 150Q-30 152 -36 176Z', '#6a5a4a') + E(-36, 184, 6, 10, SK) +
+    C(-13, 180, 9, '#fff') + C(13, 180, 9, '#fff') + C(-14, 181, 3.6, '#17171c') + C(12, 181, 3.6, '#17171c') + S('M-24 164Q-13 158 -3 164M3 164Q13 158 24 164', '#4a3a2a', 3.5) + S('M-9 204H9', '#5a2a26', 3.5) + S('M0 186v8', SKD, 2.5) + C(-22, 180, 11, 'none', 'stroke="#17171c" stroke-width="2.5"') + C(22, 180, 11, 'none', 'stroke="#17171c" stroke-width="2.5"') + S('M-11 180H11', '#17171c', 2.5) +
+    // desk + stapler
+    R(-110, 322, 250, 16, '#6a4a2a') + R(-100, 338, 230, 110, '#8a6238') + R(-100, 338, 230, 8, '#000', 'opacity=".2"') + R(60, 270, 60, 52, '#2a2a36', 'rx="4"') + R(82, 316, 16, 8, '#17171c') +
+    S('M-58 290Q-70 310 -40 312', '#f4f4f0', 22) + E(-30, 310, 15, 12, SK) + G('rotate(-16 -20 296)', R(-50, 290, 70, 12, '#c8202a', 'rx="5"') + R(-50, 302, 70, 7, '#55595e', 'rx="3"')));
+  const body =
+    R(0, 0, 600, 480, `url(#${k}wall)`) + R(30, 40, 250, 300, `url(#${k}win)`) + S('M30 40H280V340H30ZM155 40V340', '#fff', 8) + P('M30 340L120 40H180L90 340Z', '#fff', 'opacity=".3"') +
+    G('rotate(-4 440 70)', R(330, 34, 240, 76, '#ffd23f', 'rx="6"') + tx(450, 66, 26, '0% APR !!!', '#c8202a', SANS, `${BOLD} ${MID} ${fit(170)}`) + tx(450, 96, 22, '84 MONTHS', '#17171c', SANS, `${BOLD} ${MID} ${fit(150)}`)) +
+    R(0, 440, 600, 360, `url(#${k}fl)`) + P('M0 440H600V452H0Z', '#fff', 'opacity=".6"') + salesman +
+    // display stand + jet ski
+    E(290, 720, 280, 24, '#000', `opacity=".4" filter="url(#${k}sh)"`) + P('M110 690H470L500 730H80Z', '#c8202a') + P('M80 730H500V744H80Z', '#8a0e1a') +
+    G('translate(-6 476) scale(1.1)', jetski(false) +
+      rider(true,
+        // one arm pins the pizza box, the other blows a kiss
+        S('M196 -52Q160 -10 196 30', SPAT, 24) + E(204, 36, 15, 13, SPAT) + S('M268 -52Q312 -60 286 -96', SPAT_D, 22) + P('M262 -110Q282 -116 292 -98Q286 -86 268 -90Z', SPAT) + S('M270 -52Q314 -58 290 -92', '#ffe9a0', 3, 'opacity=".9"'),
+        E(246, -100, 7, 6, '#c8505a', 'stroke="#5a1420" stroke-width="2"') + P('M306 -150q8-12 16 0 8-12 16 0 0 12-16 24-16-12-16-24z', '#ff4f7a', 'stroke="#fff" stroke-width="2"') + P('M340 -186q5-8 10 0 5-8 10 0 0 8-10 15-10-7-10-15z', '#ff8aa8'),
+        P('M192 40Q206 30 222 36L224 60L196 64Z', '#19c8d8') + S('M194 44Q208 36 222 40', '#fff', 3) +
+        G('rotate(-7 250 60)', R(182, 6, 150, 124, '#000', 'opacity=".25"') + R(176, 0, 150, 124, '#f4ead2', 'stroke="#b8a878" stroke-width="2.5"') + R(176, 0, 150, 18, '#e2d6b4') + C(251, 62, 34, '#e2412f') + C(251, 62, 26, '#ffd23f') + C(242, 54, 5, '#c8202a') + C(260, 68, 5, '#c8202a') + C(246, 74, 4, '#c8202a') +
+          tx(251, 114, 15, 'HOT & READY', '#c8202a', SANS, `${BOLD} ${MID} ${fit(104)}`))) +
+      S('M80 -150l-10-14M60 -124l-16-6', '#fff', 4));
+  return frame(k, 600, 800, defs, body, 0.15, 0.45);
 })();
