@@ -95,7 +95,7 @@ export const S = {
   hiddenLocked: (n: number) => `${n} items · locked with the device passcode`,
   hiddenPrompt: 'This album is locked. Enter the device passcode.',
   censored: 'CENSORED',
-  censoredLong: 'CENSORED BY COLD SIGNAL UNIT · YOU’RE WELCOME',
+  censoredLong: 'CENSORED',
   hiddenQuips: [
     "Oh good, the spank bank. File what's relevant and bleach your eyes on your own time.",
     "Hidden album. Of course. Nobody hides their tax returns, rookie. Censor bars are on the department.",

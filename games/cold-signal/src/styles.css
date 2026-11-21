@@ -1191,7 +1191,7 @@ kbd { display: inline-grid; place-items: center; min-width: 24px; height: 22px; 
 .ph-hidden .glyph { width: 26px; height: 26px; color: var(--red); }
 .ph-hidden div { display: grid; gap: 2px; }
 .ph-hidden span { font-size: 13px; color: var(--muted); }
-.ph-tile.censored img { filter: blur(2px) saturate(1.2); }
-.censor-bar { position: absolute; left: 6%; right: 6%; top: 46%; padding: 3px 0; background: #000; color: #fff; font: 800 9px/1 var(--mono); letter-spacing: .14em; text-align: center; transform: rotate(-4deg); pointer-events: none; box-shadow: 0 2px 6px rgba(0,0,0,.5); }
-.censor-bar.big { left: 8%; right: 8%; top: 50%; padding: 10px 6px; font-size: 12px; transform: translateY(-50%) rotate(-3deg); z-index: 1; }
+.ph-tile.censored img { filter: none; }
+.censor-bar { position: absolute; left: 34%; right: 34%; top: 58%; padding: 2px 0; background: #000; color: #fff; font: 800 9px/1 var(--mono); letter-spacing: .14em; text-align: center; transform: rotate(-4deg); pointer-events: none; box-shadow: 0 2px 6px rgba(0,0,0,.5); }
+.censor-bar.big { left: 36%; right: 36%; top: 62%; padding: 5px 4px; font-size: 9px; letter-spacing: .1em; transform: rotate(-3deg); z-index: 1; }
 .hidden-grid .ph-tile { outline: 1px solid rgba(255,77,94,.5); outline-offset: -2px; }
