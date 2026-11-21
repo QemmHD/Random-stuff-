@@ -96,6 +96,18 @@ for (const d of '0214') await page.locator('.pc-key b', { hasText: new RegExp(`^
 await sleep(1400);
 await shot('06-home');
 
+// phone-wide search
+await page.locator('.home-search').click();
+await sleep(500);
+await page.locator('.search-input').fill('pryce');
+await sleep(300);
+const hits = await page.locator(`${top} .search-results button.row`).count();
+if (hits < 3) throw new Error(`search returned ${hits} hits`);
+await shot('06b-search');
+await page.locator(`${top} .search-results button.row`).first().click();
+await sleep(500);
+await home();
+
 // voicemails
 await openApp('phone').catch(async () => { await page.locator('.dock [data-app="phone"]').click(); await sleep(500); });
 await page.locator(`${top} .seg button`, { hasText: 'Voicemail' }).click();

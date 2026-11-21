@@ -106,6 +106,12 @@ export const S = {
   model: 'Model',
   modelName: 'Halo 12',
 
+  search: 'Search',
+  searchPlaceholder: 'Names, numbers, places…',
+  searchTip: 'Search every app on this phone at once. Try a name, a phone number, a place, or a word from a message.',
+  noResults: 'No results',
+  results: 'results',
+
   // trace
   traceTitle: 'TRACE',
   traceSub: 'Cold Signal Unit — Mobile Forensics',

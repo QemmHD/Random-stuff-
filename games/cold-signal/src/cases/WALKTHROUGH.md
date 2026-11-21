@@ -1,6 +1,21 @@
 # Case walkthroughs (spoilers)
 
-<!-- Case 01 section to be added. -->
+## Case 01 — Low Tide
+
+**Truth:** Mara found that her supervisor Dr. Alan Pryce moved a decimal on the HB-17 lead readings (48 ppb → 4.8), which let the Blackrock Marina permit through. Blackrock site lead Cal Reyes threatened her from (555) 014-7720. Pryce lured her to Gull Point; Reyes waited on the path with a flashlight. Mara ran, dropped her phone in a tide pool so they'd think she drowned, and is hiding at June's aunt's cabin at Larch Hollow with the original samples.
+
+**Unlock (0214):** Briefing: "the day we got Biscuit". Tap the lock wallpaper: old print with the camera date stamp `02 14 '18`.
+
+**Solve path**
+1. Photos → Lab B sheets 48 vs 4.8 (`lab_data`), Blackrock outflow (`blackrock_pipe`). The boat photo shows **SEA WREN** → Notes "Insurance" password `seawren` (`insurance_note`).
+2. Phone → Voicemail: Pryce's warning (`pryce_pressure`), Theo at the Anchor (`theo_alibi`).
+3. Messages → unknown number threats (`burner_threat`); Theo's angry text (red herring, `theo_threat`). Mail → site-visit invite lists Cal Reyes' cell as 014-7720 (`reyes_number`).
+4. TRACE Photos → key tag LH-4 (`cabin_key`), dry bag (`drybag`). Pin `pryce_pressure` → TRACE Messages → Pryce's deleted 22:41 lure (`pryce_lure`) and June's cabin offer (`june_cabin`). Pin `burner_threat` → TRACE Voicemail → Reyes' pocket-dial naming "Alan" (`pocket_dial`).
+5. Glimpse → June's 23:47 photo of Theo at the bar clears him. Settings → Wi-Fi `RosaCabin_LH4` (`cabin_wifi`). Browser → Larch Hollow weather (`larch_search`). Bank → prepaid SIM, $400 cash.
+6. After the note and message recovery, Mara herself texts from a new number (`mara_alive`).
+
+**Report:** falsified lead readings · Pryce arranged Gull Point · Cal Reyes sent the threats · Theo never left the Anchor · Mara is hiding at the Larch Hollow cabin.
+
 
 ## Case 02 — Dead Air
 

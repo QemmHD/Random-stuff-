@@ -609,3 +609,85 @@ function countRecovered(g: Game, flag: string): number {
   const lists: { deletedUntil?: string }[][] = [c.photos, c.notes, c.mail, c.voicemails, c.browser, c.map.stops, ...c.threads.map((t) => t.messages)];
   return lists.reduce((n, l) => n + l.filter((x) => x.deletedUntil === flag).length, 0);
 }
+
+// ======================= SEARCH (phone-wide) =======================
+interface Hit { app: AppId; title: string; sub: string; t: string; open: (phone: Phone) => void }
+
+function snippet(text: string, q: string): string {
+  const i = text.toLowerCase().indexOf(q);
+  if (i < 0) return text.slice(0, 80);
+  const start = Math.max(0, i - 28);
+  return (start ? '…' : '') + text.slice(start, i + q.length + 50).replace(/\n/g, ' ');
+}
+
+function searchAll(g: Game, raw: string): Hit[] {
+  const q = raw.trim().toLowerCase();
+  if (q.length < 2) return [];
+  const has = (...s: (string | undefined)[]) => s.some((x) => x?.toLowerCase().includes(q));
+  const hits: Hit[] = [];
+  for (const c of g.c.contacts) {
+    if (has(c.name, c.number, c.label)) {
+      const th = g.threads().find((t) => t.contact === c.id);
+      hits.push({ app: 'phone', title: c.name, sub: [c.label, c.number].filter(Boolean).join(' · '), t: '', open: (p) => (th ? p.push(threadView(g, th.id)) : p.push(phoneView(g, 'contacts'))) });
+    }
+  }
+  for (const t of g.threads()) {
+    const c = contactOf(g, t.contact);
+    for (const m of t.messages) if (has(m.text)) hits.push({ app: 'messages', title: c.name, sub: snippet(m.text, q), t: m.t, open: (p) => p.push(threadView(g, t.id)) });
+  }
+  for (const n of g.c.notes.filter((x) => g.visible(x))) {
+    const locked = !!n.lock && !g.has(`note:${n.id}`);
+    if (has(n.title) || (!locked && has(n.body))) hits.push({ app: 'notes', title: n.title, sub: locked ? S.lockedNote : snippet(n.body, q), t: n.t, open: (p) => openNote(g, p, n) });
+  }
+  for (const m of g.c.mail.filter((x) => g.visible(x))) {
+    if (has(m.subject, m.body, m.from, m.fromAddr, m.to)) hits.push({ app: 'mail', title: m.subject, sub: snippet(has(m.body) ? m.body : `${m.from} ${m.fromAddr}`, q), t: m.t, open: (p) => p.push(mailView(g, m)) });
+  }
+  for (const v of g.c.voicemails.filter((x) => g.visible(x))) {
+    const c = contactOf(g, v.contact);
+    if (has(v.transcript, c.name)) hits.push({ app: 'phone', title: `${S.voicemail} — ${c.name}`, sub: snippet(v.transcript, q), t: v.t, open: (p) => p.push(phoneView(g, 'voicemail')) });
+  }
+  for (const b of g.c.browser.filter((x) => g.visible(x))) {
+    if (has(b.title, b.url)) hits.push({ app: 'browser', title: b.title, sub: b.url, t: b.t, open: (p) => p.push(pageView(g, b)) });
+  }
+  for (const e of g.c.calendar) if (has(e.title, e.detail)) hits.push({ app: 'calendar', title: e.title, sub: e.detail, t: e.t, open: (p) => p.push(calendarView(g)) });
+  for (const tx of g.c.bank.tx) if (has(tx.desc)) hits.push({ app: 'bank', title: tx.desc, sub: `${tx.amount < 0 ? '−' : '+'}$${Math.abs(tx.amount).toFixed(2)}`, t: tx.t, open: (p) => p.push(bankView(g)) });
+  for (const post of g.c.glimpse) if (has(post.caption, ...post.comments.map((c) => c.text))) hits.push({ app: 'glimpse', title: 'Glimpse', sub: snippet(post.caption, q), t: post.t, open: (p) => p.push(glimpseView(g)) });
+  for (const w of g.c.wifi) if (has(w.name)) hits.push({ app: 'settings', title: `${S.wifi}: ${w.name}`, sub: `${S.lastJoined} ${stamp(w.lastJoined)}`, t: w.lastJoined, open: (p) => p.push(settingsView(g)) });
+  for (const p of g.c.photos.filter((x) => g.visible(x))) if (has(p.place)) hits.push({ app: 'photos', title: p.place, sub: stamp(p.t), t: p.t, open: (ph) => ph.viewArt(p.art, p) });
+  return hits.slice(0, 60);
+}
+
+export function searchView(g: Game): View {
+  let query = '';
+  return {
+    key: 'search', title: S.search, app: 'messages',
+    render: (phone) => {
+      const results = h('div', { class: 'search-results' });
+      const input = h('input', { class: 'search-input', type: 'search', placeholder: S.searchPlaceholder, value: query, autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': S.search });
+      const paint = () => {
+        const hits = searchAll(g, query);
+        if (query.trim().length < 2) {
+          results.replaceChildren(h('div', { class: 'search-tip' }, glyph('search'), h('p', null, S.searchTip)));
+          return;
+        }
+        if (!hits.length) { results.replaceChildren(emptyState(S.noResults)); return; }
+        results.replaceChildren(h('div', { class: 'section-title' }, `${hits.length} ${S.results}`), ...hits.map((hit) => tapRow(() => { audio.play('tap'); hit.open(phone); },
+          h('span', { class: 'sr-icon' }, artImg(`app_${hit.app}`)),
+          h('div', { class: 'row-main' },
+            h('div', { class: 'row-top' }, h('b', null, hit.title), hit.t ? h('span', { class: 'muted' }, shortDate(hit.t)) : null),
+            h('div', { class: 'row-sub' }, ...highlight(hit.sub, query))))));
+      };
+      input.addEventListener('input', () => { query = input.value; paint(); });
+      paint();
+      setTimeout(() => { if (!query) input.focus(); }, 350);
+      return h('div', { class: 'search' }, h('div', { class: 'search-bar' }, glyph('search'), input), results);
+    },
+  };
+}
+
+function highlight(text: string, q: string): (string | HTMLElement)[] {
+  const needle = q.trim().toLowerCase();
+  const i = text.toLowerCase().indexOf(needle);
+  if (!needle || i < 0) return [text];
+  return [text.slice(0, i), h('mark', null, text.slice(i, i + needle.length)), text.slice(i + needle.length)];
+}

@@ -8,7 +8,7 @@ import type { AppId, Photo } from '../types';
 import { S } from '../strings';
 import { clock, longDate, stamp } from '../time';
 import { avatar, contactOf, pinButton, recoveredTag } from './widgets';
-import { appRoot } from './apps';
+import { appRoot, searchView } from './apps';
 
 export interface View {
   key: string;
@@ -219,6 +219,7 @@ export class Phone {
         h('div', { class: 'hw-date' }, longDate(now)),
         h('div', { class: 'hw-owner' }, this.game.c.owner.name),
         h('div', { class: 'hw-batt' }, glyph('battery'), `${this.game.battery()}% · ${S.batteryNote.split(':')[0]}`)),
+      h('button', { class: 'home-search', type: 'button', onclick: () => this.openSearch() }, glyph('search'), S.search),
       h('div', { class: 'home-grid' }, ...grid.map((a, i) => this.icon(a, i))),
       h('div', { class: 'dock' }, ...DOCK.map((a, i) => this.icon(a, i + 10))),
     );
@@ -253,6 +254,18 @@ export class Phone {
     }
     this.overlay.replaceChildren();
     this.stack = [appRoot(app, this)];
+    this.mode = 'app';
+    this.screen.dataset.mode = 'app';
+    this.swap(this.renderView(this.top()), 'open');
+  }
+
+  openSearch(): void {
+    if (this.mode === 'lock') return;
+    audio.play('open');
+    this.screen.style.setProperty('--ox', '50%');
+    this.screen.style.setProperty('--oy', '30%');
+    this.overlay.replaceChildren();
+    this.stack = [searchView(this.game)];
     this.mode = 'app';
     this.screen.dataset.mode = 'app';
     this.swap(this.renderView(this.top()), 'open');

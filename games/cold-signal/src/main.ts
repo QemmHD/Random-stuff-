@@ -53,3 +53,7 @@ document.addEventListener('visibilitychange', () => {
 // Debug hook for automated tests.
 (window as unknown as { __cs: unknown }).__cs = { toFiles, openCase };
 toTitle();
+
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(() => { /* offline support is optional */ }); });
+}
