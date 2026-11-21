@@ -147,17 +147,17 @@ export const case5: CaseFile = {
 
   photos: [
     { id: 'c5_ph_room9', art: 'c5_ph_room9', t: '2026-10-30T23:50', place: 'Lisk & Key — Room 9', orientation: 'landscape', caption: 'QUARRY, finished. The old bank vault painted quarry-blue, a fibreglass rock ledge jutting out over a pool of rippling blue light. On the far wall, a beige 1970s push-button wall phone. In the corner, a squat steel lockbox with a red LED timer.' },
-    { id: 'c5_ph_finalbox', art: 'c5_ph_finalbox', t: '2026-10-31T22:43', place: 'Lisk & Key — Room 9', orientation: 'portrait', caption: "The final box, lid open, empty except for a phone-shaped foam cut-out. Red LED: 'OPENS NOV 02 · 09:00'. A label on the lid in Vera's handwriting: 'FOR HAL · RUTH · TAMSIN'.", clue: 'phone_room' },
-    { id: 'c5_ph_camera', art: 'c5_ph_camera', t: '2026-09-14T15:30', place: "Ruth Price's house", orientation: 'landscape', caption: "A yellow FunSaver disposable camera on a kitchen table, 'LOW' written on it in silver marker, the counter at 3. Beside it a sandwich bag labelled HARBOR CO. SHERIFF — PROPERTY — PRICE, M.", clue: 'ruth_camera' },
-    { id: 'c5_ph_contact', art: 'c5_ph_contact', t: '2026-09-19T18:10', place: 'Tannery Lofts', orientation: 'landscape', caption: 'A contact sheet of 23 tiny flash-lit frames: a car, rum bottles, laughing teenagers, black water. The 24th square has been cut out with scissors. In red pen beside the hole: "24 →".' },
-    { id: 'c5_ph_frame24', art: 'c5_ph_frame24', t: '2026-09-19T18:20', place: 'Tannery Lofts', orientation: 'portrait', caption: "Recovered. Frame 24, scanned. Low Price's own reversed-camera selfie on the Pulpit ledge: his face huge in the flash, mid-laugh, black water far below. Right behind him, reaching toward his shoulder: a boy in a red windbreaker, 'HATCH XC' in white on the sleeve. Deleted by Vera on Oct 30.", clue: 'frame24', deletedUntil: 'recovered:photos' },
-    { id: 'c5_ph_statement', art: 'c5_ph_statement', t: '2026-10-02T11:00', place: 'Second Look Project', orientation: 'portrait', caption: "Recovered. A photocopied 2008 witness statement, HARBOR COUNTY SHERIFF, 08/23/2008. 'Owen R. Blake, 17: I was at the car with Nadia the whole time. We heard Low yell and a man shouting and saw a flashlight coming down the path.' Signed. Deleted by Vera on Oct 30.", clue: 'owen_statement', deletedUntil: 'recovered:photos' },
-    { id: 'c5_ph_clipping', art: 'c5_ph_clipping', t: '2026-09-25T14:05', place: 'Port Ardent Library', orientation: 'portrait', caption: "Microfiche, Harbor Ledger, Aug 24 2008: 'CARETAKER HELD IN QUARRY DEATH. Abel Dunn, 53, was found soaked to the chest at the water's edge. Four teenagers say Dunn chased them onto the Pulpit ledge with a flashlight.'", clue: 'clipping' },
-    { id: 'c5_ph_2008', art: 'c5_ph_2008', t: '2008-08-22T19:40', place: 'Hatch Quarry', orientation: 'landscape', caption: "From Nadia Fenn's Glimpse. Five teenagers on a car hood at golden hour: Vera, Nadia, Julian in a polo, Low with a yellow disposable camera, and Owen in a red windbreaker with 'HATCH XC' on the sleeve.", clue: 'red_windbreaker' },
-    { id: 'c5_ph_firstaid', art: 'c5_ph_firstaid', t: '2026-10-20T15:00', place: 'Lisk & Key — staff room', orientation: 'landscape', caption: "From Tess's Glimpse. Owen at a staff table pressing a grey-capped pen marked TRAINER into an orange. A yellow-capped real EpiPen lies beside the first-aid binder for comparison.", clue: 'trainer_kit' },
-    { id: 'c5_ph_brownies', art: 'c5_ph_brownies', t: '2026-10-31T22:09', place: 'Lisk & Key — control booth', orientation: 'portrait', caption: "Sent by Owen. Two brownies on a paper doily on the control console, one pale, one almost black. A round bakery sticker on the box lid: 'KETTLE & CRUMB — BLACK SESAME + HONEY'.", clue: 'black_sesame' },
-    { id: 'c5_ph_debate', art: 'c5_ph_debate', t: '2026-10-31T23:14', place: "Nadia's apartment", orientation: 'landscape', caption: "From Nadia's Glimpse. A TV showing two podiums. Lower third: 'KPRT LIVE · HARBOR CO. DA DEBATE'. Julian Ashe mid-sentence. Corner bug: 'LIVE 11:14 PM'.", clue: 'julian_debate' },
-    { id: 'c5_ph_abel', art: 'c5_ph_abel', t: '2026-10-12T14:40', place: 'Briar Glen Care', orientation: 'portrait', caption: "An old man's big scarred hands around a paper cup of tea, a care-home blanket over his knees. No face. A visitor sticker on the table: BRIAR GLEN · VISITOR · ROOM 14." },
+    { id: 'c5_ph_finalbox', art: 'c5_ph_finalbox', t: '2026-10-31T22:43', place: 'Lisk & Key — Room 9', orientation: 'portrait', caption: "QUARRY's final box, lid open: a foam insert, a red LED display, a strip of tape with handwriting on the lid.", clue: 'phone_room' },
+    { id: 'c5_ph_camera', art: 'c5_ph_camera', t: '2026-09-14T15:30', place: "Ruth Price's house", orientation: 'landscape', caption: "A yellow disposable camera on a kitchen table, 'LOW' in silver marker on the body. Beside it, a sheriff's property bag.", clue: 'ruth_camera' },
+    { id: 'c5_ph_contact', art: 'c5_ph_contact', t: '2026-09-19T18:10', place: 'Tannery Lofts', orientation: 'landscape', caption: 'A contact sheet of tiny flash-lit frames: a car, bottles, teenagers, black water. One square has been cut out.' },
+    { id: 'c5_ph_frame24', art: 'c5_ph_frame24', t: '2026-09-19T18:20', place: 'Tannery Lofts', orientation: 'portrait', caption: "Recovered. Frame 24 of Low's camera, scanned: a flash selfie on a rock ledge at night. Deleted Oct 30.", clue: 'frame24', deletedUntil: 'recovered:photos' },
+    { id: 'c5_ph_statement', art: 'c5_ph_statement', t: '2026-10-02T11:00', place: 'Second Look Project', orientation: 'portrait', caption: "Recovered. A photocopied, signed 2008 witness statement from the Harbor County Sheriff's file. Deleted Oct 30.", clue: 'owen_statement', deletedUntil: 'recovered:photos' },
+    { id: 'c5_ph_clipping', art: 'c5_ph_clipping', t: '2026-09-25T14:05', place: 'Port Ardent Library', orientation: 'portrait', caption: "Microfiche reader screen: the Harbor Ledger, Aug 24 2008, front page.", clue: 'clipping' },
+    { id: 'c5_ph_2008', art: 'c5_ph_2008', t: '2008-08-22T19:40', place: 'Hatch Quarry', orientation: 'landscape', caption: "From Nadia Fenn's Glimpse, 2008. Five teenagers on a car hood at Hatch Quarry, golden hour.", clue: 'red_windbreaker' },
+    { id: 'c5_ph_firstaid', art: 'c5_ph_firstaid', t: '2026-10-20T15:00', place: 'Lisk & Key — staff room', orientation: 'landscape', caption: "From Tess's Glimpse. Owen at a staff table with an orange and an auto-injector pen; a second pen beside the first-aid binder.", clue: 'trainer_kit' },
+    { id: 'c5_ph_brownies', art: 'c5_ph_brownies', t: '2026-10-31T22:09', place: 'Lisk & Key — control booth', orientation: 'portrait', caption: "Sent by Owen. Two brownies on a paper doily on the control console, a bakery box lid behind them.", clue: 'black_sesame' },
+    { id: 'c5_ph_debate', art: 'c5_ph_debate', t: '2026-10-31T23:14', place: "Nadia's apartment", orientation: 'landscape', caption: "From Nadia's Glimpse. A living-room TV showing a debate: two podiums, Julian Ashe mid-sentence.", clue: 'julian_debate' },
+    { id: 'c5_ph_abel', art: 'c5_ph_abel', t: '2026-10-12T14:40', place: 'Briar Glen Care', orientation: 'portrait', caption: "An old man's big scarred hands around a paper cup of tea, a care-home blanket over his knees. A visitor sticker on the table." },
   ],
 
   notes: [
@@ -292,9 +292,9 @@ export const case5: CaseFile = {
   ],
 
   clues: [
-    { id: 'frame24', title: 'Frame 24', text: "Low's own selfie on the Pulpit ledge — and right behind him, reaching for his shoulder, a red HATCH XC windbreaker.", kind: 'object', art: 'c5_ph_frame24' },
+    { id: 'frame24', title: 'Frame 24', text: "Low's reversed-camera selfie on the Pulpit ledge, 2008. Behind his shoulder: a red sleeve lettered HATCH XC.", kind: 'object', art: 'c5_ph_frame24' },
     { id: 'owen_statement', title: "Owen, 2008: 'at the car'", text: "Owen's sworn 2008 statement: 'I was at the car with Nadia the whole time... saw a flashlight coming down the path.'", kind: 'document', art: 'c5_ph_statement' },
-    { id: 'red_windbreaker', title: 'The red windbreaker', text: "2008 photo: of the five friends, only Owen wears a red windbreaker with 'HATCH XC' on the sleeve.", kind: 'object', art: 'c5_ph_2008' },
+    { id: 'red_windbreaker', title: 'The red windbreaker', text: "2008 photo of the five friends on a car hood. Owen wears a red windbreaker with 'HATCH XC' on the sleeve.", kind: 'object', art: 'c5_ph_2008' },
     { id: 'nadia_car', title: "Nadia: 'I was alone at the car'", text: "Deleted text: Owen was never at the car. He came running down the path after. 'I said what Julian told us to say.'", kind: 'person', art: 'av_c5_nadia' },
     { id: 'owen_confront', title: "Vera: 'you're in frame 24'", text: "Deleted texts, Oct 28: Vera tells Owen he's on the ledge in frame 24. He begs her to keep it out of the room.", kind: 'event', art: 'av_c5_owen' },
     { id: 'owen_vm', title: "Owen: 'I grabbed for him'", text: "Deleted voicemail, Oct 29: 'I grabbed for him, Vee, and I missed, or I didn't... November second ends everything.'", kind: 'event', art: 'av_c5_owen' },
@@ -306,14 +306,14 @@ export const case5: CaseFile = {
     { id: 'latchly_owen', title: 'Front door: Owen, 23:20', text: 'Smart-lock log: Owen left at 22:05 — then unlocked the front door again at 23:20 and left at 23:31. Tess left at 21:04 and never returned.', kind: 'event' },
     { id: 'julian_threat', title: "Julian: 'I will bury you'", text: 'Julian Ashe threatened Vera by text, voicemail and lawyer to keep QUARRY closed.', kind: 'person', art: 'av_c5_julian' },
     { id: 'chase_story', title: "Julian: 'It was my idea'", text: "Julian: 'The caretaker story kept four kids out of prison. It was my idea and it WORKED.'", kind: 'person', art: 'av_c5_julian' },
-    { id: 'julian_debate', title: 'Julian live on KPRT', text: "Nadia's post: Julian at the podium on KPRT's live DA debate at 11:14 PM — in the middle of the death window.", kind: 'place', art: 'c5_ph_debate' },
-    { id: 'tess_tamsin', title: "'My name is Tamsin Dunn'", text: "The unknown number: Tess Moreau is Tamsin Dunn, Abel Dunn's daughter.", kind: 'person', art: 'av_unknown' },
+    { id: 'julian_debate', title: 'Julian live on KPRT', text: "Nadia's post: Julian at the podium on KPRT's live DA debate, on-screen bug 'LIVE 11:14 PM'.", kind: 'place', art: 'c5_ph_debate' },
+    { id: 'tess_tamsin', title: "'My name is Tamsin Dunn'", text: "The unknown number: 'My name isn't Tess Moreau. It's Tamsin Dunn. Abel Dunn is my father.'", kind: 'person', art: 'av_unknown' },
     { id: 'staff_contact', title: "Tess's emergency contact", text: "Tess's job application: 'Emergency contact: A. Dunn (father) — Briar Glen Care, Room 14.'", kind: 'document' },
     { id: 'vera_knew', title: "Vera: 'I know. give me until November'", text: "The night Tess was hired, Vera told her she knew — and asked her to wait until November.", kind: 'person', art: 'av_c5_tess' },
     { id: 'clipping', title: "'Caretaker held'", text: "Harbor Ledger, 2008: Abel Dunn found 'soaked to the chest at the water's edge'; four teens say he chased them.", kind: 'document', art: 'c5_ph_clipping' },
     { id: 'abel_rescue', title: 'He went into the water', text: "Vera's unsent letter: Abel Dunn went in after Low three times, in his boots. He was wet because he tried to save him.", kind: 'document' },
-    { id: 'confession', title: "Vera's confession", text: 'No chase, no dog. Owen was on the ledge. Julian invented the story. Abel Dunn went into the water to save Low.', kind: 'document' },
-    { id: 'phone_room', title: 'The phone is the room', text: "Vera locked her own phone inside QUARRY's final box at 22:44, timed to open for Ibarra, Ruth and Tamsin on Nov 2. She couldn't call for help.", kind: 'object', art: 'c5_ph_finalbox' },
+    { id: 'confession', title: "Vera's confession", text: "Vera's locked confession, dated Oct 31: her account of the night of Aug 22, 2008, and the story the four of them told.", kind: 'document' },
+    { id: 'phone_room', title: 'The phone is the room', text: "Vera locked her own phone inside QUARRY's final box at 22:44, timed to open for Ibarra, Ruth and Tamsin on Nov 2.", kind: 'object', art: 'c5_ph_finalbox' },
     { id: 'intake', title: "Vera: 'I gave a false statement'", text: 'Vera to the Second Look Project, Oct 1: her 2008 statement helped convict an innocent man.', kind: 'document' },
     { id: 'ruth_camera', title: "Low's camera", text: "Low's mother kept his undeveloped disposable camera for 18 years, and gave it to Vera in September.", kind: 'object', art: 'c5_ph_camera' },
   ],
@@ -390,9 +390,9 @@ export const case5: CaseFile = {
 
   events: [
     { id: 'e5_unk1', kind: 'text', when: ['unlocked'], minPins: 3, delayMs: 4500, thread: 'th_c5unknown', contact: 'c5unknown', text: 'You got into her phone. She said someone would. Did she leave anything for me?' },
-    { id: 'e5_h_trainer', kind: 'handler', when: ['pinned:trainer_pen'], delayMs: 3000, text: "I pulled the ME's property list myself. Grey cap, TRAINER on the barrel, no needle, no drug. Somebody put a toy in a dying woman's hand. This isn't an accident file anymore." },
+    { id: 'e5_h_trainer', kind: 'handler', when: ['pinned:trainer_pen'], delayMs: 3000, text: "I pulled the ME's property list myself. Grey cap, TRAINER on the barrel, no needle, no drug. Where does a pen like that come from?" },
     { id: 'e5_unk2', kind: 'text', when: ['recovered:photos'], minPins: 8, delayMs: 6000, thread: 'th_c5unknown', contact: 'c5unknown', text: "My name isn't Tess Moreau. It's Tamsin Dunn. Abel Dunn is my father. He's seventy-one and he still asks the nurses if the boy got out of the water.", clue: 'tess_tamsin' },
-    { id: 'e5_h_owen', kind: 'handler', when: ['pinned:latchly_owen'], delayMs: 3500, text: "Owen Blake told detectives he drove straight home at 22:05 and heard about Vera from Tess at 07:50. Her front door says he was back inside at 23:20. For eleven minutes." },
+    { id: 'e5_h_owen', kind: 'handler', when: ['pinned:latchly_owen'], delayMs: 3500, text: "For the file: Owen Blake told detectives he drove straight home at 22:05 and heard about Vera from Tess at 07:50. Put that next to the lock log." },
     { id: 'e5_unk3', kind: 'text', when: ['note:n_confession'], delayMs: 5000, thread: 'th_c5unknown', contact: 'c5unknown', text: "She told me in March she knew who I was. 'Give me until November.' I thought she meant she'd fire me nicely." },
     { id: 'e5_h_ready', kind: 'handler', when: ['unlocked'], minPins: 16, delayMs: 3000, text: "She built a room and we're the only ones who finished it. When every answer has a pin behind it, open the Case Report." },
   ],
@@ -403,7 +403,7 @@ export const case5: CaseFile = {
     { until: 'recovered:photos', after: ['unlocked'], text: "Vera hid things on purpose. The contact sheet has a hole where frame 24 should be. Run TRACE Photos." },
     { until: 'pinned:owen_statement', after: ['recovered:photos'], text: 'One recovered photo is a 2008 witness statement. Read whose it is, and pin it.' },
     { until: 'recovered:voice', after: ['pinned:owen_statement'], text: 'Owen called Vera late on Oct 29 and she missed it. TRACE the voicemail cache.' },
-    { until: 'recovered:msgfrag', after: ['pinned:frame24'], text: "Frame 24 changes Owen's story. Who else would know where he really was? TRACE the deleted messages." },
+    { until: 'recovered:msgfrag', after: ['pinned:frame24'], text: "Someone else was at the quarry in 2008 and remembers it differently. TRACE the deleted messages." },
     { until: 'recovered:mailpurge', after: ['note:n_stage4'], text: 'Stage 5: a letter she never sent. TRACE the purged mail.' },
     { until: 'note:n_confession', after: ['note:n_stage4'], text: "'The name we buried with a lie.' The 2008 clipping names the man they blamed. First and last name, no space." },
     { until: 'pinned:trainer_pen', after: ['unlocked'], text: 'Her sister kept texting after she died. Read what the medical examiner found in Vera\'s hand.' },
@@ -414,7 +414,7 @@ export const case5: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'Her last room has six locks. Open the Case Report and back every answer with a pinned clue.' },
   ],
 
-  handlerIntro: "Ines Duarte. Last case on my desk this year, and it came out of a locked box. The partner says her final codes were always a word on a phone keypad. Look at the first wall you see.",
+  handlerIntro: "Last case on my desk this year, and it came out of a locked box. The partner says her final codes were always a word on a phone keypad. Look at the first wall you see.",
 
   epilogue: {
     solved: [

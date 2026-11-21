@@ -143,16 +143,16 @@ export const case4: CaseFile = {
   ],
 
   photos: [
-    { id: 'c4_ph_dad', art: 'c4_ph_dad', t: '2019-02-10T11:00', place: 'Eagle lift', orientation: 'portrait', caption: 'Rafi at twenty and his father on an Eagle chair, frosted beards, matching Silverpine Lift Ops jackets. His father is pointing up the line at a tower numbered 9.' },
-    { id: 'c4_ph_tower9', art: 'c4_ph_tower9', t: '2026-03-01T06:58', place: 'Ptarmigan Bowl', orientation: 'landscape', caption: 'Sunrise below Eagle tower 9. A wide untouched bowl, a small cairn with a faded Lift Ops beanie on top. A trail sign at the edge: PTARMIGAN BOWL.' },
-    { id: 'c4_ph_shop', art: 'c4_ph_shop', t: '2026-03-07T18:10', place: 'Silverpine lift shop', orientation: 'landscape', caption: "Rafi's lift shop. A gearbox in pieces on the bench. An empty spot on the shelf, its label taped on: PROPANE HEATER — SHOP. A sticky note: 'borrowed — L ♥'.", clue: 'heater_borrowed' },
+    { id: 'c4_ph_dad', art: 'c4_ph_dad', t: '2019-02-10T11:00', place: 'Eagle lift', orientation: 'portrait', caption: 'Rafi at twenty and his father on an Eagle chair, frosted beards, matching Silverpine Lift Ops jackets. His father is pointing up the line.' },
+    { id: 'c4_ph_tower9', art: 'c4_ph_tower9', t: '2026-03-01T06:58', place: 'Ptarmigan Bowl', orientation: 'landscape', caption: 'Sunrise below an Eagle lift tower. A wide untouched bowl, a small cairn with a faded Lift Ops beanie on top, a trail sign at the edge.' },
+    { id: 'c4_ph_shop', art: 'c4_ph_shop', t: '2026-03-07T18:10', place: 'Silverpine lift shop', orientation: 'landscape', caption: "Rafi's lift shop. A gearbox in pieces on the bench; a labelled shelf with a gap and a yellow sticky note.", clue: 'heater_borrowed' },
     { id: 'c4_ph_aerie', art: 'c4_ph_aerie', t: '2026-01-24T12:40', place: 'The Aerie', orientation: 'landscape', caption: "The Aerie on a bluebird day: a steep A-frame lodge of dark timber, stone chimney, a wide south deck with picnic tables. A carved sign: THE AERIE · EST. 1961. Round the north side, a small kitchen service door by the cat track." },
-    { id: 'c4_ph_sled', art: 'c4_ph_sled', t: '2026-01-10T15:20', place: 'Silverpine base', orientation: 'landscape', caption: "From Bram Kessler's Glimpse. A new matte-black snowmobile, red pinstripe, 'SP-01' in white on the cowling. Kessler in a black shell jacket, thumbs up.", clue: 'sled_assign' },
-    { id: 'c4_ph_alldown', art: 'c4_ph_alldown', t: '2026-03-07T23:33', place: 'Eagle bottom terminal', orientation: 'landscape', caption: "Recovered. The Eagle bottom bullwheel under work lights. Six teenagers in a shivering huddle, one held up on one foot. Lina is flashing a guilty peace sign. Lift clock on the shack: 23:33. Deleted Mar 8, 07:50.", clue: 'all_down', deletedUntil: 'recovered:photos' },
-    { id: 'c4_ph_deck', art: 'c4_ph_deck', t: '2026-03-08T01:34', place: 'The Aerie', orientation: 'portrait', caption: "Recovered. Flash photo on the Aerie's south deck: a purple backpack on a snowy picnic table, and beside it a small propane heater, dial at OFF, frost on the grille. Behind them, through the dark lodge window, a headlamp glow and a figure in a black jacket holding a red jerrycan. At the far corner of the frame, the nose of a black sled: 'SP-0'. Deleted Mar 8, 07:50.", clue: 'bag_photo', deletedUntil: 'recovered:photos' },
+    { id: 'c4_ph_sled', art: 'c4_ph_sled', t: '2026-01-10T15:20', place: 'Silverpine base', orientation: 'landscape', caption: "From Bram Kessler's Glimpse. A new matte-black snowmobile; Kessler in a black shell jacket beside it, thumbs up.", clue: 'sled_assign' },
+    { id: 'c4_ph_alldown', art: 'c4_ph_alldown', t: '2026-03-07T23:33', place: 'Eagle bottom terminal', orientation: 'landscape', caption: "Recovered. The Eagle bottom bullwheel at night under work lights; a group of teenagers by the lift shack. Deleted Mar 8, 07:50.", clue: 'all_down', deletedUntil: 'recovered:photos' },
+    { id: 'c4_ph_deck', art: 'c4_ph_deck', t: '2026-03-08T01:34', place: 'The Aerie', orientation: 'portrait', caption: "Recovered. Flash photo at night on the Aerie's south deck: a purple backpack and a small propane heater on a picnic table, the lodge window behind. Deleted Mar 8, 07:50.", clue: 'bag_photo', deletedUntil: 'recovered:photos' },
     { id: 'c4_ph_burn', art: 'c4_ph_burn', t: '2026-03-08T07:20', place: 'Silverpine base', orientation: 'landscape', caption: 'Dawn from the base area. Grey smoke rising from the summit where the Aerie stood. The Eagle chairs hang still.' },
-    { id: 'c4_ph_newspaper', art: 'c4_ph_newspaper', t: '2026-03-11T18:29', place: "Mama's kitchen", orientation: 'portrait', caption: "Sent by Mama. The Cutter's Gap Courier, front page: 'FIRE MARSHAL: AERIE BLAZE BEGAN IN KITCHEN STOREROOM — ACCELERANT SUSPECTED'. A sub-head: 'Lift mechanic's account of deck heater \"inconsistent with findings\".'", clue: 'fire_origin' },
-    { id: 'c4_ph_karaoke', art: 'c4_ph_karaoke', t: '2026-03-08T01:41', place: "Rooster's Bar", orientation: 'portrait', caption: "From Wes Tolliver's Glimpse. Wes on a tiny karaoke stage, eyes shut, mid-howl. Above the bar a neon clock reads 1:41. Chalkboard: 'SAT 3/7 — KARAOKE TIL CLOSE'.", clue: 'wes_karaoke' },
+    { id: 'c4_ph_newspaper', art: 'c4_ph_newspaper', t: '2026-03-11T18:29', place: "Mama's kitchen", orientation: 'portrait', caption: "Sent by Mama. The front page of The Cutter's Gap Courier on her kitchen table, next to a teacup.", clue: 'fire_origin' },
+    { id: 'c4_ph_karaoke', art: 'c4_ph_karaoke', t: '2026-03-08T01:41', place: "Rooster's Bar", orientation: 'portrait', caption: "From Wes Tolliver's Glimpse. Wes on a tiny karaoke stage, eyes shut, mid-howl.", clue: 'wes_karaoke' },
     { id: 'c4_ph_lina', art: 'c4_ph_lina', t: '2026-02-21T13:10', place: 'Silverpine', orientation: 'portrait', caption: 'Lina, 16, upside-down in a snowbank, one ski still on, laughing so hard she can\'t get up.' },
   ],
 
@@ -279,10 +279,10 @@ export const case4: CaseFile = {
   clues: [
     { id: 'lift_log', title: 'Eagle ran 23:12–23:31', text: 'Ops alert: Eagle started after hours with key 0114 (Rafi), 19 minutes, loading downhill from the top station.', kind: 'document' },
     { id: 'kessler_allstaff', title: "Kessler: 'come to me FIRST'", text: "The owner's 06:30 email names key 0114 and tells whoever turned it to come to him before the police.", kind: 'person', art: 'av_c4_kessler' },
-    { id: 'kessler_vm', title: "'whoever's bag you went back for'", text: "Deleted voicemail, 07:41: Kessler talks Rafi into confessing — and mentions the bag he went back up for. Rafi never told anyone about a bag.", kind: 'event', art: 'av_c4_kessler' },
+    { id: 'kessler_vm', title: "'whoever's bag you went back for'", text: "Deleted voicemail, 07:41: Kessler urges Rafi to confess — 'first offense, it's a misdemeanor' — and mentions 'whoever's bag you went back up for'.", kind: 'event', art: 'av_c4_kessler' },
     { id: 'lina_party', title: "Lina: 'we're at the aerie'", text: 'Deleted text, 22:51: Lina and five friends rode last chair up and hid in the closed Aerie. Zoe hurt her ankle.', kind: 'event', art: 'av_c4_lina' },
     { id: 'heater_out', title: 'Heater off, outside', text: "Lina, 23:04: \"heater's off and it's outside on the deck I promise.\"", kind: 'object' },
-    { id: 'heater_borrowed', title: 'The borrowed heater', text: "Lina took the propane heater from Rafi's shop on Mar 7 — it really was at the Aerie.", kind: 'object', art: 'c4_ph_shop' },
+    { id: 'heater_borrowed', title: 'The borrowed heater', text: "Empty shelf in Rafi's shop, labelled 'PROPANE HEATER — SHOP'. Sticky note: 'borrowed — L ♥'.", kind: 'object', art: 'c4_ph_shop' },
     { id: 'lina_bag', title: "Lina's bag, 01:05", text: 'Lina left her bag, with her school ID, on the Aerie deck. Rafi went back up for it on the shop sled.', kind: 'event' },
     { id: 'bag_photo', title: 'The deck photo, 01:34', text: 'Bag and heater on the deck (dial at OFF, frosted). Behind them in the dark window: a headlamp, a figure with a red jerrycan. A black sled marked "SP-0".', kind: 'object', art: 'c4_ph_deck' },
     { id: 'all_down', title: 'Six down at 23:33', text: 'Recovered photo: all six teenagers at the bottom of Eagle, lift clock 23:33.', kind: 'event', art: 'c4_ph_alldown' },
@@ -290,12 +290,12 @@ export const case4: CaseFile = {
     { id: 'badge_sheet', title: 'Badge 0001 = Kessler', text: "Rafi's Ops note: 0001 is Bram Kessler's master badge. SP-01 is Bram's sled — nobody else touches it.", kind: 'document' },
     { id: 'sled_witness', title: 'SP-01 on the cat track', text: 'The unknown groomer saw SP-01 go up the cat track at 01:08 and come down dark at 01:52.', kind: 'event', art: 'av_unknown' },
     { id: 'sled_assign', title: "SP-01: the boss's sled", text: "Kessler's own post: a black sled marked SP-01. 'New boss sled.'", kind: 'object', art: 'c4_ph_sled' },
-    { id: 'fire_origin', title: 'Origin: kitchen storeroom', text: "Fire marshal: the blaze began in the kitchen storeroom with an accelerant — not on the deck, where Rafi's confession puts it.", kind: 'document', art: 'c4_ph_newspaper' },
+    { id: 'fire_origin', title: 'Origin: kitchen storeroom', text: "Courier front page: the fire marshal says the blaze began in the kitchen storeroom, accelerant suspected.", kind: 'document', art: 'c4_ph_newspaper' },
     { id: 'false_story', title: "Rafi's script", text: "Rafi's locked note: the story he rehearsed ('my heater, my fault, nobody else there') — and the truth underneath it.", kind: 'document' },
     { id: 'rafi_searches', title: 'Searches before he confessed', text: "Deleted, 07:31–07:44: 'can a 16 year old be charged', 'confess to misdemeanor first offense', 'permanently delete photos'.", kind: 'event' },
-    { id: 'lina_admits', title: "Lina: 'it was US'", text: "Lina's voicemail: it was her party and her borrowed heater, and Rafi is covering for her.", kind: 'person', art: 'av_c4_lina' },
+    { id: 'lina_admits', title: "Lina: 'it was US'", text: "Lina's voicemail: 'it was US… it was my party, I took your heater… You're not doing this for me.'", kind: 'person', art: 'av_c4_lina' },
     { id: 'wes_threat', title: "Wes: 'hope it burns'", text: 'The fired groomer: "That hut and that man deserve each other. Hope it burns with him in it."', kind: 'person', art: 'av_c4_wes' },
-    { id: 'wes_karaoke', title: "Wes at Rooster's, 1:41", text: "Wes on the karaoke stage in town under a bar clock reading 1:41 — miles from the summit.", kind: 'place', art: 'c4_ph_karaoke' },
+    { id: 'wes_karaoke', title: "Wes at Rooster's, 1:41", text: "Wes on the karaoke stage at Rooster's Bar, under a neon bar clock reading 1:41.", kind: 'place', art: 'c4_ph_karaoke' },
     { id: 'insurance_tip', title: '$900k → $4.2M', text: 'Wes did the paperwork: in January Kessler raised the Aerie\'s insurance from $900,000 to $4.2 million.', kind: 'document' },
     { id: 'heritage_denied', title: 'Heritage board: no', text: 'The Aerie was protected — it could not be demolished. "People don\'t pay for it. Altura does."', kind: 'document' },
     { id: 'altura_deal', title: 'Altura needs the summit', text: "Altura's purchase of Silverpine depended on a gondola terminal on the Aerie's site by June.", kind: 'document' },
@@ -374,8 +374,8 @@ export const case4: CaseFile = {
   events: [
     { id: 'e4_unk1', kind: 'text', when: ['unlocked'], minPins: 3, delayMs: 4500, thread: 'th_c4unknown', contact: 'c4unknown', text: "Is this Rafi Haddad's phone? Is somebody finally reading it?" },
     { id: 'e4_unk2', kind: 'text', when: ['recovered:photos'], minPins: 6, delayMs: 6000, thread: 'th_c4unknown', contact: 'c4unknown', text: "I groom Upper Eagle nights. At 1:08 a sled went up the cat track. Black, red stripe. SP-01. Only one man rides SP-01. It came back down at 1:52 with its lights off. Rafi's light went up at 1:30 and came down at 1:40. I know what I saw.", clue: 'sled_witness' },
-    { id: 'e4_h_origin', kind: 'handler', when: ['pinned:fire_origin'], delayMs: 3000, text: "Rafi's statement puts a heater on the deck. The marshal puts an accelerant in the kitchen storeroom. His confession doesn't even fit his own fire." },
-    { id: 'e4_h_vm', kind: 'handler', when: ['pinned:kessler_vm'], delayMs: 3500, text: "Rafi's statement never mentions going back up the mountain. Not to us, not to his lawyer. So who told Bram Kessler about a bag?" },
+    { id: 'e4_h_origin', kind: 'handler', when: ['pinned:fire_origin'], delayMs: 3000, text: "Hold that headline up against Rafi's signed statement. Are they describing the same fire?" },
+    { id: 'e4_h_vm', kind: 'handler', when: ['pinned:kessler_vm'], delayMs: 3500, text: "For the file: Rafi's statement never mentions going back up the mountain. Not to us, not to his lawyer. Play that voicemail again." },
     { id: 'e4_unk3', kind: 'text', when: ['event:e4_unk2', 'pinned:badge_sheet'], delayMs: 5000, thread: 'th_c4unknown', contact: 'c4unknown', text: "It's Mags. Cat 3. This is my son's phone. Bram signs my paycheck too. I'll tell Detective Abara myself if you need me to." },
     { id: 'e4_h_ready', kind: 'handler', when: ['unlocked'], minPins: 14, delayMs: 3000, text: "The DA wants that plea signed Friday. When every answer has a pin behind it, open the Case Report." },
   ],
@@ -397,7 +397,7 @@ export const case4: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'Six questions. Open the Case Report and back every answer with a pinned clue.' },
   ],
 
-  handlerIntro: "Ines Duarte. A signed confession and a mother who won't accept it. I've read his statement — it's tidy, like he rehearsed it. Open the phone. His sister gave us the rule.",
+  handlerIntro: "A signed confession and a mother who won't accept it. I've read his statement — it's tidy, like he rehearsed it. Open the phone. His sister gave us the rule.",
 
   epilogue: {
     solved: [

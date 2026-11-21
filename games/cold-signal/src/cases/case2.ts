@@ -142,14 +142,14 @@ export const case2: CaseFile = {
   ],
 
   photos: [
-    { id: 'c2_ph_sign', art: 'c2_ph_sign', t: '2026-10-03T01:58', place: 'Carraway Mill — the Coop', orientation: 'portrait', caption: 'The hand-painted station sign, freshly redone. Wet white paint: "THE OWL HOURS · 104.3 FM". The old "88.1" is painted over but still ghosts through.' },
-    { id: 'c2_ph_duo', art: 'c2_ph_duo', t: '2026-10-03T02:05', place: 'Carraway Mill — the Coop', orientation: 'landscape', caption: 'Recovered. Selfie: Jonah and Cass on the roof, paint on their hands, the new sign behind them. Cass is wearing a bright yellow raincoat. Deleted by the owner on Oct 10, 08:24.', clue: 'cass_raincoat', deletedUntil: 'recovered:photos' },
-    { id: 'c2_ph_festival', art: 'c2_ph_festival', t: '2026-08-22T16:30', place: 'Riverbend Fest', orientation: 'portrait', caption: 'Saved from Glimpse. Cass Rourke in the rain at Riverbend Fest — the same yellow raincoat, hood up, grinning.', clue: 'cass_raincoat' },
-    { id: 'c2_ph_mothcar', art: 'c2_ph_mothcar', t: '2026-10-09T01:11', place: 'Carraway Mill — parking lot', orientation: 'landscape', caption: "Sent by Mothwing. A car dashboard at night, radio display glowing 104.3. Through the windshield: the mill's silhouette and one lit window on the roof.", clue: 'moth_creepy' },
-    { id: 'c2_ph_coop', art: 'c2_ph_coop', t: '2026-10-16T23:52', place: 'Carraway Mill — the Coop', orientation: 'landscape', caption: "Pre-show. The transmitter room: mixer, a laptop-sized playout box labelled 'DECK', a car battery, fairy lights. The run sheet is taped to the wall.", device: 'This Halo — rear camera' },
-    { id: 'c2_ph_stairs', art: 'c2_ph_stairs', t: '2026-10-17T01:41', place: 'Carraway Mill — stairwell', orientation: 'portrait', caption: "Recovered. Tilted and motion-blurred, as if the phone were falling. An iron stair rail, a stencilled '3' on the brick, and a yellow raincoat sleeve reaching across the frame. Deleted from this device at 01:57 — sixteen minutes after it was taken.", clue: 'stair_photo', deletedUntil: 'recovered:photos', device: 'This Halo — rear camera (burst)' },
-    { id: 'c2_ph_sickbed', art: 'c2_ph_sickbed', t: '2026-10-16T21:05', place: 'Wren Court', orientation: 'portrait', caption: "From Cass's Glimpse post at 01:50. Tea, tissues, a little radio on the nightstand. Embedded capture time: Oct 16, 21:05 — and the bedside clock in the shot reads 9:05.", clue: 'cass_alibi_post', device: 'Glimpse media — original capture time embedded' },
-    { id: 'c2_ph_lisbon', art: 'c2_ph_lisbon', t: '2026-10-16T22:40', place: 'Lisbon, Portugal', orientation: 'landscape', caption: 'From Gideon Pell\'s Glimpse. A rooftop bar at night above Lisbon; a yellow tram below; a conference lanyard on the table reads "IBERIA PROPERTY FORUM".', clue: 'pell_lisbon' },
+    { id: 'c2_ph_sign', art: 'c2_ph_sign', t: '2026-10-03T01:58', place: 'Carraway Mill — the Coop', orientation: 'portrait', caption: 'Hand-painted station sign on the mill roof. Paint still wet.' },
+    { id: 'c2_ph_duo', art: 'c2_ph_duo', t: '2026-10-03T02:05', place: 'Carraway Mill — the Coop', orientation: 'landscape', caption: 'Recovered. Selfie of Jonah and Cass on the mill roof, paint on their hands, the sign behind them. Deleted Oct 10, 08:24.', clue: 'cass_raincoat', deletedUntil: 'recovered:photos' },
+    { id: 'c2_ph_festival', art: 'c2_ph_festival', t: '2026-08-22T16:30', place: 'Riverbend Fest', orientation: 'portrait', caption: 'Saved from Glimpse. Cass Rourke at Riverbend Fest, in the rain.', clue: 'cass_raincoat' },
+    { id: 'c2_ph_mothcar', art: 'c2_ph_mothcar', t: '2026-10-09T01:11', place: 'Carraway Mill — parking lot', orientation: 'landscape', caption: "Sent by Mothwing. A car dashboard at night, radio on; the mill through the windshield.", clue: 'moth_creepy' },
+    { id: 'c2_ph_coop', art: 'c2_ph_coop', t: '2026-10-16T23:52', place: 'Carraway Mill — the Coop', orientation: 'landscape', caption: "Pre-show. The transmitter room: mixer, a playout box labelled 'DECK', a car battery, fairy lights, a sheet taped to the wall.", device: 'This Halo — rear camera' },
+    { id: 'c2_ph_stairs', art: 'c2_ph_stairs', t: '2026-10-17T01:41', place: 'Carraway Mill — stairwell', orientation: 'portrait', caption: "Recovered. Burst frame, Carraway Mill stairwell, tilted and motion-blurred. Deleted at 01:57.", clue: 'stair_photo', deletedUntil: 'recovered:photos', device: 'This Halo — rear camera (burst)' },
+    { id: 'c2_ph_sickbed', art: 'c2_ph_sickbed', t: '2026-10-16T21:05', place: 'Wren Court', orientation: 'portrait', caption: "Attached to Cass's Glimpse post of 01:50. Tea, tissues, a small radio and a clock on the nightstand.", clue: 'cass_alibi_post', device: 'Glimpse media — original capture time embedded' },
+    { id: 'c2_ph_lisbon', art: 'c2_ph_lisbon', t: '2026-10-16T22:40', place: 'Lisbon, Portugal', orientation: 'landscape', caption: 'From Gideon Pell\'s Glimpse. A rooftop bar at night; a tram in the street below; a lanyard on the table.', clue: 'pell_lisbon' },
     { id: 'c2_ph_notice', art: 'c2_ph_notice', t: '2026-10-01T10:20', place: 'Carraway Mill — front gate', orientation: 'portrait', caption: 'A notice zip-tied to the gate: "PELL HOLDINGS — NOTICE TO VACATE — DEMOLITION COMMENCES OCT 31". Someone has drawn an owl on it in marker.' },
     { id: 'c2_ph_contract', art: 'c2_ph_contract', t: '2026-10-10T08:22', place: 'Fennimore Ave apartment', orientation: 'portrait', caption: 'Screenshot of a PDF from Rhea: the signature page of the "Talent & Archive Agreement". Typed e-signature: Jonah Merrick, 10/09/2026 23:14. Advance: $40,000 to the account in Schedule B.', clue: 'hearth_deal' },
     { id: 'c2_ph_van', art: 'c2_ph_van', t: '2026-09-28T23:40', place: 'Dyer Street', orientation: 'landscape', caption: 'A white van with a rotating antenna dome on its roof, parked across from the mill. Door decal: SPECTRUM ENFORCEMENT BUREAU.' },
@@ -301,10 +301,10 @@ export const case2: CaseFile = {
     { id: 'cass_downstairs', title: "'i'm not sick. i'm downstairs.'", text: "Deleted texts from Cass, 01:22–01:26: she was at the mill, asking Jonah to come down to the 3rd-floor landing.", kind: 'event', art: 'av_c2_cass' },
     { id: 'callin_plan', title: 'Run sheet: call-ins', text: "Call-ins ring Jonah's own phone and are patched to channel 4. Cass was due at 01:45. The deck lives on the Coop Wi-Fi.", kind: 'document' },
     { id: 'playout_cmd', title: 'Deck: ▶ cass_callin_ep41.wav', text: "Recovered browser history: at 01:44 this phone told the Coop deck to play a 28-minute file called cass_callin_ep41.wav.", kind: 'document' },
-    { id: 'cass_alibi_post', title: "The 'sickbed' post", text: "Cass posted at 01:50 'from my sickbed' — but the photo was taken at 21:05. The clock in it says 9:05.", kind: 'document', art: 'c2_ph_sickbed' },
-    { id: 'monologue', title: "'talking to nobody'", text: "Mothwing, 02:01: Cass's 'live' call-in sounded like a monologue — she wasn't answering anyone.", kind: 'event', art: 'av_c2_moth' },
-    { id: 'stair_photo', title: 'Stairwell, 01:41', text: "Deleted burst photo: falling phone, 3rd-floor rail, a yellow raincoat sleeve. Deleted at 01:57 — while Jonah lay at the bottom of the stairs.", kind: 'place', art: 'c2_ph_stairs' },
-    { id: 'phone_carried', title: 'Phone climbed back up', text: "At 01:43 the phone climbed from the 3rd floor back to the roof. Jonah couldn't have carried it.", kind: 'event' },
+    { id: 'cass_alibi_post', title: "The 'sickbed' post", text: "Cass's 01:50 post: 'calling in to the Owl from my sickbed'. Embedded capture time of the photo: Oct 16, 21:05.", kind: 'document', art: 'c2_ph_sickbed' },
+    { id: 'monologue', title: "'talking to nobody'", text: "Mothwing, 02:01: Cass on air is 'talking to nobody. like a monologue. she's not answering anything anyone asks'.", kind: 'event', art: 'av_c2_moth' },
+    { id: 'stair_photo', title: 'Stairwell, 01:41', text: "Deleted burst photo taken 01:41 in the stairwell: a rail, a stencilled '3', a yellow sleeve. Deleted from the phone at 01:57.", kind: 'place', art: 'c2_ph_stairs' },
+    { id: 'phone_carried', title: 'Phone climbed back up', text: "Barometer log: at 01:43 the phone rose two floors, from the 3rd floor back to roof level.", kind: 'event' },
     { id: 'moth_witness', title: 'Yellow raincoat on the landing', text: "Mothwing saw someone in a yellow raincoat on the landing with Jonah at 01:39, then riding off alone at 02:04.", kind: 'person', art: 'av_c2_moth' },
     { id: 'cass_raincoat', title: "Cass's yellow raincoat", text: "Cass Rourke owns a bright yellow raincoat — she's wearing it in two photos.", kind: 'object', art: 'c2_ph_festival' },
     { id: 'cass_vm', title: 'Payphone voicemail, 05:49', text: "From the Dyer St payphone, three minutes before the 911 call: 'It's me... I came back... I'm calling someone right now.' A woman's voice.", kind: 'event' },
@@ -312,7 +312,7 @@ export const case2: CaseFile = {
     { id: 'pell_ooo', title: "Pell's auto-reply", text: 'Jonah emailed Pell at 23:08 on show night. Auto-reply: in Lisbon, Oct 14–21.', kind: 'document' },
     { id: 'pell_lisbon', title: 'Pell in Lisbon', text: "Pell's own post at 22:40: a Lisbon rooftop, a conference lanyard. 'Back on the 21st.'", kind: 'place', art: 'c2_ph_lisbon' },
     { id: 'moth_creepy', title: "Mothwing: 'i always know where you are'", text: "A superfan who parks in the mill lot every show night with a thermos.", kind: 'person', art: 'av_c2_moth' },
-    { id: 'burner_tic', title: "Unknown number: 'ok ok'", text: "The anonymous number blames 'Pell's people' — and writes 'ok ok', exactly like Cass does.", kind: 'person', art: 'av_unknown' },
+    { id: 'burner_tic', title: "Unknown number: 'ok ok'", text: "The anonymous number blames 'Pell's people' and asks you to put the phone down. Writes 'ok ok'.", kind: 'person', art: 'av_unknown' },
     { id: 'cass_confess', title: "'it was me at the payphone'", text: "The unknown number: 'it was me at the payphone. i went back... x c'", kind: 'event', art: 'av_unknown' },
   ],
 
@@ -377,8 +377,8 @@ export const case2: CaseFile = {
 
   events: [
     { id: 'e2_burner1', kind: 'text', when: ['unlocked'], minPins: 4, delayMs: 4000, thread: 'th_c2burner', contact: 'c2burner', text: "Pell's people know someone's poking around in the Owl's phone. ok ok — just put it down and let him rest.", clue: 'burner_tic' },
-    { id: 'e2_h_tic', kind: 'handler', when: ['event:e2_burner1'], delayMs: 5000, text: "Burner phones are cheap. Habits aren't. Read that message again — has anyone else on this phone texted like that?" },
-    { id: 'e2_h_7731', kind: 'handler', when: ['pinned:advance_7731'], delayMs: 2500, text: "Forty thousand to an account ending 7731, and it isn't Jonah's. Somebody on this phone has paid him from that account before. Find them." },
+    { id: 'e2_h_tic', kind: 'handler', when: ['event:e2_burner1'], delayMs: 5000, text: "Burner phones are cheap. Habits aren't. Read that one twice." },
+    { id: 'e2_h_7731', kind: 'handler', when: ['pinned:advance_7731'], delayMs: 2500, text: "Forty thousand dollars. Account numbers have a way of turning up twice — keep that one in your head." },
     { id: 'e2_burner2', kind: 'text', when: ['recovered:msgfrag'], delayMs: 6000, thread: 'th_c2burner', contact: 'c2burner', text: "you don't know what it was like on those stairs. he grabbed my sleeve and the rail just went. i didn't push him. i didn't." },
     { id: 'e2_confess', kind: 'text', when: ['recovered:voice'], delayMs: 7000, thread: 'th_c2burner', contact: 'c2burner', text: "it was me at the payphone. i went back. i should never have left him. tell ada i'm sorry. x c", clue: 'cass_confess' },
     { id: 'e2_h_ready', kind: 'handler', when: ['unlocked'], minPins: 12, delayMs: 3000, text: "That's a heavy board. If you can back every answer, open the Case Report. Ada's waiting on us." },
@@ -400,7 +400,7 @@ export const case2: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'You have what you need. Open the Case Report and back every answer with a pinned clue.' },
   ],
 
-  handlerIntro: "Ines Duarte. I run the unit, you read the phone. His sister swears he'd never leave this thing behind — and yet there it was, upstairs. Start with the lock screen.",
+  handlerIntro: "New phone, new night. His sister swears he'd never leave this thing behind — and yet there it was, upstairs. Start with the lock screen.",
 
   epilogue: {
     solved: [
