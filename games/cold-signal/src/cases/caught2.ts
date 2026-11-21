@@ -65,6 +65,7 @@ export const caught2: CaseFile = {
     { id: 'dev', name: 'Dev 🎧', avatar: 'av_cg2_dev', number: '(555) 380-5512' },
     { id: 'bea', name: 'Bea 🐝', avatar: 'av_cg2_bea', number: '(555) 380-4012', label: 'sister' },
     { id: 'tiffani', name: 'Tiffani Boone (HOA)', avatar: 'av_cg2_tiffani', number: '(555) 380-1414', label: 'across the street, #14' },
+    { id: 'gary', name: 'Gary #9', avatar: 'av_cg2_gary', number: '(555) 380-0909', label: "Tiffani's husband" },
     { id: 'hoa', name: 'Maple Court Neighbors 🏡', avatar: 'av_cg2_hoa', number: '(555) 380-0000', label: 'group' },
   ],
 
@@ -155,6 +156,13 @@ export const caught2: CaseFile = {
         { from: 'them', text: '[Tiffani Boone]: Room 6 of the CLUBHOUSE. HOA business. Goodnight, Gary.', t: '2026-11-17T23:17' },
         { from: 'them', text: '[Gary #9]: the clubhouse is one room', t: '2026-11-17T23:18' },
         { from: 'them', text: '[Gary #9]: also why did i get "the snip" as a notification', t: '2026-11-17T23:19' },
+      ],
+    },
+    {
+      id: 'th_gary', contact: 'gary', messages: [
+        { from: 'them', text: "Nora, it's Gary from #9. Delicate question. Does Greg own a grey fleece vest that says GREG on it. Asking because one is in my laundry. Again.", t: '2026-11-21T09:40', clue: 'greg_tells' },
+        { from: 'me', text: "...he has one, Gary. why", t: '2026-11-21T10:30' },
+        { from: 'them', text: "No reason. Tiffani says it's 'HOA lost and found'. We don't have an HOA lost and found. I would know. I proposed one in 2022 and she vetoed it.", t: '2026-11-21T10:32', clue: 'greg_tells' },
       ],
     },
     {
@@ -315,7 +323,7 @@ export const caught2: CaseFile = {
     { id: 'trying', title: 'Two years of trying', text: "To Bea: 'two years of trying and nothing... maybe the cabin is lucky.' A pharmacy two-pack; one test used Nov 21 (one line); the last one saved for the morning of the 28th.", kind: 'event', art: 'cg2_ph_h_test' },
     { id: 'bea_cover', title: "Bea's 'Love Island' alibi", text: "Thursday Nov 5: Nora asks Bea to say she was at hers watching Love Island — 'DON'T say hotel.' Bea's Glimpse story at 19:31: alone at spin. Bea's voicemail: rehearsing the lie by accident. You called at 19:35.", kind: 'person', art: 'av_cg2_bea' },
     { id: 'research_box', title: 'BLUE BOX LLC, shipped to the agency', text: "A discreet-billed order ('BLUE BOX LLC', $86: a 'Captain's Knot' silk rope, a lantern, a feather tickler, 'Knots for Lovers') shipped to Okafor Literary Agency, 'for research. truly. chapter 22.' Mystery Man's PaySnap request: 'batteries 48-ct (lantern) 😇'.", kind: 'object' },
-    { id: 'greg_tells', title: 'Your Tuesday blackout', text: "Nora to Bea: 'greg's location goes off every tuesday at 6:45 and comes back at 11:30. I decided not to want to know until after the 28th.'", kind: 'event', art: 'av_cg2_greg' },
+    { id: 'greg_tells', title: 'Your Tuesday blackout', text: "Nora to Bea: 'greg's location goes off every tuesday at 6:45 and comes back at 11:30. I decided not to want to know until after the 28th.' Gary #9, to Nora: your GREG vest is in his laundry. Again.", kind: 'event', art: 'av_cg2_greg' },
     { id: 'bernard_reveal', title: 'Mystery Man is Bernard, her agent', text: "'Mystery Man' texts while you're holding her phone: he's Bernard Okafor, her literary agent, 68, new hip, wife named Ruth. Thursday was the final audiobook session.", kind: 'person', art: 'av_cg2_mystery' },
     { id: 'bowling_forfeit', title: '0 frames, 11 forfeits', text: "Strike Force Lanes: you have bowled 0 frames this season. The league plays Wednesdays; Tuesdays are Toddler Bumper Bowl. Your shoes still have the tags.", kind: 'document' },
     { id: 'motel_charges', title: 'Card ••2291, Room 6, Tuesdays', text: "Joint statement: YOUR card ••2291 at Wyeth Motor Lodge, Room 6, on Nov 3, 10 and 17 — plus minibar for two, Vanilla Dreams body mist, a his-and-hers robe set and a dozen roses Nora never got.", kind: 'document' },
