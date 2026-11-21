@@ -32,3 +32,13 @@ node tests/play.mjs http://localhost:5173/ tests/output   # full UI playthrough 
 ## Adding a case
 
 Write a `CaseFile` in `src/cases/`, add its art to `src/art/`, and register both. `npm test` then fails if anything is unreachable or inconsistent.
+
+## Your own Hidden-album images
+
+Put image files (jpg/png/webp/gif) in `public/hidden/` and list them in `public/hidden/manifest.json` under a case id (e.g. `"low-tide"`) or `"*"` for every case:
+
+```json
+{ "*": [{ "file": "pic1.jpg", "place": "Bathroom mirror", "t": "2026-10-02T23:14" }] }
+```
+
+They appear in that phone's passcode-locked **Hidden** album after the next deploy.

@@ -1,0 +1,4 @@
+{
+  "_readme": "Drop image files (jpg/png/webp) into this folder and list them below under a case id (or \"*\" for every case). They appear in that phone's passcode-locked Hidden album.",
+  "*": []
+}

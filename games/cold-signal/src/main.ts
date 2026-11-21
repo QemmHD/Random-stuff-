@@ -2,6 +2,7 @@ import './styles.css';
 import { clear } from './dom';
 import { audio } from './audio';
 import { applyPrefs } from './screens/settings';
+import { loadExtraPhotos } from './extraPhotos';
 import { bootSequence, briefingScreen, epilogueScreen, filesScreen, titleScreen } from './screens/menu';
 import { investigate, type InvestigateHandle } from './screens/investigate';
 import { hasSave, type Game } from './game';
@@ -46,6 +47,7 @@ function toEpilogue(g: Game): void {
 }
 
 applyPrefs();
+void loadExtraPhotos();
 document.addEventListener('pointerdown', () => audio.unlock(), { once: true });
 document.addEventListener('keydown', () => audio.unlock(), { once: true });
 document.addEventListener('visibilitychange', () => {

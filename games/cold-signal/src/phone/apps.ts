@@ -5,6 +5,7 @@ import { audio } from '../audio';
 import type { Game } from '../game';
 import type { AppId, BrowserEntry, CalEvent, Mail, Note, Photo, Thread, Voicemail } from '../types';
 import { S } from '../strings';
+import { extraHiddenPhotos } from '../extraPhotos';
 import { byTimeAsc, byTimeDesc, clock, listLabel, longDate, parse, sameDay, shortDate, stamp } from '../time';
 import type { Phone, View } from './phone';
 import { avatar, contactOf, emptyState, flyToast, ownerAvatar, pinButton, recoveredTag, sectionTitle } from './widgets';
@@ -127,7 +128,7 @@ function photosView(g: Game): View {
       const othersOnly = (p: Photo) => g.c.glimpse.some((post) => post.photo === p.id && post.author !== 'me') && !g.c.glimpse.some((post) => post.photo === p.id && post.author === 'me');
       const own = g.c.photos.filter((p) => !othersOnly(p));
       const normal = own.filter((p) => !p.deletedUntil && !p.hidden).sort(byTimeAsc);
-      const hidden = own.filter((p) => p.hidden && g.visible(p)).sort(byTimeAsc);
+      const hidden = [...own.filter((p) => p.hidden && g.visible(p)), ...extraHiddenPhotos(g.c.id, `${g.c.phoneDate}T00:00`)].sort(byTimeAsc);
       const hiddenOpen = g.has('hidden:open');
       const rec = own.filter((p) => p.deletedUntil && g.visible(p) && !p.hidden).sort(byTimeAsc);
       const tile = (p: Photo) => h('button', { class: `ph-tile${g.has(`seen:${p.id}`) ? '' : ' unseen'}${p.censor ? ' censored' : ''}`, type: 'button', onclick: () => { audio.play('tap'); phone.viewArt(p.art, p); } },

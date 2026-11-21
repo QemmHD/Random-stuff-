@@ -18,6 +18,12 @@ export function registerArt(more: Record<string, string>): void {
   Object.assign(REGISTRY, more);
 }
 
+/** Use a plain image URL for an art id (owner-supplied files). */
+export function registerUrl(id: string, url: string): void {
+  urlCache.set(id, url);
+  REGISTRY[id] = '';
+}
+
 export function hasArt(id: string): boolean {
   return id in REGISTRY;
 }
