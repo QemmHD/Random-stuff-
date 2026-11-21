@@ -25,7 +25,7 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
   const renderComms = () => {
     commsList.replaceChildren(...game.handler.map((m) => h('div', { class: 'comm' },
       h('div', { class: 'comm-head' }, h('b', null, HN), h('span', null, clock(m.t))),
-      h('p', null, m.text))));
+      ...richLine(m.text))));
     commsList.scrollTop = commsList.scrollHeight;
   };
   const comms = h('aside', { class: 'comms' },
@@ -51,7 +51,7 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
     vibrate(10);
     const t = h('button', { class: 'h-toast', type: 'button' },
       h('span', { class: 'avatar' }, artImg(HA)),
-      h('div', null, h('b', null, `${HN} · ${HR}`), h('p', null, text)));
+      h('div', null, h('b', null, `${HN} · ${HR}`), ...richLine(text)));
     let gone = false;
     const dismiss = () => {
       if (gone) return;
@@ -76,7 +76,7 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
     audio.play('open');
     const close = () => { audio.play('close'); m.classList.add('leave'); setTimeout(() => m.remove(), 250); };
     const list = h('div', { class: 'comms-list modal-comms' }, ...game.handler.map((msg) => h('div', { class: 'comm' },
-      h('div', { class: 'comm-head' }, h('b', null, HN), h('span', null, clock(msg.t))), h('p', null, msg.text))));
+      h('div', { class: 'comm-head' }, h('b', null, HN), h('span', null, clock(msg.t))), ...richLine(msg.text))));
     const m = h('div', { class: 'modal' }, h('div', { class: 'modal-card small' },
       h('div', { class: 'modal-head' }, h('div', null, h('small', null, HR.toUpperCase()), h('h2', null, S.comms)),
         h('button', { class: 'icon-btn', type: 'button', 'aria-label': S.close, onclick: close }, glyph('close'))),
@@ -219,4 +219,11 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
       game.dispose();
     },
   };
+}
+
+/** "(The shower just turned off.) bro get OUT" → italic narration + the line. */
+function richLine(text: string): HTMLElement[] {
+  const m = /^\(([^)]*)\)\s*(.*)$/s.exec(text);
+  if (!m) return [h('p', null, text)];
+  return [h('p', { class: 'narration' }, m[1]), ...(m[2] ? [h('p', null, m[2])] : [])];
 }
