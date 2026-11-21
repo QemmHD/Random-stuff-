@@ -169,7 +169,7 @@ export class Phone {
       h('div', { class: 'pc-title' }, glyph('lock'), S.enterPasscode),
       dots, msg, grid, hint,
       h('div', { class: 'pc-foot' },
-        h('button', { type: 'button', class: 'pc-link', onclick: () => { audio.play('tap'); this.viewArt(this.game.c.lock.wallpaper); } }, glyph('zoom'), S.inspect.replace('Tap the', 'Inspect')),
+        h('button', { type: 'button', class: 'pc-link', onclick: () => { audio.play('tap'); this.viewArt(this.game.c.lock.wallpaper); } }, glyph('zoom'), S.inspectShort),
         h('button', { type: 'button', class: 'pc-link', onclick: () => { cleanup(); pad.remove(); audio.play('close'); } }, S.cancel)),
     );
     const onKey = (e: KeyboardEvent) => {

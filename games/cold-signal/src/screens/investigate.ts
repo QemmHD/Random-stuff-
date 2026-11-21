@@ -28,7 +28,8 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
   };
   const comms = h('aside', { class: 'comms' },
     h('div', { class: 'comms-head' }, h('span', { class: 'avatar' }, artImg('av_ines')), h('div', null, h('b', null, S.handlerName), h('span', null, S.handlerRole)), h('i', { class: 'live-dot' })),
-    commsList);
+    commsList,
+    h('div', { class: 'comms-foot' }, h('span', null, S.keysTitle), ...S.keys.map(([k, label]) => h('div', { class: 'key-hint' }, h('kbd', null, k), label))));
   renderComms();
 
   // ---- toasts (handler) ----

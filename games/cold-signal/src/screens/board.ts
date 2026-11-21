@@ -56,7 +56,7 @@ export class Board {
     if (count) count.textContent = S.progress(g.pins.length, g.c.clues.length);
     [...this.surface.querySelectorAll('.ev-card, .empty')].forEach((n) => n.remove());
     if (!g.pins.length) {
-      this.surface.appendChild(h('div', { class: 'empty board-empty' }, glyph('pin'), S.boardEmpty));
+      this.surface.appendChild(h('div', { class: 'empty board-empty' }, h('div', { class: 'be-card' }, h('span', { class: 'ev-tack' }), glyph('pin'), h('b', null, S.boardEmptyTitle), h('span', null, S.boardEmpty))));
     }
     const fresh = this.lastCount >= 0 && g.pins.length > this.lastCount ? g.pins[g.pins.length - 1].id : '';
     this.lastCount = g.pins.length;

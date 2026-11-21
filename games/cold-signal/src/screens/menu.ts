@@ -59,12 +59,18 @@ export function noiseCanvas(): HTMLCanvasElement {
 export function titleScreen(onStart: () => void): HTMLElement {
   const el = h('div', { class: 'screen-title' },
     noiseCanvas(),
+    h('div', { class: 'title-vignette', 'aria-hidden': 'true' }),
+    h('div', { class: 'title-frame', 'aria-hidden': 'true' },
+      h('i', { class: 'tf-c tl' }), h('i', { class: 'tf-c tr' }), h('i', { class: 'tf-c bl' }), h('i', { class: 'tf-c br' }),
+      h('span', { class: 'tf-label l' }, S.titleUnit),
+      h('span', { class: 'tf-label r' }, h('b'), S.titleRec)),
     h('div', { class: 'title-inner' },
       h('div', { class: 'logo' }, artImg('logo_mark')),
+      h('div', { class: 'title-kicker' }, S.titleKicker),
       h('h1', { class: 'title-word', 'data-text': S.gameTitle }, S.gameTitle),
       h('p', { class: 'title-sub' }, S.gameSub),
-      h('button', { class: 'btn primary big pulse', type: 'button', onclick: () => { audio.unlock(); audio.play('unlock'); onStart(); } }, S.tapToBegin)),
-    h('div', { class: 'title-foot' }, 'A found-phone mystery · All cases are fiction'),
+      h('button', { class: 'btn primary big pulse title-cta', type: 'button', onclick: () => { audio.unlock(); audio.play('unlock'); onStart(); } }, S.tapToBegin)),
+    h('div', { class: 'title-foot' }, S.titleFoot),
   );
   return el;
 }
@@ -86,8 +92,8 @@ export function filesScreen(onOpen: (c: CaseFile) => void): HTMLElement {
       resetCase(c.id); audio.play('unpin'); root.replaceWith(filesScreen(onOpen));
     } }, S.restartCase) : null;
     return h('article', { class: `case-card${locked ? ' locked' : ''}`, style: `--i:${i}` },
-      h('div', { class: 'cc-cover' }, artImg(c.cover), h('div', { class: 'cc-num' }, c.number), locked ? h('div', { class: 'cc-lock' }, glyph('lock'), S.lockedCase) : null,
-        stars !== undefined ? h('div', { class: `cc-stamp${stars >= 2 ? ' closed' : ''}` }, stars >= 2 ? 'CLOSED' : 'FILED') : null),
+      h('div', { class: 'cc-cover' }, artImg(c.cover), h('div', { class: 'cc-num' }, c.number), locked ? h('div', { class: 'cc-lock' }, h('b', { class: 'cc-tape' }, S.classified), glyph('lock'), h('span', null, S.lockedCase)) : null,
+        stars !== undefined ? h('div', { class: `cc-stamp${stars >= 2 ? ' closed' : ''}` }, stars >= 2 ? S.stampClosed : S.stampFiled) : null),
       h('div', { class: 'cc-body' },
         h('div', { class: 'cc-meta' }, h('span', null, `CASE ${c.number}`), h('span', { class: 'cc-diff' }, S.difficulty[c.difficulty], ' ', h('i', { class: `pips d${c.difficulty}` }, h('b'), h('b'), h('b')))),
         h('h2', null, c.title),
@@ -103,8 +109,9 @@ export function filesScreen(onOpen: (c: CaseFile) => void): HTMLElement {
       h('div', { class: 'fh-right' },
         rankBadge(prog),
         h('button', { class: 'icon-btn', type: 'button', 'aria-label': S.settings, onclick: () => openSettings(root) }, glyph('settings')))),
+    h('div', { class: 'files-intro' }, h('small', null, S.filesKicker), h('h1', null, S.filesHeading), h('p', null, S.filesSub)),
     h('div', { class: 'case-row' }, ...cards),
-    h('div', { class: 'files-foot muted' }, 'More cases coming in future updates'));
+    h('div', { class: 'files-foot muted' }, S.filesFoot));
   return root;
 }
 
@@ -211,7 +218,7 @@ export function epilogueScreen(g: Game, onFiles: () => void, onReopen: () => voi
     h('div', { class: 'ep-bg' }, artImg(c.cover)),
     h('div', { class: 'ep-card' },
       h('small', null, `CASE ${c.number} · ${c.title.toUpperCase()}`),
-      h('div', { class: 'ep-stamp' }, solved ? S.caseClosed : S.caseOpen),
+      h('div', { class: 'ep-stamp-wrap' }, h('div', { class: 'ep-stamp' }, solved ? S.caseClosed : S.caseOpen)),
       stars,
       h('div', { class: 'ep-score' }, S.scoreLine(r.correct, r.total, r.withEvidence), ' · ', `${S.playtime}: ${mins} min`),
       h('div', { class: 'ep-story' }, ...paras),
