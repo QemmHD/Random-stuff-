@@ -8,6 +8,7 @@ import { investigate, type InvestigateHandle } from './screens/investigate';
 import { hasSave, type Game } from './game';
 import type { CaseFile } from './types';
 import { CASES } from './cases';
+import { CAUGHT } from './cases/caught';
 
 const app = document.getElementById('app')!;
 let current: InvestigateHandle | null = null;
@@ -54,7 +55,7 @@ document.addEventListener('visibilitychange', () => {
   if (document.hidden) speechSynthesis?.cancel();
 });
 // Debug hook for automated tests.
-(window as unknown as { __cs: unknown }).__cs = { toFiles, openCase, CASES };
+(window as unknown as { __cs: unknown }).__cs = { toFiles, openCase, CASES, CAUGHT };
 toTitle();
 
 if (import.meta.env.PROD && 'serviceWorker' in navigator && !(window as unknown as { __CS_NO_SW?: boolean }).__CS_NO_SW) {

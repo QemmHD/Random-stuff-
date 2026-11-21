@@ -228,6 +228,10 @@ export interface CaseFile {
   owner: { name: string; age: number; summary: string };
   /** Stamp on the briefing photo, e.g. 'MISSING', 'IN COMA'. Default 'MISSING'. */
   status?: string;
+  /** Which game mode this case belongs to. Default 'cold'. */
+  mode?: 'cold' | 'caught';
+  /** Who guides the player (default: Ines Duarte, Cold Signal Unit). */
+  handler?: { name: string; role: string; avatar: string };
   /** Device condition shown in TRACE and Settings, e.g. 'WATER DAMAGE · 61% READABLE'. */
   deviceCondition?: string;
   briefing: string[];

@@ -16,6 +16,7 @@ export interface InvestigateHandle { el: HTMLElement; dispose: () => void }
 
 export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue: (g: Game) => void }): InvestigateHandle {
   const game = new Game(c);
+  const HN = c.handler?.name ?? S.handlerName, HR = c.handler?.role ?? S.handlerRole, HA = c.handler?.avatar ?? 'av_ines';
   const phone = new Phone(game);
   const holder = h('div', { class: 'phone-holder' }, phone.el);
 
@@ -23,12 +24,12 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
   const commsList = h('div', { class: 'comms-list' });
   const renderComms = () => {
     commsList.replaceChildren(...game.handler.map((m) => h('div', { class: 'comm' },
-      h('div', { class: 'comm-head' }, h('b', null, S.handlerName), h('span', null, clock(m.t))),
+      h('div', { class: 'comm-head' }, h('b', null, HN), h('span', null, clock(m.t))),
       h('p', null, m.text))));
     commsList.scrollTop = commsList.scrollHeight;
   };
   const comms = h('aside', { class: 'comms' },
-    h('div', { class: 'comms-head' }, h('span', { class: 'avatar' }, artImg('av_ines')), h('div', null, h('b', null, S.handlerName), h('span', null, S.handlerRole)), h('i', { class: 'live-dot' })),
+    h('div', { class: 'comms-head' }, h('span', { class: 'avatar' }, artImg(HA)), h('div', null, h('b', null, HN), h('span', null, HR)), h('i', { class: 'live-dot' })),
     commsList,
     h('div', { class: 'comms-foot' }, h('span', null, S.keysTitle), ...S.keys.map(([k, label]) => h('div', { class: 'key-hint' }, h('kbd', null, k), label))));
   renderComms();
@@ -49,8 +50,8 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
     audio.play('handler');
     vibrate(10);
     const t = h('button', { class: 'h-toast', type: 'button' },
-      h('span', { class: 'avatar' }, artImg('av_ines')),
-      h('div', null, h('b', null, `${S.handlerName} · ${S.handlerRole}`), h('p', null, text)));
+      h('span', { class: 'avatar' }, artImg(HA)),
+      h('div', null, h('b', null, `${HN} · ${HR}`), h('p', null, text)));
     let gone = false;
     const dismiss = () => {
       if (gone) return;
@@ -75,9 +76,9 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
     audio.play('open');
     const close = () => { audio.play('close'); m.classList.add('leave'); setTimeout(() => m.remove(), 250); };
     const list = h('div', { class: 'comms-list modal-comms' }, ...game.handler.map((msg) => h('div', { class: 'comm' },
-      h('div', { class: 'comm-head' }, h('b', null, S.handlerName), h('span', null, clock(msg.t))), h('p', null, msg.text))));
+      h('div', { class: 'comm-head' }, h('b', null, HN), h('span', null, clock(msg.t))), h('p', null, msg.text))));
     const m = h('div', { class: 'modal' }, h('div', { class: 'modal-card small' },
-      h('div', { class: 'modal-head' }, h('div', null, h('small', null, S.handlerRole.toUpperCase()), h('h2', null, S.comms)),
+      h('div', { class: 'modal-head' }, h('div', null, h('small', null, HR.toUpperCase()), h('h2', null, S.comms)),
         h('button', { class: 'icon-btn', type: 'button', 'aria-label': S.close, onclick: close }, glyph('close'))),
       list));
     m.addEventListener('click', (e) => { if (e.target === m) close(); });

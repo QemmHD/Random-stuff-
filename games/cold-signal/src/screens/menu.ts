@@ -4,6 +4,7 @@ import { artImg, glyph } from '../art';
 import { audio } from '../audio';
 import { getProgress, hasSave, resetCase, type Game } from '../game';
 import { CASES } from '../cases';
+import { CAUGHT } from '../cases/caught';
 import { S } from '../strings';
 import type { CaseFile } from '../types';
 import { openSettings } from './settings';
@@ -77,11 +78,15 @@ export function titleScreen(onStart: () => void): HTMLElement {
 }
 
 // ---------------- case files ----------------
-export function filesScreen(onOpen: (c: CaseFile) => void): HTMLElement {
+export function filesScreen(onOpen: (c: CaseFile) => void, tabArg?: 'cold' | 'caught'): HTMLElement {
   const prog = getProgress();
-  const root = h('div', { class: 'screen-files' }, noiseCanvas());
-  const cards = CASES.map((c, i) => {
-    const prev = CASES[i - 1];
+  let tab: 'cold' | 'caught' = tabArg ?? 'cold';
+  if (!tabArg) { try { tab = localStorage.getItem('cs.tab') === 'caught' ? 'caught' : 'cold'; } catch { /* ignore */ } }
+  const LIST = tab === 'caught' && CAUGHT.length ? CAUGHT : CASES;
+  if (LIST === CASES) tab = 'cold';
+  const root = h('div', { class: `screen-files tab-${tab}` }, noiseCanvas());
+  const cards = LIST.map((c, i) => {
+    const prev = LIST[i - 1];
     const locked = !!prev && prog[prev.id] === undefined;
     const stars = prog[c.id];
     const saved = hasSave(c.id);
@@ -90,7 +95,7 @@ export function filesScreen(onOpen: (c: CaseFile) => void): HTMLElement {
       e.stopPropagation();
       const b = e.currentTarget as HTMLElement;
       if (!armed) { armed = true; b.textContent = S.restartConfirm; audio.play('tap'); setTimeout(() => { armed = false; b.textContent = S.restartCase; }, 3000); return; }
-      resetCase(c.id); audio.play('unpin'); root.replaceWith(filesScreen(onOpen));
+      resetCase(c.id); audio.play('unpin'); root.replaceWith(filesScreen(onOpen, tab));
     } }, S.restartCase) : null;
     return h('article', { class: `case-card${locked ? ' locked' : ''}`, style: `--i:${i}` },
       h('div', { class: 'cc-cover' }, artImg(c.cover), h('div', { class: 'cc-num' }, c.number), locked ? h('div', { class: 'cc-lock' }, h('b', { class: 'cc-tape' }, S.classified), glyph('lock'), h('span', null, S.lockedCase)) : null,
@@ -104,15 +109,21 @@ export function filesScreen(onOpen: (c: CaseFile) => void): HTMLElement {
           h('button', { class: 'btn primary', type: 'button', disabled: locked, onclick: () => { audio.play('open'); onOpen(c); } }, saved ? S.continueCase : S.newCase),
           restart)));
   });
-  root.append(
+  root.append(...[
     h('header', { class: 'files-head' },
       h('div', { class: 'fh-brand' }, artImg('logo_mark'), h('div', null, h('b', null, S.gameTitle), h('span', null, S.caseFiles))),
       h('div', { class: 'fh-right' },
         rankBadge(prog),
         h('button', { class: 'icon-btn', type: 'button', 'aria-label': S.settings, onclick: () => openSettings(root) }, glyph('settings')))),
-    h('div', { class: 'files-intro' }, h('small', null, S.filesKicker), h('h1', null, S.filesHeading), h('p', null, S.filesSub)),
+    CAUGHT.length ? h('div', { class: 'mode-tabs', role: 'tablist' }, ...(['cold', 'caught'] as const).map((t) => h('button', {
+      type: 'button', role: 'tab', class: `mode-tab${t === tab ? ' on' : ''}`, 'aria-selected': String(t === tab),
+      onclick: () => { if (t === tab) return; try { localStorage.setItem('cs.tab', t); } catch { /* ignore */ } audio.play('page'); root.replaceWith(filesScreen(onOpen, t)); },
+    }, h('b', null, t === 'cold' ? S.tabCold : S.tabCaught), h('span', null, t === 'cold' ? S.tabColdSub : S.tabCaughtSub)))) : null,
+    tab === 'caught'
+      ? h('div', { class: 'files-intro' }, h('small', null, S.caughtKicker), h('h1', null, S.caughtHeading), h('p', null, S.caughtSub))
+      : h('div', { class: 'files-intro' }, h('small', null, S.filesKicker), h('h1', null, S.filesHeading), h('p', null, S.filesSub)),
     h('div', { class: 'case-row' }, ...cards),
-    h('div', { class: 'files-foot muted' }, S.filesFoot));
+    h('div', { class: 'files-foot muted' }, S.filesFoot)].filter((x): x is HTMLElement => !!x));
   return root;
 }
 
