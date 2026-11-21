@@ -192,6 +192,8 @@ export const S = {
   fileReport: 'File report',
   fileConfirm: 'Tap again to file',
   incomplete: 'Answer every question and attach evidence first.',
+  busted: 'BUSTED',
+  inconclusive: 'INCONCLUSIVE',
   caseClosed: 'CASE CLOSED',
   caseOpen: 'CASE STILL OPEN',
   scoreLine: (c: number, t: number, e: number) => `${c}/${t} correct · ${e}/${t} backed by evidence`,

@@ -6,7 +6,9 @@ import { createRequire } from 'node:module';
 import { mkdirSync } from 'node:fs';
 const { chromium } = createRequire(import.meta.url)('playwright');
 
-const idx = Number(process.argv[2] ?? 0);
+const arg = String(process.argv[2] ?? '0');
+const caught = arg.startsWith('c');
+const idx = Number(caught ? arg.slice(1) : arg);
 const base = process.argv[3] ?? 'http://localhost:5199/';
 const out = process.argv[4] ?? 'tests/output';
 const vp = process.env.VIEWPORT === 'phone' ? { width: 390, height: 844 } : { width: 1440, height: 900 };
@@ -18,21 +20,22 @@ page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
 page.on('pageerror', (e) => errors.push(String(e)));
 const sleep = (ms) => page.waitForTimeout(ms);
 const top = '.view.app:last-child';
-const tag = `${process.env.VIEWPORT ?? 'desk'}-case${idx + 1}`;
+const tag = `${process.env.VIEWPORT ?? 'desk'}-${caught ? 'caught' : 'case'}${idx + 1}`;
 const shot = (n) => page.screenshot({ path: `${out}/${tag}-${n}.png` });
 
 await page.goto(base);
-const c = await page.evaluate((i) => {
-  const cs = window.__cs.CASES;
+const c = await page.evaluate(([i, caughtMode]) => {
+  const cs = caughtMode ? window.__cs.CAUGHT : window.__cs.CASES;
   const prog = {};
   for (let k = 0; k < i; k++) prog[cs[k].id] = 3;
   localStorage.setItem('cs.progress', JSON.stringify(prog));
   return JSON.parse(JSON.stringify(cs[i]));
-}, idx);
+}, [idx, caught]);
 await page.reload();
 await page.getByText('Tap to begin').click();
 await sleep(800);
 await shot('01-files');
+if (caught) { await page.locator('.mode-tab', { hasText: 'Caught' }).click(); await sleep(700); }
 await page.locator('.case-card').nth(idx).getByRole('button', { name: /Open case|Continue/ }).click();
 await sleep(600);
 await page.locator('.br-paras').click();
@@ -150,9 +153,13 @@ await shot('14-report');
 await page.locator('.rp-foot .btn').click(); await sleep(250);
 await page.locator('.rp-foot .btn').click(); await sleep(6000);
 await shot('15-epilogue');
+if (await page.locator('.ep-choice').count()) {
+  await page.locator('.ep-choice').first().click(); await sleep(3000);
+  await shot('16-choice');
+}
 const stamp = await page.locator('.ep-stamp').textContent();
 console.log(c.title, '→', stamp, await page.locator('.ep-score').textContent());
 await browser.close();
 if (errors.length) { console.error('CONSOLE ERRORS:\n' + errors.join('\n')); process.exit(1); }
-if (!/CLOSED/.test(stamp)) process.exit(1);
+if (!/CLOSED|BUSTED/.test(stamp)) process.exit(1);
 console.log('SOLVE OK');

@@ -231,7 +231,7 @@ export function epilogueScreen(g: Game, onFiles: () => void, onReopen: () => voi
     h('div', { class: 'ep-bg' }, artImg(c.cover)),
     h('div', { class: 'ep-card' },
       h('small', null, `CASE ${c.number} · ${c.title.toUpperCase()}`),
-      h('div', { class: 'ep-stamp-wrap' }, h('div', { class: 'ep-stamp' }, solved ? S.caseClosed : S.caseOpen)),
+      h('div', { class: 'ep-stamp-wrap' }, h('div', { class: 'ep-stamp' }, c.mode === 'caught' ? (solved ? S.busted : S.inconclusive) : (solved ? S.caseClosed : S.caseOpen))),
       stars,
       h('div', { class: 'ep-score' }, S.scoreLine(r.correct, r.total, r.withEvidence), ' · ', `${S.playtime}: ${mins} min`, ' · ', S.hintsUsed(g.hintsUsed)),
       solved && g.hintsUsed === 0 ? h('div', { class: 'ep-badge' }, '★ ', S.cleanSolve) : null,
