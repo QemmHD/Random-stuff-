@@ -252,3 +252,9 @@ CAUGHT mode is shorter, M-rated adult comedy. The player IS the partner, reading
 **Gate check:** photos←lakeview (visible); msgfrag←league_code (visible); history←note:n_calc (password from the visible league chat). No soft-locks.
 
 Art: see `src/art/specs-caught.md` (94 new ids + reused `av_unknown`).
+
+### Caught — discovery channels (research pass)
+Each case uses at least three real-world discovery channels: texts/DMs, call history, social stories, browser history, synced devices, a passcode change and an auto-generated Photos "Memory / On This Day" email. Each case has one **wrong-recipient** moment and a **third-party contact**, both as live events.
+- **C1:** Jessa's "can't stop thinking about your hands" sent to YOU, then "wrong chat, hand-cream thing" (`wrong_recipient`, static). Live wrong recipient: Jules texts Jessa a message meant for Sasha after `sasha` is pinned (`jules_wrong`). Third party: Sasha (live, after the `dms` recovery). Memory: 'Wednesday Nights' (`memory`). Also car Bluetooth, StreamBox, a new passcode and Kayla's story.
+- **C2:** Live wrong recipient: Tiffani's "greg come over... WRONG PRUITT" after `motel_charges` (`tiffani_wrong`). Third parties: Tiffani's pregnancy text, Gary, Bea's story. Memory: 'Thursdays' (`memory`).
+- **C3:** Live wrong recipient: Rafe's "can you take lucy thursday night?" meant for Tara, after `lakeview` (`rafe_wrong`). Third parties: Tara (live), Bo, Mom → Aunt Pat. Memory: 'Thursday Doubles' (`memory`). Also Doug's synced iPad tab group.

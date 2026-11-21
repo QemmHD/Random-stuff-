@@ -231,6 +231,7 @@ export const caught2: CaseFile = {
 
   mail: [
     { id: 'm_bluebox', from: 'BLUE BOX LLC', fromAddr: 'orders@bluebox-llc.example', to: 'Nora Pruitt', subject: 'Your order has shipped (discreetly) 📦', t: '2026-11-08T09:00', folder: 'inbox', clue: 'research_box', body: "BLUE BOX LLC — billing name on statement: 'BLUE BOX LLC'\n\n1× Silk Rope — 'Captain's Knot' (10 ft, crimson)  $24.00\n1× Lantern — battery, 'Warm Harbor Glow'  $32.00\n1× Feather Tickler — 'Sea Breeze'  $11.00\n1× 'Knots for Lovers' illustrated guide  $19.00\nTotal: $86.00\n\nShip to: Okafor Literary Agency, attn: B. Okafor\nOrder note: 'for research. truly. chapter 22.'" },
+    { id: 'm_memory', from: 'Photos', fromAddr: 'memories@photos.example', to: 'Nora Pruitt', subject: "✨ On This Day — and a new Memory: 'Thursdays'", t: '2026-11-24T01:00', folder: 'inbox', clue: 'memory', body: "On This Day, 1 year ago: 'nine years 🖤' (8 photos, Ristorante Vela, table 12).\n\nNew Memory: 'Thursdays' — 14 photos · Hotel Corvina · Nov 2026\nFeatured: a microphone, mattresses, a man in a bow tie, a stack of pages, throat spray\nSoundtrack: 'something dramatic, with strings'\n\nShare with: Greg 🛏️ · Mystery Man 🖤" },
     { id: 'm_lace', from: 'Velour & Lace', fromAddr: 'orders@velourlace.example', to: 'Nora Pruitt', subject: "Order shipped — 'The Midnight Confession' set", t: '2026-11-03T08:00', folder: 'inbox', clue: 'lingerie_receipt', body: "Thank you, Nora!\n\n1× The Midnight Confession set (black, M) — $212.00\nGift wrap: YES\nCard message: 'Ten years. Open slowly.'\n\nShipping to: Maple Court (porch, 'not where my husband can see it')." },
     { id: 'm_corvina', from: 'Hotel Corvina', fromAddr: 'reservations@hotelcorvina.example', to: 'Nora Pruitt', subject: 'Mrs. Smith — your Thursday suite is confirmed', t: '2026-11-04T09:00', folder: 'inbox', clue: 'hotel_meets', body: "Dear Mrs. Smith,\n\nSuite 512 is confirmed for Thursdays, Nov 5, 12 and 19, 6:30 PM – 10:30 PM.\n\nBilling: O.L.A. Ltd. — account 'RUSH, D.'\n\nPer your request, housekeeping will NOT remove the mattresses from the walls. We have also moved the guest in 514. Twice." },
     { id: 'm_folio', from: 'Hotel Corvina', fromAddr: 'folio@hotelcorvina.example', to: 'Nora Pruitt', subject: 'Folio — Suite 512 — Nov 19', t: '2026-11-20T08:00', folder: 'inbox', clue: 'hotel_meets', body: "Suite 512 · Mrs. Smith · Nov 19\n\nMinibar:\n2× champagne split  $36.00\n6× bottled water  $30.00\n1× honey & lemon tea service  $12.00\n1× 'Couples Kit' (returned unopened)  $0.00\nRoom service: 3× club sandwich, 1× fries  $64.00\n\nGuest note (514): 'Brava.'" },
@@ -356,6 +357,8 @@ export const caught2: CaseFile = {
     { id: 'nora_knew', title: 'She already knew', text: "Unsent draft, 02:40: 'I know you don't bowl... I think I know where you go. I'm not going to look... I'm going to give you the chance to tell me everything too. If you don't, I'll know that too.' Therapy with Dr. Ines Park: 'what if he doesn't say anything'.", kind: 'document' },
     { id: 'tiffani_vm', title: "Tiffani's wrong-Pruitt voicemail", text: "Deleted voicemail, Nov 10: '[whispering] Greg... Room 6, seven. Wear the vest. I've been thinking about your hands all day... Wait. Is this Greg's phone or the house — Hi Nora! Wrong Pruitt!' Nora deleted it without listening twice.", kind: 'document', art: 'av_cg2_tiffani' },
     { id: 'excuses', title: "Her 'book club' excuses", text: "'it's literally just book club greg. we rent a room.' 'why are you being so weird lately. you haven't asked me about a book in ten years.' 'my phone died sorry!! ...a mystery. about a man.'", kind: 'document' },
+    { id: 'memory', title: "Auto-Memory: 'Thursdays'", text: "Photos built a Memory called 'Thursdays' at Hotel Corvina: a microphone, mattresses, a man in a bow tie, a stack of pages, throat spray. And On This Day: 'nine years 🖤' at table 12.", kind: 'event' },
+    { id: 'tiffani_wrong', title: "'WRONG PRUITT'", text: "While you're holding Nora's phone, Tiffani texts it: 'greg come over, gary's asleep 🥺 I need you, I'm scared about the test', then 'OMG. WRONG PRUITT. NORA I AM SO SORRY. HOA BUSINESS.'", kind: 'person', art: 'av_cg2_tiffani' },
     { id: 'bernard_reveal', title: 'Mystery Man is Bernard, her agent', text: "'Mystery Man' texts while you're holding her phone: he's Bernard Okafor, her literary agent, 68, new hip, wife named Ruth. Thursday was the final audiobook session.", kind: 'person', art: 'av_cg2_mystery' },
     { id: 'bowling_forfeit', title: '0 frames, 11 forfeits', text: "Strike Force Lanes: you have bowled 0 frames this season. The league plays Wednesdays; Tuesdays are Toddler Bumper Bowl. Your shoes still have the tags.", kind: 'document' },
     { id: 'motel_charges', title: 'Card ••2291, Room 6, Tuesdays', text: "Joint statement: YOUR card ••2291 at Wyeth Motor Lodge, Room 6, on Nov 3, 10 and 17 — plus minibar for two, Vanilla Dreams body mist, a his-and-hers robe set and a dozen roses Nora never got.", kind: 'document' },
@@ -397,7 +400,7 @@ export const caught2: CaseFile = {
         { id: 'author', label: "She's the anonymous romance novelist Delphine Rush, recording her own audiobook and saving it all for a 10th-anniversary reveal" },
         { id: 'leaving', label: "She's saving up to leave you" },
       ],
-      answer: 'author', evidence: ['author_reveal', 'hidden_dedication', 'recording_booth', 'cash_stash', 'anniversary_plan', 'lingerie_receipt', 'chapter_talk', 'research_box'],
+      answer: 'author', evidence: ['memory', 'author_reveal', 'hidden_dedication', 'recording_booth', 'cash_stash', 'anniversary_plan', 'lingerie_receipt', 'chapter_talk', 'research_box'],
       explain: 'Royalties from Hartwell & Finch, a dedication page that reads "For G.", a cabin, a payoff quote for your mortgage and lingerie with a card that says "Ten years".',
     },
     {
@@ -408,7 +411,7 @@ export const caught2: CaseFile = {
         { id: 'greg', label: 'You — with Tiffani Boone, the HOA president', art: 'av_cg2_tiffani' },
         { id: 'bea', label: "Bea's husband" },
       ],
-      answer: 'greg', evidence: ['tiffani_slip', 'tiffani_post', 'motel_charges', 'bowling_forfeit', 'wyeth_avoid', 'greg_tells'],
+      answer: 'greg', evidence: ['tiffani_wrong', 'tiffani_slip', 'tiffani_post', 'motel_charges', 'bowling_forfeit', 'wyeth_avoid', 'greg_tells'],
       explain: "Your bowling doesn't exist, your card pays for Room 6 every Tuesday, and Tiffani posted your vest and unsent your shoes. Nora's phone knew before you opened it.",
     },
     {
@@ -448,6 +451,8 @@ export const caught2: CaseFile = {
   events: [
     { id: 'e2_mystery', kind: 'text', when: ['unlocked'], delayMs: 8000, thread: 'th_mystery', contact: 'mystery', text: "Still up, darling? I can't stop hearing you. The take, I mean. I'm listening to it in the bath. Ruth thinks I've joined a cult. 🖤" },
     { id: 'e2_bea', kind: 'text', when: ['unlocked'], minPins: 4, delayMs: 20000, thread: 'th_bea', contact: 'bea', text: "u up? 🐝 can't sleep. are you still telling him saturday? all of it? even the part about tuesdays? I love you. you're braver than me" },
+    { id: 'e2_tiffani_wrong', kind: 'text', when: ['pinned:motel_charges'], delayMs: 4000, thread: 'th_tiffani', contact: 'tiffani', clue: 'tiffani_wrong', text: "greg come over, gary's asleep 🥺 I need you. I'm scared about the test" },
+    { id: 'e2_tiffani_wrong2', kind: 'text', when: ['pinned:motel_charges'], delayMs: 6000, thread: 'th_tiffani', contact: 'tiffani', text: 'OMG. WRONG PRUITT. NORA I AM SO SORRY. HOA BUSINESS. please go back to sleep 🙂' },
     { id: 'e2_h_mystery', kind: 'handler', when: ['pinned:mystery_texts'], delayMs: 3000, text: "bro. 'Mystery Man', black heart, a hotel suite every thursday booked as MRS SMITH. ok. ok. that's bad. but also. BRO. you can't — you of all people can't — ok I'm not saying it. find out what's in that suite before you wake her up." },
     { id: 'e2_bernard', kind: 'text', when: ['recovered:photos'], delayMs: 6000, thread: 'th_mystery', contact: 'mystery', clue: 'bernard_reveal', text: "Nora, it's Bernard. Bernard Okafor, your agent, since your phone apparently thinks I'm a smoky stranger. Your husband's bowling-shoe woman rang the agency asking if Delphine Rush 'takes HOA clients'. I said I'm sixty-eight, I have a new hip and a wife named Ruth, and that Thursday was our final audiobook session. Did I ruin the 28th?" },
     { id: 'e2_h_card', kind: 'handler', when: ['pinned:motel_charges'], delayMs: 3500, text: "(Nora rolls over. Her hand pats the nightstand. Finds rice. Stops.) bro. card ending 2291. that's YOUR card. on HER phone. on the JOINT statement. dude she gets the mail. she gets the MAIL." },

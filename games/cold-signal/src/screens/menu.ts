@@ -235,9 +235,27 @@ export function epilogueScreen(g: Game, onFiles: () => void, onReopen: () => voi
       stars,
       h('div', { class: 'ep-score' }, S.scoreLine(r.correct, r.total, r.withEvidence), ' · ', `${S.playtime}: ${mins} min`, ' · ', S.hintsUsed(g.hintsUsed)),
       solved && g.hintsUsed === 0 ? h('div', { class: 'ep-badge' }, '★ ', S.cleanSolve) : null,
-      h('div', { class: 'ep-story' }, ...paras),
+      c.choices?.length ? choiceBlock(c, solved) : h('div', { class: 'ep-story' }, ...paras),
       h('div', { class: 'ep-results' }, ...results),
       h('div', { class: 'ep-actions' },
         solved ? null : h('button', { class: 'btn primary', type: 'button', onclick: onReopen }, S.keepInvestigating),
         h('button', { class: `btn ${solved ? 'primary' : 'ghost'}`, type: 'button', onclick: onFiles }, S.backToFiles))));
+}
+
+/** Caught-mode finale: pick what you do with what you found. */
+function choiceBlock(c: CaseFile, solved: boolean): HTMLElement {
+  const story = h('div', { class: 'ep-story' }, ...(solved ? c.epilogue.solved : c.epilogue.partial).slice(0, 2).map((p) => h('p', null, p)));
+  const wrap = h('div', { class: 'ep-choices-wrap' }, story);
+  const buttons = h('div', { class: 'ep-choices' }, h('div', { class: 'ep-choice-q' }, S.whatNow), ...(c.choices ?? []).map((ch) => h('button', {
+    type: 'button', class: 'ep-choice',
+    onclick: () => {
+      audio.play('stinger');
+      buttons.remove();
+      const out = h('div', { class: 'ep-story chosen' }, h('div', { class: 'ep-choice-label' }, ch.label), ...(solved ? ch.solved : ch.partial).map((p, i) => h('p', { style: `animation-delay:${0.3 + i * 0.8}s` }, p)));
+      wrap.appendChild(out);
+      out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+  }, ch.label)));
+  wrap.appendChild(buttons);
+  return wrap;
 }

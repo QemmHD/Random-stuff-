@@ -264,4 +264,6 @@ export interface CaseFile {
   hints: Hint[];
   handlerIntro: string;
   epilogue: { solved: string[]; partial: string[] };
+  /** Optional "what do you do now?" endings shown after the report (Caught mode). */
+  choices?: { id: string; label: string; solved: string[]; partial: string[] }[];
 }
