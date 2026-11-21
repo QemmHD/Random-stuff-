@@ -113,12 +113,12 @@ function torso(k: string, o: Face, det: string, b = 0, fem = false): string {
   return (
     P(d, o.skin) + `<clipPath id="${k}t"><path d="${d}"/></clipPath><g clip-path="url(#${k}t)">` +
     P('M110 140C105 180 113 200 108 240C105 270 111 300 107 340H200V140Z', o.shade, 'opacity=".55"') + det + '</g>' +
-    S(fem ? FT_R : MT_R(b), o.rim, 3.5, 'opacity=".7"')
+    S(fem ? FT_R : MT_R(b), o.rim, 5, 'opacity=".85"') + S(fem ? 'M52 174Q52 196 57 208M60 280Q50 296 47 322' : 'M43 176L49 214M56 290v30', '#fff', 3, 'opacity=".3"') + S('M58 158Q70 151 82 150', '#fff', 3, 'opacity=".3"')
   );
 }
 /** Pecs, collarbones and navel for the gentlemen. */
 const chest = (c: string, navelY = 288): string =>
-  S('M58 206Q78 223 98 208M102 208Q122 223 142 206', c, 2.2, 'opacity=".85"') + E(75, 205, 3.6, 2.6, c) + E(125, 205, 3.6, 2.6, c) +
+  S('M58 206Q78 223 98 208M102 208Q122 223 142 206', c, 2.4, 'opacity=".85"') +
   S(`M70 160Q86 167 96 162M104 162Q114 167 130 160M100 ${navelY}v6`, c, 1.8, 'opacity=".6"');
 /** Two-segment limb with a hand: [shoulder, elbow, wrist] as x,y pairs. */
 const arm = (c: string, w: number, a: number[], hand: string | false = c): string =>
@@ -228,18 +228,20 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
   };
   const r = rng(11);
   let bub = '', air = '';
-  for (let i = 0; i < 74; i++) {
+  for (let i = 0; i < 52; i++) {
     const x = r() * 640 - 20, rad = 20 + r() * 30;
-    const top = 452 + Math.abs(x - 290) * 0.05 + (x > 180 && x < 400 ? -18 : 0);
+    const top = 474 + Math.abs(x - 290) * 0.04;
     const y = top + r() * r() * 330;
-    bub += C(r0(x), r0(y), r0(rad), `url(#${k}bb)`);
+    bub += `<circle cx="${r0(x)}" cy="${r0(y)}" r="${r0(rad)}"/>`;
   }
   for (let i = 0; i < 9; i++) air += C(r0(40 + r() * 520), r0(60 + r() * 330), r0(4 + r() * 9), 'none', 'stroke="#fff" stroke-width="1.500" opacity=".5"');
   const bodyU =
     `<g fill="#17100f">${C(72, 62, 17, '')}${C(88, 44, 18, '')}${C(110, 43, 18, '')}${C(128, 60, 17, '')}${C(100, 26, 15, '')}</g>`.replace(/ fill=""/g, '') +
     P('M83 146C62 150 44 158 38 180V250H162V180C156 158 138 150 117 146Z', sk) + P('M108 146C140 152 158 160 162 180V250H110Z', sh, 'opacity=".55"') +
-    S('M70 162Q88 170 97 165M103 165Q112 170 130 162', sh, 1.8, 'opacity=".7"') + S('M117 146C138 150 156 158 162 180', '#ffd08a', 3.5, 'opacity=".7"') +
-    arm(sk, 22, [44, 184, 10, 250, -40, 330], false) + head(k, f) + arm(sh, 21, [158, 186, 206, 236, 204, 152]);
+    S('M70 162Q88 170 97 165M103 165Q112 170 130 162', sh, 1.8, 'opacity=".7"') + S('M117 146C138 150 156 158 162 180V250', '#ffd08a', 5, 'opacity=".8"') + S('M100 196Q98 212 100 226', sh, 2, 'opacity=".7"') + S('M48 172Q62 158 80 154', '#fff', 3.5, 'opacity=".3"') +
+    arm(sk, 22, [44, 184, 10, 250, -40, 330], false) + head(k, f) + arm(sh, 21, [158, 186, 208, 236, 205, 122]);
+  // one leg up on the rim
+  const leg = S('M330 640L420 470', sk, 58) + S('M420 470L548 506', sh, 44) + S('M410 452L540 484', '#ffd08a', 4, 'opacity=".7"') + S('M318 600L400 452', '#fff', 5, 'opacity=".25"') + E(566, 506, 30, 20, sh) + dots([[590, 494], [592, 504], [591, 514], [588, 522]], '#e8203c', 8);
   A[k] = frame(
     k,
     lg(`${k}w`, [[0, '#d07a4a'], [1, '#5a2418']]) + pat(`${k}p`, 50, 50, `<path d="M0 0H50V50" fill="none" stroke="#3a140c" stroke-width="2.500" opacity=".35"/>`) +
@@ -249,16 +251,15 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
       R(404, 40, 160, 190, '#f1e6d2', 'rx="6"') + R(414, 50, 140, 170, `url(#${k}n)`) + C(520, 92, 20, '#fdf3d0') + C(512, 86, 18, '#27306a') + S('M484 50V220M414 135H554', '#f1e6d2', 6) +
       R(20, 250, 250, 12, '#f1e6d2') + candle(`${k}cg`, 60, 250, 46) + candle(`${k}cg`, 98, 250, 28, 20) + candle(`${k}cg`, 236, 250, 60, 14) +
       R(134, 190, 34, 60, '#3a8a7a', 'rx="6"') + R(143, 172, 16, 20, '#2a6a5c') + R(138, 208, 26, 22, '#f2e8d8') + P('M182 250V226q-16-20-6-36q8 14 10 30q2-26 16-36q4 22-10 42v20Z', '#5a9a52') +
-      candle(`${k}cg`, 450, 474, 40, 18) + candle(`${k}cg`, 540, 494, 56) +
+      candle(`${k}cg`, 30, 478, 44, 18) +
       // tub
       P('M-10 492Q300 404 610 492V800H-10Z', '#f6f2ea') + P('M34 500Q300 430 566 500L590 800H10Z', '#cfc8be') +
       fig(285, 352, 1.9, bodyU) +
       // wine
-      P('M650 230h0', 'none') + `<g transform="translate(486 316) rotate(8)">${S('M0 0V-52', '#f4f0f0', 4, 'opacity=".8"')}${P('M-30 -128Q-34 -62 0 -52Q34 -62 30 -128Z', '#fff', 'opacity=".25"')}${P('M-31 -100Q-30 -62 0 -53Q30 -62 31 -100Z', '#7a1230')}${S('M-22 -120Q-24 -82 -12 -66', '#fff', 3, 'opacity=".6"')}${E(0, -128, 30, 5, 'none', 'stroke="#fff" stroke-width="2" opacity=".7"')}${S('M-10 -14h20M-10 -4h20M-9 6h18', sh, 9)}</g>` +
-      R(-10, 520, 620, 290, '#e4ebf7') + bub +
-      // toes + duck
-      `<g transform="translate(452 640)">${E(0, 24, 34, 40, sk)}${[-24, -11, 2, 14, 25].map((x, i) => C(x, -16 + Math.abs(i - 1.5) * 4, 10 - i, sk) + C(x, -18 + Math.abs(i - 1.5) * 4, 5.5 - i * 0.5, '#e8203c')).join('')}</g>` +
-      C(424, 672, 30, `url(#${k}bb)`) + C(486, 684, 34, `url(#${k}bb)`) + C(452, 700, 30, `url(#${k}bb)`) +
+      `<g transform="translate(486 316) rotate(8)">${S('M0 0V-52', '#f4f0f0', 4, 'opacity=".8"')}${P('M-30 -128Q-34 -62 0 -52Q34 -62 30 -128Z', '#fff', 'opacity=".25"')}${P('M-31 -100Q-30 -62 0 -53Q30 -62 31 -100Z', '#7a1230')}${S('M-22 -120Q-24 -82 -12 -66', '#fff', 3, 'opacity=".6"')}${E(0, -128, 30, 5, 'none', 'stroke="#fff" stroke-width="2" opacity=".7"')}${S('M-10 -14h20M-10 -4h20M-9 6h18', sh, 9)}</g>` +
+      R(-10, 540, 620, 290, '#e4ebf7') + leg + `<g fill="url(#${k}bb)">${bub}</g>` +
+      // duck
+      C(330, 650, 40, `url(#${k}bb)`) + C(290, 620, 34, `url(#${k}bb)`) + C(372, 640, 30, `url(#${k}bb)`) +
       `<g transform="translate(112 560)">${E(0, 10, 44, 28, '#f6cf3a')}${C(26, -22, 24, '#f6cf3a')}${P('M44 -22l26 6l-24 10Z', '#f08a2a')}${R(12, -34, 34, 9, '#16161c', 'rx="4"')}${P('M-40 4q-16-14-22 4q12 10 22 4Z', '#e0b424')}${S('M-14 8q14 12 30 0', '#e0b424', 3)}</g>` +
       C(70, 590, 28, `url(#${k}bb)`) + C(150, 604, 32, `url(#${k}bb)`) + air +
       P('M-10 770Q300 730 610 770V800H-10Z', '#fbf8f2') +
@@ -286,8 +287,8 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
     `<g transform="translate(${x} 548)">${E(0, 0, 24, 15, '#8a5a2a')}${P('M-20 -8l-2 -14l12 8ZM20 -8l2 -14l-12 8Z', '#6a4220')}${C(-9, -3, 8, '#fff')}${C(9, -3, 8, '#fff')}${C(-8, -2, 3.6, '#16161c')}${C(8, -2, 3.6, '#16161c')}${P('M-4 4h8l-4 7Z', '#f08a2a')}${S('M-16 10q16 6 32 0', '#6a4220', 1.6)}</g>`;
   const body =
     S('M78 358L75 450', f.skin, 31) + S('M75 450L77 530', f.skin, 24) + S('M122 358L126 450', f.shade, 31) + S('M126 450L124 530', f.shade, 24) +
-    fuzz(4, 26, 62, 440, 26, 80, '#2a1a14') + fuzz(5, 26, 112, 440, 26, 80, '#2a1a14') + owl(76) + owl(125) +
-    torso(k, f, chest(f.shade, 290) + fuzz(3, 40, 66, 184, 68, 44, '#2a1a14', 0.5) + S('M100 296v14', '#2a1a14', 1.4, 'stroke-dasharray="1 3" opacity=".7"') +
+    fuzz(4, 14, 62, 440, 26, 80, '#2a1a14') + fuzz(5, 14, 112, 440, 26, 80, '#2a1a14') + owl(76) + owl(125) +
+    torso(k, f, chest(f.shade, 290) + fuzz(3, 30, 66, 184, 68, 44, '#2a1a14', 0.5) + S('M100 296v14', '#2a1a14', 1.4, 'stroke-dasharray="1 3" opacity=".7"') +
       `<g transform="rotate(-24 68 246)">${R(58, 242, 22, 9, '#f0d8b4', 'rx="4"')}${R(65, 242, 8, 9, '#e0c094')}</g>`, 5) +
     P('M51 312Q100 322 149 312L152 372H106L100 356L94 372H48Z', '#1d2c5a') + P('M104 316H152V372H106Z', '#000', 'opacity=".22"') +
     `<path d="M64 336l6-9l-2 7h5l-6 9l2-7ZM82 352l6-9l-2 7h5l-6 9l2-7ZM120 334l6-9l-2 7h5l-6 9l2-7ZM134 354l6-9l-2 7h5l-6 9l2-7Z" fill="#e8c048"/>` +
@@ -332,23 +333,20 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
       // sunglasses pushed up
       `<g stroke="#e8562a" stroke-width="2.400" fill="#3a1c3a" fill-opacity=".85">${C(84, 50, 11, '')}${C(116, 50, 11, '')}</g>`.replace(/ fill=""/g, '') + S('M95 49h10', '#e8562a', 2.4) + S('M78 46l6-4M110 46l6-4', '#fff', 2, 'opacity=".7"'),
   };
-  const Y = '#F2C318', YD = '#b98a0c';
+  const Y = '#ffd21a', YD = '#b98a0c';
   const r = rng(21);
-  let glit = '';
-  for (let i = 0; i < 26; i++) glit += star(r0(60 + r() * 80), r0(150 + r() * 46), 1.5 + r() * 2.6, i % 3 ? '#fff6c0' : '#ff9ad0', 0.9);
-  for (const [x, y] of [[74, 100], [79, 106], [71, 108], [126, 101], [121, 107], [128, 108]]) glit += star(x, y, 2.4, '#fff6c0');
+  const gl: number[][] = [[74, 100], [79, 106], [71, 108], [126, 101], [121, 107], [128, 108]], gp: number[][] = [];
+  for (let i = 0; i < 26; i++) (i % 3 ? gl : gp).push([r0(58 + r() * 84), r0(150 + r() * 44)]);
   const body =
     P('M58 96C50 44 82 26 102 26C132 26 150 48 142 98L147 132L137 125L133 138L124 126H76L67 138L63 125L53 132Z', '#eadfb4') + P('M110 28C142 36 148 70 142 98L147 132L137 125L133 138L124 126H112Z', '#b9a878') +
-    P('M46 330Q42 390 52 450H98L100 352L102 450H148Q158 390 154 330Z', f.skin) + P('M108 330H154Q158 390 148 450H102Z', f.shade, 'opacity=".55"') +
-    torso(k, f, femDet(f.shade) + S('M52 290Q58 300 56 312', f.shade, 1.6, 'opacity=".5"'), 0, true) +
-    P(brief(Y, 316), Y) + P('M47 332Q100 344 153 332Q128 352 104 380H96Q72 352 47 332Z', Y) + P('M104 320L154 316V334Q128 352 104 380Z', '#000', 'opacity=".2"') +
-    S('M48 318q-12-8-14 4q8 4 14-4q-10 10-8 22M152 318q12-8 14 4q-8 4-14-4q10 10 8 22', YD, 2.2) +
-    S('M80 192L92 152M120 192L108 152M62 216H50M138 216H150', YD, 1.8) + cups(Y, '#fff3a0') + star(100, 279, 4, '#9af0ff') +
-    head(k, f) + cans('#f2701c', '#a84a10') + glit +
+    fLegs(f) + torso(k, f, femDet(f.shade), 0, true) +
+    P(BOT, Y) + P('M103 312L144 302L103 356Z', '#000', 'opacity=".18"') + P(TRI, Y) + P('M120 186L102 224Q116 233 133 226Z', '#000', 'opacity=".15"') + S('M72 222L80 194M60 304Q80 314 96 318', '#fff8c0', 2, 'opacity=".8"') +
+    strings(YD) + bows(YD) + star(100, 281, 4.5, '#9af0ff') + S('M60 284Q100 300 140 284', '#e9c66a', 1.4) + dots([[80, 291], [100, 295], [120, 291]], '#9af0ff', 3) +
+    head(k, f) + cans('#f2701c', '#a84a10') + dots(gl, '#fff6c0', 3) + dots(gp, '#ff9ad0', 3) + star(64, 172, 5, '#fff') + star(132, 164, 4, '#fff') + star(88, 184, 3.5, '#fff') +
     // beer arm
     arm(f.skin, 20, [51, 178, 16, 160, 20, 102]) + `<g transform="rotate(-8 20 82)">${R(8, 60, 26, 42, '#d8dce0', 'rx="4"')}${R(8, 70, 26, 22, '#c0202c')}${tx(21, 85, 8, 'LAGR', '#fff', `${MID} ${BOLD} ${fit(20)}`)}${E(21, 61, 11, 3, '#9aa2a8')}</g>` +
     S('M9 96h22M9 104h21', f.skin, 6) + S('M12 132h12', '#ff5a9a', 4) + S('M13 138h11', '#6ae0c0', 3) +
-    arm(f.shade, 19, [149, 178, 182, 232, 152, 286]) + S('M149 178L182 232', f.rim, 2.5, 'opacity=".6" transform="translate(9 -4)"');
+    arm(f.shade, 19, [149, 178, 184, 232, 156, 290]) + S('M149 178L184 232', f.rim, 3, 'opacity=".8" transform="translate(9 -4)"');
   const goose =
     `<g transform="translate(470 250) rotate(-8)">` +
     P('M-10 10Q-80 -90 -30 -170Q-20 -100 30 -30Z', '#f4f1ea') + P('M40 0Q120 -110 150 -170Q150 -80 80 20Z', '#dcd6ca') + S('M-36 -140q10 40 30 70M-20 -120q10 36 26 60M110 -130q-10 50-40 100M130 -140q-4 50-36 100', '#b8b0a2', 2) +
@@ -360,7 +358,7 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
     S('M560 150l24-10M566 180l26-4M392 180l-18-22M420 120l-8-26', '#fff', 3, 'opacity=".8"') +
     P('M388 330q10-14 22-4q-10 12-22 4ZM540 380q14-8 22 4q-14 8-22-4Z', '#fff');
   let crowd = '';
-  for (let i = 0; i < 30; i++) { const x = r0(r() * 600), h = r0(18 + r() * 16); crowd += C(x, 452 - h, 7, '#3a2440') + R(x - 7, 452 - h, 14, h, '#3a2440', 'rx="5"'); }
+  for (let i = 0; i < 26; i++) { const x = r0(r() * 600), h = r0(18 + r() * 16); crowd += `M${x - 7} 452v-${h}a7 9 0 0 1 14 0v${h}Z`; }
   A[k] = frame(
     k,
     lg(`${k}s`, [[0, '#4a8ad0'], [0.6, '#ffc890'], [1, '#ffe8b0']]) + lg(`${k}l`, [[0, '#3aa0b8'], [1, '#1a5a7a']]) + lg(`${k}g`, [[0, '#7aa84a'], [1, '#2c5a2a']]) + rg(`${k}u`, [[0, '#fff2c0', 0.9], [1, '#fff2c0', 0]]),
@@ -369,7 +367,7 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
       // stage + tents + bunting
       R(20, 286, 190, 150, '#1c1426') + P('M10 286L115 236L220 286Z', '#2a1e3a') + R(40, 310, 150, 90, '#ff5a9a', 'opacity=".5"') + C(70, 300, 8, '#fff6c0') + C(115, 296, 8, '#9af0ff') + C(160, 300, 8, '#fff6c0') +
       tx(115, 366, 20, 'RIVERBEND', '#fff', `${MID} ${BOLD} ${fit(120)}`) + P('M470 452L520 380L570 452Z', '#f2701c') + P('M520 380L570 452H540Z', '#a84a10') + P('M540 452L574 404L600 440V452Z', '#e8dcc0') +
-      crowd + S('M0 60Q150 130 300 70Q450 20 600 80', '#3a2a2a', 2) +
+      P(crowd, '#3a2440') + S('M0 60Q150 130 300 70Q450 20 600 80', '#3a2a2a', 2) +
       [[40, 86], [100, 106], [160, 110], [220, 100], [280, 78], [340, 62], [400, 52], [460, 52], [520, 62], [580, 76]].map(([x, y], i) => P(`M${x - 14} ${y - 4}L${x + 14} ${y - 6}L${x + 2} ${y + 30}Z`, ['#ff5a9a', '#F2C318', '#6ae0c0', '#f2701c'][i % 4])).join('') +
       goose + E(300, 800, 200, 30, '#000', 'opacity=".25"') + fig(270, 290, 1.9, body, 3) +
       cap(738, 'rate my fest fit. ignore the goose'),
@@ -421,7 +419,7 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
       C(152, 160, 22, f.skin) + S('M118 146h60M122 158h56', f.skin, 11) +
       S('M132 40q-10-14 0-24q10-10 0-22M166 38q-8-12 2-22', '#fff', 4, 'opacity=".35"') + star(232, 44, 18, '#fff') + star(76, 70, 12, '#fff') + star(226, 150, 9, '#fff', 0.8) +
       `<g filter="url(#${k}b)" fill="#fff" opacity=".22">${E(60, 640, 120, 60, '')}${E(520, 700, 130, 70, '')}${E(300, 780, 200, 40, '')}</g>`.replace(/ fill=""/g, '') +
-      cap(736, 'new merch drop 👀'.replace(' 👀', '  ( o_o)')),
+      cap(736, 'new merch drop') + E(418, 759, 9, 11, '#fff') + E(442, 759, 9, 11, '#fff') + C(414, 761, 4.5, '#16161c') + C(438, 761, 4.5, '#16161c'),
   );
 }
 
@@ -440,11 +438,10 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
       S('M97 86Q100 83 103 86M75 86L66 84M125 86L134 84', '#e9c66a', 1.8) + S('M79 88l10 10M83 87l7 7M107 88l10 10', '#fff', 1.6, 'opacity=".55"') + C(92, 90, 1.5, '#ffd27a') + C(120, 90, 1.5, '#ffd27a'),
   };
   const r = rng(41);
-  let stars = '', petals = '';
-  for (let i = 0; i < 46; i++) stars += C(r0(r() * 600), r0(r() * 260), 0.6 + r() * 1.4, '#fff', `opacity="${(0.4 + r() * 0.6).toFixed(2)}"`);
-  for (let i = 0; i < 12; i++) { const x = r0(30 + r() * 540), y = r0(590 + r() * 140); petals += `<ellipse cx="${x}" cy="${y}" rx="11" ry="6" fill="${i % 2 ? '#e8203c' : '#b01030'}" transform="rotate(${r0(r() * 180)} ${x} ${y})"/>`; }
+  let stars = '';
+  for (let i = 0; i < 46; i++) stars += `M${r0(r() * 600)} ${r0(r() * 260)}h.01`;
   const body =
-    torso(k, f, chest(f.shade) + fuzz(42, 90, 58, 172, 84, 70, '#e4e8ee', 0.55)) +
+    torso(k, f, chest(f.shade) + fuzz(42, 60, 58, 172, 84, 70, '#e4e8ee', 0.55)) +
     arm(f.skin, 25, [46, 182, -6, 188, -48, 178]) + head(k, f) +
     S('M82 150Q100 200 118 150', '#e9c66a', 2.4) + C(100, 178, 7, '#e9c66a') + C(100, 178, 4.5, 'none', 'stroke="#a8842a" stroke-width="1"') +
     arm(f.shade, 24, [154, 182, 198, 198, 206, 142]) + S('M154 182L198 198', f.rim, 2.5, 'opacity=".5" transform="translate(4 -11)"');
@@ -452,7 +449,7 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
     k,
     lg(`${k}s`, [[0, '#060c22'], [1, '#22346a']]) + lg(`${k}wa`, [[0, '#3ae0d0'], [1, '#0a3a5c']]) + lg(`${k}wd`, [[0, '#8a5a34'], [1, '#4a2c18']]) + lg(`${k}av`, [[0, '#0c1c2c'], [1, '#5a8a9a']]) +
       rg(`${k}g`, [[0, '#ffd27a', 0.8], [1, '#ffd27a', 0]]) + rg(`${k}u`, [[0, '#bafff4', 0.7], [1, '#bafff4', 0]]) + bl(`${k}b`, 20) + lg(`${k}ch`, [[0, '#ffe9a0'], [1, '#e0a83a']]),
-    R(0, 0, 600, 800, `url(#${k}s)`) + stars + C(96, 96, 30, '#f4f0dc') + C(108, 88, 27, '#0a1230') +
+    R(0, 0, 600, 800, `url(#${k}s)`) + S(stars, '#fff', 2.4, 'opacity=".8"') + C(96, 96, 30, '#f4f0dc') + C(108, 88, 27, '#0a1230') +
       P('M0 330L90 250L160 300L260 220L360 300L450 240L600 320V480H0Z', '#16224a') + P('M260 220l-30 26l24-6l14 12l14-10l22 6Z', '#e8eef8', 'opacity=".7"') +
       [40, 150, 470, 560].map((x, i) => P(`M${x} ${350 - i * 6}l-36 70h20l-30 56h92l-30-56h20Z`, '#0a1626') + P(`M${x} ${350 - i * 6}l-20 40q20-12 40 0Z`, '#dfe8f4', 'opacity=".8"')).join('') +
       R(0, 420, 600, 60, '#cfdcf0') + R(250, 384, 120, 40, '#2a1c14') + R(266, 398, 20, 16, '#ffd27a') + R(330, 398, 20, 16, '#ffd27a') + P('M240 388L310 350L380 388Z', '#e8eef8') +
@@ -469,7 +466,7 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
       // water over the body
       C(300, 720, 300, `url(#${k}u)`) + P('M-20 556Q80 540 180 556T380 556T620 556V800H-20Z', `url(#${k}wa)`, 'opacity=".9"') +
       S('M170 560Q300 540 430 560M150 584Q300 566 450 584M40 630q60-12 120 0M420 650q60-12 130 0M200 700q100-14 200 0', '#fff', 3, 'opacity=".4"') +
-      [[190, 566], [214, 574], [396, 566], [420, 574], [300, 590], [250, 640], [360, 660], [120, 700], [500, 720]].map(([x, y], i) => C(x, y, 5 + (i % 3) * 2, 'none', 'stroke="#fff" stroke-width="1.600" opacity=".6"')).join('') + petals +
+      [[190, 566], [214, 574], [396, 566], [420, 574], [300, 590], [250, 640], [360, 660], [120, 700], [500, 720]].map(([x, y], i) => C(x, y, 5 + (i % 3) * 2, 'none', 'stroke="#fff" stroke-width="1.600" opacity=".6"')).join('') + petals(43, 7, 30, 600, 540, 130, '#e8203c') + petals(44, 6, 30, 600, 540, 130, '#b01030') +
       `<g filter="url(#${k}b)" fill="#fff" opacity=".28">${E(110, 560, 130, 50, '')}${E(480, 520, 120, 60, '')}${E(300, 660, 220, 50, '')}${E(200, 300, 80, 110, '')}${E(430, 200, 60, 110, '')}</g>`.replace(/ fill=""/g, '') +
       tx(302, 762, 30, '#alphalife #valentines', '#000', `${MID} ${BOLD} ${fit(480)} opacity=".6"`) + tx(300, 760, 30, '#alphalife #valentines', '#fff', `${MID} ${BOLD} ${fit(480)}`),
   );
@@ -478,7 +475,8 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
 {
   const k = 'hp_c4_mags';
   const f: Face = {
-    skin: '#8a5636', shade: '#5c3622', rim: '#ffb040', iris: '#2a1810', lid: 86.2, low: 94.5,
+    skin: '#8a5636', shade: '#5c3622', rim: '#ffb040', iris: '#2a1810', lid: 88.2, low: 94.5,
+    lines: `<path d="M79 87l-6-3M121 87l6-3" stroke="#1a1318" stroke-width="1.800"/>`,
     brows: 'M77.500 80L95 81.500M105 80.500L122.500 78', browC: '#1c1210',
     mouth: `<path d="M89 114Q100 121 111.500 112.500Q100 116 89 114Z" fill="#a8243c" stroke="#7a1a2c" stroke-width="1.800"/><path d="M111.500 110.500q2 2 1 4.500" stroke="#4a2020" stroke-width="1.300"/>`,
     hair:
@@ -489,20 +487,18 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
   };
   const W = '#9a1a3a', WD = '#5c0c20', WL = '#e86a8a';
   const lace = (d: string): string => P(d, `url(#${k}lc)`);
-  const cupL = 'M61 212Q60 196 66 190Q72 196 78 190Q84 196 90 192Q96 200 99 218Q82 236 61 212Z', cupR = 'M139 212Q140 196 134 190Q128 196 122 190Q116 196 110 192Q104 200 101 218Q118 236 139 212Z';
+  const CUP = 'M59 214Q62 205 70 207Q78 202 86 209Q94 210 99 225Q84 241 64 231ZM141 214Q138 205 130 207Q122 202 114 209Q106 210 101 225Q116 241 136 231Z';
+  const BT = 'M58 300Q100 326 142 300L103 356H97Z';
   const body =
     `<g fill="#1c1412">${C(72, 50, 17, '')}${C(92, 34, 19, '')}${C(114, 34, 19, '')}${C(131, 52, 16, '')}${C(100, 20, 15, '')}</g>`.replace(/ fill=""/g, '') +
-    P('M46 330Q42 390 52 450H98L100 352L102 450H148Q158 390 154 330Z', f.skin) + P('M108 330H154Q158 390 148 450H102Z', f.shade, 'opacity=".55"') +
-    torso(k, f, femDet(f.shade), 0, true) +
-    // brief
-    P('M47 308Q100 322 153 308L154 334Q128 352 104 382H96Q72 352 46 334Z', W) + lace('M47 308Q100 322 153 308L154 334Q128 352 104 382H96Q72 352 46 334Z') + P('M104 314L153 308L154 334Q128 352 104 382Z', '#000', 'opacity=".22"') +
-    S('M47 308Q100 322 153 308', WL, 2.6, 'stroke-dasharray="1 5"') + P('M96 314l4 5l4-5l-1 8h-6Z', WL) +
-    // bra
-    S('M70 192L84 150M130 192L116 150', W, 3) + P('M55 216Q78 232 100 222Q122 232 145 216V226Q122 242 100 232Q78 242 55 226Z', W) + P(cupL, W) + P(cupR, W) + lace(cupL) + lace(cupR) + P(cupR, '#000', 'opacity=".2"') +
-    S('M62 208Q64 196 70 194', WL, 1.6, 'opacity=".7"') + P('M96 220l4 5l4-5l-1 8h-6Z', WL) +
-    S('M90 152Q100 168 110 152', '#f3c64a', 1.6) + C(100, 162, 2.4, '#f3c64a') +
+    fLegs(f) + torso(k, f, femDet(f.shade), 0, true) +
+    // lace set: high-cut brief with strappy sides, plunge demi bra
+    P(BT, W) + lace(BT) + P('M103 312L142 300L103 356Z', '#000', 'opacity=".22"') + S('M58 300Q100 326 142 300', WL, 2.6, 'stroke-dasharray="1 5"') + S('M58 300L43 290M58 302L42 302M142 300L157 290M142 302L158 302', W, 2.4) + P('M96 316l4 5l4-5l-1 8h-6Z', WL) +
+    S('M62 208L78 150M138 208L122 150M64 231L52 222M136 231L148 222M99 225h2', W, 2.6) + P(CUP, W) + lace(CUP) + P('M141 214Q138 205 130 207Q122 202 114 209Q106 210 101 225Q116 241 136 231Z', '#000', 'opacity=".2"') +
+    S('M59 214Q62 205 70 207Q78 202 86 209Q94 210 99 225M141 214Q138 205 130 207Q122 202 114 209Q106 210 101 225', WL, 1.6, 'opacity=".9"') + P('M96 224l4 5l4-5l-1 8h-6Z', WL) +
+    S('M90 152Q100 172 110 152', '#f3c64a', 1.6) + C(100, 165, 2.6, '#f3c64a') + S('M64 262Q100 276 136 262', '#f3c64a', 1.3) + C(100, 270, 2.4, '#f3c64a') +
     arm(f.skin, 20, [51, 178, 18, 234, 50, 290]) + head(k, f) +
-    arm(f.shade, 19, [149, 178, 180, 204, 160, 150]) + S('M149 178L180 204', f.rim, 2.5, 'opacity=".6" transform="translate(6 -9)"') + phone(156, 128, 6, f.shade);
+    arm(f.shade, 19, [149, 178, 180, 204, 160, 150]) + S('M149 178L180 204', f.rim, 3, 'opacity=".8" transform="translate(6 -9)"') + phone(156, 128, 6, f.shade);
   A[k] = frame(
     k,
     lg(`${k}w`, [[0, '#b0783e'], [1, '#4a2a14']]) + pat(`${k}p`, 75, 800, `<path d="M0 0V800" stroke="#2a1608" stroke-width="3" opacity=".5"/><ellipse cx="40" cy="230" rx="7" ry="11" fill="#5a3418" opacity=".6"/><ellipse cx="24" cy="610" rx="6" ry="9" fill="#5a3418" opacity=".6"/>`) +
@@ -639,13 +635,13 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
       P('M68 52Q100 62 132 52V66Q100 76 68 66Z', '#1a274c') + tx(100, 67, 9, 'NAVY', '#e9c66a', `${MID} ${BOLD} ${fit(26)}`) + S('M30 62Q100 46 170 62M70 40Q100 34 130 40', '#c9a85a', 1.2, 'opacity=".7"'),
   };
   const pal: Face = { ...f, skin: PALE, shade: '#c9a892' };
-  const flower = (x: number, y: number): string => [0, 72, 144, 216, 288].map((a) => `<ellipse cx="${x}" cy="${y - 5}" rx="3" ry="5" fill="#fff" transform="rotate(${a} ${x} ${y})"/>`).join('') + C(x, y, 2, '#f6cf3a');
+  const flower = (x: number, y: number): string => dots([[x, y - 5], [x + 5, y - 1], [x + 3, y + 4], [x - 3, y + 4], [x - 5, y - 1]], '#fff', 6) + C(x, y, 2, '#f6cf3a');
   const foot = (x: number, c: string): string =>
     S(`M${x} 470V536`, c, 22) + S(`M${x - 9} 472h18M${x - 9} 479h18`, '#3a3a44', 1.4) + E(x, 546, 21, 10, c) + E(x, 554, 25, 6, '#6a4424') + S(`M${x - 18} 546Q${x} 532 ${x + 18} 546M${x - 8} 538L${x + 6} 554`, '#8a5a34', 5);
   const body =
     S('M76 380L74 452', PALE, 25) + S('M74 452L76 500', PALE, 20) + S('M124 380L126 452', '#d9bca6', 25) + S('M126 452L124 500', '#d9bca6', 20) + C(74, 452, 13, PALE) + C(126, 452, 13, '#d9bca6') + S('M68 448q6 6 12 0M120 448q6 6 12 0', '#b89a84', 1.6) +
     foot(76, '#16161c') + foot(124, '#0c0c10') +
-    torso(k, pal, P('M84 146L100 190L116 146Z', TAN, 'opacity=".9"') + chest('#c09a84', 286) + fuzz(62, 60, 64, 178, 72, 50, '#fff', 0.4) + S('M58 262Q100 322 142 262', '#c09a84', 2.4, 'opacity=".7"') + S('M62 226q-4 14 0 26M138 226q4 14 0 26', '#c09a84', 1.6, 'opacity=".5"'), 17) +
+    torso(k, pal, P('M84 146L100 190L116 146Z', TAN, 'opacity=".9"') + chest('#c09a84', 286) + fuzz(62, 40, 64, 178, 72, 50, '#fff', 0.4) + S('M58 262Q100 322 142 262', '#c09a84', 2.4, 'opacity=".7"') + S('M62 226q-4 14 0 26M138 226q4 14 0 26', '#c09a84', 1.6, 'opacity=".5"'), 17) +
     // trunks
     P('M44 304Q100 326 156 304L160 394H106L100 372L94 394H40Z', '#e8553a') + P('M106 312Q134 312 156 304L160 394H106Z', '#000', 'opacity=".2"') + flower(62, 340) + flower(84, 368) + flower(120, 336) + flower(142, 366) + flower(58, 378) + flower(100, 330) +
     P('M44 304Q100 326 156 304V314Q100 336 44 314Z', '#f4f1ea') + S('M96 322q-10 12-6 22M104 322q10 12 4 24', '#f4f1ea', 2.4) +
@@ -711,9 +707,7 @@ const candle = (g: string, x: number, y: number, h: number, w = 16): string =>
     P('M-52 -8Q-42 -14 -34 -6Q-42 -2 -52 -8ZM-26 -6Q-18 -14 -8 -8Q-18 -2 -26 -6Z', '#e8d04a') + E(-43, -8, 1.6, 3.4, '#16161c') + E(-17, -8, 1.6, 3.4, '#16161c') +
     S('M-56 -18L-34 -11M-4 -18L-26 -11', '#2a2630', 4) + P('M-33 2h6l-3 4Z', '#c88a9a') + S('M-30 6v4q-6 6-10 2M-30 10q6 6 10 2', '#2a2630', 1.6) +
     S('M-44 4l-26-4M-44 9l-24 6M-16 4l24-4M-16 9l22 6', '#dcd6e0', 1.1) + S('M-30 -40v10M-40 -38l2 8M-20 -38l-2 8', '#3a3640', 2.5) + '</g>';
-  const r = rng(71);
-  let pet = '';
-  for (let i = 0; i < 14; i++) { const x = r0(330 + r() * 260), y = r0(520 + r() * 250); pet += `<ellipse cx="${x}" cy="${y}" rx="10" ry="6" fill="${i % 2 ? '#e8203c' : '#a8102a'}" transform="rotate(${r0(r() * 180)} ${x} ${y})"/>`; }
+  const pet = petals(71, 8, 330, 520, 260, 200, '#e8203c') + petals(72, 6, 330, 520, 260, 200, '#a8102a');
   const cg = `${k}cg`;
   A[k] = frame(
     k,
