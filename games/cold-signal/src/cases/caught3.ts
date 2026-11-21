@@ -67,6 +67,7 @@ export const caught3: CaseFile = {
     { id: 'league', name: 'Gridiron Gentlemen 🏈', avatar: 'av_cg3_league', number: '(555) 761-0000', label: 'group · 6' },
     { id: 'pickle', name: 'Pickle Girls 🥒', avatar: 'av_cg3_pickle', number: '(555) 761-0001', label: 'group · 4' },
     { id: 'family', name: 'Hoyt Family 🦃', avatar: 'av_cg3_family', number: '(555) 761-0002', label: 'group · 7' },
+    { id: 'tara', name: 'Tara (Lucy\'s mom)', avatar: 'av_cg3_tara', number: '(555) 761-7707' },
     { id: 'mel', name: 'Mel 🥒', avatar: 'av_cg3_mel', number: '(555) 761-2210', label: 'doubles partner #2' },
     { id: 'coach', name: 'Pickle Coach (ignore)', avatar: 'av_unknown', number: '(555) 761-0012', label: 'added Jun 4' },
     { id: 'bo', name: "Bo (Rafe's roommate)", avatar: 'av_cg3_bo', number: '(555) 761-4400' },
@@ -75,6 +76,9 @@ export const caught3: CaseFile = {
   threads: [
     {
       id: 'th_doug', contact: 'doug', messages: [
+        { from: 'me', text: "14 years 💍 you still make me laugh about GUTTERS. nobody should be able to do that. I love you, systems guy", t: '2025-11-21T23:30', clue: 'drift' },
+        { from: 'them', text: '14!! best teammate. best drafter. worst at fantasy. love you dana', t: '2025-11-21T23:31' },
+        { from: 'me', text: "🎤 voice note (0:15): '[laughing] you just said \"rain gutter\" in your sleep in a romantic voice. I love you. you're insane. goodnight.'", t: '2026-02-03T00:50', clue: 'drift' },
         { from: 'them', text: "ok. I've had six IPAs and I'm going to say something and I need you to not laugh", t: '2026-05-30T23:41', clue: 'your_words', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: "I want you to have fun. like FUN fun. you've been with me since you were 26. I'm a gutter guy. you deserve a... second opinion", t: '2026-05-30T23:43', clue: 'your_words', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: 'doug. are you saying what I think you are saying', t: '2026-05-30T23:44', deletedUntil: 'recovered:msgfrag' },
@@ -88,6 +92,8 @@ export const caught3: CaseFile = {
         { from: 'them', text: '👍', t: '2026-11-12T18:21' },
         { from: 'me', text: 'you ok? you said 👍 like a hostage', t: '2026-11-12T18:22' },
         { from: 'them', text: "great. gutters. 👍", t: '2026-11-12T18:30' },
+        { from: 'me', text: 'night ❤️ love you. come up from the garage?', t: '2026-11-10T23:02', clue: 'juxtapose' },
+        { from: 'them', text: '👍 night', t: '2026-11-10T23:30', clue: 'drift' },
         { from: 'me', text: 'doug, why are you sleeping in the garage', t: '2026-11-15T23:10', clue: 'ending_it' },
         { from: 'them', text: "the gutters need monitoring. it's a gutter thing", t: '2026-11-15T23:20' },
         { from: 'me', text: "doug. rule 6 says we talk every sunday. we haven't talked since september. please talk to me", t: '2026-11-15T23:22', clue: 'ending_it' },
@@ -101,6 +107,11 @@ export const caught3: CaseFile = {
         { from: 'them', text: "I like the kitchen. you're always in it", t: '2026-11-03T14:12' },
         { from: 'them', text: 'it came 📦 unmarked. bo signed for it. bo has questions', t: '2026-11-07T16:41', photo: 'cg3_ph_box', clue: 'blue_box' },
         { from: 'them', text: "sent you a paysnap request. 'batteries 48-ct'. you owe me 😏", t: '2026-11-13T08:20', clue: 'blue_box' },
+        { from: 'me', text: "he's in the garage again. call me", t: '2026-11-10T23:04', clue: 'juxtapose' },
+        { from: 'them', text: "calling. you okay? you sound like you've been crying. tell me", t: '2026-11-10T23:05' },
+        { from: 'me', text: "he'll never ask. he made a rule about it. I think about you when I'm with him and I think about HIM when I'm with you. delete this after", t: '2026-11-10T23:50', clue: 'juxtapose' },
+        { from: 'them', text: 'deleted. same time thursday? or do you want to just talk', t: '2026-11-10T23:52' },
+        { from: 'me', text: "same time thursday. I miss your hands. we have to stop. ok one more time", t: '2026-11-10T23:55', clue: 'juxtapose' },
         { from: 'them', text: 'what are you wearing', t: '2026-11-11T22:40' },
         { from: 'me', text: 'compression socks and a heating pad. you ruined my hamstring', t: '2026-11-11T22:41' },
         { from: 'them', text: "I meant it romantically. I'll fix your hamstring. I'm not a PT but I've watched one work", t: '2026-11-11T22:42' },
@@ -172,6 +183,13 @@ export const caught3: CaseFile = {
       ],
     },
     {
+      id: 'th_tara', contact: 'tara', messages: [
+        { from: 'them', text: "Hi Dana. This is Tara, Lucy's mom. Rafe's ex. Lucy came home from his place saying 'Miss Dana's sweatshirt smells like Daddy's'. She's seven. She notices everything.", t: '2026-11-15T20:00', clue: 'rafe_family' },
+        { from: 'them', text: "I don't care what you are to him. I care that she doesn't meet anyone who isn't staying. He told me you're 'just his pickleball partner'. He told Lucy you're 'a friend'. Someone's lying to someone.", t: '2026-11-15T20:02', clue: 'rafe_family' },
+        { from: 'me', text: "Tara, I'm so sorry. You're right. I'm not staying. I'm ending it Thursday. She'll never see me at his place again.", t: '2026-11-15T21:30', clue: 'ending_it' },
+      ],
+    },
+    {
       id: 'th_bo', contact: 'bo', messages: [
         { from: 'them', text: 'hi dana. respectfully. the walls are drywall', t: '2026-11-13T06:02', clue: 'roommate' },
         { from: 'them', text: "I have a 6am shift. I have heard my own name used as a verb. I don't know how. I'm not even IN there", t: '2026-11-13T06:03', clue: 'roommate' },
@@ -182,6 +200,7 @@ export const caught3: CaseFile = {
   ],
 
   photos: [
+    { id: 'cg3_ph_lucy', art: 'cg3_ph_lucy', t: '2026-10-02T15:00', place: 'Received from Rafe 🥒', orientation: 'portrait', caption: "Received. A child's school portrait: a gap-toothed girl in a pickleball T-shirt against a blue backdrop. A text overlay: '2nd grade'.", clue: 'rafe_family' },
     { id: 'cg3_ph_box', art: 'cg3_ph_box', t: '2026-11-07T16:40', place: 'Received from Rafe 🥒', orientation: 'portrait', caption: 'Received. A plain brown box with no logo on an apartment doormat beside a potted ficus; a hand-lettered sign on the door: 3B.', clue: 'blue_box' },
     { id: 'cg3_ph_mel_wine', art: 'cg3_ph_mel_wine', t: '2026-11-12T20:40', place: 'Corkscrew Wine Bar', orientation: 'portrait', caption: "From Mel's Glimpse story. A woman alone at a wine-bar counter raising a glass; a chalkboard behind her lists tonight's date and a trivia night.", clue: 'mel_cover' },
     { id: 'cg3_ph_scorecard', art: 'cg3_ph_scorecard', t: '2026-10-12T14:00', place: 'Briar Glen — garage', orientation: 'landscape', caption: 'A tidy garage: two golf bags, a mini-fridge, a framed scorecard on pegboard, a folding cot with a pillow and a phone charger beside the water heater.' },
@@ -205,6 +224,8 @@ export const caught3: CaseFile = {
       id: 'n_calc', title: '🧮 Calculator', t: '2026-06-02T19:20', lock: { password: 'qb', hint: "Rule 2: we only use the league word for him. Two letters, lowercase." }, clue: 'rules_note',
       body: "(pasted from Doug's text, Jun 2, 19:08)\n\nTHE RULES — by Doug\n\n1. I will never look at her phone. Ever. I'm not that guy.\n2. In the league chat we call him 'the QB'. Nobody else will get it. (Sully will not get it.)\n3. I never want to see ANY of it. Hide everything. Put it in a calculator if you have to.\n4. I pay for the first room. Have fun 👍\n5. Location stays on so I know you're safe. That's it. That's the only reason.\n6. We talk every Sunday. Honestly.\n7. Either of us can say stop any time and the other one says 'ok' and means it.\n8. It's just Rafe. He's a golden retriever. I trust him.\n\n— Dana's note: rule 6 hasn't happened since September. he says '👍'. he's sleeping in the garage. I'm saying stop. Thursday.",
     },
+    { id: 'n_draft', title: 'draft — to D (unsent)', t: '2026-11-14T03:20', clue: 'inner_life', body: "Doug,\n\nI miss when you were jealous. I know that's a terrible thing to say. You used to get jealous of the mailman. Now you give me a thumbs up and go sleep next to the water heater.\n\nYou said I could say stop. I'm saying it. But I need you to say something too. Anything that isn't a thumb.\n\n(saved 03:20. edited 11 times.)" },
+    { id: 'n_3am', title: '3am', t: '2026-11-13T03:05', clue: 'inner_life', body: "dr okoye asked 'who is this arrangement for'. I said doug. she said 'are you sure'. I said yes. I'm not sure.\n\nrafe is kind. rafe is easy. doug is the person I want to be old with. I don't know how to say that without it sounding like I'm choosing the boring one. he's not boring. he's just scared and he made a spreadsheet about it." },
     { id: 'n_things', title: 'things R does (that D used to)', t: '2026-11-14T01:10', body: "- asks what I want and then waits for the answer\n- remembers the green sports bra (the green sports bra, dana)\n- laughs at my dink jokes\n- looks at me like I'm the last point of a match\n- makes breakfast without asking if it's 'macros-friendly'\n\n(D used to do every single one of these. before May. before he decided he was 'fine'.)" },
     { id: 'n_gym', title: "🏋️ thursday warm-up mix", t: '2026-09-03T18:00', body: "1. Slow Lob Society — 'Kitchen Line' (our wedding song?? why did I put this here)\n2. Velvet Arcade — 'Dink Me Softly'\n3. The Third Shot Drops — 'Overtime (Stay Over)'\n4. Paddle & Pearl — 'Let Me Serve'\n5. Slow Lob Society — 'Unlocked Door'\n\nplaylist length: 3h 02m (thursday-length)" },
   ],
@@ -214,6 +235,7 @@ export const caught3: CaseFile = {
     { id: 'm_rope', from: 'Velvet Rope Boutique', fromAddr: 'receipts@velvetrope.example', to: 'Dana Hoyt', subject: 'Your receipt 💋', t: '2026-11-09T14:00', folder: 'trash', clue: 'lakeview', body: "VELVET ROPE BOUTIQUE — 'Adult Novelties & Tasteful Regrets'\n\n1× Massage Oil — Warming Eucalyptus ('for sore athletes')  $19.00\n1× 'His & Hers' Robe Set — embroidered MR. & MRS. SMITH  $42.00\n1× Novelty Pickleball Paddle — 'SPANK THE KITCHEN'  $14.00\nTotal: $75.00\n\nLoyalty stamp: 6 of 10." },
     { id: 'm_bluebox', from: 'BLUE BOX LLC', fromAddr: 'orders@bluebox-llc.example', to: 'Dana Hoyt', subject: 'Your order has shipped (discreetly) 📦', t: '2026-11-06T09:00', folder: 'inbox', clue: 'blue_box', body: "BLUE BOX LLC — billing name on statement: 'BLUE BOX LLC'\n\n1× 'Kitchen Line' Personal Massager (rechargeable, 'match-point' setting)  $72.00\n1× Warming Gel — 'Third Shot Drop'  $15.00\n1× Novelty Sweatband Cuffs (pair, neon)  $9.00\nTotal: $96.00\n\nShip to: Maplewood Flats 3B (c/o R. Castellano)\nPackaging: plain, unmarked. Signed for by: 'BO (I'M NOT ASKING)'." },
     { id: 'm_lace', from: 'Lace Theory', fromAddr: 'orders@lacetheory.example', to: 'Dana Hoyt', subject: 'Order shipped 🖤', t: '2026-11-06T10:00', folder: 'inbox', body: "1× 'Match Point' sports set — emerald — M\n1× 'After Hours' lace set — black — M\nSubtotal: $214.00\nGift note: 'for thursday. which one.'" },
+    { id: 'm_retreat', from: 'Stillwater Reconnect Retreat', fromAddr: 'stay@stillwaterretreat.example', to: 'Dana Hoyt', subject: 'Booking confirmed — Couples Reconnect, Dec 4–6', t: '2026-11-16T11:00', folder: 'inbox', clue: 'retreat', body: "Booking confirmed!\n\nProgram: Couples Reconnect (3 nights, phone-free)\nGuests: Dana Hoyt & Doug Hoyt\nCabin 3 — king bed, wood stove, no Wi-Fi ('on purpose')\n\nIntake question: 'What do you hope to leave behind here?'\nYour answer: 'a calendar. and a thumbs-up emoji.'" },
     { id: 'm_shared', from: 'Calendar', fromAddr: 'noreply@calendar.example', to: 'Dana Hoyt', subject: "Doug Hoyt shared \"Dana's Thursdays 🏈\" with you", t: '2026-06-02T19:05', folder: 'inbox', clue: 'shared_calendar', body: "Doug Hoyt (doug@pinnaclegutters.example) has shared the calendar \"Dana's Thursdays 🏈\" with you.\n\nPermission: Can edit\nMessage from Doug: 'so we're organized about it 👍 I'm a systems guy'" },
     { id: 'm_fantasy', from: 'GridironPro Fantasy', fromAddr: 'noreply@gridironpro.example', to: 'Dana Hoyt', subject: 'Week 11 matchup is set! 🏈', t: '2026-11-17T06:00', folder: 'inbox', body: "WEEK 11 — GRIDIRON GENTLEMEN\n\nDANA'S REVENGE (Dana H.)  vs  GUTTER BALLERS (Doug H.)\n\nProjected: Dana's Revenge 128.4 – Gutter Ballers 61.0\n\nTip: Doug H. has set the same lineup for 9 weeks and has not logged in since May." },
   ],
@@ -291,6 +313,8 @@ export const caught3: CaseFile = {
     { id: 'cal3_t2', t: '2026-11-19T19:00', title: "🌶️ (Dana's Thursdays 🏈 — shared by Doug)", detail: 'Lakeview 214', clue: 'shared_calendar' },
     { id: 'cal3_anniv', t: '2026-11-21T19:00', title: '💍 15 years w/ Doug', detail: 'Dockside. window table. make him say something that isn\'t 👍' },
     { id: 'cal3_end', t: '2026-11-26T18:00', title: '🥒 courts — talk to R', detail: "it's done. for D. be kind.", clue: 'ending_it' },
+    { id: 'cal3_therapy', t: '2026-11-18T17:30', title: 'Dr. Imani Okoye (just me)', detail: "'who is this arrangement for'", clue: 'inner_life' },
+    { id: 'cal3_retreat', t: '2026-12-04T15:00', title: '🌲 Reconnect Retreat — 2 guests', detail: 'cabin 3. no phones. DON\'T tell him, it\'s a surprise', clue: 'retreat' },
     { id: 'cal3_sun', t: '2026-11-22T10:00', title: 'Sunday talk (rule 6)', detail: "he's skipped 9 in a row" },
   ],
 
@@ -325,6 +349,11 @@ export const caught3: CaseFile = {
     { id: 'doug_searches', title: 'Your 3 a.m. searches', text: "Your iPad, shared tab group, 3 a.m.: 'how to tell your wife you're not fine when you said fine 40 times', 'rafe castellano height', 'is it normal to regret being a cuck if you picked the guy', 'how to un-open a relationship'.", kind: 'document', art: 'av_cg3_doug' },
     { id: 'blue_box', title: 'BLUE BOX LLC, shipped to his place', text: "A discreet-billed order ('BLUE BOX LLC', $96, a 'Kitchen Line' massager and 'Third Shot Drop' warming gel) shipped to Rafe's flat, signed for by 'BO (I'M NOT ASKING)'. His PaySnap request: 'batteries 48-ct, you owe me 😏' — paid. Mel: 'did you get the... package 👀'.", kind: 'object', art: 'cg3_ph_box' },
     { id: 'mel_cover', title: "Mel's 'Love Island' alibi", text: "Nov 12: Dana asks Mel to say she was at hers watching Love Island — 'DON'T say lakeview. rule 3.' Mel's Glimpse at 20:41: alone at trivia. Mel's voicemail: rehearsing the lie by accident. 'Pickle Coach (ignore)' is Rafe's number.", kind: 'person', art: 'av_cg3_mel' },
+    { id: 'drift', title: 'Fifteen years, in her texts to you', text: "Nov 2025: '14 years 💍 you still make me laugh about GUTTERS. I love you, systems guy.' Feb: a voice note — 'you said rain gutter in your sleep in a romantic voice. I love you.' November: 'night ❤️ love you. come up from the garage?' — you: '👍 night'.", kind: 'event', art: 'av_cg3_doug' },
+    { id: 'juxtapose', title: "'come up from the garage?' → 'call me'", text: "23:02 to you: 'night ❤️ love you. come up from the garage?' 23:04 to Rafe: 'he's in the garage again. call me.' Then: 'he'll never ask. he made a rule about it. I think about you when I'm with him and I think about HIM when I'm with you.' 'we have to stop. ok one more time.'", kind: 'document', art: 'av_cg3_rafe' },
+    { id: 'inner_life', title: "'I miss when you were jealous'", text: "An unsent draft to you: 'You said I could say stop. I'm saying it. But I need you to say something too. Anything that isn't a thumb.' A 3am note: 'doug is the person I want to be old with.' Individual therapy: 'who is this arrangement for'.", kind: 'document' },
+    { id: 'rafe_family', title: "Rafe's other life", text: "Rafe has a seven-year-old, Lucy (school photo). His ex, Tara: 'He told me you're just his pickleball partner. He told Lucy you're a friend. Someone's lying to someone.'", kind: 'person', art: 'av_cg3_tara' },
+    { id: 'retreat', title: "Reconnect Retreat — '2 guests'", text: "A phone-free cabin, Dec 4–6, '2 guests', 'DON'T tell him, it's a surprise.' The confirmation: Guests — Dana Hoyt & Doug Hoyt. 'What do you hope to leave behind? A calendar. And a thumbs-up emoji.'", kind: 'event' },
     { id: 'ending_it', title: "'I'm saying stop. Thursday.'", text: "Dana to Rafe: 'thursday I need to talk to you... it's about doug.' To her friends: 'I'm ending it. he's not fine. he's sleeping in the garage.' Calendar Nov 26: 'courts — talk to R. it's done. for D.'", kind: 'event' },
     { id: 'refund', title: 'She paid you back', text: "Nov 16: Dana PaySnaps you $1,419 — every room you ever paid for — 'refund. you don't have to pay for this anymore. please talk to me'.", kind: 'document' },
   ],
@@ -395,12 +424,25 @@ export const caught3: CaseFile = {
       answer: 'end', evidence: ['ending_it', 'refund'],
       explain: "She wrote 'I'm saying stop' under your rules, booked the courts, not the room, and PaySnapped back every dollar you paid: 'please talk to me'.",
     },
+    {
+      id: 'q_retreat', prompt: "Who is the Dec 4 'Reconnect Retreat — 2 guests' for?",
+      options: [
+        { id: 'rafe', label: 'Dana and Rafe' },
+        { id: 'you', label: 'Dana and you — a surprise' },
+        { id: 'mel', label: 'Dana and Mel' },
+        { id: 'nobody', label: "It's Rafe's booking" },
+      ],
+      answer: 'you', evidence: ['retreat'],
+      explain: "Guests: Dana Hoyt & Doug Hoyt. Cabin 3, no Wi-Fi 'on purpose'. She was planning to leave a calendar and a thumbs-up behind.",
+    },
   ],
 
   events: [
     { id: 'e3_rafe', kind: 'text', when: ['unlocked'], delayMs: 8000, thread: 'th_rafe', contact: 'rafe', text: "u up? 😏 I can't sleep. bo's snoring through the drywall, which is fair, honestly. is the hoodie warm. tell me the hoodie is warm" },
     { id: 'e3_h_hoodie', kind: 'handler', when: ['pinned:lakeview'], delayMs: 3000, text: "bro. BRO. the hoodie on the couch is HIS?? 'castellano 12'?? the COMMISH?? the golden retriever?? I'm putting my shoes on. I'm bringing a bat. a wiffle bat. I'm emotional. SCREENSHOT EVERYTHING." },
     { id: 'e3_h_stir', kind: 'handler', when: ['recovered:msgfrag'], delayMs: 4000, text: "(Dana shifts on the couch. 'Doug? ...you okay, babe?' She's asleep again before you answer.) ...bro. why are there texts from YOU in there. why do they say 'I picked him'. why do they say 'I'm fine with it 👍'. doug. DOUG. explain. right now. in words. not a thumb." },
+    { id: 'e3_tara', kind: 'text', when: ['pinned:rafe_family'], delayMs: 6000, thread: 'th_tara', contact: 'tara', text: "Sorry, it's late. Lucy had a nightmare and asked for 'Miss Dana'. I'm not angry. I just need to know if Thursday is still the end. Please." },
+    { id: 'e3_rafe3', kind: 'text', when: ['pinned:ending_it'], delayMs: 8000, thread: 'th_rafe', contact: 'rafe', text: "can't sleep. is thursday the talk? I think I know what the talk is. it's ok. tell doug I said he was right about the golden retriever thing. I'd have liked to meet the version of him you talk about" },
     { id: 'e3_rafe2', kind: 'text', when: ['recovered:photos'], delayMs: 7000, thread: 'th_rafe', contact: 'rafe', clue: 'chicken', text: "random but was that doug's truck in the lakeview lot last week?? he was just sitting there eating a rotisserie chicken with his hands. like a raccoon. a sad raccoon. is he ok? is this still ok? I'll stop. I'll stop tonight if it's not ok." },
     { id: 'e3_h_end', kind: 'handler', when: ['recovered:history'], minPins: 14, delayMs: 4000, text: "'how to un-open a relationship'. 3:02 a.m. that's YOUR search, man. on YOUR ipad. (The TV turns itself off. The room goes dark. Dana says, half-asleep: 'Doug? Come here. I want to talk.') ...bro. go. put the phone down and go. say the true thing. not the thumb." },
   ],

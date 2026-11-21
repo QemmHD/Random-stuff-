@@ -78,6 +78,9 @@ export const caught2: CaseFile = {
         { from: 'them', text: 'Thursday. Suite 512. Bring that voice. 🖤', t: '2026-11-05T16:00', clue: 'mystery_texts' },
         { from: 'me', text: "I'll be there at 7. Greg thinks it's book club", t: '2026-11-05T16:02', clue: 'mystery_texts' },
         { from: 'them', text: "There is a book club. It's you. You're the book.", t: '2026-11-05T16:03', clue: 'mystery_texts' },
+        { from: 'me', text: "he's asleep. call me. I want to do the hayloft scene while the house is quiet", t: '2026-11-11T23:04', clue: 'night_call' },
+        { from: 'them', text: "Calling. Whisper it. Can't wait to hear it again. You're way better than the last narrator, darling. She sounded like a GPS.", t: '2026-11-11T23:05', clue: 'night_call' },
+        { from: 'me', text: "delete this after. if greg hears me whispering 'the captain's rope' at 11pm I'm getting committed", t: '2026-11-11T23:30', clue: 'night_call' },
         { from: 'them', text: "What are you wearing Thursday? Dev says the silk one rustles. Wear something quieter. Or nothing that rustles.", t: '2026-11-11T21:00', clue: 'mystery_texts' },
         { from: 'me', text: 'the cardigan. the big one. and fuzzy socks. I am a sex symbol', t: '2026-11-11T21:04' },
         { from: 'them', text: "Tonight was the best yet. Dev says your breathy bit in chapter 9 'redlined the meter'. I've never been prouder of anyone. Not even my children. Don't tell my children.", t: '2026-11-12T22:30', clue: 'chapter_talk', deletedUntil: 'recovered:msgfrag' },
@@ -104,6 +107,14 @@ export const caught2: CaseFile = {
     },
     {
       id: 'th_greg', contact: 'greg', messages: [
+        { from: 'me', text: "nine years 🖤 you still laugh at your own jokes before the end and I still love it. come to bed, mattress man", t: '2025-11-28T23:30', clue: 'drift' },
+        { from: 'them', text: "9 YEARS babe. best decision I ever made. second best: the extra-firm topper", t: '2025-11-28T23:31' },
+        { from: 'me', text: "🎤 voice note (0:18): '[laughing] you snore in morse code, did you know that? I'm decoding it. it says I. LOVE. NORA. [whispering] okay it says ZZZ. goodnight.'", t: '2026-02-11T01:20', clue: 'drift' },
+        { from: 'them', text: '😂❤️ decode this: ❤️❤️❤️', t: '2026-02-11T07:02' },
+        { from: 'me', text: 'dinner tonight? just us? I miss you even though you\'re right here', t: '2026-06-20T17:00' },
+        { from: 'them', text: 'hoa thing. rain check 👍', t: '2026-06-20T18:40', clue: 'drift' },
+        { from: 'me', text: 'night ❤️ going to sleep, big day tomorrow', t: '2026-11-11T23:02', clue: 'night_call' },
+        { from: 'them', text: 'k night', t: '2026-11-11T23:20', clue: 'drift' },
         { from: 'them', text: "bowling tonight babe, don't wait up. strike force needs me 🎳", t: '2026-11-03T18:40' },
         { from: 'me', text: 'you never come back with scores', t: '2026-11-03T18:44' },
         { from: 'them', text: "a true athlete doesn't brag. also we lost", t: '2026-11-03T18:45' },
@@ -143,6 +154,11 @@ export const caught2: CaseFile = {
     },
     {
       id: 'th_hoa', contact: 'hoa', messages: [
+        { from: 'them', text: '[Tiffani Boone]: Please welcome our NEW HOA treasurer: Greg Pruitt! 🙂 so good with numbers', t: '2026-07-07T10:00', clue: 'origin' },
+        { from: 'them', text: '[Greg Pruitt]: happy to serve 🫡', t: '2026-07-07T10:05', clue: 'origin' },
+        { from: 'them', text: '[Tiffani Boone]: Treasurer orientation Tuesday 7pm, my place. Bring the ledger 🙂 Gary will be at his brother\'s', t: '2026-07-07T10:06', clue: 'origin' },
+        { from: 'them', text: '[Gary #9]: why are you telling the whole chat where I will be', t: '2026-07-07T10:08' },
+        { from: 'them', text: '[Greg Pruitt]: tuesday works 👍 (I have bowling after)', t: '2026-07-07T10:10', clue: 'origin' },
         { from: 'them', text: '[Tiffani Boone]: Reminder: NO inflatables on lawns before Dec 1. Yes, Gary, that includes the turkey.', t: '2026-11-15T09:00' },
         { from: 'them', text: '[Gary #9]: the turkey is festive tiffani', t: '2026-11-15T09:04' },
         { from: 'them', text: '[Tiffani Boone]: The turkey is fourteen feet tall, Gary.', t: '2026-11-15T09:05' },
@@ -202,6 +218,7 @@ export const caught2: CaseFile = {
       body: "TIDEWATER HEAT #11 — 'THE CAPTAIN'S CONFESSION'\nDelphine Rush (that's me. still weird. 14 books weird)\n\nAudiobook #10: recording Thursdays, Suite 512 (H&F pays; booked as 'Mrs. Smith' so nobody finds out who Delphine is). Bernard says the mattresses on the walls are 'industry standard'. Dev says I'm loud. Dev records the Bible on Mondays.\n\nBook 11:\n- Thorne returns from sea. Storm. Hayloft (Bernard: MORE hayloft)\n- Villain: a harbor-master who sells waterbeds and lies about where he goes on Tuesdays. (too on the nose? Greg will never read it. Greg has never read anything I've written, including the birthday cards)\n- Ending: confession on the dock\n\nREAL LIFE ending: Nov 28. Tell Greg. Dedication page. Pay off the house. Watch his face.",
     },
     { id: 'n_dictation', title: 'Dictation — ch. 22 (voice memo, transcribed)', t: '2026-11-18T23:40', clue: 'chapter_talk', body: "[whispering] Okay. Chapter twenty-two. Greg's asleep. [clears throat]\n\n'The storm had been trying the shutters all night, but it was Thorne who finally opened them. He didn't speak. He didn't have to. He remembered the green dress from the harbor dance, and the exact place it had slipped off her shoulder, and he put his mouth there like he was signing his name—'\n\n[pause] Too much? No. Bernard says there is no too much.\n\n'—and then the lantern went out.'\n\n[laughing] Chapter break. Chapter break. I need water. [door creaks] ...Greg? [silence] Okay. He's just peeing." },
+    { id: 'n_knew', title: 'draft — to Greg (not yet)', t: '2026-11-18T02:40', clue: 'nora_knew', body: "Greg,\n\nI know you don't bowl. Bea saw the tags. The lanes emailed. Your location goes dark every Tuesday at 6:45.\n\nI think I know where you go. I'm not going to look. Dr. Park says I'm 'protecting the 28th'. I'm protecting the 28th.\n\nI'm going to tell you everything first. Delphine, the money, the house, the baby we keep not having. And then I'm going to give you the chance to tell me everything too.\n\nIf you do, we talk. If you don't, I'll know that too.\n\n(edited 9 times. not sent.)" },
     { id: 'n_ten', title: 'Ten years ✨', t: '2026-11-03T21:30', clue: 'anniversary_plan', body: "Sat Nov 28 — Pine Hollow cabin (BOOKED)\n(he vetoed Lake Wyeth?? 'room 6 has a smell'. who smells a specific room)\n\n1. the lingerie. me in it. obviously\n2. give him the book. dedication page first\n3. tell him: I'm Delphine Rush. fourteen books. #1 in four countries\n4. hand him the mortgage payoff letter\n5. watch his face\n6. maybe... the other thing. if the test says yes by then 🤞\n7. do NOT cry before step 3" },
     { id: 'n_things', title: "things greg doesn't know about me", t: '2026-11-10T00:30', body: "- my middle name is not 'Ann', it's Anouk. he's had it wrong on every card for ten years\n- I make more in a quarter than DreamHaven makes in a year\n- I'm Delphine Rush\n- I hate the vest\n- every hero I've written laughs like him. even the pirate one\n- I know he doesn't bowl. I just don't know what he does instead. I decided not to want to know until after the 28th" },
   ],
@@ -229,6 +246,7 @@ export const caught2: CaseFile = {
   voicemails: [
     { id: 'vm_mystery', contact: 'mystery', t: '2026-11-12T18:40', duration: '0:27', voice: { pitch: 0.8, rate: 0.95, female: false }, clue: 'mystery_texts', transcript: "[low] It's me. I'm in the suite. Dev's pushed the bed against the wall like you asked and propped the mattresses up. [pause] Bring the water and the throat spray. And darling... don't be shy this time. Really let go on page two hundred. [door closes]" },
     { id: 'vm_bea', contact: 'bea', t: '2026-11-05T18:10', duration: '0:24', voice: { pitch: 1.1, rate: 1.2, female: true }, clue: 'bea_cover', transcript: "[clears throat] 'Hi Greg! Yes, she was at mine. We watched Love Island.' [pause] 'People were... hot. Near a pool.' Okay that's good. That's — [spin-class music starts] oh no, is this recording? Is this NORA'S voicemail? Why does it — Nora if you get this, I'm a great liar, ignore this, I'm at spin. [beep]" },
+    { id: 'vm_tiffani', contact: 'tiffani', t: '2026-11-10T18:20', duration: '0:21', voice: { pitch: 1.2, rate: 1.1, female: true }, clue: 'tiffani_vm', deletedUntil: 'recovered:voice', transcript: "[whispering] Greg, it's me, I'm in the HOA supply closet, the signal's terrible. Room 6, seven. Wear the vest. I've been thinking about your hands all day, which is insane, you sell MATTRESSES. [pause] Wait. Is this Greg's phone or the house — oh no. Oh no. Hi Nora! Wrong Pruitt! HOA business! [click]" },
     { id: 'vm_greg', contact: 'greg', t: '2026-11-17T22:58', duration: '0:14', voice: { pitch: 1.0, rate: 1.25, female: false }, transcript: "[out of breath] Hey, it's me. Bowling ran late. Overtime. Bowling has overtime. Don't wait up. [a woman laughs, muffled] That's — the TV. At the lanes. Also if Tiffani says anything about shoes, it's an HOA thing. Bye." },
   ],
 
@@ -292,6 +310,7 @@ export const caught2: CaseFile = {
     { id: 'cal2_ten', t: '2026-11-28T12:00', title: '🖤 TEN YEARS — tell him everything', detail: 'cabin · book · letter · lingerie (order TBD)', clue: 'anniversary_plan' },
     { id: 'cal2_bowl', t: '2026-11-24T19:00', title: 'Greg — bowling 🎳 (shared)', detail: 'Strike Force Lanes, Tuesday league' },
     { id: 'cal2_test', t: '2026-11-28T07:00', title: '🤞', detail: 'test again (last one in the box)' },
+    { id: 'cal2_therapy', t: '2026-11-23T17:00', title: 'Dr. Ines Park', detail: 'the 28th. what if he doesn\'t say anything', clue: 'nora_knew' },
     { id: 'cal2_draft', t: '2026-11-30T09:00', title: 'TH #11 first draft → B.', detail: 'more hayloft' },
   ],
 
@@ -306,6 +325,7 @@ export const caught2: CaseFile = {
   trace: [
     { id: 'photos', label: "Photos — Recently Deleted (Dez's app)", detail: "Dez's 'totally legal' recovery app carves deleted images out of flash storage.", needs: ['pinned:hotel_meets'], needsHint: 'Need a lead first: pin where she actually goes on Thursdays.', durationMs: 5000 },
     { id: 'msgfrag', label: "Messages — Deleted Fragments (Dez's app)", detail: "Rebuild deleted texts from her chat with 'Mystery Man'.", needs: ['pinned:mystery_texts'], needsHint: "Need a lead first: pin the Mystery Man's Thursday texts.", durationMs: 5500 },
+    { id: 'voice', label: "Voicemail — Deleted (Dez's app)", detail: 'Pull voicemails she deleted without listening twice, from the carrier cache.', needs: ['note:n_outline'], needsHint: 'Need a lead first: open her locked outline.', durationMs: 5000 },
     { id: 'unsent', label: "Messages — 'Delete for Everyone' Cache (Dez's app)", detail: 'Restore group-chat messages a sender unsent, from the notification cache.', needs: ['pinned:bowling_forfeit'], needsHint: "Need a lead first: pin what Strike Force Lanes says about your season.", durationMs: 6000 },
   ],
 
@@ -324,6 +344,11 @@ export const caught2: CaseFile = {
     { id: 'bea_cover', title: "Bea's 'Love Island' alibi", text: "Thursday Nov 5: Nora asks Bea to say she was at hers watching Love Island — 'DON'T say hotel.' Bea's Glimpse story at 19:31: alone at spin. Bea's voicemail: rehearsing the lie by accident. You called at 19:35.", kind: 'person', art: 'av_cg2_bea' },
     { id: 'research_box', title: 'BLUE BOX LLC, shipped to the agency', text: "A discreet-billed order ('BLUE BOX LLC', $86: a 'Captain's Knot' silk rope, a lantern, a feather tickler, 'Knots for Lovers') shipped to Okafor Literary Agency, 'for research. truly. chapter 22.' Mystery Man's PaySnap request: 'batteries 48-ct (lantern) 😇'.", kind: 'object' },
     { id: 'greg_tells', title: 'Your Tuesday blackout', text: "Nora to Bea: 'greg's location goes off every tuesday at 6:45 and comes back at 11:30. I decided not to want to know until after the 28th.' Gary #9, to Nora: your GREG vest is in his laundry. Again.", kind: 'event', art: 'av_cg2_greg' },
+    { id: 'drift', title: 'Ten years, in your texts', text: "Nov 2025: 'nine years 🖤 ...come to bed, mattress man.' Feb: a 2 a.m. voice note — 'you snore in morse code... it says I LOVE NORA.' June: 'dinner tonight? just us?' — you: 'hoa thing. rain check 👍'. November: 'k night'.", kind: 'event', art: 'av_cg2_greg' },
+    { id: 'night_call', title: "'night ❤️' → 'he's asleep. call me'", text: "23:02 to you: 'night ❤️ going to sleep'. 23:04 to Mystery Man: 'he's asleep. call me.' 'Can't wait to hear it again. You're way better than the last one.' 'delete this after.' Then: 'I want to do the hayloft scene while the house is quiet.'", kind: 'document', art: 'av_cg2_mystery' },
+    { id: 'origin', title: 'How yours started', text: "HOA chat, July 7: Tiffani welcomes 'our NEW treasurer, Greg Pruitt! so good with numbers'. 'Treasurer orientation Tuesday 7pm, my place... Gary will be at his brother's.' You: 'tuesday works 👍 (I have bowling after)'. The first Tuesday.", kind: 'event', art: 'av_cg2_tiffani' },
+    { id: 'nora_knew', title: 'She already knew', text: "Unsent draft, 02:40: 'I know you don't bowl... I think I know where you go. I'm not going to look... I'm going to give you the chance to tell me everything too. If you don't, I'll know that too.' Therapy with Dr. Ines Park: 'what if he doesn't say anything'.", kind: 'document' },
+    { id: 'tiffani_vm', title: "Tiffani's wrong-Pruitt voicemail", text: "Deleted voicemail, Nov 10: '[whispering] Greg... Room 6, seven. Wear the vest. I've been thinking about your hands all day... Wait. Is this Greg's phone or the house — Hi Nora! Wrong Pruitt!' Nora deleted it without listening twice.", kind: 'document', art: 'av_cg2_tiffani' },
     { id: 'bernard_reveal', title: 'Mystery Man is Bernard, her agent', text: "'Mystery Man' texts while you're holding her phone: he's Bernard Okafor, her literary agent, 68, new hip, wife named Ruth. Thursday was the final audiobook session.", kind: 'person', art: 'av_cg2_mystery' },
     { id: 'bowling_forfeit', title: '0 frames, 11 forfeits', text: "Strike Force Lanes: you have bowled 0 frames this season. The league plays Wednesdays; Tuesdays are Toddler Bumper Bowl. Your shoes still have the tags.", kind: 'document' },
     { id: 'motel_charges', title: 'Card ••2291, Room 6, Tuesdays', text: "Joint statement: YOUR card ••2291 at Wyeth Motor Lodge, Room 6, on Nov 3, 10 and 17 — plus minibar for two, Vanilla Dreams body mist, a his-and-hers robe set and a dozen roses Nora never got.", kind: 'document' },
@@ -400,10 +425,22 @@ export const caught2: CaseFile = {
       answer: 'greg', evidence: ['snip'],
       explain: "Gary had a vasectomy in 2019. Tiffani said so herself, in the wrong chat, at 23:13 on a Tuesday.",
     },
+    {
+      id: 'q_knew', prompt: 'What did Nora already know before tonight?',
+      options: [
+        { id: 'nothing', label: 'Nothing' },
+        { id: 'chance', label: "That you don't bowl — and she chose the 28th anyway, to give you a chance to confess" },
+        { id: 'leaving', label: 'Everything — she was already leaving' },
+        { id: 'pi', label: 'She hired a PI' },
+      ],
+      answer: 'chance', evidence: ['nora_knew', 'tiffani_vm', 'greg_tells'],
+      explain: "She heard 'Wrong Pruitt' and deleted it. She wrote 'I'm not going to look' and didn't. The 28th was a test you didn't know you were taking.",
+    },
   ],
 
   events: [
     { id: 'e2_mystery', kind: 'text', when: ['unlocked'], delayMs: 8000, thread: 'th_mystery', contact: 'mystery', text: "Still up, darling? I can't stop hearing you. The take, I mean. I'm listening to it in the bath. Ruth thinks I've joined a cult. 🖤" },
+    { id: 'e2_bea', kind: 'text', when: ['unlocked'], minPins: 4, delayMs: 20000, thread: 'th_bea', contact: 'bea', text: "u up? 🐝 can't sleep. are you still telling him saturday? all of it? even the part about tuesdays? I love you. you're braver than me" },
     { id: 'e2_h_mystery', kind: 'handler', when: ['pinned:mystery_texts'], delayMs: 3000, text: "bro. 'Mystery Man', black heart, a hotel suite every thursday booked as MRS SMITH. ok. ok. that's bad. but also. BRO. you can't — you of all people can't — ok I'm not saying it. find out what's in that suite before you wake her up." },
     { id: 'e2_bernard', kind: 'text', when: ['recovered:photos'], delayMs: 6000, thread: 'th_mystery', contact: 'mystery', clue: 'bernard_reveal', text: "Nora, it's Bernard. Bernard Okafor, your agent, since your phone apparently thinks I'm a smoky stranger. Your husband's bowling-shoe woman rang the agency asking if Delphine Rush 'takes HOA clients'. I said I'm sixty-eight, I have a new hip and a wife named Ruth, and that Thursday was our final audiobook session. Did I ruin the 28th?" },
     { id: 'e2_h_card', kind: 'handler', when: ['pinned:motel_charges'], delayMs: 3500, text: "(Nora rolls over. Her hand pats the nightstand. Finds rice. Stops.) bro. card ending 2291. that's YOUR card. on HER phone. on the JOINT statement. dude she gets the mail. she gets the MAIL." },
