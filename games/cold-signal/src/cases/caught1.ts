@@ -1,175 +1,199 @@
 import type { CaseFile } from '../types';
 
 // CAUGHT C1 — ZERO THREAT
-// Client: Trent Lyle, 34, owner of Swole Juice. Subject: girlfriend Jessa Moreno, 31,
-// dental hygienist. Jessa IS cheating — with Jules Fontaine, 32, her "gay best friend".
-// Jules is not gay: Trent asked him "you're gay, right? lol" at their first barbecue,
-// Jules said "...so gay, bro" to avoid a fight, and he has kept it up for fourteen
-// months because it lets him hang out with Jessa. Jules is an Engine 9 firefighter
-// (Mr. March in the charity calendar). His "boyfriend Marco" is his French bulldog.
-// Where: Jules's loft, Calloway Lofts 4B, every Wednesday 19:00–23:00.
-// Alibi: "Paint & Sip" at Brushstrokes — paid for by Trent, booked 8, attended 0.
-// She drives past the studio, parks at the lofts, and comes home with a lighthouse
-// painting that Jules painted for her the day before.
+// The player IS Trent Lyle, 34 (saved in her phone as 'Trent 💪'), owner of Swole Juice.
+// 2 a.m.: girlfriend Jessa Moreno, 31, dental hygienist, is in the shower; her phone is
+// face-down on the nightstand, buzzing.
+// Truth: Jessa IS cheating — with Jules Fontaine, 32, her "gay best friend". Jules is not
+// gay: at their first barbecue Trent asked "you're gay, right? lol", Jules said "...so
+// gay, bro" to avoid a fight, and has kept it up for fourteen months because it lets him
+// be around Jessa. Jules is an Engine 9 firefighter (Mr. March). "Marco, his boyfriend
+// who travels" is his French bulldog.
+// Where: Jules's loft, Calloway Lofts 4B, every Wednesday; she pauses location sharing
+// with Trent 18:56–23:00. Plus a "Mr. & Mrs. Smith" King Suite at Hotel Marisol on
+// Nov 21 — the night before your 2-year anniversary dinner (she told you it's Kayla's
+// bachelorette).
+// Alibi: "Paint & Sip" at Brushstrokes — paid for by Trent, booked 8, attended 0. Jules
+// paints the lighthouse she brings home. Her fitness band logs a 9-minute 'workout' at
+// 160 bpm at 23:02 at Calloway Lofts.
 // Red herring: Dr. Feld's "Need you tonight. Bring the good gloves. Don't tell my wife."
-// (an after-hours emergency root canal on a hockey player).
-// Passcode 2375: the price of her usual at the Velvet Fern (Filthy Martini $14.50 +
-// Truffle Fries $9.25 = $23.75), read off the chalkboard on the lock wallpaper.
+// (after-hours emergency root canal on a hockey player).
+// Passcode 2375: her usual at the Velvet Fern (Filthy Martini $14.50 + Truffle Fries
+// $9.25 = $23.75), read off the chalkboard on the lock wallpaper.
 
-const ROXY = { name: 'Roxy Vance', role: 'Vance Discreet Investigations', avatar: 'av_roxy' };
+const DEZ = { name: 'Dez', role: 'your best friend', avatar: 'av_cg_bff' };
 
 export const caught1: CaseFile = {
   id: 'caught-1',
   number: 'C1',
   mode: 'caught',
-  handler: ROXY,
+  handler: DEZ,
   title: 'Zero Threat',
-  tagline: "Her best friend is 'totally gay, bro.' Her boyfriend said so four times. We're going to need a fifth opinion.",
+  tagline: "Her best friend is 'totally gay, bro.' You said so four times. The shower's running. You have maybe twenty minutes.",
   difficulty: 1,
   cover: 'cg1_cover',
-  owner: { name: 'Jessa Moreno', age: 31, summary: 'Dental hygienist at Bright Smile Dental. Two years with Trent, eight months living together. Flosses daily. Lies weekly, allegedly.' },
+  owner: { name: 'Jessa Moreno', age: 31, summary: "Your girlfriend. Dental hygienist at Bright Smile Dental. Two years together, eight months living together. Flosses daily. Showers at 2 a.m. now. That's new." },
   status: 'SUSPECTED CHEATER',
-  deviceCondition: 'LEFT IN A CAR-WASH CUPHOLDER · SMELLS LIKE COCONUT AIR FRESHENER · 100% READABLE, UNFORTUNATELY',
+  deviceCondition: 'FACE-DOWN ON HER NIGHTSTAND · 61% BATTERY · SHOWER STILL RUNNING (FOR NOW)',
   briefing: [
-    "INTAKE — Vance Discreet Investigations. Client: Trent Lyle, 34. Owns SWOLE JUICE (smoothies, vapes and 'energy crystals'). Arrived forty minutes early in a tank top. In November. Paid the retainer in cash, mostly ones, some of them damp.",
-    "Subject: Jessa Moreno, 31, his girlfriend. Dental hygienist. Living together eight months. Client describes her as 'way out of my league, which I say with love, and also suspicion.'",
-    "Client's grounds: since September she does 'Paint & Sip' every Wednesday, comes home at eleven 'glowing', carrying a painting of a lighthouse. Seven lighthouses so far. Client: 'Nobody is that into lighthouses.' For the first time in his life, the client may be onto something.",
-    "Client on her best friend, Jules: 'Totally gay, bro. Zero threat. He's got a boyfriend, Marco. I've never met Marco. Marco travels.' Client said 'zero threat' four times. I wrote it down four times. Client asked if I wanted to see his abs 'for the file'. I declined for the file.",
-    "The phone: she left it in his car at the car wash. He 'borrowed' it. Passcode, per client: 'It's the price of her usual at the Velvet Fern. No dollar sign, no dot. She calls it \"the price of happiness\". I said I'M the price of happiness. She laughed for a really long time.'",
+    "2:04 a.m. Jessa's in the shower. She showers at 2 a.m. now. She came home at eleven from Paint & Sip, kissed you on the forehead like a nephew, and went straight to the bathroom.",
+    "Her phone is face-down on her nightstand. It has buzzed three times. You saw the name light up the ceiling: 'Jules 🌈 (bestie)'. Her gay best friend. You told Dez he's 'zero threat'. You said it four times. Dez said, 'Bro. Nobody says anything four times.'",
+    "Since September: Paint & Sip, every Wednesday, home at eleven, glowing, holding a lighthouse. Seven lighthouses. You paid for the classes. You hung every one of them in the hallway. Last week you found two toothbrushes in her gym bag. She doesn't go to the gym.",
+    "Her passcode is the price of her usual at the Velvet Fern. No dollar sign, no dot. She calls it 'the price of happiness'. You once told her YOU were the price of happiness. She laughed for a really long time.",
+    "The water's still running. Dez is on text, typing in all caps. Pick it up.",
   ],
-  phoneDate: '2026-11-20',
-  phoneTime: '14:05',
+  phoneDate: '2026-11-19',
+  phoneTime: '02:04',
   lock: {
     passcode: '2375',
     hint: 'the price of her usual at the Velvet Fern: add the chalkboard prices of her usual order, drop the $ and the dot',
     wallpaper: 'cg1_wall_lock',
     notifications: [
-      { app: 'mail', title: 'Velvet Fern Rewards', text: "Welcome back, Jessa! Your usual — 1× Filthy Martini, 1× Truffle Fries — is saved for one-tap ordering 🍸", t: '2026-11-14T20:42' },
-      { app: 'messages', title: 'Jules 🌈 (bestie)', text: 'wednesday 🎨 still on? marco misses u 🐶', t: '2026-11-19T22:41' },
-      { app: 'messages', title: 'Kayla (work wife)', text: 'girl. we need to talk about the roses.', t: '2026-11-19T09:15' },
-      { app: 'phone', title: 'Missed call', text: 'Dr. Feld (work) (2)', t: '2026-11-17T20:31' },
-      { app: 'messages', title: 'Trent 💪', text: "babe ur phone is in my car. i am NOT looking at it. i am looking at it. what's the code again lol", t: '2026-11-20T10:12' },
+      { app: 'messages', title: 'Jules 🌈 (bestie)', text: 'home safe? 🔥 my sheets smell like u and cherry numbing gel. never thought id type that sentence', t: '2026-11-19T01:51' },
+      { app: 'mail', title: 'Velvet Fern Rewards', text: 'Welcome back, Jessa! Your usual — 1× Filthy Martini, 1× Truffle Fries — is saved for one-tap ordering 🍸', t: '2026-11-14T20:42' },
+      { app: 'mail', title: 'PulseBand', text: "🔥 New record! Wednesday's 9-minute workout hit 160 bpm. You're on fire!", t: '2026-11-19T00:10' },
+      { app: 'messages', title: 'Kayla (work wife)', text: 'girl. we need to talk about the roses. and the hotel. mostly the hotel', t: '2026-11-18T23:40' },
+      { app: 'messages', title: 'Jules 🌈 (bestie)', text: 'marco misses u 🐶 (marco is me)', t: '2026-11-19T01:58' },
     ],
   },
   homeWallpaper: 'cg1_wall_home',
 
   contacts: [
-    { id: 'trent', name: 'Trent 💪', avatar: 'av_cg1_trent', number: '(555) 212-0034', label: 'boyfriend' },
+    { id: 'trent', name: 'Trent 💪', avatar: 'av_cg1_trent', number: '(555) 212-0034', label: 'boyfriend (you)' },
     { id: 'jules', name: 'Jules 🌈 (bestie)', avatar: 'av_cg1_jules', number: '(555) 212-0909' },
     { id: 'kayla', name: 'Kayla (work wife)', avatar: 'av_cg1_kayla', number: '(555) 212-4410', label: 'Bright Smile Dental' },
     { id: 'feld', name: 'Dr. Feld (work)', avatar: 'av_cg1_feld', number: '(555) 212-7000', label: 'Bright Smile Dental' },
     { id: 'mami', name: 'Mami ❤️', avatar: 'av_cg1_mami', number: '(555) 212-1957', label: 'Mom' },
+    { id: 'family', name: 'Moreno Family 🏡', avatar: 'av_cg1_family', number: '(555) 212-0000', label: 'group · 9' },
+    { id: 'findmy', name: "Find My — message from Jessa's iPad", avatar: 'av_cg1_jessa', number: 'Find My' },
   ],
 
   threads: [
     {
       id: 'th_jules', contact: 'jules', messages: [
-        { from: 'them', text: "wednesday 🎨 still on? i'll paint the lighthouse, you just show up and look artistic", t: '2026-11-04T17:30' },
+        { from: 'them', text: "wednesday 🎨 still on? i'll paint the lighthouse, you just show up and look artistic. or show up and look like nothing. nothing is also good", t: '2026-11-04T17:30' },
         { from: 'me', text: "u are a gift. trent says hi btw. he wants to know if marco is 'into lifting'", t: '2026-11-04T17:31' },
-        { from: 'them', text: 'marco is into chicken and lying on his back with his legs in the air. tell trent marco says hi 🐶', t: '2026-11-04T17:33' },
+        { from: 'them', text: 'marco is into chicken and lying on his back with his legs in the air. so is his dad, for the record', t: '2026-11-04T17:33' },
         { from: 'them', text: "trent asked me AGAIN at the gym if i'm 'still gay'. i said 'so gay, bro'. then he asked me to rate his abs. i said 6. he cried a little. i've been gay for fourteen months for you, jess, and the hardest part is lying to a man that sincere", t: '2026-11-11T22:58', clue: 'not_gay', deletedUntil: 'recovered:msgfrag' },
-        { from: 'me', text: 'u are not gay. u are a liar with incredible forearms 😘', t: '2026-11-11T23:01', clue: 'not_gay', deletedUntil: 'recovered:msgfrag' },
-        { from: 'them', text: 'a liar with a fire helmet. which you like. which you said. out loud. twice. in front of marco', t: '2026-11-11T23:03', deletedUntil: 'recovered:msgfrag' },
-        { from: 'them', text: "u left ur earring here. marco tried to eat it. i had to perform surgery", t: '2026-11-12T08:10' },
-        { from: 'them', text: "u left ur earring AND ur dignity 🔥 same time next wednesday. i'll paint the lighthouse tomorrow so it's dry by then", t: '2026-11-18T22:50', clue: 'ghost_painter', deletedUntil: 'recovered:msgfrag' },
-        { from: 'me', text: "make it a sunset this time. trent says the last one looked 'lonely'. he's not wrong. he's just never been right before", t: '2026-11-18T22:52', deletedUntil: 'recovered:msgfrag' },
-        { from: 'them', text: 'delete these. he reads your phone in the shower. the man brings your phone INTO the shower', t: '2026-11-18T22:55', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "u are not gay. u are a liar with incredible forearms 😘 and a fireman's carry that should be illegal", t: '2026-11-11T23:01', clue: 'not_gay', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: 'a liar with a fire helmet. which you like. which you said. out loud. twice. marco had to leave the room', t: '2026-11-11T23:03', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: 'u left ur earring here. marco tried to eat it. i had to perform surgery. shirtless. as usual', t: '2026-11-12T08:10' },
+        { from: 'them', text: "u left ur earring AND ur dignity 🔥 same time next wednesday. i'll paint the lighthouse tomorrow so it's dry by then. pinks this time, u inspired me", t: '2026-11-18T22:50', clue: 'ghost_painter', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "make it a sunset. trent says the last one looked 'lonely'. he's not wrong. he's just never been right before", t: '2026-11-18T22:52', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: 'saturday. marisol. king suite. i booked it as mr & mrs smith. i want to hear u say "mrs smith" in that robe', t: '2026-11-18T22:54', clue: 'hotel_smith', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: 'delete these. he reads your phone in the shower. the man takes your phone INTO the shower', t: '2026-11-18T22:55', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: "home. trent asked how class was. i said 'deep'. he said 'like the ocean?' i said yes. he hung the lighthouse in the bathroom", t: '2026-11-18T23:12' },
-        { from: 'them', text: 'wednesday 🎨 still on? marco misses u 🐶', t: '2026-11-19T22:41' },
+        { from: 'them', text: 'home safe? 🔥 my sheets smell like u and cherry numbing gel. never thought id type that sentence', t: '2026-11-19T01:51' },
+        { from: 'them', text: 'marco misses u 🐶 (marco is me)', t: '2026-11-19T01:58' },
       ],
     },
     {
       id: 'th_trent', contact: 'trent', messages: [
         { from: 'them', text: 'how was paint n sip babe 🎨 u were gone 4 hours. is art that long', t: '2026-11-04T23:10' },
-        { from: 'me', text: "it's a process trent", t: '2026-11-04T23:12' },
-        { from: 'them', text: "ur lighthouse is fire. like a real lighthouse. hanging it next to the other 5", t: '2026-11-04T23:13' },
-        { from: 'me', text: 'jules is coming to the bbq saturday. be normal', t: '2026-11-12T12:40' },
-        { from: 'them', text: "jules is the GOAT. zero threat. i asked him if he's still gay and he said 'so gay bro'. so we're good 👍", t: '2026-11-12T12:42' },
-        { from: 'them', text: 'also he rated my abs a 6. i think he was being modest on my behalf', t: '2026-11-12T12:43' },
-        { from: 'them', text: 'sent u $240 for the paint classes babe 🎨 invest in ur passion 👑', t: '2026-11-14T09:00', clue: 'trent_pays' },
-        { from: 'me', text: 'trent you already paid for the classes. in september', t: '2026-11-14T09:05' },
+        { from: 'me', text: "it's a process babe", t: '2026-11-04T23:12' },
+        { from: 'them', text: 'ur lighthouse is fire. like a real lighthouse. hanging it next to the other 5', t: '2026-11-04T23:13' },
+        { from: 'them', text: "jules is the GOAT. zero threat. asked him if he's still gay and he said 'so gay bro'. so we're good 👍", t: '2026-11-12T12:42' },
+        { from: 'them', text: 'sent u $240 for the paint classes 🎨 invest in ur passion 👑', t: '2026-11-14T09:00', clue: 'trent_pays' },
+        { from: 'me', text: 'babe you already paid for the classes. in september', t: '2026-11-14T09:05' },
         { from: 'them', text: "then buy more lighthouses. i'm a provider", t: '2026-11-14T09:06', clue: 'trent_pays' },
-        { from: 'them', text: "did u leave ur phone in my car. i won't look. i'm a changed man", t: '2026-11-19T18:20' },
-        { from: 'them', text: "babe ur phone is in my car. i am NOT looking at it. i am looking at it. what's the code again lol", t: '2026-11-20T10:12' },
+        { from: 'me', text: "saturday the 21st is kayla's bachelorette, i'll stay at hers 💕 but sunday is OURS. 2 years!! velvet fern, 8pm, wear the blue shirt", t: '2026-11-16T19:20', clue: 'hotel_smith' },
+        { from: 'them', text: "2 YEARS 😭 i'm getting u something huge. not a ring. unless. no. huge though", t: '2026-11-16T19:22' },
+        { from: 'them', text: 'where are u?? ur location stopped updating at 6:56 lol', t: '2026-11-18T20:30', clue: 'location_off' },
+        { from: 'me', text: "studio has no signal babe it's like a basement. art basement", t: '2026-11-18T20:41', clue: 'location_off' },
+        { from: 'them', text: "art basement 😂 love u. bring me home a lighthouse", t: '2026-11-18T20:42' },
       ],
     },
     {
       id: 'th_kayla', contact: 'kayla', messages: [
-        { from: 'them', text: "girl. a firefighter in UNIFORM brought two dozen red roses to the front desk yesterday and signed the card 'J'. Dr. Feld thought they were for him. he's been humming all morning.", t: '2026-11-18T09:10', photo: 'cg1_ph_roses', clue: 'roses' },
-        { from: 'me', text: "it's a joke thing. he's my gay best friend", t: '2026-11-18T09:14' },
-        { from: 'them', text: "jess. I have been to a lot of brunches with a lot of gay best friends. none of them have ever looked at a dental appointment book the way that man looked at your name in it", t: '2026-11-18T09:16', clue: 'roses' },
-        { from: 'them', text: "also u told me paint and sip. my cousin works the desk at brushstrokes. she says ur a legend there because ur paid up for two months and nobody has ever seen your face", t: '2026-11-18T09:20', clue: 'paint_alibi' },
-        { from: 'me', text: 'kayla.', t: '2026-11-18T09:31' },
-        { from: 'them', text: "i'm not judging. i'm ASKING. was it the forearms. it was the forearms", t: '2026-11-18T09:32' },
-        { from: 'them', text: 'girl. we need to talk about the roses.', t: '2026-11-19T09:15' },
+        { from: 'them', text: "girl. a firefighter in UNIFORM brought two dozen red roses to the front desk and signed the card 'J'. Dr. Feld thought they were for him. he hummed all day.", t: '2026-11-17T12:10', photo: 'cg1_ph_roses', clue: 'roses' },
+        { from: 'me', text: "it's a joke thing. he's my gay best friend 🙃", t: '2026-11-17T12:14' },
+        { from: 'them', text: 'jess. I have been to a lot of brunches with a lot of gay best friends. none of them have ever looked at a dental appointment book like they wanted to climb into it', t: '2026-11-17T12:16', clue: 'roses' },
+        { from: 'me', text: "ok FINE. he did the fireman's carry thing up four flights. I saw god. god was wearing suspenders", t: '2026-11-17T12:20' },
+        { from: 'them', text: 'AND TRENT?', t: '2026-11-17T12:20' },
+        { from: 'me', text: "trent's sweet but he's SO boring lol. he explained macros to me during. DURING. he counted out loud kayla. like reps", t: '2026-11-17T12:23', clue: 'boring' },
+        { from: 'me', text: "and he says 'love u babe' like he's signing off a podcast", t: '2026-11-17T12:24', clue: 'boring' },
+        { from: 'them', text: "also u told me paint and sip. my cousin works the desk at brushstrokes. she says ur a LEGEND because ur paid up for two months and nobody's ever seen your face", t: '2026-11-17T12:30', clue: 'paint_alibi' },
+        { from: 'them', text: "and DO NOT use my bachelorette as your alibi. I'm not getting married. I'm not even dating. I have a cat named Gordon", t: '2026-11-18T23:38', clue: 'hotel_smith' },
+        { from: 'them', text: 'girl. we need to talk about the roses. and the hotel. mostly the hotel', t: '2026-11-18T23:40' },
       ],
     },
     {
       id: 'th_feld', contact: 'feld', messages: [
-        { from: 'them', text: 'Jessa. Need you tonight. Bring the good gloves.', t: '2026-11-17T20:29', clue: 'feld_texts' },
-        { from: 'them', text: "Don't tell my wife.", t: '2026-11-17T20:30', clue: 'feld_texts' },
-        { from: 'me', text: 'omw. is it the hockey guy again', t: '2026-11-17T20:41' },
-        { from: 'them', text: "Yes. He bit through his mouthguard 'to feel something'. Emergency root canal. My wife thinks I retired from after-hours emergencies, so this is between us and the hockey player. Bring the cherry numbing gel.", t: '2026-11-17T20:43', clue: 'feld_clear' },
-        { from: 'them', text: 'Thank you. He tipped us in hockey cards. You get the goalie. Also, who sent me roses?', t: '2026-11-17T23:05', clue: 'feld_clear' },
-        { from: 'me', text: 'nobody sent you roses, dr feld', t: '2026-11-18T08:50' },
-        { from: 'them', text: 'Let me have this.', t: '2026-11-18T08:51' },
+        { from: 'them', text: 'Jessa. Need you tonight. Bring the good gloves.', t: '2026-11-16T20:29', clue: 'feld_texts' },
+        { from: 'them', text: "Don't tell my wife.", t: '2026-11-16T20:30', clue: 'feld_texts' },
+        { from: 'me', text: 'omw. is it the hockey guy again', t: '2026-11-16T20:41' },
+        { from: 'them', text: "Yes. He bit through his mouthguard 'to feel something'. Emergency root canal. My wife thinks I retired from after-hours emergencies, so this stays between us and the hockey player. Bring the cherry numbing gel.", t: '2026-11-16T20:43', clue: 'feld_clear' },
+        { from: 'them', text: 'Thank you. He tipped us in hockey cards. You get the goalie. Also, who is borrowing the cherry numbing gel? We are down four tubes.', t: '2026-11-16T23:05', clue: 'feld_clear' },
       ],
     },
     {
       id: 'th_mami', contact: 'mami', messages: [
         { from: 'them', text: "Mija when are you marrying the juice boy. I am not getting younger. Also is Jules single, Tía Rosa's daughter is thirty and she has a boat", t: '2026-11-09T10:02' },
         { from: 'me', text: 'jules is gay mami', t: '2026-11-09T10:10' },
-        { from: 'them', text: "Jules is NOT gay. I have eyes. He fixed my gutter in a tank top and looked at you the whole time like you were the last tamale at Christmas.", t: '2026-11-09T10:11', clue: 'mami_knows' },
-        { from: 'me', text: 'mami what does that even mean', t: '2026-11-09T10:15' },
-        { from: 'them', text: "It means I am lighting a candle for you. And a smaller one for the juice boy.", t: '2026-11-09T10:16', clue: 'mami_knows' },
+        { from: 'them', text: 'Jules is NOT gay. I have eyes. He fixed my gutter in a tank top and looked at you the whole time like you were the last tamale at Christmas.', t: '2026-11-09T10:11', clue: 'mami_knows' },
+        { from: 'them', text: 'I am lighting a candle for you. And a smaller one for the juice boy.', t: '2026-11-09T10:16', clue: 'mami_knows' },
+      ],
+    },
+    {
+      id: 'th_family', contact: 'family', messages: [
+        { from: 'them', text: '[Tía Rosa]: who is the FIREMAN in jessa\'s car at the car wash on calle 9. he was kissing her NECK. at the CAR WASH. the brushes were going', t: '2026-11-15T13:02', clue: 'family_outrage' },
+        { from: 'them', text: '[Primo Danny]: lmaooo the car wash 💀💀', t: '2026-11-15T13:03' },
+        { from: 'them', text: '[Tía Rosa]: I sent a picture to Mami. Mami said "that is Jules, he is gay". Rosalinda, that man is NOT gay, he took his shirt off to dry the mirrors', t: '2026-11-15T13:05', clue: 'family_outrage' },
+        { from: 'them', text: '[Abuela]: que', t: '2026-11-15T13:06' },
+        { from: 'them', text: '[Mami]: Rosa delete that. Jessa call me.', t: '2026-11-15T13:07' },
+        { from: 'me', text: 'it was a hug. a car wash hug. that is a normal thing', t: '2026-11-15T13:30' },
+        { from: 'them', text: '[Primo Danny]: a car wash hug 😭😭 tell trent i said "zero threat"', t: '2026-11-15T13:31' },
+        { from: 'them', text: '[Abuela]: is the fireman coming to thanksgiving. I will make the good flan', t: '2026-11-15T13:40' },
       ],
     },
   ],
 
   photos: [
     { id: 'cg1_ph_lighthouse', art: 'cg1_ph_lighthouse', t: '2026-11-05T09:00', place: 'Brookline Apartments', orientation: 'landscape', caption: 'An apartment hallway. Seven framed canvases, each a lighthouse, hung in a row. A label-maker sticker on one frame.' },
-    { id: 'cg1_ph_velvet', art: 'cg1_ph_velvet', t: '2026-11-14T20:58', place: 'The Velvet Fern', orientation: 'portrait', caption: 'A martini glass with three olives and a paper cone of fries on a marble bar top. A chalkboard is out of focus behind.' },
+    { id: 'cg1_ph_us_fern', art: 'cg1_ph_us_fern', t: '2026-11-07T20:40', place: 'The Velvet Fern — booth 4', orientation: 'portrait', caption: 'Selfie in a green velvet booth: a woman and a man in a tank top, his arm around her, a martini and fries on the table. A brass plate on the booth reads 4.', clue: 'same_booth' },
+    { id: 'cg1_ph_fern_j', art: 'cg1_ph_fern_j', t: '2026-11-14T21:05', place: 'The Velvet Fern — booth 4', orientation: 'portrait', caption: "Selfie in the same green velvet booth: the same woman and a second man in a flannel shirt, her legs across his lap, two martinis. A brass plate on the booth reads 4.", clue: 'same_booth' },
     { id: 'cg1_ph_bbq', art: 'cg1_ph_bbq', t: '2026-10-24T15:30', place: 'Brookline Apartments — courtyard', orientation: 'landscape', caption: 'A courtyard barbecue. A man in a tank top flexes beside a grill; a second man in an apron holds tongs; a woman stands between them. A small dog in a bow tie sits at their feet.' },
     { id: 'cg1_ph_roses', art: 'cg1_ph_roses', t: '2026-11-17T12:05', place: 'Bright Smile Dental', orientation: 'portrait', caption: 'Sent by Kayla. A large bouquet of red roses on a dental-office reception desk beside an appointment book. A small card on a plastic fork.', clue: 'roses' },
     { id: 'cg1_ph_marco', art: 'cg1_ph_marco', t: '2026-11-08T20:10', place: 'Calloway Lofts', orientation: 'portrait', caption: "From Jules Fontaine's Glimpse. A French bulldog in a bow tie on a velvet couch, a wine glass on the side table.", clue: 'marco_dog' },
-    { id: 'cg1_ph_easels', art: 'cg1_ph_easels', t: '2026-11-12T10:40', place: 'Calloway Lofts, Unit 4B', orientation: 'landscape', caption: 'Recovered. A loft with brick walls: several easels holding near-identical lighthouse paintings, paint palettes, a fire helmet on a coat hook. Deleted Nov 12.', clue: 'ghost_painter', deletedUntil: 'recovered:photos' },
-    { id: 'cg1_ph_bed', art: 'cg1_ph_bed', t: '2026-11-11T22:30', place: 'Calloway Lofts, Unit 4B', orientation: 'portrait', caption: 'Recovered. Selfie: two people under a white duvet, faces and bare shoulders visible; a French bulldog between them. Deleted Nov 11.', clue: 'bed_selfie', deletedUntil: 'recovered:photos' },
+    { id: 'cg1_ph_easels', art: 'cg1_ph_easels', t: '2026-11-12T10:40', place: 'Calloway Lofts, Unit 4B', orientation: 'landscape', caption: 'Recovered. A brick-walled loft: several easels holding near-identical lighthouse paintings, paint palettes, a fire helmet on a coat hook, a woman\'s bra over one easel. Deleted Nov 12.', clue: 'ghost_painter', deletedUntil: 'recovered:photos' },
+    { id: 'cg1_ph_bed', art: 'cg1_ph_bed', t: '2026-11-11T22:30', place: 'Calloway Lofts, Unit 4B', orientation: 'portrait', caption: 'Recovered. Selfie: two people tangled under a white duvet, flushed faces and bare shoulders, a French bulldog wedged between them. Deleted Nov 11.', clue: 'bed_selfie', deletedUntil: 'recovered:photos' },
+    { id: 'cg1_ph_sink', art: 'cg1_ph_sink', t: '2026-11-18T22:40', place: 'Calloway Lofts, Unit 4B', orientation: 'landscape', caption: 'Recovered. A bathroom sink: two toothbrushes in one cup, a pink one and a red one, a lipstick, a hair tie on the tap. Deleted Nov 18.', clue: 'bed_selfie', deletedUntil: 'recovered:photos' },
     // Hidden album
-    { id: 'cg1_ph_h_helmet', art: 'cg1_ph_h_helmet', t: '2026-11-18T21:15', place: 'Calloway Lofts, Unit 4B', orientation: 'portrait', hidden: true, caption: 'Hidden album. Bathroom mirror selfie: a woman in an oversized firefighter turnout coat, held closed, wearing a helmet with a printed front shield. Monogrammed towels on a rail.', clue: 'helmet_selfie' },
-    { id: 'cg1_ph_h_jules', art: 'cg1_ph_h_jules', t: '2026-11-15T23:40', place: 'Received from Jules 🌈 (bestie)', orientation: 'portrait', hidden: true, caption: 'Hidden album. Received. A shirtless man in firefighter trousers and suspenders holds a French bulldog against his chest. Caption field: "marco says come over".' },
-    { id: 'cg1_ph_h_lace', art: 'cg1_ph_h_lace', t: '2026-11-04T18:20', place: 'Brookline Apartments', orientation: 'portrait', hidden: true, caption: 'Hidden album. A woman in red lace lingerie under an open trench coat takes a mirror selfie in an apartment hallway. Framed lighthouse paintings behind her.' },
+    { id: 'cg1_ph_h_helmet', art: 'cg1_ph_h_helmet', t: '2026-11-18T21:15', place: 'Calloway Lofts, Unit 4B', orientation: 'portrait', hidden: true, caption: 'Hidden album. Steamy bathroom mirror selfie: a woman wearing only an oversized firefighter turnout coat, held closed at the chest, and a helmet with a printed front shield. Monogrammed towels on a rail.', clue: 'helmet_selfie' },
+    { id: 'cg1_ph_h_jules', art: 'cg1_ph_h_jules', t: '2026-11-15T23:40', place: 'Received from Jules 🌈 (bestie)', orientation: 'portrait', hidden: true, caption: 'Hidden album. Received. A shirtless man in firefighter trousers with the suspenders off his shoulders holds a French bulldog against his chest. Caption field: "marco says come over. marco is lying. i am saying come over".' },
+    { id: 'cg1_ph_h_lace', art: 'cg1_ph_h_lace', t: '2026-11-04T18:20', place: 'Brookline Apartments', orientation: 'portrait', hidden: true, caption: 'Hidden album. A woman in red lace lingerie under an open trench coat takes a mirror selfie in an apartment hallway, framed lighthouse paintings behind her. Sent to one contact.' },
   ],
 
   notes: [
     {
       id: 'n_wed', title: 'Trent vs. Jules (be honest)', t: '2026-11-19T00:40', lock: { password: 'frenchie', hint: "Marco's breed, the way his dad says it. One word, lowercase." }, clue: 'pros_cons',
-      body: "TRENT\n+ sincere. so sincere\n+ thinks I'm 'way out of his league' (correct)\n+ paid for paint classes. twice\n- brings my phone into the shower\n- says 'macros' at the worst possible moments\n- rated himself a 9 out loud in a mirror\n\nJULES\n+ forearms\n+ actually paints (all 7 lighthouses. ALL of them)\n+ Engine 9 calendar, Mr. March\n+ Marco\n- has to pretend he's gay at Trent's barbecues and Trent keeps trying to set him up with his cousin Kevin\n- Mami knows\n- Kayla knows\n- pretty sure Marco knows\n\nDECISION: after Thanksgiving. NOT AT Thanksgiving. Trent is bringing a smoked turkey he named Gerald.",
+      body: "TRENT\n+ sincere. so sincere\n+ thinks I'm 'way out of his league' (correct)\n+ paid for paint classes. twice\n- takes my phone into the shower\n- counts out loud. during. like reps\n- rated himself a 9 out loud in a mirror\n- 'love u babe' = podcast sign-off\n\nJULES\n+ forearms\n+ fireman's carry. four flights. no break\n+ actually paints (all 7 lighthouses. ALL of them)\n+ Engine 9 calendar, Mr. March\n+ Marco\n- has to pretend he's gay at Trent's barbecues and Trent keeps trying to set him up with his cousin Kevin\n- Mami knows\n- Tía Rosa knows (CAR WASH)\n- pretty sure Marco knows\n\nPLAN: Saturday = Marisol (Mr & Mrs Smith). Sunday = anniversary dinner w/ T. Monday = tell him. NOT at the anniversary. NOT at Thanksgiving. He's smoking a turkey he named Gerald.",
     },
-    { id: 'n_talking', title: 'lighthouse talking points', t: '2026-10-07T18:30', body: "if trent asks about the painting:\n- 'it's about loneliness'\n- 'the light is hope'\n- 'I used a fan brush' (what is a fan brush. ask J)\n- do NOT say 'Jules did the waves'\n- if he asks why it's always a lighthouse: 'it's a series'" },
-    { id: 'n_groc', title: 'groceries', t: '2026-11-16T11:00', body: "oat milk\nfloss (the good kind)\ntrent's creatine (DON'T forget again, he cried)\nwine x2\nchicken treats (for marco)\nnew earring backs" },
+    { id: 'n_talking', title: 'lighthouse talking points', t: '2026-10-07T18:30', body: "if trent asks about the painting:\n- 'it's about loneliness'\n- 'the light is hope'\n- 'I used a fan brush' (what is a fan brush. ask J)\n- do NOT say 'Jules did the waves'\n- wash off the cherry smell before hugging him" },
+    { id: 'n_groc', title: 'groceries', t: '2026-11-16T11:00', body: "oat milk\nfloss (the good kind)\ntrent's creatine (DON'T forget again, he cried)\nwine x2\nchicken treats (for marco)\nsecond toothbrush (for J's) (pink)\ncherry numbing gel (steal from work??)" },
   ],
 
   mail: [
     { id: 'm_brush', from: 'Brushstrokes Paint & Sip', fromAddr: 'hello@brushstrokes.example', to: 'Jessa Moreno', subject: 'We miss you, Jessa! 🎨', t: '2026-11-16T10:00', folder: 'inbox', clue: 'paint_alibi', body: "Hi Jessa!\n\nYou're our most loyal customer — on paper! Since September 16 you've booked and paid for 8 Wednesday Sip & Paint classes (thank you, Trent L.!).\n\nYou've attended: 0.\n\nYour 8 blank canvases are still in our back room. Would you like to pick them up? Otherwise we'll keep using them as a table.\n\nNo judgment! Art is a journey.\n\nThe Brushstrokes Team" },
-    { id: 'm_velvet', from: 'Velvet Fern Rewards', fromAddr: 'rewards@velvetfern.example', to: 'Jessa Moreno', subject: 'Your usual is saved 🍸', t: '2026-11-14T20:42', folder: 'inbox', body: "Welcome back, Jessa!\n\nYour usual — 1× Filthy Martini, 1× Truffle Fries — is saved for one-tap ordering.\n\nYou're 2 visits from a free oyster. Bring a friend! (Not the loud one in the tank top.)" },
-    { id: 'm_calloway', from: 'Calloway Lofts Parking', fromAddr: 'noreply@callowaylofts.example', to: 'Jessa Moreno', subject: 'Guest parking validated — Unit 4B', t: '2026-11-18T19:01', folder: 'inbox', clue: 'loft_stops', body: "Guest parking validated.\n\nHost unit: 4B (J. Fontaine)\nGuest: J. Moreno\nVisits this month: 3 (Wednesdays)\n\nReminder: guests staying past midnight must re-validate. Please do not let the dog in the elevator alone again." },
-    { id: 'm_engine9', from: 'Engine 9 Charity Calendar', fromAddr: 'calendar@engine9.example', to: 'Jessa Moreno', subject: 'Your order has shipped! 🚒', t: '2026-11-08T15:00', folder: 'inbox', body: "Thank you for supporting the Engine 9 Burn Unit Fund!\n\n3 × Engine 9 Firefighters 2027 Calendar\n\nFeatured this year: Mr. January (Capt. Dobbs, with hose), Mr. March (Jules Fontaine, with French bulldog)...\n\nWe noticed you ordered three. That's very generous. Or very something." },
-    { id: 'm_promo', from: 'Swole Juice', fromAddr: 'trent@swolejuice.example', to: 'Jessa Moreno', subject: "FWD: FWD: babe look at this smoothie I invented", t: '2026-11-10T07:15', folder: 'trash', body: "It's called the LIGHTHOUSE 🌊 blue spirulina, whey, a little sea salt. For my artist 👑\n\n— Trent\nCEO, Swole Juice\n'Drink Your Gains'" },
+    { id: 'm_pulse', from: 'PulseBand', fromAddr: 'weekly@pulseband.example', to: 'Jessa Moreno', subject: '🔥 Your week in motion', t: '2026-11-19T00:10', folder: 'inbox', clue: 'pulse_spike', body: "YOUR WEEK, JESSA\n\nWed 11/18 · 23:02 · 'Workout' (auto-detected)\nDuration: 9 min\nAvg heart rate: 160 bpm · Peak: 171 bpm\nLocation: Calloway Lofts\nCalories: 84\n\nNEW RECORD! 🔥 That's your most intense session ever — and you've never logged a gym visit. Whatever you're doing, keep doing it!\n\nWed 11/11 · 22:41 · 'Workout' (auto-detected) · 11 min · avg 152 bpm · Calloway Lofts\nSun 11/08 · 23:15 · 'Workout' (auto-detected) · 2 min · avg 94 bpm · Brookline Apartments\n\nTip: try a cool-down stretch!" },
+    { id: 'm_marisol', from: 'Hotel Marisol', fromAddr: 'reservations@hotelmarisol.example', to: 'Jessa Moreno', subject: 'Reservation confirmed — Mr. & Mrs. Smith', t: '2026-11-18T22:58', folder: 'inbox', clue: 'hotel_smith', body: "Dear Mrs. Smith,\n\nYour King Suite is confirmed for Saturday, November 21 (1 night).\n\nGuests: Mr. & Mrs. Smith\nPackage: 'Midnight Romance' — rose petals, champagne, blackout curtains\nSpecial requests: late checkout ('VERY late'); dog-friendly; 'please no lighthouse art in the room'\n\nWe've noted the request for a second bathrobe in XL." },
+    { id: 'm_velvet', from: 'Velvet Fern Rewards', fromAddr: 'rewards@velvetfern.example', to: 'Jessa Moreno', subject: 'Your usual is saved 🍸', t: '2026-11-14T20:42', folder: 'inbox', body: "Welcome back, Jessa!\n\nYour usual — 1× Filthy Martini, 1× Truffle Fries — is saved for one-tap ordering.\n\nYou're 2 visits from a free oyster. Bring a friend!" },
+    { id: 'm_calloway', from: 'Calloway Lofts Parking', fromAddr: 'noreply@callowaylofts.example', to: 'Jessa Moreno', subject: 'Guest parking validated — Unit 4B', t: '2026-11-18T19:01', folder: 'inbox', clue: 'loft_stops', body: "Guest parking validated.\n\nHost unit: 4B (J. Fontaine)\nGuest: J. Moreno\nVisits this month: 3 (Wednesdays)\n\nReminder: guests staying past midnight must re-validate. Please do not let the dog ride the elevator alone again." },
+    { id: 'm_engine9', from: 'Engine 9 Charity Calendar', fromAddr: 'calendar@engine9.example', to: 'Jessa Moreno', subject: 'Your order has shipped! 🚒', t: '2026-11-08T15:00', folder: 'inbox', body: "Thank you for supporting the Engine 9 Burn Unit Fund!\n\n3 × Engine 9 Firefighters 2027 Calendar\n\nFeatured: Mr. January (Capt. Dobbs, with hose), Mr. March (Jules Fontaine, with French bulldog and very little else)...\n\nWe noticed you ordered three. That's very generous. Or very something." },
   ],
 
   calls: [
-    { contact: 'trent', t: '2026-11-20T10:30', dir: 'missed' },
-    { contact: 'jules', t: '2026-11-19T22:45', dir: 'missed' },
-    { contact: 'feld', t: '2026-11-17T20:31', dir: 'missed' },
-    { contact: 'feld', t: '2026-11-17T20:28', dir: 'missed' },
-    { contact: 'jules', t: '2026-11-18T18:40', dir: 'out', duration: '0:48' },
+    { contact: 'jules', t: '2026-11-19T01:52', dir: 'missed' },
+    { contact: 'jules', t: '2026-11-18T23:20', dir: 'out', duration: '14:08' },
+    { contact: 'feld', t: '2026-11-16T20:28', dir: 'missed' },
+    { contact: 'trent', t: '2026-11-18T20:30', dir: 'missed' },
     { contact: 'mami', t: '2026-11-16T12:00', dir: 'in', duration: '22:10' },
-    { contact: 'kayla', t: '2026-11-18T12:30', dir: 'in', duration: '6:02' },
+    { contact: 'kayla', t: '2026-11-17T12:40', dir: 'in', duration: '6:02' },
   ],
 
   voicemails: [
-    { id: 'vm_trent', contact: 'trent', t: '2026-11-20T10:30', duration: '0:31', voice: { pitch: 0.95, rate: 1.2, female: false }, transcript: "Babe, it's me. I'm at the car wash. Your phone's buzzing in my cupholder. It says 'Jules rainbow' a lot. I'm really proud of you for being such a good ally. Anyway I'm not gonna look at it. Unless it's an emergency. Is this an emergency? Call me back. From what phone, though. Okay. Love you." },
-    { id: 'vm_mami', contact: 'mami', t: '2026-11-16T11:40', duration: '0:20', voice: { pitch: 1.15, rate: 1.0, female: true }, transcript: "Mija, it's Mami. Thanksgiving: tell the juice boy NO turkey with a name. And bring Jules. Not 'gay best friend' Jules. Bring REAL Jules. You know what I mean. I have eyes. Bye." },
+    { id: 'vm_jules', contact: 'jules', t: '2026-11-19T01:53', duration: '0:19', voice: { pitch: 0.85, rate: 0.95, female: false }, transcript: "Hey. It's me. You left your hair tie on my tap and I'm just... looking at it. Like a widower. Saturday. Mrs. Smith. Wear the coat. Marco says goodnight. Marco's asleep. I'm extremely not." },
+    { id: 'vm_mami', contact: 'mami', t: '2026-11-16T11:40', duration: '0:20', voice: { pitch: 1.15, rate: 1.0, female: true }, transcript: "Mija, it's Mami. Tía Rosa sent me the car wash picture. Thanksgiving: no turkey with a name, and you will tell the juice boy the truth before Abuela does, because Abuela WILL. She already asked if the fireman likes flan. Bye." },
   ],
 
   map: {
@@ -180,35 +204,37 @@ export const caught1: CaseFile = {
       { id: 'brush', name: 'Brushstrokes Paint & Sip', x: 0.60, y: 0.38 },
       { id: 'lofts', name: 'Calloway Lofts', x: 0.72, y: 0.46 },
       { id: 'velvet', name: 'The Velvet Fern', x: 0.48, y: 0.20 },
+      { id: 'marisol', name: 'Hotel Marisol', x: 0.88, y: 0.24 },
+      { id: 'carwash', name: 'Sparkle Car Wash (Calle 9)', x: 0.24, y: 0.86 },
       { id: 'firehouse', name: 'Engine 9 Firehouse', x: 0.84, y: 0.72 },
-      { id: 'swole', name: 'Swole Juice', x: 0.16, y: 0.76 },
     ],
     stops: [
       { t: '2026-11-04T18:54', place: 'brush', detail: 'Passed — stationary 2 min (curbside)' },
-      { t: '2026-11-04T18:58', place: 'lofts', detail: 'Arrived — 4h 02m', clue: 'loft_stops' },
+      { t: '2026-11-04T18:58', place: 'lofts', detail: "Arrived — 4h 02m · Location sharing with 'Trent 💪' paused", clue: 'loft_stops' },
+      { t: '2026-11-07T20:30', place: 'velvet', detail: 'Arrived — 1h 40m' },
       { t: '2026-11-11T18:51', place: 'brush', detail: 'Passed — stationary 3 min (curbside)' },
-      { t: '2026-11-11T18:57', place: 'lofts', detail: 'Arrived — 4h 05m', clue: 'loft_stops' },
+      { t: '2026-11-11T18:57', place: 'lofts', detail: "Arrived — 4h 05m · Location sharing with 'Trent 💪' paused", clue: 'loft_stops' },
       { t: '2026-11-14T20:40', place: 'velvet', detail: 'Arrived — 1h 50m' },
-      { t: '2026-11-17T20:52', place: 'dental', detail: 'Arrived — 2h 10m (after hours)' },
+      { t: '2026-11-15T12:50', place: 'carwash', detail: 'Arrived — 22 min' },
+      { t: '2026-11-16T20:52', place: 'dental', detail: 'Arrived — 2h 10m (after hours)' },
       { t: '2026-11-18T18:55', place: 'brush', detail: 'Passed — stationary 1 min (curbside)' },
-      { t: '2026-11-18T18:59', place: 'lofts', detail: 'Arrived — 3h 58m', clue: 'loft_stops' },
-      { t: '2026-11-19T18:10', place: 'swole', detail: 'Arrived — 12 min' },
+      { t: '2026-11-18T18:56', place: 'lofts', detail: "Arrived — 4h 01m · Location sharing with 'Trent 💪' paused 18:56–22:57", clue: 'location_off' },
     ],
   },
 
   browser: [
     { t: '2026-11-18T23:20', title: 'how to look like you painted something (paint on hands hack)', url: 'search?q=how+to+look+like+you+painted+something' },
-    { t: '2026-11-12T01:10', title: 'is it a red flag if a firefighter has a better skincare routine than you', url: 'search?q=firefighter+better+skincare+routine' },
+    { t: '2026-11-18T22:59', title: 'how to pause location sharing for one person without them getting a notification', url: 'search?q=pause+location+sharing+one+person+no+notification', clue: 'location_off' },
+    { t: '2026-11-17T01:10', title: "is it cheating if he's technically your boyfriend's friend first", url: 'search?q=is+it+cheating+if+boyfriends+friend+first' },
+    { t: '2026-11-12T01:10', title: "fireman's carry up stairs is that normal or is he showing off", url: 'search?q=fireman+carry+up+stairs+showing+off' },
     { t: '2026-11-10T00:22', title: "how to tell your boyfriend your best friend isn't gay without him asking 'since when'", url: 'search?q=tell+boyfriend+best+friend+not+gay' },
     { t: '2026-11-08T14:05', title: 'french bulldog bow tie sizes (chunky)', url: 'search?q=french+bulldog+bow+tie+sizes' },
-    { t: '2026-11-06T22:40', title: 'can you get a refund on paint and sip classes you never went to (asking for my boyfriend)', url: 'search?q=refund+paint+and+sip+never+went' },
-    { t: '2026-10-30T23:59', title: 'what does a lighthouse symbolize in art (short answer)', url: 'search?q=lighthouse+symbolize+art' },
     { t: '2026-10-21T21:15', title: 'what is a fan brush', url: 'search?q=what+is+a+fan+brush' },
   ],
 
   glimpse: [
     { id: 'g1_marco', author: 'jules', photo: 'cg1_ph_marco', caption: "date night with my man Marco 🐶❤️ finest frenchie in Calloway Lofts. the only man in my life I'm allowed to talk about", t: '2026-11-08T20:12', likes: 214, comments: [{ author: 'trent', text: 'MARCO!!! finally 🙌 bring him to the bbq bro, does he lift' }, { author: 'mami', text: 'Jules this is a dog.' }, { author: 'me', text: '🐶❤️' }], clue: 'marco_dog' },
-    { id: 'g1_bbq', author: 'me', photo: 'cg1_ph_bbq', caption: 'my boys 💕 #bbq #besties', t: '2026-10-24T16:00', likes: 61, comments: [{ author: 'trent', text: 'zero threat 😎' }, { author: 'jules', text: '🌈🔥' }, { author: 'kayla', text: 'girl.' }] },
+    { id: 'g1_us', author: 'me', photo: 'cg1_ph_us_fern', caption: 'date night w my guy 💕 booth 4 forever', t: '2026-11-07T21:00', likes: 74, comments: [{ author: 'trent', text: 'BOOTH 4 FOREVER 💪💕' }, { author: 'kayla', text: 'cute!!' }, { author: 'jules', text: '🔥' }] },
     { id: 'g1_lighthouse', author: 'me', photo: 'cg1_ph_lighthouse', caption: "lighthouse #7 🎨 I'm basically a professional now", t: '2026-11-05T09:10', likes: 38, comments: [{ author: 'kayla', text: 'girl.' }, { author: 'jules', text: 'the brushwork is so confident' }, { author: 'trent', text: 'MY ARTIST 👑 next one do a protein shake' }] },
   ],
 
@@ -216,66 +242,71 @@ export const caught1: CaseFile = {
     account: 'Harborline Bank ••6612',
     balance: 1284.4,
     tx: [
+      { t: '2026-11-18T22:58', desc: 'HOTEL MARISOL — DEPOSIT (KING SUITE, NOV 21) — SMITH', amount: -150.0, clue: 'hotel_smith' },
       { t: '2026-11-18T19:00', desc: 'CALLOWAY LOFTS — GUEST PARKING VALIDATION (UNIT 4B)', amount: -4.0, clue: 'loft_stops' },
-      { t: '2026-11-14T21:30', desc: 'THE VELVET FERN — FILTHY MARTINI, TRUFFLE FRIES + TIP', amount: -28.5 },
+      { t: '2026-11-14T21:30', desc: 'THE VELVET FERN — 2× FILTHY MARTINI, TRUFFLE FRIES + TIP', amount: -46.25 },
       { t: '2026-11-14T09:00', desc: "PAYSNAP FROM TRENT LYLE — 'paint classes for my queen 🎨👑'", amount: 240.0, clue: 'trent_pays' },
       { t: '2026-11-11T19:00', desc: 'CALLOWAY LOFTS — GUEST PARKING VALIDATION (UNIT 4B)', amount: -4.0 },
       { t: '2026-11-09T13:12', desc: 'PAWS & PEARLS PET BOUTIQUE — BOW TIE (SMALL DOG, CHUNKY)', amount: -18.0 },
       { t: '2026-11-08T14:58', desc: 'ENGINE 9 CHARITY CALENDAR × 3', amount: -60.0 },
-      { t: '2026-11-04T19:00', desc: 'CALLOWAY LOFTS — GUEST PARKING VALIDATION (UNIT 4B)', amount: -4.0 },
-      { t: '2026-11-01T08:00', desc: 'BROOKLINE APTS — RENT (HALF)', amount: -1100.0 },
+      { t: '2026-11-07T22:10', desc: 'THE VELVET FERN — FILTHY MARTINI, TRUFFLE FRIES, PROTEIN SHAKE (OFF MENU) + TIP', amount: -41.0 },
     ],
   },
 
   calendar: [
+    { id: 'cal1_smith', t: '2026-11-21T18:00', title: '🔥 J — Marisol', detail: "(tell T: Kayla's bachelorette)", clue: 'hotel_smith' },
+    { id: 'cal1_anniv', t: '2026-11-22T20:00', title: '💕 2 yrs w/ Trent — Velvet Fern', detail: 'booth 4. act normal. you love him (you do) (?)' },
     { id: 'cal1_paint', t: '2026-11-25T19:00', title: '🎨 Paint & Sip', detail: 'wear something paint-proof (lol)' },
-    { id: 'cal1_bbq', t: '2026-11-21T14:00', title: 'BBQ @ ours', detail: 'Trent + Jules + "Marco"?? — hide the coat' },
-    { id: 'cal1_thanks', t: '2026-11-26T15:00', title: "Thanksgiving @ Mami's", detail: "Trent's turkey. He named it Gerald. Do NOT let him introduce it." },
-    { id: 'cal1_feld', t: '2026-11-17T21:00', title: 'ER — hockey guy', detail: "After hours. DON'T tell Mrs. Feld." },
-    { id: 'cal1_decide', t: '2026-11-27T10:00', title: 'decide.', detail: 'after Thanksgiving. not AT Thanksgiving.' },
+    { id: 'cal1_thanks', t: '2026-11-26T15:00', title: "Thanksgiving @ Mami's", detail: "Trent's turkey. He named it Gerald. Abuela is making the 'good flan'. why." },
+    { id: 'cal1_feld', t: '2026-11-16T21:00', title: 'ER — hockey guy', detail: "After hours. DON'T tell Mrs. Feld." },
   ],
 
   wifi: [
-    { name: 'Brookline_Apt_12_5G', lastJoined: '2026-11-20T07:30' },
-    { name: 'MARCO_IS_A_GOOD_BOY (4B)', lastJoined: '2026-11-18T19:00', clue: 'loft_stops' },
-    { name: 'BrightSmile_Staff', lastJoined: '2026-11-19T08:00' },
+    { name: 'Brookline_Apt_12_5G', lastJoined: '2026-11-19T02:00' },
+    { name: 'MARCO_IS_A_GOOD_BOY (4B)', lastJoined: '2026-11-18T18:57', clue: 'loft_stops' },
+    { name: 'BrightSmile_Staff', lastJoined: '2026-11-18T08:00' },
     { name: 'VelvetFern_Guest 🍸', lastJoined: '2026-11-14T20:41' },
-    { name: 'SwoleJuice_NO_CARBS', lastJoined: '2026-11-19T18:11' },
     { name: 'Brushstrokes_Guest', lastJoined: '2026-09-16T18:55' },
   ],
 
   trace: [
-    { id: 'photos', label: 'Photos — Recently Deleted', detail: 'Carve images she deleted on Wednesday nights out of unallocated flash storage.', needs: ['pinned:paint_alibi'], needsHint: "Need a lead first: pin proof of where she ISN'T on Wednesdays.", durationMs: 4500 },
-    { id: 'msgfrag', label: 'Messages — Orphaned Fragments', detail: 'Rebuild deleted texts from the Messages write-ahead log.', needs: ['pinned:marco_dog'], needsHint: 'Need a lead first: pin who Marco actually is.', durationMs: 5500 },
+    { id: 'photos', label: "Photos — Recently Deleted (Dez's app)", detail: "Dez's 'totally legal' recovery app carves deleted images out of flash storage. He swears it's for wedding photographers.", needs: ['pinned:paint_alibi'], needsHint: "Need a lead first: pin proof of where she ISN'T on Wednesdays.", durationMs: 4500 },
+    { id: 'msgfrag', label: "Messages — Deleted Fragments (Dez's app)", detail: 'Rebuild texts she deleted from the Messages database log.', needs: ['pinned:marco_dog'], needsHint: 'Need a lead first: pin who Marco actually is.', durationMs: 5500 },
   ],
 
   clues: [
-    { id: 'paint_alibi', title: 'Paint & Sip: 8 booked, 0 attended', text: "Brushstrokes: eight Wednesday classes paid for since Sept 16 (by Trent), zero attended, eight blank canvases in the back room. Kayla's cousin: 'nobody has ever seen her face'.", kind: 'document' },
-    { id: 'trent_pays', title: 'Trent funds the alibi', text: "Trent paid for the Wednesday classes in September and PaySnapped another $240 on Nov 14: 'paint classes for my queen'.", kind: 'document', art: 'av_cg1_trent' },
+    { id: 'paint_alibi', title: 'Paint & Sip: 8 booked, 0 attended', text: "Brushstrokes: eight Wednesday classes paid for since Sept 16 (by you), zero attended, eight blank canvases in the back room. Kayla's cousin: 'nobody's ever seen her face'.", kind: 'document' },
+    { id: 'trent_pays', title: 'You funded the alibi', text: "You paid for the Wednesday classes in September and PaySnapped another $240 on Nov 14: 'paint classes for my queen'.", kind: 'document', art: 'av_cg1_trent' },
     { id: 'roses', title: "Two dozen roses, signed 'J'", text: "Kayla: a firefighter in uniform delivered two dozen red roses to Jessa at the dental office, card signed 'J'.", kind: 'object', art: 'cg1_ph_roses' },
     { id: 'marco_dog', title: 'Marco is a French bulldog', text: "Jules's Glimpse: 'date night with my man Marco' — Marco is a French bulldog in a bow tie.", kind: 'person', art: 'cg1_ph_marco' },
-    { id: 'loft_stops', title: 'Wednesdays at Calloway Lofts', text: 'Every Wednesday her phone idles 1–3 minutes outside Brushstrokes, then spends ~4 hours at Calloway Lofts. Guest parking validated for Unit 4B (J. Fontaine); joins Wi-Fi "MARCO_IS_A_GOOD_BOY (4B)".', kind: 'place' },
-    { id: 'ghost_painter', title: 'The lighthouse factory', text: "Jules paints the lighthouses: a loft full of drying lighthouse canvases, and 'i'll paint the lighthouse tomorrow so it's dry by then'.", kind: 'object', art: 'cg1_ph_easels' },
-    { id: 'bed_selfie', title: 'Under the duvet, Nov 11', text: 'Recovered selfie, Wednesday 22:30 at Calloway Lofts 4B: Jessa and Jules under one duvet, Marco between them.', kind: 'event', art: 'cg1_ph_bed' },
-    { id: 'helmet_selfie', title: 'The helmet says FONTAINE', text: "Hidden album, Wednesday 21:15: Jessa in a turnout coat and a helmet whose shield reads 'FONTAINE · ENGINE 9', in a bathroom with 'CALLOWAY LOFTS' towels.", kind: 'object', art: 'cg1_ph_h_helmet' },
-    { id: 'not_gay', title: "'gay for fourteen months for you'", text: "Deleted texts: Jules tells Trent he's 'so gay, bro' at the gym, then to Jessa: 'I've been gay for fourteen months for you.' Jessa: 'u are not gay.'", kind: 'document', art: 'av_cg1_jules' },
-    { id: 'pros_cons', title: 'Trent vs. Jules', text: "Jessa's locked list: pros and cons of both men. 'Jules actually paints (all 7 lighthouses)', 'has to pretend he's gay at Trent's barbecues'. Decision: after Thanksgiving.", kind: 'document' },
+    { id: 'loft_stops', title: 'Wednesdays at Calloway Lofts', text: "Every Wednesday her phone idles a minute outside Brushstrokes, then spends ~4 hours at Calloway Lofts. Guest parking validated for Unit 4B (J. Fontaine); joins Wi-Fi 'MARCO_IS_A_GOOD_BOY (4B)'.", kind: 'place' },
+    { id: 'location_off', title: 'Location paused, just for you', text: "Wednesdays 18:56–22:57 she pauses location sharing with 'Trent 💪' only. Searched how to do it without a notification. Told you the studio is 'an art basement'.", kind: 'place' },
+    { id: 'ghost_painter', title: 'The lighthouse factory', text: "Jules paints the lighthouses: a loft full of drying lighthouse canvases (and her bra on an easel), and 'i'll paint the lighthouse tomorrow so it's dry by then'.", kind: 'object', art: 'cg1_ph_easels' },
+    { id: 'bed_selfie', title: 'Under the duvet; two toothbrushes', text: 'Recovered: Jessa and Jules under one duvet at Calloway Lofts 4B, Marco between them. And his sink: two toothbrushes in one cup, her lipstick, her hair tie.', kind: 'event', art: 'cg1_ph_bed' },
+    { id: 'helmet_selfie', title: 'The helmet says FONTAINE', text: "Hidden album, Wednesday 21:15: Jessa in nothing but a turnout coat and a helmet whose shield reads 'FONTAINE · ENGINE 9', in a bathroom with 'CALLOWAY LOFTS' towels.", kind: 'object', art: 'cg1_ph_h_helmet' },
+    { id: 'pulse_spike', title: '9 minutes at 160 bpm', text: "PulseBand: Wednesday 23:02, an auto-detected 9-minute 'workout' at 160 bpm (peak 171) at Calloway Lofts. 'Your most intense session ever.' She has never logged a gym visit.", kind: 'document' },
+    { id: 'hotel_smith', title: 'Mr. & Mrs. Smith, Nov 21', text: "Hotel Marisol King Suite, Sat Nov 21, booked as 'Mr. & Mrs. Smith', 'Midnight Romance' package, XL robe. She told you it's Kayla's bachelorette. Kayla isn't getting married. Your anniversary is the next night.", kind: 'event' },
+    { id: 'same_booth', title: 'Booth 4, one week apart', text: "Nov 7: you and Jessa in booth 4 at the Velvet Fern ('booth 4 forever'). Nov 14: Jessa in booth 4 with Jules, her legs across his lap.", kind: 'place', art: 'cg1_ph_fern_j' },
+    { id: 'not_gay', title: "'gay for fourteen months for you'", text: "Deleted texts: Jules tells you he's 'so gay, bro' at the gym, then to Jessa: 'I've been gay for fourteen months for you.' Jessa: 'u are not gay.'", kind: 'document', art: 'av_cg1_jules' },
+    { id: 'pros_cons', title: 'Trent vs. Jules', text: "Her locked list weighs you against him. Plan: Saturday = Marisol (Mr & Mrs Smith), Sunday = anniversary dinner with you, Monday = tell you.", kind: 'document' },
+    { id: 'boring', title: "'sweet but SO boring lol'", text: "To Kayla: 'trent's sweet but he's SO boring lol. he explained macros to me during. DURING.' 'He says love u babe like he's signing off a podcast.'", kind: 'person', art: 'av_cg1_kayla' },
+    { id: 'family_outrage', title: 'The car wash', text: "Moreno family chat: Tía Rosa saw 'the FIREMAN' kissing Jessa's neck in her car at the car wash on Calle 9. 'That man is NOT gay, he took his shirt off to dry the mirrors.'", kind: 'event' },
     { id: 'mami_knows', title: "Mami: 'Jules is NOT gay'", text: "Her mother: 'He fixed my gutter in a tank top and looked at you the whole time like you were the last tamale at Christmas.'", kind: 'person', art: 'av_cg1_mami' },
     { id: 'feld_texts', title: "Dr. Feld: 'Need you tonight'", text: "Her boss, Monday 20:29: 'Need you tonight. Bring the good gloves.' 'Don't tell my wife.'", kind: 'person', art: 'av_cg1_feld' },
     { id: 'feld_clear', title: 'The hockey player', text: "Dr. Feld's emergency was an after-hours root canal on a hockey player who bit through his mouthguard. His wife thinks he's retired from emergencies.", kind: 'event', art: 'av_cg1_feld' },
-    { id: 'jules_live', title: "Jules: 'wear the coat'", text: "Jules, mid-investigation: 'if trent has it: hi trent, so gay bro. if trent DOESN'T: wednesday, my place, I already painted the lighthouse, wear the coat.'", kind: 'person', art: 'av_cg1_jules' },
+    { id: 'jules_live', title: "Jules, live: 'wear the coat'", text: "Jules, while you're holding her phone: 'if trent has this: hi trent!! so gay bro. if he doesn't: saturday, mrs smith, wear the coat. just the coat.'", kind: 'person', art: 'av_cg1_jules' },
   ],
 
   questions: [
     {
-      id: 'q_cheat', prompt: 'Is Jessa cheating on Trent?',
+      id: 'q_cheat', prompt: 'Is Jessa cheating on you?',
       options: [
         { id: 'yes', label: 'Yes' },
-        { id: 'no', label: 'No — she really is very into lighthouses' },
+        { id: 'no', label: 'No — she really is that into lighthouses' },
         { id: 'emotional', label: 'Only emotionally — nothing physical' },
       ],
-      answer: 'yes', evidence: ['bed_selfie', 'helmet_selfie', 'not_gay', 'pros_cons', 'jules_live'],
-      explain: "A recovered selfie under one duvet, a hidden selfie in his helmet in his bathroom, and her own pros-and-cons list. The lighthouses were never the point.",
+      answer: 'yes', evidence: ['bed_selfie', 'helmet_selfie', 'not_gay', 'pros_cons', 'jules_live', 'pulse_spike', 'hotel_smith'],
+      explain: "A duvet selfie, two toothbrushes in his cup, a hidden selfie in his helmet and his bathroom, and a fitness band that clocked nine minutes at 160 bpm in his loft. The lighthouses were never the point.",
     },
     {
       id: 'q_who', prompt: 'With whom?',
@@ -283,67 +314,70 @@ export const caught1: CaseFile = {
         { id: 'feld', label: 'Dr. Marty Feld, her boss', art: 'av_cg1_feld' },
         { id: 'jules', label: "Jules Fontaine, her 'gay best friend' — who is not gay", art: 'av_cg1_jules' },
         { id: 'kayla', label: 'Kayla, her work wife', art: 'av_cg1_kayla' },
-        { id: 'trent', label: "Nobody. It's Trent, he's just paranoid", art: 'av_cg1_trent' },
+        { id: 'nobody', label: "Nobody. You're just paranoid" },
       ],
-      answer: 'jules', evidence: ['not_gay', 'helmet_selfie', 'bed_selfie', 'jules_live', 'pros_cons', 'roses', 'mami_knows'],
-      explain: "Jules told Trent he was gay at a barbecue to avoid a fight and kept it up for fourteen months. Mami saw through it from a ladder. Dr. Feld was doing a root canal.",
+      answer: 'jules', evidence: ['not_gay', 'helmet_selfie', 'bed_selfie', 'jules_live', 'pros_cons', 'roses', 'mami_knows', 'family_outrage', 'same_booth'],
+      explain: "Jules told you he was gay at a barbecue to dodge a fight and kept it up for fourteen months. Mami saw through it from under a gutter, Tía Rosa from a car wash. Dr. Feld was doing a root canal.",
     },
     {
       id: 'q_where', prompt: 'Where do they meet?',
       options: [
         { id: 'brush', label: 'Brushstrokes Paint & Sip' },
-        { id: 'lofts', label: "Jules's loft — Calloway Lofts, Unit 4B, Wednesday nights" },
+        { id: 'lofts', label: "Jules's loft — Calloway Lofts 4B, Wednesdays — and a Mr. & Mrs. Smith suite at Hotel Marisol" },
         { id: 'dental', label: 'Bright Smile Dental, after hours' },
-        { id: 'velvet', label: 'The Velvet Fern' },
+        { id: 'velvet', label: 'Only ever at the Velvet Fern' },
       ],
-      answer: 'lofts', evidence: ['loft_stops', 'helmet_selfie', 'bed_selfie', 'paint_alibi', 'ghost_painter'],
-      explain: 'Her phone idles a minute outside Brushstrokes, then spends four hours at Calloway Lofts. Guest parking is validated for Unit 4B and the Wi-Fi is named after the dog.',
+      answer: 'lofts', evidence: ['loft_stops', 'location_off', 'helmet_selfie', 'bed_selfie', 'paint_alibi', 'hotel_smith', 'pulse_spike'],
+      explain: 'Her phone idles a minute outside the studio, then spends four hours at Calloway Lofts with your location sharing paused. Saturday is booked at the Marisol under Smith.',
     },
     {
       id: 'q_how', prompt: 'How did they hide it?',
       options: [
         { id: 'burner', label: 'A burner phone and a secret app' },
-        { id: 'cover', label: "Jules played gay so Trent saw 'zero threat', and Trent-funded Paint & Sip covered Wednesdays — with lighthouses Jules painted for her" },
+        { id: 'cover', label: "Jules played gay so you'd see 'zero threat', and your own Paint & Sip money covered Wednesdays — with lighthouses Jules painted, location paused just for you" },
         { id: 'work', label: 'She said she was working late with Dr. Feld' },
-        { id: 'none', label: "They didn't. Trent just never looked" },
+        { id: 'none', label: "They didn't. You just never looked" },
       ],
-      answer: 'cover', evidence: ['not_gay', 'paint_alibi', 'ghost_painter', 'marco_dog', 'trent_pays', 'pros_cons'],
-      explain: "The 'boyfriend' was a dog, the classes were never attended, and every lighthouse came out of Jules's loft. Trent paid for the alibi. Twice.",
+      answer: 'cover', evidence: ['not_gay', 'paint_alibi', 'ghost_painter', 'marco_dog', 'trent_pays', 'location_off', 'pros_cons'],
+      explain: "The 'boyfriend' was a dog, the classes were never attended, every lighthouse came out of his loft, and her location went dark for exactly one person. You paid for the alibi. Twice.",
     },
   ],
 
   events: [
-    { id: 'e1_trent', kind: 'text', when: ['unlocked'], delayMs: 5000, thread: 'th_trent', contact: 'trent', text: "hey is this roxy's guy. it's trent. did u crack it. is it the lighthouse. i KNEW lighthouses were sexual. also don't read anything about my abs. that's private between me and jules" },
-    { id: 'e1_h_marco', kind: 'handler', when: ['pinned:marco_dog'], delayMs: 3000, text: "Marco has four legs, a bow tie and a better social life than our client. Our client never met the boyfriend and never asked a follow-up question. Somebody on that phone probably did. Mothers usually do." },
-    { id: 'e1_jules', kind: 'text', when: ['recovered:msgfrag'], delayMs: 6000, thread: 'th_jules', contact: 'jules', text: "jess?? ur phone's been off since the car wash. if trent has it: hi trent!! so gay bro 🌈. if trent DOESN'T have it: wednesday, my place, I already painted the lighthouse, wear the coat 🔥", clue: 'jules_live' },
-    { id: 'e1_h_ready', kind: 'handler', when: ['unlocked'], minPins: 11, delayMs: 3000, text: "That's enough rope for a tug-of-war. Open the report. Pin every answer, because our client is going to argue with all of them, probably in a tank top." },
+    { id: 'e1_upup', kind: 'text', when: ['unlocked'], delayMs: 9000, thread: 'th_jules', contact: 'jules', text: "u still up? 😏 i'm lying here in just the suspenders like an idiot" },
+    { id: 'e1_h_shower', kind: 'handler', when: ['pinned:loft_stops'], delayMs: 3000, text: "bro is the shower still running?? tell me the shower is still running. ok. ok. calloway lofts is literally where jules lives, I've been there, he made me risotto. SCREENSHOT. EVERYTHING." },
+    { id: 'e1_findmy', kind: 'text', when: ['recovered:photos'], delayMs: 5000, thread: 'th_findmy', contact: 'findmy', text: "This iPhone was marked as misplaced. Message from Jessa: 'babe?? where'd you put my phone 🥺 it's not on the nightstand. I can hear it buzzing'" },
+    { id: 'e1_h_off', kind: 'handler', when: ['recovered:msgfrag'], delayMs: 4000, text: "(The shower just turned off.) BRO. the water stopped?? you have like four minutes. she has to do the hair turban thing first. that's at least 90 seconds. MOVE." },
+    { id: 'e1_jules', kind: 'text', when: ['recovered:msgfrag'], delayMs: 9000, thread: 'th_jules', contact: 'jules', clue: 'jules_live', text: "jess?? if trent has ur phone: hi trent!! so gay bro 🌈 love that for us. if he DOESN'T: saturday, mrs smith, wear the coat. just the coat. i'll bring marco's bow tie for me" },
+    { id: 'e1_h_door', kind: 'handler', when: ['unlocked'], minPins: 14, delayMs: 3000, text: "(You hear the bathroom door.) ok. OK. phone face DOWN. breathe. you've got enough. you've got WAY more than enough. file it in your head — who, where, how — before you open your mouth. I'm so sorry man. I'm coming over with wings." },
   ],
 
   hints: [
-    { until: 'unlocked', text: "Trent: the code is the price of her usual at the Velvet Fern. The lock screen says what her usual is; the chalkboard on the wallpaper says what it costs. Add it up, drop the $ and the dot." },
-    { until: 'pinned:paint_alibi', after: ['unlocked'], text: "Paint & Sip every Wednesday. Has the studio ever actually seen her? Check Mail, and what Kayla's cousin says." },
-    { until: 'recovered:photos', after: ['pinned:paint_alibi'], text: "If she isn't painting on Wednesdays, she deleted something on Wednesdays. Run TRACE on the photos." },
+    { until: 'unlocked', text: "Her code is the price of her usual at the Velvet Fern. The lock screen says what her usual is; the chalkboard on the wallpaper says what it costs. Add it up, drop the $ and the dot." },
+    { until: 'pinned:paint_alibi', after: ['unlocked'], text: "Paint & Sip every Wednesday. Has the studio ever actually seen her? Mail, and what Kayla's cousin says." },
+    { until: 'recovered:photos', after: ['pinned:paint_alibi'], text: "If she isn't painting on Wednesdays, she deleted something on Wednesdays. Run Dez's recovery app on Photos." },
     { until: 'hidden:open', after: ['unlocked'], text: "Photos has a Hidden album. Same passcode. Everybody thinks they're the first person to think of that." },
-    { until: 'pinned:marco_dog', after: ['unlocked'], text: "Who is Marco? Jules posts about him on Glimpse." },
-    { until: 'recovered:msgfrag', after: ['pinned:marco_dog'], text: "Her chat with Jules has gaps on Wednesday nights. TRACE the message fragments." },
+    { until: 'pinned:marco_dog', after: ['unlocked'], text: 'Who is Marco? Jules posts about him on Glimpse.' },
+    { until: 'recovered:msgfrag', after: ['pinned:marco_dog'], text: 'Her chat with Jules has gaps on Wednesday nights. Recover the deleted messages.' },
     { until: 'note:n_wed', after: ['unlocked'], text: "Her locked list wants Marco's breed. Jules's Glimpse caption brags about it." },
-    { until: 'pinned:loft_stops', after: ['unlocked'], text: "Maps, Wi-Fi and Bank all know where her car sleeps on Wednesdays." },
-    { until: 'report:filed', after: ['unlocked'], text: "Open the report: whether, who, where, how. Every answer gets a pin. Trent will read it twice and out loud." },
+    { until: 'pinned:hotel_smith', after: ['unlocked'], text: "Your anniversary is Sunday. What's on her calendar the night before? Check Mail for who 'Mr. & Mrs. Smith' are." },
+    { until: 'pinned:same_booth', after: ['unlocked'], text: "Booth 4 at the Velvet Fern is 'yours'. Check the camera roll a week after your date." },
+    { until: 'report:filed', after: ['unlocked'], text: "Before she walks out of that bathroom: whether, who, where, how. Every answer pinned." },
   ],
 
-  handlerIntro: "Roxy Vance. I own this outfit, I've been divorced three times, and every one of them was their loss. Kid, a man in a tank top just paid me in damp singles to find out if his girlfriend's 'gay best friend' is a threat. He said 'zero threat' four times. Nobody says anything four times unless it keeps them up at night. Get the phone open. Don't touch my lighter.",
+  handlerIntro: "bro. BRO. it's 2am why are you texting me 'she's in the shower' with no context. ...oh. OH. is it the jules thing. it's the jules thing. ok listen to me: you have her code, the shower's running, screenshot EVERYTHING, touch NOTHING, and if Marco is a real person I owe you twenty bucks.",
 
   epilogue: {
     solved: [
-      "Roxy delivered the report to Trent Lyle at Swole Juice at 7 a.m., between a whey delivery and a man buying 'energy crystals' for his dog. Trent read it twice, then a third time out loud, then asked if Marco was 'in on it'. Roxy said Marco is a dog. Trent said 'that's exactly what an accomplice would say.'",
-      "The confrontation happened at Saturday's barbecue, because Trent had already bought the meat. In front of everyone he asked, 'Are you still gay, bro?' Jules put down the tongs and said, 'I never was, bro. I'm sorry. Your abs are a seven.' Trent whispered 'I KNEW they were a seven', then threw a smoked turkey named Gerald into the courtyard fountain.",
-      "Jessa moved into Calloway Lofts, Unit 4B, with seven lighthouse paintings, none of which she painted. Jules is Mr. March again. Marco has a new bow tie that says BEST MAN. Mami tells everyone she 'knew from the gutter'.",
-      "Brushstrokes refunded Trent's $240 and gave him the eight blank canvases. He took the class himself. He has painted eleven lighthouses. They are, against all odds, very good. He says they're about loneliness.",
+      "She came out in a towel and a hair turban and found you sitting on the edge of the bed with her phone in your hand and the hallway light on all seven lighthouses. You didn't yell. You said, 'Booth four, Jess.' She sat down. The turban came undone. Neither of you fixed it.",
+      "You asked one question: 'Is he gay?' She said, 'No.' You said, 'I asked him four times.' She said, 'I know, babe. He said it was the worst part.' Somehow that was the part that made you cry.",
+      "Dez came over at 3:30 with wings and a Bluetooth speaker and played sad songs until the neighbours banged on the wall. On Saturday, Jessa didn't go to the Marisol. Jules went alone, in the XL robe, and posted 'self-care 🕯️'. Tía Rosa commented 'LIAR' in all caps. Abuela liked it.",
+      "Jessa moved to Calloway Lofts 4B with seven lighthouses she didn't paint. You kept the hallway hooks. Brushstrokes refunded your $240 and handed you eight blank canvases. You took the class yourself. You've painted eleven lighthouses. They're good. They're about loneliness. Gerald the turkey was served at Thanksgiving at Dez's mom's, and everyone agreed he was zero threat.",
     ],
     partial: [
-      'Your report reached the client with holes in it.',
-      "Trent read 'inconclusive' and heard 'zero threat'. He invited Jules to move in 'since he's practically family'. Jules said yes. Marco has the second bedroom.",
-      'Go back to Wednesday nights. Follow the car, not the paint.',
+      "You blew it.",
+      "She came out of the shower and you said, 'Hey, so, is Marco... a dog?' She laughed for a really long time. She kissed your forehead like a nephew. 'Babe, you're so cute when you're jealous.' You apologised. You apologised to HER.",
+      "Saturday she went to 'Kayla's bachelorette'. Sunday you took her to booth 4 for your anniversary and she checked her phone eleven times. Go back to Wednesday nights. Follow the car, not the paint.",
     ],
   },
 };
