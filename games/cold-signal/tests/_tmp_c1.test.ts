@@ -1,9 +1,9 @@
 import { it, expect } from 'vitest';
-import { caught1 } from '../src/cases/caught1';
+import { CAUGHT } from '../src/cases/caught';
 import { simulateSolve, validateCase } from '../src/validate';
-it('c1', () => {
-  expect(validateCase(caught1)).toEqual([]);
-  const f = simulateSolve(caught1);
-  const miss = [...caught1.clues.map((k) => `pinned:${k.id}`), ...caught1.events.map((e) => `event:${e.id}`), ...caught1.trace.map((j) => `recovered:${j.id}`)].filter((x) => !f.has(x));
+for (const c of CAUGHT) it(c.id, () => {
+  expect(validateCase(c)).toEqual([]);
+  const f = simulateSolve(c);
+  const miss = [...c.clues.map((k) => `pinned:${k.id}`), ...c.events.map((e) => `event:${e.id}`), ...c.trace.map((j) => `recovered:${j.id}`), ...c.notes.filter((n) => n.lock).map((n) => `note:${n.id}`)].filter((x) => !f.has(x));
   expect(miss).toEqual([]);
 });
