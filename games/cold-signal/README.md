@@ -4,7 +4,7 @@ A found-phone detective mystery for the browser (desktop and iPhone/Android, ins
 
 You work for a police cold-case unit. Each case is one recovered phone: get past the lock screen, read messages, mail, notes, voicemails (spoken aloud), photo metadata, location history, browsing, bank and Wi-Fi records; use the **TRACE** forensic app to carve deleted files out of storage; pin evidence to a corkboard that strings related clues together; and file a **Case Report** where every answer must be backed by a pinned clue. Live texts arrive from unknown numbers while you work, and your handler Ines pings you with leads and hints.
 
-- 3 original cases: *Low Tide*, *Dead Air*, *The Long Quiet* (difficulty 1–3).
+- 7 original cases (difficulty 1–3), from a coastal cover-up to a museum forgery.
 - All art is hand-authored SVG and all sound is synthesized with WebAudio, so the whole game is about 100 KB gzipped.
 - Saves automatically (localStorage). Works offline after the first visit.
 

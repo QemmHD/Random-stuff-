@@ -18,7 +18,7 @@
   - 05 The Last Room
 - **Tests:**
   - `npm test` checks every case's references and runs a simulated full solve, so a case cannot ship soft-locked.
-  - `tests/play.mjs` and `tests/solve.mjs` play cases through the real UI at desktop 1440×900 and phone 390×844. All 5 cases solve with zero console errors.
+  - `tests/play.mjs` and `tests/solve.mjs` play cases through the real UI at desktop 1440×900 and phone 390×844. All 7 cases solve with zero console errors.
 
 ## Not verified
 - Not tested on a physical iPhone, so Safari audio unlock, speech voices and PWA install are untested on device.
