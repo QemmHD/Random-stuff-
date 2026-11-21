@@ -76,20 +76,23 @@ export const case3: CaseFile = {
     },
     {
       id: 'th_marcus', contact: 'marcus', messages: [
-        { from: 'them', text: "hushline wants a season 2 option. that's real money wren", t: '2026-10-25T11:20' },
+        { from: 'them', text: "hushline wants a season 2 option. that's real money wren. like 'finally fix your shitty car' money", t: '2026-10-25T11:20' },
         { from: 'me', text: "there is no season 2 if I don't finish season 1", t: '2026-10-25T11:45' },
-        { from: 'them', text: "you're going to get yourself hurt for downloads.", t: '2026-11-01T23:02', clue: 'marcus_fight' },
+        { from: 'them', text: 'ok but if season 1 ends with you in a ditch, I get to do the voiceover', t: '2026-10-25T11:47' },
+        { from: 'me', text: "you'd make it about you. 'marcus bell, grieving producer, available for panels'", t: '2026-10-25T11:49' },
+        { from: 'them', text: 'and brand deals. rest in peace wren, this episode brought to you by mattresses', t: '2026-10-25T11:50' },
+        { from: 'them', text: "you're going to get yourself fucking hurt for downloads.", t: '2026-11-01T23:02', clue: 'marcus_fight' },
         { from: 'me', text: "it's not downloads marcus. it's my brother.", t: '2026-11-01T23:10' },
-        { from: 'them', text: 'ep 9 mix is done. it names them. you sure?', t: '2026-11-04T18:30' },
+        { from: 'them', text: 'ep 9 mix is done. it names them. holy shit, wren. you sure?', t: '2026-11-04T18:30' },
         { from: 'me', text: "right of reply goes out tmrw. legal's fine. friday 6am.", t: '2026-11-04T18:41' },
-        { from: 'them', text: "live show at the Hideout tonight, wish you were here. call me after?", t: '2026-11-06T17:40' },
+        { from: 'them', text: "live show at the Hideout tonight, wish you were here. green room has free beer and a toilet that hasn't flushed since the 90s. call me after?", t: '2026-11-06T17:40' },
         { from: 'me', text: 'meeting someone at the marina. tell you everything tmrw', t: '2026-11-06T21:20' },
         { from: 'them', text: "ep didn't drop. podhost says YOU unscheduled it at 10:36pm?? that's not you. where are you", t: '2026-11-07T06:15', clue: 'unscheduled' },
       ],
     },
     {
       id: 'th_ray', contact: 'ray', messages: [
-        { from: 'them', text: 'Course you can come out to the camp for the interview. Bring bug spray. — Uncle Ray', t: '2026-07-16T09:30' },
+        { from: 'them', text: 'Course you can come out to the camp for the interview. Bring bug spray. Skeeters out there will carry off a grown man. — Uncle Ray', t: '2026-07-16T09:30' },
         { from: 'me', text: 'thank you for today. for everything you did for us back then 💛', t: '2026-07-18T19:20' },
         { from: 'them', text: 'Never stopped looking, kiddo. Never will.', t: '2026-07-18T19:41' },
         { from: 'me', text: "Ray, the county says page 14 of Eli's file was never archived. do you remember what it was?", t: '2026-10-14T14:02' },
@@ -112,28 +115,28 @@ export const case3: CaseFile = {
     },
     {
       id: 'th_pruett', contact: 'pruett', messages: [
-        { from: 'them', text: 'Stop saying my name on your show.', t: '2026-10-02T21:00' },
-        { from: 'them', text: 'Episode 4 called me "a person of interest" six times. I counted. I have a job. I have grandkids.', t: '2026-10-09T22:15' },
+        { from: 'them', text: 'Stop saying my damn name on your show.', t: '2026-10-02T21:00' },
+        { from: 'them', text: 'Episode 4 called me "a person of interest" six times. I counted. I have a job. I have grandkids. My barber won\'t look me in the eye.', t: '2026-10-09T22:15' },
         { from: 'them', text: "You keep this up and you'll find out what I'm capable of.", t: '2026-10-16T22:38', clue: 'pruett_threat' },
         { from: 'them', text: 'Check your email. Then apologize.', t: '2026-10-19T09:00' },
         { from: 'me', text: "I got it. I'm sorry, Mr. Pruett. I'll correct it on air.", t: '2026-10-20T08:14' },
-        { from: 'them', text: "Don't bother. Just find out who really did it.", t: '2026-10-20T08:40' },
+        { from: 'them', text: "Don't bother. Just find out who really did it, and say THAT on your goddamn show.", t: '2026-10-20T08:40' },
       ],
     },
     {
       id: 'th_dee', contact: 'dee', messages: [
-        { from: 'them', text: "Dad kept every ledger from '91 to '09. They're in my garage in Ashby. You're welcome to look.", t: '2026-10-27T12:30' },
+        { from: 'them', text: "Dad kept every ledger from '91 to '09. They're in my garage in Ashby. You're welcome to look. Wear old clothes, it smells like forty years of Bondo and cat.", t: '2026-10-27T12:30' },
         { from: 'me', text: "Dee. I found it. October 23, 2006. thank you thank you", t: '2026-10-29T13:12' },
         { from: 'them', text: "Who's R. Corwin?", t: '2026-10-29T13:20' },
         { from: 'me', text: 'someone everyone trusts.', t: '2026-10-29T13:31' },
-        { from: 'them', text: 'Emailed you a clean scan from my phone, clearer than your photo. Good luck, hon.', t: '2026-10-30T09:05', clue: 'dee_source' },
+        { from: 'them', text: 'Emailed you a clean scan from my phone, clearer than your photo. Good luck, hon. Give \'em hell.', t: '2026-10-30T09:05', clue: 'dee_source' },
       ],
     },
     {
       id: 'th_sana', contact: 'sana', messages: [
         { from: 'them', text: 'Legal cleared Ep 9 for Friday, conditional on right of reply. Has Corwin responded?', t: '2026-11-05T22:30' },
         { from: 'me', text: 'he said "call me". that\'s all.', t: '2026-11-05T22:41' },
-        { from: 'them', text: "That counts. We're good to go. Proud of you.", t: '2026-11-05T22:44' },
+        { from: 'them', text: "That counts. We're good to go. Proud of you. Legal is also proud of you, in the sense that they've stopped sweating through their shirts.", t: '2026-11-05T22:44' },
         { from: 'them', text: "Ep 9 isn't live? Scheduler says it was pulled from your account last night. Wren?", t: '2026-11-07T06:10' },
       ],
     },
@@ -190,9 +193,9 @@ export const case3: CaseFile = {
 
   voicemails: [
     { id: 'vm_mom', contact: 'mom', t: '2026-11-03T19:15', duration: '0:31', voice: { pitch: 1.05, rate: 0.9, female: true }, transcript: "Hi sweetheart, it's Mom. I was clearing out Eli's closet — I know, I know — and I found Pilot's old collar. That silly dog followed him to every single game. Sat by the bench like he was on the team. Anyway. I just wanted to hear your voice. Call me." },
-    { id: 'vm_pruett', contact: 'pruett', t: '2026-10-16T22:41', duration: '0:22', voice: { pitch: 0.7, rate: 0.95, female: false }, clue: 'pruett_threat', transcript: "This is Lyle Pruett. You say my name on that show one more time... you'll find out what I'm capable of. I've got a lawyer. I've got receipts. Twenty years of people crossing the street when they see me." },
+    { id: 'vm_pruett', contact: 'pruett', t: '2026-10-16T22:41', duration: '0:22', voice: { pitch: 0.7, rate: 0.95, female: false }, clue: 'pruett_threat', transcript: "This is Lyle Pruett. You say my name on that show one more time... you'll find out what I'm capable of. I've got a lawyer. I've got receipts. Twenty years of people crossing the street when they see me. Twenty goddamn years." },
     { id: 'vm_ray', contact: 'ray', t: '2026-11-06T18:02', duration: '0:24', voice: { pitch: 0.72, rate: 0.85, female: false }, clue: 'ray_lure', deletedUntil: 'recovered:voice', transcript: "Wren, it's Ray. I read your email. Not on the phone. The marina, nine-thirty tonight. Come alone, and leave that recorder at home. You owe me that much — hell, I owe you more. Just come." },
-    { id: 'vm_marcus', contact: 'marcus', t: '2026-11-07T06:21', duration: '0:20', voice: { pitch: 0.9, rate: 1.15, female: false }, clue: 'unscheduled', transcript: "Wren. Ep 9 didn't drop. PodHost says you pulled it at ten thirty-six last night, from your phone. You would never. Whatever's going on — call me. I'm driving up from Chicago." },
+    { id: 'vm_marcus', contact: 'marcus', t: '2026-11-07T06:21', duration: '0:20', voice: { pitch: 0.9, rate: 1.15, female: false }, clue: 'unscheduled', transcript: "Wren. Ep 9 didn't drop. PodHost says you pulled it at ten thirty-six last night, from your phone. You would never. You'd sooner set yourself on fire. Whatever the hell is going on — call me. I'm driving up from Chicago." },
   ],
 
   map: {
@@ -234,8 +237,8 @@ export const case3: CaseFile = {
 
   glimpse: [
     { id: 'g_20yrs', author: 'me', photo: 'c3_ph_homecoming', caption: "20 years today. I'm not done, E. 💛 #TheLongQuiet", t: '2026-10-21T08:30', likes: 4120, comments: [{ author: 'mom', text: '💛' }, { author: 'travis', text: 'Leave it be, Wren.' }, { author: 'marcus', text: 'proud of you' }] },
-    { id: 'g_camp', author: 'me', photo: 'c3_ph_camp', caption: 'Ep 3 is an afternoon with the man who never stopped looking. Thank you, Uncle Ray 🦌', t: '2026-07-18T19:00', likes: 1870, comments: [{ author: 'ray', text: 'Proud of you, kiddo.' }], clue: 'camp_photo' },
-    { id: 'g_hideout', author: 'marcus', photo: 'c3_ph_hideout', caption: "SOLD OUT at the Hideout. Long Quiet live. Wren's here in spirit 🎙️ #chicago", t: '2026-11-06T21:45', likes: 932, comments: [{ author: 'sana', text: 'what a room' }], clue: 'marcus_alibi' },
+    { id: 'g_camp', author: 'me', photo: 'c3_ph_camp', caption: 'Ep 3 is an afternoon with the man who never stopped looking. Thank you, Uncle Ray 🦌', t: '2026-07-18T19:00', likes: 1870, comments: [{ author: 'ray', text: 'Proud of you, kiddo.' }, { author: 'marcus', text: 'I lost a pint of blood to mosquitoes recording this. worth it' }], clue: 'camp_photo' },
+    { id: 'g_hideout', author: 'marcus', photo: 'c3_ph_hideout', caption: "SOLD OUT at the Hideout. Long Quiet live. Wren's here in spirit 🎙️ #chicago", t: '2026-11-06T21:45', likes: 932, comments: [{ author: 'sana', text: 'what a room' }, { author: 'marcus', text: 'someone in row 2 cried during the ad read. personal best' }], clue: 'marcus_alibi' },
     { id: 'g_bridge', author: 'me', photo: 'c3_ph_bridge', caption: 'the bridge. the yellow ones were always his favorite.', t: '2026-10-21T19:30', likes: 3305, comments: [{ author: 'mom', text: 'thank you for coming, baby' }, { author: 'ray', text: '🙏' }] },
   ],
 
@@ -380,10 +383,10 @@ export const case3: CaseFile = {
   events: [
     { id: 'e3_unk1', kind: 'text', when: ['unlocked'], minPins: 3, delayMs: 4500, thread: 'th_c3unknown', contact: 'c3unknown', text: "Is someone reading Wren's phone right now?" },
     { id: 'e3_unk2', kind: 'text', when: ['event:e3_unk1'], minPins: 7, delayMs: 6000, thread: 'th_c3unknown', contact: 'c3unknown', text: "I found it under the seat of my father's truck. It was switched off. I didn't know who else to send it to. Please hurry.", clue: 'travis_found' },
-    { id: 'e3_h_index', kind: 'handler', when: ['pinned:case_index'], delayMs: 3000, text: "Page 14 isn't in our evidence room either. Read that index line slowly — every word of it." },
+    { id: 'e3_h_index', kind: 'handler', when: ['pinned:case_index'], delayMs: 3000, text: "Page 14 isn't in our evidence room either. Funny how paper only ever goes missing when it matters. Read that index line slowly — every goddamn word of it." },
     { id: 'e3_unk3', kind: 'text', when: ['recovered:msgfrag'], delayMs: 7000, thread: 'th_c3unknown', contact: 'c3unknown', text: "He told me it was a deer. I was eighteen and drunk and he told me it was a deer. Twenty years I believed him.", clue: 'travis_deer' },
-    { id: 'e3_h_camp', kind: 'handler', when: ['pinned:camp_wifi', 'pinned:last_signal'], delayMs: 3500, text: "I've asked Pinecrest PD for a welfare check on Tamarack Road. Don't stop — whoever did this, your board may end up being the whole case." },
-    { id: 'e3_h_ready', kind: 'handler', when: ['unlocked'], minPins: 14, delayMs: 3000, text: "Twenty years of silence on one board. When every answer has evidence behind it, open the Case Report." },
+    { id: 'e3_h_camp', kind: 'handler', when: ['pinned:camp_wifi', 'pinned:last_signal'], delayMs: 3500, text: "I've asked Pinecrest PD for a welfare check on Tamarack Road — and I asked for somebody who doesn't play poker with the old guard. Don't stop — whoever did this, your board may end up being the whole case." },
+    { id: 'e3_h_ready', kind: 'handler', when: ['unlocked'], minPins: 14, delayMs: 3000, text: "Twenty years of silence on one board. When every answer has evidence behind it, open the Case Report. Let's not make it twenty-one." },
   ],
 
   hints: [
@@ -404,7 +407,7 @@ export const case3: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'Twenty years, six questions. Open the Case Report and back every answer with a pinned clue.' },
   ],
 
-  handlerIntro: "A padded envelope, a Pinecrest postmark and a girl nobody's seen in a week. Whoever sent this wanted it read. Start with the lock screen — her mother gave us the rule.",
+  handlerIntro: "A padded envelope, a Pinecrest postmark and a girl nobody's seen in a week. No return address, naturally — folks love to help right up until they have to sign something. Whoever sent this wanted it read. Start with the lock screen — her mother gave us the rule.",
 
   epilogue: {
     solved: [
