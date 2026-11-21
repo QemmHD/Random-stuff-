@@ -43,7 +43,7 @@ Recurring objects:
 - `av_c9_dewey` (owner): Dewey Kostka, 33. Shaggy hair under a bandana, a scruffy beard, heavy-lidded happy eyes, a stained apron reading "TOT DADDY", a tater tot held up like a toast.
 - `av_c9_spatula`: Ryan "Spatula" Oduya, 24. Dyed blond tips, shutter shades, a tank top and a spatula tucked behind his ear like a pencil.
 - `av_c9_mom`: Barb Kostka, 62. A permed bob, a sweatshirt with a cartoon taco reading "MY SON'S TRUCK", phone pressed to her ear, yelling.
-- `av_c9_junior`: Lou Jr., 38. A tracksuit under a black funeral blazer, slicked hair, a gold chain and the face of a man about to say "capisce" without irony.
+- `av_c9_junior`: Lou Jr., 38. A tracksuit under a black funeral blazer, slicked hair, a gold chain and the face of a man who has threatened a waiter this week.
 - `av_c9_donna`: Donna Pettibone, 61. Deep fake tan, platinum bouffant, a black fascinator with a veil, enormous diamonds and a glass of chardonnay. Looking at the camera like she's pricing it.
 - `av_c9_gordon`: Gordon Fisk, 55. Black suit, comb-over and a sweating forehead. Holding a white lily like a shield.
 - `av_c9_lou`: Big Lou Pettibone, 68. Bald, white moustache, pinky rings, a car-wash-branded polo, holding a burrito like a cigar.
