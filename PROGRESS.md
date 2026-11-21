@@ -1,5 +1,7 @@
 # PROGRESS — DORMANT GRID
 
+> **New:** COLD SIGNAL, a separate found-phone mystery game, lives in `games/cold-signal/` (see its STATUS.md). URL once Pages is enabled: https://qemmhd.github.io/Random-stuff-/cold-signal/
+
 ## ☀️ Morning report
 
 ### Live URL

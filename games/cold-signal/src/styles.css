@@ -1135,3 +1135,18 @@ kbd { display: inline-grid; place-items: center; min-width: 24px; height: 22px; 
 }
 .br-card { z-index: 0; }
 .cal-cell.empty { padding: 0; display: block; }
+
+/* ---------- phone board: scrolling grid ---------- */
+.board-surface.flow { overflow-y: auto; overflow-x: hidden; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: start; gap: 22px 12px; padding: 22px 14px 40px; -webkit-overflow-scrolling: touch; }
+.board-surface.flow .board-strings { bottom: auto; }
+.board-surface.flow .ev-card { position: relative !important; left: auto !important; top: auto !important; width: auto !important; height: auto !important; max-height: none !important; cursor: pointer; }
+.board-surface.flow .ev-card .ev-img { display: block !important; aspect-ratio: 4 / 3; height: auto !important; }
+.board-surface.flow .ev-card .ev-kind { display: block !important; }
+.board-surface.flow .ev-card .ev-title { font-size: 12px !important; -webkit-line-clamp: 3; }
+.board-surface.flow .board-empty { grid-column: 1 / -1; position: static; }
+/* center the case grid when the last row is short */
+.case-row { display: flex !important; flex-wrap: wrap; justify-content: center; }
+.case-row > .case-card { flex: 0 1 340px; }
+.rp-change { min-height: 40px; padding: 0 12px; border-radius: 18px; font-size: .82em; color: var(--accent); border: 1px dashed rgba(94,242,223,.4); }
+.modal-comms { max-height: 60vh; overflow-y: auto; padding: 4px 0; }
+@media (max-width: 560px) { .h-toast p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; } }

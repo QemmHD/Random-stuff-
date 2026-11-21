@@ -2,12 +2,14 @@
 import { case1Art } from './case1';
 import { case2Art } from './case2';
 import { case3Art } from './case3';
+import { case4Art } from './case4';
 import { case5Art } from './case5';
+import { ownerArt } from './owners';
 import { iconArt } from './icons';
 import { avatarArt } from './avatars';
 import { extraArt } from './extra';
 
-const REGISTRY: Record<string, string> = { ...extraArt, ...iconArt, ...avatarArt, ...case1Art, ...case2Art, ...case3Art, ...case5Art };
+const REGISTRY: Record<string, string> = { ...extraArt, ...iconArt, ...avatarArt, ...case1Art, ...case2Art, ...case3Art, ...case4Art, ...case5Art, ...ownerArt };
 const urlCache = new Map<string, string>();
 
 export function registerArt(more: Record<string, string>): void {

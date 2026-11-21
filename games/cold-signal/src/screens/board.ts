@@ -15,6 +15,7 @@ export class Board {
   private unsub: () => void;
   private detail: HTMLElement | null = null;
   private lastCount = -1;
+  private flow = false;
 
   constructor(private game: Game, opts: { onClose?: () => void; docked?: boolean } = {}) {
     this.surface = h('div', { class: 'board-surface' });
@@ -29,7 +30,11 @@ export class Board {
     this.el = h('section', { class: `board${opts.docked ? ' docked' : ''}` }, head, this.surface);
     this.unsub = game.on((e) => { if (e.kind === 'change' || e.kind === 'pinned') this.render(); });
     this.render();
-    new ResizeObserver(() => this.drawStrings()).observe(this.surface);
+    new ResizeObserver(() => {
+      // Narrow boards (phones) switch to a readable scrolling grid.
+      const flow = this.surface.clientWidth > 0 && this.surface.clientWidth < 560;
+      if (flow !== this.flow) { this.flow = flow; this.render(); } else this.drawStrings();
+    }).observe(this.surface);
   }
 
   dispose(): void {
@@ -52,6 +57,7 @@ export class Board {
 
   render(): void {
     const g = this.game;
+    this.surface.classList.toggle('flow', this.flow);
     const count = this.el.querySelector('.bh-count');
     if (count) count.textContent = S.progress(g.pins.length, g.c.clues.length);
     [...this.surface.querySelectorAll('.ev-card, .empty')].forEach((n) => n.remove());
@@ -64,7 +70,7 @@ export class Board {
       const clue = g.clue(p.id);
       if (!clue) return;
       const rot = ((i * 37) % 9) - 4;
-      const card = h('div', { class: `ev-card kind-${clue.kind}${fresh === p.id ? ' fresh' : ''}`, style: `left:${p.x * 100}%;top:${p.y * 100}%;--rot:${rot}deg`, 'data-id': p.id, tabindex: '0' },
+      const card = h('div', { class: `ev-card kind-${clue.kind}${fresh === p.id ? ' fresh' : ''}`, style: this.flow ? `--rot:${rot / 2}deg` : `left:${p.x * 100}%;top:${p.y * 100}%;--rot:${rot}deg`, 'data-id': p.id, tabindex: '0' },
         h('span', { class: 'ev-tack' }),
         clue.art ? h('div', { class: 'ev-img' }, artImg(clue.art)) : h('div', { class: 'ev-img ev-type' }, glyph(kindGlyph(clue.kind))),
         h('div', { class: 'ev-kind' }, KIND_LABEL[clue.kind]),
@@ -76,9 +82,10 @@ export class Board {
   }
 
   private drawStrings(): void {
-    const sr = this.surface.getBoundingClientRect();
-    if (!sr.width) return;
-    this.strings.setAttribute('viewBox', `0 0 ${sr.width} ${sr.height}`);
+    const W = this.surface.clientWidth, H = this.flow ? this.surface.scrollHeight : this.surface.clientHeight;
+    if (!W) return;
+    this.strings.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    this.strings.style.height = this.flow ? `${H}px` : '';
     const center = (id: string) => {
       const el = this.surface.querySelector<HTMLElement>(`.ev-card[data-id="${id}"]`);
       if (!el) return null;
@@ -97,6 +104,7 @@ export class Board {
   private makeDraggable(card: HTMLElement, id: string): void {
     let sx = 0, sy = 0, ox = 0, oy = 0, moved = false, down = false;
     card.addEventListener('pointerdown', (e) => {
+      if (this.flow) return;
       down = true; moved = false;
       card.setPointerCapture(e.pointerId);
       sx = e.clientX; sy = e.clientY; ox = card.offsetLeft; oy = card.offsetTop;
@@ -126,6 +134,7 @@ export class Board {
     };
     card.addEventListener('pointerup', up);
     card.addEventListener('pointercancel', up);
+    card.addEventListener('click', () => { if (this.flow) this.showDetail(id); });
     card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') this.showDetail(id); });
   }
 

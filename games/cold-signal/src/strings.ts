@@ -152,6 +152,7 @@ export const S = {
   reportIntro: 'Answer each question and back it with one pinned clue. Wrong names get people hurt.',
   chooseAnswer: 'Choose an answer',
   chooseEvidence: 'Attach evidence',
+  changeEvidence: 'Change',
   noEvidence: 'Pin clues to the board to attach them here.',
   fileReport: 'File report',
   fileConfirm: 'Tap again to file',

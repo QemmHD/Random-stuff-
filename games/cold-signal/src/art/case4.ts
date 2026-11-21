@@ -29,7 +29,6 @@ const tx = (x: number, y: number, size: number, s: string, fill: string, font = 
 /** Lift Ops orange — staff jackets, beanies, the lift shack. */
 const OR = '#F26A1B';
 const ORD = '#b3470c';
-const ORL = '#ff9a4d';
 /** The one red object in the key photos (jerrycan, SP-01 pinstripe). */
 const RED = '#E0232B';
 /** Lina's purple. */
@@ -609,12 +608,12 @@ const sled = (x: number, y: number, s: number): string =>
   `<path d="M-220-13Q-228-2-212 0H-70q9 0 9-7H-204Q-211-8-209-14Z" fill="#0b0c0f"/><path d="M-204-7H-66" stroke="#4a4e58" stroke-width="1.500" opacity=".7"/>` +
   `<path d="M-74-96L-46-142Q-36-150-28-140L-12-104Z" fill="#6a7c94" opacity=".5"/><path d="M-72-97L-45-141" stroke="#cfe0f4" stroke-width="2" opacity=".6"/>` +
   `<path d="M-14-104L4-130h16" fill="none" stroke="#0b0c0f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>` +
-  `<path d="M-156-44Q-150-80-84-96L-18-104Q8-104 22-88L64-92H178Q200-90 204-72L200-36H-30Q-110-30-156-44Z" fill="#17181c"/>` +
-  `<path d="M-151-52Q-141-78-84-92L-18-100Q4-100 16-90" fill="none" stroke="#4e525e" stroke-width="2.500" opacity=".85"/><path d="M-156-44Q-110-30-30-36H200L201-42H-30Q-110-37-155-49Z" fill="#000" opacity=".5"/>` +
-  `<path d="M24-90Q70-108 150-102Q186-100 196-84L64-88Z" fill="#292b32"/><path d="M40-94Q80-104 150-99" fill="none" stroke="#565a66" stroke-width="2" opacity=".7"/>` +
-  `<path d="M-151-62q4-12 22-16l4 13q-14 2-23 9z" fill="#e8f0ff"/>` +
+  `<path d="M-160-42Q-160-86-90-100L-18-106Q8-106 22-90L64-94H178Q200-92 204-74L200-36H-30Q-110-30-160-42Z" fill="#17181c"/>` +
+  `<path d="M-155-50Q-152-82-90-96L-18-102Q4-102 16-92" fill="none" stroke="#4e525e" stroke-width="2.500" opacity=".85"/><path d="M-160-42Q-110-30-30-36H200L201-42H-30Q-110-37-159-47Z" fill="#000" opacity=".5"/>` +
+  `<path d="M24-92Q70-110 150-104Q186-102 196-86L64-90Z" fill="#292b32"/><path d="M40-94Q80-104 150-99" fill="none" stroke="#565a66" stroke-width="2" opacity=".7"/>` +
+  `<path d="M-157-60q2-14 20-20l5 13q-14 2-25 7z" fill="#e8f0ff"/>` +
   `<path d="M-154-46Q-70-54 20-50H202" fill="none" stroke="${RED}" stroke-width="3.200"/>` +
-  `<g font-size="24" fill="#f4f6f8" ${SANS} font-weight="900" ${MID}><text x="-112" y="-62">S</text><text x="-92.500" y="-62">P</text><text x="-73" y="-62">-</text><text x="-53.500" y="-62">0</text><text x="-34" y="-62">1</text></g></g>`;
+  `<g font-size="24" fill="#f4f6f8" ${SANS} font-weight="900" ${MID}><text x="-104" y="-64">S</text><text x="-84.500" y="-64">P</text><text x="-65" y="-64">-</text><text x="-45.500" y="-64">0</text><text x="-26" y="-64">1</text></g></g>`;
 const SKY_DAY: Stop[] = [[0, '#1650b4'], [0.55, '#4c94e0'], [1, '#a8d4f8']];
 
 // ───────────────────────────────────────────────────────────── c4_ph_dad
@@ -797,12 +796,268 @@ function phSled(): string {
     // Kessler
     bust(672, 160, 1.4, 3, kes) +
     `<g transform="translate(54 -6)">` +
-    `<path d="M548 330Q500 360 506 300" fill="none" stroke="#0c0d10" stroke-width="50" stroke-linecap="round"/><path d="M548 330Q500 360 506 300" fill="none" stroke="#1e2026" stroke-width="42" stroke-linecap="round"/>` +
+    `<path d="M580 440Q496 430 508 318" fill="none" stroke="#0c0d10" stroke-width="54" stroke-linecap="round"/><path d="M580 440Q496 430 508 318" fill="none" stroke="#262930" stroke-width="46" stroke-linecap="round"/>` +
     `<path d="M480 286Q478 262 496 258L494 226Q496 214 506 216Q514 218 513 230L512 258L530 262Q538 266 536 290Q532 306 508 306Q484 306 480 286Z" fill="${KES.skin}"/><path d="M500 268h30M500 280h32M500 292h28" stroke="${KES.shade}" stroke-width="2.500" stroke-linecap="round"/><path d="M498 222q6-6 12 0" fill="none" stroke="#f0d0b0" stroke-width="3" stroke-linecap="round"/>` + `</g>` +
     // SP-01
     sled(318, 524, 1.32) +
     `<path d="M40 520h30M90 524h50M700 530h60" stroke="#9ab4dc" stroke-width="3" stroke-linecap="round"/>` + dots(R, 10, 800, 120, 1, 2, '#fff', 0.9, 440);
   return frame(k, 800, 600, defs, body, 0.14, 0.35);
+}
+
+// ───────────────────────────────────────────────────────────── c4_ph_alldown
+interface Kid { j: string; jd: string; hat: string; skin: string; pose: 'hug' | 'peace' | 'hold' | 'hop'; mouth?: string; buns?: boolean }
+/** Bundled-up teenager, feet at 0,0, ~180 tall. */
+function kid(x: number, y: number, s: number, o: Kid, flip = 1): string {
+  const arm = (d: string): string => `<path d="${d}" stroke="${o.jd}" stroke-width="16"/><path d="${d}" stroke="${o.j}" stroke-width="12"/>`;
+  const legs = o.pose === 'hop'
+    ? `<path d="M-8 0V-72" stroke="#1a2030" stroke-width="15" stroke-linecap="round"/><path d="M9-72L18-44L6-22" fill="none" stroke="#1a2030" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><rect x="-18" y="-10" width="22" height="12" rx="5" fill="#0c0e14"/><rect x="-4" y="-28" width="20" height="12" rx="5" fill="#0c0e14" transform="rotate(20 6 -22)"/>`
+    : `<path d="M-9 0V-72M9 0V-72" stroke="#1a2030" stroke-width="15" stroke-linecap="round"/><rect x="-20" y="-10" width="20" height="12" rx="5" fill="#0c0e14"/><rect x="2" y="-10" width="20" height="12" rx="5" fill="#0c0e14"/>`;
+  const arms = o.pose === 'peace'
+    ? arm('M-24-122Q-40-100-24-88L6-94') + arm('M24-122Q46-124 48-152') + `<circle cx="48" cy="-160" r="8" fill="${o.skin}"/><path d="M45-165l-6-17M51-165l5-17" stroke="${o.skin}" stroke-width="5" stroke-linecap="round"/>`
+    : o.pose === 'hold' ? arm('M-24-122Q-40-100-24-88L4-92') + arm('M24-122Q50-128 72-116')
+    : o.pose === 'hop' ? arm('M24-122Q38-100 22-86') + arm('M-24-122Q-48-130-70-122')
+    : arm('M-24-122Q-42-100-24-88L8-94') + arm('M24-122Q42-100 24-84L-8-92');
+  const top = o.buns
+    ? `<circle cx="-14" cy="-170" r="9" fill="#1c1418"/><circle cx="14" cy="-170" r="9" fill="#1c1418"/><path d="M-18-150Q-19-170 0-170Q19-170 18-150Q0-162-18-150Z" fill="#1c1418"/>`
+    : `<path d="M-19-152Q-19-173 0-173Q19-173 19-152Z" fill="${o.hat}"/><rect x="-20" y="-158" width="40" height="9" rx="3" fill="${o.hat}"/><rect x="-20" y="-158" width="40" height="9" rx="3" fill="#000" opacity=".25"/><circle cx="0" cy="-176" r="6" fill="${o.hat}"/>`;
+  return `<g transform="translate(${x} ${y}) scale(${n1(s * flip)} ${s})"><ellipse cx="4" cy="2" rx="34" ry="6" fill="#000" opacity=".35"/>${legs}` +
+    `<path d="M-27-64Q-34-118-19-132H19Q34-118 27-64Z" fill="${o.j}"/><path d="M4-132H19Q34-118 27-64H8Z" fill="#000" opacity=".22"/><path d="M-29-84H28M-31-106H30" stroke="${o.jd}" stroke-width="2.500"/>` +
+    `<g fill="none" stroke-linecap="round" stroke-linejoin="round">${arms}</g>` + `<rect x="-15" y="-138" width="30" height="11" rx="5" fill="${o.jd}"/><circle cx="0" cy="-150" r="17" fill="${o.skin}"/><path d="M3-167A17 17 0 0 1 3-133Z" fill="#000" opacity=".2"/>` +
+    `<path d="M-6-152h.01M7-152h.01" stroke="${INK}" stroke-width="3.400" stroke-linecap="round"/><path d="${o.mouth ?? 'M-5-141q5-3 10 0'}" fill="none" stroke="${INK}" stroke-width="2" stroke-linecap="round"/>${top}</g>`;
+}
+function phAllDown(): string {
+  const k = 'c4_ph_alldown', R = rng(23);
+  const defs = lg(`${k}sk`, [[0, '#04060f'], [1, '#101a38']]) + lg(`${k}sn`, [[0, '#9cb4dc'], [1, '#2c3c68']]) +
+    lg(`${k}cn`, [[0, '#e8f2ff', 0.55], [1, '#e8f2ff', 0]]) + rg(`${k}pl`, [[0, '#f4f8ff', 0.9], [0.6, '#cfe0ff', 0.3], [1, '#cfe0ff', 0]]) +
+    rg(`${k}lp`, [[0, '#fff', 1], [0.3, '#dfeaff', 0.6], [1, '#dfeaff', 0]]) + lg(`${k}wn`, [[0, '#ffd890'], [1, '#c8862a']]) + bl(`${k}b3`, 3) + bl(`${k}b8`, 8);
+  const body =
+    `<rect width="800" height="600" fill="url(#${k}sk)"/>` + pines(R, -10, 820, 70, () => 400, 110, 220, '#070b18') +
+    `<path d="M0 396Q400 372 800 400V600H0Z" fill="url(#${k}sn)"/>` +
+    // bottom terminal: gantry + bullwheel
+    `<path d="M40 60V420M540 60V410" stroke="#1c2230" stroke-width="22"/><path d="M34 60V420M534 60V410" stroke="#5a6a88" stroke-width="3"/>` +
+    `<rect x="-20" y="40" width="600" height="46" fill="#232a3a"/><rect x="-20" y="40" width="600" height="6" fill="#6a7c9c"/><path d="M-20 86H580" stroke="#0a0d14" stroke-width="5"/>` +
+    `<path d="M290 86V112" stroke="#1c2230" stroke-width="26"/><ellipse cx="290" cy="128" rx="210" ry="26" fill="#12161f"/><ellipse cx="290" cy="124" rx="210" ry="26" fill="#2c3446"/><ellipse cx="290" cy="124" rx="184" ry="20" fill="#1a1f2c"/><ellipse cx="290" cy="124" rx="210" ry="26" fill="none" stroke="${OR}" stroke-width="4"/>` +
+    `<path d="M290 124L120 112M290 124L460 112M290 124L200 142M290 124L380 142" stroke="#3c465c" stroke-width="6"/><circle cx="290" cy="124" r="14" fill="#3c465c"/>` +
+    `<path d="M80 124L-20 96M500 124L820 30" stroke="#0a0d14" stroke-width="4"/>` + chair(668, 76, 0.62, 2, '#0a0d14', '#b8cdf0') +
+    // work lights
+    `<path d="M150 92L20 470H330Z" fill="url(#${k}cn)"/><path d="M430 92L290 480H600Z" fill="url(#${k}cn)"/>` +
+    `<rect x="132" y="80" width="36" height="16" rx="3" fill="#0a0d14"/><rect x="412" y="80" width="36" height="16" rx="3" fill="#0a0d14"/><circle cx="150" cy="98" r="40" fill="url(#${k}lp)"/><circle cx="430" cy="98" r="40" fill="url(#${k}lp)"/>` +
+    `<ellipse cx="330" cy="500" rx="330" ry="70" fill="url(#${k}pl)"/>` +
+    // lift shack + clock
+    `<path d="M590 206H800V452H590Z" fill="${ORD}"/><path d="M590 206H800V452H590Z" fill="#000" opacity=".25"/><path d="M590 206h10v246h-10z" fill="${OR}"/><path d="M620 206V452M660 206V452M700 206V452M740 206V452M780 206V452" stroke="#000" stroke-width="2" opacity=".25"/>` +
+    `<path d="M574 212L810 190V206L574 228Z" fill="#12161f"/><path d="M572 212Q690 180 812 188L810 198L574 220Z" fill="#dce8fa"/>` +
+    `<rect x="606" y="232" width="184" height="72" rx="6" fill="#06070a" stroke="#3c465c" stroke-width="3"/><g id="${k}ck" fill="#ffb060">${seg('23:33', 618, 244, 48)}</g><use href="#${k}ck" filter="url(#${k}b3)" opacity=".7"/>` +
+    `<rect x="612" y="322" width="120" height="84" fill="url(#${k}wn)"/><path d="M672 322V406M612 364H732" stroke="#12161f" stroke-width="5"/><rect x="612" y="322" width="120" height="84" fill="none" stroke="#12161f" stroke-width="6"/><path d="M624 406v-22h30v-12h22v34z" fill="#3a2410" opacity=".7"/>` +
+    `<rect x="746" y="330" width="46" height="122" fill="#7a3208"/><circle cx="756" cy="394" r="4" fill="#d8dce4"/><ellipse cx="700" cy="456" rx="130" ry="12" fill="#ffb060" opacity=".2" filter="url(#${k}b8)"/>` +
+    // six kids
+    kid(150, 508, 1.2, { j: '#2f8a8a', jd: '#1d5c60', hat: '#e8c048', skin: '#e8c0a0', pose: 'hug' }) +
+    kid(232, 520, 1.3, { j: '#c89a2c', jd: '#8a6a14', hat: '#3a5a9a', skin: '#b8805a', pose: 'hug', mouth: 'M-5-140h10' }, -1) +
+    kid(478, 512, 1.25, { j: '#3a5a9a', jd: '#263c6a', hat: '#c8ccd4', skin: '#d8a880', pose: 'hug' }, -1) +
+    kid(318, 530, 1.3, { j: '#4a8a4a', jd: '#2c5a2e', hat: '#dfe8f6', skin: '#8a5a3c', pose: 'hold' }) +
+    kid(398, 532, 1.25, { j: '#c8ccd8', jd: '#8a90a4', hat: '#2f8a8a', skin: '#f0c8a8', pose: 'hop', mouth: 'M-5-139q5-5 10 0' }) +
+    kid(540, 556, 1.45, { j: PUR, jd: PURD, hat: PUR, skin: LIN.skin, pose: 'peace', mouth: 'M-7-143q7 6 14-1', buns: true }) +
+    `<g filter="url(#${k}b8)" fill="#fff" opacity=".35"><ellipse cx="176" cy="318" rx="20" ry="9"/><ellipse cx="344" cy="322" rx="18" ry="8"/><ellipse cx="574" cy="318" rx="22" ry="9"/></g>` +
+    `<path d="M0 570Q300 540 800 580V600H0Z" fill="#0a1020" opacity=".5"/>` + dots(R, 30, 800, 600, 1, 2.4, '#fff', 0.75) + `<g filter="url(#${k}b3)">${dots(R, 8, 800, 600, 4, 6, '#fff', 0.4)}</g>`;
+  return frame(k, 800, 600, defs, body, 0.22, 0.6);
+}
+
+// ───────────────────────────────────────────────────────────── c4_ph_deck
+/** Lina's purple backpack, base centre at x,y. ~124 wide, 160 tall. */
+const bag = (x: number, y: number, s: number): string =>
+  `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-24-150Q-24-176 0-176Q24-176 24-150" fill="none" stroke="${PURD}" stroke-width="9" stroke-linecap="round"/>` +
+  `<path d="M-62 0V-108Q-62-152 0-152Q62-152 62-108V0Q0 10-62 0Z" fill="${PUR}"/><path d="M8-152Q62-152 62-108V0Q36 6 14 6Z" fill="#000" opacity=".25"/><path d="M-52-110Q-50-140-14-144" fill="none" stroke="${PURL}" stroke-width="5" stroke-linecap="round" opacity=".8"/>` +
+  `<path d="M-50-112Q0-128 50-112" fill="none" stroke="${PURD}" stroke-width="4"/><rect x="-44" y="-78" width="88" height="66" rx="12" fill="${PURD}"/><path d="M-36-62H36" stroke="#c8ccd4" stroke-width="3" stroke-dasharray="3 3"/>` +
+  `<path d="M-62-60q-10 30 0 56M62-60q10 30 0 56" fill="none" stroke="${PURD}" stroke-width="8" stroke-linecap="round"/>` +
+  `<path d="M36-62q10 8 8 20" fill="none" stroke="#c8ccd4" stroke-width="2.500"/><circle cx="44" cy="-38" r="5" fill="none" stroke="#c8ccd4" stroke-width="2.500"/>${squirrel(46, -2, 1.25)}` +
+  `<path d="M-52-134Q-30-158 0-156Q34-158 52-132Q30-144 0-140Q-30-146-52-134Z" fill="#f4f8ff"/></g>`;
+/** The shop's propane heater, base centre at x,y. ~136 wide, 220 tall. Dial reads OFF. */
+const heater = (k: string, x: number, y: number, s: number): string =>
+  `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-42-190Q-42-220 0-220Q42-220 42-190" fill="none" stroke="#4a4e56" stroke-width="10" stroke-linecap="round"/>` +
+  `<rect x="-68" y="-196" width="136" height="196" rx="14" fill="#7c3a34"/><rect x="-68" y="-196" width="136" height="196" rx="14" fill="none" stroke="#3a1a18" stroke-width="3"/><path d="M-60-186h18v176h-18z" fill="#fff" opacity=".12"/>` +
+  `<rect x="-54" y="-182" width="108" height="98" rx="6" fill="#14161a"/><rect x="-46" y="-174" width="92" height="82" rx="3" fill="#3a3430"/>` +
+  `<path d="M-54-164H54M-54-146H54M-54-128H54M-54-110H54M-36-182V-84M-18-182V-84M0-182V-84M18-182V-84M36-182V-84" stroke="#aab2bc" stroke-width="2.500"/>` +
+  `<rect x="-54" y="-182" width="108" height="98" rx="6" fill="#eaf2ff" opacity=".2"/>${dots(rng(3), 22, 104, 94, 0.8, 1.6, '#fff', 0.9, 0).replace('<path', '<path transform="translate(-52 -180)"')}` +
+  `<path d="M-54-90Q-30-102-6-94Q20-104 54-92V-84H-54Z" fill="#f4f8ff" opacity=".85"/>` +
+  `<rect x="-58" y="-76" width="116" height="66" rx="6" fill="#b4bac2"/><rect x="-58" y="-76" width="116" height="66" rx="6" fill="none" stroke="#5a6068" stroke-width="2"/>` +
+  `<circle cx="0" cy="-36" r="19" fill="#1a1c20"/><circle cx="0" cy="-36" r="19" fill="none" stroke="#5a6068" stroke-width="2.500"/><path d="M0-36L-16-40" stroke="#fff" stroke-width="5" stroke-linecap="round"/><circle cx="-23" cy="-42" r="3" fill="#fff" stroke="#1a1c20"/>` +
+  `<g font-size="15" ${SANS} font-weight="900" fill="#14161a"><text x="-40" y="-52" ${MID}>OFF</text><text x="0" y="-60" ${MID} font-size="11" fill="#4a4e56">LOW</text><text x="38" y="-52" ${MID} font-size="11" fill="#4a4e56">HIGH</text></g>` +
+  `<rect x="-58" y="-49" width="36" height="3" fill="#14161a"/>` +
+  `<path d="M-68-196Q-30-214 0-208Q36-216 68-196Q30-200 0-198Q-34-202-68-196Z" fill="#f4f8ff"/><rect x="-74" y="-6" width="148" height="10" rx="4" fill="#3a3e46"/><rect x="-68" y="-196" width="136" height="196" rx="14" fill="url(#${k}fx)" opacity=".5"/></g>`;
+function phDeck(): string {
+  const k = 'c4_ph_deck', R = rng(61);
+  const defs = rg(`${k}fl`, [[0, '#fff', 0.5], [0.5, '#fff', 0.12], [1, '#fff', 0]], 0.45, 0.82, 0.7) +
+    rg(`${k}dk`, [[0.25, '#000', 0], [0.7, '#000', 0.55], [1, '#000', 0.92]], 0.45, 0.85, 0.95) +
+    lg(`${k}fx`, [[0, '#fff', 0.5], [1, '#fff', 0]], 0.6, 1) + lg(`${k}wl`, [[0, '#120c08'], [1, '#4a3424']]) + lg(`${k}tb`, [[0, '#8a98b4'], [1, '#f4f8ff']]) +
+    lg(`${k}hc`, [[0, '#fff2b8', 0.95], [1, '#ffe08a', 0]], 0.4, 1, 0.9, 0) + rg(`${k}hg`, [[0, '#fff', 1], [0.25, '#fff2b8', 0.7], [1, '#fff2b8', 0]]) +
+    tex(`${k}wd`, 0.3, 0.012, '0.03 0.02 0.01', -1.6, 0.95, 5) + bl(`${k}b3`, 3) + bl(`${k}b8`, 8) + bl(`${k}b1`, 1.2);
+  const body =
+    `<rect width="600" height="800" fill="#02040a"/>` +
+    // past the corner: night slope, and the nose of a black sled
+    `<path d="M430 0H600V420H430Z" fill="#050916"/>` + dots(R, 12, 170, 250, 0.6, 1, '#cfe0ff', 0.6).replace('<path', '<path transform="translate(430 0)"') +
+    pines(R, 440, 620, 34, () => 392, 90, 150, '#03060d') +
+    `<path d="M430 400Q520 376 600 384V560H430Z" fill="#26324e"/><path d="M430 400Q520 376 600 384" fill="none" stroke="#5a6c94" stroke-width="2"/>` +
+    `<g filter="url(#${k}b1)">${sled(643, 478, 1.3)}</g><path d="M436 478h170" stroke="#8a9cc0" stroke-width="2" opacity=".3"/>` +
+    // lodge wall
+    `<rect width="440" height="560" fill="url(#${k}wl)"/><rect width="440" height="560" filter="url(#${k}wd)" opacity=".7"/>` +
+    `<path d="M44 0V560M88 0V560M132 0V560M176 0V560M220 0V560M264 0V560M308 0V560M352 0V560M396 0V560" stroke="#000" stroke-width="2.500" opacity=".5"/>` +
+    `<rect x="424" width="16" height="560" fill="#5a4230"/><rect x="436" width="4" height="560" fill="#000" opacity=".5"/>` +
+    // the big dark window
+    `<rect x="26" y="56" width="372" height="366" fill="#1a120c"/><rect x="42" y="72" width="340" height="334" fill="#04070c"/>` +
+    // inside: headlamp cone, a figure, a red jerrycan
+    `<g filter="url(#${k}b8)"><path d="M262 176L74 300L150 406H300Z" fill="url(#${k}hc)" opacity=".55"/></g>` +
+    `<path d="M214 406Q214 262 240 226Q270 208 300 226Q330 262 332 406Z" fill="#141922"/><path d="M240 226Q226 262 222 406" fill="none" stroke="#6a7690" stroke-width="3.500" opacity=".85"/>` +
+    `<path d="M246 208Q240 160 272 152Q304 156 300 208Q274 226 246 208Z" fill="#0d1016"/><path d="M248 196Q246 164 270 156" fill="none" stroke="#5a6478" stroke-width="2.500" opacity=".8"/><path d="M246 178H300" stroke="#1c2230" stroke-width="7"/>` +
+    `<path d="M236 250Q196 290 190 318" fill="none" stroke="#161a22" stroke-width="30" stroke-linecap="round"/><path d="M228 250Q190 286 180 316" fill="none" stroke="#4a5468" stroke-width="2.500" opacity=".7"/>` +
+    `<g transform="rotate(-6 166 352)"><path d="M130 320h56l14 12v58q0 8-8 8h-62q-8 0-8-8v-62q0-8 8-8z" fill="${RED}"/><path d="M134 334l60 54M194 334l-60 54" stroke="#8a0e14" stroke-width="5"/><path d="M130 320h56l14 12v6h-78v-10q0-8 8-8z" fill="#ff5a5e" opacity=".6"/><rect x="146" y="306" width="36" height="16" rx="5" fill="none" stroke="${RED}" stroke-width="7"/><rect x="186" y="308" width="16" height="12" rx="3" fill="#1c1e24"/></g>` +
+    `<circle cx="180" cy="318" r="12" fill="#0d1016"/><circle cx="252" cy="176" r="34" fill="url(#${k}hg)"/><circle cx="252" cy="176" r="6" fill="#fff"/><path d="M222 176h60M252 156v40" stroke="#fff" stroke-width="1.500" opacity=".7"/>` +
+    // glass: mullion + flash bounce
+    `<rect x="320" y="72" width="12" height="334" fill="#1a120c"/><path d="M42 72L160 72L42 250Z" fill="#fff" opacity=".05"/><path d="M60 406L340 72H382V110L130 406Z" fill="#fff" opacity=".035"/>` +
+    `<circle cx="96" cy="118" r="40" fill="url(#${k}hg)" opacity=".5"/><circle cx="96" cy="118" r="5" fill="#fff" opacity=".9"/>` +
+    `<rect x="26" y="56" width="372" height="366" fill="none" stroke="#3a2a1c" stroke-width="6"/><path d="M20 424H404V440H20Z" fill="#5a4230"/><path d="M18 424Q120 410 210 420T406 422V430H18Z" fill="#f4f8ff"/>` +
+    // deck boards + snow
+    `<path d="M0 560H600V800H0Z" fill="#3a2a1e"/><path d="M0 556Q150 540 320 552T600 540V640H0Z" fill="#c4d2ea"/><path d="M0 590H600" stroke="#8a98b8" stroke-width="2" opacity=".5"/>` +
+    // picnic table, bag, heater
+    `<path d="M-20 660L560 628L640 800H-20Z" fill="#5a4230"/><path d="M-20 652Q140 630 300 640T566 620L640 800H-20Z" fill="url(#${k}tb)"/>` +
+    `<path d="M40 800L80 652M250 800L262 642M470 800L436 632" stroke="#8a98b4" stroke-width="2.500" opacity=".5"/>` +
+    `<g filter="url(#${k}b3)" fill="#1a2238" opacity=".5"><ellipse cx="196" cy="716" rx="120" ry="16"/><ellipse cx="430" cy="722" rx="130" ry="16"/></g>` +
+    bag(172, 716, 1.5) + heater(k, 418, 722, 1.5) +
+    `<path d="M70 716Q120 700 170 720Q230 704 276 720Q200 736 70 716ZM296 724Q360 706 420 728Q480 708 540 722Q430 744 296 724Z" fill="#fff"/>` +
+    // flash
+    `<rect width="600" height="800" fill="url(#${k}fl)"/><rect width="600" height="800" fill="url(#${k}dk)"/>` +
+    `<g filter="url(#${k}b3)">${dots(R, 14, 600, 800, 4, 8, '#fff', 0.5)}</g>` + dots(R, 18, 600, 800, 1.2, 2.6, '#fff', 0.8);
+  return frame(k, 600, 800, defs, body, 0.26, 0.55);
+}
+
+// ───────────────────────────────────────────────────────────── c4_ph_burn
+function phBurn(): string {
+  const k = 'c4_ph_burn', R = rng(88);
+  const defs = lg(`${k}sk`, [[0, '#4a5878'], [0.5, '#9a94a8'], [0.85, '#e8c4b0'], [1, '#f4dcc0']]) + lg(`${k}mt`, [[0, '#b8c2d8'], [1, '#5a6a8e']]) +
+    lg(`${k}sm`, [[0, '#4a4a54', 0.2], [0.5, '#56565f', 0.85], [1, '#3a3a42', 0.95]]) + lg(`${k}sn`, [[0, '#aab6d0'], [1, '#4a5a80']]) + bl(`${k}b4`, 4) + bl(`${k}b16`, 16);
+  const body =
+    `<rect width="800" height="600" fill="url(#${k}sk)"/>` +
+    `<g filter="url(#${k}b16)"><path d="M520 200Q500 120 540 40Q570-30 480-90H60Q280-30 360 50Q430 130 462 204Z" fill="url(#${k}sm)"/></g>` +
+    `<g filter="url(#${k}b4)"><path d="M504 198Q486 150 500 96Q510 50 450-10H380Q440 50 450 104Q462 160 476 200Z" fill="#33333b" opacity=".9"/></g>` +
+    `<path d="M0 330L90 290L170 310L260 250L350 290L420 240L500 280H0Z" fill="#7a86a4" opacity=".7"/>` +
+    `<path d="M100 470Q260 380 360 290Q440 210 490 196Q540 204 600 270Q700 380 800 420V600H100Z" fill="url(#${k}mt)"/>` +
+    `<path d="M490 196Q540 204 600 270Q700 380 800 420V470Q660 380 580 300Q530 240 490 196Z" fill="#3a4668" opacity=".5"/>` +
+    `<path d="M478 198l4-12 3 12 5-16 4 16 5-10 3 10z" fill="#14161c"/><circle cx="490" cy="194" r="4" fill="#ff8a3a" opacity=".9" filter="url(#${k}b4)"/>` +
+    `<path d="M300 470L484 200" stroke="#2a3248" stroke-width="2"/>` + tower(356, 386, 60, 0.3, '#2a3248') + tower(412, 304, 44, 0.22, '#2a3248') + tower(456, 240, 30, 0.15, '#2a3248') +
+    pines(R, 100, 300, 18, (x) => 470 - (x - 100) * 0.4, 30, 60, '#1a2238') + pines(R, 560, 820, 22, (x) => 330 + (x - 560) * 0.38, 30, 64, '#1a2238') +
+    `<path d="M0 480Q400 440 800 474V600H0Z" fill="url(#${k}sn)"/>` + pines(R, -10, 820, 60, () => 486, 60, 130, '#10162a') +
+    // still chairs in the foreground
+    `<path d="M-20 100L820 40" stroke="#0c1020" stroke-width="5"/><path d="M-20 97L820 37" stroke="#e8c4b0" stroke-width="1" opacity=".5"/>` +
+    chair(170, 88, 1.5, 0, '#0c1020', '#d0dcf0', '#e8c4b0') + chair(620, 55, 1.05, 0, '#0c1020', '#d0dcf0', '#e8c4b0') +
+    tower(800, 60, 560, 1.6, '#0c1020') + `<path d="M0 560Q300 530 800 570V600H0Z" fill="#1a2238" opacity=".6"/>`;
+  return frame(k, 800, 600, defs, body, 0.2, 0.5);
+}
+
+// ───────────────────────────────────────────────────────────── c4_ph_newspaper
+function phNewspaper(): string {
+  const k = 'c4_ph_newspaper';
+  const defs = lg(`${k}tb`, [[0, '#7a5434'], [1, '#4a301c']]) + lg(`${k}pp`, [[0, '#f2ecdc'], [1, '#dcd4c0']]) + rg(`${k}lt`, [[0, '#ffe8b8', 0.35], [1, '#ffe8b8', 0]], 0.3, 0.2, 0.8) +
+    lg(`${k}ph`, [[0, '#9a9a98'], [1, '#d8d6d0']]) + tex(`${k}wd`, 0.008, 0.3, '0.1 0.05 0.02', -1.6, 0.95, 5) + bl(`${k}b6`, 6) + bl(`${k}b2`, 2);
+  const bars = (x: number, y: number, w: number, n: number, gap = 11): string => {
+    let d = '';
+    for (let i = 0; i < n; i++) d += `M${x} ${y + i * gap}h${i === n - 1 ? Math.round(w * 0.6) : w}`;
+    return `<path d="${d}" stroke="#55524c" stroke-width="3.500" opacity=".55"/>`;
+  };
+  const INKP = '#1a1816';
+  const body =
+    `<rect width="600" height="800" fill="url(#${k}tb)"/><rect width="600" height="800" filter="url(#${k}wd)" opacity=".6"/><path d="M0 266H600M0 534H600" stroke="#2a1a0e" stroke-width="3" opacity=".6"/>` +
+    `<g transform="rotate(-2.500 300 400)"><rect x="34" y="34" width="536" height="740" fill="#000" opacity=".45" filter="url(#${k}b6)" transform="translate(6 10)"/><rect x="30" y="26" width="540" height="748" fill="url(#${k}pp)"/>` +
+    `<path d="M48 44H552M48 112H552" stroke="${INKP}" stroke-width="3"/><path d="M48 49H552M48 107H552" stroke="${INKP}" stroke-width="1"/>` +
+    tx(300, 92, 37, "THE CUTTER'S GAP COURIER", INKP, SERIF, `${BOLD} ${MID} ${fit(490)}`) +
+    `<g font-size="11" fill="${INKP}" ${SANS}><text x="48" y="128">WEDNESDAY, MARCH 11, 2026</text><text x="552" y="128" text-anchor="end">$1.50</text></g><path d="M48 136H552" stroke="${INKP}" stroke-width="1"/>` +
+    `<g font-size="47" fill="${INKP}" ${SERIF} ${BOLD}><text x="48" y="186" ${fit(504)}>FIRE MARSHAL: AERIE</text><text x="48" y="236" ${fit(392)}>BLAZE BEGAN IN</text><text x="48" y="286" ${fit(504)}>KITCHEN STOREROOM</text></g>` +
+    `<text x="48" y="328" font-size="31" fill="#3a3632" ${SERIF} font-style="italic" ${BOLD}>Accelerant suspected</text><path d="M48 344H552" stroke="${INKP}" stroke-width="1.500"/>` +
+    // photo of the burned lodge
+    `<rect x="48" y="358" width="262" height="178" fill="url(#${k}ph)"/><g filter="url(#${k}b2)"><path d="M48 480Q180 450 310 476V536H48Z" fill="#eeeae2"/><path d="M190 440Q170 400 200 372Q240 360 300 362" fill="none" stroke="#6a6a68" stroke-width="22" opacity=".5"/></g>` +
+    `<path d="M120 486L172 404M150 486L186 430M228 486L196 420M96 486h150" stroke="#1a1816" stroke-width="5" stroke-linecap="round"/><rect x="232" y="408" width="24" height="78" fill="#3a3836"/><path d="M110 486l10-14 12 8 16-12 20 10 18-8 22 16z" fill="#1a1816"/>` +
+    `<rect x="48" y="358" width="262" height="178" fill="none" stroke="${INKP}" stroke-width="1.500"/>` + bars(48, 550, 262, 2, 9) +
+    `<g font-size="22" fill="${INKP}" ${SERIF} ${BOLD}><text x="328" y="378">Lift mechanic's</text><text x="328" y="404">account of deck</text><text x="328" y="430">heater 'inconsistent</text><text x="328" y="456">with findings'</text></g>` +
+    `<path d="M328 470h60" stroke="${INKP}" stroke-width="2"/>` + bars(328, 486, 224, 8) +
+    `<path d="M48 584H552" stroke="${INKP}" stroke-width="1"/>` + bars(48, 600, 156, 14) + bars(222, 600, 156, 14) + bars(396, 600, 156, 9) +
+    `<path d="M30 400H570" stroke="#000" stroke-width="2" opacity=".08"/></g>` +
+    // teacup
+    `<ellipse cx="478" cy="716" rx="112" ry="40" fill="#000" opacity=".4" filter="url(#${k}b6)"/><ellipse cx="470" cy="700" rx="104" ry="36" fill="#e8ecf0"/><ellipse cx="470" cy="698" rx="74" ry="24" fill="#c8ccd4"/>` +
+    `<path d="M536 660q44-6 42 22q-4 24-46 22" fill="none" stroke="#f4f6f8" stroke-width="11"/><path d="M400 640q0 62 70 62q70 0 70-62z" fill="#f4f6f8"/><path d="M470 702q70 0 70-62h-30q0 50-40 62z" fill="#000" opacity=".12"/>` +
+    `<ellipse cx="470" cy="640" rx="70" ry="20" fill="#fbfcfd"/><ellipse cx="470" cy="642" rx="60" ry="15" fill="#a8581a"/><path d="M424 640q20-10 50-8" fill="none" stroke="#e8b070" stroke-width="3" opacity=".7" stroke-linecap="round"/><path d="M408 664q60 14 124 0" fill="none" stroke="#2f7a78" stroke-width="5"/>` +
+    `<rect width="600" height="800" fill="url(#${k}lt)"/>`;
+  return frame(k, 600, 800, defs, body, 0.16, 0.5);
+}
+
+// ───────────────────────────────────────────────────────────── c4_ph_karaoke
+const rooster = (x: number, y: number, s: number, c: string, comb: string): string =>
+  `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-14 20Q-22-8-4-18Q-6-28 4-30Q4-24 10-24Q6-20 8-14Q22-12 20 2L10 4Q12 20-14 20Z" fill="${c}"/><path d="M-4-18q-8-10 0-16q2 6 6 4q-2-8 6-10q0 8 6 10q-4 2-4 6z" fill="${comb}"/><path d="M20-4l10 3-10 4z" fill="#e8c048"/><path d="M12 4q4 8-2 12" fill="none" stroke="${comb}" stroke-width="4" stroke-linecap="round"/><circle cx="10" cy="-8" r="2.200" fill="#14161a"/></g>`;
+function phKaraoke(): string {
+  const k = 'c4_ph_karaoke', R = rng(14);
+  const defs = lg(`${k}wl`, [[0, '#1c0f18'], [1, '#0c060c']]) + lg(`${k}c1`, [[0, '#ff4aa0', 0.6], [1, '#ff4aa0', 0]]) + lg(`${k}c2`, [[0, '#3ad8c8', 0.5], [1, '#3ad8c8', 0]]) +
+    rg(`${k}ng`, [[0, '#ff4aa0', 0.5], [1, '#ff4aa0', 0]]) + rg(`${k}ag`, [[0, '#ffb040', 0.45], [1, '#ffb040', 0]]) + flannel(`${k}pl`) +
+    tex(`${k}wd`, 0.3, 0.01, '0.02 0.01 0.02', -1.6, 0.95, 5) + bl(`${k}b3`, 3) + bl(`${k}b5`, 5);
+  const wes = `<path d="${TORSO_L}" fill="url(#${k}pl)"/><path d="M104 146H120C156 152 186 166 188 200V420H112Z" fill="#000" opacity=".3"/><path d="M100 172V420" stroke="#3a1010" stroke-width="2.500"/>` +
+    wesFace(true, '#ff6ab0') + `<path d="M70 150L86 138L99 170L84 178Z" fill="#b83430"/><path d="M130 150L114 138L101 170L116 178Z" fill="#5a1614"/>`;
+  const body =
+    `<rect width="600" height="800" fill="url(#${k}wl)"/><rect width="600" height="800" filter="url(#${k}wd)" opacity=".6"/><path d="M0 250H600" stroke="#000" stroke-width="6" opacity=".5"/>` +
+    // neon clock
+    `<circle cx="150" cy="130" r="150" fill="url(#${k}ng)"/><circle cx="150" cy="130" r="88" fill="#0a060c"/><circle cx="150" cy="130" r="88" fill="none" stroke="#ff4aa0" stroke-width="12" filter="url(#${k}b5)"/><circle cx="150" cy="130" r="88" fill="none" stroke="#ffd0e8" stroke-width="4.500"/>` +
+    `<g id="${k}ck" fill="#e4fffa">${seg('1:41', 82, 104, 52)}</g><use href="#${k}ck" filter="url(#${k}b3)" opacity=".8"/>` +
+    // chalkboard
+    `<rect x="286" y="50" width="292" height="170" rx="4" fill="#5a3e26"/><rect x="298" y="62" width="268" height="146" fill="#1c2a26"/><rect x="298" y="62" width="268" height="146" fill="#fff" opacity=".04"/>` +
+    `<g fill="#f0eee4" ${HAND}><text x="432" y="118" font-size="36" ${MID} ${BOLD}>SAT 3/7 —</text><text x="432" y="170" font-size="27" ${MID} ${BOLD} ${fit(244)}>KARAOKE TIL CLOSE</text></g>` +
+    `<path d="M330 186q50-8 100 0t106-2" fill="none" stroke="#e8c048" stroke-width="3" stroke-linecap="round" opacity=".8"/>` +
+    // rooster logo
+    `<circle cx="96" cy="350" r="110" fill="url(#${k}ag)"/><circle cx="96" cy="350" r="58" fill="#1a0f0c"/><circle cx="96" cy="350" r="58" fill="none" stroke="#ffb040" stroke-width="5"/>` + rooster(92, 356, 1.7, '#ffcf70', '#ff5a3a') +
+    // back bar bottles
+    `<rect x="250" y="330" width="350" height="10" fill="#3a2616"/><g fill="#0c1410" stroke="#3ad8c8" stroke-width="1" stroke-opacity=".4">${[270, 306, 500, 536, 570].map((x, i) => `<path d="M${x} 330v-${40 + i * 4}q0-8 6-10v-16h8v16q6 2 6 10v${40 + i * 4}z"/>`).join('')}</g>` +
+    // stage lights
+    `<path d="M430-20L160 800H560Z" fill="url(#${k}c1)" opacity=".7"/><path d="M120-20L60 800H420Z" fill="url(#${k}c2)" opacity=".5"/>` +
+    // speaker + stage
+    `<rect x="470" y="520" width="150" height="230" fill="#0c0c10"/><circle cx="548" cy="590" r="34" fill="#1c1c24" stroke="#3a3a48" stroke-width="4"/><circle cx="548" cy="680" r="48" fill="#1c1c24" stroke="#3a3a48" stroke-width="4"/><circle cx="548" cy="680" r="16" fill="#0c0c10"/>` +
+    `<path d="M0 740H600V800H0Z" fill="#2a1a12"/><path d="M0 740H600" stroke="#ff6ab0" stroke-width="3" opacity=".5"/>` +
+    // Wes
+    bust(318, 400, 1.95, -8, wes) +
+    `<path d="M60 820Q120 640 226 590" fill="none" stroke="#3a1010" stroke-width="96" stroke-linecap="round"/><path d="M60 820Q120 640 226 590" fill="none" stroke="url(#${k}pl)" stroke-width="88" stroke-linecap="round"/>` +
+    `<path d="M186 640L262 524" stroke="#1c1c24" stroke-width="20" stroke-linecap="round"/><circle cx="272" cy="508" r="27" fill="#aab2bc"/><circle cx="272" cy="508" r="27" fill="none" stroke="#5a6068" stroke-width="3" stroke-dasharray="3 3"/><path d="M256 494q12-12 28-6" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8"/>` +
+    `<path d="M182 566Q210 540 244 562L262 606Q250 640 214 644Q180 636 174 604Z" fill="${WES.skin}"/><path d="M192 578l44 22M186 594l42 22M184 610l36 20" stroke="${WES.shade}" stroke-width="3" stroke-linecap="round"/>` +
+    `<rect width="600" height="800" fill="#ff4aa0" opacity=".06"/>` + dots(R, 16, 600, 500, 1, 2, '#ffd0e8', 0.5);
+  return frame(k, 600, 800, defs, body, 0.24, 0.6);
+}
+
+// ───────────────────────────────────────────────────────────── c4_ph_lina
+function phLina(): string {
+  const k = 'c4_ph_lina', R = rng(70);
+  const defs = lg(`${k}sk`, SKY_DAY) + lg(`${k}sn`, [[0, '#ffffff'], [1, '#bcd2f2']]) + rg(`${k}sun`, [[0, '#fff', 0.95], [0.3, '#fff', 0.35], [1, '#fff', 0]]) +
+    lg(`${k}gg`, [[0, '#ffb040'], [0.5, '#ff5aa0'], [1, '#6a4ad8']], 1, 1) + bl(`${k}b3`, 3) + bl(`${k}b10`, 10);
+  const head = linaBuns + hb(LIN.skin, LIN.shade, '#fff') + eyes('#3a2416', 'laugh') + brows(LIN.hair, 'up', 2.8) + nose('#8a5236') + mouth('laugh', '#5a2420') +
+    `<ellipse cx="80" cy="104" rx="7" ry="4" fill="#e8705a" opacity=".4"/><ellipse cx="121" cy="104" rx="7" ry="4" fill="#e8705a" opacity=".35"/><path d="M74 96l-4-3M126 96l4-3" stroke="#3a2416" stroke-width="1.600" stroke-linecap="round"/>` + linaHair +
+    // goggles shoved up, askew
+    `<g transform="rotate(-9 100 56)"><path d="M62 60Q100 44 138 60" fill="none" stroke="#14161a" stroke-width="9"/><rect x="72" y="42" width="58" height="26" rx="12" fill="#14161a"/><rect x="76" y="46" width="50" height="18" rx="9" fill="url(#${k}gg)"/><path d="M82 51q10-4 20-2" fill="none" stroke="#fff" stroke-width="2.500" opacity=".7" stroke-linecap="round"/></g>`;
+  const leg = (d: string): string => `<path d="${d}" fill="none" stroke="#123a48" stroke-width="64" stroke-linecap="round" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#1c5a6c" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const arm = (d: string): string => `<path d="${d}" fill="none" stroke="${PURD}" stroke-width="58" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${PUR}" stroke-width="50" stroke-linecap="round"/>`;
+  const body =
+    `<rect width="600" height="800" fill="url(#${k}sk)"/><circle cx="500" cy="70" r="280" fill="url(#${k}sun)"/>` +
+    `<g filter="url(#${k}b3)">${pines(R, -10, 620, 44, (x) => 330 + Math.sin(x / 70) * 14, 70, 150, '#173c32')}</g>` +
+    `<path d="M0 340Q140 290 300 316T600 280V800H0Z" fill="url(#${k}sn)"/><path d="M0 420Q200 380 380 420T600 400V800H0Z" fill="#fff"/>` +
+    // one ski still on
+    `<g transform="rotate(24 204 196)"><rect x="188" y="-40" width="32" height="470" rx="14" fill="#14161a"/><rect x="191" y="-36" width="26" height="462" rx="12" fill="#f4f6f8"/><path d="M191 30h26v60h-26zM191 300h26v40h-26z" fill="${OR}"/><path d="M194-20v440" stroke="#000" stroke-width="2" opacity=".12"/></g>` +
+    // legs in the air
+    leg('M262 470Q250 330 214 236') + leg('M338 470Q370 360 420 296') +
+    `<path d="M178 250L246 216L232 150Q224 132 204 140L164 162Q150 174 158 196Z" fill="#2a2e38"/><path d="M168 190l54-28M176 214l56-28" stroke="#c8ccd4" stroke-width="5"/><rect x="150" y="226" width="110" height="16" rx="6" fill="#8a929c" transform="rotate(-26 205 234)"/>` +
+    `<path d="M392 318L458 328L474 262Q476 244 458 238L420 232Q402 234 398 252Z" fill="#2a2e38"/><path d="M408 262l56 10M402 288l58 10" stroke="#c8ccd4" stroke-width="5"/>` +
+    // purple jacket, arms flung out
+    arm('M232 566Q130 520 70 590') + arm('M368 566Q470 520 534 580') +
+    `<circle cx="64" cy="596" r="32" fill="#1c5a6c"/><circle cx="540" cy="586" r="32" fill="#1c5a6c"/><path d="M48 580q14-10 30-2M524 570q14-10 30-2" fill="none" stroke="#fff" stroke-width="4" opacity=".4" stroke-linecap="round"/>` +
+    `<path d="M206 610Q196 470 250 440H350Q404 470 394 610Q300 650 206 610Z" fill="${PUR}"/><path d="M310 440H350Q404 470 394 610Q350 628 320 630Z" fill="#000" opacity=".2"/><path d="M300 446V620" stroke="${PURD}" stroke-width="4"/><path d="M226 520Q230 470 258 452" fill="none" stroke="${PURL}" stroke-width="6" opacity=".7" stroke-linecap="round"/>` +
+    `<path d="M228 440H372L370 474Q300 500 230 474Z" fill="#123a48"/>` +
+    bust(300, 650, 1.55, 176, head) +
+    // snow piled over her
+    `<g fill="#fff"><path d="M150 600Q200 560 250 590Q230 630 170 640ZM360 590Q410 556 460 596Q440 640 380 630Z"/><path d="M0 770Q120 730 220 768Q300 750 400 770Q500 736 600 764V800H0Z"/><circle cx="262" cy="520" r="16"/><circle cx="350" cy="548" r="12"/></g>` +
+    `<path d="M150 600Q200 560 250 590M360 590Q410 556 460 596M0 770Q120 730 220 768Q300 750 400 770Q500 736 600 764" fill="none" stroke="#a8c0e8" stroke-width="3" opacity=".7"/>` +
+    `<g filter="url(#${k}b10)"><ellipse cx="300" cy="700" rx="200" ry="30" fill="#7a98cc" opacity=".35"/></g>` +
+    // a pole, planted
+    `<path d="M520 520L556 300" stroke="#2a2e38" stroke-width="6" stroke-linecap="round"/><circle cx="524" cy="498" r="16" fill="none" stroke="#2a2e38" stroke-width="4"/><rect x="548" y="290" width="14" height="40" rx="6" fill="${OR}" transform="rotate(9 555 310)"/>` +
+    dots(R, 40, 600, 500, 1.5, 4, '#fff', 0.95, 250);
+  return frame(k, 600, 800, defs, body, 0.14, 0.3);
 }
 
 export const case4Art: Record<string, string> = {
@@ -823,4 +1078,10 @@ export const case4Art: Record<string, string> = {
   c4_ph_shop: phShop(),
   c4_ph_aerie: phAerie(),
   c4_ph_sled: phSled(),
+  c4_ph_alldown: phAllDown(),
+  c4_ph_deck: phDeck(),
+  c4_ph_burn: phBurn(),
+  c4_ph_newspaper: phNewspaper(),
+  c4_ph_karaoke: phKaraoke(),
+  c4_ph_lina: phLina(),
 };

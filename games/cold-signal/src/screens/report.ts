@@ -13,6 +13,7 @@ export function openReport(host: HTMLElement, game: Game, opts: { onFiled: (g: G
   const fileBtn = h('button', { class: 'btn primary big', type: 'button' }, glyph('report'), S.fileReport);
   const msg = h('div', { class: 'rp-msg' });
   let armed = false;
+  let editing = '';
 
   const complete = () => qs.every((q) => draft[q.id]?.option && draft[q.id]?.evidence);
   const paint = () => {
@@ -23,10 +24,16 @@ export function openReport(host: HTMLElement, game: Game, opts: { onFiled: (g: G
         onclick: () => { draft[q.id] = { ...a, option: o.id }; audio.play('tap'); game.save(); paint(); },
       }, o.art ? h('span', { class: 'avatar' }, artImg(o.art)) : h('span', { class: 'rp-radio' }), h('span', null, o.label))));
       const pins = game.pins.map((p) => game.clue(p.id)!).filter(Boolean);
-      const ev = h('div', { class: 'rp-ev' }, pins.length ? pins.map((cl) => h('button', {
-        type: 'button', class: `rp-chip${a.evidence === cl.id ? ' on' : ''}`, title: cl.text,
-        onclick: () => { draft[q.id] = { ...a, evidence: cl.id }; audio.play('pin'); game.save(); paint(); },
-      }, glyph('pin'), cl.title)) : h('div', { class: 'muted' }, S.noEvidence));
+      const chosen = a.evidence ? game.clue(a.evidence) : undefined;
+      // Once evidence is attached the list collapses to the chosen clue; "Change" reopens it.
+      const ev = chosen && editing !== q.id
+        ? h('div', { class: 'rp-ev' },
+          h('button', { type: 'button', class: 'rp-chip on', title: chosen.text, onclick: () => { editing = q.id; audio.play('tap'); paint(); } }, glyph('pin'), chosen.title),
+          h('button', { type: 'button', class: 'rp-change', onclick: () => { editing = q.id; audio.play('tap'); paint(); } }, S.changeEvidence))
+        : h('div', { class: 'rp-ev' }, pins.length ? pins.map((cl) => h('button', {
+          type: 'button', class: `rp-chip${a.evidence === cl.id ? ' on' : ''}`, title: cl.text,
+          onclick: () => { draft[q.id] = { ...a, evidence: cl.id }; editing = ''; audio.play('pin'); game.save(); paint(); },
+        }, glyph('pin'), cl.title)) : h('div', { class: 'muted' }, S.noEvidence));
       return h('section', { class: `rp-q${a.option && a.evidence ? ' done' : ''}` },
         h('div', { class: 'rp-num' }, String(qi + 1).padStart(2, '0')),
         h('h3', null, q.prompt),

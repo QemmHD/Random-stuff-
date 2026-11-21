@@ -40,9 +40,28 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
     const t = h('button', { class: 'h-toast', type: 'button' },
       h('span', { class: 'avatar' }, artImg('av_ines')),
       h('div', null, h('b', null, `${S.handlerName} · ${S.handlerRole}`), h('p', null, text)));
-    t.addEventListener('click', () => { t.classList.add('leave'); setTimeout(() => t.remove(), 300); });
+    t.addEventListener('click', () => {
+      t.classList.add('leave'); setTimeout(() => t.remove(), 300);
+      if (window.innerWidth <= 1280) openCommsLog();
+    });
+    // Only one toast at a time on small screens so the phone stays readable.
+    if (window.innerWidth <= 560) toastLayer.querySelectorAll('.h-toast').forEach((o) => o !== t && o.remove());
     toastLayer.appendChild(t);
-    setTimeout(() => { t.classList.add('leave'); setTimeout(() => t.remove(), 300); }, Math.max(6000, text.length * 70));
+    setTimeout(() => { t.classList.add('leave'); setTimeout(() => t.remove(), 300); }, window.innerWidth <= 560 ? Math.min(7000, Math.max(4200, text.length * 45)) : Math.max(6000, text.length * 70));
+  };
+
+  const openCommsLog = () => {
+    audio.play('open');
+    const close = () => { audio.play('close'); m.classList.add('leave'); setTimeout(() => m.remove(), 250); };
+    const list = h('div', { class: 'comms-list modal-comms' }, ...game.handler.map((msg) => h('div', { class: 'comm' },
+      h('div', { class: 'comm-head' }, h('b', null, S.handlerName), h('span', null, clock(msg.t))), h('p', null, msg.text))));
+    const m = h('div', { class: 'modal' }, h('div', { class: 'modal-card small' },
+      h('div', { class: 'modal-head' }, h('div', null, h('small', null, S.handlerRole.toUpperCase()), h('h2', null, S.comms)),
+        h('button', { class: 'icon-btn', type: 'button', 'aria-label': S.close, onclick: close }, glyph('close'))),
+      list));
+    m.addEventListener('click', (e) => { if (e.target === m) close(); });
+    root.appendChild(m);
+    requestAnimationFrame(() => { list.scrollTop = list.scrollHeight; });
   };
 
   // ---- board ----
