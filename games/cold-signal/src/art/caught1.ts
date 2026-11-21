@@ -285,7 +285,7 @@ function avDoorcam(): string {
 
 // ---------- shared scenery ----------
 const brick = (id: string, a = '#7a3a2a', m = '#3a1c18'): string =>
-  `<pattern id="${id}" width="64" height="32" patternUnits="userSpaceOnUse"><rect width="64" height="32" fill="${m}"/><rect x="1" y="1" width="62" height="14" fill="${a}"/><rect x="-31" y="17" width="62" height="14" fill="${a}"/><rect x="33" y="17" width="62" height="14" fill="${a}"/><rect x="1" y="1" width="62" height="3" fill="#fff" opacity=".08"/></pattern>`;
+  `<pattern id="${id}" width="64" height="32" patternUnits="userSpaceOnUse"><rect width="64" height="32" fill="${m}"/><rect x="1" y="1" width="62" height="14" fill="${a}"/><rect x="-31" y="17" width="62" height="14" fill="${a}"/><rect x="33" y="17" width="62" height="14" fill="${a}"/></pattern>`;
 const tile = (id: string, a: string, m: string, w = 60, h = 60): string =>
   `<pattern id="${id}" width="${w}" height="${h}" patternUnits="userSpaceOnUse"><rect width="${w}" height="${h}" fill="${m}"/><rect x="2" y="2" width="${w - 4}" height="${h - 4}" rx="3" fill="${a}"/><path d="M5 ${h - 6}V5H${w - 6}" fill="none" stroke="#fff" stroke-width="2" opacity=".14"/></pattern>`;
 const steam = (k: string, pts: number[][], o = 0.3): string =>
@@ -525,7 +525,7 @@ const boothDefs = (k: string): string => lg(`${k}v`, '#2a7a58', '#0c2e22') + glo
 const booth = (k: string): string =>
   `<rect width="600" height="800" fill="#1a0e0c"/><path d="M0 60H600V86H0Z" fill="#3a2014"/><path d="M-10 96Q300 70 610 96V800H-10Z" fill="url(#${k}v)"/><path d="M-10 96Q300 70 610 96" fill="none" stroke="#6ad0a0" stroke-width="5" opacity=".6"/>` +
   `<g stroke="#061a14" stroke-width="5" opacity=".7">${[60, 180, 300, 420, 540].map((x) => `<path d="M${x} 88V800"/>`).join('')}</g>` +
-  `<g transform="translate(300 150)"><rect x="-44" y="-36" width="88" height="72" rx="10" fill="url(#${k}br)"/><rect x="-37" y="-29" width="74" height="58" rx="6" fill="none" stroke="#6a4a14" stroke-width="2.5"/><circle cx="-30" cy="0" r="3" fill="#6a4a14"/><circle cx="30" cy="0" r="3" fill="#6a4a14"/>` +
+  `<g transform="translate(300 150)"><rect x="-44" y="-36" width="88" height="72" rx="10" fill="url(#${k}br)"/><rect x="-37" y="-29" width="74" height="58" rx="6" fill="none" stroke="#6a4a14" stroke-width="2.5"/>` +
   `<text x="0" y="19" font-size="54" font-family="Georgia, Times New Roman, serif" font-weight="700" text-anchor="middle" fill="#3a2608">4</text></g>`;
 const fries = (x: number, y: number, s: number): string => at(x, y, s, 0, '<g stroke="#e8b84a" stroke-width="11" stroke-linecap="round"><path d="M-48 0l-10-56M-28 0l-2-70M-8 0l6-62M14 0l-4-74M32 0l12-58M52 0l8-44"/></g><path d="M-70 0L-58 76H58L70 0Z" fill="#f4ecdc"/><path d="M-66 20H66M-62 44H62" stroke="#c8323a" stroke-width="5"/>');
 
@@ -587,10 +587,10 @@ function phBbq(): string {
     `<path d="M0 380H800V600H0Z" fill="url(#${k}gr)"/>${lights(70, 800)}` +
     at(176, 268, 0.86, 0, trent) + at(396, 300, 0.78, 0, hb(4, HY, HS, 8, JESSA) + jessa) +
     // the grill
-    `<g transform="translate(726 470)"><path d="M-70 40L-90 140M70 40L90 140M0 40V140" stroke="#1c1c22" stroke-width="8"/><path d="M-96 0Q-96 60 0 60Q96 60 96 0Z" fill="#1c1c22"/><ellipse rx="96" ry="16" fill="#3a3a44"/><g fill="#a84a2a"><ellipse cx="-40" cy="-4" rx="24" ry="9"/><ellipse cx="20" cy="-2" rx="24" ry="9"/></g><ellipse cx="60" cy="-8" rx="16" ry="7" fill="#c8641c"/></g>` +
+    `<g transform="translate(726 470)"><path d="M-70 40L-90 140M70 40L90 140M0 40V140" stroke="#1c1c22" stroke-width="8"/><path d="M-96 0Q-96 60 0 60Q96 60 96 0Z" fill="#1c1c22"/><ellipse rx="96" ry="16" fill="#3a3a44"/><g fill="#a84a2a"><ellipse cx="-40" cy="-4" rx="24" ry="9"/><ellipse cx="20" cy="-2" rx="24" ry="9"/></g></g>` +
     
     at(590, 230, 1.06, 2, jules) +
-    `<ellipse cx="300" cy="590" rx="60" ry="10" fill="#000" opacity=".3"/>${marco(296, 500, 0.6)}`, 0.35);
+    `${marco(296, 500, 0.6)}`, 0.35);
 }
 
 // ---------- cg1_wall_home — the two of you. And him, at the grill. ----------
@@ -695,8 +695,8 @@ function phKeycard(): string {
     `<g ${SANS} font-size="12" fill="#8a7a5a"><text x="-126" y="52">GUEST</text><text x="-126" y="128">ROOM</text></g><path d="M-126 74H126M-126 150H126" stroke="#8a7a5a" stroke-width="1.5"/>` +
     `<g ${HAND} font-weight="700" fill="#1c2a6a"><text x="-70" y="68" font-size="46">SMITH</text><text x="-70" y="144" font-size="46">— 1104</text></g></g>` +
     // robe sleeve + two fingers
-    `<path d="M-40 560Q120 500 250 620L210 840H-40Z" fill="url(#${k}r)"/><path d="M176 560Q260 590 286 680L210 720Q170 640 120 610Z" fill="#fff"/><path d="M0 600q80-20 150 40M-10 680q90-10 170 60" stroke="#a8a4a8" stroke-width="5" fill="none" opacity=".6"/>` +
-    `<g filter="url(#${k}f)"><path d="M200 640Q250 560 330 600L300 760H190Z" fill="${S}"/>${finger(278, 560, 14, 110)}${finger(346, 592, 22, 96)}</g>` +
+    `<path d="M-40 620Q80 580 190 700L170 840H-40Z" fill="url(#${k}r)"/><path d="M96 640Q180 650 226 730L150 780Q110 700 50 680Z" fill="#fff"/><path d="M-10 700q70-10 130 50" stroke="#a8a4a8" stroke-width="5" fill="none" opacity=".6"/>` +
+    `<g filter="url(#${k}f)"><path d="M120 730Q170 640 262 690L240 840H110Z" fill="${S}"/>${finger(196, 668, 22, 100)}${finger(256, 700, 32, 88)}</g>` +
     // camera date stamp
     `<text x="570" y="768" font-size="30" font-family="Courier New, Courier, monospace" font-weight="700" text-anchor="end" fill="#ff9a2a">OCT 31  23:10</text>`, 0.55);
 }
@@ -737,8 +737,8 @@ function phEasels(): string {
     `<rect x="620" y="60" width="170" height="16" rx="4" fill="#2a1c14"/><path d="M700 76v34q0 14 14 14" fill="none" stroke="#c8963a" stroke-width="7" stroke-linecap="round"/><g filter="url(#${k}f)">${helmet(708, 176, 0.95, -8, true)}</g>` +
     easel(370, 360, 0.72, 3) + easel(480, 352, 0.72, 4) + easel(590, 360, 0.72, 5) + easel(700, 372, 0.72, 6) +
     easel(170, 470, 1.05, 0) + easel(400, 480, 1.05, 1) + easel(620, 474, 1.05, 2) +
-    // her bra, over the corner of an easel
-    `<g transform="translate(462 320) rotate(14)" fill="#14121a"><path d="M-2-14Q-30 40-22 96" fill="none" stroke="#14121a" stroke-width="5"/><path d="M-6-6Q30-20 36 22Q34 52 6 52Q-16 46-14 14Z"/><path d="M-22 96Q-52 76-44 108Q-38 140-10 140Q14 132 10 104Q0 92-22 96Z"/><path d="M36 22Q70 40 60 90" fill="none" stroke="#14121a" stroke-width="5"/><path d="M0 4Q18 0 26 18M-36 106Q-28 126-10 130" fill="none" stroke="#6a5a7a" stroke-width="3" stroke-dasharray="1 5" stroke-linecap="round"/></g>` +
+    // her bra, draped over the top of an easel
+    `<g transform="translate(402 346) rotate(-5)"><path d="M-50 0Q-70-50-30-64M50 0Q76-40 60 60" fill="none" stroke="#14121a" stroke-width="4"/><path d="M-62-4H62V6H-62Z" fill="#14121a"/><g fill="#14121a"><path d="M-58 0Q-62 50-30 54Q-2 50 0 0Z"/><path d="M58 0Q62 50 30 54Q2 50 0 0Z"/></g><path d="M-52 8Q-50 40-30 46M52 8Q50 40 30 46" fill="none" stroke="#8a7a9a" stroke-width="3" stroke-dasharray="1 5" stroke-linecap="round"/><circle cy="4" r="4" fill="#d81e3c"/></g>` +
     // palette, brushes, tubes
     `<g transform="translate(90 560)"><ellipse rx="74" ry="26" fill="#c8a06a"/><ellipse cx="-34" cy="4" rx="12" ry="6" fill="#3a2616"/><g><circle cx="-10" cy="-10" r="9" fill="#e8a05a"/><circle cx="18" cy="-12" r="9" fill="#7ab0d8"/><circle cx="42" cy="-2" r="9" fill="#d87a8a"/><circle cx="26" cy="10" r="9" fill="#f4f4f0"/><circle cx="0" cy="10" r="9" fill="#c8323a"/></g></g>` +
     `<g stroke-linecap="round"><path d="M270 580l70-26M286 590l60-14" stroke="#e8dcc0" stroke-width="6"/><path d="M340 554l12-5M346 576l12-3" stroke="#3a2616" stroke-width="8"/></g><rect x="500" y="560" width="50" height="18" rx="5" fill="#7ab0d8" transform="rotate(-12 525 569)"/><rect x="730" y="540" width="50" height="18" rx="5" fill="#c8323a" transform="rotate(20 755 549)"/>`, 0.45);
@@ -769,6 +769,152 @@ function phVideo(): string {
     `<text x="40" y="548" font-size="34" ${SANS} font-weight="700" fill="#fff">last night</text>` +
     `<g transform="translate(232 536)"><circle cx="-17" cy="-2" r="7" fill="#8a5a34"/><circle cx="17" cy="-2" r="7" fill="#8a5a34"/><circle r="17" fill="#8a5a34"/><ellipse cy="3" rx="12" ry="11" fill="#e8c8a0"/><path d="M-5 9q5 4 10 0" stroke="#5a3a20" stroke-width="2" fill="none"/><g fill="#c89a6a" stroke="#8a5a34" stroke-width="1.5"><ellipse cx="-7" cy="-3" rx="8" ry="6"/><ellipse cx="7" cy="-3" rx="8" ry="6"/></g></g>` +
     `<rect x="40" y="568" width="720" height="5" rx="2.5" fill="#fff" opacity=".35"/><rect x="40" y="568" width="6" height="5" rx="2.5" fill="#e0182f"/>${tx(730, 552, 17, '2:14', '#fff')}`, 0.6);
+}
+
+// ---------- hidden album ----------
+const BITE = lips('#c81e38', '#6e0a20') + '<path d="M101 114.5h8v4.5h-8Z" fill="#fff" stroke="none"/>';
+/** Oversized top (hoodie / tee / coat body) from shoulders to mid-thigh, torso coordinates. */
+const BIG = 'M-30-14Q-62-6-86 8Q-106 20-106 60L-98 330Q0 352 98 330L106 60Q106 20 86 8Q62-6 30-14Q0 16-30-14Z';
+const crest = (x: number, y: number, c: string, s = 1): string => `<g transform="translate(${x} ${y}) scale(${s})"><path d="M0-22L20-12V8Q20 22 0 28Q-20 22-20 8V-12Z" fill="none" stroke="${c}" stroke-width="3"/><text y="12" font-size="24" ${SANS} font-weight="700" text-anchor="middle" fill="${c}">9</text></g>`;
+/** Bathroom backdrop: tile, steam glow, a rail of monogrammed towels. */
+const bath = (k: string, a: string, m: string, g: string): string =>
+  `<rect width="600" height="800" fill="url(#${k}t)"/><rect width="600" height="800" fill="${m}" opacity=".35"/><ellipse cx="300" cy="300" rx="330" ry="420" fill="url(#${k}g)"/>` + (a ? `<rect x="390" y="430" width="230" height="10" rx="5" fill="#c8ccd0"/>${towel(498, 426, 190, 250, a)}` : '') + (g ? `<path d="M60 20L180 20L20 330L20 110Z" fill="#fff" opacity="${g}"/>` : '');
+
+// cg1_ph_h_helmet — the helmet says FONTAINE (key clue)
+function hHelmet(): string {
+  const k = 'cg1_ph_h_helmet';
+  const S = JESSA.sk, C = '#c8a268', D = '#8a6a3a', RF = '#e8f060';
+  const stripe = (d: string): string => `<path d="${d}" fill="none" stroke="${RF}" stroke-width="22"/><path d="${d}" fill="none" stroke="#e8ecf0" stroke-width="7"/>`;
+  const fig = hb(4, HY, HS, 5, JESSA) +
+    `<g filter="url(#${k}f)"><g fill="${S}">${LEGS_F}<path d="${TF}"/>${BUST}</g>` +
+    // coat: two panels, held shut at the chest
+    `${sl(C, 62, 'M88 30L150 60L160-60')}<path d="${BIG}" fill="${C}"/><path d="M-30-14Q0 16 30-14L8 112L0 126L-8 112Z" fill="${S}"/><path d="M-30-14L-8 112L-30 150L-70 40ZM30-14L8 112L30 150L70 40Z" fill="${D}"/>` +
+    `<path d="M0 126V340" stroke="${D}" stroke-width="5"/>${stripe('M-100 276Q0 298 100 276')}${stripe('M132 20L170 30')}<g fill="#3a2a1c"><rect x="-10" y="170" width="20" height="12" rx="3"/><rect x="-10" y="230" width="20" height="12" rx="3"/></g>` +
+    `${sl(C, 60, 'M-88 30L-112 130L-30 116')}${stripe('M-70 96L-62 142')}<g fill="${S}">${hand(-6, 112, 80, JESSA.sh, 1.5)}</g></g>` +
+    `<g fill="#d81e3c"><circle cx="8" cy="98" r="4.5"/><circle cx="12" cy="109" r="4.5"/><circle cx="12" cy="120" r="4.5"/></g><path d="M0 60Q-2 76 0 94" fill="none" stroke="${JESSA.sh}" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>${collar(JESSA.sh)}` +
+    phone(160, -86, 8, '#22262e', S, '#d81e3c') + hd(4, HY, HS, 5, { ...JN, mouth: BITE }) +
+    `<g filter="url(#${k}f)">${helmet(6, -104, 1.72, 4, true)}</g>`;
+  return frame(k, 600, 800, '#ffd0a0',
+    tile(`${k}t`, '#d8cfc0', '#9a8e7c', 75, 75) + glow(`${k}g`, '#fff0d8', 0.75) + blur(`${k}bl`, 30) + glow(`${k}fl`, '#fff', 0.9),
+    bath(k, '#f6f2ea', '#5a3a2a', '.08') + at(268, 318, 1.12, -2, fig) +
+    steam(k, [[80, 640, 80], [520, 120, 70], [60, 180, 60], [540, 740, 70], [300, 780, 60]], 0.4), 0.5);
+}
+
+// cg1_ph_h_jules — "marco says come over"
+function hJules(): string {
+  const k = 'cg1_ph_h_jules';
+  const S = JULES.sk, T = '#c8a268';
+  const fig = `<g filter="url(#${k}f)" fill="${S}"><path d="${TM}"/><path d="M-56 206Q0 226 56 206L70 560H6L0 330L-6 560H-70Z" fill="${T}"/><path d="M-56 206Q0 226 56 206L58 232Q0 252-58 232Z" fill="#8a6a3a"/></g>` +
+    `<g fill="none" stroke="#e8f060" stroke-width="18"><path d="M-66 470Q-36 480-6 470M6 470Q36 480 66 470"/></g>` +
+    // suspenders hanging off his shoulders
+    `<g fill="none" stroke="#c8242e" stroke-width="11" stroke-linecap="round"><path d="M-40 222Q-120 250-104 360Q-90 420-52 300"/><path d="M40 222Q120 250 104 360Q90 420 52 300"/></g>` +
+    mmarks(JULES.sh, 1) + gloss('M-66 16q12-10 28-6M30 10q20-4 34 8M-22 148q8-4 14 0M8 148q8-4 14 0M-20 176q8-4 14 0', 6, 0.4) +
+    // Marco, held against his chest
+    `<g filter="url(#${k}f)">${marco(-6, 60, 0.92, -5)}</g>` +
+    `<g filter="url(#${k}f)" fill="${S}">${limb([-78, 26, 24], [-124, 130, 21], [-40, 176, 18])}${hand(-22, 180, 80, JULES.sh, 1.5)}${limb([78, 26, 24], [124, 120, 21], [30, 122, 18])}${hand(14, 122, -80, JULES.sh, 1.5)}</g>` +
+    hd(2, HY - 4, HS, 6, JULES);
+  return frame(k, 600, 800, '#ff9a70',
+    brick(`${k}t`, '#6a3024', '#2a1210') + glow(`${k}g`, '#ffb070', 0.7) + blur(`${k}bl`, 30),
+    bath(k, '', '#1c0a10', '') + `<rect x="0" y="0" width="90" height="800" fill="#1c1014"/><rect x="424" y="120" width="200" height="12" rx="6" fill="#c8ccd0"/>${towel(520, 116, 150, 190, '#f6f2ea')}` +
+    at(290, 250, 1.3, 1, fig) + steam(k, [[80, 700, 90], [540, 600, 80], [70, 120, 70], [500, 60, 60], [300, 790, 70]], 0.36), 0.55);
+}
+
+// cg1_ph_h_lace — red lace under an open trench, lighthouses watching
+function hLace(): string {
+  const k = 'cg1_ph_h_lace';
+  const S = JESSA.sk, C = '#c8a47a', D = '#8a6a44', RD = '#d81e3c';
+  const fig = hb(4, HY, HS, -6, JESSA) + `<g fill="${D}"><path d="M-70 10L-130 560H130L70 10Z"/></g>` +
+    `<g filter="url(#${k}f)" fill="${S}">${LEGS_F}<path d="${TF}"/>${BUST}${bra(RD, '#ffb0c0')}${brief(RD, '#ffb0c0')}<path d="M-79 214q-10-14-22-4M79 214q10-14 22-4" stroke="${RD}" stroke-width="3" fill="none"/></g>${marks(JESSA.sh)}` +
+    // the open coat: lapels + panels falling either side
+    `<g filter="url(#${k}f)"><path d="M-30-14Q-62-6-84 8L-62 150Q-88 260-74 420L-150 540L-120 60Q-110 10-84 8ZM30-14Q62-6 84 8L60 140Q92 250 78 420L150 540L122 60Q112 10 84 8Z" fill="${C}"/><path d="M-30-14L-58 120L-84 40ZM30-14L56 110L84 40Z" fill="${D}"/>` +
+    `${sl(C, 52, 'M-90 30L-128 150L-96 250')}<g fill="${S}">${hand(-92, 262, 20, JESSA.sh, 1.3)}</g>${sl(C, 52, 'M90 30L140 80L112-40')}</g>` +
+    `<path d="M-66 270L-140 250M70 270L146 250" stroke="${D}" stroke-width="12" stroke-linecap="round"/>` + phone(108, -72, 6, '#22262e', S, RD) + hd(4, HY, HS, -6, JN);
+  const wall = [0, 1, 2, 3, 4, 5, 6].map((i) => `<g transform="translate(${22 + i * 82} ${90 + (i % 2) * 14})"><rect x="-5" y="-5" width="70" height="88" fill="#2a1c14"/><rect width="60" height="78" fill="${SKIES[i]}"/><use href="#${k}lh"/></g>`).join('');
+  return frame(k, 600, 800, '#ffc890',
+    lg(`${k}w`, '#a89074', '#4a3a2c') + glow(`${k}g`, '#ffd9a0', 0.75) + lg(`${k}fl`, '#5a3a22', '#1c120a') + glow(`${k}fx`, '#fff', 0.95) +
+    `<g id="${k}lh"><circle cx="14" cy="20" r="7" fill="#fff" opacity=".7"/><path d="M0 50H60V78H0Z" fill="#2a5a7a"/><path d="M24 78Q30 53 60 50V78Z" fill="#3a3a34"/><path d="M34 55L37 22H44L46 55Z" fill="#f6eedc"/><path d="M35.5 38H45V46H35Z" fill="#c8323a"/><rect x="35" y="14" width="10" height="8" fill="#ffe27a"/><path d="M34 14L40 8L46 14Z" fill="#c8323a"/><path d="M35 18L0 8V28Z" fill="#ffe9a0" opacity=".4"/></g>`,
+    `<rect width="600" height="800" fill="url(#${k}w)"/>${wall}<path d="M0 620H600V800H0Z" fill="url(#${k}fl)"/><path d="M0 606H600V622H0Z" fill="#e8dcc8"/><ellipse cx="300" cy="420" rx="260" ry="400" fill="url(#${k}g)"/>` +
+    at(292, 268, 1.1, 2, fig) + `<circle cx="412" cy="188" r="60" fill="url(#${k}fx)"/><path d="M60 20L180 20L20 330L20 110Z" fill="#fff" opacity=".07"/>`, 0.5);
+}
+
+// cg1_ph_hoodie_her — his hoodie, her bathroom
+function hHoodie(): string {
+  const k = 'cg1_ph_hoodie_her';
+  const S = JESSA.sk, C = '#c8242e', D = '#8a1420';
+  const fig = hb(2, HY, HS, 8, JESSA) + `<path d="M-60 0Q0-50 60 0Q70 30 0 40Q-70 30-60 0Z" fill="${D}"/>` +
+    `<g filter="url(#${k}f)"><g fill="${S}">${LEGS_F}<path d="M-15-44H15V10H-15Z"/></g><path d="${BIG}" fill="${C}"/>${sl(C, 60, 'M-90 34L-130 150L-60 60')}${sl(C, 60, 'M90 34L150 70L130-50')}` +
+    `<path d="M-30-14Q0 36 30-14L46 0Q0 60-46 0Z" fill="${D}"/><path d="M-50 226H50V290H-50Z" fill="${D}" opacity=".6"/><path d="M-98 318Q0 340 98 318" fill="none" stroke="${D}" stroke-width="12"/></g>` +
+    `<path d="M-10 40V130M10 40V120" stroke="#f4ecdc" stroke-width="4" stroke-linecap="round"/><path d="M-60 90Q-30 110 0 96Q30 110 60 90" fill="none" stroke="${D}" stroke-width="3" opacity=".7"/>` +
+    `<text y="188" font-size="27" ${SANS} font-weight="700" text-anchor="middle" fill="#f4ecdc" letter-spacing="1">ENGINE 9</text>` +
+    phone(128, -76, 8, '#22262e', C) + hd(2, HY, HS, 8, { ...JN, mouth: BITE, lid: 2 });
+  return frame(k, 600, 800, '#8fd0ff',
+    tile(`${k}t`, '#2a3a44', '#141c22', 75, 75) + glow(`${k}g`, '#8fd0ff', 0.5) + blur(`${k}bl`, 30) + glow(`${k}fx`, '#fff', 0.95),
+    bath(k, '', '#0a0c14', '.06') + `<rect x="0" y="640" width="600" height="160" fill="#10161c"/><path d="M0 640H600" stroke="#4a5a68" stroke-width="3"/>` +
+    // your stuff on her shelf: the lighthouse soap dish does not help
+    `<rect x="420" y="300" width="200" height="12" fill="#4a5a68"/>${shaker(470, 268, 1.1)}<rect x="520" y="250" width="34" height="50" rx="6" fill="#e87aa8"/><rect x="528" y="236" width="18" height="16" fill="#f4f4f4"/>` +
+    at(280, 296, 1.14, -2, fig) + `<circle cx="428" cy="206" r="64" fill="url(#${k}fx)"/>`, 0.6);
+}
+
+// cg1_ph_h_tryon — "pick one. or don't."
+function hTryon(): string {
+  const k = 'cg1_ph_h_tryon';
+  const S = JESSA.sk;
+  const sets: [string, string, boolean][] = [['#16121a', '#6a5a7a', true], ['#128a5a', '#8af0c0', false], ['#f6f2ea', '#c8b8a8', false]];
+  const bag = (x: number, y: number, r: number): string => `<g transform="translate(${x} ${y}) rotate(${r})"><path d="M-22-50Q0-90 22-50" fill="none" stroke="#14121a" stroke-width="3"/><rect x="-46" y="-50" width="92" height="100" fill="#f8d8e0"/><rect x="-46" y="-50" width="92" height="14" fill="#14121a"/><text ${SANS} font-weight="700" text-anchor="middle" fill="#14121a" font-size="18"><tspan x="0" y="4">LACE</tspan><tspan x="0" y="26">THEORY</tspan></text></g>`;
+  const panel = (i: number): string => {
+    const [c, t, body] = sets[i];
+    const tilt = [-4, 3, -2][i], X = i * 202;
+    const H = `transform="translate(2 ${HY}) rotate(${tilt}) scale(${HS}) translate(-100 -85)"`;
+    const fig = `<use href="#${k}hb" ${H}/><g filter="url(#${k}f)"><use href="#${k}bd"/>${bra(c, t)}${brief(c, t)}` + (body ? `<path d="M-60 104C-58 120-42 126-38 146C-40 176-79 194-81 240H81C79 194 40 176 38 146C42 126 58 120 60 104Q0 122-60 104Z" fill="${c}"/>` : '') +
+      `${sl(S, 28, i === 1 ? 'M-62 24L-110 100L-70 200M62 24L120 70L104-20' : 'M-62 24L-96 110L-84 210M62 24L120 70L104-20')}</g><use href="#${k}mk"/><use href="#${k}hf" ${H}/><use href="#${k}ph"/>`;
+    return `<g clip-path="url(#${k}c${i})"><rect x="${X}" width="196" height="800" fill="url(#${k}w)"/><ellipse cx="${X + 98}" cy="360" rx="130" ry="320" fill="url(#${k}g)"/>` +
+      `<path d="M${X} 590H${X + 196}V800H${X}Z" fill="#7a3a5a"/>` +
+      at(X + [86, 98, 96][i], 250, 0.68, 0, fig) + (i !== 1 ? bag(X + [144, 0, 52][i], [724, 0, 730][i], [5, 0, -6][i]) : '') + `<circle cx="${X + 24}" cy="34" r="16" fill="#14121a" opacity=".6"/>${tx(X + 24, 41, 19, String(i + 1), '#fff')}</g>`;
+  };
+  return frame(k, 600, 800, '#ffc0d0',
+    lg(`${k}w`, '#c89aa8', '#4a2a44') + glow(`${k}g`, '#ffe0d8', 0.7) + [0, 1, 2].map((i) => `<clipPath id="${k}c${i}"><rect x="${i * 202}" width="196" height="800"/></clipPath>`).join('') +
+    `<g id="${k}hb">${JESSA.back ?? ''}</g><g id="${k}hf">${face({ ...JN, lite: true })}</g><g id="${k}bd" fill="${S}">${LEGS_F}<path d="${TF}"/>${BUST}</g><g id="${k}mk">${marks(JESSA.sh)}</g><g id="${k}ph">${phone(104, -56, 6, '#22262e', S, '#d81e3c')}</g>`,
+    `<rect width="600" height="800" fill="#f8f4f0"/>${panel(0)}${panel(1)}${panel(2)}`, 0.35);
+}
+
+// cg1_ph_h_shirt — the morning after, in his station tee
+function hShirt(): string {
+  const k = 'cg1_ph_h_shirt';
+  const S = JESSA.sk, C = '#22386a', D = '#101c3a';
+  const MESS: Face = { ...JN, lid: 2.4, mouth: lips('#b8485a', '#6e0a20', true), under: BLUSH,
+    front: JN.front + '<path d="M66 62Q52 54 50 40M76 44Q68 32 72 20M126 44Q138 34 136 22M136 68Q150 64 154 50" fill="none" stroke="#1e1418" stroke-width="6" stroke-linecap="round"/>' };
+  const fig = hb(2, HY, HS, -7, JESSA) +
+    `<g filter="url(#${k}f)"><g fill="${S}">${LEGS_F}<path d="M-15-44H15V10H-15Z"/>${sl(S, 28, 'M-96 60L-118 150L-50 140')}${sl(S, 28, 'M96 60L146 90L128-36')}</g><path d="${BIG}" fill="${C}"/>${sl(C, 58, 'M-88 30L-104 84')}${sl(C, 58, 'M88 30L112 66')}` +
+    `<path d="M-30-14Q0 30 30-14L40-6Q0 46-40-6Z" fill="${D}"/></g><path d="M-60 92Q-30 112 0 98Q30 112 60 92M-70 200q30 40 20 110M60 210q-20 50-6 110" fill="none" stroke="${D}" stroke-width="4" stroke-linecap="round" opacity=".7"/>` +
+    crest(48, 70, '#c8a85a', 0.9) + collar(JESSA.sh) +
+    // coffee
+    `<g transform="translate(-40 140)"><path d="M26-16Q52-16 52 6Q52 28 26 26" fill="none" stroke="#f4ecdc" stroke-width="9"/><path d="M-30-30H30L24 38H-24Z" fill="#f4ecdc"/><ellipse cy="-30" rx="30" ry="7" fill="#3a1c0c"/></g><g fill="${S}">${hand(-50, 150, 70, JESSA.sh, 1.3)}</g>` +
+    phone(126, -62, 8, '#22262e', S, '#d81e3c') + hd(2, HY, HS, -7, MESS);
+  return frame(k, 600, 800, '#ffe0b0',
+    brick(`${k}t`, '#8a4630', '#3a1c16') + glow(`${k}g`, '#fff0d0', 0.8) + blur(`${k}bl`, 30) + lg(`${k}fl`, '#8a6440', '#3a2616') + fade(`${k}l`, '#fff4d8', 0.45, 0, 1, 0.5),
+    bath(k, '', '#3a1c16', '') + `<path d="M0 640H600V800H0Z" fill="url(#${k}fl)"/><path d="M-60 0H200L20 800H-240Z" fill="url(#${k}l)"/><path d="M260 0H340L160 800H80Z" fill="url(#${k}l)" opacity=".6"/>` +
+    `<rect x="430" y="150" width="200" height="12" rx="6" fill="#c8ccd0"/>${towel(520, 146, 150, 200)}` +
+    at(270, 290, 1.12, 1, fig) + `<ellipse cx="480" cy="778" rx="80" ry="12" fill="#000" opacity=".35"/><g filter="url(#${k}f)">${marco(480, 650, 0.82, 6)}</g>` +
+    `<path d="M60 20L180 20L20 330L20 110Z" fill="#fff" opacity=".07"/>`, 0.45);
+}
+
+// cg1_ph_h_towel — "shower's free. so am I."
+function hTowel(): string {
+  const k = 'cg1_ph_h_towel';
+  const S = JULES.sk;
+  const WET: Face = { ...JULES, front: '<path d="M63 92C55 40 82 26 102 27C128 28 145 46 137 92C134 76 132 66 126 58Q112 70 104 56Q94 72 84 58Q76 70 70 64C66 72 65 80 63 92Z" fill="#14100e"/><path d="M76 50Q94 34 122 40" fill="none" stroke="#8a9aa8" stroke-width="2.2" stroke-linecap="round"/><g fill="#cfe8f8"><circle cx="72" cy="84" r="2"/><circle cx="128" cy="96" r="2"/><circle cx="84" cy="70" r="1.6"/></g>' };
+  const fig = `<g filter="url(#${k}f)" fill="${S}">${limb([78, 26, 24], [150, -50, 21], [196, -170, 17])}${hand(200, -190, 10, JULES.sh, 1.6)}${limb([-78, 26, 24], [-108, 130, 21], [-84, 236, 17])}<path d="${TM}"/>` +
+    `<path d="M-58 212Q0 244 58 216L66 470H-66Z" fill="#fbf8f2"/><path d="M-58 212Q0 244 58 216L59 236Q0 264-59 232Z" fill="#d8d0c4"/><path d="M-30 250Q-40 360-28 470M20 250q14 100 0 220M-36 236l-10 40l22-8Z" fill="none" stroke="#c8beb0" stroke-width="4"/></g>` +
+    `<g fill="${S}">${hand(-80, 250, 6, JULES.sh, 1.5)}</g>` + mmarks(JULES.sh, 1) + gloss('M-66 16q12-10 28-6M30 10q20-4 34 8M-40 60q14-8 30 0M10 60q16-8 30 0M-20 112q8-4 14 0M8 112q8-4 14 0M-20 140q8-4 14 0M8 140q8-4 14 0', 6, 0.45) +
+    `<g fill="#cfe8f8" opacity=".85">${[[-40, 30], [24, 50], [-12, 96], [36, 130], [-30, 160], [10, 190], [60, 60], [-60, 90]].map(([x, y]) => `<path d="M${x} ${y}q4 8 0 12q-4-4 0-12Z"/>`).join('')}</g>` +
+    `<path d="M-52 214Q-34 236-18 252M52 214Q34 236 18 252" fill="none" stroke="${JULES.sh}" stroke-width="2.6" stroke-linecap="round" opacity=".8"/>` + hd(4, HY, HS, 7, WET);
+  return frame(k, 600, 800, '#ffb070',
+    tile(`${k}t`, '#3a4a50', '#1a2428', 75, 75) + glow(`${k}g`, '#ffd0a0', 0.75) + blur(`${k}bl`, 30) + lg(`${k}d`, '#3a2418', '#140c08'),
+    bath(k, '', '#1a1014', '') +
+    // the doorframe he is leaning on
+    `<rect x="496" y="-10" width="120" height="820" fill="url(#${k}d)"/><path d="M496-10V810" stroke="#8a5a34" stroke-width="5"/><rect x="0" y="-10" width="40" height="820" fill="url(#${k}d)"/>` +
+    at(270, 292, 1.26, -3, fig) + `<rect x="40" y="560" width="150" height="10" rx="5" fill="#c8ccd0"/>${towel(112, 556, 130, 170)}` +
+    steam(k, [[90, 220, 90], [470, 620, 90], [120, 760, 80], [420, 80, 70], [300, 800, 80], [560, 300, 50]], 0.42), 0.55);
 }
 
 export const caught1Art: Record<string, string> = {
@@ -803,4 +949,11 @@ export const caught1Art: Record<string, string> = {
   cg1_ph_pancakes: phPancakes(),
   cg1_ph_easels: phEasels(),
   cg1_ph_video: phVideo(),
+  cg1_ph_h_helmet: hHelmet(),
+  cg1_ph_h_jules: hJules(),
+  cg1_ph_h_lace: hLace(),
+  cg1_ph_hoodie_her: hHoodie(),
+  cg1_ph_h_tryon: hTryon(),
+  cg1_ph_h_shirt: hShirt(),
+  cg1_ph_h_towel: hTowel(),
 };
