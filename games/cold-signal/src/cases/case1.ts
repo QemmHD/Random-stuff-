@@ -52,32 +52,37 @@ export const case1: CaseFile = {
   threads: [
     {
       id: 'th_theo', contact: 'theo', messages: [
-        { from: 'them', text: 'you coming to the anchor friday?', t: '2026-10-01T19:02' },
+        { from: 'them', text: 'you coming to the anchor friday? dave says if you bail again he\'s putting your face on the dartboard', t: '2026-10-01T19:02' },
         { from: 'me', text: 'maybe. lab stuff is getting weird', t: '2026-10-01T19:20' },
-        { from: 'them', text: "it's always lab stuff with you", t: '2026-10-01T19:21' },
-        { from: 'them', text: "seriously? you're just leaving?", t: '2026-10-03T21:44' },
-        { from: 'them', text: "you've been weird for two weeks. who is he", t: '2026-10-03T21:45' },
-        { from: 'me', text: "it's not like that. I can't explain yet. please just trust me", t: '2026-10-03T21:47' },
-        { from: 'them', text: "you'll regret walking out on me Mara", t: '2026-10-03T21:49', clue: 'theo_threat' },
-        { from: 'them', text: 'im sorry. that came out wrong. call me', t: '2026-10-04T00:31' },
+        { from: 'them', text: "it's always lab stuff with you. i'm basically dating a fucking sea cucumber", t: '2026-10-01T19:21' },
+        { from: 'me', text: 'sea cucumbers can eject their own organs to escape. something to think about', t: '2026-10-01T19:24' },
+        { from: 'them', text: 'cool cool. see you friday then 😐', t: '2026-10-01T19:25' },
+        { from: 'them', text: "seriously? you're just fucking leaving? we JUST got drinks", t: '2026-10-03T21:44' },
+        { from: 'them', text: "you've been weird as shit for two weeks. who is he", t: '2026-10-03T21:45' },
+        { from: 'me', text: "it's not like that. there is no he. I can't explain yet. please just trust me", t: '2026-10-03T21:47' },
+        { from: 'them', text: "you'll fucking regret walking out on me Mara", t: '2026-10-03T21:49', clue: 'theo_threat' },
+        { from: 'them', text: 'im sorry. that came out so wrong. im an asshole. call me', t: '2026-10-04T00:31' },
         { from: 'them', text: 'mara?', t: '2026-10-04T08:10' },
         { from: 'them', text: "june says you didn't come home. please", t: '2026-10-05T11:42' },
-        { from: 'them', text: 'the police talked to me for 3 hours. i was at the anchor all night. everyone saw me. where ARE you', t: '2026-10-06T19:15' },
+        { from: 'them', text: 'the police talked to me for 3 hours. i was at the anchor all night. everyone saw me. the bartender literally cut me off. where ARE you', t: '2026-10-06T19:15' },
       ],
     },
     {
       id: 'th_june', contact: 'june', messages: [
         { from: 'them', text: "rent's due tuesday btw 🙃", t: '2026-09-28T10:04' },
         { from: 'me', text: 'on it', t: '2026-09-28T10:30' },
-        { from: 'me', text: "I need to tell you something and you can't freak out", t: '2026-10-02T22:10' },
-        { from: 'them', text: '...ok?', t: '2026-10-02T22:10' },
+        { from: 'them', text: "also someone ate my entire hummus and left the empty tub in the fridge like a goddamn serial killer leaving a calling card", t: '2026-09-28T10:32' },
+        { from: 'me', text: 'it was a hummus emergency. I will replace it. with the good one', t: '2026-09-28T10:35' },
+        { from: 'them', text: 'the good one or i tell theo you snore', t: '2026-09-28T10:35' },
+        { from: 'me', text: "I need to tell you something and you can't freak out. like actually can't", t: '2026-10-02T22:10' },
+        { from: 'them', text: '...ok? are you pregnant. is it theo\'s. is it the sea cucumber guy', t: '2026-10-02T22:10' },
         { from: 'me', text: 'Pryce changed the Lab B numbers. the lead readings. I have the originals', t: '2026-10-02T22:12' },
-        { from: 'them', text: "mara that's insane. who else knows", t: '2026-10-02T22:13' },
+        { from: 'them', text: "mara what the fuck. that's insane. who else knows", t: '2026-10-02T22:13' },
         { from: 'me', text: 'a reporter. and maybe pryce knows i know', t: '2026-10-02T22:15' },
-        { from: 'them', text: "if things get bad, aunt Rosa's cabin at Larch Hollow. spare key is under the heron. nobody goes up there in october", t: '2026-10-03T17:30', clue: 'june_cabin', deletedUntil: 'recovered:msgfrag' },
-        { from: 'me', text: "you're the best. if I go dark, don't panic. and don't tell theo.", t: '2026-10-03T17:33', deletedUntil: 'recovered:msgfrag' },
-        { from: 'them', text: 'mara call me please', t: '2026-10-04T07:58' },
-        { from: 'them', text: "they're asking about you. I said nothing.", t: '2026-10-06T21:20' },
+        { from: 'them', text: "ok i've been thinking. if shit gets bad, aunt Rosa's cabin at Larch Hollow. spare key is under the heron. nobody goes up there in october", t: '2026-10-03T17:30', clue: 'june_cabin', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "you're the best. if I go dark, don't panic. and don't tell theo. he'd show up with a six-pack and a flashlight and get us both killed.", t: '2026-10-03T17:33', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: 'mara call me please. you didn\'t come home. your bed hasn\'t been touched', t: '2026-10-04T07:58' },
+        { from: 'them', text: "they're asking about you. I said nothing. I'm a fucking vault. please be ok", t: '2026-10-06T21:20' },
       ],
     },
     {
@@ -91,20 +96,20 @@ export const case1: CaseFile = {
     },
     {
       id: 'th_pryce', contact: 'pryce', messages: [
-        { from: 'them', text: 'Mara, please see me about the Lab B batch before you submit anything.', t: '2026-09-30T08:45' },
+        { from: 'them', text: 'Mara, please see me about the Lab B batch before you submit anything. Enthusiasm is not a substitute for method.', t: '2026-09-30T08:45' },
         { from: 'me', text: 'I already compared them to the raw instrument logs, Alan.', t: '2026-09-30T09:02' },
-        { from: 'them', text: 'Then you know how easy it is to misread them. My office. Today.', t: '2026-09-30T09:03' },
+        { from: 'them', text: 'Then you know how easy it is to misread them. Twenty years of instruments, Mara. Two of yours. My office. Today.', t: '2026-09-30T09:03' },
         { from: 'them', text: "I've thought about it. You're right. Meet me at Gull Point, 11:30. Bring the samples and we'll go to the board together. No phones, no lawyers, just us.", t: '2026-10-03T22:41', clue: 'pryce_lure', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: 'ok. 11:30.', t: '2026-10-03T22:44', deletedUntil: 'recovered:msgfrag' },
-        { from: 'them', text: 'Mara, you missed our 9am. Please let the department know you are safe.', t: '2026-10-04T10:02' },
+        { from: 'them', text: 'Mara, you missed our 9am. Please let the department know you are safe. Punctuality is also a professional skill.', t: '2026-10-04T10:02' },
       ],
     },
     {
       id: 'th_sam', contact: 'sam', messages: [
-        { from: 'them', text: 'Got your summary. If the lead numbers are real, this is front page. Can we meet?', t: '2026-09-29T14:20', clue: 'sam_journalist' },
+        { from: 'them', text: 'Holy shit, Mara. Got your summary. If the lead numbers are real, this is front page. Can we meet?', t: '2026-09-29T14:20', clue: 'sam_journalist' },
         { from: 'me', text: "Oct 5. I'll bring the originals.", t: '2026-09-29T14:31' },
-        { from: 'them', text: 'Be careful who you tell.', t: '2026-09-29T14:32' },
-        { from: 'them', text: "Mara? You didn't show. I'm worried. I've gone to the police.", t: '2026-10-05T13:10' },
+        { from: 'them', text: 'Be careful who you tell. Small towns, big money, and men who think they\'re untouchable. Classic recipe.', t: '2026-09-29T14:32' },
+        { from: 'them', text: "Mara? You didn't show. I've been sitting in the Dockside for an hour drinking shit coffee. I'm worried. I've gone to the police.", t: '2026-10-05T13:10' },
       ],
     },
     {
@@ -112,6 +117,8 @@ export const case1: CaseFile = {
         { from: 'them', text: 'Stop digging in other people\'s water.', t: '2026-10-02T23:12', clue: 'burner_threat' },
         { from: 'me', text: 'who is this', t: '2026-10-02T23:14' },
         { from: 'them', text: 'Someone who knows where you park.', t: '2026-10-02T23:15', clue: 'burner_threat' },
+        { from: 'me', text: 'cool. go fuck yourself, someone', t: '2026-10-02T23:16' },
+        { from: 'them', text: 'Cute. Keep that energy, college girl.', t: '2026-10-02T23:19' },
         { from: 'them', text: 'Saw you at the station tonight. Go home Mara.', t: '2026-10-03T21:58', clue: 'burner_threat' },
       ],
     },
@@ -146,7 +153,7 @@ export const case1: CaseFile = {
     { id: 'm_invite', from: 'Lena Ortiz', fromAddr: 'l.ortiz@harrowmarine.org', to: 'Dr. A. Pryce; M. Quill', subject: 'Site visit — Blackrock Marina, Sept 21', t: '2026-09-18T11:15', folder: 'inbox', clue: 'reyes_number', body: 'Hi both,\n\nConfirming Saturday\'s site visit at the Blackrock Marina pad.\n\nAttendees: Dr. Alan Pryce, Mara Quill, Cal Reyes (Blackrock — site lead)\nMeet: north gate, 10:00\nDay-of contact: Cal Reyes, cell (555) 014-7720\n\nHard hats provided.\n\nLena Ortiz\nAdmin, Harrow Marine Station' },
     { id: 'm_permit', from: 'Blackrock Development', fromAddr: 'news@blackrockdev.com', to: 'Harrow Bay Partners', subject: '🎉 Marina permit APPROVED', t: '2026-09-24T09:00', folder: 'inbox', clue: 'permit', body: "Great news, neighbors!\n\nThe Blackrock Marina has received final environmental approval, thanks to the independent water-quality review completed by our partners at Harrow Marine Station.\n\nConstruction resumes Monday. 140 slips. A new Harrow.\n\n— The Blackrock Team" },
     { id: 'm_suspend', from: 'Dr. Alan Pryce', fromAddr: 'a.pryce@harrowmarine.org', to: 'Mara Quill', subject: 'Lab B access', t: '2026-10-01T16:30', folder: 'inbox', body: 'Mara,\n\nEffective today your access to Lab B is suspended pending a routine review of the HB-series handling procedures.\n\nThis is standard. Please do not remove any materials from the station.\n\nAlan' },
-    { id: 'm_tosam', from: 'Mara Quill', fromAddr: 'mara.quill@inboxly.com', to: 'Sam Hollis', subject: 'thursday', t: '2026-10-03T21:52', folder: 'sent', body: "Sam — change of plan. I'm getting the vials tonight while the lab's empty. If you don't hear from me by Monday, talk to June. Only June.\n\nM" },
+    { id: 'm_tosam', from: 'Mara Quill', fromAddr: 'mara.quill@inboxly.com', to: 'Sam Hollis', subject: 'thursday', t: '2026-10-03T21:52', folder: 'sent', body: "Sam — change of plan. I'm getting the vials tonight while the lab's empty. Yes, I know this is exactly how the girl dies in every podcast. If you don't hear from me by Monday, talk to June. Only June.\n\nM" },
     { id: 'm_spam', from: 'Harbor Hardware', fromAddr: 'deals@harborhardware.com', to: 'Mara Quill', subject: 'Your receipt — DRY BAG 20L ORANGE', t: '2026-10-03T21:51', folder: 'trash', clue: 'drybag', body: 'Thanks for shopping Harbor Hardware!\n\n1 × DRY BAG 20L ORANGE   $34.99\n\nPaid: card ••4417\nStore: Harbor Row\n21:51' },
   ],
 
@@ -164,9 +171,9 @@ export const case1: CaseFile = {
 
   voicemails: [
     { id: 'vm_mom', contact: 'mom', t: '2026-10-08T19:31', duration: '0:22', voice: { pitch: 1.1, rate: 0.92, female: true }, transcript: "Mara, it's Mom. The police say there's no sign of — they keep saying 'the tide.' I don't believe it. You'd never go out on those rocks at night. Please call me. Biscuit sleeps by the door." },
-    { id: 'vm_theo', contact: 'theo', t: '2026-10-04T00:33', duration: '0:18', voice: { pitch: 0.8, rate: 1.05, female: false }, clue: 'theo_alibi', transcript: "Hey. It's me. I'm still at the Anchor, I'm — I'm sorry, okay? I shouldn't have said that. I was drunk and stupid. Just... call me. Please." },
-    { id: 'vm_pryce', contact: 'pryce', t: '2026-10-02T16:20', duration: '0:31', voice: { pitch: 0.7, rate: 0.9, female: false }, clue: 'pryce_pressure', transcript: "Mara, it's Alan. I think you've misread the HB-17 logs — the instrument was miscalibrated that week. Before you talk to anyone outside the department, come and see me. Your career is... look. Let's just talk. Don't do anything you can't undo." },
-    { id: 'vm_pocket', contact: 'burner', t: '2026-10-03T23:05', duration: '0:27', voice: { pitch: 0.6, rate: 1.0, female: false }, clue: 'pocket_dial', deletedUntil: 'recovered:voice', transcript: "[wind noise] ...no, she's heading for the point now. Alan says she's bringing the vials. [footsteps] ...I'll wait on the path. Nobody's out here this time of — [rustle] — is this thing on? [call ends]" },
+    { id: 'vm_theo', contact: 'theo', t: '2026-10-04T00:33', duration: '0:18', voice: { pitch: 0.8, rate: 1.05, female: false }, clue: 'theo_alibi', transcript: "Hey. It's me. I'm still at the Anchor, I'm — [glass clinks] Dave, shut up, I'm on the phone — I'm sorry, okay? I shouldn't have said that. I was drunk and being a total asshole. I'm still drunk. Less of an asshole. Just... call me. Please." },
+    { id: 'vm_pryce', contact: 'pryce', t: '2026-10-02T16:20', duration: '0:31', voice: { pitch: 0.7, rate: 0.9, female: false }, clue: 'pryce_pressure', transcript: "Mara, it's Alan. I think you've misread the HB-17 logs — the instrument was miscalibrated that week, as anyone with a little more experience would have noticed. Before you talk to anyone outside the department, come and see me. Your career is... look. Let's just talk. Don't do anything you can't undo." },
+    { id: 'vm_pocket', contact: 'burner', t: '2026-10-03T23:05', duration: '0:27', voice: { pitch: 0.6, rate: 1.0, female: false }, clue: 'pocket_dial', deletedUntil: 'recovered:voice', transcript: "[wind noise] ...no, she's heading for the point now. Alan says she's bringing the vials. [footsteps] ...I'll wait on the path. Nobody's out here this time of — [rustle] — shit, is this thing on? Fuckin' touchscreens — [call ends]" },
   ],
 
   map: {
@@ -204,9 +211,9 @@ export const case1: CaseFile = {
 
   glimpse: [
     { id: 'g_gazette', author: 'sam', photo: 'ph_selfie', caption: 'HAVE YOU SEEN MARA QUILL? 24, last seen Oct 3 near Gull Point. Call Harrow PD with any information.', t: '2026-10-08T08:00', likes: 2304, comments: [{ author: 'mom', text: 'Please share. Please.' }, { author: 'june', text: '❤️' }] },
-    { id: 'g_anchor', author: 'june', photo: 'ph_anchor', caption: "someone's having a night 🙄 @theo.v", t: '2026-10-03T23:47', likes: 31, comments: [{ author: 'theo', text: 'delete this' }, { author: 'june', text: 'never' }], clue: 'theo_alibi' },
-    { id: 'g_tide', author: 'me', photo: 'ph_tidepool', caption: 'field day 🦀 the pools are full of life this year. for now.', t: '2026-09-14T09:00', likes: 88, comments: [{ author: 'pryce', text: 'Lovely specimen.' }] },
-    { id: 'g_selfie', author: 'me', photo: 'ph_selfie', caption: 'low tide, high spirits 🌊', t: '2026-08-15T18:00', likes: 142, comments: [{ author: 'june', text: 'my favorite human' }, { author: 'theo', text: '😍' }] },
+    { id: 'g_anchor', author: 'june', photo: 'ph_anchor', caption: "someone's having a night 🙄 @theo.v four beers deep and explaining his feelings to the bartender", t: '2026-10-03T23:47', likes: 31, comments: [{ author: 'theo', text: 'delete this' }, { author: 'june', text: 'never' }, { author: 'theo', text: 'june i swear to god' }, { author: 'june', text: 'framing it. going on the fridge next to the hummus memorial' }], clue: 'theo_alibi' },
+    { id: 'g_tide', author: 'me', photo: 'ph_tidepool', caption: 'field day 🦀 the pools are full of life this year. for now.', t: '2026-09-14T09:00', likes: 88, comments: [{ author: 'pryce', text: 'Lovely specimen. Pisaster ochraceus, for the non-specialists.' }, { author: 'june', text: 'nerd' }] },
+    { id: 'g_selfie', author: 'me', photo: 'ph_selfie', caption: 'low tide, high spirits 🌊', t: '2026-08-15T18:00', likes: 142, comments: [{ author: 'june', text: 'my favorite human' }, { author: 'theo', text: '😍' }, { author: 'june', text: 'theo stop thirsting in the comments, her mom follows her' }] },
   ],
 
   bank: {
@@ -330,12 +337,12 @@ export const case1: CaseFile = {
   ],
 
   events: [
-    { id: 'e_burner', kind: 'text', when: ['unlocked'], minPins: 5, delayMs: 3500, thread: 'th_burner', contact: 'burner', text: "Whoever has Mara's phone. Put it down and walk away." },
-    { id: 'e_h_burner', kind: 'handler', when: ['event:e_burner'], delayMs: 5000, text: "That number just went live again. Someone knows this phone was recovered. Keep going — and keep pinning." },
-    { id: 'e_h_lab', kind: 'handler', when: ['pinned:lab_data'], delayMs: 2500, text: '48 versus 4.8. That\'s not a typo, that\'s a motive. Who signed that report?' },
-    { id: 'e_mara', kind: 'text', when: ['recovered:msgfrag', 'note:n_insurance'], delayMs: 7000, thread: 'th_mara', contact: 'mara2', text: "if this is the police… it's me. M. I'm okay. I couldn't trust anyone from the station. the dry bag is safe. ask June — only June.", clue: 'mara_alive' },
-    { id: 'e_h_mara', kind: 'handler', when: ['event:e_mara'], delayMs: 4500, text: "A new number just texted the phone. Read it before you do anything else — and don't reply." },
-    { id: 'e_h_ready', kind: 'handler', when: ['unlocked'], minPins: 10, delayMs: 3000, text: "Your board's getting heavy. When you can back every answer with evidence, open the Case Report." },
+    { id: 'e_burner', kind: 'text', when: ['unlocked'], minPins: 5, delayMs: 3500, thread: 'th_burner', contact: 'burner', text: "Whoever the fuck has Mara's phone. Put it down and walk away." },
+    { id: 'e_h_burner', kind: 'handler', when: ['event:e_burner'], delayMs: 5000, text: "That number just went live again. Someone knows this phone was recovered, and they're shitting bricks about it. Good. Scared people make mistakes. Keep going — and keep pinning." },
+    { id: 'e_h_lab', kind: 'handler', when: ['pinned:lab_data'], delayMs: 2500, text: "48 versus 4.8. That's not a typo, that's a motive. Nobody fat-fingers a decimal the week before a permit gets signed. Who signed that report?" },
+    { id: 'e_mara', kind: 'text', when: ['recovered:msgfrag', 'note:n_insurance'], delayMs: 7000, thread: 'th_mara', contact: 'mara2', text: "if this is the police… it's me. M. I'm okay. cold as shit, but okay. I couldn't trust anyone from the station. the dry bag is safe. ask June — only June.", clue: 'mara_alive' },
+    { id: 'e_h_mara', kind: 'handler', when: ['event:e_mara'], delayMs: 4500, text: "A new number just texted the phone. Read it before you do anything else — and don't reply. I mean it. Thumbs off the glass." },
+    { id: 'e_h_ready', kind: 'handler', when: ['unlocked'], minPins: 10, delayMs: 3000, text: "Your board's getting heavy. When you can back every answer with evidence, open the Case Report. Don't make me walk a hunch into the DA's office — she eats those for breakfast." },
   ],
 
   hints: [
@@ -352,7 +359,7 @@ export const case1: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'You have what you need. Open the Case Report and back every answer with a pinned clue.' },
   ],
 
-  handlerIntro: "You're on. Phone's live, battery's whatever it is. Anything you pin goes to the board — I'll ping you if I see something. Start with the lock screen.",
+  handlerIntro: "You're on. Phone's live, battery's whatever the hell it is, and it smells like a crab died in it. Anything you pin goes to the board — I'll ping you if I see something worth a damn. Start with the lock screen.",
 
   epilogue: {
     solved: [
