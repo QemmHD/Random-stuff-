@@ -63,18 +63,19 @@ export const case2: CaseFile = {
   threads: [
     {
       id: 'th_cass', contact: 'cass', messages: [
-        { from: 'them', text: 'sent u $60 for generator gas 🔋 ok ok stop saying thank you', t: '2026-09-19T14:02' },
-        { from: 'them', text: '104.3!!! we are legit-ish now 🦉 ok ok going to bed', t: '2026-10-03T02:40' },
+        { from: 'them', text: 'sent u $60 for generator gas 🔋 GAS jo. not weed. ok ok stop saying thank you', t: '2026-09-19T14:02' },
+        { from: 'them', text: '104.3!!! we are legit-ish now 🦉 still a felony but a classier felony. ok ok going to bed', t: '2026-10-03T02:40' },
+        { from: 'me', text: 'go to bed you absolute gremlin. wash the paint off first, you look like a crime scene', t: '2026-10-03T02:42' },
         { from: 'me', text: 'use my login for the archive upload, pw is on the fridge', t: '2026-10-08T18:40' },
         { from: 'them', text: 'ok ok ty 💛', t: '2026-10-08T18:41' },
-        { from: 'me', text: 'Rhea from Hearth Audio just congratulated me on SIGNING. Cass what is this', t: '2026-10-10T08:02' },
+        { from: 'me', text: 'Rhea from Hearth Audio just congratulated me on SIGNING. Cass what the fuck is this', t: '2026-10-10T08:02' },
         { from: 'them', text: "ok ok don't freak. i was going to tell you. they wanted an answer by friday and you'd just say no like always", t: '2026-10-10T08:15' },
         { from: 'me', text: "because the answer is NO. it's not mine to sell. it's 9 years of people calling at 3am", t: '2026-10-10T08:16' },
-        { from: 'them', text: "it's 40k Jo. we broadcast off a car battery in a building that's getting knocked down", t: '2026-10-10T08:20' },
-        { from: 'me', text: "where's the money cass", t: '2026-10-10T08:21' },
+        { from: 'them', text: "it's 40k Jo. we broadcast off a car battery in a building that's getting knocked down. we eat gas station burritos for dinner. i'm tired", t: '2026-10-10T08:20' },
+        { from: 'me', text: "where's the money cass. and don't bullshit me", t: '2026-10-10T08:21' },
         { from: 'them', text: "it's in an account for the show. i'll explain. pls", t: '2026-10-10T08:40' },
         { from: 'me', text: 'you have till friday to fix it or I say it on air', t: '2026-10-12T15:00' },
-        { from: 'them', text: "got a cold 🤧 doing my segment from bed tonight. i'll ring the line at 1:45 ok ok", t: '2026-10-16T16:40', clue: 'cass_sick' },
+        { from: 'them', text: "got a cold 🤧 snot everywhere, very glamorous. doing my segment from bed tonight. i'll ring the line at 1:45 ok ok", t: '2026-10-16T16:40', clue: 'cass_sick' },
         { from: 'me', text: 'fine. after the show we talk. off air.', t: '2026-10-16T16:52' },
         { from: 'them', text: "i'm not sick. i'm downstairs. we need to talk about hearth before you say anything on air", t: '2026-10-17T01:22', clue: 'cass_downstairs', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: 'you signed my name Cass. you took 40 grand that was never yours', t: '2026-10-17T01:24', clue: 'confront', deletedUntil: 'recovered:msgfrag' },
@@ -86,10 +87,10 @@ export const case2: CaseFile = {
     },
     {
       id: 'th_ada', contact: 'ada', messages: [
-        { from: 'them', text: "mom wants to know if you're coming sunday. I said yes. you're coming sunday", t: '2026-10-14T19:15' },
-        { from: 'me', text: 'yes boss', t: '2026-10-14T19:40' },
-        { from: 'them', text: "have a good show 🦉 i'll listen on my break (night shift again)", t: '2026-10-16T22:10' },
-        { from: 'me', text: 'dedicating the 3am song to the nurses of St B', t: '2026-10-16T22:12' },
+        { from: 'them', text: "mom wants to know if you're coming sunday. I said yes. she's making the pot roast. the dry one. you're coming sunday and you're eating it and you're smiling", t: '2026-10-14T19:15' },
+        { from: 'me', text: 'yes boss. bringing hot sauce. a lot of hot sauce', t: '2026-10-14T19:40' },
+        { from: 'them', text: "have a good show 🦉 i'll listen on my break (night shift again. a man already threw up on my shoes. living the dream)", t: '2026-10-16T22:10' },
+        { from: 'me', text: 'dedicating the 3am song to the nurses of St B and the guy who puked on your shoes', t: '2026-10-16T22:12' },
         { from: 'them', text: "Jo. Jo they just brought you in. I'm here. I'm right here.", t: '2026-10-17T06:40' },
         { from: 'them', text: "the police say you fell. you've climbed those stairs a thousand times", t: '2026-10-18T09:30' },
         { from: 'them', text: "they're giving your phone to the cold case people. Jo, if you can hear any of this — fight.", t: '2026-10-21T22:14' },
@@ -98,9 +99,9 @@ export const case2: CaseFile = {
     {
       id: 'th_pell', contact: 'pell', messages: [
         { from: 'them', text: 'Mr. Merrick. Your "radio station" is trespassing on my property.', t: '2026-09-30T09:12' },
-        { from: 'me', text: "the city says the mill's a heritage site till the hearing on the 20th. see you on the roof", t: '2026-10-01T11:05' },
+        { from: 'me', text: "the city says the mill's a heritage site till the hearing on the 20th. see you on the roof, gideon. bring a hard hat and a sense of humor", t: '2026-10-01T11:05' },
         { from: 'them', text: 'Off my roof before someone falls off it.', t: '2026-10-08T08:10', clue: 'pell_threat' },
-        { from: 'me', text: 'is that a threat Gideon', t: '2026-10-08T08:30' },
+        { from: 'me', text: 'is that a threat Gideon. because it sounded like a pretty shitty threat', t: '2026-10-08T08:30' },
         { from: 'them', text: "It's an old building, Mr. Merrick. Merely an observation.", t: '2026-10-08T08:31', clue: 'pell_threat' },
         { from: 'them', text: 'I was told of your accident. I am abroad until the 21st. My office will be in touch regarding the removal of your equipment.', t: '2026-10-19T10:00' },
       ],
@@ -109,8 +110,8 @@ export const case2: CaseFile = {
       id: 'th_moth', contact: 'moth', messages: [
         { from: 'them', text: 'found you on 104.3!! 🦋 the dial cannot hide you from me', t: '2026-10-02T03:59' },
         { from: 'them', text: 'i always know where you are, Owl 🦉', t: '2026-10-09T01:12', photo: 'c2_ph_mothcar', clue: 'moth_creepy' },
-        { from: 'me', text: "...that's the mill lot. Moth you can't sit out there alone at 1am", t: '2026-10-09T01:14' },
-        { from: 'them', text: 'best reception in the city. i bring a thermos 🙂', t: '2026-10-09T01:15' },
+        { from: 'me', text: "...that's the mill lot. Moth that is some serial-killer shit. you can't sit out there alone at 1am", t: '2026-10-09T01:14' },
+        { from: 'them', text: 'best reception in the city. i bring a thermos 🙂 and beef jerky. it\'s cozy', t: '2026-10-09T01:15' },
         { from: 'them', text: 'thank u for the dedication 🥹🦋', t: '2026-10-17T00:21' },
         { from: 'them', text: 'owl is that you on the 3rd floor landing?? someone in a yellow raincoat up there with you. waving arms. u ok??', t: '2026-10-17T01:39', clue: 'moth_witness', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: "where'd you go?? cass is just... talking to nobody. like a monologue. she's not answering anything anyone asks", t: '2026-10-17T02:01', clue: 'monologue' },
@@ -127,15 +128,15 @@ export const case2: CaseFile = {
         { from: 'me', text: 'signed what?', t: '2026-10-10T08:00' },
         { from: 'them', text: "The talent + archive agreement? SignRight shows you countersigned last night at 11:14. Cass said you wanted her to handle the paperwork", t: '2026-10-10T08:04', clue: 'hearth_deal' },
         { from: 'me', text: "I never signed anything. please don't release a cent", t: '2026-10-10T08:05' },
-        { from: 'them', text: "Oh no. Legal says it came from your email account, and finance already queued the advance. Can you come in Tuesday?", t: '2026-10-10T08:30' },
+        { from: 'them', text: "Oh no. Oh, shit. Legal says it came from your email account, and finance already queued the advance. Can you come in Tuesday?", t: '2026-10-10T08:30' },
         { from: 'them', text: "Thank you for coming in. Legal has your notarized statement. I'm so sorry, Jonah.", t: '2026-10-13T12:05' },
       ],
     },
     {
       id: 'th_benny', contact: 'benny', messages: [
-        { from: 'them', text: 'u closing up? leave the Zenith on the bench, customer picks up saturday', t: '2026-10-16T18:00' },
+        { from: 'them', text: 'u closing up? leave the Zenith on the bench, customer picks up saturday. and stop eating my damn pretzels', t: '2026-10-16T18:00' },
         { from: 'me', text: 'done. big show tonight 🦉', t: '2026-10-16T18:03' },
-        { from: 'them', text: 'kid the stairwell lights in that mill are still dead. take a flashlight', t: '2026-10-16T18:04' },
+        { from: 'them', text: 'kid the stairwell lights in that mill are still dead. take a flashlight before you break your damn neck', t: '2026-10-16T18:04' },
         { from: 'them', text: "Ada told me. shop's yours whenever you wake up. I'm keeping the Zenith till you can hand it over yourself.", t: '2026-10-19T08:40' },
       ],
     },
@@ -176,7 +177,7 @@ export const case2: CaseFile = {
     { id: 'm_esign', from: 'SignRight', fromAddr: 'noreply@signright.example', to: 'Jonah Merrick', subject: 'Completed: Hearth Audio — Talent & Archive Agreement', t: '2026-10-09T23:15', folder: 'trash', clue: 'esign_trail', body: "All parties have signed.\n\nDocument: Hearth Audio — Talent & Archive Agreement\n\nAUDIT TRAIL\n23:09  Opened by owlhours.jonah@inboxly.com\n23:13  Identity check: email link\n23:14  Signed: Jonah Merrick\n       Device: CASS-IPAD (iPadOS 19)\n       Network: Rourke_WrenCt\n23:14  Document completed" },
     { id: 'm_whitlock', from: 'Spectrum Enforcement Bureau', fromAddr: 'd.whitlock@seb.example.gov', to: 'Operator, 88.1 MHz', subject: 'NOTICE OF UNLICENSED OPERATION', t: '2026-09-29T15:00', folder: 'inbox', body: 'Our field unit has detected an unlicensed transmission on 88.1 MHz in the Dyer Street area, Fridays 00:00–04:00.\n\nUnlicensed broadcasting carries fines of up to $20,000 per day. Cease immediately.\n\nOfficer Dana Whitlock\nField Enforcement' },
     { id: 'm_vacate', from: 'Pell Holdings', fromAddr: 'legal@pellholdings.example', to: 'Occupants, Carraway Mill', subject: 'NOTICE TO VACATE — Carraway Mill', t: '2026-10-01T09:00', folder: 'inbox', body: 'All persons occupying any part of the Carraway Mill property without authorization must vacate by October 30.\n\nDemolition commences October 31. Equipment remaining on site will be disposed of.\n\nPell Holdings LLC' },
-    { id: 'm_topell', from: 'Jonah Merrick', fromAddr: 'owlhours.jonah@inboxly.com', to: 'Gideon Pell', subject: 'your notice', t: '2026-10-16T23:08', folder: 'sent', body: "Your notice isn't worth the zip ties. The heritage hearing is the 20th. We'll be on the roof till then, and if you want to say 'falls off it' again you can come up and say it to my face. Tonight. Midnight to four.\n\n— the Owl" },
+    { id: 'm_topell', from: 'Jonah Merrick', fromAddr: 'owlhours.jonah@inboxly.com', to: 'Gideon Pell', subject: 'your notice', t: '2026-10-16T23:08', folder: 'sent', body: "Your notice isn't worth the zip ties. The heritage hearing is the 20th. We'll be on the roof till then, and if you want to say 'falls off it' again you can come up and say it to my face, you smug bastard. Tonight. Midnight to four.\n\n— the Owl" },
     { id: 'm_ooo', from: 'Gideon Pell', fromAddr: 'g.pell@pellholdings.example', to: 'Jonah Merrick', subject: 'Automatic reply: your notice', t: '2026-10-16T23:08', folder: 'inbox', clue: 'pell_ooo', body: 'Thank you for your message.\n\nI am attending the Iberia Property Forum in Lisbon, Portugal, from October 14 to October 21, with limited access to email.\n\nFor urgent matters please contact my office.\n\nGideon Pell\nPell Holdings LLC' },
   ],
 
@@ -197,9 +198,9 @@ export const case2: CaseFile = {
   ],
 
   voicemails: [
-    { id: 'vm_ada', contact: 'ada', t: '2026-10-14T19:10', duration: '0:24', voice: { pitch: 1.15, rate: 1.05, female: true }, transcript: "Jo, it's Ada. The mixer at the Coop won't take the Wi-Fi password — is it still barnowl43? Like, barn owl, all one word, four-three at the end? Also Mom says Sunday. You're coming Sunday." },
+    { id: 'vm_ada', contact: 'ada', t: '2026-10-14T19:10', duration: '0:24', voice: { pitch: 1.15, rate: 1.05, female: true }, transcript: "Jo, it's Ada. The mixer at the Coop won't take the Wi-Fi password — is it still barnowl43? Like, barn owl, all one word, four-three at the end? Also Mom says Sunday. You're coming Sunday. Don't make me come drag your ass off that roof." },
     { id: 'vm_pell', contact: 'pell', t: '2026-10-08T08:12', duration: '0:19', voice: { pitch: 0.75, rate: 0.88, female: false }, clue: 'pell_threat', transcript: "Merrick. Gideon Pell. You and your little radio club have until the thirty-first. After that, the wrecking crew doesn't much care who's on the roof. Get off it before someone falls off it." },
-    { id: 'vm_rhea', contact: 'rhea', t: '2026-10-12T14:30', duration: '0:21', voice: { pitch: 1.2, rate: 1.1, female: true }, clue: 'advance_7731', transcript: "Jonah, Rhea from Hearth. Bad news — finance released the advance this morning before legal could stop it. Forty thousand, to the account in Schedule B, the one ending seven-seven-three-one. I'm so sorry. Call me." },
+    { id: 'vm_rhea', contact: 'rhea', t: '2026-10-12T14:30', duration: '0:21', voice: { pitch: 1.2, rate: 1.1, female: true }, clue: 'advance_7731', transcript: "Jonah, Rhea from Hearth. Bad news — really shitty news, honestly — finance released the advance this morning before legal could stop it. Forty thousand, to the account in Schedule B, the one ending seven-seven-three-one. I'm so sorry. Call me." },
     { id: 'vm_whitlock', contact: '(555) 010-9900', t: '2026-10-06T11:31', duration: '0:17', voice: { pitch: 0.95, rate: 0.95, female: true }, transcript: "This message is for the operator of the unlicensed station formerly on eighty-eight point one. This is Officer Dana Whitlock, Spectrum Enforcement. Changing frequency does not change the law. We will find your transmitter." },
     { id: 'vm_payphone', contact: '(555) 016-2200', t: '2026-10-17T05:49', duration: '0:26', voice: { pitch: 1.05, rate: 0.85, female: true }, clue: 'cass_vm', deletedUntil: 'recovered:voice', transcript: "[traffic, a dryer tumbling] ...Owl. It's me. I'm at the Suds and Duds on Dyer, there's a payphone. I came back. You're still — you're still down there. I'm calling someone. I'm calling someone right now. I'm so sorry. I'm so — [click]" },
   ],
@@ -242,10 +243,10 @@ export const case2: CaseFile = {
 
   glimpse: [
     { id: 'g_sickbed', author: 'cass', photo: 'c2_ph_sickbed', caption: 'calling in to the Owl from my sickbed 🤧📻 104.3 rn', t: '2026-10-17T01:50', likes: 64, comments: [{ author: 'moth', text: 'feel better!! 🦋' }, { author: 'ada', text: '❤️' }], clue: 'cass_alibi_post' },
-    { id: 'g_moved', author: 'cass', photo: 'c2_ph_sign', caption: 'we MOVED 📻 Owl Hours now lives at 104.3 — same owl, new perch 🦉', t: '2026-10-03T02:30', likes: 211, comments: [{ author: 'moth', text: 'FOUND YOU 🦋' }, { author: 'me', text: 'ok ok 🦉' }] },
-    { id: 'g_pell', author: 'pell', photo: 'c2_ph_lisbon', caption: 'Lisbon. Building the waterfront of tomorrow. #IberiaPropertyForum', t: '2026-10-16T22:40', likes: 38, comments: [{ author: 'pell', text: 'Back on the 21st.' }], clue: 'pell_lisbon' },
-    { id: 'g_fest', author: 'cass', photo: 'c2_ph_festival', caption: "rain can't stop us 💛 #riverbendfest", t: '2026-08-22T17:00', likes: 97, comments: [{ author: 'me', text: 'the coat is visible from space' }], clue: 'cass_raincoat' },
-    { id: 'g_ep41', author: 'me', photo: 'c2_ph_coop', caption: 'ep 41. lights on. 🦉 104.3', t: '2026-10-16T23:55', likes: 143, comments: [{ author: 'moth', text: 'in position 🦋' }, { author: 'benny', text: 'turn it UP' }] },
+    { id: 'g_moved', author: 'cass', photo: 'c2_ph_sign', caption: 'we MOVED 📻 Owl Hours now lives at 104.3 — same owl, new perch 🦉', t: '2026-10-03T02:30', likes: 211, comments: [{ author: 'moth', text: 'FOUND YOU 🦋' }, { author: 'me', text: 'ok ok 🦉' }, { author: 'benny', text: 'congrats on the slightly bigger felony' }] },
+    { id: 'g_pell', author: 'pell', photo: 'c2_ph_lisbon', caption: 'Lisbon. Building the waterfront of tomorrow. #IberiaPropertyForum', t: '2026-10-16T22:40', likes: 38, comments: [{ author: 'pell', text: 'Back on the 21st.' }, { author: 'me', text: 'enjoy the sangria gideon. we\'ll keep your roof warm' }], clue: 'pell_lisbon' },
+    { id: 'g_fest', author: 'cass', photo: 'c2_ph_festival', caption: "rain can't stop us 💛 #riverbendfest", t: '2026-08-22T17:00', likes: 97, comments: [{ author: 'me', text: 'the coat is visible from space' }, { author: 'cass', text: 'that\'s the point dumbass. nobody loses me in a crowd' }], clue: 'cass_raincoat' },
+    { id: 'g_ep41', author: 'me', photo: 'c2_ph_coop', caption: 'ep 41. lights on. 🦉 104.3', t: '2026-10-16T23:55', likes: 143, comments: [{ author: 'moth', text: 'in position 🦋' }, { author: 'benny', text: 'turn it the hell UP' }] },
   ],
 
   bank: {
@@ -377,11 +378,11 @@ export const case2: CaseFile = {
 
   events: [
     { id: 'e2_burner1', kind: 'text', when: ['unlocked'], minPins: 4, delayMs: 4000, thread: 'th_c2burner', contact: 'c2burner', text: "Pell's people know someone's poking around in the Owl's phone. ok ok — just put it down and let him rest.", clue: 'burner_tic' },
-    { id: 'e2_h_tic', kind: 'handler', when: ['event:e2_burner1'], delayMs: 5000, text: "Burner phones are cheap. Habits aren't. Read that one twice." },
-    { id: 'e2_h_7731', kind: 'handler', when: ['pinned:advance_7731'], delayMs: 2500, text: "Forty thousand dollars. Account numbers have a way of turning up twice — keep that one in your head." },
+    { id: 'e2_h_tic', kind: 'handler', when: ['event:e2_burner1'], delayMs: 5000, text: "Burner phones are cheap. Habits aren't. Any idiot can buy a shit phone at a gas station — nobody can buy new thumbs. Read that one twice." },
+    { id: 'e2_h_7731', kind: 'handler', when: ['pinned:advance_7731'], delayMs: 2500, text: "Forty thousand dollars. That's a hell of a lot of money for a show that runs off a car battery. Account numbers have a way of turning up twice — keep that one in your head." },
     { id: 'e2_burner2', kind: 'text', when: ['recovered:msgfrag'], delayMs: 6000, thread: 'th_c2burner', contact: 'c2burner', text: "you don't know what it was like on those stairs. he grabbed my sleeve and the rail just went. i didn't push him. i didn't." },
     { id: 'e2_confess', kind: 'text', when: ['recovered:voice'], delayMs: 7000, thread: 'th_c2burner', contact: 'c2burner', text: "it was me at the payphone. i went back. i should never have left him. tell ada i'm sorry. x c", clue: 'cass_confess' },
-    { id: 'e2_h_ready', kind: 'handler', when: ['unlocked'], minPins: 12, delayMs: 3000, text: "That's a heavy board. If you can back every answer, open the Case Report. Ada's waiting on us." },
+    { id: 'e2_h_ready', kind: 'handler', when: ['unlocked'], minPins: 12, delayMs: 3000, text: "That's a heavy board. If you can back every answer, open the Case Report. Ada's waiting on us, and she's a nurse — she knows exactly how long people can wait, and it's not long." },
   ],
 
   hints: [
@@ -400,7 +401,7 @@ export const case2: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'You have what you need. Open the Case Report and back every answer with a pinned clue.' },
   ],
 
-  handlerIntro: "New phone, new night. His sister swears he'd never leave this thing behind — and yet there it was, upstairs. Start with the lock screen.",
+  handlerIntro: "New phone, new night. Pirate radio, a condemned mill and a grown man who calls himself the Owl. Christ. His sister swears he'd never leave this thing behind — and yet there it was, upstairs, like a dog left on the porch. Start with the lock screen.",
 
   epilogue: {
     solved: [
