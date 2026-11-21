@@ -1,10 +1,12 @@
 // Art registry. Every art value is a standalone SVG document string.
 import { case1Art } from './case1';
+import { case2Art } from './case2';
+import { case3Art } from './case3';
 import { iconArt } from './icons';
 import { avatarArt } from './avatars';
 import { extraArt } from './extra';
 
-const REGISTRY: Record<string, string> = { ...extraArt, ...iconArt, ...avatarArt, ...case1Art };
+const REGISTRY: Record<string, string> = { ...extraArt, ...iconArt, ...avatarArt, ...case1Art, ...case2Art, ...case3Art };
 const urlCache = new Map<string, string>();
 
 export function registerArt(more: Record<string, string>): void {

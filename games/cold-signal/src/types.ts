@@ -222,6 +222,10 @@ export interface CaseFile {
   difficulty: 1 | 2 | 3;
   cover: string; // art id (portrait)
   owner: { name: string; age: number; summary: string };
+  /** Stamp on the briefing photo, e.g. 'MISSING', 'IN COMA'. Default 'MISSING'. */
+  status?: string;
+  /** Device condition shown in TRACE and Settings, e.g. 'WATER DAMAGE · 61% READABLE'. */
+  deviceCondition?: string;
   briefing: string[];
   phoneDate: string; // date shown on the phone clock, 'YYYY-MM-DD'
   phoneTime: string; // 'HH:MM'

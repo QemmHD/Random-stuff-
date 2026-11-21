@@ -26,6 +26,8 @@ export const case3: CaseFile = {
   difficulty: 3,
   cover: 'cover_case3',
   owner: { name: 'Wren Calloway', age: 29, summary: 'True-crime podcaster. Host of The Long Quiet — a show about one case: her own brother.' },
+  status: 'MISSING',
+  deviceCondition: 'SIM REMOVED · 84% READABLE',
   briefing: [
     'Wren Calloway, 29. Host of The Long Quiet, a true-crime podcast about a single case: her brother Eli, 17, who walked home from the Pinecrest homecoming dance in 2006 and never arrived.',
     'Episode 9 was due out at 6 a.m. on November 7. It never came out. Wren has not been seen since the night of November 6. Her car was found at the Pinecrest Marina with the keys in it. Pinecrest PD is dragging the lake.',

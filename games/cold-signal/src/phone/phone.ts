@@ -218,7 +218,7 @@ export class Phone {
       h('div', { class: 'home-widget' },
         h('div', { class: 'hw-date' }, longDate(now)),
         h('div', { class: 'hw-owner' }, this.game.c.owner.name),
-        h('div', { class: 'hw-batt' }, glyph('battery'), `${this.game.battery()}% · ${S.batteryNote.split(':')[0]}`)),
+        h('div', { class: 'hw-batt' }, glyph('battery'), `${this.game.battery()}%`)),
       h('button', { class: 'home-search', type: 'button', onclick: () => this.openSearch() }, glyph('search'), S.search),
       h('div', { class: 'home-grid' }, ...grid.map((a, i) => this.icon(a, i))),
       h('div', { class: 'dock' }, ...DOCK.map((a, i) => this.icon(a, i + 10))),

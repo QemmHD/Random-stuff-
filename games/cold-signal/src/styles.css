@@ -778,3 +778,9 @@ button.row:active { background: rgba(255,255,255,.06); }
 .search-tip .glyph { width: 34px; height: 34px; color: var(--accent); }
 .sr-icon { width: 34px; height: 34px; border-radius: 9px; overflow: hidden; flex: none; }
 .search mark { background: rgba(255,181,71,.3); color: #fff; border-radius: 3px; padding: 0 1px; }
+
+.fh-right { display: flex; align-items: center; gap: 12px; }
+.rank { display: grid; text-align: right; line-height: 1.2; }
+.rank span { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.rank b { font-size: .92em; color: var(--accent); }
+.rank i { font-style: normal; font-size: .75em; color: var(--amber); }

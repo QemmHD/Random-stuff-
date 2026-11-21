@@ -25,6 +25,8 @@ export const case2: CaseFile = {
   difficulty: 2,
   cover: 'cover_case2',
   owner: { name: 'Jonah Merrick', age: 34, summary: 'Radio repairman by day. "The Owl" — pirate radio host — by night.' },
+  status: 'IN COMA',
+  deviceCondition: 'CRACKED GLASS · 92% READABLE',
   briefing: [
     'Jonah Merrick, 34. By day he fixes old radios at Volt Repair. Friday nights, midnight to four, he is "the Owl" — host of The Owl Hours, an unlicensed station broadcasting from the roof of the derelict Carraway Mill.',
     'At 05:52 on Saturday, October 17, an anonymous caller at the payphone outside the Suds & Duds laundromat on Dyer Street reported a man at the foot of the mill stairwell. Jonah is in a coma at St. Brigid\'s. Police call it a fall: old building, iron stairs, a man alone at night.',

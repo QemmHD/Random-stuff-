@@ -16,6 +16,8 @@ export const case1: CaseFile = {
   difficulty: 1,
   cover: 'cover_case1',
   owner: { name: 'Mara Quill', age: 24, summary: 'Marine biology grad student, Harrow Marine Station.' },
+  status: 'MISSING',
+  deviceCondition: 'WATER DAMAGE · 61% READABLE',
   briefing: [
     'Mara Quill, 24. Graduate researcher at Harrow Marine Station. Missing since the night of October 3.',
     'Her phone was pulled from a tide pool below Gull Point lighthouse six days later. The lab dried it out. It powers on — barely.',

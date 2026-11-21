@@ -100,10 +100,19 @@ export function filesScreen(onOpen: (c: CaseFile) => void): HTMLElement {
   root.append(
     h('header', { class: 'files-head' },
       h('div', { class: 'fh-brand' }, artImg('logo_mark'), h('div', null, h('b', null, S.gameTitle), h('span', null, S.caseFiles))),
-      h('button', { class: 'icon-btn', type: 'button', 'aria-label': S.settings, onclick: () => openSettings(root) }, glyph('settings'))),
+      h('div', { class: 'fh-right' },
+        rankBadge(prog),
+        h('button', { class: 'icon-btn', type: 'button', 'aria-label': S.settings, onclick: () => openSettings(root) }, glyph('settings')))),
     h('div', { class: 'case-row' }, ...cards),
     h('div', { class: 'files-foot muted' }, 'More cases coming in future updates'));
   return root;
+}
+
+function rankBadge(prog: Record<string, number>): HTMLElement {
+  const stars = CASES.reduce((n, c) => n + (prog[c.id] ?? 0), 0);
+  const max = CASES.length * 3;
+  const idx = Math.min(S.ranks.length - 1, Math.floor((stars / max) * (S.ranks.length - 1) + 1e-9));
+  return h('div', { class: 'rank' }, h('span', null, S.rankLabel), h('b', null, S.ranks[idx]), h('i', null, `★ ${stars}/${max}`));
 }
 
 // ---------------- briefing ----------------
@@ -115,7 +124,7 @@ export function briefingScreen(c: CaseFile, onBegin: () => void, onBack: () => v
     h('div', { class: 'br-card' },
       h('button', { class: 'br-back', type: 'button', onclick: onBack }, glyph('back'), S.caseFiles),
       h('div', { class: 'br-top' },
-        h('div', { class: 'br-photo' }, artImg(avatarFor(c)), h('span', { class: 'br-stamp' }, 'MISSING')),
+        h('div', { class: 'br-photo' }, artImg(avatarFor(c)), h('span', { class: 'br-stamp' }, c.status ?? 'MISSING')),
         h('div', null,
           h('small', null, `CASE ${c.number} · ${S.briefingTitle.toUpperCase()}`),
           h('h1', null, c.title),
@@ -163,7 +172,7 @@ export async function bootSequence(host: HTMLElement, c: CaseFile): Promise<void
   const L = [
     `> TRACE v4.2 — Cold Signal Unit`,
     `> device connected: ${S.modelName} (owner: ${c.owner.name})`,
-    `> water damage detected · reading flash…`,
+    `> condition: ${(c.deviceCondition ?? 'ok').toLowerCase()}`,
     `> partition table OK · user data encrypted`,
     `> powering display…`,
   ];

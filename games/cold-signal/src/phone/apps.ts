@@ -523,7 +523,7 @@ function settingsView(g: Game): View {
           h('div', { class: 'row-main' }, h('b', null, w.name), h('div', { class: 'row-sub' }, `${S.lastJoined} ${longDate(w.lastJoined)} · ${clock(w.lastJoined)}`)),
           pinButton(g, w.clue, true)))),
       sectionTitle(S.battery),
-      h('div', { class: 'group' }, h('div', { class: 'set-row' }, glyph('battery'), h('div', { class: 'row-main' }, h('b', null, `${g.battery()}%`), h('div', { class: 'row-sub warn' }, S.batteryNote)))),
+      h('div', { class: 'group' }, h('div', { class: 'set-row' }, glyph('battery'), h('div', { class: 'row-main' }, h('b', null, `${g.battery()}%`), h('div', { class: 'row-sub warn' }, g.c.deviceCondition ? `${S.batteryNote}: ${g.c.deviceCondition.split(' · ')[0].toLowerCase()}` : S.batteryOk)))),
       sectionTitle(S.about),
       h('div', { class: 'group' },
         h('div', { class: 'set-row' }, h('span', { class: 'row-main' }, S.owner), h('span', { class: 'muted' }, g.c.owner.name)),
@@ -546,7 +546,7 @@ function traceView(g: Game): View {
           h('div', null, h('b', null, S.traceTitle), h('div', { class: 'tr-sub' }, S.traceSub))),
         h('div', { class: 'tr-device' },
           h('div', null, h('span', null, S.traceDevice), h('b', null, `${S.modelName} · ${g.c.owner.name}`)),
-          h('div', null, h('span', null, 'Integrity'), h('b', { class: 'amber' }, 'WATER DAMAGE · 61% READABLE')),
+          h('div', null, h('span', null, 'Integrity'), h('b', { class: 'amber' }, g.c.deviceCondition ?? 'OK')),
           h('div', null, h('span', null, 'Evidence pinned'), h('b', null, `${g.pins.length} / ${g.c.clues.length}`))),
         ...g.c.trace.map((job) => {
           const done = g.has(`recovered:${job.id}`);
