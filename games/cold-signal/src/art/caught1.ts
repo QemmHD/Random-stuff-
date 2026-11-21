@@ -659,6 +659,118 @@ function phBed(): string {
     `<g filter="url(#${k}f)">${helmet(488, 104, 1.2, 12, true)}</g>`, 0.5);
 }
 
+// ---------- cg1_ph_nightstand — his watch, your nightstand (key clue) ----------
+function phNightstand(): string {
+  const k = 'cg1_ph_nightstand';
+  const tankTop = (x: number, y: number, r: number, c: string): string => `<g transform="translate(${x} ${y}) rotate(${r})"><path d="M-40-70Q-30-20-56 0L-50 110H50L56 0Q30-20 40-70H22Q0-20-22-70Z" fill="${c}"/><path d="M-22-70Q0-20 22-70M-50 60H50" fill="none" stroke="#000" stroke-width="3" opacity=".2"/></g>`;
+  return frame(k, 600, 800, '#ffb060',
+    lg(`${k}w`, '#3a2630', '#140c14') + glow(`${k}g`, '#ffc070', 0.95) + lg(`${k}t`, '#7a4a2a', '#3a2010') + lg(`${k}d`, '#4a2c18', '#1c0e08') + lg(`${k}sh`, '#fff0c8', '#e8b060') + lg(`${k}bz`, '#e8ecf0', '#6a7480', 1, 1),
+    `<rect width="600" height="800" fill="url(#${k}w)"/><circle cx="130" cy="230" r="330" fill="url(#${k}g)"/>` +
+    // the chair, wearing your tank tops
+    `<path d="M400 150H560V470H400Z" fill="none" stroke="#1c1210" stroke-width="12"/><path d="M400 250H560M400 350H560" stroke="#1c1210" stroke-width="8"/>${tankTop(486, 250, 8, '#e8e8e4')}${tankTop(520, 330, -10, '#1a8a4a')}${tx(520, 366, 15, 'SWOLE', '#fff', 'transform="rotate(-10 520 366)"')}` +
+    // lamp
+    `<path d="M70 250L104 110H196L230 250Z" fill="url(#${k}sh)"/><path d="M150 250V430" stroke="#c8963a" stroke-width="10"/><ellipse cx="150" cy="436" rx="46" ry="10" fill="#c8963a"/>` +
+    // nightstand
+    `<path d="M0 430H470L520 540H0Z" fill="url(#${k}t)"/><path d="M0 540H520V720H0Z" fill="url(#${k}d)"/><rect x="30" y="566" width="450" height="120" rx="6" fill="none" stroke="#1c0e08" stroke-width="4"/><circle cx="255" cy="626" r="11" fill="#c8963a"/><path d="M0 540H520" stroke="#c89a62" stroke-width="3" opacity=".7"/>` +
+    `<path d="M0 720H600V800H0Z" fill="#1c1218"/><path d="M520 480Q560 470 620 500V800H540Z" fill="#c8c0d0"/><path d="M540 520q30 60 10 200" stroke="#8a8098" stroke-width="5" fill="none"/>` +
+    `<ellipse cx="290" cy="486" rx="110" ry="12" fill="#000" opacity=".3"/>${wine(250, 486, 1.25, 0.25, true)}${wine(350, 474, 1.25, 0.1)}` +
+    // the dive watch, red strap
+    `<g transform="translate(200 506) rotate(-8)"><ellipse cy="14" rx="150" ry="16" fill="#000" opacity=".35"/><path d="M-150-6Q-90-26-40-14V20Q-90 8-150 22Z" fill="#d81e2e"/><path d="M40-14Q90-26 150-6V22Q90 8 40 20Z" fill="#a81422"/><g fill="#5a0a12"><circle cx="-128" cy="6" r="4"/><circle cx="-108" cy="2" r="4"/><circle cx="-88" cy="0" r="4"/></g><rect x="118" y="-12" width="22" height="34" rx="4" fill="none" stroke="#c8ccd0" stroke-width="5"/>` +
+    `<ellipse rx="52" ry="38" fill="url(#${k}bz)"/><ellipse rx="42" ry="30" fill="#0c1420"/><g fill="#9af0c0"><circle cy="-22" r="4"/><circle cx="30" r="3.5"/><circle cx="-30" r="3.5"/><circle cy="22" r="3.5"/></g><path d="M0 0L16-14M0 0L-10 14" stroke="#f4f4f4" stroke-width="4" stroke-linecap="round"/><rect x="50" y="-7" width="12" height="14" rx="3" fill="#c8ccd0"/><path d="M-30-22Q0-36 30-22" fill="none" stroke="#fff" stroke-width="3" opacity=".5"/></g>` +
+    // your shaker, on the floor
+    shaker(110, 762, 1.5, 82), 0.6);
+}
+
+// ---------- cg1_ph_keycard — SMITH, 1104 ----------
+function phKeycard(): string {
+  const k = 'cg1_ph_keycard';
+  const S = JESSA.sk;
+  const finger = (x: number, y: number, r: number, l: number): string => `<g transform="translate(${x} ${y}) rotate(${r})"><rect x="-27" y="${-l}" width="54" height="${l + 60}" rx="27" fill="${S}"/><path d="M-21 ${-l + 30}Q-21 ${-l + 4} 0 ${-l + 4}Q21 ${-l + 4} 21 ${-l + 30}V${-l + 62}H-21Z" fill="#d81e3c"/><path d="M-12 ${-l + 14}v36" stroke="#ff8a9a" stroke-width="5" stroke-linecap="round" opacity=".6"/><path d="M-16 ${-l + 96}h32" stroke="${JESSA.sh}" stroke-width="2.5" opacity=".6"/></g>`;
+  return frame(k, 600, 800, '#ffd9a0',
+    lg(`${k}w`, '#5a3a2a', '#1c1014') + glow(`${k}g`, '#ffc880', 0.8) + lg(`${k}p`, '#fbf4e4', '#e0d0b0') + lg(`${k}c`, '#1c5a5a', '#0c2a30') + lg(`${k}r`, '#ffffff', '#c8c4c8') + blur(`${k}bl`, 9),
+    `<rect width="600" height="800" fill="url(#${k}w)"/><g filter="url(#${k}bl)"><rect x="380" y="-20" width="180" height="520" fill="#2a1a14"/><circle cx="130" cy="110" r="60" fill="#ffd9a0"/><rect x="0" y="560" width="600" height="240" fill="#4a1c24"/><circle cx="530" cy="250" r="9" fill="#c8963a"/></g><circle cx="130" cy="110" r="300" fill="url(#${k}g)"/>` +
+    // the card in its sleeve
+    `<g transform="translate(300 350) rotate(7)"><rect x="-116" y="-240" width="232" height="150" rx="14" fill="url(#${k}c)"/><rect x="-116" y="-212" width="232" height="18" fill="#c8a85a"/><rect x="-150" y="-170" width="300" height="390" rx="6" fill="#000" opacity=".3" transform="translate(8 8)"/><rect x="-150" y="-170" width="300" height="390" rx="6" fill="url(#${k}p)"/><path d="M-150-170H150L0-110Z" fill="#000" opacity=".06"/>` +
+    `<g transform="translate(0 -62)"><circle r="18" fill="#e8963a"/><g stroke="#e8963a" stroke-width="4" stroke-linecap="round">${[0, 45, 90, 135, 180, 225, 270, 315].map((a) => `<path d="M0-24V-32" transform="rotate(${a})"/>`).join('')}</g></g>${tx(0, -10, 22, 'HOTEL MARISOL', '#8a5a1c', 'letter-spacing="3"')}` +
+    `<g ${SANS} font-size="12" fill="#8a7a5a"><text x="-126" y="52">GUEST</text><text x="-126" y="128">ROOM</text></g><path d="M-126 74H126M-126 150H126" stroke="#8a7a5a" stroke-width="1.5"/>` +
+    `<g ${HAND} font-weight="700" fill="#1c2a6a"><text x="-70" y="68" font-size="46">SMITH</text><text x="-70" y="144" font-size="46">— 1104</text></g></g>` +
+    // robe sleeve + two fingers
+    `<path d="M-40 560Q120 500 250 620L210 840H-40Z" fill="url(#${k}r)"/><path d="M176 560Q260 590 286 680L210 720Q170 640 120 610Z" fill="#fff"/><path d="M0 600q80-20 150 40M-10 680q90-10 170 60" stroke="#a8a4a8" stroke-width="5" fill="none" opacity=".6"/>` +
+    `<g filter="url(#${k}f)"><path d="M200 640Q250 560 330 600L300 760H190Z" fill="${S}"/>${finger(278, 560, 14, 110)}${finger(346, 592, 22, 96)}</g>` +
+    // camera date stamp
+    `<text x="570" y="768" font-size="30" font-family="Courier New, Courier, monospace" font-weight="700" text-anchor="end" fill="#ff9a2a">OCT 31  23:10</text>`, 0.55);
+}
+
+// ---------- cg1_ph_pancakes — pancakes shaped like Marco ----------
+function phPancakes(): string {
+  const k = 'cg1_ph_pancakes';
+  const S = JULES.sk;
+  return frame(k, 600, 800, '#fff0c0',
+    lg(`${k}t`, '#b88a5a', '#7a5434', 1, 1) + glow(`${k}pc`, '#f0c070', 1) + fade(`${k}l`, '#fff', 0.5, 0, 1, 0.6) + lg(`${k}bz`, '#e8ecf0', '#6a7480', 1, 1),
+    `<rect width="600" height="800" fill="url(#${k}t)"/><g stroke="#5a3a20" stroke-width="3" opacity=".4"><path d="M0 200H600M0 420H600M0 640H600"/></g><path d="M-40 0L260 0L60 800H-240Z" fill="url(#${k}l)"/><path d="M330 0L420 0L220 800H130Z" fill="url(#${k}l)" opacity=".6"/>` +
+    // plate
+    `<ellipse cx="270" cy="456" rx="262" ry="254" fill="#000" opacity=".25"/><circle cx="262" cy="440" r="254" fill="#f8f6f0"/><circle cx="262" cy="440" r="200" fill="none" stroke="#d8d4c8" stroke-width="3"/>` +
+    // the pancake bulldog
+    `<g stroke="#a86a2a" stroke-width="5"><path d="M150 330L112 196Q190 214 220 300Z" fill="#d89a4a"/><path d="M374 330L412 196Q334 214 304 300Z" fill="#d89a4a"/><ellipse cx="262" cy="430" rx="150" ry="132" fill="#e8b060"/><ellipse cx="262" cy="490" rx="84" ry="62" fill="#f4d08a"/></g>` +
+    `<ellipse cx="230" cy="380" rx="90" ry="60" fill="#fff" opacity=".14"/><g fill="#2a2a5a"><circle cx="204" cy="408" r="19"/><circle cx="320" cy="408" r="19"/><ellipse cx="262" cy="468" rx="20" ry="15"/></g><g fill="#fff" opacity=".6"><circle cx="198" cy="402" r="5"/><circle cx="314" cy="402" r="5"/><circle cx="256" cy="463" r="4"/></g>` +
+    `<path d="M262 484V504M232 510Q248 524 262 504Q276 524 292 510" fill="none" stroke="#8a4a1c" stroke-width="6" stroke-linecap="round"/>` +
+    // strawberry bow tie + syrup
+    `<g transform="translate(262 590)"><path d="M0 0L-64-30Q-80 0-64 30ZM0 0L64-30Q80 0 64 30Z" fill="#e0182f"/><g fill="#ffd0a0"><circle cx="-44" cy="-8" r="2.5"/><circle cx="-50" cy="10" r="2.5"/><circle cx="-30" cy="6" r="2.5"/><circle cx="44" cy="-8" r="2.5"/><circle cx="50" cy="10" r="2.5"/><circle cx="30" cy="6" r="2.5"/></g><circle r="15" fill="#2a2a5a"/></g>` +
+    `<path d="M110 520Q90 600 150 640Q210 670 200 620" fill="none" stroke="#8a4a1c" stroke-width="9" stroke-linecap="round" opacity=".7"/>` +
+    // his forearm, the red-strap watch, the mug
+    `<g filter="url(#${k}f)" fill="${S}">${limb([700, 560, 60], [520, 600, 46], [440, 640, 40])}${hand(424, 650, 104, JULES.sh, 3.2)}</g><g stroke="#1c1412" stroke-width="2" opacity=".35"><path d="M560 560l8 14M590 554l8 14M620 560l8 14M580 610l8 14M610 616l8 14"/></g>` +
+    `<g transform="translate(500 604) rotate(-12)"><rect x="-20" y="-54" width="40" height="108" rx="6" fill="#d81e2e"/><circle r="30" fill="url(#${k}bz)"/><circle r="22" fill="#0c1420"/><path d="M0 0V-14M0 0L10 6" stroke="#f4f4f4" stroke-width="3" stroke-linecap="round"/></g>` +
+    `<g transform="translate(480 170)"><ellipse cx="6" cy="10" rx="100" ry="96" fill="#000" opacity=".25"/><path d="M80-30Q150-40 150 10Q150 60 80 46" fill="none" stroke="#c8323a" stroke-width="24"/><circle r="94" fill="#c8323a"/><circle r="78" fill="#3a1c0c"/><path d="M-50-30Q-10-60 40-44" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".4"/><path d="M-20 20q-20-30 0-60M20 30q-20-30 0-60" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".35"/></g>` +
+    `<g transform="translate(70 720) rotate(-70)"><rect x="-5" y="-120" width="10" height="150" rx="5" fill="#c8ccd0"/><path d="M-14-190V-130Q-14-116 0-116Q14-116 14-130V-190M-5-190v50M5-190v50" fill="none" stroke="#c8ccd0" stroke-width="6" stroke-linecap="round"/></g>`, 0.4);
+}
+
+// ---------- cg1_ph_easels — the lighthouse factory ----------
+function phEasels(): string {
+  const k = 'cg1_ph_easels';
+  const easel = (x: number, y: number, s: number, i: number): string =>
+    `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-40-150L-70 60M40-150L70 60M0-190L20 40M-62 0H62" stroke="#6a4a2a" stroke-width="9" stroke-linecap="round"/>${lhouse(-50, -150, 100, 130, SKIES[i], SEAS[i], '#e8dcc0')}</g>`;
+  return frame(k, 800, 600, '#ffe0b0',
+    brick(`${k}br`, '#8a4630', '#3a1c16') + lg(`${k}fl`, '#8a6440', '#3a2616') + lg(`${k}sk`, '#bfe0f4', '#f8ecd0') + glow(`${k}g`, '#fff4d8', 0.7),
+    `<rect width="800" height="600" fill="url(#${k}br)"/><rect x="40" y="30" width="250" height="330" fill="#2a1c14"/><rect x="52" y="42" width="226" height="306" fill="url(#${k}sk)"/><path d="M165 42V348M52 150H278M52 250H278" stroke="#2a1c14" stroke-width="8"/><ellipse cx="200" cy="260" rx="420" ry="330" fill="url(#${k}g)"/>` +
+    `<path d="M0 440H800V600H0Z" fill="url(#${k}fl)"/><path d="M52 440L-80 600H250L278 440Z" fill="#fff4d8" opacity=".25"/>` +
+    // coat hook + helmet
+    `<rect x="620" y="60" width="170" height="16" rx="4" fill="#2a1c14"/><path d="M700 76v34q0 14 14 14" fill="none" stroke="#c8963a" stroke-width="7" stroke-linecap="round"/><g filter="url(#${k}f)">${helmet(708, 176, 0.95, -8, true)}</g>` +
+    easel(370, 360, 0.72, 3) + easel(480, 352, 0.72, 4) + easel(590, 360, 0.72, 5) + easel(700, 372, 0.72, 6) +
+    easel(170, 470, 1.05, 0) + easel(400, 480, 1.05, 1) + easel(620, 474, 1.05, 2) +
+    // her bra, over the corner of an easel
+    `<g transform="translate(462 320) rotate(14)" fill="#14121a"><path d="M-2-14Q-30 40-22 96" fill="none" stroke="#14121a" stroke-width="5"/><path d="M-6-6Q30-20 36 22Q34 52 6 52Q-16 46-14 14Z"/><path d="M-22 96Q-52 76-44 108Q-38 140-10 140Q14 132 10 104Q0 92-22 96Z"/><path d="M36 22Q70 40 60 90" fill="none" stroke="#14121a" stroke-width="5"/><path d="M0 4Q18 0 26 18M-36 106Q-28 126-10 130" fill="none" stroke="#6a5a7a" stroke-width="3" stroke-dasharray="1 5" stroke-linecap="round"/></g>` +
+    // palette, brushes, tubes
+    `<g transform="translate(90 560)"><ellipse rx="74" ry="26" fill="#c8a06a"/><ellipse cx="-34" cy="4" rx="12" ry="6" fill="#3a2616"/><g><circle cx="-10" cy="-10" r="9" fill="#e8a05a"/><circle cx="18" cy="-12" r="9" fill="#7ab0d8"/><circle cx="42" cy="-2" r="9" fill="#d87a8a"/><circle cx="26" cy="10" r="9" fill="#f4f4f0"/><circle cx="0" cy="10" r="9" fill="#c8323a"/></g></g>` +
+    `<g stroke-linecap="round"><path d="M270 580l70-26M286 590l60-14" stroke="#e8dcc0" stroke-width="6"/><path d="M340 554l12-5M346 576l12-3" stroke="#3a2616" stroke-width="8"/></g><rect x="500" y="560" width="50" height="18" rx="5" fill="#7ab0d8" transform="rotate(-12 525 569)"/><rect x="730" y="540" width="50" height="18" rx="5" fill="#c8323a" transform="rotate(20 755 549)"/>`, 0.45);
+}
+
+// ---------- cg1_ph_video — "last night" (thumbnail) ----------
+function phVideo(): string {
+  const k = 'cg1_ph_video';
+  return frame(k, 800, 600, '#ffb060',
+    lg(`${k}w`, '#1c1220', '#08060c') + lg(`${k}n`, '#3a2a4a', '#c8782a') + glow(`${k}s`, '#ffc060', 0.95) + glow(`${k}c`, '#ffb040', 0.9) + lg(`${k}b`, '#d8cce0', '#5a4a6a') + blur(`${k}bl`, 3) + fade(`${k}sc`, '#000', 0, 0.8),
+    `<rect width="800" height="600" fill="url(#${k}w)"/>` +
+    // rain-streaked window, streetlight outside
+    `<rect x="230" y="30" width="440" height="400" fill="url(#${k}n)"/><circle cx="560" cy="120" r="200" fill="url(#${k}s)"/><circle cx="560" cy="120" r="16" fill="#fff4d0"/><g stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity=".4">${[[260, 60, 50], [300, 180, 70], [340, 40, 90], [392, 220, 60], [430, 80, 110], [470, 250, 50], [520, 200, 80], [580, 260, 70], [620, 60, 60], [650, 180, 90], [284, 300, 60], [540, 330, 50]].map(([x, y, l]) => `<path d="M${x} ${y}l-6 ${l}"/>`).join('')}</g>` +
+    `<path d="M230 30H670V430H230Z" fill="none" stroke="#0c080e" stroke-width="16"/><path d="M450 30V430M230 230H670" stroke="#0c080e" stroke-width="10"/>` +
+    // two silhouettes, foreheads together
+    `<g fill="#07050a"><path d="M300 600V420Q300 350 356 334Q330 300 336 250Q344 190 396 186Q436 186 450 226Q460 262 446 300L466 340Q440 380 470 600Z"/><path d="M286 330Q290 190 396 180Q450 184 456 240Q420 210 380 230Q350 300 340 420Q300 400 286 330Z"/>` +
+    `<path d="M440 600Q440 380 500 340Q470 300 470 250Q474 180 530 176Q584 180 588 244Q590 300 562 336Q640 360 650 440V600Z"/></g>` +
+    `<g fill="none" stroke="#ffb060" stroke-width="3" stroke-linecap="round" opacity=".75"><path d="M556 184Q586 200 588 244Q590 296 564 334Q636 358 648 430"/><path d="M300 326Q300 200 392 182"/></g>` +
+    // candle on the sill
+    `<circle cx="150" cy="330" r="130" fill="url(#${k}c)"/><rect x="134" y="340" width="32" height="92" rx="4" fill="#f6ecd8"/><path d="M150 340Q164 318 150 296Q136 318 150 340Z" fill="#ffd24a"/><path d="M150 338Q157 326 150 314Q143 326 150 338Z" fill="#fff"/><rect x="60" y="430" width="700" height="14" fill="#120c14"/>` +
+    // bedpost + helmet
+    `<rect x="704" y="150" width="30" height="460" fill="#0c080e"/><g filter="url(#${k}f)">${helmet(720, 150, 0.95, 10, false, '#14121a')}</g>` +
+    // rumpled sheets
+    `<path d="M-10 500Q120 440 260 480Q400 520 520 470Q680 430 810 490V610H-10Z" fill="url(#${k}b)"/><g fill="none" stroke="#3a2c4a" stroke-width="5" stroke-linecap="round" opacity=".6"><path d="M60 520q80 20 120 80M260 500q60 40 50 100M470 500q-40 50-20 100M640 480q40 50 30 120"/></g>` +
+    `<rect width="800" height="600" fill="#0a0610" opacity=".28"/><rect y="380" width="800" height="220" fill="url(#${k}sc)"/>` +
+    // video chrome
+    `<circle cx="400" cy="290" r="62" fill="#000" opacity=".5"/><circle cx="400" cy="290" r="62" fill="none" stroke="#fff" stroke-width="5"/><path d="M380 256L434 290L380 324Z" fill="#fff"/>` +
+    `<text x="40" y="548" font-size="34" ${SANS} font-weight="700" fill="#fff">last night</text>` +
+    `<g transform="translate(232 536)"><circle cx="-17" cy="-2" r="7" fill="#8a5a34"/><circle cx="17" cy="-2" r="7" fill="#8a5a34"/><circle r="17" fill="#8a5a34"/><ellipse cy="3" rx="12" ry="11" fill="#e8c8a0"/><path d="M-5 9q5 4 10 0" stroke="#5a3a20" stroke-width="2" fill="none"/><g fill="#c89a6a" stroke="#8a5a34" stroke-width="1.5"><ellipse cx="-7" cy="-3" rx="8" ry="6"/><ellipse cx="7" cy="-3" rx="8" ry="6"/></g></g>` +
+    `<rect x="40" y="568" width="720" height="5" rx="2.5" fill="#fff" opacity=".35"/><rect x="40" y="568" width="6" height="5" rx="2.5" fill="#e0182f"/>${tx(730, 552, 17, '2:14', '#fff')}`, 0.6);
+}
+
 export const caught1Art: Record<string, string> = {
   av_cg_bff: avDez(),
   av_cg1_jessa: avJessa(),
@@ -686,4 +798,9 @@ export const caught1Art: Record<string, string> = {
   cg1_ph_bbq: phBbq(),
   cg1_ph_kayla_kar: phKayla(),
   cg1_ph_bed: phBed(),
+  cg1_ph_nightstand: phNightstand(),
+  cg1_ph_keycard: phKeycard(),
+  cg1_ph_pancakes: phPancakes(),
+  cg1_ph_easels: phEasels(),
+  cg1_ph_video: phVideo(),
 };
