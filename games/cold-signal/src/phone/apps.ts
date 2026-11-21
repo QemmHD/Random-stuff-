@@ -126,10 +126,13 @@ function photosView(g: Game): View {
       // Photos that only exist as someone else's post are not in this camera roll.
       const othersOnly = (p: Photo) => g.c.glimpse.some((post) => post.photo === p.id && post.author !== 'me') && !g.c.glimpse.some((post) => post.photo === p.id && post.author === 'me');
       const own = g.c.photos.filter((p) => !othersOnly(p));
-      const normal = own.filter((p) => !p.deletedUntil).sort(byTimeAsc);
-      const rec = own.filter((p) => p.deletedUntil && g.visible(p)).sort(byTimeAsc);
-      const tile = (p: Photo) => h('button', { class: `ph-tile${g.has(`seen:${p.id}`) ? '' : ' unseen'}`, type: 'button', onclick: () => { audio.play('tap'); phone.viewArt(p.art, p); } },
+      const normal = own.filter((p) => !p.deletedUntil && !p.hidden).sort(byTimeAsc);
+      const hidden = own.filter((p) => p.hidden && g.visible(p)).sort(byTimeAsc);
+      const hiddenOpen = g.has('hidden:open');
+      const rec = own.filter((p) => p.deletedUntil && g.visible(p) && !p.hidden).sort(byTimeAsc);
+      const tile = (p: Photo) => h('button', { class: `ph-tile${g.has(`seen:${p.id}`) ? '' : ' unseen'}${p.censor ? ' censored' : ''}`, type: 'button', onclick: () => { audio.play('tap'); phone.viewArt(p.art, p); } },
         artImg(p.art),
+        p.censor ? h('span', { class: 'censor-bar' }, S.censored) : null,
         g.isPinned(p.clue ?? `n:${p.id}`) ? h('span', { class: 'ph-pin' }, glyph('pin')) : null);
       const pendingDeleted = own.filter((p) => p.deletedUntil && !g.visible(p)).length;
       return h('div', { class: 'photos' },
@@ -137,10 +140,42 @@ function photosView(g: Game): View {
         h('div', { class: 'ph-grid' }, ...normal.map(tile)),
         rec.length ? sectionTitle(S.recoveredAlbum) : null,
         rec.length ? h('div', { class: 'ph-grid recovered' }, ...rec.map(tile)) : null,
+        hidden.length && !hiddenOpen ? h('button', { class: 'ph-hidden', type: 'button', onclick: () => openHidden(g, phone) }, glyph('lock'), h('div', null, h('b', null, S.hiddenAlbum), h('span', null, S.hiddenLocked(hidden.length)))) : null,
+        hidden.length && hiddenOpen ? sectionTitle(`${S.hiddenAlbum} · ${hidden.length}`) : null,
+        hidden.length && hiddenOpen ? h('div', { class: 'ph-grid hidden-grid' }, ...hidden.map(tile)) : null,
         pendingDeleted ? h('div', { class: 'ph-deleted' }, glyph('trash'), h('div', null, h('b', null, 'Recently Deleted'), h('span', null, `${pendingDeleted} items · purged — recovery requires TRACE`))) : null,
       );
     },
   };
+}
+
+function openHidden(g: Game, phone: Phone): void {
+  audio.play('open');
+  const input = h('input', { class: 'pw-input', type: 'password', inputmode: 'numeric', autocomplete: 'off', placeholder: S.enterPasscode, 'aria-label': S.enterPasscode });
+  const err = h('div', { class: 'pw-err' });
+  const form = h('form', { class: 'pw-form' },
+    h('div', { class: 'pw-icon' }, glyph('lock')),
+    h('b', null, S.hiddenAlbum),
+    h('span', { class: 'muted' }, S.hiddenPrompt),
+    input, err,
+    h('button', { class: 'btn primary', type: 'submit' }, S.unlockNote));
+  const close = phone.sheet(form);
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (input.value.trim() === g.c.lock.passcode) {
+      audio.play('unlock');
+      close();
+      g.set('hidden:open');
+      const quips = S.hiddenQuips;
+      g.pushHandler(quips[Math.floor(Math.random() * quips.length)]);
+    } else {
+      audio.play('error');
+      err.textContent = S.wrongCode;
+      form.classList.remove('shake'); void form.offsetWidth; form.classList.add('shake');
+      input.select();
+    }
+  });
+  setTimeout(() => input.focus(), 250);
 }
 
 // ======================= NOTES =======================

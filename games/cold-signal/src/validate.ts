@@ -23,7 +23,7 @@ export function validateCase(c: CaseFile): string[] {
   dupes('item', [...c.threads.map((t) => t.id), ...c.photos.map((x) => x.id), ...c.notes.map((x) => x.id), ...c.mail.map((m) => m.id), ...c.voicemails.map((v) => v.id)]);
 
   const flagOk = (f: string): boolean => {
-    if (f === 'unlocked' || f === 'report:filed') return true;
+    if (f === 'unlocked' || f === 'report:filed' || f === 'hidden:open') return true;
     const [kind, id] = [f.slice(0, f.indexOf(':')), f.slice(f.indexOf(':') + 1)];
     switch (kind) {
       case 'note': return noteIds.has(id) && !!c.notes.find((n) => n.id === id)?.lock;
@@ -87,7 +87,7 @@ export function validateCase(c: CaseFile): string[] {
  * happens. Returns flags reached. Detects soft-locks.
  */
 export function simulateSolve(c: CaseFile): Set<string> {
-  const flags = new Set<string>(['unlocked']);
+  const flags = new Set<string>(['unlocked', 'hidden:open']);
   const vis = (x: { deletedUntil?: string }) => !x.deletedUntil || flags.has(x.deletedUntil);
   let pins = 0;
   for (let round = 0; round < 50; round++) {

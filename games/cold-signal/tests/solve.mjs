@@ -86,6 +86,12 @@ async function rows(fn) {
 async function pass(round) {
   await openApp('messages'); await rows(async (i) => { if (round === 0 && i === 0) await shot('06-thread'); }); await home();
   await openApp('photos');
+  if (await page.locator(`${top} .ph-hidden`).count()) {
+    await page.locator(`${top} .ph-hidden`).click(); await sleep(300);
+    await page.locator('.pw-input').fill(c.lock.passcode);
+    await page.locator('.pw-form button[type=submit]').click(); await sleep(600);
+    if (round === 0) await shot('07b-hidden');
+  }
   const n = await page.locator(`${top} .ph-tile`).count();
   for (let i = 0; i < n; i++) { await page.locator(`${top} .ph-tile`).nth(i).click(); await sleep(250); if (round === 0 && i === 3) await shot('07-photo'); await pinAll(); await page.locator('.zv-close').click(); await sleep(260); }
   await home();

@@ -77,7 +77,7 @@ export const case4: CaseFile = {
         { from: 'me', text: "it's not for indoors lina. outside or a cracked door ONLY", t: '2026-03-07T18:31' },
         { from: 'them', text: "at kenzie's!! 🧦 night night", t: '2026-03-07T20:40' },
         { from: 'them', text: "rafi don't be mad. we're not at kenzie's. we're at the aerie. we rode last chair up and hid in the bathrooms till patrol left. zoe's ankle is really bad and it's SO dark. please", t: '2026-03-07T22:51', clue: 'lina_party', deletedUntil: 'recovered:msgfrag' },
-        { from: 'me', text: 'are you KIDDING me. how many of you', t: '2026-03-07T22:52', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: 'are you KIDDING me lina. holy shit. how many of you', t: '2026-03-07T22:52', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: '6', t: '2026-03-07T22:53', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: "heater OFF. put it outside on the deck. everyone to the lift shack up top. I'm starting Eagle. 15 min", t: '2026-03-07T22:58', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: "heater's off and it's outside on the deck I promise. we're at the shack. zoe's crying", t: '2026-03-07T23:04', clue: 'heater_out', deletedUntil: 'recovered:msgfrag' },
@@ -104,9 +104,11 @@ export const case4: CaseFile = {
     },
     {
       id: 'th_kessler', contact: 'kessler', messages: [
-        { from: 'them', text: "You see my email? Heritage board says the Aerie is untouchable. Sixty years of mice and a chimney and it's 'historic'.", t: '2026-02-18T17:05' },
+        { from: 'them', text: "You see my email? Heritage board says the Aerie is untouchable. Sixty years of mice, a chimney and a men's room that's seen more action than a Vegas motel, and it's 'historic'.", t: '2026-02-18T17:05' },
         { from: 'me', text: 'people love that hut, Bram', t: '2026-02-18T17:20' },
         { from: 'them', text: "People don't pay for it. Altura does.", t: '2026-02-18T17:21', clue: 'heritage_denied' },
+        { from: 'them', text: "Their guy wants 'curated après experiences' up top. Forty-dollar cocktails and a hot tub full of crypto dentists. That's the future, Rafi.", t: '2026-02-18T17:24' },
+        { from: 'me', text: 'sounds like a hot tub you would need a tetanus shot for', t: '2026-02-18T17:26' },
         { from: 'them', text: "Eagle gearbox done tonight? Altura's walking the summit Thursday.", t: '2026-03-07T15:40' },
         { from: 'me', text: 'done by midnight. need your ok for a slow test run after close', t: '2026-03-07T15:44' },
         { from: 'them', text: 'Monday. Not tonight.', t: '2026-03-07T15:58' },
@@ -116,28 +118,34 @@ export const case4: CaseFile = {
     },
     {
       id: 'th_mags', contact: 'mags', messages: [
-        { from: 'them', text: "cat 3's hydraulics are whining again. if I die on Upper Eagle tell my kids I loved em", t: '2026-03-07T21:15' },
+        { from: 'them', text: "cat 3's hydraulics are whining again. louder than my ex when the hot water ran out. if I die on Upper Eagle tell my kids I loved em and tell him he still owes me $300", t: '2026-03-07T21:15' },
         { from: 'me', text: "I'll look at it at 2. don't die", t: '2026-03-07T21:18' },
+        { from: 'them', text: "no promises. also the new liftie asked if I wanted to 'ride his chair after close.' he's 22. I own thermal underwear older than him", t: '2026-03-07T21:20' },
+        { from: 'me', text: 'report him to HR. oh wait HR is bram. godspeed', t: '2026-03-07T21:21' },
+        { from: 'them', text: "bram would give him a raise for the line. that man's whole personality is a Viagra commercial with a snowmobile in it", t: '2026-03-07T21:22' },
         { from: 'them', text: 'you ok? saw your sled light up top around 1:30. thought you were home', t: '2026-03-08T02:20' },
-        { from: 'them', text: "they're saying you did it. I don't believe it for one second", t: '2026-03-10T12:40' },
+        { from: 'them', text: "they're saying you did it. bullshit. I don't believe it for one second", t: '2026-03-10T12:40' },
       ],
     },
     {
       id: 'th_dag', contact: 'dag', messages: [
         { from: 'them', text: 'Patrol sweep done 16:20. Eagle clear, Aerie locked up.', t: '2026-03-07T16:30' },
-        { from: 'me', text: 'copy. gearbox all night, shop radio on 4', t: '2026-03-07T16:31' },
+        { from: 'me', text: 'copy. gearbox all night, shop radio on 4. me and a gearbox, saturday night. living the dream', t: '2026-03-07T16:31' },
         { from: 'them', text: "FD says total loss. Bram's asking Ops for the overnight lift log.", t: '2026-03-08T06:50' },
-        { from: 'them', text: "Rafi, your key's on that log. Don't do anything stupid before you talk to me.", t: '2026-03-08T07:05' },
+        { from: 'them', text: "Rafi, your key's on that log. Don't do anything stupid before you talk to me. Stupider than usual, I mean.", t: '2026-03-08T07:05' },
       ],
     },
     {
       id: 'th_wes', contact: 'wes', messages: [
-        { from: 'them', text: 'Fired. Nine years on the cats and he fires me by EMAIL.', t: '2026-02-02T09:12' },
+        { from: 'them', text: 'Fired. Nine years on the cats and that rich prick fires me by EMAIL. Didn\'t even have the balls to do it to my face.', t: '2026-02-02T09:12' },
         { from: 'me', text: "man I'm sorry. what happened", t: '2026-02-02T09:30' },
         { from: 'them', text: 'I did his insurance paperwork. Asked one question I wasn\'t supposed to.', t: '2026-02-02T09:41' },
         { from: 'them', text: 'That hut and that man deserve each other. Hope it burns with him in it.', t: '2026-02-20T23:48', clue: 'wes_threat' },
-        { from: 'them', text: 'TOLD you. Ask him why he took the Aerie from $900k of insurance to $4.2 million in January. Ask him.', t: '2026-03-08T10:00', clue: 'insurance_tip' },
-        { from: 'them', text: "And before your cop friends ask, I was murdering Total Eclipse of the Heart at Rooster's till 2. Ask anyone. Ask the video.", t: '2026-03-09T11:15' },
+        { from: 'them', text: "also I'm drunk. five bourbons and a breakup playlist. still mean it", t: '2026-02-20T23:50' },
+        { from: 'them', text: "also my tinder date tonight asked what I do and I said 'unemployed snow farmer' and she left before the nachos came. NACHOS rafi", t: '2026-02-20T23:53' },
+        { from: 'me', text: 'go to bed wes. drink water. delete tinder', t: '2026-02-21T07:40' },
+        { from: 'them', text: 'TOLD you. Follow the money, man. Ask him why he took the Aerie from $900k of insurance to $4.2 million in January. Ask him.', t: '2026-03-08T10:00', clue: 'insurance_tip' },
+        { from: 'them', text: "And before your cop friends ask, I was murdering Total Eclipse of the Heart at Rooster's till 2. Ask anyone. Ask the video. Ask the bachelorette party I tried to hit on — they were VERY clear about not being interested.", t: '2026-03-09T11:15' },
       ],
     },
   ],
@@ -191,7 +199,7 @@ export const case4: CaseFile = {
 
   voicemails: [
     { id: 'vm_mama', contact: 'mama', t: '2026-03-02T18:31', duration: '0:29', voice: { pitch: 0.95, rate: 0.88, female: true }, transcript: "Rafi, it's Mama. Sunday is one year since we carried your father up under tower nine. I keep thinking of the view from there, he always said it was the best seat on the mountain. Bring the good thermos. And bring your sister, she pretends she doesn't care. Okay. Kisses." },
-    { id: 'vm_abara', contact: 'abara', t: '2026-03-08T07:12', duration: '0:18', voice: { pitch: 1.0, rate: 1.0, female: true }, transcript: "Mr. Haddad, this is Detective Simone Abara, Cutter's Gap PD. Your maintenance key started the Eagle lift last night after closing. I'd like to hear about that from you. You can come in voluntarily this morning." },
+    { id: 'vm_abara', contact: 'abara', t: '2026-03-08T07:12', duration: '0:18', voice: { pitch: 1.0, rate: 1.0, female: true }, transcript: "Mr. Haddad, this is Detective Simone Abara, Cutter's Gap PD. Your maintenance key started the Eagle lift last night after closing. I'd like to hear about that from you. You can come in voluntarily this morning. Or I can come get you, and trust me, neither of us wants that conversation before coffee." },
     { id: 'vm_kessler', contact: 'kessler', t: '2026-03-08T07:41', duration: '0:34', voice: { pitch: 0.75, rate: 1.05, female: false }, clue: 'kessler_vm', deletedUntil: 'recovered:voice', transcript: "Rafi, it's Bram. Listen to me. Whatever happened up there, it was an accident. A heater, kids, whatever. You walk in and say it was you — first offense, it's a misdemeanor, I'll pay for the lawyer and you'll have your job back by summer. You don't want them looking at whoever's bag you went back up for. Think about your mother. Call me." },
     { id: 'vm_lina', contact: 'lina', t: '2026-03-10T21:40', duration: '0:26', voice: { pitch: 1.3, rate: 1.12, female: true }, clue: 'lina_admits', transcript: "They won't let me see you. Rafi, it was US. We were up there, it was my party, I took your heater. You brought us down. You counted. I'm going to tell them, I don't care what you made me promise. You're not doing this for me." },
   ],
@@ -234,9 +242,9 @@ export const case4: CaseFile = {
 
   glimpse: [
     { id: 'g_baba', author: 'me', photo: 'c4_ph_dad', caption: 'one year tomorrow, Baba. best seat on the mountain. sunrise at tower 9 🕯️', t: '2026-03-07T19:00', likes: 212, comments: [{ author: 'mama', text: '❤️❤️❤️' }, { author: 'lina', text: "he'd hate this caption. too soft" }, { author: 'mags', text: 'miss that man' }] },
-    { id: 'g_sled', author: 'kessler', photo: 'c4_ph_sled', caption: 'New boss sled 😎 SP-01. Try and keep up, kids.', t: '2026-01-10T15:30', likes: 88, comments: [{ author: 'dag', text: 'patrol gets the 2009s, boss gets this' }, { author: 'wes', text: 'nice. who paid for it' }], clue: 'sled_assign' },
-    { id: 'g_karaoke', author: 'wes', photo: 'c4_ph_karaoke', caption: "TOTAL ECLIPSE OF THE HEART 🎤 sorry Rooster's. sorry everyone", t: '2026-03-08T01:43', likes: 41, comments: [{ author: 'mags', text: 'I can hear this photo' }], clue: 'wes_karaoke' },
-    { id: 'g_burn', author: 'mags', photo: 'c4_ph_burn', caption: 'sixty years. 💔 #theaerie', t: '2026-03-08T07:30', likes: 503, comments: [{ author: 'dag', text: '🙏' }, { author: 'kessler', text: 'A sad day for Silverpine. We will rebuild.' }] },
+    { id: 'g_sled', author: 'kessler', photo: 'c4_ph_sled', caption: 'New boss sled 😎 SP-01. Try and keep up, kids. #blessed #earnedit #alphalife', t: '2026-01-10T15:30', likes: 88, comments: [{ author: 'dag', text: 'patrol gets the 2009s, boss gets this' }, { author: 'wes', text: 'nice. who paid for it' }, { author: 'mags', text: 'midlife crisis with a pull cord. at least it\'s not another ponytail' }], clue: 'sled_assign' },
+    { id: 'g_karaoke', author: 'wes', photo: 'c4_ph_karaoke', caption: "TOTAL ECLIPSE OF THE HEART 🎤 sorry Rooster's. sorry everyone", t: '2026-03-08T01:43', likes: 41, comments: [{ author: 'mags', text: 'I can hear this photo' }, { author: 'dag', text: 'Rooster\'s should press charges' }, { author: 'wes', text: 'turn around bright eyes 😭🎤' }], clue: 'wes_karaoke' },
+    { id: 'g_burn', author: 'mags', photo: 'c4_ph_burn', caption: 'sixty years. 💔 #theaerie', t: '2026-03-08T07:30', likes: 503, comments: [{ author: 'dag', text: '🙏' }, { author: 'kessler', text: 'A sad day for Silverpine. We will rebuild. 🙏 #SilverpineStrong' }, { author: 'wes', text: 'bet you will, Bram' }] },
   ],
 
   bank: {
@@ -374,10 +382,10 @@ export const case4: CaseFile = {
   events: [
     { id: 'e4_unk1', kind: 'text', when: ['unlocked'], minPins: 3, delayMs: 4500, thread: 'th_c4unknown', contact: 'c4unknown', text: "Is this Rafi Haddad's phone? Is somebody finally reading it?" },
     { id: 'e4_unk2', kind: 'text', when: ['recovered:photos'], minPins: 6, delayMs: 6000, thread: 'th_c4unknown', contact: 'c4unknown', text: "I groom Upper Eagle nights. At 1:08 a sled went up the cat track. Black, red stripe. SP-01. Only one man rides SP-01. It came back down at 1:52 with its lights off. Rafi's light went up at 1:30 and came down at 1:40. I know what I saw.", clue: 'sled_witness' },
-    { id: 'e4_h_origin', kind: 'handler', when: ['pinned:fire_origin'], delayMs: 3000, text: "Hold that headline up against Rafi's signed statement. Are they describing the same fire?" },
-    { id: 'e4_h_vm', kind: 'handler', when: ['pinned:kessler_vm'], delayMs: 3500, text: "For the file: Rafi's statement never mentions going back up the mountain. Not to us, not to his lawyer. Play that voicemail again." },
-    { id: 'e4_unk3', kind: 'text', when: ['event:e4_unk2', 'pinned:badge_sheet'], delayMs: 5000, thread: 'th_c4unknown', contact: 'c4unknown', text: "It's Mags. Cat 3. This is my son's phone. Bram signs my paycheck too. I'll tell Detective Abara myself if you need me to." },
-    { id: 'e4_h_ready', kind: 'handler', when: ['unlocked'], minPins: 14, delayMs: 3000, text: "The DA wants that plea signed Friday. When every answer has a pin behind it, open the Case Report." },
+    { id: 'e4_h_origin', kind: 'handler', when: ['pinned:fire_origin'], delayMs: 3000, text: "Hold that headline up against Rafi's signed statement. Are they describing the same fire? Fire marshals don't get creative. Confessions do." },
+    { id: 'e4_h_vm', kind: 'handler', when: ['pinned:kessler_vm'], delayMs: 3500, text: "For the file: Rafi's statement never mentions going back up the mountain. Not to us, not to his lawyer, not to his goddamn priest. Play that voicemail again — and ask yourself who's been running their mouth." },
+    { id: 'e4_unk3', kind: 'text', when: ['event:e4_unk2', 'pinned:badge_sheet'], delayMs: 5000, thread: 'th_c4unknown', contact: 'c4unknown', text: "It's Mags. Cat 3. This is my son's phone. Bram signs my paycheck too, cheap son of a bitch. I'll tell Detective Abara myself if you need me to." },
+    { id: 'e4_h_ready', kind: 'handler', when: ['unlocked'], minPins: 14, delayMs: 3000, text: "The DA wants that plea signed Friday — nothing gets a prosecutor hot and bothered like a closed file before the weekend. When every answer has a pin behind it, open the Case Report." },
   ],
 
   hints: [
@@ -397,7 +405,7 @@ export const case4: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'Six questions. Open the Case Report and back every answer with a pinned clue.' },
   ],
 
-  handlerIntro: "A signed confession and a mother who won't accept it. I've read his statement — it's tidy, like he rehearsed it. Open the phone. His sister gave us the rule.",
+  handlerIntro: "A signed confession and a mother who won't accept it. I've read his statement — it's tidy, like he rehearsed it in the mirror. Twenty-two years on the job, I've watched men confess to shit they didn't do for love, for money, and once for a sandwich. Open the phone. His sister gave us the rule.",
 
   epilogue: {
     solved: [

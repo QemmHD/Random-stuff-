@@ -54,6 +54,10 @@ export interface Photo {
   deletedUntil?: Flag;
   /** Shown as small text in the info sheet, e.g. EXIF device. */
   device?: string;
+  /** Lives in the passcode-locked "Hidden" album instead of Recents. */
+  hidden?: boolean;
+  /** Draw a comedic CENSORED bar over the image (implied, never shown). */
+  censor?: boolean;
 }
 
 export interface Note {

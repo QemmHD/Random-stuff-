@@ -371,6 +371,10 @@ export class Phone {
   viewArt(artId: string, photo?: Photo): void {
     const img = h('img', { src: artUrl(artId), alt: '', draggable: 'false', class: 'zv-img' });
     const stage = h('div', { class: 'zv-stage' }, img);
+    if (photo?.censor) {
+      const bar = h('div', { class: 'censor-bar big' }, S.censoredLong);
+      stage.appendChild(bar);
+    }
     let zoom = 1, tx = 0, ty = 0;
     const apply = () => { img.style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`; };
     let dragging = false, sx = 0, sy = 0, moved = false;

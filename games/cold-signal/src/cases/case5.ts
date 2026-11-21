@@ -77,7 +77,10 @@ export const case5: CaseFile = {
       id: 'th_owen', contact: 'owen', messages: [
         { from: 'them', text: "Room 9 is the best thing you've ever built. it's also going to end us. you know that right", t: '2026-10-10T23:12' },
         { from: 'me', text: "it's not about us. it was never about us. that's the whole problem", t: '2026-10-10T23:20' },
-        { from: 'them', text: 'first aid refresher done. staff certified. tess stabbed an orange with real commitment', t: '2026-10-20T16:40' },
+        { from: 'them', text: 'also the fog machine in 6 is leaking again. the whole vault smells like a vape shop hooked up with a swamp', t: '2026-10-10T23:24' },
+        { from: 'me', text: "put it in the brochure. 'immersive.'", t: '2026-10-10T23:25' },
+        { from: 'them', text: 'the bachelorette group in room 4 tonight tried to tip the actor playing the corpse. with dollar bills. in his waistband. he says he has never felt so seen', t: '2026-10-10T23:27' },
+        { from: 'them', text: 'first aid refresher done. staff certified. tess stabbed an orange with real commitment. remind me never to piss her off', t: '2026-10-20T16:40' },
         { from: 'me', text: "you told the police you were at the car with Nadia. Owen, you're in frame 24. on the ledge. right behind him.", t: '2026-10-28T22:40', clue: 'owen_confront', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: "it's a sleeve, V. it's dark. it could be anyone's", t: '2026-10-28T22:51', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: 'it says HATCH XC. I bought you that jacket for your 17th birthday.', t: '2026-10-28T22:52', clue: 'owen_confront', deletedUntil: 'recovered:msgfrag' },
@@ -95,9 +98,11 @@ export const case5: CaseFile = {
         { from: 'them', text: "Nadia says you've built an escape room about the quarry. Tell me that's a joke.", t: '2026-10-22T18:30' },
         { from: 'me', text: "it's not a joke. it's a confession. you're invited.", t: '2026-10-22T18:36' },
         { from: 'them', text: "The caretaker story kept four kids out of prison. It was my idea and it WORKED. Don't you dare undo it two weeks before an election.", t: '2026-10-22T18:41', clue: 'chase_story' },
+        { from: 'them', text: "My campaign slogan is literally 'Integrity Matters.' It's on four hundred lawn signs. Do you have any idea how that will read?", t: '2026-10-22T18:43' },
+        { from: 'me', text: 'like a punchline, julian', t: '2026-10-22T18:44' },
         { from: 'them', text: 'My attorney will be in touch.', t: '2026-10-27T09:15' },
         { from: 'them', text: "If that room opens, I will bury you and your little company. That isn't a threat. It's a forecast.", t: '2026-10-30T20:58', clue: 'julian_threat' },
-        { from: 'them', text: 'I came. I played your game. Now I have a debate to win.', t: '2026-10-31T22:06' },
+        { from: 'them', text: 'I came. I played your game. Your fog machine ruined a nine-hundred-dollar suit. Now I have a debate to win.', t: '2026-10-31T22:06' },
         { from: 'them', text: "I'm sorry, Vera. I didn't want any of this.", t: '2026-11-01T10:15' },
       ],
     },
@@ -115,6 +120,8 @@ export const case5: CaseFile = {
     {
       id: 'th_mira', contact: 'mira', messages: [
         { from: 'them', text: 'dinner was perfect. you were weird though. are you ok?', t: '2026-10-28T22:05' },
+        { from: 'them', text: "also the waiter wrote his number on your receipt and you used it to wipe up hoisin. V. he had FOREARMS. you're a nun. a hot nun, but a nun", t: '2026-10-28T22:07' },
+        { from: 'them', text: "I'm going back for his number. for science. and for my vibrator, which deserves a vacation", t: '2026-10-28T22:09' },
         { from: 'me', text: "I'm about to be. nov 2 I'll tell you everything. promise 🖤", t: '2026-10-28T22:20' },
         { from: 'them', text: 'V', t: '2026-11-01T09:02' },
         { from: 'them', text: "they're calling it an accident. a sesame-snap bar from your own bag, sometime between 10:50 and 11:40. you have read every label since you were four, V. you would never.", t: '2026-11-03T21:40', clue: 'planted_bar' },
@@ -201,7 +208,7 @@ export const case5: CaseFile = {
     { id: 'vm_ruth', contact: 'ruth', t: '2026-09-13T16:11', duration: '0:28', voice: { pitch: 0.92, rate: 0.82, female: true }, clue: 'ruth_camera', transcript: "Vera, this is Ruth Price. Marlow's mother. I heard what you're building. I have something of his I've never been able to look at. A little yellow camera. Twenty-four pictures, the man at the drugstore said, if they're still good. I think it should be you. Call me back, dear." },
     { id: 'vm_julian', contact: 'julian', t: '2026-10-30T21:00', duration: '0:21', voice: { pitch: 0.85, rate: 1.1, female: false }, clue: 'julian_threat', transcript: "Vera. Julian. You think this is brave? It's vandalism. You're going to set fire to four lives so you can feel clean. I'll be at your test tomorrow because Nadia begged me. After that, if it opens, I'll bury you. Ask yourself who that room actually helps." },
     { id: 'vm_owen', contact: 'owen', t: '2026-10-29T23:40', duration: '0:38', voice: { pitch: 0.95, rate: 0.95, female: false }, clue: 'owen_vm', deletedUntil: 'recovered:voice', transcript: "Vee. It's me. I've been driving around. Please don't put frame twenty-four in the room. It was dark, we were seventeen, I grabbed for him — I grabbed for him, Vee, and I missed, or I didn't, I don't know anymore. Julian said say the caretaker and we all just... November second ends everything. Me, the business, you. Please. Call me back." },
-    { id: 'vm_mira', contact: 'mira', t: '2026-10-28T18:40', duration: '0:12', voice: { pitch: 1.15, rate: 1.15, female: true }, transcript: "Running ten late! Order me the pho with no — you know. You always know. Love you, weirdo." },
+    { id: 'vm_mira', contact: 'mira', t: '2026-10-28T18:40', duration: '0:12', voice: { pitch: 1.15, rate: 1.15, female: true }, transcript: "Running ten late! Parking down here is a fucking war crime. Order me the pho with no — you know. You always know. Love you, weirdo." },
     { id: 'vm_ibarra', contact: 'ibarra', t: '2026-11-02T09:20', duration: '0:25', voice: { pitch: 0.8, rate: 0.9, female: false }, transcript: "Ms. Lisk, Hal Ibarra, Second Look. Mrs. Price and I are at the door, nine o'clock, as you asked. There's police tape. They — I'm so sorry. If anyone ever finds whatever was in that box, I want it. Abel Dunn has waited long enough." },
   ],
 
@@ -243,8 +250,8 @@ export const case5: CaseFile = {
   glimpse: [
     { id: 'g_teaser', author: 'me', photo: 'c5_ph_room9', caption: "QUARRY opens Nov 2. It's about something I should have said eighteen years ago.", t: '2026-10-30T09:00', likes: 2210, comments: [{ author: 'tess', text: "it's the best one" }, { author: 'owen', text: '🖤' }, { author: 'ruth', text: "I'll be there at nine." }] },
     { id: 'g_tbt', author: 'nadia', photo: 'c5_ph_2008', caption: '#tbt 18 years. miss you every day, Low 🌊', t: '2026-08-22T07:58', likes: 64, comments: [{ author: 'me', text: '💙' }, { author: 'julian', text: 'Take this down, Nadia.' }], clue: 'red_windbreaker' },
-    { id: 'g_firstaid', author: 'tess', photo: 'c5_ph_firstaid', caption: 'staff first aid day! Owen demonstrating the EpiPen trainer on a very brave orange 🍊', t: '2026-10-20T15:20', likes: 37, comments: [{ author: 'owen', text: 'the orange survived' }], clue: 'trainer_kit' },
-    { id: 'g_debate', author: 'nadia', photo: 'c5_ph_debate', caption: 'watching J eat his opponent alive on live TV 🍿 after the strangest hour of my life', t: '2026-10-31T23:15', likes: 19, comments: [{ author: 'julian', text: 'thanks for watching' }], clue: 'julian_debate' },
+    { id: 'g_firstaid', author: 'tess', photo: 'c5_ph_firstaid', caption: 'staff first aid day! Owen demonstrating the EpiPen trainer on a very brave orange 🍊', t: '2026-10-20T15:20', likes: 37, comments: [{ author: 'owen', text: 'the orange survived' }, { author: 'mira', text: 'that orange has been stabbed more gently than my last three dates went' }], clue: 'trainer_kit' },
+    { id: 'g_debate', author: 'nadia', photo: 'c5_ph_debate', caption: 'watching J eat his opponent alive on live TV 🍿 boxed wine, sweatpants, zero dignity. after the strangest hour of my life', t: '2026-10-31T23:15', likes: 19, comments: [{ author: 'julian', text: 'thanks for watching' }, { author: 'mira', text: 'he looks like a Ken doll that passed the bar' }], clue: 'julian_debate' },
   ],
 
   bank: {
@@ -390,11 +397,11 @@ export const case5: CaseFile = {
 
   events: [
     { id: 'e5_unk1', kind: 'text', when: ['unlocked'], minPins: 3, delayMs: 4500, thread: 'th_c5unknown', contact: 'c5unknown', text: 'You got into her phone. She said someone would. Did she leave anything for me?' },
-    { id: 'e5_h_trainer', kind: 'handler', when: ['pinned:trainer_pen'], delayMs: 3000, text: "I pulled the ME's property list myself. Grey cap, TRAINER on the barrel, no needle, no drug. Where does a pen like that come from?" },
+    { id: 'e5_h_trainer', kind: 'handler', when: ['pinned:trainer_pen'], delayMs: 3000, text: "I pulled the ME's property list myself. Grey cap, TRAINER on the barrel, no needle, no drug. It's a prop. You could jab a horse with it and the horse would just look at you, disappointed. Where does a pen like that come from?" },
     { id: 'e5_unk2', kind: 'text', when: ['recovered:photos'], minPins: 8, delayMs: 6000, thread: 'th_c5unknown', contact: 'c5unknown', text: "My name isn't Tess Moreau. It's Tamsin Dunn. Abel Dunn is my father. He's seventy-one and he still asks the nurses if the boy got out of the water.", clue: 'tess_tamsin' },
-    { id: 'e5_h_owen', kind: 'handler', when: ['pinned:latchly_owen'], delayMs: 3500, text: "For the file: Owen Blake told detectives he drove straight home at 22:05 and heard about Vera from Tess at 07:50. Put that next to the lock log." },
+    { id: 'e5_h_owen', kind: 'handler', when: ['pinned:latchly_owen'], delayMs: 3500, text: "For the file: Owen Blake told detectives he drove straight home at 22:05 and heard about Vera from Tess at 07:50. The detectives wrote that down and went to lunch. Put that next to the lock log." },
     { id: 'e5_unk3', kind: 'text', when: ['note:n_confession'], delayMs: 5000, thread: 'th_c5unknown', contact: 'c5unknown', text: "She told me in March she knew who I was. 'Give me until November.' I thought she meant she'd fire me nicely." },
-    { id: 'e5_h_ready', kind: 'handler', when: ['unlocked'], minPins: 16, delayMs: 3000, text: "She built a room and we're the only ones who finished it. When every answer has a pin behind it, open the Case Report." },
+    { id: 'e5_h_ready', kind: 'handler', when: ['unlocked'], minPins: 16, delayMs: 3000, text: "She built a room and we're the only ones who finished it. When every answer has a pin behind it, open the Case Report. Then I'm getting shitfaced and you're buying." },
   ],
 
   hints: [
@@ -414,7 +421,7 @@ export const case5: CaseFile = {
     { until: 'report:filed', after: ['unlocked'], text: 'Her last room has six locks. Open the Case Report and back every answer with a pinned clue.' },
   ],
 
-  handlerIntro: "Last case on my desk this year, and it came out of a locked box. The partner says her final codes were always a word on a phone keypad. Look at the first wall you see.",
+  handlerIntro: "Last case on my desk this year, and it came out of a locked box. Escape rooms — people pay forty bucks to get locked in a closet with their coworkers. I get that for free at the precinct, plus the smell. The partner says her final codes were always a word on a phone keypad. Look at the first wall you see.",
 
   epilogue: {
     solved: [
