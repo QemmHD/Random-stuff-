@@ -379,9 +379,9 @@ function phLighthouse(): string {
   let x = 16;
   const frames = W.map((w, i) => { const h = w * 1.3, s = lhouse(x, 250 - h / 2 + i * 3, w, h, SKIES[i], SEAS[i]); x += w + 15; return s; }).join('');
   return frame(k, 800, 600, '#ffd9a0',
-    lg(`${k}w`, '#c8b08a', '#8a7458') + glow(`${k}g`, '#fff0c0', 0.8) + lg(`${k}f`, '#6a4426', '#2a180c') + fade(`${k}s`, '#000', 0.6, 0, 1, 0),
+    lg(`${k}w`, '#c8b08a', '#8a7458') + glow(`${k}g`, '#fff0c0', 0.8) + lg(`${k}fo`, '#6a4426', '#2a180c') + fade(`${k}s`, '#000', 0.6, 0, 1, 0),
     `<rect width="800" height="600" fill="url(#${k}w)"/><ellipse cx="620" cy="90" rx="380" ry="260" fill="url(#${k}g)"/>` +
-    `<path d="M0 392L800 470V600H0Z" fill="url(#${k}f)"/><path d="M0 376L800 440V470L0 392Z" fill="#f0e6d0"/><path d="M0 430L800 540M0 470L800 600M0 520L600 600" stroke="#000" stroke-width="2" opacity=".25"/>` +
+    `<path d="M0 392L800 470V600H0Z" fill="url(#${k}fo)"/><path d="M0 376L800 440V470L0 392Z" fill="#f0e6d0"/><path d="M0 430L800 540M0 470L800 600M0 520L600 600" stroke="#000" stroke-width="2" opacity=".25"/>` +
     `<path d="M0 96L800 40" stroke="#f0e6d0" stroke-width="10"/>${frames}` +
     // the label-maker sticker on #7
     `<g transform="translate(640 408) rotate(-3) scale(1.32)"><rect x="-110" y="-17" width="220" height="34" rx="3" fill="#000" opacity=".3" transform="translate(3 4)"/><rect x="-110" y="-17" width="220" height="34" rx="3" fill="#f8f8f4"/><rect x="-110" y="-17" width="220" height="34" rx="3" fill="none" stroke="#b8b8b0" stroke-width="1.5"/><text x="0" y="7" font-size="19" font-family="Courier New, Courier, monospace" font-weight="700" text-anchor="middle" fill="#14141a" textLength="200" lengthAdjust="spacingAndGlyphs">#7 — about loneliness</text></g>` +
@@ -565,7 +565,7 @@ function phFernJ(): string {
 
 // ---------- cg1_ph_bbq — courtyard barbecue ----------
 function bbqDefs(k: string): string {
-  return lg(`${k}s`, '#5aa8e0', '#ffe0b0') + brick(`${k}br`, '#a85a3a', '#5a2a1c') + lg(`${k}gr`, '#5a9a4a', '#2a5a2a') + blur(`${k}bl`, 7);
+  return lg(`${k}s`, '#5aa8e0', '#ffe0b0') + brick(`${k}br`, '#a85a3a', '#5a2a1c') + lg(`${k}ga`, '#5a9a4a', '#2a5a2a') + blur(`${k}bl`, 7);
 }
 const lights = (y: number, w: number): string => `<path d="M0 ${y}Q${w / 4} ${y + 50} ${w / 2} ${y + 10}T${w} ${y}" fill="none" stroke="#2a1c14" stroke-width="2.5"/>` +
   [0.08, 0.24, 0.4, 0.58, 0.76, 0.92].map((t, i) => `<circle cx="${R(t * w)}" cy="${R(y + 22 + Math.sin(t * 6.28 * 2 - 1.2) * 14)}" r="8" fill="${['#ffd24a', '#ff6a5a', '#7ad0ff', '#8ae08a'][i % 4]}"/>`).join('');
@@ -584,7 +584,7 @@ function phBbq(): string {
     `<path d="M176 190L250 150M176 190L246 170" stroke="#c8ccd0" stroke-width="5" stroke-linecap="round"/>` + hd(-2, HY, HS, -8, { ...JULES, lite: true });
   return frame(k, 800, 600, '#fff0c0', bbqDefs(k),
     `<rect width="800" height="600" fill="url(#${k}s)"/><rect y="60" width="800" height="330" fill="url(#${k}br)"/>` +
-    `<path d="M0 380H800V600H0Z" fill="url(#${k}gr)"/>${lights(70, 800)}` +
+    `<path d="M0 380H800V600H0Z" fill="url(#${k}ga)"/>${lights(70, 800)}` +
     at(176, 268, 0.86, 0, trent) + at(396, 300, 0.78, 0, hb(4, HY, HS, 8, JESSA) + jessa) +
     // the grill
     `<g transform="translate(726 470)"><path d="M-70 40L-90 140M70 40L90 140M0 40V140" stroke="#1c1c22" stroke-width="8"/><path d="M-96 0Q-96 60 0 60Q96 60 96 0Z" fill="#1c1c22"/><ellipse rx="96" ry="16" fill="#3a3a44"/><g fill="#a84a2a"><ellipse cx="-40" cy="-4" rx="24" ry="9"/><ellipse cx="20" cy="-2" rx="24" ry="9"/></g></g>` +
@@ -601,7 +601,7 @@ function wallHome(): string {
   const jessa = `<g filter="url(#${k}f)" fill="${J}">${sl(J, 28, 'M-62 24L-86 120L-74 230')}<path d="${TF}"/>${BUST}${gown('#f0c83a', '#a8801c')}</g>${collar(JESSA.sh)}` + hd(6, HY, HS, 10, JN);
   const jules = `<path d="${TM}" fill="${U}"/>${sl(U, 38, 'M76 26L116 120L170 170')}<path d="M-17-10Q-40-4-70 4Q-84 8-84 28L-70 70H70L84 28Q84 8 70 4Q40-4 17-10Q0 10-17-10Z" fill="#3a4658"/>${apron(false)}` + hd(-6, HY, HS, -12, { ...JULES, lite: true });
   return frame(k, 600, 1300, '#fff0c0', bbqDefs(k),
-    `<rect width="600" height="1300" fill="url(#${k}s)"/><rect y="250" width="600" height="560" fill="url(#${k}br)"/><path d="M0 800H600V1300H0Z" fill="url(#${k}gr)"/>${lights(240, 600)}` +
+    `<rect width="600" height="1300" fill="url(#${k}s)"/><rect y="250" width="600" height="560" fill="url(#${k}br)"/><path d="M0 800H600V1300H0Z" fill="url(#${k}ga)"/>${lights(240, 600)}` +
     // Jules, out of focus, looking her way
     `<g filter="url(#${k}bl)">${at(452, 520, 0.92, 0, jules)}<g transform="translate(540 760)"><path d="M-96 0Q-96 60 0 60Q96 60 96 0Z" fill="#1c1c22"/><ellipse rx="96" ry="16" fill="#3a3a44"/></g><circle cx="556" cy="640" r="40" fill="#fff" opacity=".4"/></g>` +
     at(382, 800, 1.72, 3, trent) + at(196, 870, 1.62, -4, hb(6, HY, HS, 10, JESSA) + jessa) +
@@ -737,8 +737,8 @@ function phEasels(): string {
     `<rect x="620" y="60" width="170" height="16" rx="4" fill="#2a1c14"/><path d="M700 76v34q0 14 14 14" fill="none" stroke="#c8963a" stroke-width="7" stroke-linecap="round"/><g filter="url(#${k}f)">${helmet(708, 176, 0.95, -8, true)}</g>` +
     easel(370, 360, 0.72, 3) + easel(480, 352, 0.72, 4) + easel(590, 360, 0.72, 5) + easel(700, 372, 0.72, 6) +
     easel(170, 470, 1.05, 0) + easel(400, 480, 1.05, 1) + easel(620, 474, 1.05, 2) +
-    // her bra, draped over the top of an easel
-    `<g transform="translate(402 346) rotate(-5)"><path d="M-50 0Q-70-50-30-64M50 0Q76-40 60 60" fill="none" stroke="#14121a" stroke-width="4"/><path d="M-62-4H62V6H-62Z" fill="#14121a"/><g fill="#14121a"><path d="M-58 0Q-62 50-30 54Q-2 50 0 0Z"/><path d="M58 0Q62 50 30 54Q2 50 0 0Z"/></g><path d="M-52 8Q-50 40-30 46M52 8Q50 40 30 46" fill="none" stroke="#8a7a9a" stroke-width="3" stroke-dasharray="1 5" stroke-linecap="round"/><circle cy="4" r="4" fill="#d81e3c"/></g>` +
+    // her bra, hanging off the top of an easel by its straps
+    `<g transform="translate(404 366) rotate(7)"><path d="M-30-8Q-20-60 0-84Q20-60 30-8M-58 46q-22 24-12 60M58 46q22 20 16 52" fill="none" stroke="#14121a" stroke-width="4" stroke-linecap="round"/><g fill="#14121a"><path d="M-58 44Q-50 0-30-12Q-8 6-3 44Z"/><path d="M58 44Q50 0 30-12Q8 6 3 44Z"/><path d="M-60 40H60V52H-60Z"/></g><path d="M-54 46H54" stroke="#ff8ab0" stroke-width="3" stroke-dasharray="1 6" stroke-linecap="round"/><path d="M0 34l-7-7h14Z" fill="#ff8ab0"/></g>` +
     // palette, brushes, tubes
     `<g transform="translate(90 560)"><ellipse rx="74" ry="26" fill="#c8a06a"/><ellipse cx="-34" cy="4" rx="12" ry="6" fill="#3a2616"/><g><circle cx="-10" cy="-10" r="9" fill="#e8a05a"/><circle cx="18" cy="-12" r="9" fill="#7ab0d8"/><circle cx="42" cy="-2" r="9" fill="#d87a8a"/><circle cx="26" cy="10" r="9" fill="#f4f4f0"/><circle cx="0" cy="10" r="9" fill="#c8323a"/></g></g>` +
     `<g stroke-linecap="round"><path d="M270 580l70-26M286 590l60-14" stroke="#e8dcc0" stroke-width="6"/><path d="M340 554l12-5M346 576l12-3" stroke="#3a2616" stroke-width="8"/></g><rect x="500" y="560" width="50" height="18" rx="5" fill="#7ab0d8" transform="rotate(-12 525 569)"/><rect x="730" y="540" width="50" height="18" rx="5" fill="#c8323a" transform="rotate(20 755 549)"/>`, 0.45);

@@ -1,0 +1,609 @@
+import type { CaseFile } from '../types';
+
+// CAUGHT C4 — LEG DAY
+// The player IS Riley Shaw, 29, ER nurse at St. Brigid's (saved in his phone as 'Riley 🏥').
+// 1:34 a.m.: she was sent home early from a night shift (low census). Boyfriend Tanner
+// Boyce, 31, personal trainer at IronHaus Gym ("Coach T"), is asleep; his phone is under
+// his pillow, buzzing. Riley's name is the only one on the lease.
+// Truth: Tanner is cheating with Kenna Vale, 28, pilates instructor at CoreWorks Pilates
+// across the IronHaus lot, saved in his phone as 'Kev (leg day) 🦵'. "Leg day" in the gym
+// group chat (LEG DAY LEGENDS 🦵) = a Kenna night, scheduled around Riley's night shifts;
+// "need a spotter" = need an alibi. Brody covers ("at mine for the fight"). A second Glimpse
+// account, @coach.t.unfiltered (9 followers, incl. Kenna, the bros — and his mom).
+// "Work conferences": the Oct 9–11 "NFTA Trainer Summit, Scottsdale" was the Canyon Rose
+// Resort, Sedona, with Kenna. His mom, Deb ("Mama Deb 💐"), covers ("tell her you were
+// here fixing my disposal") — and prefers Kenna.
+// Twist: the ring box Riley found in his gym bag on Oct 20 — the one she tried on, which
+// stuck at her knuckle, the one he answered with "not yet babe" — is for KENNA. Size 5;
+// Riley is a 7. Mama Deb helped pick it. The "IronHaus Winter Expo" in Tulum (Dec 12–16)
+// is a proposal package at Casa Marea. And Kenna thinks Riley is "the ex who's still on
+// the lease and moves out in January" — Kenna has been in Riley's apartment on her shifts.
+// Red herring: client Sienna Park — "I can't walk, you DESTROYED me" — is literally leg day.
+// Passcode 1974: the Roman-numeral tattoo on his forearm (Mama Deb's birth year), in a
+// MIRROR selfie — so it reads backwards: VIXXLMCM → MCMLXXIV. Trap: 1976 (reading VI).
+
+const TASH = { name: 'Tash', role: 'your best friend', avatar: 'av_cg4_bff' };
+
+export const caught4: CaseFile = {
+  id: 'caught-4',
+  number: 'C4',
+  mode: 'caught',
+  handler: TASH,
+  title: 'Leg Day',
+  tagline: "His group chat says 'leg day' a lot for a man who skips legs. You got sent home early. He didn't get the memo.",
+  difficulty: 2,
+  cover: 'cg4_cover',
+  owner: { name: 'Tanner Boyce', age: 31, summary: "Your boyfriend. Personal trainer at IronHaus Gym, 'Coach T'. Three years together, two living in your apartment (your name on the lease). Calls his mom every day. Has never once done leg day." },
+  status: 'SUSPECTED CHEATER',
+  deviceCondition: 'EXTRACTED FROM UNDER HIS PILLOW WITH SALAD TONGS · 22% BATTERY · HE SLEEP-TALKS ABOUT CREATINE',
+  briefing: [
+    "1:34 a.m. St. Brigid's sent you home four hours early — dead night, nobody even sprained anything. You let yourself in quietly to surprise him. He's asleep diagonally across the bed in a tank top that says 'NO DAYS OFF'. His phone is under his pillow. It's buzzing. Under. His. Pillow.",
+    "You work nights Monday, Wednesday and Thursday. Lately those are the nights his group chat goes off. 'Leg day,' they keep saying. Tanner has skipped leg day since 2019. His calves are a known issue.",
+    "In October he went to a 'trainer summit' in Scottsdale and came back tanner than a man in a hotel ballroom should be. On October 20 you found a ring box in his gym bag. You opened it. You tried it on. It stuck at the knuckle, and you thought: he'll get it resized. When you asked him, very casually, he said 'not yet babe.' You cried in the car. Happy crying. You've been practising your surprised face for a month.",
+    "His code is the tattoo on his forearm — Roman numerals, 'for Mama Deb'. You've only ever seen it properly in his gym mirror selfies. He's very proud of it. He spelled 'numerals' wrong in the caption.",
+    "Tash is awake (Tash is always awake). Get the phone out from under him. Slowly.",
+  ],
+  phoneDate: '2026-11-20',
+  phoneTime: '01:34',
+  lock: {
+    passcode: '1974',
+    hint: "his forearm tattoo, read from his gym mirror selfie — a mirror flips everything, so read it right-to-left, then convert the Roman numerals",
+    wallpaper: 'cg4_wall_lock',
+    notifications: [
+      { app: 'messages', title: 'Kev (leg day) 🦵', text: "my legs still don't work. leg day is my favorite day 🥵", t: '2026-11-20T01:12' },
+      { app: 'messages', title: 'LEG DAY LEGENDS 🦵', text: '[Brody]: spotter needed thurs? 👀', t: '2026-11-19T22:40' },
+      { app: 'glimpse', title: 'Glimpse', text: "@coach.t.unfiltered: 1 new follow request. Switch accounts to view.", t: '2026-11-19T23:58' },
+      { app: 'messages', title: 'Mama Deb 💐', text: "Your tattoo is still my favorite Christmas present. Even if it's backwards in all your pictures 🙄❤️", t: '2026-11-18T09:15' },
+      { app: 'mail', title: 'Casa Marea Tulum', text: "Your Proposal Package is confirmed 💍 Dec 13 · sunset · violinist · 'SHE SAID YES' banner", t: '2026-11-17T10:02' },
+    ],
+  },
+  homeWallpaper: 'cg4_wall_home',
+
+  contacts: [
+    { id: 'riley', name: 'Riley 🏥', avatar: 'av_cg4_riley', number: '(555) 418-2290', label: 'girlfriend (you)' },
+    { id: 'kev', name: 'Kev (leg day) 🦵', avatar: 'av_cg4_kenna', number: '(555) 418-7716', label: 'added June 4' },
+    { id: 'legends', name: 'LEG DAY LEGENDS 🦵', avatar: 'av_cg4_legends', number: '(555) 418-0000', label: 'group · 4' },
+    { id: 'brody', name: 'Brody 🏋️', avatar: 'av_cg4_brody', number: '(555) 418-3311' },
+    { id: 'marcus', name: 'Big Marc', avatar: 'av_cg4_marcus', number: '(555) 418-3312' },
+    { id: 'kyle', name: 'Kyle (legends)', avatar: 'av_cg4_kyle', number: '(555) 418-3313' },
+    { id: 'mama', name: 'Mama Deb 💐', avatar: 'av_cg4_mama', number: '(555) 418-1974', label: 'Mom' },
+    { id: 'sienna', name: 'Sienna P. (client)', avatar: 'av_cg4_sienna', number: '(555) 418-5050', label: 'IronHaus · Tue/Thu 6am' },
+    { id: 'alexis', name: '(555) 418-6627', avatar: 'av_cg4_alexis', number: '(555) 418-6627' },
+    { id: 'alt', name: '@coach.t.unfiltered (2nd account)', avatar: 'av_cg4_alt', number: 'Glimpse' },
+    { id: 'tash', name: "Tash (Riley's friend) 🙄", avatar: 'av_cg4_bff', number: '(555) 418-8080', label: "Riley's best friend" },
+    { id: 'findmy', name: 'Find My', avatar: 'av_cg4_findmy', number: 'Find My' },
+  ],
+
+  threads: [
+    {
+      id: 'th_kev', contact: 'kev', messages: [
+        // build-up arc — deleted, restored by msgfrag
+        { from: 'them', text: "hi it's kenna from coreworks. you left your foam roller at our front desk. or you 'left' it. there's a heart drawn on the tag in sharpie, coach", t: '2026-06-04T12:10', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "that heart was there when I bought it. it's a factory heart. keep it, your reformers look lonely", t: '2026-06-04T12:31', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "my reformers are thriving. your plank form, however. I watched you through the window. your hips sag like a hammock", t: '2026-06-04T12:33', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "nobody has ever told me my form is bad. I'm a certified professional. I've been told I'm a 'menace' but never BAD", t: '2026-06-04T12:35', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "I should say. I have a girlfriend. we shouldn't be texting like this", t: '2026-06-19T23:48', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "I know. I've typed 'we shouldn't' four times and deleted it. then I typed 'fix your plank'. that one I sent", t: '2026-06-19T23:51', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "she works nights. mon wed thu. I don't know why I just told you that. yes I do", t: '2026-07-01T00:20', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "what do you even tell her", t: '2026-07-07T21:02', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "I tell her it's leg day. she'll believe it. she believes everything I say, which is why I feel like a garbage person", t: '2026-07-07T21:05', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "she just left for her shift. 7 to 7. parking at yours now", t: '2026-07-08T19:06', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "my heart is going like a hiit class. I've done 200 burpees in my life and none of them felt like this", t: '2026-07-08T19:07', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "door's open. 2C. I lit a candle. then I put the candle out because it was 'a lot'. then I lit it again. come up", t: '2026-07-08T19:08', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "coming up", t: '2026-07-08T19:09', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "I'm in my truck. my legs won't work. and I train legs for a living. allegedly", t: '2026-07-08T22:14', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "I can still smell you on me. on my hands. vanilla and that grippy-sock smell. how do I act normal tomorrow morning when she gets home", t: '2026-07-08T22:16', clue: 'first_meet', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "you make her eggs and you don't say anything about pilates. ever. delete this", t: '2026-07-08T22:18', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "deleted. it's leg day forever now", t: '2026-07-08T22:19', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "same time wednesday? 🦵", t: '2026-07-13T18:40', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "she starts at 7. door's open at 7:05. I don't knock anymore do I", t: '2026-07-13T18:42', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "you don't. I noticed. I liked it", t: '2026-07-13T18:43', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "is your ex still on the lease? 🙄 you said she's moving out 'after the summer'", t: '2026-09-02T22:10', clue: 'ex_story', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "she's looking. she's on nights, we basically never see each other. it's like having a ghost roommate who buys oat milk", t: '2026-09-02T22:13', clue: 'ex_story', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "ok. january. promise me january", t: '2026-09-02T22:14', clue: 'ex_story', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "january. I promise. new year new me", t: '2026-09-02T22:15', clue: 'ex_story', deletedUntil: 'recovered:msgfrag' },
+        // visible, recent
+        { from: 'them', text: "scottsdale 😇 or should I say sedona 😏 I packed the red thing. and the other red thing", t: '2026-10-08T21:40', clue: 'conference_fake' },
+        { from: 'me', text: "she thinks I'm at a trainer summit learning about 'kettlebell periodization'. I printed a lanyard kev. I PRINTED A LANYARD", t: '2026-10-08T21:42', clue: 'conference_fake' },
+        { from: 'them', text: "your lanyard is the hottest thing about you. after everything else", t: '2026-10-08T21:43' },
+        { from: 'me', text: "she's on shift ❤️ come over? door's open", t: '2026-11-04T19:04', clue: 'juxtapose' },
+        { from: 'them', text: "your place?? with her stuff everywhere? 😬", t: '2026-11-04T19:05', clue: 'your_couch' },
+        { from: 'me', text: "it's MY place. she's just on the lease. bring wine. not the cheap one. ok the cheap one", t: '2026-11-04T19:06', clue: 'your_couch' },
+        { from: 'them', text: "her throw blanket is really soft btw. I'm stealing it. kidding. not kidding", t: '2026-11-04T23:40', clue: 'your_couch' },
+        { from: 'me', text: "can't wait to feel it again. it's been 3 days. that's illegal", t: '2026-11-09T12:02', clue: 'juxtapose' },
+        { from: 'them', text: "you're way better than the guy before you. that's not a high bar. he did crossfit", t: '2026-11-09T12:05' },
+        { from: 'me', text: "I think about you when I'm with her. like actively. like I'm somewhere else. delete this after", t: '2026-11-11T07:40', clue: 'juxtapose' },
+        { from: 'them', text: "deleted. it's still in my head. you can't delete my head coach", t: '2026-11-11T07:42' },
+        { from: 'me', text: "she's on shift ❤️ leg day? 🦵", t: '2026-11-18T19:03', clue: 'juxtapose' },
+        { from: 'them', text: "obviously. bring the hoodie back. the ironhaus one. I sleep in it now and my cat has opinions", t: '2026-11-18T19:04' },
+        { from: 'me', text: "hope she doesn't find out before january. hope she finds out from me. not like that", t: '2026-11-18T19:30', clue: 'juxtapose' },
+        { from: 'them', text: "she won't. you're careful. you're the most careful man I've ever met. you have TWO glimpse accounts", t: '2026-11-18T19:31', clue: 'second_account' },
+        { from: 'me', text: "parking. heart's going. still. after five months", t: '2026-11-19T19:08' },
+        { from: 'them', text: "door's open 🔓", t: '2026-11-19T19:08' },
+        { from: 'me', text: "my legs won't work again. I'm sitting in my truck in your lot like a man who just did 10 sets of lunges. which I have never done", t: '2026-11-19T22:51', clue: 'aftermath' },
+        { from: 'me', text: "I can still smell you on me. vanilla. if she gets home early I'm cooked", t: '2026-11-19T22:52', clue: 'aftermath' },
+        { from: 'them', text: "she never gets home early. you said. 7 to 7. she's a machine 😌", t: '2026-11-19T22:53', clue: 'aftermath' },
+        { from: 'them', text: "also left a lipstick kiss on your neck. left side. so you can see it in the mirror selfie tomorrow 💋", t: '2026-11-19T22:55', clue: 'aftermath' },
+        { from: 'them', text: "home? 🥺 my sheets still smell like your pre-workout. never thought I'd find that hot", t: '2026-11-20T00:58', photo: 'cg4_ph_sheets' },
+        { from: 'them', text: "my legs still don't work. leg day is my favorite day 🥵", t: '2026-11-20T01:12' },
+      ],
+    },
+    {
+      id: 'th_legends', contact: 'legends', messages: [
+        { from: 'them', text: '[Brody]: leg day thurs? 🦵', t: '2026-07-07T12:02', clue: 'leg_day_code' },
+        { from: 'me', text: "leg day thurs ✅ riley's on nights. if she asks, I'm with u", t: '2026-07-07T12:05', clue: 'leg_day_code' },
+        { from: 'them', text: "[Big Marc]: since when do u do legs lmao. ur calves are a rumor", t: '2026-07-07T12:06' },
+        { from: 'them', text: '[Brody]: marc. LEG DAY. 👀 read the room', t: '2026-07-07T12:06', clue: 'leg_day_code' },
+        { from: 'them', text: "[Big Marc]: ohhhh. OH. the pilates one?? bro", t: '2026-07-07T12:07', clue: 'leg_day_code' },
+        { from: 'me', text: "rules: 'leg day' = kev. 'need a spotter' = cover me. 'skipping legs' = riley's home. nobody says the word pilates. EVER", t: '2026-07-07T12:10', clue: 'leg_day_code' },
+        { from: 'them', text: '[Kyle]: this is the most organized you have ever been about legs', t: '2026-07-07T12:11' },
+        { from: 'me', text: "need a spotter wed. riley might call. I'm at brody's watching the fight", t: '2026-09-23T18:55', clue: 'bro_alibi' },
+        { from: 'them', text: "[Brody]: spotted 🫡 what fight", t: '2026-09-23T18:56', clue: 'bro_alibi' },
+        { from: 'me', text: "any fight. there's always a fight", t: '2026-09-23T18:56', clue: 'bro_alibi' },
+        { from: 'them', text: "[Brody]: riley called. told her ur in the bathroom. she said 'he's always in the bathroom at your place'. bro she's onto the bathroom", t: '2026-09-23T21:30', clue: 'bro_alibi' },
+        { from: 'me', text: "need 3 spotters. 'trainer summit' scottsdale oct 9-11. if anyone posts a pic of me at the gym that weekend I'll end you", t: '2026-10-05T10:00', clue: 'conference_fake' },
+        { from: 'them', text: '[Kyle]: is there a trainer summit', t: '2026-10-05T10:02' },
+        { from: 'me', text: "there is now. I made a lanyard", t: '2026-10-05T10:02', clue: 'conference_fake' },
+        { from: 'me', text: "SHE FOUND THE RING. in my gym bag. she tried it ON bro. it got stuck at her knuckle", t: '2026-10-20T08:40', clue: 'ring_found' },
+        { from: 'them', text: "[Brody]: 💀💀💀 what did u say", t: '2026-10-20T08:41', clue: 'ring_found' },
+        { from: 'me', text: "I panicked. I said 'not yet babe.' she cried. HAPPY crying. she's been doing a surprised face at me for 3 days", t: '2026-10-20T08:43', clue: 'ring_found' },
+        { from: 'them', text: "[Big Marc]: bro that's actually evil. riley drove me to the ER when I dropped a plate on my foot. she held my hand. she brought me a pudding", t: '2026-10-20T08:45', clue: 'ring_found' },
+        { from: 'them', text: "[Kyle]: the ring is for kenna right. size 5. riley's like a 7. it's never fitting her", t: '2026-10-20T08:46', clue: 'ring_found' },
+        { from: 'me', text: "it's for kenna. tulum. dec 13. I'm telling riley after. it's a whole timeline marc. there's a SPREADSHEET", t: '2026-10-20T08:48', clue: 'ring_found' },
+        { from: 'them', text: "[Big Marc]: I'm out. I'm not spotting this one. I'll spot anything else. not this", t: '2026-10-20T08:50', clue: 'bros_doubt' },
+        { from: 'them', text: "[Big Marc]: also my girl alexis keeps asking why brody's phone says 'need a spotter' every wednesday. I said it's a gym thing. she said 'brody doesn't go to the gym on wednesdays, he goes to trivia'", t: '2026-11-12T20:10', clue: 'bros_doubt' },
+        { from: 'them', text: '[Brody]: alexis is MY girl marc', t: '2026-11-12T20:11' },
+        { from: 'them', text: "[Big Marc]: that's what I said", t: '2026-11-12T20:11' },
+        { from: 'me', text: "skipping legs mon. riley's off. act normal", t: '2026-11-15T09:00', clue: 'leg_day_code' },
+        { from: 'them', text: '[Brody]: spotter needed thurs? 👀', t: '2026-11-19T22:40' },
+      ],
+    },
+    {
+      id: 'th_riley', contact: 'riley', messages: [
+        { from: 'them', text: "1 year with my favorite meathead 💕 you're the only man who's ever carried my groceries AND me up the stairs in one trip", t: '2024-11-30T21:00', clue: 'drift' },
+        { from: 'me', text: "2 trips is for people who skip shoulders. love you ri. you're the best thing that ever happened to my life and my macros", t: '2024-11-30T21:04', clue: 'drift' },
+        { from: 'me', text: "🎤 voice note (0:18): '[whispering] you're asleep after a night shift and you're snoring like a little leaf blower and I'm making you pancakes. protein pancakes. don't tell anyone I'm soft.'", t: '2025-06-11T08:20', clue: 'drift' },
+        { from: 'me', text: 'have a good shift babe ❤️ save some lives', t: '2026-03-04T18:50' },
+        { from: 'me', text: 'k', t: '2026-08-14T07:30', clue: 'drift' },
+        { from: 'them', text: 'just k? 🥺 I worked 14 hours', t: '2026-08-14T07:31' },
+        { from: 'me', text: 'tired babe. leg day. 👍', t: '2026-08-14T07:40', clue: 'drift' },
+        { from: 'me', text: "have a good shift babe ❤️ save some lives. I'm at brody's for the fight later 🥊", t: '2026-11-04T19:02', clue: 'juxtapose' },
+        { from: 'them', text: "love you! there's leftover pasta. don't eat it from the pot", t: '2026-11-04T19:10' },
+        { from: 'me', text: "can't wait to feel it again tonight 🥵 wear the grey set", t: '2026-11-06T13:10', clue: 'wrong_recipient' },
+        { from: 'me', text: "LOL meant for brody. about the new hack squat machine. it's grey. it's a grey set of plates. gym talk 😅", t: '2026-11-06T13:11', clue: 'wrong_recipient' },
+        { from: 'them', text: "'wear the grey set' to a squat machine? 😂", t: '2026-11-06T13:15' },
+        { from: 'me', text: "it's a lifting term babe. you wouldn't get it", t: '2026-11-06T13:40', clue: 'wrong_recipient' },
+        { from: 'them', text: "where were u?? called 3x on my break. your location's been off since october lol", t: '2026-11-11T02:14', clue: 'excuses' },
+        { from: 'me', text: "phone died at mom's. fixing her disposal. it's in a basement. no signal. disposal basement", t: '2026-11-11T07:05', clue: 'excuses' },
+        { from: 'them', text: "your mom lives in a ranch house tanner", t: '2026-11-11T07:06' },
+        { from: 'me', text: "babe you're running on 3 hours sleep. you're not thinking straight. that's the night shift talking", t: '2026-11-11T07:08', clue: 'excuses' },
+        { from: 'me', text: "and honestly the checking up on me is kind of a lot. it's not attractive ri", t: '2026-11-11T07:09', clue: 'excuses' },
+        { from: 'them', text: 'sorry. you\'re right. love you 🥺', t: '2026-11-11T07:20' },
+        { from: 'them', text: "thanksgiving at your mom's this year?? I'll make my mac and cheese!!", t: '2026-11-14T15:00', clue: 'mama_cover' },
+        { from: 'me', text: "I'm working thanksgiving babe. 'turkey burn' bootcamp at 6am. mom's doing a small thing. just her and aunt carol. you'd hate it", t: '2026-11-14T15:30', clue: 'mama_cover' },
+        { from: 'me', text: "have a good shift babe ❤️ save some lives", t: '2026-11-18T19:02', clue: 'juxtapose' },
+        { from: 'them', text: "night meathead 💕 I'll be home at 7:30. no pasta from the pot", t: '2026-11-18T19:05' },
+        { from: 'me', text: "december 12-16 I've got the ironhaus winter expo in tulum. work thing. boring. lanyards 😴", t: '2026-11-17T10:30', clue: 'tulum' },
+        { from: 'them', text: "TULUM?? for work?? can I come 🥺 I have PTO", t: '2026-11-17T10:31' },
+        { from: 'me', text: "it's trainers only babe. it's like a cult. no partners. next year 🙏", t: '2026-11-17T10:33', clue: 'tulum' },
+        { from: 'them', text: "ok 🥺 bring me a magnet. also I'm still practising my surprised face. for no reason 😇💍", t: '2026-11-17T10:35', clue: 'ring_found' },
+        { from: 'me', text: "lol. 👍", t: '2026-11-17T11:50', clue: 'ring_found' },
+        { from: 'me', text: "night ❤️ sleep good after your shift", t: '2026-11-19T19:05', clue: 'juxtapose' },
+      ],
+    },
+    {
+      id: 'th_mama', contact: 'mama', messages: [
+        { from: 'me', text: "mom if riley calls I was at yours tonight fixing the disposal. please", t: '2026-11-10T19:10', clue: 'mama_cover' },
+        { from: 'them', text: "Tanner James. I am NOT lying to that girl again. She sent me a get-well card when I had my bunion. A CARD.", t: '2026-11-10T19:12', clue: 'mama_cover' },
+        { from: 'them', text: "Fine. You fixed the disposal. What was wrong with it. I need details. Aunt Carol will ask.", t: '2026-11-10T19:15', clue: 'mama_cover' },
+        { from: 'me', text: 'a spoon', t: '2026-11-10T19:16' },
+        { from: 'them', text: "A spoon. Fine. 🙄 For the record Kenna is a DOLL. Riley is lovely but she works nights, honey. A man needs a woman who's HOME.", t: '2026-11-10T19:18', clue: 'mama_ring' },
+        { from: 'them', text: "Thanksgiving: bring Kenna. NOT Riley. I've already told Aunt Carol you're 'engaged-ish'. Don't make me a liar to Carol. I can lie to anyone but Carol.", t: '2026-11-14T16:00', clue: 'mama_cover' },
+        { from: 'me', text: "riley thinks I'm working thanksgiving. turkey burn bootcamp", t: '2026-11-14T16:02', clue: 'mama_cover' },
+        { from: 'them', text: "Is that a real thing. Never mind. Don't tell me.", t: '2026-11-14T16:03' },
+        { from: 'them', text: "Still can't believe we found THE ring. The oval! She is going to DIE. 😭 Size 5, like her little yoga ring. I measured it while she was in the bathroom at brunch. I'm a genius.", t: '2026-10-03T15:20', photo: 'cg4_ph_mama_ring', clue: 'mama_ring' },
+        { from: 'them', text: "Your tattoo is still my favorite Christmas present. Even if it's backwards in all your pictures 🙄❤️", t: '2026-11-18T09:15' },
+      ],
+    },
+    {
+      id: 'th_brody', contact: 'brody', messages: [
+        { from: 'them', text: "bro alexis read my phone. she saw 'need a spotter' 40 times. I told her I'm very committed to safety", t: '2026-11-13T23:10', clue: 'alexis_side' },
+        { from: 'me', text: "she doesn't know what it means. nobody knows what it means", t: '2026-11-13T23:12' },
+        { from: 'them', text: "she screenshotted the ring part. bro. she's scary when she's calm. she's VERY calm", t: '2026-11-13T23:14', clue: 'alexis_side' },
+      ],
+    },
+    {
+      id: 'th_sienna', contact: 'sienna', messages: [
+        { from: 'them', text: "I can't walk. You DESTROYED me last night 😩 my whole body is shaking", t: '2026-11-13T07:40', clue: 'sienna_texts' },
+        { from: 'them', text: "Same time Thursday? Same intensity. Don't go easy on me.", t: '2026-11-13T07:41', clue: 'sienna_texts' },
+        { from: 'me', text: "you asked for it. 6am. bring water. and the band", t: '2026-11-13T07:50', clue: 'sienna_texts' },
+        { from: 'them', text: "I sat on the toilet this morning and SCREAMED. 5 sets of bulgarian split squats is a war crime. My husband says thank you, I've finally stopped complaining about my knees.", t: '2026-11-13T08:30', clue: 'sienna_clear' },
+        { from: 'them', text: "Also you told me you hate leg day?? You literally train it for a living. Hypocrite 😂 See you Thursday 6am. I'm bringing my husband to watch me suffer.", t: '2026-11-13T08:32', clue: 'sienna_clear' },
+      ],
+    },
+    {
+      id: 'th_alt_dms', contact: 'kev', messages: [
+        { from: 'them', text: "[Glimpse DM → @coach.t.unfiltered] ok this account is unhinged. 9 followers?? who are the other 8", t: '2026-09-12T23:02', clue: 'second_account', deletedUntil: 'recovered:dms' },
+        { from: 'me', text: "[Glimpse DM] you, the 3 boys, 2 bots, a protein brand and my mom. she followed it by accident. I can't remove her. she'd notice", t: '2026-09-12T23:05', clue: 'second_account', deletedUntil: 'recovered:dms' },
+        { from: 'them', text: "[Glimpse DM] your MOM follows your thirst account??", t: '2026-09-12T23:05', deletedUntil: 'recovered:dms' },
+        { from: 'me', text: "[Glimpse DM] she comments 'cover up you'll catch cold' on every post. it's fine. it's a family account now", t: '2026-09-12T23:07', clue: 'second_account', deletedUntil: 'recovered:dms' },
+        { from: 'them', text: "[Glimpse DM] does riley know about this account", t: '2026-10-14T00:12', deletedUntil: 'recovered:dms' },
+        { from: 'me', text: "[Glimpse DM] who? oh, the ex. no. she doesn't even have glimpse. she has 'patients'", t: '2026-10-14T00:14', clue: 'ex_story', deletedUntil: 'recovered:dms' },
+        { from: 'them', text: "[Glimpse DM] when you tell her it's over, be nice. I don't want to be the reason someone cries on a night shift", t: '2026-10-14T00:16', clue: 'ex_story', deletedUntil: 'recovered:dms' },
+        { from: 'me', text: "[Glimpse DM] I'll be so nice. I'm going to offer to keep paying half of december. I'm a provider", t: '2026-10-14T00:18', clue: 'exit_plan', deletedUntil: 'recovered:dms' },
+        { from: 'them', text: "[Glimpse DM] you're way better than you think you are, coach. that's my whole problem with you", t: '2026-11-02T01:30', deletedUntil: 'recovered:dms' },
+      ],
+    },
+    {
+      id: 'th_tash', contact: 'tash', messages: [
+        { from: 'them', text: "hey tanner it's tash. riley's tash. I'm not being weird but if you're planning a proposal I need 48 hours notice for my eyebrows", t: '2026-10-21T10:00', clue: 'ring_found' },
+        { from: 'me', text: "haha. working on it 😇 don't tell her", t: '2026-10-21T10:40', clue: 'ring_found' },
+        { from: 'them', text: "I would NEVER. she tried it on btw. it didn't go past the knuckle. get it resized you beautiful idiot", t: '2026-10-21T10:41', clue: 'ring_found' },
+        { from: 'me', text: '👍', t: '2026-10-21T11:58' },
+      ],
+    },
+  ],
+
+  photos: [
+    { id: 'cg4_ph_mirror', art: 'cg4_ph_mirror', t: '2026-11-19T07:12', place: 'IronHaus Gym — locker room', orientation: 'portrait', caption: "A locker-room mirror selfie: a muscular man flexing one forearm toward the mirror, a Roman-numeral tattoo on the forearm reading backwards, a red lipstick kiss mark on the left side of his neck. Gym bag on the bench with a small velvet box-shaped bulge in the side pocket.", clue: 'aftermath' },
+    { id: 'cg4_ph_us_brunch', art: 'cg4_ph_us_brunch', t: '2026-10-25T11:30', place: 'Sunny Side Diner', orientation: 'portrait', caption: "Selfie at a diner booth: a woman in navy scrubs and a man in a tank top, a giant stack of pancakes between them. She's holding her left hand up to the camera, bare, waggling her fingers. He isn't looking at the hand." },
+    { id: 'cg4_ph_sedona', art: 'cg4_ph_sedona', t: '2026-10-10T18:40', place: 'Canyon Rose Resort, Sedona', orientation: 'landscape', caption: "Two white robes on a balcony railing at sunset, red rock cliffs behind; two champagne flutes; a printed lanyard reading 'NFTA TRAINER SUMMIT — SCOTTSDALE — T. BOYCE' hung on the door handle.", clue: 'conference_fake' },
+    { id: 'cg4_ph_sheets', art: 'cg4_ph_sheets', t: '2026-11-20T00:57', place: 'Received from Kev (leg day) 🦵', orientation: 'portrait', caption: 'Received. Rumpled white sheets, an IronHaus Gym hoodie half off the bed, a pilates ring on the floor, a tub of pre-workout on the nightstand. A tabby cat glaring from the pillow.', clue: 'aftermath' },
+    { id: 'cg4_ph_mama_ring', art: 'cg4_ph_mama_ring', t: '2026-10-03T15:19', place: 'Received from Mama Deb 💐', orientation: 'portrait', caption: "Received. A jewelry-store counter: an older woman's hand in a bright cardigan cuff holding up an oval diamond ring in an open velvet box, a ring sizer beside it. A card on the counter reads 'Halden & Co. — size 5 — engraving pending'.", clue: 'mama_ring' },
+    { id: 'cg4_ph_lot', art: 'cg4_ph_lot', t: '2026-11-12T19:06', place: 'IronHaus Gym lot', orientation: 'landscape', caption: "Taken from inside a pickup truck at dusk: across the parking lot, the lit window of 'CoreWorks Pilates' — a row of reformers and a woman with a high ponytail waving at the camera.", clue: 'kev_contact' },
+    // recovered (Photos — Recently Deleted)
+    { id: 'cg4_ph_couch', art: 'cg4_ph_couch', t: '2026-11-04T22:30', place: 'Home — Linden Court Apartments', orientation: 'landscape', caption: "Recovered. YOUR living room at night: two wine glasses on your coffee table, one with a pink lipstick print; your knitted throw blanket in a heap; a pair of grippy pilates socks on the rug; your framed graduation photo face-down on the shelf. Deleted Nov 5, 06:50.", clue: 'your_couch', deletedUntil: 'recovered:photos' },
+    { id: 'cg4_ph_bed', art: 'cg4_ph_bed', t: '2026-10-10T23:10', place: 'Canyon Rose Resort, Sedona', orientation: 'portrait', caption: "Recovered. Selfie under a white duvet in a hotel bed: a man and a woman with a high ponytail, flushed, bare shoulders, laughing; a conference lanyard hanging off the headboard. Deleted Oct 12.", clue: 'bed_selfie', deletedUntil: 'recovered:photos' },
+    { id: 'cg4_ph_video', art: 'cg4_ph_video', t: '2026-11-19T21:40', place: 'Vale residence, Unit 2C', orientation: 'landscape', caption: "Recovered video thumbnail; video data unrecoverable. Title: 'leg day 🦵🙈'. A dim bedroom lit by a candle: rumpled sheets, two silhouettes against a window, a pilates ring hanging from the bedpost. Deleted Nov 19.", clue: 'bed_selfie', deletedUntil: 'recovered:photos' },
+    { id: 'cg4_ph_locker', art: 'cg4_ph_locker', t: '2026-11-12T06:10', place: 'IronHaus Gym — locker 14', orientation: 'portrait', caption: "Recovered. An open gym locker: a velvet ring box, a printed spreadsheet taped inside the door titled 'TIMELINE', a pink hair tie on the hook. Deleted Nov 12.", clue: 'exit_plan', deletedUntil: 'recovered:photos' },
+    { id: 'cg4_ph_mirror_lips', art: 'cg4_ph_mirror_lips', t: '2026-10-11T08:20', place: 'Canyon Rose Resort, Sedona', orientation: 'portrait', caption: "Recovered. A hotel bathroom mirror with writing in pink lipstick and a kiss mark. Deleted Oct 11.", clue: 'aftermath', deletedUntil: 'recovered:photos' },
+    // hidden album
+    { id: 'cg4_ph_h_hoodie', art: 'cg4_ph_h_hoodie', t: '2026-11-18T23:20', place: 'Received from Kev (leg day) 🦵', orientation: 'portrait', hidden: true, caption: "Hidden album. Received. Bedroom mirror selfie: a woman with a high ponytail in an oversized grey IRONHAUS GYM hoodie that reaches mid-thigh and nothing visibly else, bare legs, sleeves over her hands, a tabby cat on the bed behind her. Caption field: 'your hoodie lives here now'.", clue: 'hidden_hoodie' },
+    { id: 'cg4_ph_h_towel', art: 'cg4_ph_h_towel', t: '2026-11-09T21:50', place: 'IronHaus Gym — locker room', orientation: 'portrait', hidden: true, caption: "Hidden album. Sent to one contact. A steamy locker-room mirror: a muscular man in a low-slung white towel, wet hair, one hand on the locker door, smirking. The Roman-numeral tattoo reads backwards. Caption: 'can't wait to feel it again'." },
+    { id: 'cg4_ph_h_reformer', art: 'cg4_ph_h_reformer', t: '2026-11-11T21:30', place: 'CoreWorks Pilates (after hours)', orientation: 'portrait', hidden: true, caption: "Hidden album. Received. An empty, dim pilates studio after hours: a woman in a black sports bra and leggings lying back on a reformer, one leg in the strap, looking at the camera over her knee. Caption: 'fix my form, coach'." },
+    { id: 'cg4_ph_h_robe', art: 'cg4_ph_h_robe', t: '2026-10-11T08:05', place: 'Canyon Rose Resort, Sedona', orientation: 'portrait', hidden: true, caption: "Hidden album. Morning hotel mirror selfie: a woman in a white robe slipping off one shoulder, wet hair, holding a coffee cup with a lipstick mark; the robe pocket is embroidered 'CANYON ROSE'. Behind her, a man asleep face-down, a conference lanyard on the lamp.", clue: 'bed_selfie' },
+    { id: 'cg4_ph_h_red', art: 'cg4_ph_h_red', t: '2026-10-08T22:10', place: 'Received from Kev (leg day) 🦵', orientation: 'portrait', hidden: true, caption: "Hidden album. Received. A two-panel try-on in a bedroom mirror: a red lace set, then a red silk slip, catalogue pose, a packed suitcase on the bed. Caption: 'red thing. other red thing. sedona.'" },
+  ],
+
+  notes: [
+    {
+      id: 'n_speech', title: 'speech 💍 (v6)', t: '2026-11-18T01:20', lock: { password: 'tulum', hint: "Where the 'expo' really is. One word, lowercase." }, clue: 'proposal_speech',
+      body: "KENNA.\n\n(get on knee AFTER violinist starts. not before. last time I practised I got sand in my shorts)\n\nyou corrected my plank form on june 4th and nobody had ever told me I was doing something wrong and been RIGHT.\n\nyou make me want to do leg day. for real leg day.\n\nmom says you're the one. mom has never said that. mom said riley was 'a nice girl for now'.\n\n(DON'T mention riley. if she asks: ex is moved out. she will be by then.)\n\nwill you marry me\n\n(v6. v5 had a joke about calves. cut it.)",
+    },
+    {
+      id: 'n_timeline', title: 'TIMELINE 🗓️', t: '2026-11-15T22:00', clue: 'exit_plan',
+      body: "NOV — act normal. surprised-face thing: say NOTHING\nTHANKSGIVING — mom's w/ kenna. tell R 'turkey burn bootcamp'\nDEC 12 — tulum 'expo'\nDEC 13 — sunset. violinist. ring. banner.\nDEC 17 — tell riley. be nice. it's the night shifts. we grew apart.\n- offer half of dec rent\n- take the TV (mine) (I think) (check receipt)\n- leave her the air fryer (she'll want it, she cries at it)\nJAN 1 — kenna moves in?? (riley's lease. CHECK if my name can go on it)",
+    },
+    { id: 'n_dont', title: "words not to say around R", t: '2026-07-20T10:00', clue: 'kev_contact', body: "- kev (she'll ask who kev is) (kev is a guy from the gym) (there is no kev)\n- pilates\n- reformer\n- vanilla\n- sedona (it's SCOTTSDALE)\n- 'my plank form'\n- don't hum the song from coreworks' playlist. you do it in the shower." },
+    { id: 'n_macros', title: 'cut 🍗', t: '2026-11-01T08:00', body: "2,600 kcal\n220 P / 240 C / 70 F\nno beer till tulum\nabs by dec 13 (!!!)" },
+  ],
+
+  mail: [
+    { id: 'm_nfta', from: 'NFTA Member Services', fromAddr: 'members@nfta.example', to: 'Tanner Boyce', subject: 'Re: Summit lanyard request', t: '2026-10-06T14:00', folder: 'inbox', clue: 'conference_fake', body: "Hi Tanner,\n\nThanks for your message! Unfortunately we can't mail you a lanyard for the 'October Trainer Summit, Scottsdale' as there is no October summit. Our next summit is in March (Denver).\n\nWe also can't 'backdate a certificate of attendance'. We're a little worried you asked.\n\nKind regards,\nNational Fitness Trainers Association" },
+    { id: 'm_canyon', from: 'Canyon Rose Resort', fromAddr: 'stay@canyonrose.example', to: 'Tanner Boyce', subject: 'Your folio — Oct 9–11 — 2 guests', t: '2026-10-11T12:30', folder: 'inbox', clue: 'conference_fake', body: "Guests: Tanner Boyce + 1 (K. Vale)\nRoom: Canyon King Casita · 2 nights\n\nCouples' massage ('Red Rock Rekindle')  $320.00\nRoom service: 2× acai bowls, 1× 'Celebration' champagne  $96.00\nSunset jeep tour (2)  $180.00\nLate checkout\n\nWe hope you loved Sedona! Your printed lanyard was left on the door handle; we've mailed it to your home address." },
+    { id: 'm_casa', from: 'Casa Marea Tulum', fromAddr: 'love@casamarea.example', to: 'Tanner Boyce', subject: 'Your Proposal Package is confirmed 💍', t: '2026-11-17T10:02', folder: 'inbox', clue: 'tulum', body: "Dear Tanner,\n\nCongratulations in advance! Your 'Forever Sunset' Proposal Package is confirmed:\n\nDates: Dec 12–16 · Ocean Suite · 2 guests (T. Boyce, K. Vale)\nProposal: Dec 13, 17:40 (sunset), private beach cabana\nIncludes: rose-petal path, violinist ('our song' — please send title), photographer, 'SHE SAID YES' banner\n\nSpecial note from guest: 'please make sure the ring box isn't visible in the photos beforehand, she's very perceptive'.\n\nWe can't wait to see her face!" },
+    { id: 'm_halden', from: 'Halden & Co. Jewelers', fromAddr: 'receipts@haldenco.example', to: 'Tanner Boyce', subject: 'Your receipt — thank you!', t: '2026-10-03T15:40', folder: 'inbox', clue: 'ring_size', body: "Halden & Co. Jewelers\n\n1× Oval-cut diamond, 1.4ct, platinum solitaire\nRing size: 5\nEngraving (inside band): 'K — my favorite rep'\nSubtotal: $6,850.00\nFinancing: 18 months\n\nShopping with: Deborah Boyce ('Mom — the one with the cardigan')\n\nResizing is free within 60 days. Please don't let anyone with a size-7 finger try to force it past the knuckle." },
+    { id: 'm_memory', from: 'Photos', fromAddr: 'memories@photos.example', to: 'Tanner Boyce', subject: "✨ New Memory: 'Red Rock Weekend'", t: '2026-11-19T02:00', folder: 'inbox', clue: 'memory', body: "We made you a new Memory!\n\n'Red Rock Weekend' — 31 photos · Sedona · Oct 9–11\nFeatured: two robes, a sunset, a lanyard, a woman with a ponytail (12 photos)\n\nAlso — On This Day, 2 years ago: 'Riley's birthday 🎂' (8 photos).\n\nWatch now? Share with: Kev (leg day) 🦵 · Riley 🏥" },
+    { id: 'm_stream', from: 'StreamBox', fromAddr: 'account@streambox.example', to: 'Tanner Boyce', subject: "New profile created: 'Kenna 🧘‍♀️'", t: '2026-07-20T23:10', folder: 'inbox', clue: 'tells', body: "A new profile, 'Kenna 🧘‍♀️', was added to the Shaw household plan (account holder: Riley Shaw).\n\nDevice: 'VALE 2C TV'\nContinue watching: 'Love on the Reef', S2 E4\n\nTip: the account holder can see all profiles." },
+    { id: 'm_truck', from: 'TruckLink', fromAddr: 'noreply@trucklink.example', to: 'Tanner Boyce', subject: 'New Bluetooth device paired', t: '2026-07-08T19:02', folder: 'inbox', clue: 'tells', body: "Your vehicle paired with a new device: 'Kenna's iPhone 🧘‍♀️'.\n\nIt has auto-connected 44 times since. Most recent: Vale residence (Thu 19:08).\n\nRecently played via this device: 'CoreWorks Flow Mix' (played 31×)." },
+    { id: 'm_lease', from: 'Linden Court Leasing', fromAddr: 'leasing@lindencourt.example', to: 'Tanner Boyce', subject: 'Re: adding a name to Unit 4F lease', t: '2026-11-16T09:30', folder: 'inbox', clue: 'exit_plan', body: "Hi Tanner,\n\nThanks for your inquiry about adding 'a new partner (K. Vale)' to Unit 4F starting January.\n\nUnit 4F is leased solely to Riley Shaw. Only the leaseholder can add occupants. We cannot 'remove her quietly'.\n\nWe've cc'd nobody, out of an abundance of caution and also pity.\n\nLinden Court Leasing" },
+    { id: 'm_glimpse', from: 'Glimpse', fromAddr: 'notify@glimpse.example', to: 'Tanner Boyce', subject: 'Your account @coach.t.unfiltered — weekly recap', t: '2026-11-16T09:00', folder: 'inbox', clue: 'second_account', body: "Your second account had a great week! 🔥\n\nFollowers: 9 (+0)\nTop post: 'for my favorite rep 🍑' — 8 likes\nTop commenter: debboyce_1974 ('Cover up, you'll catch cold. Love, Mom')\n\nTip: switch accounts anytime from your profile. Your other account, @coach.t.boyce, has 4,210 followers." },
+  ],
+
+  calls: [
+    { contact: 'kev', t: '2026-11-20T00:40', dir: 'in', duration: '48:12' },
+    { contact: 'kev', t: '2026-11-18T23:10', dir: 'out', duration: '1:04:02' },
+    { contact: 'riley', t: '2026-11-11T02:14', dir: 'missed' },
+    { contact: 'riley', t: '2026-11-11T02:20', dir: 'missed' },
+    { contact: 'riley', t: '2026-11-11T02:31', dir: 'missed' },
+    { contact: 'mama', t: '2026-11-19T09:00', dir: 'out', duration: '21:40' },
+    { contact: 'brody', t: '2026-11-13T23:20', dir: 'in', duration: '6:12' },
+    { contact: 'sienna', t: '2026-11-12T05:30', dir: 'in', duration: '0:40' },
+  ],
+
+  voicemails: [
+    { id: 'vm_kev', contact: 'kev', t: '2026-11-17T22:41', duration: '0:24', voice: { pitch: 1.2, rate: 1.0, female: true }, clue: 'kev_contact', transcript: "Hey, it's me. Kev. [laughs] I'm never getting over that you saved me as Kev. Okay. My cat is sitting on your hoodie and won't move, so legally it's his now. Thursday? Bring the good wine. And fix your plank, you menace. Bye." },
+    { id: 'vm_mama', contact: 'mama', t: '2026-11-12T10:02', duration: '0:31', voice: { pitch: 1.1, rate: 1.05, female: true }, clue: 'mama_cover', transcript: "Tanner, it's your mother. Riley called the house. I told her you were here fixing the disposal. She asked to talk to you. I said you were 'under the sink'. She said, 'For three hours?' Honey, I've been lying since 1974, but I am running out of appliances." },
+    { id: 'vm_mama_del', contact: 'mama', t: '2026-10-20T19:30', duration: '0:36', voice: { pitch: 1.1, rate: 1.0, female: true }, clue: 'mama_ring', deletedUntil: 'recovered:voice', transcript: "Tanner. Riley found the ring? And she thinks it's HERS? [long sigh] Honey. That girl brought me soup when I had my bunion. You have to tell her before Tulum. ...Okay, after Tulum. But you're telling her, and I'm not lying to her about appliances anymore. Kenna's going to love the oval. Bye." },
+    { id: 'vm_alexis_del', contact: 'alexis', t: '2026-11-14T00:02', duration: '0:28', voice: { pitch: 1.05, rate: 1.1, female: true }, clue: 'alexis_side', deletedUntil: 'recovered:voice', transcript: "Hi Tanner. This is Alexis, Brody's girlfriend. I know what 'need a spotter' means. I know what 'leg day' means. I know about the ring. You have until the end of the month to tell Riley, or I'll do it, and I won't do it nicely. I work in HR. I document everything." },
+  ],
+
+  map: {
+    art: 'cg4_map',
+    places: [
+      { id: 'home', name: 'Home — Linden Court Apartments', x: 0.16, y: 0.28 },
+      { id: 'gym', name: 'IronHaus Gym', x: 0.46, y: 0.52 },
+      { id: 'core', name: 'CoreWorks Pilates', x: 0.54, y: 0.52 },
+      { id: 'vale', name: 'Wren Street Flats (Unit 2C)', x: 0.78, y: 0.34 },
+      { id: 'mama', name: "Mom's house — Holloway Rd", x: 0.24, y: 0.78 },
+      { id: 'brody', name: "Brody's place", x: 0.66, y: 0.80 },
+      { id: 'hosp', name: "St. Brigid's Hospital", x: 0.88, y: 0.66 },
+      { id: 'halden', name: 'Halden & Co. Jewelers', x: 0.38, y: 0.16 },
+    ],
+    stops: [
+      { t: '2026-10-03T14:30', place: 'halden', detail: 'Arrived — 1h 10m' },
+      { t: '2026-11-04T19:05', place: 'home', detail: 'Arrived — 10h 45m (guest device on home Wi-Fi: "Kenna\'s iPhone 🧘‍♀️")', clue: 'your_couch' },
+      { t: '2026-11-10T19:07', place: 'vale', detail: "Arrived — 3h 52m · Location sharing with 'Riley 🏥' off since Oct 1", clue: 'vale_stops' },
+      { t: '2026-11-11T22:30', place: 'mama', detail: 'Passed — not stopped' },
+      { t: '2026-11-12T19:06', place: 'gym', detail: 'Parked — 2 min' },
+      { t: '2026-11-12T19:09', place: 'vale', detail: 'Arrived — 4h 01m', clue: 'vale_stops' },
+      { t: '2026-11-18T19:06', place: 'vale', detail: 'Arrived — 3h 58m', clue: 'vale_stops' },
+      { t: '2026-11-19T19:08', place: 'vale', detail: 'Arrived — 3h 44m', clue: 'vale_stops' },
+      { t: '2026-11-19T23:00', place: 'home', detail: 'Arrived' },
+    ],
+  },
+
+  browser: [
+    { t: '2026-11-19T23:20', title: 'how to get lipstick off your neck without your girlfriend smelling the makeup wipe', url: 'search?q=lipstick+off+neck+no+smell' },
+    { t: '2026-11-17T01:02', title: 'can you add someone to a lease without the other person knowing', url: 'search?q=add+someone+to+lease+without+other+person', clue: 'exit_plan' },
+    { t: '2026-11-16T12:40', title: "what to say when your girlfriend thinks the ring is hers", url: 'search?q=girlfriend+thinks+ring+is+hers', clue: 'ring_found' },
+    { t: '2026-11-15T21:10', title: 'tulum proposal sunset time december 13', url: 'search?q=tulum+sunset+december+13', clue: 'tulum' },
+    { t: '2026-10-19T13:00', title: 'how to turn off location sharing for one person without them getting a notification', url: 'search?q=location+sharing+off+one+person+no+notification', clue: 'vale_stops' },
+    { t: '2026-10-05T09:50', title: 'how to print a lanyard at home', url: 'search?q=print+lanyard+at+home', clue: 'conference_fake' },
+    { t: '2026-07-21T00:30', title: 'roman numeral tattoo reads backwards in mirror is that bad', url: 'search?q=roman+numeral+tattoo+backwards+mirror' },
+  ],
+
+  glimpse: [
+    { id: 'g4_alt', author: 'alt', photo: 'cg4_ph_h_towel', caption: 'for my favorite rep 🍑 (9 followers. you know who you are.)', t: '2026-11-09T22:00', likes: 8, comments: [{ author: 'kev', text: '🥵 fix your plank' }, { author: 'brody', text: 'spotted 🫡' }, { author: 'mama', text: 'Cover up, you will catch cold. Love, Mom' }], clue: 'second_account' },
+    { id: 'g4_main', author: 'me', photo: 'cg4_ph_us_brunch', caption: 'my nurse 🏥💕 pancakes after a 14 hour shift. she deserves the world (and the extra syrup)', t: '2026-10-25T11:40', likes: 612, comments: [{ author: 'tash', text: 'protect her at all costs 😭' }, { author: 'mama', text: 'Lovely ❤️' }, { author: 'marcus', text: 'she brought me pudding once. king behaviour from her' }] },
+    { id: 'g4_lanyard', author: 'me', photo: 'cg4_ph_sedona', caption: 'Scottsdale trainer summit 🔥 learning, growing, periodizing 📚 #nfta #grind', t: '2026-10-10T19:00', likes: 288, comments: [{ author: 'kyle', text: 'is that sedona' }, { author: 'brody', text: 'KYLE' }], clue: 'conference_fake' },
+    { id: 'g4_core', author: 'kev', photo: 'cg4_ph_lot', caption: 'my studio, my rules 🧘‍♀️ shoutout to the gym across the lot for staring 👀', t: '2026-11-12T19:20', likes: 140, comments: [{ author: 'alt', text: '👀' }], clue: 'kev_contact' },
+  ],
+
+  bank: {
+    account: 'Summit CU ••4417',
+    balance: 612.18,
+    tx: [
+      { t: '2026-11-17T10:00', desc: "CASA MAREA TULUM — DEPOSIT — 'FOREVER SUNSET' PROPOSAL PKG (2 GUESTS)", amount: -1200.0, clue: 'tulum' },
+      { t: '2026-10-03T15:38', desc: 'HALDEN & CO JEWELERS — FINANCED (18 MO) — PAYMENT 1', amount: -380.55, clue: 'ring_size' },
+      { t: '2026-11-03T15:38', desc: 'HALDEN & CO JEWELERS — FINANCED (18 MO) — PAYMENT 2', amount: -380.55, clue: 'ring_size' },
+      { t: '2026-10-11T12:20', desc: 'CANYON ROSE RESORT SEDONA — FOLIO (2 GUESTS)', amount: -1340.0, clue: 'conference_fake' },
+      { t: '2026-10-05T11:00', desc: 'PRINTPOINT — CUSTOM LANYARD (1) + CERTIFICATE (1)', amount: -24.99, clue: 'conference_fake' },
+      { t: '2026-11-04T19:20', desc: 'WINE CELLAR EXPRESS — 2× PINOT (THE CHEAP ONE)', amount: -21.0 },
+      { t: '2026-11-15T12:00', desc: "PAYSNAP FROM RILEY SHAW — 'half of rent + your protein 🥲'", amount: 940.0, clue: 'drift' },
+      { t: '2026-11-18T19:00', desc: 'CORNER FLORIST — 1 DOZEN WHITE ROSES (NOTE: "for my favorite rep")', amount: -64.0, clue: 'tells' },
+      { t: '2026-11-12T06:00', desc: 'PAYSNAP FROM SIENNA PARK — "for destroying me 😩 (pt session x4)"', amount: 320.0, clue: 'sienna_clear' },
+    ],
+  },
+
+  calendar: [
+    { id: 'cal4_tulum', t: '2026-12-12T07:00', title: '✈️ IronHaus Winter Expo — Tulum', detail: '(tell R: trainers only, no partners)', clue: 'tulum' },
+    { id: 'cal4_sunset', t: '2026-12-13T17:40', title: '💍 SUNSET', detail: "violinist 17:35. knee AFTER music. ring in LEFT pocket.", clue: 'tulum' },
+    { id: 'cal4_tell', t: '2026-12-17T20:00', title: 'talk to R', detail: 'be nice. night shifts. grew apart. offer half of dec.', clue: 'exit_plan' },
+    { id: 'cal4_thanks', t: '2026-11-26T15:00', title: "🦃 Mom's — w/ K", detail: "R thinks: turkey burn bootcamp. Aunt Carol thinks: engaged-ish.", clue: 'mama_cover' },
+    { id: 'cal4_legday', t: '2026-11-19T19:05', title: '🦵', detail: '', clue: 'leg_day_code' },
+    { id: 'cal4_sienna', t: '2026-11-19T06:00', title: 'Sienna P. — LEGS 🔥', detail: 'bulgarian split squats 5×12. she asked for it' },
+  ],
+
+  wifi: [
+    { name: 'LindenCourt_4F', lastJoined: '2026-11-20T01:30' },
+    { name: 'VALE_2C 🐈 · auto-joined 38×', lastJoined: '2026-11-19T19:09', clue: 'vale_stops' },
+    { name: 'IronHaus_Staff', lastJoined: '2026-11-19T17:00' },
+    { name: 'CoreWorks_Members', lastJoined: '2026-11-12T19:07', clue: 'kev_contact' },
+    { name: 'CanyonRose_Guest', lastJoined: '2026-10-11T11:50' },
+    { name: 'DebsHouse_2.4', lastJoined: '2026-08-02T14:00' },
+  ],
+
+  trace: [
+    { id: 'photos', label: "Photos — Recently Deleted (Tash's cousin's app)", detail: "Tash's cousin 'does phones'. The app has a skull for an icon. Carves deleted images out of storage.", needs: ['pinned:conference_fake'], needsHint: 'Need a lead first: pin proof the Scottsdale "summit" never happened.', durationMs: 4500 },
+    { id: 'msgfrag', label: 'Messages — Deleted Fragments', detail: 'Rebuild deleted texts from the Messages database log.', needs: ['pinned:kev_contact'], needsHint: "Need a lead first: pin who 'Kev' actually is.", durationMs: 5500 },
+    { id: 'dms', label: 'Glimpse — Second Account DMs', detail: 'Pull archived DMs from the second Glimpse account the app is signed into.', needs: ['note:n_speech'], needsHint: 'Need a lead first: open his locked note.', durationMs: 6000 },
+    { id: 'voice', label: 'Voicemail — Deleted', detail: 'Recover deleted voicemails from the carrier cache.', needs: ['pinned:mama_cover'], needsHint: "Need a lead first: pin who's been lying to you about appliances.", durationMs: 4000 },
+  ],
+
+  clues: [
+    { id: 'leg_day_code', title: "'Leg day' = Kev", text: "LEG DAY LEGENDS chat, July 7: \"rules: 'leg day' = kev. 'need a spotter' = cover me. 'skipping legs' = riley's home. nobody says the word pilates.\" A calendar entry '🦵' every night you work.", kind: 'document', art: 'av_cg4_legends' },
+    { id: 'bro_alibi', title: "'at brody's for the fight'", text: "'need a spotter wed. riley might call. I'm at brody's watching the fight.' Brody: 'spotted 🫡 what fight.' When you called, Brody said Tanner was in the bathroom.", kind: 'person', art: 'av_cg4_brody' },
+    { id: 'kev_contact', title: "'Kev' is Kenna", text: "'Kev (leg day) 🦵' is Kenna Vale, the pilates instructor at CoreWorks across the IronHaus lot: a woman's voicemail ('I'm never getting over that you saved me as Kev'), his photo of her studio window, her Glimpse, CoreWorks Wi-Fi, and his note of words not to say ('kev — there is no kev').", kind: 'person', art: 'av_cg4_kenna' },
+    { id: 'vale_stops', title: 'Wren Street Flats 2C', text: "On your shift nights his phone spends ~4 hours at Wren Street Flats 2C; auto-joined 'VALE_2C 🐈' 38 times. Location sharing with you: off since Oct 1 (he searched how to do it silently).", kind: 'place' },
+    { id: 'conference_fake', title: "The 'summit' was Sedona", text: "NFTA: 'there is no October summit.' He printed a lanyard ($24.99). Canyon Rose Resort, Sedona, Oct 9–11, '2 guests (K. Vale)', couples' massage. Kyle commented 'is that sedona'.", kind: 'event', art: 'cg4_ph_sedona' },
+    { id: 'second_account', title: '@coach.t.unfiltered', text: "A second Glimpse account with 9 followers: Kenna, the three bros, two bots, a protein brand and his mom. Top post: 'for my favorite rep 🍑'. Mom: 'Cover up, you will catch cold.'", kind: 'document', art: 'av_cg4_alt' },
+    { id: 'mama_cover', title: "Mama Deb's appliances", text: "'mom if riley calls I was at yours fixing the disposal.' Mom: 'I am NOT lying to that girl again... Fine. What was wrong with it.' Voicemail: 'I've been lying since 1974, but I am running out of appliances.' Thanksgiving: 'bring Kenna. NOT Riley.'", kind: 'person', art: 'av_cg4_mama' },
+    { id: 'mama_ring', title: 'Mom picked the ring', text: "Oct 3, Mama Deb: 'Still can't believe we found THE ring. The oval! She is going to DIE 😭 Size 5, like her little yoga ring.' A photo of the ring at Halden & Co. 'Kenna is a DOLL. Riley is lovely but she works nights.'", kind: 'object', art: 'cg4_ph_mama_ring' },
+    { id: 'ring_size', title: 'Size 5. Engraved "K".', text: "Halden & Co.: oval 1.4ct, platinum, size 5, engraved 'K — my favorite rep', $6,850 financed over 18 months. Shopping with: Deborah Boyce. 'Please don't let anyone with a size-7 finger try to force it past the knuckle.'", kind: 'document' },
+    { id: 'ring_found', title: "'not yet babe'", text: "Oct 20, to the bros: 'SHE FOUND THE RING... it got stuck at her knuckle. I said not yet babe. she cried. HAPPY crying.' Kyle: 'the ring is for kenna right. size 5. riley's like a 7.' To you, Nov 17, after 'still practising my surprised face 😇💍': 'lol. 👍'", kind: 'event' },
+    { id: 'tulum', title: "Tulum isn't an expo", text: "'IronHaus Winter Expo, Dec 12–16, trainers only, no partners.' Casa Marea: 'Forever Sunset' Proposal Package, 2 guests (T. Boyce, K. Vale), Dec 13 at sunset, violinist, 'SHE SAID YES' banner. $1,200 deposit.", kind: 'event' },
+    { id: 'proposal_speech', title: 'speech 💍 (v6)', text: "His locked proposal speech to Kenna: 'you corrected my plank form on june 4th...' 'mom says you're the one. mom said riley was a nice girl for now.' '(DON'T mention riley. if she asks: ex is moved out.)'", kind: 'document' },
+    { id: 'exit_plan', title: 'The TIMELINE', text: "His note: Dec 13 ring; Dec 17 'tell riley. be nice. it's the night shifts.' 'offer half of dec rent', 'take the TV', 'leave her the air fryer (she cries at it)'. Jan 1: Kenna moves in — he asked YOUR landlord to add her to YOUR lease. A printed TIMELINE taped in his locker.", kind: 'document' },
+    { id: 'ex_story', title: "Kenna thinks you're the ex", text: "To Kenna, you are 'the ex who's still on the lease' — 'a ghost roommate who buys oat milk', moving out in January. Kenna: 'when you tell her it's over, be nice. I don't want to be the reason someone cries on a night shift.'", kind: 'person', art: 'av_cg4_kenna' },
+    { id: 'your_couch', title: 'Your couch, your blanket', text: "Nov 4, your shift night: 'come over? door's open.' Kenna: 'your place?? with her stuff everywhere?' Recovered: two wine glasses on YOUR coffee table, your throw blanket, her grippy socks, your graduation photo face-down. Home Wi-Fi logged 'Kenna's iPhone' for ten hours.", kind: 'place', art: 'cg4_ph_couch' },
+    { id: 'first_meet', title: 'How it started', text: "Deleted, June–July: the foam roller with a heart on it; 'fix your plank'; 'we shouldn't' typed four times; 'she works nights. mon wed thu.'; 'I tell her it's leg day. she'll believe it.' July 8, 19:06: 'she just left for her shift.' 'door's open. 2C.' Three hours of nothing. 22:14: 'my legs won't work.' 'I can still smell you on me.'", kind: 'event', art: 'av_cg4_kenna' },
+    { id: 'aftermath', title: 'Lipstick, left side', text: "Last night: 'my legs won't work again', 'I can still smell you on me', 'she never gets home early. 7 to 7. she's a machine 😌', a lipstick kiss 'left side, so you can see it in the mirror selfie' — and there it is, in his 7 a.m. locker-room selfie.", kind: 'event', art: 'cg4_ph_mirror' },
+    { id: 'juxtapose', title: "'save some lives' → 'door's open'", text: "19:02 to you: 'have a good shift babe ❤️ save some lives.' 19:04 to Kev: 'she's on shift ❤️ come over? door's open.' Also: 'can't wait to feel it again', 'I think about you when I'm with her... delete this after', 'hope she doesn't find out before january'.", kind: 'document' },
+    { id: 'excuses', title: 'His excuses, in his voice', text: "'phone died at mom's. fixing her disposal. it's in a basement.' (His mom has a ranch house.) 'you're running on 3 hours sleep. you're not thinking straight.' 'the checking up on me is kind of a lot. it's not attractive ri.'", kind: 'document' },
+    { id: 'wrong_recipient', title: "'wear the grey set'", text: "Nov 6, 13:10, to YOU: 'can't wait to feel it again tonight 🥵 wear the grey set.' 13:11: 'LOL meant for brody. about the new hack squat machine. it's grey.' 13:40: 'it's a lifting term babe. you wouldn't get it.'", kind: 'document' },
+    { id: 'drift', title: 'Three years, in his texts', text: "2024: 'you're the best thing that ever happened to my life and my macros.' 2025: a whispered voice note about protein pancakes. August: 'k'. 'tired babe. leg day. 👍' Nov 15: you PaySnapped him half the rent and his protein.", kind: 'event', art: 'av_cg4_riley' },
+    { id: 'tells', title: 'The tells', text: "A StreamBox profile 'Kenna 🧘‍♀️' on YOUR household plan, on device 'VALE 2C TV'. His truck paired with 'Kenna's iPhone' (44 auto-connects). A dozen white roses 'for my favorite rep' the night you started your shift.", kind: 'document' },
+    { id: 'memory', title: "Auto-Memory: 'Red Rock Weekend'", text: "Photos made a Memory at 02:00 yesterday: 'Red Rock Weekend' — Sedona, two robes, a lanyard, a woman with a ponytail in 12 photos. Same email: On This Day, 2 years ago — 'Riley's birthday 🎂'. Share with: Kev · Riley.", kind: 'event' },
+    { id: 'bed_selfie', title: 'Sedona, under the duvet', text: "Recovered: Tanner and Kenna under a hotel duvet in Sedona, the summit lanyard on the headboard; her robe selfie with him asleep behind her; a 'leg day 🦵🙈' video thumbnail from last night.", kind: 'event', art: 'cg4_ph_bed' },
+    { id: 'hidden_hoodie', title: 'Your hoodie lives here now', text: "Hidden album: Kenna in his IronHaus hoodie and nothing visibly else — 'your hoodie lives here now'. The hoodie you bought him for Christmas.", kind: 'object', art: 'cg4_ph_h_hoodie' },
+    { id: 'bros_doubt', title: "Big Marc is out", text: "Big Marc: 'bro that's actually evil. riley drove me to the ER when I dropped a plate on my foot. she brought me a pudding... I'm not spotting this one.'", kind: 'person', art: 'av_cg4_marcus' },
+    { id: 'alexis_side', title: "Alexis has screenshots", text: "Brody: 'alexis read my phone... she screenshotted the ring part.' Deleted voicemail from Alexis: 'You have until the end of the month to tell Riley, or I'll do it... I work in HR. I document everything.'", kind: 'person', art: 'av_cg4_alexis' },
+    { id: 'sienna_texts', title: "Sienna: 'You DESTROYED me'", text: "A client, 07:40: 'I can't walk. You DESTROYED me last night 😩 my whole body is shaking. Same time Thursday? Same intensity.'", kind: 'person', art: 'av_cg4_sienna' },
+    { id: 'sienna_clear', title: 'It was literally leg day', text: "Sienna's 'destruction' was 5 sets of Bulgarian split squats at a 6 a.m. session; she paid $320 for four sessions and is bringing her husband 'to watch me suffer'.", kind: 'event', art: 'av_cg4_sienna' },
+    { id: 'mama_wrong', title: "Mom's lemon bars", text: "While you hold his phone, Mama Deb texts him something meant for Kenna: 'Kenna sweetie! Lemon bars for Thanksgiving... Don't tell Tanner I told you about Tulum 🤫💍.' Then: 'Oops!! That was for Kenna!!'", kind: 'person', art: 'av_cg4_mama' },
+    { id: 'alexis', title: 'Alexis, live', text: "An unknown number at 1:50 a.m.: Alexis, Brody's girlfriend. 'brody's car just drove past your building and he says riley's car is in the lot. if she's there and awake: riley, I'm so sorry. the ring isn't yours. I have screenshots.'", kind: 'person', art: 'av_cg4_alexis' },
+    { id: 'kenna_live', title: "Kenna, live: 'out by jan 1'", text: "Kev, while you hold his phone: 'did you tell your ex she needs to be out by jan 1? I'm not doing another christmas with her air fryer on the counter 🙄'", kind: 'person', art: 'av_cg4_kenna' },
+  ],
+
+  questions: [
+    {
+      id: 'q_cheat', prompt: 'Is Tanner cheating on you?',
+      options: [
+        { id: 'yes', label: 'Yes' },
+        { id: 'no', label: "No — he's just finally doing leg day" },
+        { id: 'emotional', label: 'Only emotionally — texting, nothing physical' },
+      ],
+      answer: 'yes', evidence: ['first_meet', 'juxtapose', 'aftermath', 'bed_selfie', 'your_couch', 'conference_fake', 'hidden_hoodie', 'wrong_recipient', 'memory', 'vale_stops'],
+      explain: "A Sedona duvet, a lipstick kiss he photographed himself, and two wine glasses on your coffee table on a night you were saving lives. He has never done leg day.",
+    },
+    {
+      id: 'q_who', prompt: "Who is 'Kev (leg day) 🦵'?",
+      options: [
+        { id: 'sienna', label: 'Sienna Park, his 6 a.m. client', art: 'av_cg4_sienna' },
+        { id: 'kenna', label: 'Kenna Vale, the pilates instructor across the lot', art: 'av_cg4_kenna' },
+        { id: 'brody', label: 'Brody, his gym bro', art: 'av_cg4_brody' },
+        { id: 'kev', label: 'A guy named Kev. From the gym.' },
+      ],
+      answer: 'kenna', evidence: ['kev_contact', 'first_meet', 'hidden_hoodie', 'vale_stops', 'kenna_live', 'ex_story'],
+      explain: "There is no Kev. He wrote it down himself: 'kev (there is no kev)'. Sienna was split squats.",
+    },
+    {
+      id: 'q_how', prompt: 'How did he hide it?',
+      options: [
+        { id: 'burner', label: 'A burner phone' },
+        { id: 'system', label: "'Leg day' code in the bro chat scheduled around your night shifts, bros and his mom as alibis, fake conferences, a second Glimpse account, location off just for you" },
+        { id: 'work', label: 'Early-morning client sessions' },
+        { id: 'none', label: "He didn't. You were just on nights" },
+      ],
+      answer: 'system', evidence: ['leg_day_code', 'bro_alibi', 'mama_cover', 'conference_fake', 'second_account', 'vale_stops'],
+      explain: "Every 'leg day' lines up with a shift you worked. Brody had the fight, Mom had the disposal, NFTA had no summit, and the thirst account had nine followers, one of them his mother.",
+    },
+    {
+      id: 'q_conf', prompt: "What was the October 'trainer summit in Scottsdale'?",
+      options: [
+        { id: 'real', label: 'A real certification summit' },
+        { id: 'sedona', label: 'A weekend with Kenna at the Canyon Rose Resort in Sedona — with a lanyard he printed himself' },
+        { id: 'mom', label: 'A trip with his mom' },
+        { id: 'bros', label: 'A bros trip to Vegas' },
+      ],
+      answer: 'sedona', evidence: ['conference_fake', 'bed_selfie', 'memory'],
+      explain: "'There is no October summit.' He printed the lanyard for $24.99 and hung it on a Sedona door handle. Photos even made it a Memory.",
+    },
+    {
+      id: 'q_ring', prompt: 'Who is the ring for?',
+      options: [
+        { id: 'you', label: "You. He said 'not yet babe'" },
+        { id: 'kenna', label: "Kenna — size 5, engraved 'K', picked with his mom, a proposal booked in Tulum on Dec 13" },
+        { id: 'mom', label: 'His mom, for her birthday' },
+        { id: 'return', label: "Nobody. He's returning it" },
+      ],
+      answer: 'kenna', evidence: ['ring_size', 'mama_ring', 'tulum', 'proposal_speech', 'ring_found', 'mama_wrong'],
+      explain: "It stuck at your knuckle because it was never yours. Size 5, 'K — my favorite rep', and a violinist booked for sunset on December 13.",
+    },
+    {
+      id: 'q_cover', prompt: 'Who has been covering for him — to your face?',
+      options: [
+        { id: 'nobody', label: 'Nobody' },
+        { id: 'brody', label: 'Only Brody', art: 'av_cg4_brody' },
+        { id: 'bros_mom', label: "Brody (the 'fight') and his mom (the disposal, Thanksgiving, the ring)", art: 'av_cg4_mama' },
+        { id: 'marcus', label: 'Big Marc', art: 'av_cg4_marcus' },
+      ],
+      answer: 'bros_mom', evidence: ['bro_alibi', 'mama_cover', 'mama_ring'],
+      explain: "Brody told you he was in the bathroom. Mama Deb ran out of appliances. Big Marc refused, and he got a pudding out of you once.",
+    },
+    {
+      id: 'q_kenna', prompt: 'What does Kenna think you are?',
+      options: [
+        { id: 'gf', label: 'His girlfriend' },
+        { id: 'ex', label: "His ex, still on the lease, moving out in January" },
+        { id: 'sister', label: 'His sister' },
+        { id: 'none', label: "She doesn't know you exist" },
+      ],
+      answer: 'ex', evidence: ['ex_story', 'kenna_live', 'exit_plan'],
+      explain: "To Kenna you're 'a ghost roommate who buys oat milk'. She even asked him to be nice to you. The lease is in your name. Only yours.",
+    },
+  ],
+
+  events: [
+    { id: 'e4_kev', kind: 'text', when: ['unlocked'], delayMs: 8000, thread: 'th_kev', contact: 'kev', text: "u up? 🥺 my cat is asleep on your hoodie and I'm jealous of my cat" },
+    { id: 'e4_h_legday', kind: 'handler', when: ['pinned:leg_day_code'], delayMs: 3000, text: "wait. WAIT. 'leg day' is a CODE?? ri. that man has not trained legs since the Obama administration. I'm putting on pants. not jeans. real pants. screenshot EVERYTHING." },
+    { id: 'e4_snore', kind: 'handler', when: ['pinned:conference_fake'], delayMs: 4000, text: "(Tanner stops snoring. You freeze. He mumbles, 'five more, Kev,' and rolls toward the wall. The snoring comes back.) ...did he just say KEV. in his SLEEP. ri. I'm going to scream into a pillow and then I'm going to drive over." },
+    { id: 'e4_brody', kind: 'text', when: ['recovered:photos'], delayMs: 6000, thread: 'th_legends', contact: 'legends', text: "[Brody]: tanner u up?? drove past ur building and RILEY'S CAR is in the lot??? isn't she on nights 😬😬 skipping legs?? SKIPPING LEGS???" },
+    { id: 'e4_mama_wrong', kind: 'text', when: ['pinned:mama_cover'], delayMs: 6000, thread: 'th_mama', contact: 'mama', clue: 'mama_wrong', text: "Kenna sweetie! Making lemon bars for Thanksgiving, I KNOW they're your favorite 🍋 Don't tell Tanner I told you about Tulum 🤫💍 Act surprised!!" },
+    { id: 'e4_mama_wrong2', kind: 'text', when: ['pinned:mama_cover'], delayMs: 10000, thread: 'th_mama', contact: 'mama', text: "Oops!! That was for Kenna!! Delete delete 🙈 Why are you up. Why am I up. It's the lemon bars. Love, Mom" },
+    { id: 'e4_alexis', kind: 'text', when: ['recovered:msgfrag'], delayMs: 7000, thread: 'th_alexis', contact: 'alexis', clue: 'alexis', text: "this is alexis, brody's gf. brody just drove past your building and says riley's car is in the lot. if she's there and awake: riley, I'm so sorry. the ring isn't yours. I have screenshots. I'm on your side. call me." },
+    { id: 'e4_kev2', kind: 'text', when: ['pinned:ex_story'], delayMs: 6000, thread: 'th_kev', contact: 'kev', clue: 'kenna_live', text: "also did you tell your ex she needs to be out by jan 1? I'm not doing another christmas with her air fryer on the counter 🙄 be nice about it tho" },
+    { id: 'e4_findmy', kind: 'text', when: ['pinned:vale_stops'], delayMs: 5000, thread: 'th_findmy', contact: 'findmy', text: "Kev (leg day) 🦵 is sharing location with you · Wren Street Flats · Now. You have been sharing your location with Kev (leg day) 🦵 indefinitely since July 8. You stopped sharing with Riley 🏥 on Oct 1." },
+    { id: 'e4_h_tash', kind: 'handler', when: ['recovered:dms'], minPins: 12, delayMs: 8000, text: "ri. I have to say something. I texted him about the ring. in october. I told him to 'get it resized, you beautiful idiot'. he sent me a thumbs up. I've been planning your bachelorette in my head for a MONTH. I'm so sorry. I'm in the car. I'm outside in ten. I have a crowbar. it's a tire iron. it's for emotional support." },
+    { id: 'e4_call', kind: 'handler', when: ['unlocked'], minPins: 14, delayMs: 3000, text: "(The phone vibrates in your hand. Incoming FaceTime: 'Kev (leg day) 🦵'. The ringtone is the CoreWorks Flow Mix. Tanner shifts. You decline it with your thumb. Your thumb is shaking.)" },
+    { id: 'e4_wake', kind: 'handler', when: ['unlocked'], minPins: 20, delayMs: 3000, text: "(The mattress dips. Tanner rolls over and reaches under his pillow for his phone. His hand pats the sheet. Pats again. 'Ri?' he says, very awake now. 'Babe? You're home early.') ...ri. you have enough. you have the ring. you have Tulum. you have the air fryer. whatever you say next, say it standing up." },
+  ],
+
+  hints: [
+    { until: 'unlocked', text: "His code is the Roman-numeral tattoo on his forearm — but the lock screen is a MIRROR selfie, so the tattoo reads backwards. Read it right-to-left, then convert. His mom's notification is a hint about whose year it is." },
+    { until: 'pinned:leg_day_code', after: ['unlocked'], text: "'Leg day' shows up a lot for a man with rumoured calves. Read the LEG DAY LEGENDS group chat from the beginning." },
+    { until: 'pinned:conference_fake', after: ['unlocked'], text: "Was there ever a 'trainer summit' in Scottsdale? Check Mail from the trainer association and the hotel folio." },
+    { until: 'recovered:photos', after: ['pinned:conference_fake'], text: "If the summit was fake, the photos from it got deleted. Run the recovery app on Photos." },
+    { until: 'hidden:open', after: ['unlocked'], text: 'Photos has a Hidden album. Same passcode. He did not think of a second one.' },
+    { until: 'pinned:kev_contact', after: ['unlocked'], text: "Who is 'Kev'? Listen to Kev's voicemail. Look at whose Glimpse posts the studio across the lot." },
+    { until: 'recovered:msgfrag', after: ['pinned:kev_contact'], text: "His thread with Kev starts in October. It didn't start in October. Recover the deleted messages." },
+    { until: 'pinned:mama_cover', after: ['unlocked'], text: "Read his thread with Mama Deb, and listen to her voicemail. Count the appliances." },
+    { until: 'note:n_speech', after: ['unlocked'], text: "His locked note wants where the 'expo' really is. Check his bank, or Mail from the resort." },
+    { until: 'pinned:ring_size', after: ['unlocked'], text: "You're a size 7. What size is the ring? Halden & Co. sent him a receipt." },
+    { until: 'report:filed', after: ['unlocked'], text: "Before he wakes up: whether, who, how, Scottsdale, the ring, who covered, and what Kenna thinks you are. Pin your answers." },
+  ],
+
+  handlerIntro: "ri?? it's 1:34am, aren't you at work?? ...you got sent home early. and he's asleep. and his phone is under his PILLOW. ok. ok ok ok. salad tongs. use the salad tongs. get it out, get in, screenshot everything, and if 'leg day' means legs I will personally do a squat in your honor.",
+
+  epilogue: {
+    solved: [
+      "Here's what you know. 'Leg day' was Kenna Vale, a pilates instructor he saved as 'Kev', scheduled around every night shift you worked since July. The bros spotted him, his mom ran out of appliances, the Scottsdale summit was Sedona, and he paid for the lanyard.",
+      "And the ring you tried on in October, the one you've been rehearsing a face for, is a size 5, engraved 'K'. It's booked for a beach in Tulum on December 13 at 17:40. To Kenna, you're the ex who's moving out in January. The lease is in your name. He's asleep. For now.",
+      "You put his phone on his chest, screen up, open to 'speech 💍 (v6)', and sat on the end of the bed in your scrubs until he woke up. It took eleven minutes. He read the screen. He said, 'Ri, I can explain.' You said, 'Size five, Tanner.' He looked at your hand. You looked at his calves.",
+      "He took the TV. You kept the air fryer. You cried at it once and then made the best wings of your life in it. Tash ate them on the counter and said 'leg day' every time he came up, until it stopped meaning anything.",
+    ],
+    partial: [
+      "You have pieces: a Kev, some leg days, a lanyard. Not the shape of it.",
+      "He woke up and said, 'You're home early!' and kissed your forehead, and you let him. On December 12 he flew to an 'expo'. On December 13 you found out what was on the other side of the knuckle, from Kenna's Glimpse. Go back to the ring receipt.",
+    ],
+  },
+  choices: [
+    {
+      id: 'ringbox',
+      label: 'Wake him up with the ring on your pinky',
+      solved: [
+        "You got the velvet box out of his gym bag. The ring slid onto your pinky like it had been waiting for you to be honest about your fingers. You turned on the big light. You sat on the edge of the bed and said, 'Tanner.' He opened one eye, saw the ring, and smiled — actually smiled — for a whole second before his face caught up with the rest of him.",
+        "'Ri. Babe. That's — not yet—' 'Size five,' you said. 'Engraved K. Tulum, December thirteenth, seventeen-forty, sunset. There's a violinist. Do you have a song yet? They asked for the title.' He sat up. He said, 'How do you know about the violinist.' You said, 'Your mom made lemon bars.'",
+        "He tried, 'We grew apart.' You said, 'I'm on the lease.' He tried, 'The night shifts—' You said, 'Kenna thinks I buy oat milk and haunt you.' He stopped trying. At 3 a.m. he was on the walkway outside with two gym bags and the TV he'd checked the receipt for. It wasn't his. You kept it.",
+        "You gave the ring back, by courier, to Wren Street Flats 2C, with a note: 'He'll say I'm the ex. I'm the ex now. Ask him about July 8. — the oat milk girl.' Kenna returned it to Halden & Co. herself. The 18 months of payments stayed with him. Leg day, at last.",
+      ],
+      partial: [
+        "You held up the ring and said, 'Is this for me?' and he said, 'Babe. Not yet,' and kissed your knuckle where it stuck. You let him. You didn't know enough to not let him.",
+        "On December 13, at 17:40, Glimpse showed you a sunset, a violinist, and a banner that said SHE SAID YES. She did. You didn't know she'd never heard of you.",
+      ],
+    },
+    {
+      id: 'kenna',
+      label: "Call 'Kev' from his phone",
+      solved: [
+        "You took his phone onto the balcony and called Kev. She answered on the second ring, sleepy and warm: 'Hey, coach.' You said, 'Hi. I'm Riley. The ex. The ghost who buys oat milk.' The silence was so long you checked it hadn't dropped.",
+        "'He said you were moving out,' Kenna said finally. 'In January.' 'The lease is in my name,' you said. 'He asked my landlord to put you on it.' Another silence. Then, very small: 'He said you work nights and you never see each other.' 'I work nights,' you said, 'so he could see you.'",
+        "You talked until 3:40. She told you about the foam roller with the heart on it. You told her about the ring that stuck at your knuckle. She said, 'Oh my god. He told you it was for you?' You said, 'He said not yet babe.' She made a sound you've only heard in triage.",
+        "On December 12 Tanner flew to Tulum alone, because Kenna's flight 'got cancelled'. At 17:40 on December 13 a violinist played on an empty beach to a man on one knee and a 'SHE SAID YES' banner. Kenna and you were at a wine bar two blocks from your apartment, watching the photographer's live story. You split a lemon bar. His mom had sent you both a dozen.",
+      ],
+      partial: [
+        "You called Kev and Kenna said, 'Who is this?' and you said, 'His girlfriend,' and she said, 'He doesn't HAVE a girlfriend, he has an ex,' and hung up and blocked you, and then she blocked him, and then she unblocked him.",
+        "By the time you came in from the balcony he was awake, looking at the call log. 'Babe,' he said, 'why did you call Kev?' You said, 'Who's Kev?' and neither of you said anything else.",
+      ],
+    },
+    {
+      id: 'mama',
+      label: 'Reply to Mama Deb — as him',
+      solved: [
+        "You opened Mama Deb's thread and typed, in his voice, with his total lack of punctuation: 'mom change of plans im bringing riley to thanksgiving. im proposing to RILEY. at the table. in front of aunt carol. dont tell kenna'. You hit send at 2:03 a.m. Mama Deb replied at 2:03 a.m.",
+        "'TANNER JAMES.' Then: 'Is this a joke.' Then: 'Is this RILEY.' Then, after four minutes of dots: 'Honey, if this is Riley, I'm so sorry. I'm sorry about the appliances. I'm sorry about the ring. I told him to tell you. I didn't tell him hard enough.'",
+        "You told her it was you. She called. You talked for half an hour; she cried about the bunion soup. At the end she said, 'Come to Thanksgiving anyway. Bring your mac and cheese. I'll handle Carol.' You said, 'Will Tanner be there?' She said, 'Not if I lock the door.'",
+        "You went. Kenna went, too — Deb had invited both of you, separately, out of guilt. You met at the lemon bars. Aunt Carol looked from one of you to the other and said, 'Engaged-ish, Debbie?' Tanner ate turkey alone at the gym, at the actual Turkey Burn bootcamp, which, it turns out, he'd invented and then had to run.",
+      ],
+      partial: [
+        "You texted his mom 'its riley. i know.' She replied, 'Know what, sweetheart? He was fixing my disposal,' and then, a minute later, 'A spoon.'",
+        "Tanner found the thread in the morning. He called his mom from the bathroom with the fan on. When he came out he said, 'Mom says hi,' and you didn't know which of you she meant.",
+      ],
+    },
+    {
+      id: 'post',
+      label: 'Post the truth from @coach.t.unfiltered',
+      solved: [
+        "You switched to the second account. Nine followers. You posted the Halden & Co. receipt, the TIMELINE note and a screenshot of 'not yet babe', with the caption: 'for my favorite rep 🍑 (all of them)'. You tagged @coreworks.kenna. You hit share at 2:11 a.m.",
+        "Within a minute: Brody liked it out of reflex and then unliked it. Big Marc commented, 'finally.' The protein brand asked if you'd like to collaborate. Kenna commented nothing for six minutes and then: 'size 5??? he told me he guessed.'",
+        "And at 2:19, from debboyce_1974: 'Tanner James Boyce, this is not how we do things. Also, Riley, if this is you, I'm bringing you lemon bars.' Then, under it: 'Cover up, you will catch cold. Love, Mom.'",
+        "He woke up at 6 to 41 notifications on an account with nine followers. He read them in order, on the bed, in his 'NO DAYS OFF' tank. You'd already gone to Tash's with the air fryer. The account is still up. It has twelve followers now. One of them is Alexis. She documents everything.",
+      ],
+      partial: [
+        "You posted the receipt and nothing else. The bots liked it. Kenna asked, 'what's this?' and he deleted the post in his sleep, or close enough.",
+        "In the morning he said, 'Babe, did you touch my phone?' You said, 'No.' He believed you exactly as much as you'd believed 'leg day'.",
+      ],
+    },
+  ],
+};

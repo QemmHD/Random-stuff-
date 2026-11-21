@@ -251,11 +251,30 @@ function choiceBlock(c: CaseFile, solved: boolean): HTMLElement {
     onclick: () => {
       audio.play('stinger');
       buttons.remove();
-      const out = h('div', { class: 'ep-story chosen' }, h('div', { class: 'ep-choice-label' }, ch.label), ...(solved ? ch.solved : ch.partial).map((p, i) => h('p', { style: `animation-delay:${0.3 + i * 0.8}s` }, p)));
+      const out = h('div', { class: 'ep-story chosen' }, h('div', { class: 'ep-choice-label' }, ch.label), ...dialogue(solved ? ch.solved : ch.partial));
       wrap.appendChild(out);
       out.scrollIntoView({ behavior: 'smooth', block: 'start' });
     },
   }, ch.label)));
   wrap.appendChild(buttons);
   return wrap;
+}
+
+/**
+ * Endings written as a script: "You: …" → your bubble, "Name: …" → their bubble,
+ * "(…)" → a quiet stage direction. Anything else falls back to a paragraph.
+ * Lines reveal one by one like a live conversation.
+ */
+function dialogue(lines: string[]): HTMLElement[] {
+  return lines.map((line, i) => {
+    const delay = `animation-delay:${0.4 + i * 1.1}s`;
+    const stage = /^\((.*)\)$/s.exec(line.trim());
+    if (stage) return h('div', { class: 'dlg-stage', style: delay }, stage[1]);
+    const m = /^([^:]{1,24}):\s+(.+)$/s.exec(line);
+    if (!m) return h('p', { style: delay }, line);
+    const me = /^you$/i.test(m[1].trim());
+    return h('div', { class: `dlg-row ${me ? 'me' : 'them'}`, style: delay },
+      me ? null : h('span', { class: 'dlg-name' }, m[1]),
+      h('div', { class: 'dlg-bubble' }, m[2]));
+  });
 }

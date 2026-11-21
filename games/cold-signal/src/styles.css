@@ -1226,3 +1226,15 @@ kbd { display: inline-grid; place-items: center; min-width: 24px; height: 22px; 
 .ep-choice:active { transform: scale(.97); }
 .ep-choice:hover { background: rgba(255,64,129,.2); }
 .ep-choice-label { font-size: .75em; letter-spacing: .14em; text-transform: uppercase; color: #ff6fa6; margin: 14px 0 6px; }
+
+/* confrontation as a live conversation */
+.ep-story.chosen { display: flex; flex-direction: column; gap: 8px; text-align: left; }
+.dlg-row, .dlg-stage, .ep-story.chosen > p { animation: bubbleIn .45s var(--ease) both; }
+.dlg-row { display: flex; flex-direction: column; max-width: 82%; }
+.dlg-row.me { align-self: flex-end; align-items: flex-end; }
+.dlg-row.them { align-self: flex-start; }
+.dlg-name { font-size: 11px; color: var(--muted); margin: 0 0 2px 10px; letter-spacing: .04em; }
+.dlg-bubble { padding: 10px 14px; border-radius: 20px; font-family: var(--ui); font-size: 15.5px; line-height: 1.35; }
+.dlg-row.them .dlg-bubble { background: #262c31; color: #f1f4f5; border-bottom-left-radius: 6px; }
+.dlg-row.me .dlg-bubble { background: linear-gradient(180deg, #7c5cff, #5a3ee6); color: #fff; border-bottom-right-radius: 6px; }
+.dlg-stage { align-self: center; max-width: 90%; text-align: center; font-family: var(--type); font-style: italic; font-size: 13px; color: #ffb3c7; padding: 4px 8px; }
