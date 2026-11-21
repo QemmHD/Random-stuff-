@@ -184,3 +184,65 @@
 **Report:** who took the box → Donna (donna_box / box_1820 / truck_window / donna_denial / dewey_knew) · Big Lou → faked his death and is at the Lakeshore Motor Inn (lou_special / lou_order_habit / donna_mirror / donna_denial / donna_slip / indictment / dewey_motel / cold_casket / dewey_knew) · in the casket → ~180 lb of frozen turkey (turkey_photo / turkey_ask / menu_no_turkey / cold_casket / gordon_vm / dewey_knew) · who staged it → Gordon and Dr. Neil Fisk (gordon_vm / fisk_debt / fisk_doctor / turkey_ask / turkey_photo) · Spatula's jet ski → 84 months of 0% financing (jetski_loan) · where Dewey is → the ice-machine room at the Lakeshore Motor Inn (dewey_motel / motel_plan / truck_ditched / lou_special / dewey_knew).
 
 **Gate check:** photos←unlocked; msgfrag←lou_special (visible Inbox); voice←turkey_photo (from photos); history←note:n_box (password from the visible Gordon thread, menu and Spatula thread). No gate depends on its own output.
+
+# Caught
+
+CAUGHT mode is shorter, M-rated adult comedy. The player IS the partner, reading their partner's phone at 2–3 a.m. The handler is your best friend **Dez** (`handler: { name: 'Dez', role: 'your best friend', avatar: 'av_cg_bff' }`). Live events build dread: the lover texts mid-snoop, plus Find My, doorbell and "the shower just turned off" beats delivered as Dez lines. Each case ends on a gut-punch. All three cases are registered in `src/cases/caught.ts` (`CAUGHT`).
+
+## C1 — Zero Threat (`caught-1`, difficulty 1)
+
+**Truth:** You are Trent. Your girlfriend Jessa is cheating with her "gay best friend" Jules Fontaine, an Engine 9 firefighter who is not gay. He said "so gay, bro" at a barbecue to dodge your question and kept it up for fourteen months. "Marco, his boyfriend who travels" is his French bulldog. They meet on Wednesdays at Calloway Lofts 4B; you paid for her Paint & Sip alibi (8 booked, 0 attended), and Jules paints the lighthouses she brings home. A Mr. & Mrs. Smith suite is booked at the Hotel Marisol the night before your 2-year anniversary. **Gut-punch:** Dez, your best friend and handler, knew since the car wash and told you "zero threat" anyway. Kayla covered for her once.
+
+**Unlock (2375):** The lock notification gives her usual (Filthy Martini + Truffle Fries). The chalkboard wallpaper gives the prices: $14.50 + $9.25 = $23.75. The trap is the espresso martini (2425).
+
+**Solve path**
+1. Visible: Brushstrokes "0 attended" email and Kayla's cousin (`paint_alibi`); your PaySnap (`trent_pays`); roses signed J (`roses`); Jules's Glimpse showing Marco is a dog (`marco_dog`); Maps, Wi-Fi ("MARCO_IS_A_GOOD_BOY (4B) · auto-joined 41×"), parking validation and bank (`loft_stops`); location paused only for you, plus her "art basement" lie (`location_off`); the PulseBand 9-min / 160 bpm "workout" at 23:02 (`pulse_spike`); Marisol booking, folio, Kayla's "DON'T use my bachelorette" and the calendar entry "🔥 J — Marisol" the night before your anniversary (`hotel_smith`); booth 4 with you, then booth 4 with Jules a week later (`same_booth`); "sweet but SO boring" to Kayla (`boring`); the Tía Rosa car-wash family-chat outrage (`family_outrage`); Mami (`mami_knows`); BLUE BOX LLC order shipped to 4B, the box photo, and a "batteries 48-ct, you owe me 😏" request (`blue_box`); the Halloween "Love Island" alibi, Kayla's karaoke story and her accidental rehearsal voicemail (`kayla_cover`); tells such as a new passcode "because HIPAA", "Dr. J 🦷" (Jules's number under a fake name), a zero-visit gym, new perfume, DashDrop "just for me" ×2, StreamBox "Continue watching" on CALLOWAY 4B TV, and car Bluetooth paired to "JULES 🚒 iPhone" (`tells`); the lingerie haul, Velvet Rope receipt and try-ons sent to him (`lingerie_haul`); "things J does (that T doesn't)" (`things_list`); the 4C noise complaint (`noise`).
+2. Hidden album (same passcode): the turnout-coat selfie, helmet "FONTAINE · ENGINE 9" (`helmet_selfie`), plus try-ons and his thirst traps.
+3. Pin `paint_alibi` → Photos recovery: the lighthouse factory (`ghost_painter`), the duvet selfie, two toothbrushes and the "last night 🙈" thumbnail (`bed_selfie`), the lipstick mirror (`aftermath`), and **his watch on YOUR nightstand** (`nightstand`).
+4. Pin `marco_dog` → Messages recovery: "gay for fourteen months for you" (`not_gay`), morning-after texts (`aftermath`), your song sent to him (`our_song`), "mr & mrs smith again" (`hotel_smith`), and **Dez's thread** (`dez_knew`).
+5. Locked note "Trent vs. Jules": the password is Marco's breed → **frenchie** (Jules's Glimpse caption) (`pros_cons`).
+6. Live: Jules "u still up? 😏"; Dez after `loft_stops`; Find My "babe?? where'd you put my phone 🥺" after Photos; "the shower just turned off" plus Jules "wear the coat" (`jules_live`) after Messages; the doorbell clip of Jules hanging a bag on your door after `hotel_smith`; Dez confesses after Messages + 12 pins; "you hear the bathroom door" at 18 pins.
+7. Red herring: Dr. Feld's "Need you tonight. Bring the good gloves. Don't tell my wife." was an after-hours root canal (`feld_texts` / `feld_clear`).
+
+**Report:** cheating → yes · with whom → Jules · where → Calloway Lofts 4B + Marisol · how → fake-gay cover + Paint & Sip you funded + location paused · who covered → Kayla and Dez (`dez_knew` / `kayla_cover`).
+
+**Gate check:** photos←pinned:paint_alibi (visible Mail/Kayla); msgfrag←pinned:marco_dog (visible Glimpse). No soft-locks.
+
+## C2 — Mystery Man (`caught-2`, difficulty 2)
+
+**Truth:** You are Greg. Your wife Nora's evidence screams affair: "Mystery Man 🖤", Thursday "book club" in Hotel Corvina Suite 512 booked as Mrs. Smith, Dev "you were LOUD", breathy voice memos, a private $214k account, a $212 lingerie receipt, a BLUE BOX LLC order and Bea's Love Island alibi. But Nora is the anonymous erotic-romance novelist **Delphine Rush**. Mystery Man is her agent Bernard (68). Suite 512 is a mattress-lined audiobook booth. The money is royalties. Everything was building to a 10th-anniversary reveal on Nov 28, dedication "For G.". They've been trying for a baby for two years. **Twist:** YOU are the cheater: Tuesday "bowling" is Room 6 at the Wyeth Motor Lodge with HOA president Tiffani Boone, on your card ••2291. **Gut-punch:** mid-snoop, Tiffani texts Nora's phone a positive pregnancy test because "Greg isn't answering". The last recovered message says her husband Gary has had a vasectomy since 2019.
+
+**Unlock (0611):** Morse bracelet on the wallpaper (long = dash, short = dot, gold spacer = next digit): ----- -.... .---- .----. Bea's notification says "dots and dashes".
+
+**Solve path**
+1. Visible: Mystery Man texts, voicemail and the table-12 champagne photo (`mystery_texts`); Dev (`dev_texts`); Corvina booking, folio, key card, Maps and Wi-Fi (`hotel_meets`); Velour & Lace (`lingerie_receipt`); royalties (`cash_stash`); the 10-years note, cabin and calendar (`anniversary_plan`); the one-line test and "two years of trying" (`trying`); the dictation memo (`chapter_talk`); Bea's alibi, spin story and rehearsal voicemail (`bea_cover`); the BLUE BOX "research" order to the agency (`research_box`); Strike Force "0 frames, league is Wednesdays" (`bowling_forfeit`); the joint statement with card ••2291 at Room 6, minibar for two and a robe set (`motel_charges`); "room 6 has a smell" (`wyeth_avoid`); Tiffani's close-friends story with your vest (`tiffani_post`); your Tuesday location blackout and Gary's "your vest is in my laundry" (`greg_tells`).
+2. Hidden album: the dedication proof "For G." (`hidden_dedication`).
+3. Pin `hotel_meets` → Photos: mattresses on the walls, the mic and "ch 9 take 4" (`recording_booth`). Live: Bernard reveals himself (`bernard_reveal`).
+4. Pin `mystery_texts` → Messages: chapters, "redlined the meter", "throbbing lantern" (`chapter_talk`).
+5. Locked note "TH #11 — outline": the hero's first name → **thorne** (Browser bestseller entry) (`author_reveal`).
+6. Pin `bowling_forfeit` → Unsent cache: Tiffani's "room 6 tues? wear the vest" (`tiffani_slip`) and "gary's had the snip since 2019" (`snip`).
+7. Live: Mystery Man "Still up, darling?"; Dez after `mystery_texts`; "Nora pats the nightstand" plus Dez "that's YOUR card" after `motel_charges`; Tiffani's positive test (`tiffani_test`) after `motel_charges` + 10 pins; the hallway light after the unsent recovery + 16 pins.
+
+**Report:** Nora cheating → no · Mystery Man → agent Bernard · hiding → Delphine Rush + anniversary reveal · who IS cheating → you, with Tiffani · where → Wyeth Room 6 · whose baby → yours (`snip`).
+
+**Gate check:** photos←hotel_meets (visible Maps/Mail); msgfrag←mystery_texts (visible); unsent←bowling_forfeit (visible Mail). No soft-locks.
+
+## C3 — Fantasy League (`caught-3`, difficulty 2)
+
+**Truth:** You are Doug. Your wife Dana is asleep on the couch in Rafe Castellano's "CASTELLANO 12" hoodie. Rafe is her pickleball partner and the Commish of YOUR fantasy league. Her system: a 🌶️ Thursday calendar, league-chat code ("starting my QB thursday"), a note disguised as "🧮 Calculator", Lakeview Inn Room 214 as Mr. & Mrs. Smith, a BLUE BOX order to his flat, and Mel's Love Island alibi. **Gut-punch:** it's an arrangement YOU proposed on draft night, May 30 ("rafe. it should be rafe... I picked him. I'm fine with it 👍"). You wrote the eight rules, created and shared "Dana's Thursdays 🏈", and PaySnapped the rooms. Rule 1: "I will never look at her phone." Rule 3: "Hide everything." Then you couldn't handle it: 3 a.m. searches on your iPad ("is it normal to regret being a cuck if you picked the guy", "how to un-open a relationship"), sitting in the Lakeview lot with a rotisserie chicken, 63 location checks, no Sunday talks. **Last turn:** Dana had already decided to end it on Thursday for you, and PaySnapped back every dollar: "please talk to me". Your mother knew (and told Aunt Pat); her friends and your league have been roasting you.
+
+**Unlock (4138):** Framed scorecard wallpaper; add the SCORE row, front nine (41) then back nine (38). The trap is the par row (3636).
+
+**Solve path**
+1. Visible: CASTELLANO 12 hoodie, watch and wine glasses (`hoodie`); Lakeview folio, key card, Glimpse and Wi-Fi (`lakeview`); Rafe's morning-after texts and voice note (`aftermath`); your wedding song sent as "ours" (`our_song`); Bo's "the walls are drywall" (`roommate`); league code plus your own 👍s (`league_code`); the shared-calendar email and 🌶️ entries (`shared_calendar`); your PaySnaps (`your_paysnap`); Pickle Girls and the league roast (`friends_roast`); the family chat — Mom told Pat (`family_knew`); your Costco-chicken voicemail (`chicken`); ending it (`ending_it`); the $1,419 refund (`refund`); BLUE BOX to his flat plus batteries (`blue_box`); Mel's alibi, trivia story, rehearsal voicemail and "Pickle Coach (ignore)" (`mel_cover`).
+2. Pin `lakeview` → Photos: your truck in the lot (`chicken`), "oops 🙈" and the lipstick mirror (`aftermath`), the shared-calendar screenshot (`shared_calendar`). Live: Rafe asks about the chicken.
+3. Pin `league_code` → Messages: your own May 30 / June texts (`your_words`).
+4. Locked note "🧮 Calculator": Rule 2's league word → **qb** (`rules_note`).
+5. Open `n_calc` → Shared tab-group history: your 3 a.m. searches (`doug_searches`).
+6. Live: Rafe "u up? 😏"; Dez on the hoodie; Dana stirs + Dez "why are there texts from YOU"; Dana wakes ("I want to talk") after history + 14 pins.
+
+**Report:** cheating → no, it's your arrangement · who → Rafe · where → Lakeview 214 · who set it up → you · who broke the rules first → you (Rule 6, the parking lot, Rule 1 right now) · what she planned Thursday → end it, for you.
+
+**Gate check:** photos←lakeview (visible); msgfrag←league_code (visible); history←note:n_calc (password from the visible league chat). No soft-locks.
+
+Art: see `src/art/specs-caught.md` (91 new ids + reused `av_unknown`).
