@@ -67,6 +67,8 @@ export const caught3: CaseFile = {
     { id: 'league', name: 'Gridiron Gentlemen 🏈', avatar: 'av_cg3_league', number: '(555) 761-0000', label: 'group · 6' },
     { id: 'pickle', name: 'Pickle Girls 🥒', avatar: 'av_cg3_pickle', number: '(555) 761-0001', label: 'group · 4' },
     { id: 'family', name: 'Hoyt Family 🦃', avatar: 'av_cg3_family', number: '(555) 761-0002', label: 'group · 7' },
+    { id: 'mel', name: 'Mel 🥒', avatar: 'av_cg3_mel', number: '(555) 761-2210', label: 'doubles partner #2' },
+    { id: 'coach', name: 'Pickle Coach (ignore)', avatar: 'av_unknown', number: '(555) 761-0012', label: 'added Jun 4' },
     { id: 'bo', name: "Bo (Rafe's roommate)", avatar: 'av_cg3_bo', number: '(555) 761-4400' },
   ],
 
@@ -97,6 +99,8 @@ export const caught3: CaseFile = {
         { from: 'them', text: 'good game today. your third shot drop is illegal in four states', t: '2026-11-03T14:10' },
         { from: 'me', text: 'you stood in the kitchen the whole time. that\'s against the rules rafe', t: '2026-11-03T14:12' },
         { from: 'them', text: "I like the kitchen. you're always in it", t: '2026-11-03T14:12' },
+        { from: 'them', text: 'it came 📦 unmarked. bo signed for it. bo has questions', t: '2026-11-07T16:41', photo: 'cg3_ph_box', clue: 'blue_box' },
+        { from: 'them', text: "sent you a paysnap request. 'batteries 48-ct'. you owe me 😏", t: '2026-11-13T08:20', clue: 'blue_box' },
         { from: 'them', text: 'what are you wearing', t: '2026-11-11T22:40' },
         { from: 'me', text: 'compression socks and a heating pad. you ruined my hamstring', t: '2026-11-11T22:41' },
         { from: 'them', text: "I meant it romantically. I'll fix your hamstring. I'm not a PT but I've watched one work", t: '2026-11-11T22:42' },
@@ -159,6 +163,15 @@ export const caught3: CaseFile = {
       ],
     },
     {
+      id: 'th_mel', contact: 'mel', messages: [
+        { from: 'me', text: "if doug asks, tonight I was at yours watching Love Island. DON'T say lakeview. rule 3. he doesn't want to know and I'm not making him know", t: '2026-11-12T17:50', clue: 'mel_cover' },
+        { from: 'them', text: "dana he PICKED the guy. he MADE a calendar. why are we lying to the calendar man", t: '2026-11-12T17:51', clue: 'mel_cover' },
+        { from: 'me', text: "because he asked me to. rule 3. please", t: '2026-11-12T17:52', clue: 'mel_cover' },
+        { from: 'them', text: 'did you get the... package 👀', t: '2026-11-08T10:00', clue: 'blue_box' },
+        { from: 'me', text: "went to rafe's. bo signed for it. bo said 'I'm not asking' and then asked", t: '2026-11-08T10:02', clue: 'blue_box' },
+      ],
+    },
+    {
       id: 'th_bo', contact: 'bo', messages: [
         { from: 'them', text: 'hi dana. respectfully. the walls are drywall', t: '2026-11-13T06:02', clue: 'roommate' },
         { from: 'them', text: "I have a 6am shift. I have heard my own name used as a verb. I don't know how. I'm not even IN there", t: '2026-11-13T06:03', clue: 'roommate' },
@@ -169,6 +182,8 @@ export const caught3: CaseFile = {
   ],
 
   photos: [
+    { id: 'cg3_ph_box', art: 'cg3_ph_box', t: '2026-11-07T16:40', place: 'Received from Rafe 🥒', orientation: 'portrait', caption: 'Received. A plain brown box with no logo on an apartment doormat beside a potted ficus; a hand-lettered sign on the door: 3B.', clue: 'blue_box' },
+    { id: 'cg3_ph_mel_wine', art: 'cg3_ph_mel_wine', t: '2026-11-12T20:40', place: 'Corkscrew Wine Bar', orientation: 'portrait', caption: "From Mel's Glimpse story. A woman alone at a wine-bar counter raising a glass; a chalkboard behind her lists tonight's date and a trivia night.", clue: 'mel_cover' },
     { id: 'cg3_ph_scorecard', art: 'cg3_ph_scorecard', t: '2026-10-12T14:00', place: 'Briar Glen — garage', orientation: 'landscape', caption: 'A tidy garage: two golf bags, a mini-fridge, a framed scorecard on pegboard, a folding cot with a pillow and a phone charger beside the water heater.' },
     { id: 'cg3_ph_us_dock', art: 'cg3_ph_us_dock', t: '2026-11-05T20:10', place: "Dockside Grill — table by the window", orientation: 'portrait', caption: 'Selfie at a waterfront restaurant table: a woman smiling, a man beside her giving a thumbs-up with a forced grin. A lit buoy outside the window.' },
     { id: 'cg3_ph_dock_r', art: 'cg3_ph_dock_r', t: '2026-11-12T18:20', place: "Dockside Grill — table by the window", orientation: 'portrait', caption: 'Selfie at the same window table: the same woman beside a taller man in a pickleball visor, both laughing, sharing one dessert. The same lit buoy outside.' },
@@ -197,6 +212,7 @@ export const caught3: CaseFile = {
   mail: [
     { id: 'm_folio', from: 'Lakeview Inn', fromAddr: 'folio@lakeviewinn.example', to: 'Dana Hoyt', subject: 'Thank you, Mrs. Smith! Your folio 🧾', t: '2026-11-20T00:05', folder: 'inbox', clue: 'lakeview', body: "Guest: Mr. & Mrs. Smith (booked by: R. Castellano, 'it's a bit') · Room 214\nStays this quarter: 11 (Thursdays)\n\nNov 19:\nRoom  $129.00\nMinibar: 2× pinot noir split  $28.00\nMinibar: 2× chocolate truffles  $12.00\nMinibar: 1× 'Romance Kit'  $22.00\nRoom service 22:40: 2× chicken tenders, 1× extra ranch  $31.00\nLate checkout: requested\nNote from housekeeping: 'Please stop playing pickleball against the headboard.'" },
     { id: 'm_rope', from: 'Velvet Rope Boutique', fromAddr: 'receipts@velvetrope.example', to: 'Dana Hoyt', subject: 'Your receipt 💋', t: '2026-11-09T14:00', folder: 'trash', clue: 'lakeview', body: "VELVET ROPE BOUTIQUE — 'Adult Novelties & Tasteful Regrets'\n\n1× Massage Oil — Warming Eucalyptus ('for sore athletes')  $19.00\n1× 'His & Hers' Robe Set — embroidered MR. & MRS. SMITH  $42.00\n1× Novelty Pickleball Paddle — 'SPANK THE KITCHEN'  $14.00\nTotal: $75.00\n\nLoyalty stamp: 6 of 10." },
+    { id: 'm_bluebox', from: 'BLUE BOX LLC', fromAddr: 'orders@bluebox-llc.example', to: 'Dana Hoyt', subject: 'Your order has shipped (discreetly) 📦', t: '2026-11-06T09:00', folder: 'inbox', clue: 'blue_box', body: "BLUE BOX LLC — billing name on statement: 'BLUE BOX LLC'\n\n1× 'Kitchen Line' Personal Massager (rechargeable, 'match-point' setting)  $72.00\n1× Warming Gel — 'Third Shot Drop'  $15.00\n1× Novelty Sweatband Cuffs (pair, neon)  $9.00\nTotal: $96.00\n\nShip to: Maplewood Flats 3B (c/o R. Castellano)\nPackaging: plain, unmarked. Signed for by: 'BO (I'M NOT ASKING)'." },
     { id: 'm_lace', from: 'Lace Theory', fromAddr: 'orders@lacetheory.example', to: 'Dana Hoyt', subject: 'Order shipped 🖤', t: '2026-11-06T10:00', folder: 'inbox', body: "1× 'Match Point' sports set — emerald — M\n1× 'After Hours' lace set — black — M\nSubtotal: $214.00\nGift note: 'for thursday. which one.'" },
     { id: 'm_shared', from: 'Calendar', fromAddr: 'noreply@calendar.example', to: 'Dana Hoyt', subject: "Doug Hoyt shared \"Dana's Thursdays 🏈\" with you", t: '2026-06-02T19:05', folder: 'inbox', clue: 'shared_calendar', body: "Doug Hoyt (doug@pinnaclegutters.example) has shared the calendar \"Dana's Thursdays 🏈\" with you.\n\nPermission: Can edit\nMessage from Doug: 'so we're organized about it 👍 I'm a systems guy'" },
     { id: 'm_fantasy', from: 'GridironPro Fantasy', fromAddr: 'noreply@gridironpro.example', to: 'Dana Hoyt', subject: 'Week 11 matchup is set! 🏈', t: '2026-11-17T06:00', folder: 'inbox', body: "WEEK 11 — GRIDIRON GENTLEMEN\n\nDANA'S REVENGE (Dana H.)  vs  GUTTER BALLERS (Doug H.)\n\nProjected: Dana's Revenge 128.4 – Gutter Ballers 61.0\n\nTip: Doug H. has set the same lineup for 9 weeks and has not logged in since May." },
@@ -207,10 +223,13 @@ export const caught3: CaseFile = {
     { contact: 'doug', t: '2026-11-12T19:05', dir: 'missed' },
     { contact: 'doug', t: '2026-11-12T19:06', dir: 'missed' },
     { contact: 'bo', t: '2026-11-13T06:05', dir: 'missed' },
+    { contact: 'mel', t: '2026-11-12T19:58', dir: 'missed' },
+    { contact: 'coach', t: '2026-11-17T23:10', dir: 'in', duration: '52:03' },
   ],
 
   voicemails: [
     { id: 'vm_rafe', contact: 'rafe', t: '2026-11-18T23:30', duration: '0:31', voice: { pitch: 0.9, rate: 0.9, female: false }, clue: 'aftermath', transcript: "[whispering] Hey. Bo's asleep, so I'm whispering, which is new for me. [laughs] I can still smell your shampoo on the hoodie. The coconut one. [pause] Thursday... you said you want to talk at the courts, not the room. That's fine. That's — whatever you need. [door closes] Okay. Goodnight, Mrs. Smith." },
+    { id: 'vm_mel', contact: 'mel', t: '2026-11-12T19:58', duration: '0:22', voice: { pitch: 1.15, rate: 1.2, female: true }, clue: 'mel_cover', transcript: "[clears throat] 'Hi Doug! Yes, she was at mine. We watched Love Island. People were hot near a pool.' [pause] Why am I lying to the CALENDAR man. [glass clinks, a trivia host says 'question four'] Oh no. Is this — is this recording? Dana's voicemail? Delete. Delete. [beep]" },
     { id: 'vm_doug', contact: 'doug', t: '2026-11-12T19:06', duration: '0:18', voice: { pitch: 1.0, rate: 1.1, female: false }, clue: 'chicken', transcript: "[engine idling] Hey. It's me. I'm not — I'm at Costco. [crinkle of plastic] I got a chicken. A rotisserie one. For the house. I'm going to eat some of it in the car first. [long pause] Have fun. 👍 I mean. Thumbs up. You can't hear a thumbs up. Bye." },
   ],
 
@@ -248,6 +267,7 @@ export const caught3: CaseFile = {
 
   glimpse: [
     { id: 'g3_courts', author: 'rafe', photo: 'cg3_ph_dock_r', caption: "✨ close friends ✨ best doubles partner in the state. also best dessert sharer. also. 🥒", t: '2026-11-12T18:30', likes: 14, comments: [{ author: 'me', text: 'delete this rafe 🙈' }, { author: 'bo', text: 'the walls, rafe' }], clue: 'lakeview' },
+    { id: 'g3_mel', author: 'mel', photo: 'cg3_ph_mel_wine', caption: 'trivia night alone 🍷 my doubles partner is "busy" 🙄', t: '2026-11-12T20:41', likes: 17, comments: [{ author: 'doug', text: 'isnt dana with you? 👍' }, { author: 'mel', text: 'she went to get snacks!!' }], clue: 'mel_cover' },
     { id: 'g3_us', author: 'me', photo: 'cg3_ph_us_dock', caption: 'date night w my gutter guy 💕', t: '2026-11-05T20:30', likes: 31, comments: [{ author: 'doug', text: '👍' }, { author: 'rafe', text: 'cute!! 🥒' }] },
   ],
 
@@ -259,6 +279,8 @@ export const caught3: CaseFile = {
       { t: '2026-11-12T18:31', desc: "PAYSNAP FROM DOUG HOYT — 'for the room this week 👍 no need to tell me anything (rule 3)'", amount: 129.0, clue: 'your_paysnap' },
       { t: '2026-11-05T18:30', desc: "PAYSNAP FROM DOUG HOYT — 'room 👍'", amount: 129.0, clue: 'your_paysnap' },
       { t: '2026-11-09T14:00', desc: 'VELVET ROPE BOUTIQUE', amount: -75.0 },
+      { t: '2026-11-13T08:25', desc: "PAYSNAP REQUEST FROM RAFE CASTELLANO — 'batteries 48-ct 🔋 you owe me 😏' — PAID", amount: -21.99, clue: 'blue_box' },
+      { t: '2026-11-06T08:58', desc: 'BLUE BOX LLC', amount: -96.0, clue: 'blue_box' },
       { t: '2026-11-06T10:00', desc: 'LACE THEORY — ONLINE', amount: -214.0 },
       { t: '2026-06-04T18:30', desc: "PAYSNAP FROM DOUG HOYT — 'room 🏨 have fun 👍 (rule 4: I pay the first one)'", amount: 129.0, clue: 'your_paysnap' },
     ],
@@ -277,7 +299,7 @@ export const caught3: CaseFile = {
     { name: 'LakeviewInn_Guest', lastJoined: '2026-11-19T18:58', clue: 'lakeview' },
     { name: 'BriarGlenRec_Courts', lastJoined: '2026-11-12T17:31' },
     { name: 'Stride_PT_Staff', lastJoined: '2026-11-19T08:00' },
-    { name: 'MaplewoodFlats_3B (bo says hi)', lastJoined: '2026-11-13T12:51' },
+    { name: 'MaplewoodFlats_3B (bo says hi) · auto-joined 38×', lastJoined: '2026-11-13T12:51' },
   ],
 
   trace: [
@@ -301,6 +323,8 @@ export const caught3: CaseFile = {
     { id: 'family_knew', title: 'Your mother knew (and told Aunt Pat)', text: "Hoyt family chat, Sept 14: your mom — 'Doug told me about your arrangement after two glasses of wine... I have told NO ONE.' 'I told Pat.' 'He said it with a thumbs up. With his actual thumb.'", kind: 'event' },
     { id: 'chicken', title: 'The truck in the lot', text: "Nov 12, 19:00: your truck in the Lakeview lot; you, inside, holding a rotisserie chicken. Your voicemail: 'I'm at Costco... I'm going to eat some of it in the car first... Have fun 👍.' You viewed her location 41 times that night.", kind: 'event', art: 'cg3_ph_lot' },
     { id: 'doug_searches', title: 'Your 3 a.m. searches', text: "Your iPad, shared tab group, 3 a.m.: 'how to tell your wife you're not fine when you said fine 40 times', 'rafe castellano height', 'is it normal to regret being a cuck if you picked the guy', 'how to un-open a relationship'.", kind: 'document', art: 'av_cg3_doug' },
+    { id: 'blue_box', title: 'BLUE BOX LLC, shipped to his place', text: "A discreet-billed order ('BLUE BOX LLC', $96, a 'Kitchen Line' massager and 'Third Shot Drop' warming gel) shipped to Rafe's flat, signed for by 'BO (I'M NOT ASKING)'. His PaySnap request: 'batteries 48-ct, you owe me 😏' — paid. Mel: 'did you get the... package 👀'.", kind: 'object', art: 'cg3_ph_box' },
+    { id: 'mel_cover', title: "Mel's 'Love Island' alibi", text: "Nov 12: Dana asks Mel to say she was at hers watching Love Island — 'DON'T say lakeview. rule 3.' Mel's Glimpse at 20:41: alone at trivia. Mel's voicemail: rehearsing the lie by accident. 'Pickle Coach (ignore)' is Rafe's number.", kind: 'person', art: 'av_cg3_mel' },
     { id: 'ending_it', title: "'I'm saying stop. Thursday.'", text: "Dana to Rafe: 'thursday I need to talk to you... it's about doug.' To her friends: 'I'm ending it. he's not fine. he's sleeping in the garage.' Calendar Nov 26: 'courts — talk to R. it's done. for D.'", kind: 'event' },
     { id: 'refund', title: 'She paid you back', text: "Nov 16: Dana PaySnaps you $1,419 — every room you ever paid for — 'refund. you don't have to pay for this anymore. please talk to me'.", kind: 'document' },
   ],
@@ -313,7 +337,7 @@ export const caught3: CaseFile = {
         { id: 'no', label: 'No — this is the arrangement you proposed, set up and paid for' },
         { id: 'emotional', label: 'Only emotionally' },
       ],
-      answer: 'no', evidence: ['your_words', 'rules_note', 'your_paysnap', 'shared_calendar', 'family_knew'],
+      answer: 'no', evidence: ['your_words', 'rules_note', 'your_paysnap', 'shared_calendar', 'family_knew', 'mel_cover'],
       explain: "Your words on May 30, your eight rules, your calendar, your PaySnaps. She hid it because Rule 3 told her to. You told your own mother before you told yourself the truth.",
     },
     {
@@ -324,7 +348,7 @@ export const caught3: CaseFile = {
         { id: 'bo', label: "Bo, Rafe's roommate", art: 'av_cg3_bo' },
         { id: 'patient', label: 'A PT patient' },
       ],
-      answer: 'rafe', evidence: ['hoodie', 'lakeview', 'aftermath', 'league_code', 'your_words', 'roommate', 'our_song'],
+      answer: 'rafe', evidence: ['hoodie', 'lakeview', 'aftermath', 'league_code', 'your_words', 'roommate', 'our_song', 'blue_box', 'mel_cover'],
       explain: "CASTELLANO 12 is on your couch. The room is booked under his name. And on May 30 you wrote 'it should be rafe.'",
     },
     {

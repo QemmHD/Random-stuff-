@@ -61,6 +61,7 @@ export const caught1: CaseFile = {
   contacts: [
     { id: 'trent', name: 'Trent 💪', avatar: 'av_cg1_trent', number: '(555) 212-0034', label: 'boyfriend (you)' },
     { id: 'jules', name: 'Jules 🌈 (bestie)', avatar: 'av_cg1_jules', number: '(555) 212-0909' },
+    { id: 'drj', name: 'Dr. J 🦷 (lab)', avatar: 'av_unknown', number: '(555) 212-0909', label: 'added Nov 2 · deleted & re-added ×3' },
     { id: 'kayla', name: 'Kayla (work wife)', avatar: 'av_cg1_kayla', number: '(555) 212-4410', label: 'Bright Smile Dental' },
     { id: 'feld', name: 'Dr. Feld (work)', avatar: 'av_cg1_feld', number: '(555) 212-7000', label: 'Bright Smile Dental' },
     { id: 'mami', name: 'Mami ❤️', avatar: 'av_cg1_mami', number: '(555) 212-1957', label: 'Mom' },
@@ -90,6 +91,9 @@ export const caught1: CaseFile = {
         { from: 'me', text: "listen to this one. it's us 🎧 'Slow Tide' — Velvet Arcade", t: '2026-11-12T22:15', clue: 'our_song', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: "jess. that's 'your song' with trent. you played it at his birthday. he slow danced with a protein shaker", t: '2026-11-12T22:17', clue: 'our_song', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: "it was never his song. he thinks it's about the ocean", t: '2026-11-12T22:18', clue: 'our_song', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: 'it came 📦👀 unmarked. very discreet. the neighbor in 4C signed for it and said "god help us all"', t: '2026-11-06T17:20', photo: 'cg1_ph_box', clue: 'blue_box' },
+        { from: 'me', text: "DON'T open it without me", t: '2026-11-06T17:21' },
+        { from: 'them', text: "sent you a paysnap request btw. 'batteries 48-ct'. you owe me 😏", t: '2026-11-12T08:40', clue: 'blue_box' },
         { from: 'them', text: 'what are you wearing', t: '2026-11-17T23:40' },
         { from: 'me', text: "trent's protein shaker. emotionally", t: '2026-11-17T23:41' },
         { from: 'them', text: 'jess.', t: '2026-11-17T23:41' },
@@ -113,6 +117,10 @@ export const caught1: CaseFile = {
     },
     {
       id: 'th_trent', contact: 'trent', messages: [
+        { from: 'them', text: 'having fun at kaylas? 🎃 send pics of ur costume', t: '2026-10-31T22:14', clue: 'kayla_cover' },
+        { from: 'me', text: "so fun!! love island marathon at kayla's 💕 costume is 'tired hygienist' lol. staying over, don't wait up", t: '2026-10-31T22:20', clue: 'kayla_cover' },
+        { from: 'them', text: 'why did u change ur phone code btw. u had the same one for 2 yrs', t: '2026-11-02T09:00', clue: 'tells' },
+        { from: 'me', text: "work made us. HIPAA. it's a whole thing", t: '2026-11-02T09:04', clue: 'tells' },
         { from: 'them', text: 'how was paint n sip babe 🎨 u were gone 4 hours. is art that long', t: '2026-11-04T23:10' },
         { from: 'me', text: "it's a process babe", t: '2026-11-04T23:12' },
         { from: 'them', text: 'ur lighthouse is fire. like a real lighthouse. hanging it next to the other 5', t: '2026-11-04T23:13' },
@@ -129,6 +137,11 @@ export const caught1: CaseFile = {
     },
     {
       id: 'th_kayla', contact: 'kayla', messages: [
+        { from: 'me', text: "if trent asks, I was at yours tonight watching Love Island. DON'T say marisol. DON'T say wine bar. love island. the one with the island", t: '2026-10-31T18:40', clue: 'kayla_cover' },
+        { from: 'them', text: "fine. ONE time. I don't even watch love island. what happens on it", t: '2026-10-31T18:42', clue: 'kayla_cover' },
+        { from: 'me', text: 'people are hot near a pool and then cry. just say that', t: '2026-10-31T18:43' },
+        { from: 'them', text: 'did you get the... package 👀', t: '2026-11-07T10:00', clue: 'blue_box' },
+        { from: 'me', text: "it went to HIS place. obviously. I'm not having a Blue Box LLC box on trent's doormat. he'd think it's creatine and open it", t: '2026-11-07T10:03', clue: 'blue_box' },
         { from: 'them', text: "girl. a firefighter in UNIFORM brought two dozen red roses to the front desk and signed the card 'J'. Dr. Feld thought they were for him. he hummed all day.", t: '2026-11-17T12:10', photo: 'cg1_ph_roses', clue: 'roses' },
         { from: 'me', text: "it's a joke thing. he's my gay best friend 🙃", t: '2026-11-17T12:14' },
         { from: 'them', text: 'jess. I have been to a lot of brunches with a lot of gay best friends. none of them have ever looked at a dental appointment book like they wanted to climb into it', t: '2026-11-17T12:16', clue: 'roses' },
@@ -187,6 +200,8 @@ export const caught1: CaseFile = {
     { id: 'cg1_ph_us_fern', art: 'cg1_ph_us_fern', t: '2026-11-07T20:40', place: 'The Velvet Fern — booth 4', orientation: 'portrait', caption: 'Selfie in a green velvet booth: a woman and a man in a tank top, his arm around her, a martini and fries on the table. A brass plate on the booth reads 4.', clue: 'same_booth' },
     { id: 'cg1_ph_fern_j', art: 'cg1_ph_fern_j', t: '2026-11-14T21:05', place: 'The Velvet Fern — booth 4', orientation: 'portrait', caption: "Selfie in the same green velvet booth: the same woman and a second man in a flannel shirt, her legs across his lap, two martinis. A brass plate on the booth reads 4.", clue: 'same_booth' },
     { id: 'cg1_ph_bbq', art: 'cg1_ph_bbq', t: '2026-10-24T15:30', place: 'Brookline Apartments — courtyard', orientation: 'landscape', caption: 'A courtyard barbecue. A man in a tank top flexes beside a grill; a second man in an apron holds tongs; a woman stands between them. A small dog in a bow tie sits at their feet.' },
+    { id: 'cg1_ph_box', art: 'cg1_ph_box', t: '2026-11-06T17:19', place: 'Received from Jules 🌈 (bestie)', orientation: 'portrait', caption: 'Received. A plain brown box with no logo on a loft doormat that reads 4B; a French bulldog sniffing it. The shipping label is partly visible.', clue: 'blue_box' },
+    { id: 'cg1_ph_kayla_kar', art: 'cg1_ph_kayla_kar', t: '2026-10-31T22:20', place: 'Ruby Mic Karaoke', orientation: 'portrait', caption: "From Kayla's Glimpse story. A woman in a cat-ears headband sings into a karaoke mic on a small stage; a clock on the wall behind her. Nobody else from the dental office is visible." },
     { id: 'cg1_ph_roses', art: 'cg1_ph_roses', t: '2026-11-17T12:05', place: 'Bright Smile Dental', orientation: 'portrait', caption: 'Sent by Kayla. A large bouquet of red roses on a dental-office reception desk beside an appointment book. A small card on a plastic fork.', clue: 'roses' },
     { id: 'cg1_ph_marco', art: 'cg1_ph_marco', t: '2026-11-08T20:10', place: 'Calloway Lofts', orientation: 'portrait', caption: "From Jules Fontaine's Glimpse. A French bulldog in a bow tie on a velvet couch, a wine glass on the side table.", clue: 'marco_dog' },
     { id: 'cg1_ph_easels', art: 'cg1_ph_easels', t: '2026-11-12T10:40', place: 'Calloway Lofts, Unit 4B', orientation: 'landscape', caption: 'Recovered. A brick-walled loft: several easels holding near-identical lighthouse paintings, paint palettes, a fire helmet on a coat hook, a woman\'s bra over one easel. Deleted Nov 12.', clue: 'ghost_painter', deletedUntil: 'recovered:photos' },
@@ -225,6 +240,7 @@ export const caught1: CaseFile = {
     { id: 'm_velvet', from: 'Velvet Fern Rewards', fromAddr: 'rewards@velvetfern.example', to: 'Jessa Moreno', subject: 'Your usual is saved 🍸', t: '2026-11-14T20:42', folder: 'inbox', body: "Welcome back, Jessa!\n\nYour usual — 1× Filthy Martini, 1× Truffle Fries — is saved for one-tap ordering.\n\nYou're 2 visits from a free oyster. Bring a friend!" },
     { id: 'm_calloway', from: 'Calloway Lofts Parking', fromAddr: 'noreply@callowaylofts.example', to: 'Jessa Moreno', subject: 'Guest parking validated — Unit 4B', t: '2026-11-18T19:01', folder: 'inbox', clue: 'loft_stops', body: "Guest parking validated.\n\nHost unit: 4B (J. Fontaine)\nGuest: J. Moreno\nVisits this month: 3 (Wednesdays)\n\nReminder: guests staying past midnight must re-validate. Please do not let the dog ride the elevator alone again." },
     { id: 'm_noise', from: 'Calloway Lofts Management', fromAddr: 'mgmt@callowaylofts.example', to: 'J. Fontaine; J. Moreno (registered guest)', subject: 'Noise complaint — Unit 4B (third notice)', t: '2026-11-12T09:00', folder: 'inbox', clue: 'noise', body: "Dear Mr. Fontaine and registered guest,\n\nUnit 4C has filed a third noise complaint regarding Wednesday night, 22:40–23:05: 'rhythmic thumping against the shared wall', 'a dog barking in what sounded like encouragement', and 'someone shouting ENGINE NINE'.\n\nThe resident of 4C also asks that you 'please, for the love of God, oil the bed frame, I am sixty-eight years old'.\n\nWe are now leaving a complimentary can of lubricant spray on your door handle. It is for the bed frame.\n\nCalloway Lofts Management" },
+    { id: 'm_bluebox', from: 'BLUE BOX LLC', fromAddr: 'orders@bluebox-llc.example', to: 'Jessa Moreno', subject: 'Your order has shipped (discreetly) 📦', t: '2026-11-05T09:00', folder: 'inbox', clue: 'blue_box', body: "BLUE BOX LLC — billing name on statement: 'BLUE BOX LLC'\n\n1× 'Five-Alarm' Personal Massager (Deluxe, rechargeable)  $68.00\n1× 'Hose Down' Warming Gel (cherry)  $14.00\n1× Silk Blindfold — 'Smoke Alarm' red  $16.00\n1× Novelty Dice — 'Who's On Call Tonight'  $6.00\nTotal: $104.00\n\nShip to: Calloway Lofts, Unit 4B (c/o J. Fontaine)\nPackaging: plain, unmarked, no logo. As always.\n\nCustomers who bought this also bought: Batteries, 48-count." },
     { id: 'm_lace', from: 'Lace Theory', fromAddr: 'orders@lacetheory.example', to: 'Jessa Moreno', subject: 'Your order is on its way 🖤', t: '2026-11-05T12:00', folder: 'inbox', clue: 'lingerie_haul', body: "Order #LT-20417\n\n1× 'After Hours' bodysuit — black — S\n1× 'Envy' bralette + brief set — emerald — S\n1× 'Clean Slate' set — white — S\nSubtotal: $389.00\n\nShip to: Calloway Lofts, Unit 4B (c/o J. Fontaine)\nGift note: 'for your eyes only. literally only.'\n\nSize guide note: free returns within 30 days if it doesn't fit — or if he can't decide." },
     { id: 'm_rope', from: 'Velvet Rope Boutique', fromAddr: 'receipts@velvetrope.example', to: 'Jessa Moreno', subject: 'Your receipt 💋', t: '2026-10-29T18:10', folder: 'trash', clue: 'lingerie_haul', body: "VELVET ROPE BOUTIQUE — 'Adult Novelties & Tasteful Regrets'\n\n1× Edible Massage Oil — Cherry Bomb (4 oz)  $18.00\n1× 'His & Hers' Robe Set — embroidered MR. & MRS. SMITH  $42.00\n1× Fuzzy Handcuffs (Novelty, Red)  $4.50\nTotal: $64.50\n\nThank you! Discreet packaging: YES. Loyalty stamp: 3 of 10." },
     { id: 'm_folio', from: 'Hotel Marisol', fromAddr: 'folio@hotelmarisol.example', to: 'Jessa Moreno', subject: 'Your folio — Mr. & Mrs. Smith — Oct 31', t: '2026-11-01T12:30', folder: 'inbox', clue: 'hotel_smith', body: "Guest: Mr. & Mrs. Smith · King Suite 1104 · Oct 31 – Nov 1\n\nMinibar:\n2× champagne split  $36.00\n2× chocolate truffles  $14.00\n1× 'Intimacy Kit'  $22.00\n2× bottled water (03:40)  $10.00\nRoom service (09:15): 2× pancakes, 2× coffee  $48.00\nMissing item: 1× bathrobe (white, M)  $85.00 — charged to card on file\n\nThank you for celebrating Halloween with us. Housekeeping found a plastic fire helmet; it is at the front desk." },
@@ -233,6 +249,10 @@ export const caught1: CaseFile = {
 
   calls: [
     { contact: 'jules', t: '2026-11-19T01:52', dir: 'missed' },
+    { contact: 'drj', t: '2026-11-17T23:02', dir: 'in', duration: '41:10' },
+    { contact: 'drj', t: '2026-11-10T23:15', dir: 'in', duration: '1:02:44' },
+    { contact: 'trent', t: '2026-10-31T22:14', dir: 'missed' },
+    { contact: 'kayla', t: '2026-10-31T21:58', dir: 'missed' },
     { contact: 'jules', t: '2026-11-18T23:20', dir: 'out', duration: '14:08' },
     { contact: 'feld', t: '2026-11-16T20:28', dir: 'missed' },
     { contact: 'trent', t: '2026-11-18T20:30', dir: 'missed' },
@@ -243,6 +263,7 @@ export const caught1: CaseFile = {
   voicemails: [
     { id: 'vm_jules', contact: 'jules', t: '2026-11-19T01:53', duration: '0:19', voice: { pitch: 0.85, rate: 0.95, female: false }, transcript: "Hey. It's me. You left your hair tie on my tap and I'm just... looking at it. Like a widower. Saturday. Mrs. Smith. Wear the coat. Marco says goodnight. Marco's asleep. I'm extremely not." },
     { id: 'vm_jules2', contact: 'jules', t: '2026-11-15T00:12', duration: '0:34', voice: { pitch: 0.85, rate: 0.9, female: false }, clue: 'aftermath', transcript: "[whispering] Hey. You're asleep next to him, aren't you. [laughs quietly] Okay. I just... the hoodie still smells like you. Your perfume. The one with the fig in it. I looked it up. [pause] I'm not supposed to say this on a voice note. [sighs] Okay. Wednesday. Don't wear the green one. Actually wear the green one. [door closes] Marco, no. Goodnight, Mrs. Smith." },
+    { id: 'vm_kayla', contact: 'kayla', t: '2026-10-31T21:58', duration: '0:28', voice: { pitch: 1.2, rate: 1.15, female: true }, clue: 'kayla_cover', transcript: "[clears throat] 'Hi Trent! Yes, she was at mine. We watched Love Island. The one with the... island.' No. [pause] 'We watched Love Island, season...' what season is it. Okay. 'People were hot near a pool and then they cried.' [karaoke music starts in the background] Oh no. Is this recording? Is this JESSA'S voicemail? Why did it — delete. How do you delete a voicemail you left. [beep]" },
     { id: 'vm_mami', contact: 'mami', t: '2026-11-16T11:40', duration: '0:20', voice: { pitch: 1.15, rate: 1.0, female: true }, transcript: "Mija, it's Mami. Tía Rosa sent me the car wash picture. Thanksgiving: no turkey with a name, and you will tell the juice boy the truth before Abuela does, because Abuela WILL. She already asked if the fireman likes flan. Bye." },
   ],
 
@@ -284,6 +305,7 @@ export const caught1: CaseFile = {
 
   glimpse: [
     { id: 'g1_marco', author: 'jules', photo: 'cg1_ph_marco', caption: "date night with my man Marco 🐶❤️ finest frenchie in Calloway Lofts. the only man in my life I'm allowed to talk about", t: '2026-11-08T20:12', likes: 214, comments: [{ author: 'trent', text: 'MARCO!!! finally 🙌 bring him to the bbq bro, does he lift' }, { author: 'mami', text: 'Jules this is a dog.' }, { author: 'me', text: '🐶❤️' }], clue: 'marco_dog' },
+    { id: 'g1_kayla', author: 'kayla', photo: 'cg1_ph_kayla_kar', caption: 'halloween karaoke 🎤🐱 ALONE because my bestie "has plans" 🙄 #ruby mic #cat', t: '2026-10-31T22:21', likes: 41, comments: [{ author: 'trent', text: "wait isn't jessa with u??" }, { author: 'kayla', text: 'she went to get snacks!!' }], clue: 'kayla_cover' },
     { id: 'g1_us', author: 'me', photo: 'cg1_ph_us_fern', caption: 'date night w my guy 💕 booth 4 forever', t: '2026-11-07T21:00', likes: 74, comments: [{ author: 'trent', text: 'BOOTH 4 FOREVER 💪💕' }, { author: 'kayla', text: 'cute!!' }, { author: 'jules', text: '🔥' }] },
     { id: 'g1_lighthouse', author: 'me', photo: 'cg1_ph_lighthouse', caption: "lighthouse #7 🎨 I'm basically a professional now", t: '2026-11-05T09:10', likes: 38, comments: [{ author: 'kayla', text: 'girl.' }, { author: 'jules', text: 'the brushwork is so confident' }, { author: 'trent', text: 'MY ARTIST 👑 next one do a protein shake' }] },
   ],
@@ -292,6 +314,11 @@ export const caught1: CaseFile = {
     account: 'Harborline Bank ••6612',
     balance: 1284.4,
     tx: [
+      { t: '2026-11-12T08:45', desc: "PAYSNAP REQUEST FROM JULES FONTAINE — 'batteries 48-ct 🔋 you owe me 😏' — PAID", amount: -21.99, clue: 'blue_box' },
+      { t: '2026-11-05T08:58', desc: 'BLUE BOX LLC', amount: -104.0, clue: 'blue_box' },
+      { t: '2026-11-17T23:20', desc: "DASHDROP — 2× PAD THAI, 2× SPRING ROLLS → CALLOWAY LOFTS 4B — note: 'just for me :)'", amount: -38.4, clue: 'tells' },
+      { t: '2026-11-03T12:10', desc: "MAISON FIG — EAU DE PARFUM 'FIG NOIR' 50ML", amount: -142.0, clue: 'tells' },
+      { t: '2026-10-28T07:00', desc: 'IRONCLAD 24/7 GYM — NEW MEMBER (ACCESS LOG: 0 VISITS)', amount: -49.0, clue: 'tells' },
       { t: '2026-11-18T22:58', desc: 'HOTEL MARISOL — DEPOSIT (KING SUITE, NOV 21) — SMITH', amount: -150.0, clue: 'hotel_smith' },
       { t: '2026-11-18T19:00', desc: 'CALLOWAY LOFTS — GUEST PARKING VALIDATION (UNIT 4B)', amount: -4.0, clue: 'loft_stops' },
       { t: '2026-11-14T21:30', desc: 'THE VELVET FERN — 2× FILTHY MARTINI, TRUFFLE FRIES + TIP', amount: -46.25 },
@@ -313,7 +340,7 @@ export const caught1: CaseFile = {
 
   wifi: [
     { name: 'Brookline_Apt_12_5G', lastJoined: '2026-11-19T02:00' },
-    { name: 'MARCO_IS_A_GOOD_BOY (4B)', lastJoined: '2026-11-18T18:57', clue: 'loft_stops' },
+    { name: 'MARCO_IS_A_GOOD_BOY (4B) · auto-joined 41×', lastJoined: '2026-11-18T18:57', clue: 'loft_stops' },
     { name: 'BrightSmile_Staff', lastJoined: '2026-11-18T08:00' },
     { name: 'VelvetFern_Guest 🍸', lastJoined: '2026-11-14T20:41' },
     { name: 'Brushstrokes_Guest', lastJoined: '2026-09-16T18:55' },
@@ -350,6 +377,9 @@ export const caught1: CaseFile = {
     { id: 'lingerie_haul', title: "$389 of lingerie you've never seen", text: "Lace Theory: three sets, shipped to Calloway Lofts 4B, 'for your eyes only. literally only.' Try-on selfies sent to Jules. Plus Velvet Rope: cherry massage oil and a MR. & MRS. SMITH robe set.", kind: 'object', art: 'cg1_ph_h_tryon' },
     { id: 'things_list', title: "'things J does (that T doesn't)'", text: "Her note: 'remembers what I wore last tuesday', 'doesn't count. out loud. ever', 'kisses my forehead like he means it, not like I'm his niece', 'has never called me champ'.", kind: 'document' },
     { id: 'noise', title: 'Third noise complaint, 4C', text: "Calloway Lofts: third complaint about Unit 4B, Wednesday 22:40–23:05 — 'rhythmic thumping', 'a dog barking in encouragement', 'someone shouting ENGINE NINE'. 4C is sixty-eight.", kind: 'document' },
+    { id: 'blue_box', title: "BLUE BOX LLC, shipped to his place", text: "A discreet-billed order ('BLUE BOX LLC', $104: a 'Five-Alarm' massager, 'Hose Down' warming gel, a 'Smoke Alarm' blindfold) shipped to Calloway Lofts 4B. An unmarked box on his doormat. His PaySnap request: 'batteries 48-ct, you owe me 😏' — paid. Kayla: 'did you get the... package 👀'.", kind: 'object', art: 'cg1_ph_box' },
+    { id: 'kayla_cover', title: "'say Love Island. DON'T say marisol'", text: "Halloween: Jessa tells you she's at Kayla's for a Love Island marathon. Kayla agreed to cover 'ONE time' — and posted herself alone at Ruby Mic karaoke at 22:21. Her voicemail is her rehearsing the lie by accident. The key-card photo that night is from the Hotel Marisol.", kind: 'person', art: 'av_cg1_kayla' },
+    { id: 'tells', title: 'The tells', text: "New passcode 'because HIPAA'. 'Dr. J 🦷 (lab)' — Jules's number under a fake name, deleted and re-added three times, hour-long calls at 11 p.m. A new gym membership with zero visits, a new perfume (Fig Noir), and DashDrop 'just for me' — two pad thais, delivered to 4B. His Wi-Fi: auto-joined 41 times.", kind: 'document' },
     { id: 'dez_knew', title: 'Dez knew', text: "Deleted thread with your best friend Dez: he saw them at the car wash, told you 'zero threat' anyway, invented a cousin who goes to Paint & Sip. 'Monday, jess. you tell him monday or I do.'", kind: 'person', art: 'av_cg_bff' },
     { id: 'jules_live', title: "Jules, live: 'wear the coat'", text: "Jules, while you're holding her phone: 'if trent has this: hi trent!! so gay bro. if he doesn't: saturday, mrs smith, wear the coat. just the coat.'", kind: 'person', art: 'av_cg1_jules' },
   ],
@@ -362,7 +392,7 @@ export const caught1: CaseFile = {
         { id: 'no', label: 'No — she really is that into lighthouses' },
         { id: 'emotional', label: 'Only emotionally — nothing physical' },
       ],
-      answer: 'yes', evidence: ['bed_selfie', 'helmet_selfie', 'not_gay', 'pros_cons', 'jules_live', 'pulse_spike', 'hotel_smith', 'aftermath', 'nightstand', 'noise', 'lingerie_haul'],
+      answer: 'yes', evidence: ['bed_selfie', 'helmet_selfie', 'not_gay', 'pros_cons', 'jules_live', 'pulse_spike', 'hotel_smith', 'aftermath', 'nightstand', 'noise', 'lingerie_haul', 'blue_box'],
       explain: "A duvet selfie, two toothbrushes in his cup, a hidden selfie in his helmet and his bathroom, and a fitness band that clocked nine minutes at 160 bpm in his loft. The lighthouses were never the point.",
     },
     {
@@ -395,19 +425,19 @@ export const caught1: CaseFile = {
         { id: 'work', label: 'She said she was working late with Dr. Feld' },
         { id: 'none', label: "They didn't. You just never looked" },
       ],
-      answer: 'cover', evidence: ['not_gay', 'paint_alibi', 'ghost_painter', 'marco_dog', 'trent_pays', 'location_off', 'pros_cons', 'dez_knew'],
+      answer: 'cover', evidence: ['not_gay', 'paint_alibi', 'ghost_painter', 'marco_dog', 'trent_pays', 'location_off', 'pros_cons', 'dez_knew', 'kayla_cover', 'tells'],
       explain: "The 'boyfriend' was a dog, the classes were never attended, every lighthouse came out of his loft, and her location went dark for exactly one person. You paid for the alibi. Twice.",
     },
     {
       id: 'q_cover', prompt: 'Who has been covering for them — to your face?',
       options: [
         { id: 'nobody', label: 'Nobody. They did it alone' },
-        { id: 'kayla', label: 'Kayla', art: 'av_cg1_kayla' },
         { id: 'mami', label: 'Mami', art: 'av_cg1_mami' },
-        { id: 'dez', label: 'Dez. Your best friend', art: 'av_cg_bff' },
+        { id: 'kayla', label: 'Only Kayla', art: 'av_cg1_kayla' },
+        { id: 'both', label: "Kayla (the Halloween 'Love Island' alibi) and Dez, your best friend (since the car wash)", art: 'av_cg_bff' },
       ],
-      answer: 'dez', evidence: ['dez_knew'],
-      explain: "Kayla and Mami knew and told HER off. Dez knew and told YOU 'zero threat' — and made up a cousin to back up Paint & Sip.",
+      answer: 'both', evidence: ['dez_knew', 'kayla_cover'],
+      explain: "Mami told HER off. Kayla covered once and then posted herself alone at karaoke. Dez knew since the car wash, told YOU 'zero threat', and invented a cousin to back up Paint & Sip.",
     },
   ],
 

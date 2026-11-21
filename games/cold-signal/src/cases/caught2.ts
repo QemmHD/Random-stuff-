@@ -83,6 +83,7 @@ export const caught2: CaseFile = {
         { from: 'them', text: 'Thursday. Suite 512. Bring that voice. 🖤', t: '2026-11-19T16:02' },
         { from: 'me', text: "done!! all 31 chapters. I can't believe I said 'his throbbing lantern' into a microphone in front of a 24-year-old", t: '2026-11-19T22:15', clue: 'chapter_talk', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: 'Dev has heard worse. Dev records the Bible on Mondays.', t: '2026-11-19T22:17', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "Sent you a PaySnap request — 'batteries 48-ct'. For the lantern. For the hayloft scene. For RESEARCH. 😇", t: '2026-11-10T09:00', clue: 'research_box' },
         { from: 'them', text: "The money's cleared to your private account. Have you told him yet?", t: '2026-11-21T10:00' },
         { from: 'me', text: "the 28th. ten years. I'm telling him everything. I'm so nervous I bought lingerie, which is not a normal response to nerves", t: '2026-11-21T10:04' },
         { from: 'them', text: "It's the only normal response to nerves.", t: '2026-11-21T10:05' },
@@ -122,6 +123,10 @@ export const caught2: CaseFile = {
     },
     {
       id: 'th_bea', contact: 'bea', messages: [
+        { from: 'me', text: "if greg asks, thursday I was at yours watching Love Island. DON'T say hotel. DON'T say corvina", t: '2026-11-05T17:30', clue: 'bea_cover' },
+        { from: 'them', text: "I will lie to that vest for you any day. what happens on love island", t: '2026-11-05T17:32', clue: 'bea_cover' },
+        { from: 'them', text: 'did you get the... package 👀 for "research"', t: '2026-11-09T10:00', clue: 'research_box' },
+        { from: 'me', text: "it went to bernard's office. I'm not having a BLUE BOX LLC box on the porch. greg would think it's a mattress topper and open it", t: '2026-11-09T10:02', clue: 'research_box' },
         { from: 'them', text: 'did you tell him yet', t: '2026-11-02T20:00' },
         { from: 'me', text: "the 28th. the cabin, the dedication, everything. I'm paying off the house, Bea. HIS house. the one he calls 'my house'", t: '2026-11-02T20:05', clue: 'anniversary_plan' },
         { from: 'them', text: "you're paying off a mortgage for a man who says 'bowling' every Tuesday and has never once owned a ball", t: '2026-11-02T20:06' },
@@ -130,6 +135,7 @@ export const caught2: CaseFile = {
         { from: 'me', text: "also. don't laugh. two years of trying and nothing. I thought maybe the cabin. maybe it's lucky 🥺", t: '2026-11-02T20:15', clue: 'trying' },
         { from: 'them', text: "I'm not laughing. I'm crying into a lasagna. it's going to be a perfect weekend", t: '2026-11-02T20:16' },
         { from: 'me', text: "greg's sweet. he's just... not listening. I'll MAKE him listen. I'll read him the dedication out loud", t: '2026-11-02T20:20' },
+        { from: 'me', text: "greg's location goes off every tuesday at 6:45 and comes back at 11:30. I decided not to want to know until after the 28th", t: '2026-11-17T23:40', clue: 'greg_tells' },
         { from: 'them', text: "also tiffani from across the street keeps asking me if greg 'is a good bowler'. with a face. a whole face", t: '2026-11-18T13:00' },
         { from: 'them', text: "still can't believe you turned your phone code into jewelry. dots and dashes!! nerd 🤓 SOS would've been more on brand", t: '2026-11-22T12:00' },
       ],
@@ -164,6 +170,7 @@ export const caught2: CaseFile = {
   ],
 
   photos: [
+    { id: 'cg2_ph_bea_spin', art: 'cg2_ph_bea_spin', t: '2026-11-05T19:30', place: 'PedalHaus Spin Studio', orientation: 'portrait', caption: "From Bea's Glimpse story. A sweaty woman on a spin bike in a dark studio lit with purple lights, giving the camera a peace sign. Nobody else she knows is visible." },
     { id: 'cg2_ph_wedding', art: 'cg2_ph_wedding', t: '2026-11-01T10:00', place: 'Maple Court', orientation: 'portrait', caption: 'A framed wedding photo propped on a windowsill: a couple on a dock, the man laughing mid-sentence. A date engraved on the frame.' },
     { id: 'cg2_ph_us_vela', art: 'cg2_ph_us_vela', t: '2026-11-07T20:15', place: 'Ristorante Vela — table 12', orientation: 'portrait', caption: 'Selfie at a candlelit restaurant table: a woman smiling, a man in a fleece vest looking at his own phone. A numbered table card reads 12.' },
     { id: 'cg2_ph_vela_b', art: 'cg2_ph_vela_b', t: '2026-11-14T20:20', place: 'Ristorante Vela — table 12', orientation: 'portrait', caption: 'Selfie at the same table: the same woman beside an older man in a bow tie, both raising champagne. A thick envelope on the table. A numbered table card reads 12.', clue: 'mystery_texts' },
@@ -192,6 +199,7 @@ export const caught2: CaseFile = {
   ],
 
   mail: [
+    { id: 'm_bluebox', from: 'BLUE BOX LLC', fromAddr: 'orders@bluebox-llc.example', to: 'Nora Pruitt', subject: 'Your order has shipped (discreetly) 📦', t: '2026-11-08T09:00', folder: 'inbox', clue: 'research_box', body: "BLUE BOX LLC — billing name on statement: 'BLUE BOX LLC'\n\n1× Silk Rope — 'Captain's Knot' (10 ft, crimson)  $24.00\n1× Lantern — battery, 'Warm Harbor Glow'  $32.00\n1× Feather Tickler — 'Sea Breeze'  $11.00\n1× 'Knots for Lovers' illustrated guide  $19.00\nTotal: $86.00\n\nShip to: Okafor Literary Agency, attn: B. Okafor\nOrder note: 'for research. truly. chapter 22.'" },
     { id: 'm_lace', from: 'Velour & Lace', fromAddr: 'orders@velourlace.example', to: 'Nora Pruitt', subject: "Order shipped — 'The Midnight Confession' set", t: '2026-11-03T08:00', folder: 'inbox', clue: 'lingerie_receipt', body: "Thank you, Nora!\n\n1× The Midnight Confession set (black, M) — $212.00\nGift wrap: YES\nCard message: 'Ten years. Open slowly.'\n\nShipping to: Maple Court (porch, 'not where my husband can see it')." },
     { id: 'm_corvina', from: 'Hotel Corvina', fromAddr: 'reservations@hotelcorvina.example', to: 'Nora Pruitt', subject: 'Mrs. Smith — your Thursday suite is confirmed', t: '2026-11-04T09:00', folder: 'inbox', clue: 'hotel_meets', body: "Dear Mrs. Smith,\n\nSuite 512 is confirmed for Thursdays, Nov 5, 12 and 19, 6:30 PM – 10:30 PM.\n\nBilling: O.L.A. Ltd. — account 'RUSH, D.'\n\nPer your request, housekeeping will NOT remove the mattresses from the walls. We have also moved the guest in 514. Twice." },
     { id: 'm_folio', from: 'Hotel Corvina', fromAddr: 'folio@hotelcorvina.example', to: 'Nora Pruitt', subject: 'Folio — Suite 512 — Nov 19', t: '2026-11-20T08:00', folder: 'inbox', clue: 'hotel_meets', body: "Suite 512 · Mrs. Smith · Nov 19\n\nMinibar:\n2× champagne split  $36.00\n6× bottled water  $30.00\n1× honey & lemon tea service  $12.00\n1× 'Couples Kit' (returned unopened)  $0.00\nRoom service: 3× club sandwich, 1× fries  $64.00\n\nGuest note (514): 'Brava.'" },
@@ -206,10 +214,13 @@ export const caught2: CaseFile = {
     { contact: 'bea', t: '2026-11-21T20:00', dir: 'in', duration: '41:02' },
     { contact: 'dev', t: '2026-11-12T18:30', dir: 'in', duration: '1:15' },
     { contact: 'tiffani', t: '2026-11-24T01:12', dir: 'missed' },
+    { contact: 'greg', t: '2026-11-05T19:35', dir: 'missed' },
+    { contact: 'bea', t: '2026-11-05T18:10', dir: 'missed' },
   ],
 
   voicemails: [
     { id: 'vm_mystery', contact: 'mystery', t: '2026-11-12T18:40', duration: '0:27', voice: { pitch: 0.8, rate: 0.95, female: false }, clue: 'mystery_texts', transcript: "[low] It's me. I'm in the suite. Dev's pushed the bed against the wall like you asked and propped the mattresses up. [pause] Bring the water and the throat spray. And darling... don't be shy this time. Really let go on page two hundred. [door closes]" },
+    { id: 'vm_bea', contact: 'bea', t: '2026-11-05T18:10', duration: '0:24', voice: { pitch: 1.1, rate: 1.2, female: true }, clue: 'bea_cover', transcript: "[clears throat] 'Hi Greg! Yes, she was at mine. We watched Love Island.' [pause] 'People were... hot. Near a pool.' Okay that's good. That's — [spin-class music starts] oh no, is this recording? Is this NORA'S voicemail? Why does it — Nora if you get this, I'm a great liar, ignore this, I'm at spin. [beep]" },
     { id: 'vm_greg', contact: 'greg', t: '2026-11-17T22:58', duration: '0:14', voice: { pitch: 1.0, rate: 1.25, female: false }, transcript: "[out of breath] Hey, it's me. Bowling ran late. Overtime. Bowling has overtime. Don't wait up. [a woman laughs, muffled] That's — the TV. At the lanes. Also if Tiffani says anything about shoes, it's an HOA thing. Bye." },
   ],
 
@@ -248,6 +259,7 @@ export const caught2: CaseFile = {
 
   glimpse: [
     { id: 'g2_tiffani', author: 'tiffani', photo: 'cg2_ph_tiffani', caption: '✨ close friends ✨ Tuesday self-care 💅🕯️ someone says I look better in his vest than he does 🙈 #vanilladreams', t: '2026-11-17T21:40', likes: 9, comments: [{ author: 'bea', text: 'cute vest' }, { author: 'tiffani', text: "it's mine!! 🙂" }, { author: 'bea', text: "it says GREG on it, tiffani. also I'm on your close friends. I don't know why I'm on your close friends" }], clue: 'tiffani_post' },
+    { id: 'g2_bea', author: 'bea', photo: 'cg2_ph_bea_spin', caption: 'thursday spin 🚴‍♀️ alone because my sister has "book club" 🙄', t: '2026-11-05T19:31', likes: 22, comments: [{ author: 'greg', text: "isn't nora with you??" }, { author: 'bea', text: 'she went to get snacks!!' }], clue: 'bea_cover' },
     { id: 'g2_wedding', author: 'me', photo: 'cg2_ph_wedding', caption: 'almost ten 🖤', t: '2026-11-01T10:05', likes: 88, comments: [{ author: 'greg', text: '👍' }, { author: 'bea', text: 'he thumbs-upped your WEDDING PHOTO' }, { author: 'tiffani', text: 'so cute you two!! 🙂' }] },
   ],
 
@@ -257,6 +269,8 @@ export const caught2: CaseFile = {
     tx: [
       { t: '2026-11-21T06:00', desc: 'DEPOSIT — HARTWELL & FINCH LTD — ROYALTY Q3 (D. RUSH)', amount: 18400.0, clue: 'cash_stash' },
       { t: '2026-11-21T07:05', desc: 'LAKESIDE PHARMACY — PREGNANCY TEST (2-PACK)', amount: -16.99, clue: 'trying' },
+      { t: '2026-11-10T09:05', desc: "PAYSNAP REQUEST FROM B. OKAFOR — 'batteries 48-ct (lantern) 😇' — PAID", amount: -21.99, clue: 'research_box' },
+      { t: '2026-11-08T08:58', desc: 'BLUE BOX LLC', amount: -86.0, clue: 'research_box' },
       { t: '2026-11-16T14:05', desc: 'LAKESIDE MORTGAGE — PAYOFF QUOTE FEE', amount: -25.0 },
       { t: '2026-11-14T22:10', desc: 'RISTORANTE VELA — CHAMPAGNE (CONTRACT DINNER)', amount: -188.0 },
       { t: '2026-11-03T21:25', desc: 'PINE HOLLOW CABINS — DEPOSIT (NOV 27–29)', amount: -300.0, clue: 'anniversary_plan' },
@@ -299,6 +313,9 @@ export const caught2: CaseFile = {
     { id: 'hidden_dedication', title: "'For G.'", text: "Hidden album: a page proof of 'The Mystery Man Returns' by Delphine Rush — 'For G. Ten years, and every hero I write still has your laugh.'", kind: 'object', art: 'cg2_ph_h_proof' },
     { id: 'anniversary_plan', title: 'Nov 28: tell him everything', text: "Ten-year plan: Pine Hollow cabin (booked), lingerie, the book, 'I'm Delphine Rush', a mortgage payoff letter. 'Keep Saturday free... it's the best news of your life.'", kind: 'event' },
     { id: 'trying', title: 'Two years of trying', text: "To Bea: 'two years of trying and nothing... maybe the cabin is lucky.' A pharmacy two-pack; one test used Nov 21 (one line); the last one saved for the morning of the 28th.", kind: 'event', art: 'cg2_ph_h_test' },
+    { id: 'bea_cover', title: "Bea's 'Love Island' alibi", text: "Thursday Nov 5: Nora asks Bea to say she was at hers watching Love Island — 'DON'T say hotel.' Bea's Glimpse story at 19:31: alone at spin. Bea's voicemail: rehearsing the lie by accident. You called at 19:35.", kind: 'person', art: 'av_cg2_bea' },
+    { id: 'research_box', title: 'BLUE BOX LLC, shipped to the agency', text: "A discreet-billed order ('BLUE BOX LLC', $86: a 'Captain's Knot' silk rope, a lantern, a feather tickler, 'Knots for Lovers') shipped to Okafor Literary Agency, 'for research. truly. chapter 22.' Mystery Man's PaySnap request: 'batteries 48-ct (lantern) 😇'.", kind: 'object' },
+    { id: 'greg_tells', title: 'Your Tuesday blackout', text: "Nora to Bea: 'greg's location goes off every tuesday at 6:45 and comes back at 11:30. I decided not to want to know until after the 28th.'", kind: 'event', art: 'av_cg2_greg' },
     { id: 'bernard_reveal', title: 'Mystery Man is Bernard, her agent', text: "'Mystery Man' texts while you're holding her phone: he's Bernard Okafor, her literary agent, 68, new hip, wife named Ruth. Thursday was the final audiobook session.", kind: 'person', art: 'av_cg2_mystery' },
     { id: 'bowling_forfeit', title: '0 frames, 11 forfeits', text: "Strike Force Lanes: you have bowled 0 frames this season. The league plays Wednesdays; Tuesdays are Toddler Bumper Bowl. Your shoes still have the tags.", kind: 'document' },
     { id: 'motel_charges', title: 'Card ••2291, Room 6, Tuesdays', text: "Joint statement: YOUR card ••2291 at Wyeth Motor Lodge, Room 6, on Nov 3, 10 and 17 — plus minibar for two, Vanilla Dreams body mist, a his-and-hers robe set and a dozen roses Nora never got.", kind: 'document' },
@@ -340,7 +357,7 @@ export const caught2: CaseFile = {
         { id: 'author', label: "She's the anonymous romance novelist Delphine Rush, recording her own audiobook and saving it all for a 10th-anniversary reveal" },
         { id: 'leaving', label: "She's saving up to leave you" },
       ],
-      answer: 'author', evidence: ['author_reveal', 'hidden_dedication', 'recording_booth', 'cash_stash', 'anniversary_plan', 'lingerie_receipt', 'chapter_talk'],
+      answer: 'author', evidence: ['author_reveal', 'hidden_dedication', 'recording_booth', 'cash_stash', 'anniversary_plan', 'lingerie_receipt', 'chapter_talk', 'research_box'],
       explain: 'Royalties from Hartwell & Finch, a dedication page that reads "For G.", a cabin, a payoff quote for your mortgage and lingerie with a card that says "Ten years".',
     },
     {
@@ -351,7 +368,7 @@ export const caught2: CaseFile = {
         { id: 'greg', label: 'You — with Tiffani Boone, the HOA president', art: 'av_cg2_tiffani' },
         { id: 'bea', label: "Bea's husband" },
       ],
-      answer: 'greg', evidence: ['tiffani_slip', 'tiffani_post', 'motel_charges', 'bowling_forfeit', 'wyeth_avoid'],
+      answer: 'greg', evidence: ['tiffani_slip', 'tiffani_post', 'motel_charges', 'bowling_forfeit', 'wyeth_avoid', 'greg_tells'],
       explain: "Your bowling doesn't exist, your card pays for Room 6 every Tuesday, and Tiffani posted your vest and unsent your shoes. Nora's phone knew before you opened it.",
     },
     {
