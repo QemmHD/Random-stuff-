@@ -969,8 +969,7 @@ kbd { display: inline-grid; place-items: center; min-width: 24px; height: 22px; 
 .h-toast b { font-family: var(--mono); font-size: .68em; letter-spacing: .12em; }
 .h-toast p { line-height: 1.42; }
 @media (max-width: 560px) {
-  /* sit over the HUD so the phone's clock, keypad and content stay readable */
-  .toast-layer { top: calc(4px + env(safe-area-inset-top)); width: calc(100% - 12px); }
+  .toast-layer { top: calc(64px + env(safe-area-inset-top)); width: calc(100% - 16px); }
   .h-toast { padding: 10px 12px 10px 14px; gap: 10px; border-radius: 16px; }
   .h-toast .avatar { width: 34px; height: 34px; }
   .h-toast p { font-size: .88em; line-height: 1.36; }
@@ -1131,3 +1130,4 @@ kbd { display: inline-grid; place-items: center; min-width: 24px; height: 22px; 
   .ep-actions .btn { flex: 1; }
   .ep-bg img { animation: none; }
 }
+.br-card { z-index: 0; }
