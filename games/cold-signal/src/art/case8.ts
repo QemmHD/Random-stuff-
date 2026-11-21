@@ -69,7 +69,7 @@ const ballPat = (id: string, scale: number, seed = 3, rot = 0, bg = '#0a1030'): 
   for (let j = -1; j <= 4; j++)
     for (let i = -1; i <= 4; i++) {
       const x = 20 + 40 * i + (j & 1 ? 20 : 0), y = n1(17.3 + 34.65 * j), c = cols[(((j + 4) % 4) * 4) + ((i + 4) % 4)];
-      s += `<circle cx="${x}" cy="${y}" r="21" fill="${c}"/><circle cx="${x + 3}" cy="${y + 4}" r="17" fill="#000" opacity=".12"/><circle cx="${x - 7}" cy="${y - 8}" r="5" fill="#fff" opacity=".7"/>`;
+      s += `<circle cx="${x}" cy="${y}" r="21" fill="${c}"/><circle cx="${x - 7}" cy="${y - 8}" r="5" fill="#fff" opacity=".7"/>`;
     }
   return `<pattern id="${id}" width="160" height="138.6" patternUnits="userSpaceOnUse" patternTransform="rotate(${rot}) scale(${scale})">${s}</pattern>`;
 };
@@ -221,11 +221,11 @@ A.av_c8_brenda = bust('av_c8_brenda', {
   bg: ['#a8dcff', '#2c5a8a', '#060c18'], rim: '#d8f0ff', cloth: '#16161c',
   clothIn: `<path d="M84 146L100 180L116 146Z" fill="#fff"/><path d="M78 147L104 200H92L68 152ZM122 147L96 200H108L132 152Z" fill="#22222a" stroke="#fff" stroke-width="1.4"/>`,
   skin: '#dca680', shade: '#9a6a50', iris: '#3a5a6a', lid: 88.6, low: 93.8,
-  overNeck: `<path d="M69 92L71 124Q75 136 90 137H110Q125 136 129 124L131 92Z" fill="#dca680"/><path d="M106 137H110Q125 136 129 124L131 92H108Z" fill="#9a6a50" opacity=".72"/><path d="M129 124L131 96" stroke="#d8f0ff" stroke-width="4" opacity=".8"/>`,
+  overNeck: `<path d="M69 92L71 124Q75 136 90 137H110Q125 136 129 124L131 92Z" fill="#dca680"/><path d="M106 137H110Q125 136 129 124L131 92H108Z" fill="#9a6a50" opacity=".72"/>`,
   brows: 'M76 79Q86 80 96 85M104 85Q114 80 124 79', browC: '#6e7278',
   mouth: `<path d="M89 116.500Q100 113.500 111 116.500" stroke="#5a2a20" stroke-width="2.800"/><path d="M86 115l3 2M114 115l-3 2" stroke="#5a2a20" stroke-width="1.6"/>`,
   lines: `<path d="${WRINKLES}M96 76v7M104 76v7" stroke="#7a4a34" stroke-width="1.2" opacity=".65"/>`,
-  hair: `<path d="M66 80C61 37 139 37 134 80C130 60 118 51 100 51C82 51 70 60 66 80Z" fill="#a4a8ae" opacity=".92"/><path d="M72 62q4-10 14-13M84 50q8-3 16-3M106 47q12 1 18 9M126 60q4 6 5 12" stroke="#d8dce0" stroke-width="1.4" fill="none" stroke-dasharray="1.500 2.500"/>`,
+  hair: `<path d="M66 80C61 37 139 37 134 80C130 60 118 51 100 51C82 51 70 60 66 80Z" fill="#a4a8ae" opacity=".92"/><path d="M76 56q10-8 24-8" stroke="#d8dce0" stroke-width="1.4" fill="none"/>`,
   top:
     `<path d="M14 200Q20 168 62 166L148 162Q184 166 188 200Z" fill="#16161c"/><path d="M148 162Q184 166 188 200" fill="none" stroke="#d8f0ff" stroke-width="4" opacity=".8"/>` +
     `<path d="M40 190Q100 168 166 174Q172 184 166 196Q100 188 46 204Z" fill="#dca680"/><path d="M46 204Q100 188 166 196L168 200H46Z" fill="#9a6a50" opacity=".6"/><ellipse cx="166" cy="185" rx="12" ry="11" fill="#dca680"/>` +
@@ -302,3 +302,219 @@ A.av_c8_mom = bust('av_c8_mom', {
     `<g transform="rotate(14 160 160)"><rect x="124" y="124" width="62" height="90" rx="9" fill="#23262e" stroke="#5a606c" stroke-width="2"/><rect x="132" y="132" width="20" height="20" rx="5" fill="#101216"/><circle cx="142" cy="142" r="5" fill="#3a4a6a"/><circle cx="140.500" cy="140.500" r="1.500" fill="#fff"/></g>` +
     `<path d="M112 200Q110 176 126 172Q136 170 136 182V200Z" fill="#ecc8ac"/><path d="M114 186h20" stroke="#b08a72" stroke-width="1.400"/>`,
 });
+
+// ════════════════════════════════════════════════════════════════ FIGURES
+type Arm = [number, number, number, number];
+interface Fig {
+  skin: string; shade: string; shirt: string; sx?: number; rot?: number;
+  long?: boolean; hair?: string; face?: string; eyes?: string; hat?: string;
+  la?: Arm; ra?: Arm; pre?: string; over?: string; legs?: string; under?: string; hand?: number;
+}
+/** Stylised figure. Origin = base of the neck; 1 unit ≈ 1 px at s=1 (head ~54 tall). */
+const fig = (x: number, y: number, s: number, o: Fig): string => {
+  const hr = o.hand ?? 11;
+  const arm = (sx: number, a?: Arm): string => a
+    ? `<path d="M${sx} 16L${a[0]} ${a[1]}" stroke="${o.shirt}" stroke-width="25"/><path d="M${sx} 16L${a[0]} ${a[1]}" stroke="#000" stroke-opacity=".1" stroke-width="25"/>` +
+      `<path d="M${a[0]} ${a[1]}L${a[2]} ${a[3]}" stroke="${o.long ? o.shirt : o.skin}" stroke-width="${o.long ? 21 : 17}"/><circle cx="${a[2]}" cy="${a[3]}" r="${hr}" fill="${o.skin}"/>`
+    : '';
+  return `<g transform="translate(${x} ${y}) rotate(${o.rot ?? 0}) scale(${n1(s * (o.sx ?? 1) * 100) / 100} ${s})" stroke-linecap="round" stroke-linejoin="round">` +
+    (o.under ?? '') +
+    (o.legs ? `<path d="M-34 120L-36 420H-4L0 170L4 420H36L34 120Z" fill="${o.legs}"/>` : '') +
+    `<path d="M-44 14Q-46 0 -20 -6H20Q46 0 44 14L36 132H-36Z" fill="${o.shirt}"/><path d="M8 -6H20Q46 0 44 14L36 132H14Z" fill="#000" opacity=".16"/>` +
+    (o.pre ?? '') +
+    `<path d="M-9 -26V-2Q0 7 9 -2V-26Z" fill="${o.shade}"/>` +
+    `<ellipse cx="-22" cy="-52" rx="4" ry="7" fill="${o.skin}"/><ellipse cx="22" cy="-52" rx="4" ry="7" fill="${o.shade}"/>` +
+    `<path d="M-22 -52C-22 -90 22 -90 22 -52C22 -34 14 -18 0 -18C-14 -18 -22 -34 -22 -52Z" fill="${o.skin}"/><path d="M5 -80C22 -78 22 -60 22 -52C22 -34 14 -18 0 -18C7 -30 9 -42 6 -54Z" fill="${o.shade}" opacity=".7"/>` +
+    (o.eyes ?? EYES) +
+    `<path d="M1 -52q3 8 2 11q-3 2-6 0" stroke="#000" stroke-opacity=".35" stroke-width="1.600" fill="none"/>` +
+    (o.face ?? `<path d="M-8 -33q8 6 16 0" stroke="#3a1612" stroke-width="2.400" fill="none"/>`) +
+    (o.hair ?? '') + (o.hat ?? '') + arm(-40, o.la) + arm(40, o.ra) + (o.over ?? '') + `</g>`;
+};
+const EYES = `<ellipse cx="-9" cy="-54" rx="2.600" ry="3.200" fill="#1a1210"/><ellipse cx="9" cy="-54" rx="2.600" ry="3.200" fill="#1a1210"/><path d="M-14 -61q5-3 10-1M4 -62q5-2 10 1" stroke="#1a1210" stroke-width="2" fill="none"/>`;
+const EYES_WIDE = `<circle cx="-9" cy="-54" r="5.500" fill="#fff"/><circle cx="9" cy="-54" r="5.500" fill="#fff"/><circle cx="-9" cy="-54" r="2.200" fill="#1a1210"/><circle cx="9" cy="-54" r="2.200" fill="#1a1210"/><path d="M-16 -66q6-5 12-2M4 -68q6-3 12 2" stroke="#6a4a2c" stroke-width="2.200" fill="none"/>`;
+const EYES_SHUT = `<path d="M-14 -55q5 4 10 0M4 -55q5 4 10 0M-15 -62q5-2 10 0M5 -62q5-2 10 0" stroke="#1a1210" stroke-width="2.200" fill="none"/>`;
+const GRIN = `<path d="M-11 -36Q0 -31 11 -36Q9 -24 0 -24Q-9 -24 -11 -36Z" fill="#fffdf6" stroke="#4a1c14" stroke-width="1.600"/>`;
+const GI_PRE = (trim: string, belt: string, beltEdge: string, skin: string): string =>
+  `<path d="M-13 -7L2 62L13 -7Z" fill="${skin}"/><path d="M-17 -7L3 96M17 -7L-4 60" stroke="${trim}" stroke-width="4" fill="none"/>` +
+  `<path d="M-38 96H38L37 113H-37Z" fill="${belt}" stroke="${beltEdge}" stroke-width="1.500"/><path d="M-7 94h14v20h-14z" fill="${belt}" stroke="${beltEdge}" stroke-width="1.500"/><path d="M-5 114l-12 36h10l8-36zM5 114l13 32h-10l-7-32z" fill="${belt}" stroke="${beltEdge}" stroke-width="1.500"/>`;
+const DALE_HAIR =
+  `<path d="M17 -74Q42 -68 40 -36Q38 -14 31 -4Q26 -20 29 -38Q29 -58 15 -63Z" fill="#8f8a88"/><path d="M-23 -54C-27 -92 27 -92 23 -54C20 -70 12 -76 0 -76C-12 -76 -20 -70 -23 -54Z" fill="#77716e"/>` +
+  `<path d="M22 -66l16-7 2 6-16 6zM22 -62l15 5-2 6-14-6z" fill="#0a0a0c"/><path d="M-23 -67Q0 -74 23 -67V-58Q0 -65 -23 -58Z" fill="#0a0a0c"/><path d="M-13 -64.500Q0 -68 13 -64.500" stroke="#fff" stroke-width="2.400" stroke-dasharray="3 1.600" fill="none"/>`;
+const GOATEE = `<path d="M-10 -39Q0 -44 10 -39Q11 -24 0 -18Q-11 -24 -10 -39Z" fill="#7d7672"/>`;
+const DALE: Fig = {
+  skin: '#e2a680', shade: '#a8704f', shirt: GI, long: true, sx: 1.12, hair: DALE_HAIR,
+  pre: GI_PRE(GOLD, '#050507', GOLD, '#d9a07e') + gems(11, -40, 6, 80, 86, 26, 1.3),
+  face: GOATEE + `<path d="M-7 -32Q1 -29 9 -34" stroke="#4a1c14" stroke-width="2.400" fill="none"/>`,
+};
+const COREY_HAIR = `<path d="M-23 -50C-30 -96 30 -96 23 -50C21 -64 17 -70 9 -72Q0 -66 -11 -72C-18 -70 -21 -64 -23 -50Z" fill="#7a5a36"/><path d="M-3 -86Q-1 -98 8 -99Q4 -92 5 -85Z" fill="#7a5a36"/>`;
+const TACHE = `<path d="M-8 -38l1 3M-4.500 -39l.5 3M-1 -39.500v3M3 -39.500v3M6 -39l-.5 3M9 -38l-1 3" stroke="#7a5a3a" stroke-width="1.500" fill="none"/>`;
+const COREY: Fig = {
+  skin: '#f0c8ac', shade: '#b98c74', shirt: POLO, sx: 0.8, hair: COREY_HAIR, eyes: EYES_WIDE,
+  face: TACHE + `<path d="M-11 -34Q0 -31 11 -34Q9 -23 0 -23Q-9 -23 -11 -34Z" fill="#fffdf6" stroke="#4a1c14" stroke-width="1.600"/><path d="M-9 -28.500H9" stroke="#b9a9a0" stroke-width="1"/>`,
+};
+
+// ════════════════════════════════════════════════════════════════ COVER
+A.c8_cover = ((): string => {
+  const k = 'c8_cover';
+  const defs =
+    ballPat(`${k}p`, 0.6, 3, 8) + bl(`${k}b`, 16) + bl(`${k}c`, 5) +
+    rg(`${k}h`, [[0, '#02030a', 1], [0.55, '#02030a', 0.9], [1, '#02030a', 0]]) + lg(`${k}g`, [[0, '#3a3a44'], [0.4, '#0a0a0e'], [1, '#000']], 1, 0) +
+    lg(`${k}r`, [[0, '#3f7dff'], [1, '#1a3aa0']]) + `<path id="${k}t" d="M352 438C392 470 402 500 428 536"/>`;
+  const body =
+    `<rect width="600" height="800" fill="url(#${k}p)"/>` +
+    `<path d="M-60 -60H660V860H-60ZM150 196L470 170L500 560L176 596Z" fill="#050830" fill-rule="evenodd" opacity=".78" filter="url(#${k}b)"/>` +
+    `<path d="M150 196L470 170L500 560L176 596Z" fill="#bcd4ff" opacity=".16" filter="url(#${k}b)"/>` +
+    // padded rim
+    `<path d="M0 0H600V800H0ZM34 34V766H566V34Z" fill="url(#${k}r)" fill-rule="evenodd"/><path d="M34 34V766H566V34Z" fill="none" stroke="#0a1a5a" stroke-width="6" opacity=".6"/>` +
+    [[0, 0], [540, 0], [0, 740], [540, 740]].map(([x, y]) => `<rect x="${x}" y="${y}" width="60" height="60" fill="#8a909c"/><circle cx="${x + 30}" cy="${y + 30}" r="7" fill="#4a505c"/>`).join('') +
+    // crater
+    `<ellipse cx="300" cy="380" rx="120" ry="100" fill="url(#${k}h)"/>` +
+    balls(21, 180, 300, 240, 30, 5, 15, 19) + balls(22, 170, 440, 250, 30, 5, 15, 19) + balls(23, 170, 330, 30, 110, 3, 15, 19) + balls(24, 400, 330, 30, 110, 3, 15, 19) +
+    // the belt
+    `<path d="M300 392C330 380 350 420 380 462C404 500 404 530 436 548" fill="none" stroke="#000" stroke-width="38" opacity=".5" filter="url(#${k}c)"/>` +
+    `<path d="M300 392C330 380 350 420 380 462C404 500 404 530 436 548" fill="none" stroke="#0b0b10" stroke-width="30"/>` +
+    `<path d="M306 386C332 378 356 416 386 456C408 492 412 520 440 538" fill="none" stroke="#fff" stroke-width="4" opacity=".4" stroke-linecap="round"/>` +
+    `<text ${SERIF} ${BOLD} font-size="15" fill="${GOLD}" letter-spacing="1" dy="5"><textPath href="#${k}t">10th DAN ★</textPath></text>` +
+    `<g transform="translate(436 548) rotate(32)"><path d="M-4 -15H20V15H-4Z" fill="#0b0b10"/><path d="M2 -15V15M8 -15V15M14 -15V15" stroke="${GOLD}" stroke-width="2.500"/><path d="M20 -15l5 4-4 4 5 4-5 4 5 4-4 4 4 6" fill="none" stroke="#0b0b10" stroke-width="3"/></g>` +
+    ball(290, 404, 17, '#ffd21f') + ball(318, 372, 16, '#2f7dff') +
+    // ski mask
+    `<g transform="translate(420 262) rotate(24)"><ellipse cx="4" cy="8" rx="62" ry="50" fill="#000" opacity=".45" filter="url(#${k}c)"/><path d="M-56 0Q-58 -44 0 -46Q58 -44 56 0Q54 40 0 44Q-54 40 -56 0Z" fill="#101016"/><path d="M-48 -8Q-44 -36 0 -38" fill="none" stroke="#fff" stroke-width="3" opacity=".25" stroke-linecap="round"/>` +
+    `<path d="M-36 -6Q-22 -20 -8 -6Q-22 6 -36 -6ZM8 -6Q22 -20 36 -6Q22 6 8 -6Z" fill="#ff3b3b"/><path d="M-36 -6Q-22 -20 -8 -6Q-22 6 -36 -6ZM8 -6Q22 -20 36 -6Q22 6 8 -6Z" fill="none" stroke="#2a2a34" stroke-width="3"/><circle cx="-26" cy="-10" r="3" fill="#fff" opacity=".7"/><path d="M8 -6Q22 -20 36 -6Q22 6 8 -6Z" fill="#ffd21f"/><circle cx="18" cy="-10" r="3" fill="#fff" opacity=".7"/>` +
+    `<path d="M-14 20Q0 28 14 20" fill="none" stroke="#2a2a34" stroke-width="3"/><path d="M-50 14Q0 34 50 14M-54 2Q0 22 54 2" fill="none" stroke="#1c1c26" stroke-width="2"/></g>` +
+    // police tape
+    `<g transform="translate(-30 372) rotate(-33)"><rect width="460" height="40" fill="#000" opacity=".4" y="6" filter="url(#${k}c)"/><rect width="460" height="38" fill="#ffd60a"/>` +
+    tx(14, 27, 22, 'POLICE LINE DO NOT CROSS · POLICE LINE DO NOT', '#111', SANS, `${BOLD} ${fit(430)}`) + `</g>`;
+  return frame(k, 600, 800, defs, body, 0.16, 0.6);
+})();
+
+// ════════════════════════════════════════════════════════════════ WALLPAPERS
+A.c8_wall_lock = ((): string => {
+  const k = 'c8_wall_lock';
+  const defs =
+    lg(`${k}w`, [[0, '#8a5a2e'], [0.5, '#6e4420'], [1, '#3a2210']]) + rg(`${k}s`, [[0, '#ffe2a0', 0.5], [1, '#ffe2a0', 0]], 0.4, 0.42, 0.6) +
+    lg(`${k}b`, [[0, '#e9c46a'], [0.5, '#fff2b0'], [1, '#a87a1c']], 1, 1) + lg(`${k}g`, [[0, '#fff', 0], [0.35, '#fff', 0.3], [0.5, '#fff', 0], [1, '#000', 0.25]], 1, 0) + bl(`${k}f`, 7);
+  const PX = 215;
+  /** One draped belt. n stripes of colour `tape` on the long (right) tail, counted up from its end. */
+  const belt = (py: number, c: string, dark: string, tape: string, n: number, l1: number, extra = ''): string => {
+    let st2 = '';
+    for (let i = 0; i < n; i++) st2 += `<rect x="3" y="${159 - i * 19}" width="52" height="11" fill="${tape}"/>`;
+    return `<g transform="translate(${PX} ${py})"><path d="M-58 14Q-60 -26 0 -26Q60 -26 58 14Z" fill="#000" opacity=".45" filter="url(#${k}f)" transform="translate(8 10)"/>` +
+      `<g transform="rotate(4)"><rect x="-47" y="6" width="52" height="${l1}" fill="#000" opacity=".4" filter="url(#${k}f)"/><rect x="-55" y="0" width="52" height="${l1}" fill="${c}"/><rect x="-55" y="0" width="52" height="${l1}" fill="url(#${k}g)"/><path d="M-51 0V${l1}M-7 0V${l1}" stroke="${dark}" stroke-width="1.500" stroke-dasharray="4 3"/>${extra}</g>` +
+      `<g transform="rotate(-4)"><rect x="11" y="6" width="52" height="180" fill="#000" opacity=".4" filter="url(#${k}f)"/><rect x="3" y="0" width="52" height="180" fill="${c}"/><path d="M7 0V180M51 0V180" stroke="${dark}" stroke-width="1.500" stroke-dasharray="4 3"/>${st2}<rect x="3" y="0" width="52" height="180" fill="url(#${k}g)"/></g>` +
+      `<path d="M-57 8Q-58 -24 0 -24Q58 -24 57 8Q30 -4 0 -4Q-30 -4 -57 8Z" fill="${c}"/><path d="M-57 8Q-58 -24 0 -24Q58 -24 57 8Q30 -4 0 -4Q-30 -4 -57 8Z" fill="#000" opacity=".22"/>` +
+      `<circle cx="0" cy="-10" r="12" fill="url(#${k}b)" stroke="#6a4a10" stroke-width="2"/><circle cx="-3" cy="-13" r="3.500" fill="#fff" opacity=".8"/></g>`;
+  };
+  let planks = '';
+  for (let x = 0; x <= 600; x += 100) planks += `<path d="M${x} 0V1300" stroke="#2a1608" stroke-width="5"/><path d="M${x + 4} 0V1300" stroke="#b07a3e" stroke-width="1.500" opacity=".6"/>`;
+  const q = rng(4);
+  let grainW = '';
+  for (let i = 0; i < 16; i++) { const x = n1(q() * 600), y = n1(q() * 1250); grainW += `M${x} ${y}q${n1(6 - q() * 12)} ${n1(40 + q() * 60)} 0 ${n1(90 + q() * 90)}`; }
+  const body =
+    `<rect width="600" height="1300" fill="url(#${k}w)"/><path d="${grainW}" fill="none" stroke="#3a2210" stroke-width="2" opacity=".4"/>${planks}<rect width="600" height="1300" fill="url(#${k}s)"/>` +
+    // plaque
+    `<g transform="translate(300 300)"><rect x="-222" y="-36" width="452" height="80" rx="6" fill="#000" opacity=".4" filter="url(#${k}f)"/><rect x="-226" y="-42" width="452" height="80" rx="6" fill="url(#${k}b)" stroke="#6a4a10" stroke-width="3"/><rect x="-218" y="-34" width="436" height="64" rx="3" fill="none" stroke="#6a4a10" stroke-width="1.500"/>` +
+    [[-212, -28], [212, -28], [-212, 24], [212, 24]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3.500" fill="#6a4a10"/>`).join('') +
+    tx(0, -6, 30, 'WALL OF EXCELLENCE', '#3a2606', SERIF, `${BOLD} ${MID} ${fit(380)}`) + tx(0, 22, 19, '— BELTS IN ORDER OF GLORY —', '#3a2606', SERIF, `${BOLD} ${MID} ${fit(330)}`) + `</g>` +
+    // certificate
+    `<g transform="translate(455 640) rotate(2.500)"><rect x="-112" y="-150" width="236" height="312" fill="#000" opacity=".45" filter="url(#${k}f)"/><rect x="-118" y="-158" width="236" height="312" fill="#1a1208" stroke="url(#${k}b)" stroke-width="10"/><rect x="-100" y="-140" width="200" height="276" fill="#f6eccc"/><rect x="-92" y="-132" width="184" height="260" fill="none" stroke="#c9a23a" stroke-width="3"/>` +
+    tx(0, -92, 17, 'CERTIFICATE OF', '#6a4a10', SERIF, `${MID} ${fit(140)}`) + tx(0, -50, 40, '10th DAN', '#a87a1c', SERIF, `${BOLD} ${MID} ${fit(160)}`) +
+    `<path d="M-70 -34H70" stroke="#c9a23a" stroke-width="2"/>` + tx(0, -10, 15, 'WORLD FREESTYLE', '#3a2606', SERIF, `${BOLD} ${MID} ${fit(160)}`) + tx(0, 10, 15, 'KARATE COUNCIL', '#3a2606', SERIF, `${BOLD} ${MID} ${fit(150)}`) +
+    tx(0, 36, 12, 'awarded to Dale Hupp (by mail)', '#5a4a2a', SERIF, `font-style="italic" ${MID} ${fit(160)}`) +
+    `<path d="M-12 76l-8 34 12-8 8 10zM12 76l8 34-12-8-8 10z" fill="#c01818"/><circle cx="0" cy="72" r="22" fill="url(#${k}b)" stroke="#a87a1c" stroke-width="2"/>` + sparkle(0, 72, 13, '#a87a1c') +
+    tx(0, 124, 11, 'P.O. BOX · RENO, NEVADA', '#5a4a2a', SANS, `${BOLD} ${MID} ${fit(150)}`) + `</g>` +
+    belt(392, '#0d0d12', '#3a3a44', GOLD, 9, 176, `<text transform="translate(-23 12) rotate(90)" ${SERIF} ${BOLD} font-size="14" fill="${GOLD}" ${fit(152)}>GRANDMASTER D. HUPP</text>`) +
+    belt(606, '#f4f1e6', '#b9b4a2', '#111114', 4, 150) +
+    belt(820, '#7a4420', '#4a280e', '#fbfaf2', 6, 150) +
+    belt(1034, '#ffd21f', '#b08a00', '#111114', 1, 150) +
+    `<rect y="1236" width="600" height="64" fill="#1c1008"/><rect y="1236" width="600" height="5" fill="#b07a3e" opacity=".6"/>`;
+  return frame(k, 600, 1300, defs, body, 0.2, 0.6);
+})();
+
+A.c8_wall_home = ((): string => {
+  const k = 'c8_wall_home';
+  const defs =
+    lg(`${k}w`, [[0, '#2a1f4a'], [1, '#4a2a5a']]) + lg(`${k}m`, [[0, '#8fc8e8'], [0.5, '#5a8ac0'], [1, '#3a4a8a']], 1, 1) + lg(`${k}f`, [[0, '#2f6fd0'], [1, '#12285a']]) +
+    rimF(`${k}r`, '#ffd84a', 6, 3) + rimF(`${k}q`, '#bfe6ff', 3, 2, '#000', 0.2) + rg(`${k}s`, [[0, '#ffe68a', 0.55], [1, '#ffe68a', 0]]) + bl(`${k}b`, 10) +
+    `<clipPath id="${k}c"><rect x="40" y="330" width="520" height="560"/></clipPath>`;
+  const pants = (d: string): string => `<path d="${d}" fill="none" stroke="${GI}" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="${GOLD}" stroke-width="3" stroke-dasharray="1 9" stroke-linecap="round"/>`;
+  const body =
+    `<rect width="600" height="1300" fill="url(#${k}w)"/>` + banner(40, 170, 520, -1.5) +
+    `<rect x="32" y="322" width="536" height="576" fill="#c9ccd4"/><rect x="40" y="330" width="520" height="560" fill="url(#${k}m)"/>` +
+    `<g clip-path="url(#${k}c)"><path d="M60 330L200 890H280L140 330ZM330 330L470 890H500L360 330Z" fill="#fff" opacity=".14"/><rect x="40" y="800" width="520" height="90" fill="#1c3a7a" opacity=".6"/>` +
+    // reflection: his back, HUPP in rhinestones
+    pop(`${k}q`, `<g transform="translate(165 610) scale(.92)" opacity=".95"><path d="M-30 124L-40 330H-6L0 180L6 330H40L30 124Z" fill="#14121c"/><path d="M-46 14Q-48 0 -20 -6H20Q48 0 46 14L38 132H-38Z" fill="#1c1a28"/><path d="M-40 16L-76 -30L-64 -84" fill="none" stroke="#1c1a28" stroke-width="24" stroke-linecap="round"/><circle cx="-64" cy="-88" r="12" fill="#b88462"/>` +
+      `<path d="M-38 98H38L37 113H-37Z" fill="#050507" stroke="${GOLD}" stroke-width="1.500"/><circle cx="0" cy="-52" r="23" fill="#77716e"/><path d="M-6 -44Q0 -10 -2 30Q6 30 8 -44Z" fill="#8f8a88"/><path d="M-23 -62Q0 -70 23 -62V-54Q0 -62 -23 -54Z" fill="#0a0a0c"/>` +
+      `<text x="0" y="66" ${IMPACT} font-size="34" ${MID} fill="none" stroke="#fff6c0" stroke-width="3" stroke-dasharray=".1 4.500" stroke-linecap="round" ${fit(70)}>HUPP</text></g>`) + `</g>` +
+    // mats
+    `<path d="M0 898H600V1300H0Z" fill="url(#${k}f)"/><g stroke="#0a1a44" stroke-width="3" opacity=".7"><path d="M0 960H600M0 1060H600M0 1200H600M300 898V1300M150 898L60 1300M450 898L540 1300M40 898L-140 1300M560 898L740 1300"/></g>` +
+    `<ellipse cx="300" cy="1128" rx="170" ry="26" fill="#000" opacity=".45" filter="url(#${k}b)"/><ellipse cx="330" cy="700" rx="300" ry="330" fill="url(#${k}s)"/>` +
+    // whoosh
+    `<g fill="none" stroke="#fff" stroke-linecap="round" opacity=".8"><path d="M440 960Q560 960 596 900" stroke-width="7"/><path d="M470 990Q560 990 598 950" stroke-width="4"/><path d="M540 780Q560 760 560 730" stroke-width="4"/></g>` +
+    pop(`${k}r`,
+      pants('M286 880L262 1000L282 1104') + `<path d="M260 1100h56q14 0 14 14v6h-70z" fill="#e2a680"/>` +
+      pants('M322 880L436 900L530 852') + `<path d="M520 812q10-6 18 2l34 34q8 10-2 18l-14 10z" fill="#e2a680"/><path d="M560 832l10-18M568 842l16-12M572 854l18-4" stroke="#e2a680" stroke-width="8" stroke-linecap="round"/>` +
+      fig(292, 660, 1.75, { ...DALE, rot: -14, la: [-84, 6, -112, -52], ra: [78, 44, 132, 20], hand: 13,
+        eyes: `<path d="M-16 -58l10 5-10 4M16 -58l-10 5 10 4" stroke="#1a1210" stroke-width="2.600" fill="none"/><path d="M-17 -65l12 5M17 -65l-12 5" stroke="#5c5653" stroke-width="3" fill="none"/>`,
+        face: GOATEE + `<path d="M-8 -37Q0 -41 8 -37Q9 -24 0 -22Q-9 -24 -8 -37Z" fill="#4a0e0c" stroke="#2a0806" stroke-width="1.500"/><path d="M-7 -36Q0 -39 7 -36L6 -33H-6Z" fill="#fffdf6"/><path d="M-4 -25Q0 -28 4 -25" stroke="#e0705a" stroke-width="2.400" fill="none"/>` })) +
+    sparkle(92, 520, 16, '#fff6c0') + sparkle(520, 600, 12, '#fff6c0') + sparkle(470, 1010, 9, '#fff') +
+    `<g transform="translate(420 520) rotate(-10)">` + tx(0, 0, 44, 'HI-YAAH!', '#ffd84a', IMPACT, `${fit(150)} stroke="#b0241c" stroke-width="2"`) + `</g>`;
+  return frame(k, 600, 1300, defs, body, 0.16, 0.6);
+})();
+
+// ════════════════════════════════════════════════════════════════ MAP
+A.c8_map = ((): string => {
+  const k = 'c8_map';
+  const defs = rg(`${k}l`, [[0, '#ffb24a', 0.55], [1, '#ffb24a', 0]]) + rg(`${k}n`, [[0, '#ff4fb0', 0.5], [1, '#ff4fb0', 0]]) + rg(`${k}e`, [[0, '#4aff9a', 0.45], [1, '#4aff9a', 0]]) + bl(`${k}b`, 3);
+  const q = rng(9);
+  let houses = '';
+  const blk = (x: number, y: number, w: number, h: number, n: number): void => {
+    for (let i = 0; i < n; i++) { const bw = 14 + q() * 22, bh = 12 + q() * 16; houses += `<rect x="${n1(x + q() * (w - bw))}" y="${n1(y + q() * (h - bh))}" width="${n1(bw)}" height="${n1(bh)}"/>`; }
+  };
+  blk(66, 250, 70, 150, 6); blk(250, 462, 60, 70, 3); blk(440, 462, 290, 70, 9); blk(66, 66, 30, 40, 1); blk(180, 62, 440, 36, 8); blk(66, 520, 60, 16, 1);
+  blk(0, 70, 34, 460, 9); blk(766, 70, 34, 460, 9); blk(60, 566, 680, 30, 12); blk(60, 0, 680, 30, 12);
+  let stalls = '';
+  for (let x = 170; x <= 630; x += 20) stalls += `M${x} 112V136M${x} 160V182`;
+  for (let y = 176; y <= 400; y += 20) stalls += `M664 ${y}H686M700 ${y}H722`;
+  const lamp = (x: number, y: number, g = 'l', r = 46): string => `<circle cx="${x}" cy="${y}" r="${r}" fill="url(#${k}${g})"/>`;
+  const pin = (x: number, y: number, ring: string, glyph: string): string =>
+    `<circle cx="${x}" cy="${y + 2}" r="17" fill="#000" opacity=".5" filter="url(#${k}b)"/><circle cx="${x}" cy="${y}" r="15" fill="#0c1220" stroke="${ring}" stroke-width="3"/><g transform="translate(${x} ${y})">${glyph}</g>`;
+  const unitsX = [150, 193, 236, 280, 360, 440, 500, 560, 625];
+  const awn = ['#ff4fb0', '#4aff9a', '#ffd21f', '#f2c230', '#ff3b3b', '#2f9aff', '#ff8a1f', '#c08aff'];
+  const body =
+    `<rect width="800" height="600" fill="#0c1424"/><g fill="#121d33">${[[60, 58, 680, 360], [60, 446, 680, 94], [0, 58, 40, 482], [760, 58, 40, 482], [60, 0, 680, 40], [60, 558, 680, 42]].map(([x, y, w, h]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}"/>`).join('')}</g>` +
+    // streets
+    `<g fill="#263552"><rect x="40" width="20" height="600"/><rect x="740" width="20" height="600"/><rect y="40" width="800" height="18"/><rect y="540" width="800" height="18"/><rect y="416" width="800" height="32"/><rect x="140" y="58" width="12" height="358" opacity=".7"/></g>` +
+    `<path d="M0 432H800" stroke="#f2c230" stroke-width="2" stroke-dasharray="14 12" opacity=".8"/><path d="M50 0V600M750 0V600M0 49H800M0 549H800" stroke="#5a6a8a" stroke-width="1" stroke-dasharray="8 10" opacity=".6"/>` +
+    `<g fill="#1c2a44" stroke="#2c3e60" stroke-width="1">${houses}</g>` +
+    // condos (Willow Run Villas)
+    `<g fill="#3a4a6a" stroke="#6a7ea8" stroke-width="1.500"><rect x="68" y="108" width="28" height="22"/><rect x="100" y="100" width="34" height="22"/><rect x="72" y="140" width="34" height="22"/><rect x="110" y="134" width="24" height="30"/><rect x="70" y="172" width="60" height="18"/></g><path d="M66 196Q100 206 136 196" stroke="#2f6a4a" stroke-width="6" fill="none" opacity=".7"/>` +
+    // lot + lamps
+    `<rect x="152" y="104" width="496" height="100" fill="#1b2130"/><rect x="644" y="160" width="92" height="256" fill="#1b2130"/><rect x="152" y="300" width="408" height="116" fill="#161b28"/><path d="${stalls}" stroke="#8a93a8" stroke-width="1.200" opacity=".55"/>` +
+    lamp(250, 148) + lamp(400, 148) + lamp(550, 148) + lamp(692, 250) + lamp(692, 360) + lamp(300, 360, 'l', 34) +
+    // fire lane
+    `<path d="M150 198H632V402" fill="none" stroke="#ffd21f" stroke-width="8" stroke-dasharray="10 6"/>` +
+    // the L-shaped plaza
+    `<path d="M146 209H629V391H564V304H146Z" fill="#000" opacity=".5" transform="translate(5 6)" filter="url(#${k}b)"/><path d="M150 205H625V387H560V300H150Z" fill="#46526e" stroke="#8a98b8" stroke-width="2"/><path d="M150 205H625V387H560V300H150Z" fill="none" stroke="#2a3450" stroke-width="1" transform="translate(0 0)"/>` +
+    unitsX.slice(0, 8).map((x, i) => `<rect x="${x + 2}" y="200" width="${unitsX[i + 1] - x - 4}" height="7" fill="${awn[i]}"/>` + (i ? `<path d="M${x} 207V300" stroke="#2a3450" stroke-width="1.500"/>` : '') + tx((x + unitsX[i + 1]) / 2 - (i === 4 ? 26 : 0), 223, 11, String(i + 1), '#dfe6f6', SANS, `${BOLD} ${MID}`)).join('') +
+    [9, 10, 11, 12, 13].map((u, i) => { const y = 237 + i * 30; return `<path d="M560 ${y}H625" stroke="#2a3450" stroke-width="1.500"/><rect x="623" y="${y + 2}" width="7" height="26" fill="${awn[(i + 3) % 8]}"/>` + tx(612, y + 19, 10, String(u), '#dfe6f6', SANS, `${BOLD} ${MID}`); }).join('') +
+    `<g fill="#8a93a8"><rect x="210" y="262" width="12" height="9"/><rect x="470" y="250" width="14" height="10"/><rect x="530" y="270" width="12" height="9"/><rect x="584" y="350" width="12" height="9"/><rect x="250" y="240" width="10" height="8"/></g>` +
+    `<g fill="#2f6a4a"><rect x="200" y="310" width="24" height="12" rx="2"/><rect x="470" y="310" width="24" height="12" rx="2"/></g>` + lamp(320, 200, 'e', 26) + lamp(592, 312, 'n', 30) +
+    // lodge
+    `<path d="M652 84H736V156H652Z" fill="#1f3a2a"/><rect x="662" y="98" width="56" height="42" fill="#6a4a2a" stroke="#a8824a" stroke-width="2"/><path d="M662 119H718" stroke="#4a3018" stroke-width="2"/>` +
+    // laundromat + sheriff
+    `<rect x="322" y="458" width="92" height="46" fill="#3a5a7a" stroke="#8ac8ff" stroke-width="2"/>` + lamp(368, 470, 'l', 30) + `<rect x="112" y="452" width="96" height="50" fill="#4a4a5a" stroke="#a8a8c0" stroke-width="2"/><rect x="180" y="476" width="28" height="26" fill="#33333f" stroke="#a8a8c0" stroke-width="1.500"/><path d="M185 480V498M191 480V498M197 480V498M203 480V498" stroke="#a8a8c0" stroke-width="1.200"/>` +
+    // pins
+    pin(320, 276, GOLD, `<path d="M-10 -3H10V3H-10Z" fill="${GOLD}"/><path d="M-3 -5H3V5H-3ZM-2 4L-6 11H-2L1 4ZM2 4L6 10H2L0 4Z" fill="${GOLD}" stroke="#0c1220" stroke-width="1"/>`) +
+    pin(400, 276, '#ff3b3b', ball(-5, 2, 5, '#ff3b3b') + ball(5, 3, 5, '#2f7dff') + ball(0, -5, 5, '#ffd21f')) +
+    `<rect x="389" y="217" width="22" height="22" fill="#0c1220" stroke="#bfe6ff" stroke-width="2.500"/><rect x="394" y="222" width="12" height="12" fill="#ffd21f"/><path d="M389 217l-7-5h22l7 5" fill="#8a98b8" stroke="#bfe6ff" stroke-width="1.500"/>` +
+    pin(592, 312, '#ff4fb0', lotus(0, 2, 0.34)) +
+    pin(368, 480, '#8ac8ff', `<rect x="-8" y="-9" width="16" height="18" rx="2" fill="#dfe6f6"/><circle cx="0" cy="2" r="5" fill="#2f7dff" stroke="#0c1220" stroke-width="1.500"/><circle cx="-4.500" cy="-6" r="1.200" fill="#0c1220"/>`) +
+    pin(688, 120, '#c9a05a', `<path d="M0 8V-2M0 -2Q-10 -2 -10 -10M-6 -3V-9M0 -2Q10 -2 10 -10M6 -3V-9M-3 -2V-7M3 -2V-7" stroke="#e8c88a" stroke-width="2.200" fill="none" stroke-linecap="round"/>`) +
+    pin(112, 132, '#8a98b8', `<path d="M-9 8V-3L-4 -8L1 -3V8ZM2 8V-1L6 -5L10 -1V8Z" fill="#dfe6f6"/><rect x="-6" y="0" width="3" height="4" fill="#0c1220"/><rect x="5" y="2" width="3" height="3" fill="#0c1220"/>`) +
+    pin(160, 468, '#ffd21f', sparkle(0, 0, 0, '#000') + `<path d="M0 -10L2.900 -3.200L10 -3.200L4.200 1.200L6.200 8.400L0 4.200L-6.200 8.400L-4.200 1.200L-10 -3.200L-2.900 -3.200Z" fill="#ffd21f"/>`) +
+    // compass + scale
+    `<g transform="translate(92 366)" opacity=".85"><circle r="16" fill="none" stroke="#8a98b8" stroke-width="1.500"/><path d="M0 -13L4 0H-4Z" fill="#ff5a4a"/><path d="M0 13L4 0H-4Z" fill="#8a98b8"/>` + tx(0, -21, 11, 'N', '#8a98b8', SERIF, `${BOLD} ${MID}`) + `</g>` +
+    `<path d="M610 520H710M610 515V525M660 516V524M710 515V525" stroke="#8a98b8" stroke-width="1.500" fill="none"/>` + tx(660, 510, 10, '50 m', '#8a98b8', SERIF, `${BOLD} ${MID}`) +
+    `<rect x="8" y="8" width="784" height="584" fill="none" stroke="#3a4a6a" stroke-width="2"/>`;
+  return frame(k, 800, 600, defs, body, 0.12, 0.45);
+})();
