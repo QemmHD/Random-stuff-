@@ -3,6 +3,7 @@ import { h } from '../dom';
 import { glyph } from '../art';
 import { audio } from '../audio';
 import { S } from '../strings';
+import { matureOn, setMature } from '../mature';
 
 function getPref(k: string, d: string): string {
   try { return localStorage.getItem(k) ?? d; } catch { return d; }
@@ -37,6 +38,7 @@ export function openSettings(host: HTMLElement, opts: { extra?: { label: string;
       toggle(S.sound, () => !audio.muted, (v) => audio.setMuted(!v)),
       toggle(S.music, () => audio.musicOn, (v) => audio.setMusic(v)),
       toggle(S.haptics, () => getPref('cs.haptics', '1') === '1', (v) => setPref('cs.haptics', v ? '1' : '0')),
+      toggle(S.matureLang, () => matureOn(), (v) => setMature(v)),
       toggle(S.reduceMotion, () => getPref('cs.motion', '0') === '1', (v) => { setPref('cs.motion', v ? '1' : '0'); applyPrefs(); }),
       h('div', { class: 'set-line' }, h('span', null, S.textSize), sizes),
       ...(opts.extra ?? []).map((x) => h('button', { type: 'button', class: 'btn ghost wide', onclick: () => { wrap.remove(); x.act(); } }, x.label)),

@@ -1,5 +1,6 @@
 // Case session: flags, pins, live events, TRACE jobs, hints, save/load.
 import type { CaseFile, Clue, Msg, Thread } from './types';
+import { viewCase } from './mature';
 
 export interface Pin { id: string; x: number; y: number }
 export interface LiveMsg { id: string; thread: string; contact: string; text: string; t: string; clue?: string }
@@ -90,7 +91,7 @@ export class Game {
   private disposed = false;
 
   constructor(c: CaseFile) {
-    this.c = c;
+    this.c = viewCase(c);
     const s = load<SaveData>(SAVE_PREFIX + c.id);
     this.flags = new Set(s?.flags ?? []);
     this.pins = s?.pins ?? [];

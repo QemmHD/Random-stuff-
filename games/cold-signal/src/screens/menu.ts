@@ -8,6 +8,7 @@ import { S } from '../strings';
 import type { CaseFile } from '../types';
 import { openSettings } from './settings';
 import { avatarFor } from './util';
+import { viewCase } from '../mature';
 
 // ---------------- animated background ----------------
 export function noiseCanvas(): HTMLCanvasElement {
@@ -70,7 +71,7 @@ export function titleScreen(onStart: () => void): HTMLElement {
       h('h1', { class: 'title-word', 'data-text': S.gameTitle }, S.gameTitle),
       h('p', { class: 'title-sub' }, S.gameSub),
       h('button', { class: 'btn primary big pulse title-cta', type: 'button', onclick: () => { audio.unlock(); audio.play('unlock'); onStart(); } }, S.tapToBegin)),
-    h('div', { class: 'title-foot' }, S.titleFoot),
+    h('div', { class: 'title-foot' }, h('span', { class: 'rating' }, 'M'), S.titleFoot, h('div', { class: 'rating-line' }, S.ratingLine)),
   );
   return el;
 }
@@ -123,7 +124,8 @@ function rankBadge(prog: Record<string, number>): HTMLElement {
 }
 
 // ---------------- briefing ----------------
-export function briefingScreen(c: CaseFile, onBegin: () => void, onBack: () => void): HTMLElement {
+export function briefingScreen(raw: CaseFile, onBegin: () => void, onBack: () => void): HTMLElement {
+  const c = viewCase(raw);
   const paras = h('div', { class: 'br-paras' });
   const go = h('button', { class: 'btn primary big', type: 'button', onclick: () => { audio.play('unlock'); onBegin(); } }, glyph('phone_in'), S.beginInvestigation);
   const root = h('div', { class: 'screen-brief' },
