@@ -42,7 +42,17 @@ await page.locator('.br-paras').click();
 await sleep(300);
 await shot('02-briefing');
 await page.getByText('Take the phone').click();
-await sleep(2700);
+if (c.opening?.length) {
+  await page.locator('.screen-opening').waitFor();
+  await sleep(600);
+  await shot('02b-opening');
+  await page.getByRole('button', { name: 'Next', exact: true }).click();
+  await page.getByText(c.opening[1].caption, { exact: true }).waitFor();
+  await page.getByRole('button', { name: 'Skip opening' }).click();
+}
+await page.locator('.boot').waitFor({ state: 'hidden' });
+await page.locator('.lock-wall').waitFor();
+await sleep(500);
 await shot('03-lock');
 await page.locator('.lock-wall').click(); await sleep(400);
 await shot('04-wallpaper');

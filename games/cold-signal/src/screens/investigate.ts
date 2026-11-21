@@ -184,12 +184,13 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
   if (caught) {
     root.classList.add('mode-caught');
     audio.heartbeat(beatFor());
-    if (!game.has('sfx:shower-off')) audio.shower(true);
+    if (!c.quietStart && !game.has('sfx:shower-off')) audio.shower(true);
   }
   const dreadCue = (text: string) => {
     if (!caught) return;
     if (/shower.{0,20}(off|stop)|water.{0,12}(off|stop)/i.test(text) && !game.has('sfx:shower-off')) { game.markSeenFlag('sfx:shower-off'); audio.shower(false); audio.play('stinger'); }
     if (/\bdoor\b|doorbell|footsteps|keys/i.test(text)) audio.door();
+    if (/\bsnoring stops|stops snoring/i.test(text)) audio.play('stinger');
     root.classList.remove('flicker'); void root.offsetWidth; root.classList.add('flicker');
   };
   game.checkEvents();

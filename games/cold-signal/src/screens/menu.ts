@@ -144,7 +144,7 @@ export function briefingScreen(raw: CaseFile, onBegin: () => void, onBack: () =>
     h('div', { class: 'br-card' },
       h('button', { class: 'br-back', type: 'button', onclick: onBack }, glyph('back'), S.caseFiles),
       h('div', { class: 'br-top' },
-        h('div', { class: 'br-photo' }, artImg(avatarFor(c)), h('span', { class: 'br-stamp' }, c.status ?? 'MISSING')),
+        h('div', { class: 'br-photo' }, artImg(c.opening?.length ? c.cover : avatarFor(c)), h('span', { class: 'br-stamp' }, c.status ?? 'MISSING')),
         h('div', null,
           h('small', null, `CASE ${c.number} · ${S.briefingTitle.toUpperCase()}`),
           h('h1', null, c.title),
@@ -179,6 +179,49 @@ export function briefingScreen(raw: CaseFile, onBegin: () => void, onBack: () =>
     paras.replaceChildren(...c.briefing.map((p) => h('p', null, p)));
     go.classList.add('pulse');
   });
+  return root;
+}
+
+// ---------------- Caught opening ----------------
+export function openingScreen(raw: CaseFile, onBegin: () => void): HTMLElement {
+  const c = viewCase(raw);
+  const shots = c.opening ?? [];
+  const picture = h('div', { class: 'opening-picture', 'aria-hidden': 'true' });
+  const caption = h('p', { class: 'opening-caption', 'aria-live': 'polite' });
+  let index = 0;
+  let timer: number | undefined;
+  let finished = false;
+  const finish = () => {
+    if (finished) return;
+    finished = true;
+    window.clearTimeout(timer);
+    onBegin();
+  };
+  const advance = () => {
+    window.clearTimeout(timer);
+    index++;
+    if (index >= shots.length) finish();
+    else showShot();
+  };
+  const next = h('button', { class: 'btn primary', type: 'button', onclick: advance }, S.nextShot);
+  const root = h('section', { class: 'screen-opening', 'aria-label': c.title },
+    picture,
+    h('div', { class: 'opening-copy' },
+      h('small', null, `${c.phoneTime} · ${c.title}`),
+      caption,
+      h('div', { class: 'opening-actions' }, next,
+        h('button', { class: 'btn ghost', type: 'button', onclick: finish }, S.skipOpening))));
+  const showShot = () => {
+    const shot = shots[index];
+    picture.replaceChildren(artImg(shot.art));
+    caption.textContent = shot.caption;
+    next.textContent = index + 1 === shots.length ? S.beginInvestigation : S.nextShot;
+    if (shot.sound) audio.play(shot.sound);
+    if (!document.documentElement.classList.contains('reduce-motion')) {
+      timer = window.setTimeout(() => { if (root.isConnected) advance(); }, Math.max(3600, shot.caption.split(/\s+/).length * 220));
+    }
+  };
+  showShot();
   return root;
 }
 
@@ -251,9 +294,13 @@ function choiceBlock(c: CaseFile, solved: boolean): HTMLElement {
     onclick: () => {
       audio.play('stinger');
       buttons.remove();
-      const out = h('div', { class: 'ep-story chosen' }, h('div', { class: 'ep-choice-label' }, ch.label), ...dialogue(solved ? ch.solved : ch.partial));
+      const out = h('div', { class: 'ep-story chosen', tabindex: '-1' },
+        c.opening?.length ? h('div', { class: 'ending-picture', 'aria-hidden': 'true' }, artImg(c.cover)) : null,
+        h('div', { class: 'ep-choice-label' }, ch.label),
+        ...dialogue(solved ? ch.solved : ch.partial));
       wrap.appendChild(out);
-      out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      out.focus({ preventScroll: true });
+      out.scrollIntoView({ behavior: document.documentElement.classList.contains('reduce-motion') ? 'auto' : 'smooth', block: 'start' });
     },
   }, ch.label)));
   wrap.appendChild(buttons);

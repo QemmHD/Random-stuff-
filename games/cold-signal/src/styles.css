@@ -1249,3 +1249,20 @@ kbd { display: inline-grid; place-items: center; min-width: 24px; height: 22px; 
 .dlg-said::after { content: '”'; color: rgba(255,255,255,.35); }
 .dlg-line.me .dlg-said { color: #dff9f6; }
 .dlg-stage { align-self: stretch; text-align: left; font-size: 13.5px; color: #c9a3b2; padding: 0 0 0 12px; border-left: 2px solid rgba(255,64,129,.35); animation: storyIn .8s var(--ease) both; }
+
+/* Caught openings. Dissolves leave the controls in a stable position on phones. */
+.screen-opening { position: relative; isolation: isolate; width: 100%; height: 100%; overflow: hidden; display: grid; align-items: end; background: #100c16; }
+.opening-picture, .opening-picture::after { position: absolute; inset: 0; z-index: -1; }
+.opening-picture img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 43%; animation: openingShot 3.7s ease-out both; }
+.opening-picture::after { content: ''; z-index: 0; background: linear-gradient(180deg, #100c1600 27%, #100c16b8 66%, #100c16 94%); }
+.opening-copy { width: min(100%, 39rem); margin: 0 auto; padding: 1.5rem max(1.5rem, env(safe-area-inset-left)) max(2rem, calc(env(safe-area-inset-bottom) + 1.25rem)); }
+.opening-copy small { font-family: var(--mono); font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: #ffc2c3; }
+.opening-caption { min-height: 6.4em; margin: .7rem 0; max-width: 28ch; color: #fff4ec; font: clamp(1.2rem, 5vw, 2rem)/1.3 Georgia, serif; }
+.opening-actions { display: flex; align-items: center; gap: .75rem; }
+.ending-picture { height: clamp(7rem, 25vh, 13rem); overflow: hidden; border-radius: 9px; }
+.ending-picture img { width: 100%; height: 100%; object-fit: cover; object-position: center 31%; animation: openingShot 6s ease-out both; }
+@keyframes openingShot { from { opacity: .25; transform: scale(1.07); } to { opacity: 1; transform: scale(1); } }
+.reduce-motion .ep-story.chosen > * { animation-delay: 0s !important; }
+@media (min-width: 700px) {
+  .opening-picture img { object-fit: contain; }
+}

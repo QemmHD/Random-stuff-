@@ -197,3 +197,26 @@ Recurring: **Dana** is 41, an athletic physical therapist with a high ponytail a
 - C2: 27 (cover, 2 wallpapers, map, 8 avatars, 15 photos incl. 4 hidden)
 - C3: 29 (cover, 2 wallpapers, map, 9 avatars, 16 photos incl. 4 hidden)
 - **Total new art ids: 94** (+ reused `av_unknown`)
+
+## C4 — Leg Day
+
+- `cg4_cover`, `cg4_wall_lock`, `cg4_wall_home`: Tanner in his NO DAYS OFF tank, his gym mirror selfie with a reflected MCMLXXIV tattoo, and an IronHaus graphic. The tattoo is the lock puzzle.
+- `cg4_map`: Linden Court, IronHaus/CoreWorks, Wren Street and the nearby stops in the location log.
+- Contacts: `av_cg4_riley`, `av_cg4_kenna`, `av_cg4_legends`, `av_cg4_brody`, `av_cg4_marcus`, `av_cg4_kyle`, `av_cg4_mama`, `av_cg4_sienna`, `av_cg4_alexis`, `av_cg4_alt`, `av_cg4_bff`, `av_cg4_findmy`.
+- Camera and thread photos: `cg4_ph_mirror` (tattoo and lipstick), `cg4_ph_us_brunch` (Riley’s bare ring finger), `cg4_ph_sedona` (sunset, robes and summit lanyard), `cg4_ph_sheets` (cat, hoodie and pilates ring), `cg4_ph_mama_ring` (size 5), `cg4_ph_lot` (CoreWorks from Tanner’s truck).
+- Recovered: `cg4_ph_couch` (glasses, throw and pilates socks), `cg4_ph_bed` (Tanner and Kenna under covers), `cg4_ph_video` (silhouettes and a pilates ring), `cg4_ph_locker` (timeline and velvet box), `cg4_ph_mirror_lips` (lipstick note).
+- Hidden: `cg4_ph_h_hoodie`, `cg4_ph_h_towel`, `cg4_ph_h_reformer`, `cg4_ph_h_robe`, `cg4_ph_h_red`. Tanner’s towel portrait includes bare-chest detail.
+
+## C5 — Mutual Auditing
+
+- `cg5_cover`: Mara in the WMAR booth. `cg5_wall_lock`: close-up of the red MUTE button and a readable two-line phone-word guide. `cg5_wall_home`: WMAR vinyl motif. `cg5_map`: house, studio, motel and bowling alley.
+- Contacts: `av_cg5_ellis`, `av_cg5_theo`, `av_cg5_nico`, `av_cg5_bea`, `av_cg5_lena`. Dez uses the shared avatar.
+- Photos: `cg5_ph_key` (brass SWITCHBACK · 04 tag), `cg5_ph_booth` (replay loaded at 14:10), `cg5_ph_mug` (chipped anniversary mug), `cg5_ph_screen` (November 6 notification on Ellis’s phone, recovered Hidden), `cg5_ph_car` (car outside 11, reflection of 04, recovered Hidden).
+
+## C6 — Final Headcount
+
+- `cg6_cover`: Sofia with the groom’s centerpiece. `cg6_wall_lock`: supplier plan with separate two-digit gates for Terrace, Kitchens and Greenhouse. `cg6_wall_home`: peonies under the venue arch. `cg6_map`: home, downtown hotel, venue and lake.
+- Contacts: `av_cg6_dan`, `av_cg6_iris`, `av_cg6_cal`, `av_cg6_neve`, `av_cg6_party`. Dez uses the shared avatar.
+- Photos: `cg6_ph_lake` (July trees and sparklers), `cg6_ph_match` (two coffees and 608 sleeve), `cg6_ph_suit` (Cal and BEST MAN bag, recovered), `cg6_ph_cake` (the uncropped divorce-party cake), `cg6_ph_chart` (Cal’s place crossed out).
+
+C4–C6 also include the adult cast’s optional topless figure studies in Hidden. Their keys use `cgN_study_` followed by the subject ID in `cases/caughtPortraits.ts`. The studies are illustrations and carry no report evidence.

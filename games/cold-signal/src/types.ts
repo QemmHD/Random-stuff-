@@ -235,6 +235,10 @@ export interface CaseFile {
   /** Device condition shown in TRACE and Settings, e.g. 'WATER DAMAGE · 61% READABLE'. */
   deviceCondition?: string;
   briefing: string[];
+  /** Optional scene shown on a fresh start, before the phone appears. */
+  opening?: { art: string; caption: string; sound?: 'tap' | 'notify' | 'stinger' }[];
+  /** Caught starts with running water unless the owner is somewhere else. */
+  quietStart?: boolean;
   phoneDate: string; // date shown on the phone clock, 'YYYY-MM-DD'
   phoneTime: string; // 'HH:MM'
   lock: {

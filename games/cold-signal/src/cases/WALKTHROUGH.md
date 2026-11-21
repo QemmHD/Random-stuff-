@@ -253,13 +253,13 @@ CAUGHT mode is shorter, M-rated adult comedy. The player IS the partner, reading
 
 Art: see `src/art/specs-caught.md` (94 new ids + reused `av_unknown`).
 
-### Caught — discovery channels (research pass)
+### C1–C3 discovery channels
 Each case uses at least three real-world discovery channels: texts/DMs, call history, social stories, browser history, synced devices, a passcode change and an auto-generated Photos "Memory / On This Day" email. Each case has one **wrong-recipient** moment and a **third-party contact**, both as live events.
 - **C1:** Jessa's "can't stop thinking about your hands" sent to YOU, then "wrong chat, hand-cream thing" (`wrong_recipient`, static). Live wrong recipient: Jules texts Jessa a message meant for Sasha after `sasha` is pinned (`jules_wrong`). Third party: Sasha (live, after the `dms` recovery). Memory: 'Wednesday Nights' (`memory`). Also car Bluetooth, StreamBox, a new passcode and Kayla's story.
 - **C2:** Live wrong recipient: Tiffani's "greg come over... WRONG PRUITT" after `motel_charges` (`tiffani_wrong`). Third parties: Tiffani's pregnancy text, Gary, Bea's story. Memory: 'Thursdays' (`memory`).
 - **C3:** Live wrong recipient: Rafe's "can you take lucy thursday night?" meant for Tara, after `lakeview` (`rafe_wrong`). Third parties: Tara (live), Bo, Mom → Aunt Pat. Memory: 'Thursday Doubles' (`memory`). Also Doug's synced iPad tab group.
 
-### Caught — endings and build-up arcs
+### C1–C3 endings and build-up arcs
 - **Choices:** each case has `choices` with 4 endings (3–5 solved paragraphs, 2–3 partial). The first two `epilogue` paragraphs are now neutral "before you decide" setup; the older paragraphs remain after them as the fallback.
   - **C1:** wait on the bed and confront · play dumb and show up at the Marisol as Mr. Smith · text Jules back as her · call Sasha back.
   - **C2:** confronting her backfires (she turns the joint statement around) · confess first · text Tiffani as Nora · say nothing and fail her 28th test.
@@ -268,3 +268,29 @@ Each case uses at least three real-world discovery channels: texts/DMs, call his
   - **C1:** Jules, Sept 13 – Oct 21. Deleted; restored by recovering `msgfrag`. New clue `first_meet`.
   - **C2:** Mystery Man, Jan 2026. Visible red herring; the 'first night' is her signing with her agent.
   - **C3:** Rafe, from June 2, the day after your calendar invite.
+
+## C4 — Leg Day (`caught-4`, difficulty 2)
+
+**Unlock (1974):** Zoom Tanner’s gym mirror selfie. Unmirror the forearm tattoo to read **MCMLXXIV**, the year he got inked for Mama Deb.
+
+**Solve path:** Start with LEG DAY LEGENDS, Kev’s voicemail, the CoreWorks photo and the Scottsdale folio. Pin the fake summit to recover the Sedona photos. Pin Kev’s identity to recover the deleted texts, then follow the other TRACE gates. Mama Deb’s voicemail and texts establish her cover story. The jeweler’s receipt shows the size 5 ring engraved K. Tulum is the password for the proposal speech. Alexis’s live message and Kenna’s texts confirm that the ring isn’t yours and that Tanner introduced you as his ex.
+
+**Endings:** Wake him with the ring, call Kenna, reply to Mama Deb, or post from his second account.
+
+## C5 — Mutual Auditing (`caught-5`, difficulty 2)
+
+**Unlock (6883):** Nico’s notification points to the red **MUTE** button on the lock wallpaper. The taped vanity-number guide maps M→6, U→8, T→8, E→3.
+
+1. Pin the split Switchback folio, Ellis’s Friday bowling text, the room 04 message or Wi-Fi, and the league’s cancellation email. WMAR’s replay confirmation breaks Mara’s pledge-drive alibi.
+2. Recover Messages to identify Theo and Lena and read Mara’s plans for Saturday breakfast. Recover the deleted Hidden photos to see Ellis’s November 6 notification and the November 13 photo showing his car outside room 11.
+3. Bea’s live slip arrives after the message recovery, the league clue, and at least 11 pins. It unlocks the local backup. Recover it, then open **Joint expenses** with `switchback`.
+4. Back the report with the recovered exchanges, the replay, the bowling email and both dates in Mara’s ledger or photos. Choose whether to confess, leave, call Lena, or ask Mara to go first.
+
+## C6 — Final Headcount (`caught-6`, difficulty 3)
+
+**Unlock (279461):** Open the wallpaper. Follow the florist’s dispatch route: Greenhouse **27**, Kitchens **94**, Terrace **61**. The West Gate is for the band.
+
+1. Pin the July photo in THE LAST FLING and the cabin cancellation. Restore Messages to uncover the October kiss and Cal’s November stay. Iris’s voicemail explains what she thought she was covering.
+2. Pin the Meridian folio and recover the hotel thumbnail. The hotel voicemail identifies Cal as the second guest, and the photo shows his BEST MAN garment bag in 608.
+3. Pin the printer’s hold and restore the drafts. Open **Vendor calls Monday** with `608`. Compare the hold request with the locked checklist and Cal’s misdirected confession.
+4. Back the report with the recycled photo, the folio, the second-key voicemail, the October messages, Iris’s account and the checklist. Choose whether to talk to Sofia, Cal or Iris, or leave with Dez.

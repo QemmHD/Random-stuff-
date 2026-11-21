@@ -33,6 +33,8 @@ export const S = {
   difficulty: ['', 'Rookie', 'Detective', 'Veteran'],
   stars: (n: number) => '★'.repeat(n) + '☆'.repeat(3 - n),
   briefingTitle: 'Briefing',
+  nextShot: 'Next',
+  skipOpening: 'Skip opening',
   beginInvestigation: 'Take the phone',
   subject: 'Subject',
 

@@ -3,7 +3,7 @@ import { clear } from './dom';
 import { audio } from './audio';
 import { applyPrefs } from './screens/settings';
 import { loadExtraPhotos } from './extraPhotos';
-import { bootSequence, briefingScreen, epilogueScreen, filesScreen, titleScreen } from './screens/menu';
+import { bootSequence, briefingScreen, epilogueScreen, filesScreen, openingScreen, titleScreen } from './screens/menu';
 import { investigate, type InvestigateHandle } from './screens/investigate';
 import { hasSave, type Game } from './game';
 import type { CaseFile } from './types';
@@ -32,7 +32,10 @@ function toFiles(): void {
 
 function openCase(c: CaseFile): void {
   if (hasSave(c.id)) return void startCase(c, false);
-  show(briefingScreen(c, () => startCase(c, true), toFiles));
+  show(briefingScreen(c, () => {
+    if (c.opening?.length) show(openingScreen(c, () => startCase(c, false)));
+    else void startCase(c, true);
+  }, toFiles));
 }
 
 async function startCase(c: CaseFile, fresh: boolean): Promise<void> {

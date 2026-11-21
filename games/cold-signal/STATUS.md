@@ -1,33 +1,16 @@
-# Cold Signal — status
+# Cold Signal status
 
-**Live URL (once Pages is enabled):** https://qemmhd.github.io/Random-stuff-/cold-signal/
+[Play Cold Signal](https://qemmhd.github.io/Random-stuff-/cold-signal/)
 
-## Done
-- **Engine:**
-  - simulated phone: lock screen, keypad, home screen, 12 apps, phone-wide search, photo zoom and metadata, locked notes, spoken voicemails with transcript
-  - TRACE forensic recovery
-  - evidence board with red-string links, a draggable desk layout and a phone grid
-  - case report with an evidence picker
-  - live events, handler comms, hints, scoring, stars and rank
-  - autosave, offline play (service worker) and PWA install
-- **7 cases, each with full art:**
-  - 01 Low Tide
-  - 02 Dead Air
-  - 03 The Long Quiet
-  - 04 Last Chair
-  - 05 The Last Room
-  - 06 Touch Move
-  - 07 The Copyist
-- **Tests:**
-  - `npm test` checks every case's references and runs a simulated full solve, so a case cannot ship soft-locked.
-  - `tests/play.mjs` and `tests/solve.mjs` play cases through the real UI at desktop 1440×900 and phone 390×844. All 7 cases solve with zero console errors.
+## Cases
 
-## Not verified
-- Not tested on a physical iPhone, so Safari audio unlock, speech voices and PWA install are untested on device.
-- Spoken voices depend on the voices the device has.
+- Cold Cases 01–09. Low Tide, Dead Air, The Long Quiet, Last Chair, The Last Room, Touch Move, The Copyist, Ball Pit, Funeral Potatoes.
+- Caught C1–C6. Zero Threat, Mystery Man, Fantasy League, Leg Day, Mutual Auditing, Final Headcount.
 
-## Next ideas
-- More cases (the data format makes this mostly writing and art).
-- A "detective notes" scratchpad.
-- A timeline reconstruction mini-game before the report.
-- Achievements for no-hint solves.
+All cases use the simulated phone, TRACE recovery, evidence board, evidence-backed report and local autosave. Caught adds live-message tension and four confrontation choices per case. C4–C6 have animated openings, hand-drawn case art and optional adult figure studies in the locked Hidden album.
+
+## Verification
+
+- `npm test` checks case references, complete solves, engine behavior and the C4–C6 art and dialogue references.
+- `tests/solve.mjs` drives full playthroughs of both modes. Run it against a fixed production build at 390×844 using `VIEWPORT=phone`.
+- Physical iPhone Safari remains untested, including audio unlock, device speech voices and PWA installation.
