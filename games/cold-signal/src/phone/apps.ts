@@ -85,7 +85,8 @@ function threadView(g: Game, threadId: string): View {
         const who = m.from === 'me' ? g.c.owner.name.split(' ')[0] : c.name;
         const ref = { key: `${threadId}@${m.t}@${m.text.slice(0, 12)}`, title: `${who}: "${clip(m.text || 'Photo', 34)}"`, text: `${who}, ${stamp(m.t)}: ${m.text || '(photo)'}`, kind: 'event' as const };
         const pin = pinButton(g, m.clue, true, ref);
-        const row = h('div', { class: `bubble-row ${m.from}${pin?.classList.contains('on') ? ' show-pin' : ''}` }, bubble, pin);
+        // Photo bubbles open the viewer on tap, so their pin is always visible.
+        const row = h('div', { class: `bubble-row ${m.from}${pin?.classList.contains('on') || m.photo ? ' show-pin' : ''}` }, bubble, pin);
         bubble.addEventListener('click', () => {
           wrap.querySelectorAll('.bubble-row.show-pin').forEach((r) => { if (r !== row && !r.querySelector('.pin-btn.on')) r.classList.remove('show-pin'); });
           row.classList.toggle('show-pin');
