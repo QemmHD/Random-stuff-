@@ -204,9 +204,11 @@ CAUGHT mode is shorter, M-rated adult comedy. The player IS the partner, reading
 6. Live: Jules "u still up? 😏"; Dez after `loft_stops`; Find My "babe?? where'd you put my phone 🥺" after Photos; "the shower just turned off" plus Jules "wear the coat" (`jules_live`) after Messages; the doorbell clip of Jules hanging a bag on your door after `hotel_smith`; Dez confesses after Messages + 12 pins; "you hear the bathroom door" at 18 pins.
 7. Red herring: Dr. Feld's "Need you tonight. Bring the good gloves. Don't tell my wife." was an after-hours root canal (`feld_texts` / `feld_clear`).
 
-**Report:** cheating → yes · with whom → Jules · where → Calloway Lofts 4B + Marisol · how → fake-gay cover + Paint & Sip you funded + location paused · who covered → Kayla and Dez (`dez_knew` / `kayla_cover`).
+**Depth layers (added):** a year of texts to you, from 'I love you, you big sincere idiot' and a 2 a.m. voice note down to 'k' and 'working late 👍' (`drift`); the 23:02 'night babe ❤️' → 23:04 'he's asleep. call me' juxtapositions and 'we have to stop... ok one more time' (`juxtapose`); an unsent breakup draft, the '3am' bathroom-floor note and therapy with Dr. Amari Lowe (`inner_life`); a second unrelated secret, a Dec 3 Denver job interview she's calling a CE conference (`denver`). Opening the locked note unlocks a third recovery, **Glimpse archived DMs** (`dms`, gate `note:n_wed`): how it started — sunglasses on the grill, 'haha you're funny', 'I'm not actually gay', 'I'm deleting this', the first lie on Sept 16 (`first_dm`) — and a message request from **Sasha**, Jules's girlfriend of two years, who thinks Wednesdays are 24-hour shifts (`sasha`). Live: Sasha at 2:40 a.m. ('there's no fire'); Kayla after `denver`.
 
-**Gate check:** photos←pinned:paint_alibi (visible Mail/Kayla); msgfrag←pinned:marco_dog (visible Glimpse). No soft-locks.
+**Report:** cheating → yes · with whom → Jules · where → Calloway Lofts 4B + Marisol · how → fake-gay cover + Paint & Sip you funded + location paused · who covered → Kayla and Dez (`dez_knew` / `kayla_cover`) · who else Jules lies to → Sasha (`sasha`) · the DEN trip → job interview (`denver`).
+
+**Gate check:** photos←pinned:paint_alibi (visible Mail/Kayla); msgfrag←pinned:marco_dog (visible Glimpse); dms←note:n_wed (password from visible Glimpse). No soft-locks.
 
 ## C2 — Mystery Man (`caught-2`, difficulty 2)
 
@@ -223,9 +225,11 @@ CAUGHT mode is shorter, M-rated adult comedy. The player IS the partner, reading
 6. Pin `bowling_forfeit` → Unsent cache: Tiffani's "room 6 tues? wear the vest" (`tiffani_slip`) and "gary's had the snip since 2019" (`snip`).
 7. Live: Mystery Man "Still up, darling?"; Dez after `mystery_texts`; "Nora pats the nightstand" plus Dez "that's YOUR card" after `motel_charges`; Tiffani's positive test (`tiffani_test`) after `motel_charges` + 10 pins; the hallway light after the unsent recovery + 16 pins.
 
-**Report:** Nora cheating → no · Mystery Man → agent Bernard · hiding → Delphine Rush + anniversary reveal · who IS cheating → you, with Tiffani · where → Wyeth Room 6 · whose baby → yours (`snip`).
+**Depth layers (added):** ten years in her texts to you, from 'nine years 🖤 come to bed, mattress man' and a Morse-snoring voice note down to your 'hoa thing. rain check 👍' and 'k night' (`drift`); the red-herring juxtaposition 23:02 'night ❤️' → 23:04 to Mystery Man 'he's asleep. call me... delete this after', which turns out to be dictating the hayloft scene (`night_call`); how YOUR affair started, on July 7 in the HOA chat: 'treasurer orientation Tuesday 7pm, my place... Gary will be at his brother's' (`origin`); Nora's unsent draft and therapy — she already knew you don't bowl and chose the 28th to give you a chance (`nora_knew`). Opening the outline unlocks a fourth recovery, **deleted voicemail** (`voice`): Tiffani's whispered 'Wrong Pruitt!' message (`tiffani_vm`). Live: Bea at 1:55 a.m. ('even the part about tuesdays?').
 
-**Gate check:** photos←hotel_meets (visible Maps/Mail); msgfrag←mystery_texts (visible); unsent←bowling_forfeit (visible Mail). No soft-locks.
+**Report:** Nora cheating → no · Mystery Man → agent Bernard · hiding → Delphine Rush + anniversary reveal · who IS cheating → you, with Tiffani · where → Wyeth Room 6 · whose baby → yours (`snip`) · what Nora already knew → you don't bowl; the 28th was your chance (`nora_knew`).
+
+**Gate check:** photos←hotel_meets (visible Maps/Mail); msgfrag←mystery_texts (visible); unsent←bowling_forfeit (visible Mail); voice←note:n_outline (password from visible Browser). No soft-locks.
 
 ## C3 — Fantasy League (`caught-3`, difficulty 2)
 
@@ -241,8 +245,10 @@ CAUGHT mode is shorter, M-rated adult comedy. The player IS the partner, reading
 5. Open `n_calc` → Shared tab-group history: your 3 a.m. searches (`doug_searches`).
 6. Live: Rafe "u up? 😏"; Dez on the hoodie; Dana stirs + Dez "why are there texts from YOU"; Dana wakes ("I want to talk") after history + 14 pins.
 
-**Report:** cheating → no, it's your arrangement · who → Rafe · where → Lakeview 214 · who set it up → you · who broke the rules first → you (Rule 6, the parking lot, Rule 1 right now) · what she planned Thursday → end it, for you.
+**Depth layers (added):** fifteen years in her texts to you, from '14 years 💍 I love you, systems guy' and a 'rain gutter' voice note down to your '👍 night' (`drift`); the Dockside window table with you, then with Rafe a week later (`same_table`); 23:02 'night ❤️ come up from the garage?' → 23:04 to Rafe 'he's in the garage again. call me', plus 'he'll never ask. he made a rule about it' and 'we have to stop. ok one more time' (`juxtapose`); an unsent draft, 'I miss when you were jealous... anything that isn't a thumb', a 3am note ('doug is the person I want to be old with') and individual therapy (`inner_life`); Rafe's own layer — his daughter Lucy's school photo and his ex Tara: 'He told Lucy you're a friend. Someone's lying to someone.' (`rafe_family`); a second secret that misleads, the 'Reconnect Retreat — 2 guests' on Dec 4, which is for Dana and YOU (`retreat`). Live: Tara after `rafe_family`; Rafe's 'is thursday the talk?' after `ending_it`.
+
+**Report:** cheating → no, it's your arrangement · who → Rafe · where → Lakeview 214 · who set it up → you · who broke the rules first → you (Rule 6, the parking lot, Rule 1 right now) · what she planned Thursday → end it, for you · the retreat → for you (`retreat`).
 
 **Gate check:** photos←lakeview (visible); msgfrag←league_code (visible); history←note:n_calc (password from the visible league chat). No soft-locks.
 
-Art: see `src/art/specs-caught.md` (91 new ids + reused `av_unknown`).
+Art: see `src/art/specs-caught.md` (94 new ids + reused `av_unknown`).

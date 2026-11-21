@@ -48,6 +48,7 @@ Recurring: **Jules Fontaine** is 32, a tall firefighter with forearms, a short b
 - `av_cg1_kayla`: Kayla, 30s, in scrubs and cat-eye glasses, with a judging eyebrow.
 - `av_cg1_feld`: Dr. Marty Feld, 61, in a dental loupe headset, a little lost.
 - `av_cg1_mami`: Jessa's mother, 58, in an apron, holding a candle, with knowing eyes.
+- `av_cg1_sasha`: Sasha, 31, Jules's girlfriend of two years. Scrubs-blue nurse's fleece, red-rimmed eyes lit by a phone at night, a police-scanner app open on a second screen.
 - `av_cg1_family`: A group icon: a house emoji style roof over a stack of tiny tamales.
 - `av_cg1_doorcam`: A doorbell-camera icon: a fisheye lens with a red recording dot.
 
@@ -164,6 +165,7 @@ Recurring: **Dana** is 41, an athletic physical therapist with a high ponytail a
 - `av_cg3_pickle`: Group icon: a pickle wearing sunglasses.
 - `av_cg3_family`: Group icon: a cartoon turkey on a platter.
 - `av_cg3_bo`: Bo, 30s, Rafe's roommate, with heavy eyelids, ear plugs, a hi-vis vest and a ficus behind him.
+- `av_cg3_tara`: Tara, 38, Rafe's ex. Tired, kind face, a child's drawing pinned behind her, holding a mug that says "WORLD'S OKAYEST MOM".
 - `av_cg3_mel`: Mel, 40, Dana's doubles partner #2, with a wine glass and a sly look.
 
 ### Photos
@@ -176,6 +178,7 @@ Recurring: **Dana** is 41, an athletic physical therapist with a high ponytail a
 - `cg3_ph_video` (landscape, recovered video thumbnail): A play overlay and the title **"oops 🙈"**. A dark motel room lit by a TV, rumpled sheets, two silhouettes against a curtain, and a pickleball paddle hung on the lamp. Implied only.
 - `cg3_ph_mirror` (portrait, recovered): A hotel mirror with **"THIRD SHOT DROP 🥒 — R"** written in pink lipstick, plus a drawn pickle.
 - `cg3_ph_rules` (portrait, recovered). **KEY CLUE.** A screenshot of a calendar invite: **"Doug Hoyt shared the calendar 'Dana's Thursdays 🏈' with you · Permission: Can edit · 'so we're organized about it 👍 I'm a systems guy'"**.
+- `cg3_ph_lucy` (portrait): A child's school portrait: Lucy, 7, gap-toothed, in a pickleball T-shirt against a mottled blue backdrop. Text overlay **"2nd grade 🥹"**. A wholesome photo with no relation to anything adult. It is in the story only to show that Rafe has a family.
 - `cg3_ph_box` (portrait): A plain brown box on a doormat by a potted ficus. A hand-lettered door sign reads **"3B"** and the shipping label reads **"BLUE BOX LLC → R. CASTELLANO"**.
 - `cg3_ph_mel_wine` (portrait). **CLUE (Mel's story).** Mel alone at a wine bar counter raising a glass. A chalkboard reads **"CORKSCREW · TRIVIA THURSDAY · NOV 12"**.
 
@@ -190,7 +193,7 @@ Recurring: **Dana** is 41, an athletic physical therapist with a high ponytail a
 ## Counts
 
 - Shared: 1 (`av_cg_bff`)
-- C1: 36 (cover, 2 wallpapers, map, 8 avatars, 24 photos incl. 7 hidden)
+- C1: 37 (cover, 2 wallpapers, map, 9 avatars, 24 photos incl. 7 hidden)
 - C2: 27 (cover, 2 wallpapers, map, 8 avatars, 15 photos incl. 4 hidden)
-- C3: 27 (cover, 2 wallpapers, map, 8 avatars, 15 photos incl. 4 hidden)
-- **Total new art ids: 91** (+ reused `av_unknown`)
+- C3: 29 (cover, 2 wallpapers, map, 9 avatars, 16 photos incl. 4 hidden)
+- **Total new art ids: 94** (+ reused `av_unknown`)
