@@ -40,19 +40,22 @@ function limb(...p: number[][]): string {
   }
   return `<path d="${d}"/>`;
 }
+/** Cheap untapered limb: a round-capped stroke. */
+const sl = (c: string, w: number, d: string): string => `<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
 const at = (x: number, y: number, s: number, rot: number, body: string): string =>
   `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s})">${body}</g>`;
 
 // ---------- faces (same 200-unit geometry as the contact avatars; head centre = 100,85) ----------
 interface Face {
   sk: string; sh: string; rim: string; iris: string; brows: string; browC: string; mouth: string;
-  lid?: number; lash?: boolean; shadow?: string; back?: string; front?: string; under?: string; noEars?: boolean;
+  lid?: number; lash?: boolean; shadow?: string; back?: string; front?: string; under?: string; noEars?: boolean; lite?: boolean;
 }
 const HEAD = 'M67 80C67 34 133 34 133 80C133 106 122 131 100 131C78 131 67 106 67 80Z';
 function face(o: Face): string {
   const lid = o.lid ?? 0.9;
   const c = 85.4 + lid * 1.6;
-  const eye = (x: number): string =>
+  const L = !!o.lite;
+  const eye = (x: number): string => L ? `<circle cx="${x}" cy="91.5" r="3.3" fill="${o.iris}"/>` :
     `<path d="M${x - 7} 91.5Q${x} 85.5 ${x + 7} 91Q${x} 96.5 ${x - 7} 91.5Z" fill="#f1e9df"/><circle cx="${x}" cy="91" r="3.5" fill="${o.iris}"/><circle cx="${x - 1.2}" cy="90.4" r=".9" fill="#fff"/>` +
     `<path d="M${x - 8.5} 92Q${x} ${c} ${x + 8.5} 91.4V82H${x - 8.5}Z" fill="${o.sk}"/>` +
     (o.shadow ? `<path d="M${x - 8.5} 92Q${x} ${c} ${x + 8.5} 91.4Q${x} ${c - 9} ${x - 8.5} 92Z" fill="${o.shadow}" opacity=".6"/>` : '');
@@ -60,13 +63,16 @@ function face(o: Face): string {
     (o.noEars ? '' : `<ellipse cx="67" cy="94" rx="5" ry="9" fill="${o.sk}"/><ellipse cx="133" cy="94" rx="5" ry="9" fill="${o.sh}"/>`) +
     `<path d="${HEAD}" fill="${o.sk}"/>${o.under ?? ''}${eye(87)}${eye(113)}` +
     `<path d="M109 37C105 60 109 72 106 84C104 97 111 103 108 112C106 122 104 128 99 131C122 131 133 106 133 80C133 60 126 44 109 37Z" fill="${o.sh}" opacity=".72"/>` +
-    `<path d="M70 62Q80 50 96 48Q78 56 72 76Z" fill="#fff" opacity=".13"/><path d="M131.5 68V80C131.5 105 121 129.5 100 129.5" fill="none" stroke="${o.rim}" stroke-width="2.4" opacity=".7"/>` +
-    `<g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M79 92Q87 ${c} 95 91.4M105 91.4Q113 ${c} 121 92${o.lash ? 'M79 92l-4-2.8M121 92l4-2.8' : ''}" stroke="#1a1318" stroke-width="${o.lash ? 2.5 : 2}"/>` +
+    (L ? '' : `<path d="M70 62Q80 50 96 48Q78 56 72 76Z" fill="#fff" opacity=".13"/><path d="M131.5 68V80C131.5 105 121 129.5 100 129.5" fill="none" stroke="${o.rim}" stroke-width="2.4" opacity=".7"/>`) +
+    `<g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M79 92Q87 ${c} 95 91.4M105 91.4Q113 ${c} 121 92${o.lash && !L ? 'M79 92l-4-2.8M121 92l4-2.8' : ''}" stroke="#1a1318" stroke-width="${o.lash ? 2.5 : 2}"/>` +
     `<path d="${o.brows}" stroke="${o.browC}" stroke-width="3.2"/><path d="M102 95Q105 104 105.5 108Q101 112 95 108.5" stroke="#000" stroke-opacity=".38" stroke-width="1.9"/>${o.mouth}</g>${o.front ?? ''}`;
 }
 /** Place a face: (x,y) is the head centre. */
 const hd = (x: number, y: number, s: number, rot: number, o: Face): string =>
   `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s}) translate(-100 -85)">${face(o)}</g>`;
+/** Hair behind the body: draw before the torso, then hd() with back:''. */
+const hb = (x: number, y: number, s: number, rot: number, o: Face): string =>
+  `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s}) translate(-100 -85)">${o.back ?? ''}</g>`;
 const lips = (c: string, d: string, open = false): string =>
   `<path d="M88 114Q94 110.5 100 113Q106 110.5 112 114Q100 ${open ? 127 : 123} 88 114Z" fill="${c}" stroke="${d}" stroke-width="1"/>` +
   (open ? '<path d="M91 115Q100 117.5 109 115L107 118Q100 120 93 118Z" fill="#fff" stroke="none"/>' : `<path d="M88 114Q100 117.5 112 114" stroke="${d}" stroke-width="1.3"/>`) +
@@ -89,6 +95,8 @@ const brief = (c: string, trim: string, lace = true): string =>
   `<path d="M-79 214Q-40 232 0 234Q40 232 79 214L82 240Q40 254 9 278Q0 283-9 278Q-40 254-82 240Z" fill="${c}"/>` +
   (lace ? `<path d="M-78 221Q-40 239 0 241Q40 239 78 221" fill="none" stroke="${trim}" stroke-width="4" stroke-dasharray="1 6" stroke-linecap="round"/>` : `<path d="M-79 216Q-40 234 0 236Q40 234 79 216" fill="none" stroke="${trim}" stroke-width="3"/>`);
 /** Body line-work drawn over the skin: collarbones, cleavage, navel. */
+/** Collarbones only, for dressed figures. */
+const collar = (c: string): string => `<path d="M-48 8Q-28 14-8 6M48 8Q28 14 8 6" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>`;
 const marks = (c: string, bust = true): string =>
   `<g fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity=".8"><path d="M-48 8Q-28 14-8 6M48 8Q28 14 8 6${bust ? 'M0 60Q-3 80 0 98' : ''}M0 186v9"/></g>` + (bust ? '<path d="M-50 66Q-38 54-22 58M12 62Q24 54 38 58" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".3"/>' : '');
 /** A hand: palm blob with finger hints. */
@@ -112,9 +120,10 @@ const HOOPS = '<circle cx="65" cy="112" r="9" fill="none" stroke="#f3c64a" strok
 const JESSA: Face = {
   sk: '#dba57e', sh: '#9c6a52', rim: '#ffc890', iris: '#3a2416', browC: '#1e1418', lash: true, shadow: '#8a4458', lid: 1.5,
   brows: 'M77.5 81Q86 76 95 78M105 78Q114 76 122.5 81', mouth: lips('#c81e38', '#6e0a20'),
-  back: '<path d="M56 100C44 30 84 19 100 19C118 19 156 30 144 100C151 122 141 138 151 158C157 174 149 190 140 198H60C51 190 43 174 49 158C59 138 49 122 56 100Z" fill="#1e1418"/><path d="M112 21C152 31 150 80 144 100C151 122 141 138 151 158C157 174 149 190 140 198H124Z" fill="#000" opacity=".3"/><path d="M58 120Q52 150 58 180M142 124Q150 150 144 182" fill="none" stroke="#5a3a44" stroke-width="2.2" stroke-linecap="round"/>',
+  back: '<path d="M56 100C44 30 84 19 100 19C118 19 156 30 144 100C151 122 141 138 151 158C156 176 150 200 128 214Q136 180 124 150H76Q64 180 72 214C50 200 44 176 49 158C59 138 49 122 56 100Z" fill="#1e1418"/><path d="M58 120Q52 150 58 180M142 124Q150 150 144 182" fill="none" stroke="#5a3a44" stroke-width="2.2" stroke-linecap="round"/>',
   front: '<path d="M62 106C54 44 84 29 102 29C124 29 146 46 138 104C137 78 128 60 110 49C98 64 68 68 62 106Z" fill="#1e1418"/><path d="M68 76Q78 50 102 40M112 52Q126 60 132 82" fill="none" stroke="#5a3a44" stroke-width="2" stroke-linecap="round"/>' + HOOPS,
 };
+const JN: Face = { ...JESSA, back: '' };
 const TRENT: Face = {
   sk: '#e8b692', sh: '#b27e62', rim: '#ffd9a0', iris: '#4a6a8a', browC: '#7a5a34', lid: 0.2,
   brows: 'M77.5 80Q86 76.5 95 75.5M105 75.5Q114 76.5 122.5 80', mouth: grin('#7a3a34'),
@@ -178,19 +187,19 @@ const helmet = (x: number, y: number, s: number, rot = 0, label = false, c = '#2
 /** A framed lighthouse canvas, w x h, top-left at (x,y). Every one is suspiciously similar. */
 const lhouse = (x: number, y: number, w: number, h: number, sky: string, sea: string, fr = '#2a1c14'): string =>
   `<g transform="translate(${x} ${y}) scale(${w / 100} ${h / 130})"><rect x="-7" y="-7" width="114" height="144" fill="${fr}"/><rect width="100" height="130" fill="${sky}"/><circle cx="24" cy="34" r="11" fill="#fff" opacity=".7"/><path d="M0 84H100V130H0Z" fill="${sea}"/><path d="M0 96q12-5 25 0t25 0M50 112q12-5 25 0t25 0" stroke="#fff" stroke-width="2" fill="none" opacity=".5"/>` +
-  '<path d="M40 130Q50 88 100 84V130Z" fill="#3a3a34"/><path d="M57 92L61 36H73L77 92Z" fill="#f6eedc"/><path d="M59.500 64H74.800L75.700 78H58.500Z" fill="#c8323a"/><rect x="59" y="24" width="16" height="13" fill="#ffe27a"/><path d="M57 24L67 14L77 24Z" fill="#c8323a"/><path d="M59 30L0 14V46Z" fill="#ffe9a0" opacity=".4"/><path d="M0 0H100V130H0Z" fill="none" stroke="#000" stroke-opacity=".25" stroke-width="3"/></g>';
+  '<path d="M40 130Q50 88 100 84V130Z" fill="#3a3a34"/><path d="M57 92L61 36H73L77 92Z" fill="#f6eedc"/><path d="M59.5 64H74.800L75.7 78H58.500Z" fill="#c8323a"/><rect x="59" y="24" width="16" height="13" fill="#ffe27a"/><path d="M57 24L67 14L77 24Z" fill="#c8323a"/><path d="M59 30L0 14V46Z" fill="#ffe9a0" opacity=".4"/><path d="M0 0H100V130H0Z" fill="none" stroke="#000" stroke-opacity=".25" stroke-width="3"/></g>';
 const SKIES = ['#e8a05a', '#7ab0d8', '#d87a8a', '#8a7ac0', '#e8c060', '#5a9aa0', '#5a6a8a'];
 const SEAS = ['#2a5a7a', '#1c4a6a', '#3a4a7a', '#2a3a6a', '#2a6a7a', '#1c5a5a', '#232c4a'];
 /** Lipstick kiss print centred on (x,y). */
 const kiss = (x: number, y: number, s: number, rot: number, c = '#d81e3c', o = 0.85): string => at(x, y, s, rot,
-  `<g fill="${c}" opacity="${o}"><path d="M-30 0Q-18-16-6-10Q0-7 6-10Q18-16 30 0Q14-5 0-3Q-14-5-30 0Z"/><path d="M-30 3Q-12 1 0 2Q12 1 30 3Q16 20 0 20Q-16 20-30 3Z"/></g><path d="M-14 6v9M-5 6v11M5 6v11M14 6v9M-10-9v5M10-9v5" stroke="#fff" stroke-width="1.5" opacity=".45"/>`);
+  `<g fill="${c}" opacity="${o}"><path d="M-30 0Q-18-16-6-10Q0-7 6-10Q18-16 30 0Q14-5 0-3Q-14-5-30 0Z"/><path d="M-30 3Q-12 1 0 2Q12 1 30 3Q16 20 0 20Q-16 20-30 3Z"/></g><path d="M-14 6v8M-5 6v10M5 6v10M14 6v8M-10-9v4M10-9v4" stroke="#fff" stroke-width="1" opacity=".3"/>`);
 /** Martini glass (stem base at x,y) with `n` olives on a pick. */
 const martini = (x: number, y: number, s: number, n = 3, liq = '#d8e0b0'): string => at(x, y, s, 0,
-  `<path d="M-52-150H52L4-78V-8Q26-4 34 0H-34Q-26-4-4-8V-78Z" fill="#fff" fill-opacity=".22" stroke="#fff" stroke-opacity=".7" stroke-width="2.500"/><path d="M-42-138H42L0-76Z" fill="${liq}" opacity=".8"/><path d="M-40-144L-6-92" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".5"/>` +
-  (n ? `<path d="M-34-170L26-110" stroke="#e8c27a" stroke-width="2.500"/>` + [0, 1, 2].slice(0, n).map((i) => `<circle cx="${-22 + i * 15}" cy="${-158 + i * 15}" r="9" fill="#7a8a2a"/><circle cx="${-19 + i * 15}" cy="${-160 + i * 15}" r="3" fill="#c8323a"/>`).join('') : ''));
+  `<path d="M-52-150H52L4-78V-8Q26-4 34 0H-34Q-26-4-4-8V-78Z" fill="#fff" fill-opacity=".22" stroke="#fff" stroke-opacity=".7" stroke-width="2.5"/><path d="M-42-138H42L0-76Z" fill="${liq}" opacity=".8"/><path d="M-40-144L-6-92" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".5"/>` +
+  (n ? `<path d="M-34-170L26-110" stroke="#e8c27a" stroke-width="2.5"/>` + [0, 1, 2].slice(0, n).map((i) => `<circle cx="${-22 + i * 15}" cy="${-158 + i * 15}" r="9" fill="#7a8a2a"/><circle cx="${-19 + i * 15}" cy="${-160 + i * 15}" r="3" fill="#c8323a"/>`).join('') : ''));
 /** Stemmed wine glass (base at x,y). `print` adds a lipstick mark on the rim. */
 const wine = (x: number, y: number, s: number, fill = 0.5, print = false): string => at(x, y, s, 0,
-  `<path d="M-30-150Q-36-90 0-76Q36-90 30-150Z" fill="#fff" fill-opacity=".16" stroke="#fff" stroke-opacity=".65" stroke-width="2.500"/><path d="M${-32 + fill * 2}-${R(80 + fill * 60)}Q-30-90 0-78Q30-90 ${32 - fill * 2}-${R(80 + fill * 60)}Z" fill="#6a0e24" opacity=".9"/><path d="M0-76V-6M-26 0Q0-12 26 0Z" stroke="#fff" stroke-opacity=".65" stroke-width="3" fill="#fff" fill-opacity=".2"/><path d="M-22-142Q-26-110-14-92" stroke="#fff" stroke-width="3.500" stroke-linecap="round" fill="none" opacity=".5"/>` +
+  `<path d="M-30-150Q-36-90 0-76Q36-90 30-150Z" fill="#fff" fill-opacity=".16" stroke="#fff" stroke-opacity=".65" stroke-width="2.5"/><path d="M${-32 + fill * 2}-${R(80 + fill * 60)}Q-30-90 0-78Q30-90 ${32 - fill * 2}-${R(80 + fill * 60)}Z" fill="#6a0e24" opacity=".9"/><path d="M0-76V-6M-26 0Q0-12 26 0Z" stroke="#fff" stroke-opacity=".65" stroke-width="3" fill="#fff" fill-opacity=".2"/><path d="M-22-142Q-26-110-14-92" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none" opacity=".5"/>` +
   (print ? kiss(22, -146, 0.3, -70) : ''));
 
 // ---------- avatars ----------
@@ -208,7 +217,7 @@ const shaker = (x: number, y: number, s: number, rot = 0): string => at(x, y, s,
 function avJessa(): string {
   const k = 'av_cg1_jessa';
   return av(k, '#c8703a', '#5a2430', '#ffc890', bust(k, JESSA, scrubs('#2a9a94', '#126a66') + '<path d="M132 160h22v12h-22Z" fill="#126a66" opacity=".6"/>',
-    `<g transform="rotate(-8 100 178)"><rect x="76" y="150" width="46" height="60" rx="7" fill="#15161c"/><rect x="82" y="156" width="15" height="15" rx="5" fill="#000"/><circle cx="87" cy="161" r="2.500" fill="#39405a"/><circle cx="92" cy="166" r="2.500" fill="#39405a"/></g><g fill="${JESSA.sk}"><rect x="112" y="166" width="20" height="9" rx="4.500"/><rect x="113" y="177" width="19" height="9" rx="4.500"/><rect x="113" y="188" width="17" height="9" rx="4.500"/></g><g fill="#d81e3c"><rect x="112" y="167" width="7" height="7" rx="3.500"/><rect x="113" y="178" width="7" height="7" rx="3.500"/><rect x="113" y="189" width="7" height="7" rx="3.500"/></g>`));
+    `<g transform="rotate(-8 100 178)"><rect x="76" y="150" width="46" height="60" rx="7" fill="#15161c"/><rect x="82" y="156" width="15" height="15" rx="5" fill="#000"/><circle cx="87" cy="161" r="2.5" fill="#39405a"/><circle cx="92" cy="166" r="2.5" fill="#39405a"/></g><g fill="${JESSA.sk}"><rect x="112" y="166" width="20" height="9" rx="4.5"/><rect x="113" y="177" width="19" height="9" rx="4.5"/><rect x="113" y="188" width="17" height="9" rx="4.5"/></g><g fill="#d81e3c"><rect x="112" y="167" width="7" height="7" rx="3.5"/><rect x="113" y="178" width="7" height="7" rx="3.5"/><rect x="113" y="189" width="7" height="7" rx="3.5"/></g>`));
 }
 function avTrent(): string {
   const k = 'av_cg1_trent';
@@ -217,13 +226,13 @@ function avTrent(): string {
   return av(k, '#4aa0c8', '#1c3a5a', '#ffd9a0',
     `<g filter="url(#${k}-f)" fill="${TRENT.sk}">${limb([166, 168, 17], [188, 128, 15], [164, 92, 12])}<circle cx="182" cy="140" r="19"/><circle cx="162" cy="86" r="12"/></g>` +
     bust(k, T, `<path d="${SHO}" fill="${TRENT.sk}"/><path d="M56 204L66 150Q76 146 84 144Q100 172 116 144Q124 146 134 150L144 204Z" fill="#f4f4f0"/><path d="M84 144Q100 172 116 144" fill="none" stroke="#c8c8c0" stroke-width="3"/>`,
-      `<path d="M40 176Q46 168 54 172M146 172Q154 168 160 176" fill="none" stroke="${TRENT.sh}" stroke-width="2.200" stroke-linecap="round"/>` + shaker(34, 168, 0.95, -12) + `<g fill="${TRENT.sk}"><rect x="14" y="160" width="26" height="10" rx="5"/><rect x="14" y="172" width="26" height="10" rx="5"/><rect x="15" y="184" width="24" height="10" rx="5"/></g>`));
+      `<path d="M40 176Q46 168 54 172M146 172Q154 168 160 176" fill="none" stroke="${TRENT.sh}" stroke-width="2.2" stroke-linecap="round"/>` + shaker(34, 168, 0.95, -12) + `<g fill="${TRENT.sk}"><rect x="14" y="160" width="26" height="10" rx="5"/><rect x="14" y="172" width="26" height="10" rx="5"/><rect x="15" y="184" width="24" height="10" rx="5"/></g>`));
 }
 function avJules(): string {
   const k = 'av_cg1_jules';
   return av(k, '#a83a2a', '#3a1418', '#ff9a70', bust(k, JULES,
-    `<path d="M40 160Q60 116 100 116Q140 116 160 160Z" fill="#8a1420"/><path d="${SHO}" fill="#c8242e"/><path d="M80 144Q100 168 120 144L126 152Q100 184 74 152Z" fill="#9a1620"/><path d="M92 170v24M108 170v24" stroke="#f4ecdc" stroke-width="2.500"/>` + tx(150, 186, 9, 'ENGINE 9', '#f4ecdc', 'textLength="38" lengthAdjust="spacingAndGlyphs"'),
-    marco(52, 168, 0.56, -6, true) + `<g fill="${JULES.sk}"><rect x="62" y="186" width="26" height="11" rx="5.500"/></g>`));
+    `<path d="M40 160Q60 116 100 116Q140 116 160 160Z" fill="#8a1420"/><path d="${SHO}" fill="#c8242e"/><path d="M80 144Q100 168 120 144L126 152Q100 184 74 152Z" fill="#9a1620"/><path d="M92 170v24M108 170v24" stroke="#f4ecdc" stroke-width="2.5"/>` + tx(150, 186, 9, 'ENGINE 9', '#f4ecdc', 'textLength="38" lengthAdjust="spacingAndGlyphs"'),
+    marco(52, 168, 0.56, -6, true) + `<g fill="${JULES.sk}"><rect x="62" y="186" width="26" height="11" rx="5.5"/></g>`));
 }
 function avKayla(): string {
   const k = 'av_cg1_kayla';
@@ -251,9 +260,9 @@ function avSasha(): string {
 function avDez(): string {
   const k = 'av_cg_bff';
   return av(k, '#3a2a5a', '#161226', '#7ad0ff', `<defs>${glow(`${k}-c`, '#8fd8ff', 0.8)}</defs>` + bust(k, DEZ,
-    `<path d="${SHO}" fill="#3a3f52"/><path d="M76 142Q100 170 124 142L134 152Q100 190 66 152Z" fill="#2a2e3e"/><path d="M90 168v30M110 168v30" stroke="#d8dce8" stroke-width="2.500"/>`,
+    `<path d="${SHO}" fill="#3a3f52"/><path d="M76 142Q100 170 124 142L134 152Q100 190 66 152Z" fill="#2a2e3e"/><path d="M90 168v30M110 168v30" stroke="#d8dce8" stroke-width="2.5"/>`,
     `<ellipse cx="80" cy="170" rx="90" ry="70" fill="url(#${k}-c)" opacity=".55"/><path d="M67 100C70 122 82 131 100 131C118 131 130 122 133 100Q100 126 67 100Z" fill="#8fd8ff" opacity=".2"/>` +
-    `<g transform="rotate(-12 44 176)"><rect x="24" y="148" width="42" height="68" rx="7" fill="#0c0e14"/><rect x="28" y="154" width="34" height="58" fill="#d8f0ff"/></g><g fill="${DEZ.sk}"><rect x="56" y="168" width="20" height="9" rx="4.500"/><rect x="57" y="179" width="19" height="9" rx="4.500"/></g>` +
+    `<g transform="rotate(-12 44 176)"><rect x="24" y="148" width="42" height="68" rx="7" fill="#0c0e14"/><rect x="28" y="154" width="34" height="58" fill="#d8f0ff"/></g><g fill="${DEZ.sk}"><rect x="56" y="168" width="20" height="9" rx="4.5"/><rect x="57" y="179" width="19" height="9" rx="4.5"/></g>` +
     // the chicken wing
     `<g transform="translate(160 150) rotate(24)"><rect x="-4" y="14" width="8" height="34" rx="4" fill="#f4ecdc"/><circle cx="-4" cy="48" r="5" fill="#f4ecdc"/><circle cx="4" cy="48" r="5" fill="#f4ecdc"/><path d="M-17-8Q-20-32 0-32Q20-32 17-8Q14 20 0 22Q-14 20-17-8Z" fill="#c8641c"/><path d="M-10-20q6-8 14-4M-8-4q4 6 12 2" fill="none" stroke="#f0a040" stroke-width="3" stroke-linecap="round"/><path d="M4-30Q20-28 17-8Q14 18 2 22Z" fill="#000" opacity=".2"/></g><g fill="${DEZ.sh}"><rect x="146" y="172" width="24" height="10" rx="5" transform="rotate(24 158 177)"/><rect x="142" y="184" width="24" height="10" rx="5" transform="rotate(24 154 189)"/></g>`));
 }
@@ -269,7 +278,7 @@ function avDoorcam(): string {
   return av(k, '#3a4a5a', '#141c24', '#8fd0ff',
     `<defs><radialGradient id="${k}-l" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#4a7a9a"/><stop offset=".5" stop-color="#12283a"/><stop offset="1" stop-color="#04080c"/></radialGradient></defs>` +
     `<rect x="56" y="14" width="88" height="172" rx="30" fill="#1c2026"/><rect x="60" y="18" width="80" height="164" rx="27" fill="#2c323a"/><path d="M104 18h9a27 27 0 0 1 27 27v110a27 27 0 0 1-27 27h-9Z" fill="#000" opacity=".22"/>` +
-    `<circle cx="100" cy="72" r="34" fill="#0a0c10"/><circle cx="100" cy="72" r="27" fill="url(#${k}-l)"/><path d="M82 62Q90 50 104 50" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".55"/><circle cx="100" cy="72" r="8" fill="#04080c"/><circle cx="97" cy="69" r="2.500" fill="#8fd0ff"/>` +
+    `<circle cx="100" cy="72" r="34" fill="#0a0c10"/><circle cx="100" cy="72" r="27" fill="url(#${k}-l)"/><path d="M82 62Q90 50 104 50" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" opacity=".55"/><circle cx="100" cy="72" r="8" fill="#04080c"/><circle cx="97" cy="69" r="2.5" fill="#8fd0ff"/>` +
     `<circle cx="100" cy="144" r="18" fill="#0a0c10" stroke="#8fd0ff" stroke-width="3"/><path d="M92 146a8 8 0 0 1 16 0v4h-16Z" fill="#8fd0ff" opacity=".7"/>` +
     `<circle cx="158" cy="38" r="18" fill="#e0182f" opacity=".3"/><circle cx="158" cy="38" r="10" fill="#ff2a3a"/>` + tx(158, 66, 11, 'REC', '#ff8a8a'));
 }
@@ -298,7 +307,7 @@ function cover(): string {
     `<rect x="60" y="180" width="250" height="400" fill="#05060e"/><rect x="72" y="190" width="226" height="390" fill="url(#${k}h)"/><path d="M72 470L298 500V580H72Z" fill="#0c0e1c"/><path d="M72 470L298 500" stroke="#3a4468" stroke-width="2"/>${frames}` +
     `<path d="M298 190L330 170V610L298 580Z" fill="#1c2238"/>` +
     // bathroom door ajar: light and steam
-    `<ellipse cx="470" cy="400" rx="220" ry="330" fill="url(#${k}g)" opacity=".5"/><rect x="408" y="150" width="150" height="440" fill="#0a0c16"/><rect x="420" y="160" width="70" height="430" fill="url(#${k}l)"/><path d="M490 160L556 140V620L490 590Z" fill="#2a2434"/><path d="M490 160L556 140V620L490 590Z" fill="none" stroke="#ffc880" stroke-width="2.500" opacity=".7"/><circle cx="502" cy="386" r="6" fill="#ffd9a0"/>` +
+    `<ellipse cx="470" cy="400" rx="220" ry="330" fill="url(#${k}g)" opacity=".5"/><rect x="408" y="150" width="150" height="440" fill="#0a0c16"/><rect x="420" y="160" width="70" height="430" fill="url(#${k}l)"/><path d="M490 160L556 140V620L490 590Z" fill="#2a2434"/><path d="M490 160L556 140V620L490 590Z" fill="none" stroke="#ffc880" stroke-width="2.5" opacity=".7"/><circle cx="502" cy="386" r="6" fill="#ffd9a0"/>` +
     `<path d="M420 590H490L400 800H180Z" fill="url(#${k}sp)" opacity=".5"/>` +
     steam(k, [[440, 210, 40], [470, 150, 46], [420, 120, 36], [500, 100, 30], [450, 300, 30], [400, 220, 26]], 0.34) +
     `<g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".3" filter="url(#${k}b2)"><path d="M440 480q-20-40 4-80t-6-90M468 420q18-40-4-80t10-80"/></g>` +
@@ -307,8 +316,8 @@ function cover(): string {
     // nightstand, face-down phone, banner
     `<path d="M150 640H600V800H110Z" fill="url(#${k}t)"/><path d="M150 640H600" stroke="#8a6a4a" stroke-width="3" opacity=".7"/>` +
     `<ellipse cx="350" cy="716" rx="170" ry="46" fill="url(#${k}p)"/><g transform="translate(350 712) rotate(-7)"><rect x="-112" y="-30" width="224" height="62" rx="16" fill="#dff4ff" filter="url(#${k}b2)"/><path d="M-106-30H106L116 20H-116Z" fill="#0b0c12"/><path d="M-116 20H116V30Q0 36-116 30Z" fill="#1c1e28"/><rect x="60" y="-22" width="34" height="26" rx="8" fill="#15161e"/><circle cx="70" cy="-9" r="6" fill="#2a2e44"/><circle cx="85" cy="-9" r="6" fill="#2a2e44"/></g>` +
-    `<g transform="translate(340 606) rotate(-3)"><rect x="-150" y="-30" width="300" height="60" rx="20" fill="#dff4ff" opacity=".2" filter="url(#${k}b2)"/><rect x="-146" y="-27" width="292" height="54" rx="18" fill="#1a2434" fill-opacity=".88" stroke="#9fe0ff" stroke-opacity=".6" stroke-width="1.500"/><rect x="-134" y="-16" width="32" height="32" rx="9" fill="#2ad06a"/><path d="M-126-4h16v9h-9l-5 5v-5h-2Z" fill="#fff"/>` +
-    `<text x="-92" y="-2" font-size="17" ${SANS} font-weight="700" fill="#fff">Jules</text><g fill="none" stroke-width="2.600" transform="translate(-32 -3)"><path d="M-10 0a10 10 0 0 1 20 0" stroke="#ff4a5a"/><path d="M-7 0a7 7 0 0 1 14 0" stroke="#ffd24a"/><path d="M-4 0a4 4 0 0 1 8 0" stroke="#4aa8ff"/></g><text x="-16" y="-2" font-size="17" ${SANS} font-weight="700" fill="#fff">(bestie)</text><text x="-92" y="16" font-size="12.500" ${SANS} fill="#b8d0e0">u up? he asleep yet</text><text x="136" y="-4" font-size="11" ${SANS} fill="#8aa0b0" text-anchor="end">now</text></g>` +
+    `<g transform="translate(340 606) rotate(-3)"><rect x="-150" y="-30" width="300" height="60" rx="20" fill="#dff4ff" opacity=".2" filter="url(#${k}b2)"/><rect x="-146" y="-27" width="292" height="54" rx="18" fill="#1a2434" fill-opacity=".88" stroke="#9fe0ff" stroke-opacity=".6" stroke-width="1.5"/><rect x="-134" y="-16" width="32" height="32" rx="9" fill="#2ad06a"/><path d="M-126-4h16v9h-9l-5 5v-5h-2Z" fill="#fff"/>` +
+    `<text x="-92" y="-2" font-size="17" ${SANS} font-weight="700" fill="#fff">Jules</text><g fill="none" stroke-width="2.6" transform="translate(-32 -3)"><path d="M-10 0a10 10 0 0 1 20 0" stroke="#ff4a5a"/><path d="M-7 0a7 7 0 0 1 14 0" stroke="#ffd24a"/><path d="M-4 0a4 4 0 0 1 8 0" stroke="#4aa8ff"/></g><text x="-16" y="-2" font-size="17" ${SANS} font-weight="700" fill="#fff">(bestie)</text><text x="-92" y="16" font-size="12.5" ${SANS} fill="#b8d0e0">u up? he asleep yet</text><text x="136" y="-4" font-size="11" ${SANS} fill="#8aa0b0" text-anchor="end">now</text></g>` +
     // water glass + ring box of his: a protein shaker, loyal as ever
     shaker(540, 640, 1.5), 0.7);
 }
@@ -319,7 +328,7 @@ function wallLock(): string {
   const items: [string, string][] = [['FILTHY MARTINI', '$14.50'], ['ESPRESSO MARTINI', '$15.00'], ['DIRTY SHIRLEY', '$12.00'], ['TRUFFLE FRIES', '$9.25'], ['SWEET POTATO FRIES', '$8.00'], ['OYSTERS (6)', '$18.00'], ['BURRATA', '$13.75']];
   const rows = items.map(([n, p], i) => {
     const y = 548 + i * 54;
-    return `<text x="86" y="${y}" font-size="25" fill="#f4f0e4">${n}</text><text x="516" y="${y}" font-size="27" fill="#ffe9a0" text-anchor="end">${p}</text><path d="M${96 + n.length * 16.5} ${y - 6}H${516 - p.length * 16 - 8}" stroke="#f4f0e4" stroke-width="2.500" stroke-dasharray="2 9" stroke-linecap="round" opacity=".45"/>`;
+    return `<text x="86" y="${y}" font-size="25" fill="#f4f0e4">${n}</text><text x="516" y="${y}" font-size="27" fill="#ffe9a0" text-anchor="end">${p}</text><path d="M${96 + n.length * 16.5} ${y - 6}H${516 - p.length * 16 - 8}" stroke="#f4f0e4" stroke-width="2.5" stroke-dasharray="2 9" stroke-linecap="round" opacity=".45"/>`;
   }).join('');
   const fern = (x: number, y: number, s: number, r: number): string => at(x, y, s, r, `<path d="M0 0Q10-60 0-120" fill="none" stroke="#2a7a4a" stroke-width="4"/><g fill="#3a9a5a">${[0, 1, 2, 3, 4, 5].map((i) => `<path d="M${3 - i * 0.4}-${14 + i * 18}q${30 - i * 4}-${16}${44 - i * 6}-${2}q-${24 - i * 3} ${14}-${44 - i * 6} ${2}ZM${3 - i * 0.4}-${14 + i * 18}q-${30 - i * 4}-${16}-${44 - i * 6}-${2}q${24 - i * 3} ${14} ${44 - i * 6} ${2}Z"/>`).join('')}</g>`);
   return frame(k, 600, 1300, '#ffd9a0',
@@ -337,7 +346,7 @@ function wallLock(): string {
     // the bar and her usual
     `<path d="M0 1040H600V1300H0Z" fill="url(#${k}b)"/><path d="M0 1040H600" stroke="#c8963a" stroke-width="6"/><path d="M0 1056H600" stroke="#fff" stroke-width="2" opacity=".2"/><ellipse cx="408" cy="1236" rx="120" ry="22" fill="#000" opacity=".4"/>` +
     martini(408, 1236, 1.55, 3) +
-    `<g transform="translate(150 1180)"><path d="M-70 0L-58 76H58L70 0Z" fill="#1c1c22"/><path d="M-70 0H70" stroke="#c8963a" stroke-width="4"/><g stroke="#e8b84a" stroke-width="11" stroke-linecap="round"><path d="M-48 0l-10-56M-28 0l-2-70M-8 0l6-62M14 0l-4-74M32 0l12-58M52 0l8-44"/></g><g stroke="#fff6c8" stroke-width="3" stroke-linecap="round" opacity=".5"><path d="M-30-10l-1.500-50M12-12l-3-50"/></g><g fill="#3a2a1c"><circle cx="-40" cy="-40" r="2"/><circle cx="-4" cy="-48" r="2"/><circle cx="34" cy="-40" r="2"/><circle cx="8" cy="-24" r="2"/></g></g>` +
+    `<g transform="translate(150 1180)"><path d="M-70 0L-58 76H58L70 0Z" fill="#1c1c22"/><path d="M-70 0H70" stroke="#c8963a" stroke-width="4"/><g stroke="#e8b84a" stroke-width="11" stroke-linecap="round"><path d="M-48 0l-10-56M-28 0l-2-70M-8 0l6-62M14 0l-4-74M32 0l12-58M52 0l8-44"/></g><g stroke="#fff6c8" stroke-width="3" stroke-linecap="round" opacity=".5"><path d="M-30-10l-1.5-50M12-12l-3-50"/></g><g fill="#3a2a1c"><circle cx="-40" cy="-40" r="2"/><circle cx="-4" cy="-48" r="2"/><circle cx="34" cy="-40" r="2"/><circle cx="8" cy="-24" r="2"/></g></g>` +
     fern(20, 1090, 1.1, 24) + fern(590, 1010, 0.9, -28), 0.5);
 }
 
@@ -352,12 +361,12 @@ function cityMap(): string {
     `<pattern id="${k}p" width="48" height="44" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)"><rect x="3" y="3" width="42" height="38" rx="3" fill="#1c2740"/><rect x="8" y="8" width="14" height="12" fill="#243352"/><rect x="27" y="22" width="12" height="13" fill="#212e4a"/></pattern>`,
     `<rect width="800" height="600" fill="url(#${k}b)"/><rect width="800" height="600" fill="url(#${k}p)"/>` +
     // river + park
-    `<path d="M-10 330Q120 300 200 380T400 470T620 560T810 540V610H-10Z" fill="#0c2a44"/><path d="M-10 330Q120 300 200 380T400 470T620 560T810 540" fill="none" stroke="#1c4a6a" stroke-width="5"/><path d="M40 420q30-10 60 10M300 510q40 0 70 20M560 580q40-10 80 0" stroke="#2a6a8a" stroke-width="2.500" fill="none" opacity=".7"/>` +
+    `<path d="M-10 330Q120 300 200 380T400 470T620 560T810 540V610H-10Z" fill="#0c2a44"/><path d="M-10 330Q120 300 200 380T400 470T620 560T810 540" fill="none" stroke="#1c4a6a" stroke-width="5"/><path d="M40 420q30-10 60 10M300 510q40 0 70 20M560 580q40-10 80 0" stroke="#2a6a8a" stroke-width="2.5" fill="none" opacity=".7"/>` +
     `<path d="M520 300Q600 300 640 340Q660 400 600 420Q520 420 500 370Q490 320 520 300Z" fill="#12362c"/><g fill="#1c5a40">${[[530, 330], [560, 360], [600, 340], [580, 392], [540, 388], [622, 376]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="11"/>`).join('')}</g>` +
     // roads
     `<g fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="#0a0f1c" stroke-width="15"><path d="M-10 196L144 180L384 120L704 144L810 130M144 180L192 516L160 610M288 384L384 120L400-10M144 180L288 384L480 228L576 276L704 144M576 276L672 432L810 470M288 384L192 516M480 228L384 120M672 432L420 610"/></g>` +
     `<g stroke="#4a5a80" stroke-width="9"><path d="M-10 196L144 180L384 120L704 144L810 130M144 180L192 516L160 610M288 384L384 120L400-10M144 180L288 384L480 228L576 276L704 144M576 276L672 432L810 470M288 384L192 516M480 228L384 120M672 432L420 610"/></g>` +
-    `<path d="M-10 196L144 180L384 120L704 144L810 130M576 276L672 432L810 470" stroke="#e8b84a" stroke-width="3" opacity=".8"/><path d="M144 180L192 516M288 384L384 120M144 180L288 384L480 228L576 276L704 144M288 384L192 516M672 432L420 610" stroke="#8a9ac0" stroke-width="1.500" stroke-dasharray="8 8" opacity=".8"/></g>` +
+    `<path d="M-10 196L144 180L384 120L704 144L810 130M576 276L672 432L810 470" stroke="#e8b84a" stroke-width="3" opacity=".8"/><path d="M144 180L192 516M288 384L384 120M144 180L288 384L480 228L576 276L704 144M288 384L192 516M672 432L420 610" stroke="#8a9ac0" stroke-width="1.5" stroke-dasharray="8 8" opacity=".8"/></g>` +
     // bridges
     `<g stroke="#8a9ac0" stroke-width="3"><path d="M176 356l32 6M170 366l32 6M476 556l26 20M468 564l26 20"/></g>` + spots +
     `<g transform="translate(748 548)"><circle r="24" fill="#0a0f1c" stroke="#4a5a80" stroke-width="2"/><path d="M0-18L6 0L0 18L-6 0Z" fill="#4a5a80"/><path d="M0-18L6 0H-6Z" fill="#ff5a4a"/></g>`, 0.5, 0.1);
@@ -375,7 +384,7 @@ function phLighthouse(): string {
     `<path d="M0 392L800 470V600H0Z" fill="url(#${k}f)"/><path d="M0 376L800 440V470L0 392Z" fill="#f0e6d0"/><path d="M0 430L800 540M0 470L800 600M0 520L600 600" stroke="#000" stroke-width="2" opacity=".25"/>` +
     `<path d="M0 96L800 40" stroke="#f0e6d0" stroke-width="10"/>${frames}` +
     // the label-maker sticker on #7
-    `<g transform="translate(668 404) rotate(-3)"><rect x="-110" y="-17" width="220" height="34" rx="3" fill="#000" opacity=".3" transform="translate(3 4)"/><rect x="-110" y="-17" width="220" height="34" rx="3" fill="#f8f8f4"/><rect x="-110" y="-17" width="220" height="34" rx="3" fill="none" stroke="#b8b8b0" stroke-width="1.500"/><text x="0" y="7" font-size="19" font-family="Courier New, Courier, monospace" font-weight="700" text-anchor="middle" fill="#14141a" textLength="200" lengthAdjust="spacingAndGlyphs">#7 — about loneliness</text></g>` +
+    `<g transform="translate(640 408) rotate(-3) scale(1.32)"><rect x="-110" y="-17" width="220" height="34" rx="3" fill="#000" opacity=".3" transform="translate(3 4)"/><rect x="-110" y="-17" width="220" height="34" rx="3" fill="#f8f8f4"/><rect x="-110" y="-17" width="220" height="34" rx="3" fill="none" stroke="#b8b8b0" stroke-width="1.5"/><text x="0" y="7" font-size="19" font-family="Courier New, Courier, monospace" font-weight="700" text-anchor="middle" fill="#14141a" textLength="200" lengthAdjust="spacingAndGlyphs">#7 — about loneliness</text></g>` +
     `<rect width="800" height="600" fill="url(#${k}s)" opacity=".7"/>` +
     // a gym bag and shaker left in the hall
     `<path d="M70 520Q70 470 130 470H210Q260 470 260 520V560H70Z" fill="#1c2a3a"/><path d="M120 470Q165 420 210 470" fill="none" stroke="#14202c" stroke-width="9"/>${shaker(300, 530, 1.1)}`, 0.5);
@@ -385,7 +394,7 @@ function phLighthouse(): string {
 function phRoses(): string {
   const k = 'cg1_ph_roses';
   const rose = (x: number, y: number, r: number, i: number): string =>
-    `<g transform="translate(${x} ${y}) rotate(${i * 47})"><circle r="${r}" fill="${['#c8102a', '#a80c22', '#e01c36'][i % 3]}"/><path d="M${-r * 0.6} 0A${r * 0.6} ${r * 0.6} 0 1 1 ${r * 0.2} ${r * 0.55}A${r * 0.35} ${r * 0.35} 0 1 1 ${-r * 0.1} ${-r * 0.15}" fill="none" stroke="#5a0612" stroke-width="2.600" stroke-linecap="round"/><path d="M${-r * 0.8} ${-r * 0.3}Q0 ${-r * 1.1} ${r * 0.8} ${-r * 0.3}" fill="none" stroke="#ff6a7a" stroke-width="2" opacity=".5"/></g>`;
+    `<g transform="translate(${x} ${y}) rotate(${i * 47})"><circle r="${r}" fill="${['#c8102a', '#a80c22', '#e01c36'][i % 3]}"/><path d="M${R(-r * 0.6)} 0A${R(r * 0.6)} ${R(r * 0.6)} 0 1 1 ${R(r * 0.2)} ${R(r * 0.55)}A${R(r * 0.35)} ${R(r * 0.35)} 0 1 1 ${R(-r * 0.1)} ${R(-r * 0.15)}" fill="none" stroke="#5a0612" stroke-width="2.6" stroke-linecap="round"/><path d="M${R(-r * 0.8)} ${R(-r * 0.3)}Q0 ${R(-r * 1.1)} ${R(r * 0.8)} ${R(-r * 0.3)}" fill="none" stroke="#ff6a7a" stroke-width="2" opacity=".5"/></g>`;
   const pos: number[][] = [[300, 150, 40], [230, 190, 38], [370, 186, 38], [170, 250, 36], [300, 230, 42], [430, 246, 36], [220, 300, 38], [380, 304, 38], [300, 316, 40], [140, 330, 32], [460, 328, 32], [250, 380, 36], [350, 384, 36], [180, 400, 30], [420, 402, 30], [300, 420, 34], [120, 270, 26], [480, 270, 26], [260, 120, 28], [344, 112, 28], [196, 150, 26], [410, 150, 26], [230, 440, 26], [372, 444, 26]];
   return frame(k, 600, 800, '#ffe0c0',
     lg(`${k}w`, '#cfe4e8', '#8ab0b8') + lg(`${k}d`, '#f4f0e8', '#b8b0a4') + glow(`${k}g`, '#fff', 0.7) + lg(`${k}v`, '#bfe0e8', '#6a9aa8', 1, 0),
@@ -401,7 +410,7 @@ function phRoses(): string {
     pos.map(([x, y, r], i) => rose(x, y, r, i)).join('') +
     // the card on its plastic fork
     `<g transform="translate(452 330) rotate(9)"><path d="M0 60V330" stroke="#f4f4f4" stroke-width="7" stroke-linecap="round"/><path d="M-12 60V10M-4 60V4M4 60V4M12 60V10" stroke="#f4f4f4" stroke-width="5" stroke-linecap="round"/><rect x="-104" y="-60" width="208" height="124" rx="5" fill="#000" opacity=".25" transform="translate(5 6)"/><rect x="-104" y="-60" width="208" height="124" rx="5" fill="#fffaf0"/><rect x="-98" y="-54" width="196" height="112" rx="3" fill="none" stroke="#e0b8c0" stroke-width="2"/>` +
-    `<text ${HAND} font-weight="700" fill="#2a1c2a" text-anchor="middle"><tspan x="0" y="-10" font-size="29">For Mrs. Smith.</tspan><tspan x="46" y="38" font-size="31">— J</tspan></text></g>`, 0.4);
+    `<text ${HAND} font-weight="700" fill="#2a1c2a" text-anchor="middle"><tspan x="0" y="-10" font-size="27" textLength="180" lengthAdjust="spacingAndGlyphs">For Mrs. Smith.</tspan><tspan x="46" y="38" font-size="31">— J</tspan></text></g>`, 0.4);
 }
 
 // ---------- cg1_ph_marco ----------
@@ -457,7 +466,7 @@ function phSink(): string {
     `<g transform="translate(476 418)"><rect x="-14" y="-52" width="28" height="52" rx="3" fill="#1a1216"/><rect x="-12" y="-66" width="24" height="16" fill="#c8a85a"/><path d="M-9-66V-90L9-102V-66Z" fill="#d81e3c"/><path d="M-9-90L9-102V-94L-9-84Z" fill="#ff6a7a" opacity=".6"/></g><g transform="translate(436 424) rotate(80)"><rect x="-13" y="-50" width="26" height="50" rx="4" fill="#1a1216"/><path d="M-8-44v38" stroke="#fff" stroke-width="3" opacity=".3"/></g>` +
     `<path d="M150 418q20 4 16 14q-22 6-34-6q4-8 18-8Z" fill="#f3c64a" opacity=".0"/>` +
     // towels on the rail
-    `<rect x="620" y="180" width="200" height="10" rx="5" fill="url(#${k}cr)"/>${towel(712, 176, 170, 210)}<circle cx="110" cy="440" r="11" fill="none" stroke="#f3c64a" stroke-width="3.500"/><path d="M110 429v-8" stroke="#f3c64a" stroke-width="3"/>`, 0.45);
+    `<rect x="560" y="180" width="260" height="10" rx="5" fill="url(#${k}cr)"/>${towel(690, 176, 216, 230)}<circle cx="110" cy="440" r="11" fill="none" stroke="#f3c64a" stroke-width="3.5"/><path d="M110 429v-8" stroke="#f3c64a" stroke-width="3"/>`, 0.45);
 }
 
 // ---------- cg1_ph_mirror — MRS SMITH WAS HERE ----------
@@ -470,7 +479,7 @@ function phMirror(): string {
     `<g filter="url(#${k}bl)"><rect x="54" y="64" width="492" height="622" fill="#dfe8ec" opacity=".75"/><ellipse cx="180" cy="180" rx="150" ry="90" fill="url(#${k}g)"/><path d="M80 560Q300 600 520 520L530 660H70Z" fill="#3a4a54" opacity=".5"/></g>` +
     `<g stroke="#fff" stroke-linecap="round" opacity=".35"><path d="M120 600v60M200 520v120M410 560v90M480 500v60M330 600v50" stroke-width="3"/></g><g fill="#fff" opacity=".5"><circle cx="120" cy="664" r="4"/><circle cx="200" cy="644" r="4"/><circle cx="410" cy="654" r="4"/><circle cx="330" cy="654" r="4"/></g>` +
     // the lipstick writing
-    `<g ${HAND} font-weight="700" fill="#d81e3c" stroke="#d81e3c" stroke-width="2.500" stroke-linejoin="round" text-anchor="middle" transform="rotate(-5 300 300)"><text x="300" y="230" font-size="78">MRS SMITH</text><text x="300" y="330" font-size="78">WAS HERE</text></g>` +
+    `<g ${HAND} font-weight="700" fill="#d81e3c" stroke="#d81e3c" stroke-width="2.5" stroke-linejoin="round" text-anchor="middle" transform="rotate(-5 300 300)"><text x="300" y="230" font-size="78">MRS SMITH</text><text x="300" y="330" font-size="78">WAS HERE</text></g>` +
     `<g ${HAND} font-weight="700" fill="#ff8a9a" opacity=".35" text-anchor="middle" transform="rotate(-5 300 300) translate(-2 -2)"><text x="300" y="230" font-size="78">MRS SMITH</text><text x="300" y="330" font-size="78">WAS HERE</text></g>` +
     kiss(330, 460, 2.4, -14) + `<path d="M150 380Q300 420 470 366" fill="none" stroke="#d81e3c" stroke-width="7" stroke-linecap="round" opacity=".8"/>` +
     // shelf: the guilty lipstick
@@ -482,18 +491,172 @@ function phCollar(): string {
   const k = 'cg1_ph_collar';
   return frame(k, 600, 800, '#ffb890',
     lg(`${k}n`, '#243a66', '#0e1830') + lg(`${k}s`, JULES.sk, JULES.sh, 1, 0) + glow(`${k}g`, '#ffd0a0', 0.6) +
-    `<pattern id="${k}r" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M2 0v9" stroke="#0a1226" stroke-width="2.500" opacity=".5"/></pattern>`,
+    `<pattern id="${k}r" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M2 0v9" stroke="#0a1226" stroke-width="2.5" opacity=".5"/></pattern>`,
     `<rect width="600" height="800" fill="url(#${k}n)"/>` +
     // neck, stubble, adam's apple
-    `<path d="M150-10Q170 220 110 330Q300 480 520 300Q440 200 450-10Z" fill="url(#${k}s)"/><path d="M300 150q16 30 0 70" fill="none" stroke="${JULES.sh}" stroke-width="5" opacity=".6"/><path d="M130-10Q300 90 470-10Z" fill="#1c1412" opacity=".8"/><g fill="#1c1412" opacity=".5">${[[190, 60], [230, 84], [270, 70], [330, 80], [380, 64], [420, 40], [300, 96], [250, 110], [350, 108], [210, 110]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.500"/>`).join('')}</g>` +
+    `<path d="M150-10Q170 220 110 330Q300 480 520 300Q440 200 450-10Z" fill="url(#${k}s)"/><path d="M300 150q16 30 0 70" fill="none" stroke="${JULES.sh}" stroke-width="5" opacity=".6"/><path d="M130-10Q300 90 470-10Z" fill="#1c1412" opacity=".8"/><g fill="#1c1412" opacity=".5">${[[190, 60], [230, 84], [270, 70], [330, 80], [380, 64], [420, 40], [300, 96], [250, 110], [350, 108], [210, 110]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.5"/>`).join('')}</g>` +
     `<path d="M120 330Q210 380 300 400M480 310Q400 380 300 400" fill="none" stroke="${JULES.sh}" stroke-width="5" opacity=".5" stroke-linecap="round"/>` +
     // shirt body + ribbed collar
     `<path d="M-20 330Q60 260 110 300Q300 480 520 276Q570 250 620 300V820H-20Z" fill="url(#${k}n)"/><ellipse cx="200" cy="600" rx="300" ry="300" fill="url(#${k}g)" opacity=".5"/>` +
     `<path d="M80 290Q300 520 540 262L568 300Q300 590 60 330Z" fill="#1c2e56"/><path d="M80 290Q300 520 540 262L568 300Q300 590 60 330Z" fill="url(#${k}r)"/><path d="M60 330Q300 590 568 300" fill="none" stroke="#0a1226" stroke-width="4"/><path d="M80 290Q300 520 540 262" fill="none" stroke="#4a64a0" stroke-width="3" opacity=".8"/>` +
     `<path d="M60 520q60 60 40 200M520 480q-40 100-10 240M300 620v200" stroke="#0a1226" stroke-width="6" fill="none" opacity=".4" stroke-linecap="round"/>` +
     // the print
-    kiss(396, 440, 2.3, -38, '#e0203c', 0.9) + `<path d="M440 500q14 14 6 30" stroke="#e0203c" stroke-width="5" fill="none" opacity=".5" stroke-linecap="round"/>` +
+    kiss(420, 404, 2.3, -40, '#e0203c', 0.9) + `<path d="M470 470q14 14 6 30" stroke="#e0203c" stroke-width="5" fill="none" opacity=".5" stroke-linecap="round"/>` +
     `<g transform="translate(170 640) rotate(8)" opacity=".85"><path d="M0-40L34-20V16Q34 40 0 52Q-34 40-34 16V-20Z" fill="none" stroke="#c8a85a" stroke-width="4"/>${tx(0, -2, 13, 'ENGINE', '#c8a85a')}${tx(0, 26, 26, '9', '#c8a85a')}</g>`, 0.6);
+}
+
+// ---------- wardrobe (torso coordinates) ----------
+/** Sweetheart-neck dress/top over the female torso. */
+const gown = (c: string, d: string): string =>
+  `<path d="M-52 60L-40 2M52 60L40 2" stroke="${c}" stroke-width="5" fill="none"/><g fill="${c}"><circle cx="-29" cy="86" r="34"/><circle cx="29" cy="86" r="34"/><path d="M-62 92C-60 110-42 124-38 146C-40 176-79 194-81 240V262H81V240C79 194 40 176 38 146C42 124 60 110 62 92Q0 130-62 92Z"/></g>` +
+  `<path d="M0 70Q-3 86 0 104M-36 150Q0 160 36 150" fill="none" stroke="${d}" stroke-width="3" stroke-linecap="round" opacity=".7"/><path d="M-52 70Q-38 56-20 62" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".25"/>`;
+/** Gym tank over the male torso. */
+const tank = (c: string, d: string): string =>
+  `<path d="M-52-2L-30-8Q0 42 30-8L52-2Q46 50 70 78C70 110 56 150 54 190V262H-54V190C-56 150-70 110-70 78Q-46 50-52-2Z" fill="${c}"/><path d="M-30-8Q0 42 30-8M-52-2Q-46 50-70 78M52-2Q46 50 70 78" fill="none" stroke="${d}" stroke-width="3"/>`;
+/** Open-collar shirt over the male torso (fill may be a pattern). */
+const shirt = (c: string, d: string): string =>
+  `<path d="M-22-14Q-40-4-70 4Q-84 8-84 28L-70 70C-70 110-56 150-54 190V262H54V190C56 150 70 110 70 70L84 28Q84 8 70 4Q40-4 22-14L0 44Z" fill="${c}"/><path d="M-22-14L0 44L22-14L40 6L8 60L0 44L-8 60L-40 6Z" fill="${d}"/><path d="M0 50V262" stroke="${d}" stroke-width="4"/><g fill="#f4ecdc"><circle cy="90" r="4"/><circle cy="140" r="4"/><circle cy="190" r="4"/></g>`;
+const BLUSH = '<ellipse cx="80" cy="104" rx="10" ry="5.5" fill="#e8405a" opacity=".32"/><ellipse cx="120" cy="104" rx="10" ry="5.5" fill="#e8405a" opacity=".32"/>';
+const LEGS_F = limb([-41, 250, 42], [-30, 430, 27], [-34, 600, 16]) + limb([41, 250, 42], [44, 430, 27], [36, 600, 16]);
+
+/** The Velvet Fern, booth 4: tufted green velvet + the brass plate. */
+const boothDefs = (k: string): string => lg(`${k}v`, '#2a7a58', '#0c2e22') + glow(`${k}g`, '#ffc070', 0.75) + lg(`${k}t`, '#4a2a18', '#1a0e08') + lg(`${k}br`, '#f4d88a', '#a87a2a') +
+  `<pattern id="${k}pl" width="44" height="44" patternUnits="userSpaceOnUse"><rect width="44" height="44" fill="#a8242c"/><path d="M0 11h44M0 33h44M11 0v44M33 0v44" stroke="#1c1418" stroke-width="7" opacity=".6"/><path d="M0 22h44M22 0v44" stroke="#f4d0a0" stroke-width="1.5" opacity=".7"/></pattern>`;
+const booth = (k: string): string =>
+  `<rect width="600" height="800" fill="#1a0e0c"/><path d="M0 60H600V86H0Z" fill="#3a2014"/><path d="M-10 96Q300 70 610 96V800H-10Z" fill="url(#${k}v)"/><path d="M-10 96Q300 70 610 96" fill="none" stroke="#6ad0a0" stroke-width="5" opacity=".6"/>` +
+  `<g stroke="#061a14" stroke-width="5" opacity=".7">${[60, 180, 300, 420, 540].map((x) => `<path d="M${x} 88V800"/>`).join('')}</g>` +
+  `<g transform="translate(300 150)"><rect x="-44" y="-36" width="88" height="72" rx="10" fill="url(#${k}br)"/><rect x="-37" y="-29" width="74" height="58" rx="6" fill="none" stroke="#6a4a14" stroke-width="2.5"/><circle cx="-30" cy="0" r="3" fill="#6a4a14"/><circle cx="30" cy="0" r="3" fill="#6a4a14"/>` +
+  `<text x="0" y="19" font-size="54" font-family="Georgia, Times New Roman, serif" font-weight="700" text-anchor="middle" fill="#3a2608">4</text></g>`;
+const fries = (x: number, y: number, s: number): string => at(x, y, s, 0, '<g stroke="#e8b84a" stroke-width="11" stroke-linecap="round"><path d="M-48 0l-10-56M-28 0l-2-70M-8 0l6-62M14 0l-4-74M32 0l12-58M52 0l8-44"/></g><path d="M-70 0L-58 76H58L70 0Z" fill="#f4ecdc"/><path d="M-66 20H66M-62 44H62" stroke="#c8323a" stroke-width="5"/>');
+
+// ---------- cg1_ph_us_fern — you and her, booth 4 ----------
+function phUsFern(): string {
+  const k = 'cg1_ph_us_fern';
+  const S = TRENT.sk, J = JESSA.sk;
+  const trent = `<g filter="url(#${k}f)" fill="${S}">${limb([76, 26, 22], [150, 150, 19], [250, 300, 17])}<path d="${TM}"/>${tank('#f4f4f0', '#b8b8b0')}</g><path d="M-56 8Q-32 14-10 6M56 8Q32 14 10 6" fill="none" stroke="${TRENT.sh}" stroke-width="2.6" stroke-linecap="round"/>` + hd(-2, HY, HS, -7, TRENT);
+  const jessa = `<g filter="url(#${k}f)" fill="${J}">${limb([-62, 24, 17], [-84, 120, 14], [-70, 230, 11])}<path d="${TF}"/>${BUST}${gown('#16121a', '#3a3040')}</g>${collar(JESSA.sh)}<path d="M-12 20Q0 34 12 20" fill="none" stroke="#f3c64a" stroke-width="2"/><circle cy="30" r="4" fill="#f3c64a"/>` + hd(6, HY, HS, 9, JN);
+  return frame(k, 600, 800, '#ffc890', boothDefs(k),
+    booth(k) + `<ellipse cx="300" cy="760" rx="380" ry="420" fill="url(#${k}g)" opacity=".5"/>` +
+    at(416, 440, 1.5, 3, trent) + at(196, 486, 1.42, -4, hb(6, HY, HS, 9, JESSA) + jessa) +
+    // his arm around her
+    `<g filter="url(#${k}f)" fill="${S}">${hand(96, 510, 60, TRENT.sh, 2.5)}</g>` +
+    // table: her usual, his usual
+    `<path d="M-10 706H610V800H-10Z" fill="url(#${k}t)"/><path d="M-10 706H610" stroke="#c8963a" stroke-width="4" opacity=".8"/>${martini(110, 792, 1.0, 3)}${fries(300, 742, 0.9)}${shaker(500, 742, 1.6)}` +
+    `<circle cx="430" cy="770" r="50" fill="url(#${k}g)"/><rect x="418" y="748" width="24" height="40" rx="4" fill="#f6ecd8"/><path d="M430 748Q438 736 430 726Q422 736 430 748Z" fill="#ffd24a"/>`, 0.5);
+}
+
+// ---------- cg1_ph_fern_j — same booth, one week later ----------
+function phFernJ(): string {
+  const k = 'cg1_ph_fern_j';
+  const S = JULES.sk, J = JESSA.sk, PL = `url(#${k}pl)`;
+  const jules = `<g filter="url(#${k}f)"><g fill="${PL}">${limb([76, 26, 26], [150, 150, 23], [240, 300, 20])}</g><path d="${TM}" fill="${S}"/>${shirt(PL, '#6a141c')}</g><path d="M-12 8Q0 20 12 8" fill="none" stroke="${JULES.sh}" stroke-width="2.6" stroke-linecap="round"/>` + hd(-4, HY, HS, -10, JULES);
+  const JE: Face = { ...JN, mouth: lips('#c81e38', '#6e0a20', true) };
+  const jessa = `<g filter="url(#${k}f)" fill="${J}"><path d="${TF}"/>${BUST}${gown('#c8102a', '#6e0a20')}</g>${collar(JESSA.sh)}` + hd(8, HY, HS, 14, JE);
+  return frame(k, 600, 800, '#ff9a70', boothDefs(k),
+    booth(k) + `<ellipse cx="300" cy="760" rx="380" ry="420" fill="url(#${k}g)" opacity=".5"/>` +
+    at(404, 420, 1.5, 2, jules) + at(214, 470, 1.42, 7, hb(8, HY, HS, 14, JESSA) + jessa) +
+    // his arm around her; her hand on his chest
+    `<g filter="url(#${k}f)" fill="${S}">${hand(112, 500, 64, JULES.sh, 2.5)}${sl(J, 34, 'M250 560L330 600L380 540')}<g fill="${J}">${hand(386, 524, -20, JESSA.sh, 2.1)}</g></g><g fill="#d81e3c"><circle cx="372" cy="496" r="6"/><circle cx="386" cy="492" r="6"/><circle cx="400" cy="496" r="6"/></g>` +
+    // her legs across his lap
+    `<path d="M300 660H620V800H300Z" fill="#1c2a44"/><g filter="url(#${k}f)" fill="${J}">${limb([190, 744, 46], [420, 690, 30], [620, 736, 18])}${sl(J, 70, 'M170 810L400 768L620 806')}</g><path d="M70 690Q160 640 262 676L250 800H50Z" fill="#c8102a"/>` +
+    // two martinis
+    `<path d="M-10 770H250V800H-10Z" fill="url(#${k}t)"/>${martini(60, 796, 0.95, 3)}${martini(170, 800, 0.95, 2)}`, 0.5);
+}
+
+// ---------- cg1_ph_bbq — courtyard barbecue ----------
+function bbqDefs(k: string): string {
+  return lg(`${k}s`, '#5aa8e0', '#ffe0b0') + brick(`${k}br`, '#a85a3a', '#5a2a1c') + lg(`${k}gr`, '#5a9a4a', '#2a5a2a') + blur(`${k}bl`, 7);
+}
+const lights = (y: number, w: number): string => `<path d="M0 ${y}Q${w / 4} ${y + 50} ${w / 2} ${y + 10}T${w} ${y}" fill="none" stroke="#2a1c14" stroke-width="2.5"/>` +
+  [0.08, 0.24, 0.4, 0.58, 0.76, 0.92].map((t, i) => `<circle cx="${R(t * w)}" cy="${R(y + 22 + Math.sin(t * 6.28 * 2 - 1.2) * 14)}" r="8" fill="${['#ffd24a', '#ff6a5a', '#7ad0ff', '#8ae08a'][i % 4]}"/>`).join('');
+const apron = (zero: boolean): string =>
+  `<path d="M-40 6L-14-40M40 6L14-40" stroke="#c8323a" stroke-width="5" fill="none"/><path d="M-48 6H48L62 100L72 262H-72L-62 100Z" fill="#fbf6ea"/><path d="M-48 6H48L62 100L72 262H-72L-62 100Z" fill="none" stroke="#c8323a" stroke-width="4"/>` +
+  (zero ? `<text ${SANS} font-weight="700" text-anchor="middle" fill="#c8323a"><tspan x="0" y="52" font-size="21">KISS THE</tspan><tspan x="0" y="78" font-size="21">COOK</tspan></text>` : '<path d="M-30 46h60M-22 70h44" stroke="#c8323a" stroke-width="12"/>') +
+  (zero ? `<path d="M-52 40L54 50M-40 74L42 66" stroke="#14141a" stroke-width="5" stroke-linecap="round"/><text ${HAND} font-weight="700" text-anchor="middle" fill="#14141a" transform="rotate(-4)"><tspan x="0" y="128" font-size="30">ZERO</tspan><tspan x="0" y="162" font-size="30">THREAT</tspan></text>` : '');
+function phBbq(): string {
+  const k = 'cg1_ph_bbq';
+  const S = TRENT.sk, J = JESSA.sk, U = JULES.sk;
+  const trent = `<g filter="url(#${k}f)" fill="${S}">${sl(S, 38, 'M76 26L156 10L128-86M-76 26L-156 10L-128-86')}<circle cx="120" cy="-6" r="30"/><circle cx="-120" cy="-6" r="30"/><circle cx="128" cy="-96" r="17"/><circle cx="-128" cy="-96" r="17"/><path d="${TM}"/>${tank('#f4f4f0', '#b8b8b0')}` +
+    `<path d="M-56 214H56L72 400H8L0 310L-8 400H-72Z" fill="#2a4a8a"/></g>` + hd(0, HY, HS, 0, { ...TRENT, lite: true });
+  const jessa = `<g filter="url(#${k}f)" fill="${J}">${sl(J, 27, 'M-62 24L-90 120L-60 200M62 24L96 110L70 30')}<path d="${TF}"/>${BUST}<path d="M-70 340L-48 600H-18L-6 340ZM6 340L16 600H46L70 340Z"/>${gown('#f0c83a', '#a8801c')}<path d="M-81 240Q0 262 81 240L96 350Q0 372-96 350Z" fill="#f0c83a"/></g>${collar(JESSA.sh)}` +
+    `<g transform="translate(74 4)"><path d="M-14-30H14L10 22H-10Z" fill="#e0182f"/><path d="M-14-30H14" stroke="#fff" stroke-width="3"/></g>` + hd(4, HY, HS, 8, { ...JN, lite: true });
+  const jules = `<g filter="url(#${k}f)">${sl(U, 38, 'M-76 26L-110 130L-60 210M76 26L120 130L176 190')}<path d="${TM}" fill="${U}"/><path d="M-17-10Q-40-4-70 4Q-84 8-84 28L-70 70L-54 262H54L70 70L84 28Q84 8 70 4Q40-4 17-10Q0 10-17-10Z" fill="#3a4658"/>${apron(true)}</g>` +
+    `<path d="M176 190L250 150M176 190L246 170" stroke="#c8ccd0" stroke-width="5" stroke-linecap="round"/>` + hd(-2, HY, HS, -8, { ...JULES, lite: true });
+  return frame(k, 800, 600, '#fff0c0', bbqDefs(k),
+    `<rect width="800" height="600" fill="url(#${k}s)"/><rect y="60" width="800" height="330" fill="url(#${k}br)"/>` +
+    `<path d="M0 380H800V600H0Z" fill="url(#${k}gr)"/>${lights(70, 800)}` +
+    at(176, 268, 0.86, 0, trent) + at(396, 300, 0.78, 0, hb(4, HY, HS, 8, JESSA) + jessa) +
+    // the grill
+    `<g transform="translate(726 470)"><path d="M-70 40L-90 140M70 40L90 140M0 40V140" stroke="#1c1c22" stroke-width="8"/><path d="M-96 0Q-96 60 0 60Q96 60 96 0Z" fill="#1c1c22"/><ellipse rx="96" ry="16" fill="#3a3a44"/><g fill="#a84a2a"><ellipse cx="-40" cy="-4" rx="24" ry="9"/><ellipse cx="20" cy="-2" rx="24" ry="9"/></g><ellipse cx="60" cy="-8" rx="16" ry="7" fill="#c8641c"/></g>` +
+    
+    at(590, 230, 1.06, 2, jules) +
+    `<ellipse cx="300" cy="590" rx="60" ry="10" fill="#000" opacity=".3"/>${marco(296, 500, 0.6)}`, 0.35);
+}
+
+// ---------- cg1_wall_home — the two of you. And him, at the grill. ----------
+function wallHome(): string {
+  const k = 'cg1_wall_home';
+  const S = TRENT.sk, J = JESSA.sk, U = JULES.sk;
+  const trent = `<g filter="url(#${k}f)" fill="${S}">${sl(S, 40, 'M76 26L112 140L100 262')}<path d="${TM}"/>${tank('#f4f4f0', '#b8b8b0')}</g>${collar(TRENT.sh)}` + hd(-2, HY, HS, -6, TRENT);
+  const jessa = `<g filter="url(#${k}f)" fill="${J}">${sl(J, 28, 'M-62 24L-86 120L-74 230')}<path d="${TF}"/>${BUST}${gown('#f0c83a', '#a8801c')}</g>${collar(JESSA.sh)}` + hd(6, HY, HS, 10, JN);
+  const jules = `<path d="${TM}" fill="${U}"/>${sl(U, 38, 'M76 26L116 120L170 170')}<path d="M-17-10Q-40-4-70 4Q-84 8-84 28L-70 70H70L84 28Q84 8 70 4Q40-4 17-10Q0 10-17-10Z" fill="#3a4658"/>${apron(false)}` + hd(-6, HY, HS, -12, { ...JULES, lite: true });
+  return frame(k, 600, 1300, '#fff0c0', bbqDefs(k),
+    `<rect width="600" height="1300" fill="url(#${k}s)"/><rect y="250" width="600" height="560" fill="url(#${k}br)"/><path d="M0 800H600V1300H0Z" fill="url(#${k}gr)"/>${lights(240, 600)}` +
+    // Jules, out of focus, looking her way
+    `<g filter="url(#${k}bl)">${at(452, 520, 0.92, 0, jules)}<g transform="translate(540 760)"><path d="M-96 0Q-96 60 0 60Q96 60 96 0Z" fill="#1c1c22"/><ellipse rx="96" ry="16" fill="#3a3a44"/></g><circle cx="556" cy="640" r="40" fill="#fff" opacity=".4"/></g>` +
+    at(382, 800, 1.72, 3, trent) + at(196, 870, 1.62, -4, hb(6, HY, HS, 10, JESSA) + jessa) +
+    `<g filter="url(#${k}f)" fill="${S}">${hand(84, 900, 60, TRENT.sh, 2.8)}</g>` + shaker(556, 1190, 2.2, 8) + `<g fill="${S}"><rect x="500" y="1170" width="60" height="22" rx="11"/><rect x="500" y="1196" width="60" height="22" rx="11"/><rect x="502" y="1222" width="56" height="22" rx="11"/></g>`, 0.4);
+}
+
+// ---------- cg1_ph_kayla_kar — Kayla's story: alone at Ruby Mic, 22:20 ----------
+function phKayla(): string {
+  const k = 'cg1_ph_kayla_kar';
+  const S = KAYLA.sk;
+  const K2: Face = { ...KAYLA, lid: 3.2, brows: 'M77.5 78Q86 74 95 77M105 77Q114 74 122.5 78', mouth: '<ellipse cx="100" cy="118" rx="9" ry="8" fill="#5a1420" stroke="#b03a48" stroke-width="2.6"/><path d="M94 114h12v2.500H94Z" fill="#fff" stroke="none"/>',
+    front: KAYLA.front + '<path d="M62 70C58 20 142 20 138 70" fill="none" stroke="#14141a" stroke-width="6"/><path d="M68 44L64 6L92 30ZM132 44L136 6L108 30Z" fill="#14141a"/><path d="M72 38L70 18L84 30ZM128 38L130 18L116 30Z" fill="#ff8ab0"/>' };
+  const fig = `<g filter="url(#${k}f)" fill="${S}">${limb([-62, 24, 17], [-130, -30, 14], [-150, -130, 11])}${hand(-152, -146, 0, KAYLA.sh, 1.2)}${limb([62, 24, 17], [100, 90, 14], [36, 44, 11])}<path d="${TF}"/>${BUST}${gown('#1c1426', '#5a3a7a')}</g>${collar(KAYLA.sh)}` +
+    `<g fill="#fff" opacity=".7">${[[-40, 90], [-10, 130], [30, 100], [50, 170], [-50, 200], [0, 220], [20, 70], [-30, 160]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="2.5"/>`).join('')}</g>` +
+    `<g transform="translate(26 30) rotate(-30)"><rect x="-7" y="-10" width="14" height="60" rx="5" fill="#2a2a34"/><circle cy="-22" r="17" fill="#8a8a98"/><path d="M-12-30l24 16M-16-20l24 16" stroke="#3a3a44" stroke-width="2"/></g><g fill="${S}">${hand(34, 50, -30, KAYLA.sh, 1.1)}</g>` + hd(2, HY, HS, -6, K2);
+  return frame(k, 600, 800, '#ff6ab0',
+    lg(`${k}w`, '#3a1040', '#12061c') + glow(`${k}g`, '#ff3a8a', 0.6) + glow(`${k}sp`, '#fff0f8', 0.5) + blur(`${k}bl`, 6) + lg(`${k}st`, '#4a1c3a', '#1c0a18'),
+    `<rect width="600" height="800" fill="url(#${k}w)"/><circle cx="190" cy="130" r="240" fill="url(#${k}g)"/><path d="M300-20L80 800H520Z" fill="url(#${k}sp)" opacity=".5"/>` +
+    // neon sign
+    `<g ${SANS} font-weight="700" text-anchor="middle" font-size="58"><g filter="url(#${k}bl)" fill="#ff2a6a"><text x="190" y="120">RUBY</text><text x="190" y="184">MIC</text></g><g fill="#fff0f4" stroke="#ff2a6a" stroke-width="2.5"><text x="190" y="120">RUBY</text><text x="190" y="184">MIC</text></g></g><rect x="60" y="56" width="260" height="150" rx="16" fill="none" stroke="#ff6a9a" stroke-width="4"/>` +
+    // the clock: 10:20
+    `<g transform="translate(480 120)"><circle r="62" fill="#1c0a18"/><circle r="54" fill="#fbf6ea"/><g stroke="#14141a" stroke-width="4" stroke-linecap="round">${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => `<path d="M0-48V-${i % 3 ? 43 : 38}" transform="rotate(${i * 30})"/>`).join('')}</g>${tx(0, -24, 13, '12', '#14141a')}${tx(0, 37, 13, '6', '#14141a')}${tx(31, 5, 13, '3', '#14141a')}${tx(-31, 5, 13, '9', '#14141a')}` +
+    `<path d="M0 4V-28" stroke="#14141a" stroke-width="7" stroke-linecap="round" transform="rotate(310)"/><path d="M0 6V-42" stroke="#14141a" stroke-width="4.5" stroke-linecap="round" transform="rotate(120)"/><circle r="5" fill="#e0182f"/></g>` +
+    `<path d="M0 640H600V800H0Z" fill="url(#${k}st)"/><path d="M0 640H600" stroke="#ff6ab0" stroke-width="3" opacity=".6"/>` + at(300, 380, 1.2, 2, fig) +
+    // lyrics monitor + the empty table she is singing to
+    `<g transform="translate(96 600) rotate(-6)"><rect x="-76" y="-50" width="152" height="100" rx="8" fill="#0c0c14"/><rect x="-68" y="-42" width="136" height="76" fill="#1c2a6a"/>${tx(0, -12, 13, '♪ ALL BY MYSELF ♪', '#fff')}<rect x="-54" y="4" width="108" height="6" fill="#3a4a9a"/><rect x="-54" y="4" width="40" height="6" fill="#ffd24a"/></g>` +
+    `<g fill="#0a040e"><ellipse cx="470" cy="770" rx="140" ry="30"/><path d="M360 800V700Q360 680 380 680H420Q440 680 440 700V800ZM520 800V690Q520 670 540 670H580Q600 670 600 690V800Z"/></g>`, 0.55);
+}
+
+// ---------- cg1_ph_bed — under the duvet (key clue) ----------
+function phBed(): string {
+  const k = 'cg1_ph_bed';
+  const S = JULES.sk, J = JESSA.sk;
+  const JE: Face = { ...JESSA, under: BLUSH, lid: 2.2, mouth: lips('#c81e38', '#6e0a20', true),
+    back: '<path d="M44 106C12 22 78 0 104 6C152 2 188 42 158 106C168 126 150 138 140 128L134 100H66L60 128C48 138 32 126 44 106Z" fill="#1e1418"/>',
+    front: '<path d="M62 106C54 44 84 29 102 29C124 29 146 46 138 104C137 78 128 60 110 49C98 64 68 68 62 106Z" fill="#1e1418"/><path d="M110 49Q124 70 120 96M68 76Q78 50 102 40" fill="none" stroke="#5a3a44" stroke-width="2" stroke-linecap="round"/><path d="M118 50Q134 76 124 104" fill="none" stroke="#1e1418" stroke-width="4" stroke-linecap="round"/>' + HOOPS };
+  const JU: Face = { ...JULES, under: (JULES.under ?? '') + BLUSH, lid: 2.4 };
+  return frame(k, 600, 800, '#ffc890',
+    lg(`${k}p`, '#f4ece0', '#c8b8a8') + lg(`${k}d`, '#fbf6ee', '#bcae9e') + glow(`${k}g`, '#ffd9a0', 0.7) + lg(`${k}h`, '#4a3020', '#1c100a') + brick(`${k}br`, '#5a2c20', '#2a1410'),
+    `<rect width="600" height="800" fill="url(#${k}br)"/><rect y="60" width="600" height="110" fill="url(#${k}h)"/><rect y="160" width="600" height="640" fill="#d8ccbc"/><rect x="484" y="40" width="34" height="150" fill="#2a1810"/>` +
+    // pillows
+    `<path d="M-20 150Q150 110 310 150Q330 300 300 420H-20Z" fill="url(#${k}p)"/><path d="M290 150Q450 110 620 150V420H300Q270 300 290 150Z" fill="url(#${k}p)"/><path d="M290 150Q270 300 300 420" fill="none" stroke="#9a8a7a" stroke-width="4" opacity=".6"/><ellipse cx="300" cy="330" rx="330" ry="260" fill="url(#${k}g)" opacity=".7"/>` +
+    // her arm up to the camera
+    `<g filter="url(#${k}f)" fill="${J}">${limb([120, 440, 26], [50, 300, 22], [-30, 120, 20])}</g>` +
+    at(214, 428, 1.5, -8, `<g filter="url(#${k}f)" fill="${J}"><path d="${TF}"/></g>${collar(JESSA.sh)}`) + at(410, 420, 1.5, 6, `<g filter="url(#${k}f)" fill="${S}"><path d="${TM}"/></g><path d="M-56 8Q-32 14-10 6M56 8Q32 14 10 6M0 44V70" fill="none" stroke="${JULES.sh}" stroke-width="2.6" stroke-linecap="round"/>`) +
+    hd(206, 314, 1.72, -16, JE) + hd(412, 300, 1.72, 10, JU) +
+    // the duvet + Marco wedged in
+    `<g filter="url(#${k}f)">${marco(312, 500, 1.15, 4, false, false)}</g>` +
+    `<path d="M-20 520Q60 470 150 500Q230 520 268 560Q312 590 356 556Q420 510 500 520Q570 524 620 500V820H-20Z" fill="url(#${k}d)"/><path d="M-20 520Q60 470 150 500Q230 520 268 560Q312 590 356 556Q420 510 500 520Q570 524 620 500" fill="none" stroke="#fff" stroke-width="6"/>` +
+    `<g fill="none" stroke="#a89888" stroke-width="5" stroke-linecap="round" opacity=".6"><path d="M60 560q40 80 10 200M200 590q-20 90 30 190M330 620q20 80-10 170M450 580q40 70 20 200M540 560q30 60 20 120"/></g>` +
+    // her hand holding the duvet up
+    `<g filter="url(#${k}f)" fill="${J}">${hand(176, 506, 100, JESSA.sh, 2.2)}</g><g fill="#d81e3c"><circle cx="150" cy="494" r="6"/><circle cx="154" cy="508" r="6"/><circle cx="156" cy="522" r="6"/></g>` +
+    `<g filter="url(#${k}f)" fill="#d2a46c"><ellipse cx="282" cy="566" rx="16" ry="11"/><ellipse cx="344" cy="564" rx="16" ry="11"/></g>` +
+    // helmet on the bedpost
+    `<g filter="url(#${k}f)">${helmet(488, 104, 1.2, 12, true)}</g>`, 0.5);
 }
 
 export const caught1Art: Record<string, string> = {
@@ -517,4 +680,10 @@ export const caught1Art: Record<string, string> = {
   cg1_ph_sink: phSink(),
   cg1_ph_mirror: phMirror(),
   cg1_ph_collar: phCollar(),
+  cg1_wall_home: wallHome(),
+  cg1_ph_us_fern: phUsFern(),
+  cg1_ph_fern_j: phFernJ(),
+  cg1_ph_bbq: phBbq(),
+  cg1_ph_kayla_kar: phKayla(),
+  cg1_ph_bed: phBed(),
 };

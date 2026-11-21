@@ -95,7 +95,7 @@ const RAFE: Face = {
   front: `<path d="M65 74C58 22 142 22 135 74Q100 54 65 74Z" fill="${CAPC}"/><path d="M110 34C134 38 139 56 135 74Q124 66 110 62Z" fill="#000" opacity=".22"/><path d="M84 66Q100 44 116 66Q100 58 84 66Z" fill="#c89648"/><path d="M82 68Q100 42 118 68" fill="none" stroke="#fff" stroke-width="3"/><path d="M96 51h8" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`,
 };
 const DOUG: Face = {
-  sk: '#e4b294', sh: '#aa7a62', rim: '#cfe0ff', iris: '#5c5c54', browC: '#5a4634', lid: 1.5, dead: true,
+  sk: '#e4b294', sh: '#aa7a62', rim: '#cfe0ff', iris: '#5c5c54', browC: '#5a4634', lid: 0.3, dead: true,
   brows: 'M77 80.500Q86 79 95.500 80.500M104.500 80.500Q114 79 123 80.500',
   mouth: '<path d="M85 115H115Q114 124 100 124Q86 124 85 115Z" fill="#fff" stroke="#6a3a34" stroke-width="1.600"/><path d="M92 115v8M100 115v9M108 115v8" stroke="#6a3a34" stroke-width=".7" opacity=".6"/><path d="M82 108Q79 114 82 121M118 108Q121 114 118 121" stroke="#7a4a3a" stroke-width="1.300" opacity=".7"/>',
   under: '<path d="M80 99Q87 103 94 99M106 99Q113 103 120 99" fill="none" stroke="#6a4a5a" stroke-width="2" opacity=".45"/>',
@@ -146,8 +146,6 @@ const thumb = (x: number, y: number, s: number, rot: number, sk: string, sh: str
 const eThumb = (x: number, y: number, s: number): string => thumb(x, y, s, 0, '#ffc83a', '#c8862a');
 const eBall = (x: number, y: number, s: number): string =>
   at(x, y, s, -35, '<ellipse rx="15" ry="9.500" fill="#8a4a22"/><path d="M-8 0H8M-4-3V3M0-3V3M4-3V3" stroke="#fff" stroke-width="1.600"/>');
-const ePickle = (x: number, y: number, s: number, rot = 25): string =>
-  at(x, y, s, rot, '<rect x="-7" y="-16" width="14" height="32" rx="7" fill="#5fae3a"/><g fill="#2f6e1c"><circle cx="-2" cy="-8" r="1.400"/><circle cx="3" cy="-2" r="1.400"/><circle cx="-2" cy="5" r="1.400"/><circle cx="2" cy="10" r="1.400"/></g>');
 
 /** Avatar-style bust in 200-unit space (top-left origin), body extended below. */
 const bust = (top: string, o: Face, extra = '', rim = o.rim): string =>
@@ -211,7 +209,7 @@ const phone = (x: number, y: number, rot: number, c: string, sk: string): string
 const star = (x: number, y: number, r: number, c = '#fff'): string =>
   `<path d="M${x} ${y - r}L${x + r * 0.22} ${y - r * 0.22}L${x + r} ${y}L${x + r * 0.22} ${y + r * 0.22}L${x} ${y + r}L${x - r * 0.22} ${y + r * 0.22}L${x - r} ${y}L${x - r * 0.22} ${y - r * 0.22}Z" fill="${c}"/>`;
 /** "CASTELLANO 12" back print centred on 0,0 (about 150 wide). */
-const c12 = (c: string): string => tx(0, -14, 22, 'CASTELLANO', c, 'letter-spacing="1"') + tx(0, 36, 54, '12', c);
+const c12 = (c: string): string => tx(0, -14, 22, 'CASTELLANO', c, 'textLength="150" lengthAdjust="spacingAndGlyphs"') + tx(0, 36, 54, '12', c);
 
 // ---------- cg3_cover ----------
 function cover(): string {
@@ -272,7 +270,7 @@ function wallLock(): string {
   const card =
     `<rect x="24" y="436" width="552" height="572" fill="#000" opacity=".45" transform="translate(8 12)"/><rect x="24" y="436" width="552" height="572" fill="#3a2716"/><rect x="24" y="436" width="552" height="572" fill="none" stroke="#6a4a2a" stroke-width="4"/><rect x="40" y="452" width="520" height="540" fill="#1c140c"/>` +
     `<rect x="44" y="456" width="512" height="532" fill="#f4eedc"/><rect x="44" y="456" width="512" height="532" fill="url(#${k}pp)"/><rect x="56" y="476" width="488" height="68" fill="#1f5a3a"/>${pine(84)}${pine(516)}` +
-    tx(300, 521, 26, 'ROLLING PINES GOLF CLUB', '#fff', 'letter-spacing=".5"') + tx(300, 588, 30, 'D. HOYT — 6/14/19', '#1a3aa8', '', HAND) + `<path d="M150 598H450" stroke="#1c2a20" stroke-width="1.500"/>` +
+    tx(300, 521, 26, 'ROLLING PINES GOLF CLUB', '#fff', 'textLength="372" lengthAdjust="spacingAndGlyphs"') + tx(300, 588, 30, 'D. HOYT — 6/14/19', '#1a3aa8', 'textLength="270" lengthAdjust="spacingAndGlyphs"', HAND) + `<path d="M150 598H450" stroke="#1c2a20" stroke-width="1.500"/>` +
     table(T1, 0) + table(T2, 9) + ring(493, T1 + 2 * RH + 40, 40, 0) + ring(493, T2 + 2 * RH + 40, 40, 140) +
     `<text x="66" y="972" font-size="13" fill="#5a5a48" ${SANS}>BEST ROUND EVER. FRAMED BY DOUG.</text>` +
     `<path d="M44 456H240L120 988H44Z" fill="#fff" opacity=".05"/>`;
@@ -372,8 +370,8 @@ function garage(): string {
 function dockBg(k: string): string {
   return `<rect width="600" height="800" fill="#2a1410"/><rect x="40" y="40" width="520" height="440" fill="url(#${k}sky)"/><rect x="40" y="300" width="520" height="180" fill="url(#${k}sea)"/>` +
     `<path d="M40 300Q140 270 240 292Q340 276 430 294Q500 280 560 296V306H40Z" fill="#1a1838"/><g fill="#ffd98a"><circle cx="90" cy="294" r="2.500"/><circle cx="150" cy="288" r="2"/><circle cx="270" cy="290" r="2.500"/><circle cx="480" cy="290" r="2"/><circle cx="530" cy="293" r="2.500"/></g>` +
-    `<circle cx="430" cy="318" r="70" fill="url(#${k}bg)"/><path d="M430 396Q424 430 432 470" stroke="#ff5a4a" stroke-width="10" opacity=".4" fill="none" stroke-linecap="round"/>` +
-    `<g transform="translate(430 366) rotate(5)"><path d="M-22 22Q0 34 22 22L15-12H-15Z" fill="#d8262a"/><path d="M2-12H15L22 22Q12 30 2 30Z" fill="#000" opacity=".25"/><path d="M-12-12L-7-44H7L12-12Z" fill="none" stroke="#d8262a" stroke-width="5"/><rect x="-18" y="2" width="36" height="7" fill="#f4f4f0"/><circle cy="-50" r="8" fill="#fff6d8"/></g><circle cx="427" cy="316" r="22" fill="url(#${k}bg)"/>` +
+    `<circle cx="334" cy="318" r="60" fill="url(#${k}bg)"/><path d="M334 386Q328 420 336 470" stroke="#ff5a4a" stroke-width="10" opacity=".4" fill="none" stroke-linecap="round"/>` +
+    `<g transform="translate(334 358) rotate(5) scale(.85)"><path d="M-22 22Q0 34 22 22L15-12H-15Z" fill="#d8262a"/><path d="M2-12H15L22 22Q12 30 2 30Z" fill="#000" opacity=".25"/><path d="M-12-12L-7-44H7L12-12Z" fill="none" stroke="#d8262a" stroke-width="5"/><rect x="-18" y="2" width="36" height="7" fill="#f4f4f0"/><circle cy="-50" r="8" fill="#fff6d8"/></g><circle cx="331" cy="316" r="22" fill="url(#${k}bg)"/>` +
     `<path d="M40 40H560V480H40Z" fill="none" stroke="#3a2016" stroke-width="22"/><path d="M300 40V480M40 190H560" stroke="#3a2016" stroke-width="12"/><path d="M40 190H560" stroke="#6a4028" stroke-width="2"/>` +
     `<path d="M30 70Q160 120 300 76Q440 120 570 70" fill="none" stroke="#1c0e0a" stroke-width="2"/><g fill="#ffe6a8"><circle cx="80" cy="88" r="6"/><circle cx="150" cy="100" r="6"/><circle cx="224" cy="94" r="6"/><circle cx="376" cy="94" r="6"/><circle cx="450" cy="100" r="6"/><circle cx="520" cy="88" r="6"/></g>` +
     `<circle cx="150" cy="100" r="60" fill="url(#${k}wm)"/><circle cx="450" cy="100" r="60" fill="url(#${k}wm)"/><rect y="480" width="600" height="320" fill="#3a1c14"/><rect width="600" height="800" fill="url(#${k}am)"/>`;
@@ -387,8 +385,8 @@ function usDock(): string {
   const k = 'cg3_ph_us_dock';
   const D: Face = { ...DANA2, rim: '#ffb870' };
   return frame(k, 600, 800, '#ffb870', dockDefs(k),
-    dockBg(k) + `<g filter="url(#${k}f)">${put(404, 392, 1.62, 4, bust(POLO, DOUG, collar('#2a62a8', '#16365e') + pinn(60, 182, 0.95), '#ffb870'))}</g>` +
-    `<g filter="url(#${k}f)">${put(196, 420, 1.6, -5, bust('#f2ead8', D, `<path d="M74 147Q100 186 126 147L120 146Q100 170 80 146Z" fill="${DANA.sk}"/><path d="M92 176l8 8 8-8" fill="none" stroke="#e8c050" stroke-width="2"/>`))}</g>` +
+    dockBg(k) + `<g filter="url(#${k}f)">${put(448, 396, 1.62, 4, bust(POLO, DOUG, collar('#2a62a8', '#16365e') + pinn(60, 182, 0.95), '#ffb870'))}</g>` +
+    `<g filter="url(#${k}f)">${put(170, 424, 1.6, -5, bust('#f2ead8', D, `<path d="M74 147Q100 186 126 147L120 146Q100 170 80 146Z" fill="${DANA.sk}"/><path d="M92 176l8 8 8-8" fill="none" stroke="#e8c050" stroke-width="2"/>`))}</g>` +
     tableTop(k) + wglass(74, 716, 1.5, '#f2d88a') + `<g transform="translate(300 730)"><ellipse rx="70" ry="16" fill="#f4f0e6"/><ellipse cx="-10" cy="-6" rx="38" ry="9" fill="#c8843a"/><path d="M10-10l30-6M14-2l30 0" stroke="#e8c050" stroke-width="5" stroke-linecap="round"/></g>` +
     `<g filter="url(#${k}f)">${thumb(520, 640, 2.3, 6, DOUG.sk, DOUG.sh)}<path d="M478 800V730Q480 700 506 700H548Q572 702 574 730V800Z" fill="${POLO}"/></g>`, 0.6);
 }
@@ -399,8 +397,8 @@ function dockR(): string {
   const RV: Face = { ...RAFE, rim: '#ffb870', mouth: laugh('#7a3a34'), lid: 0.2,
     front: `<path d="M65 82C58 36 86 26 100 26C116 26 142 36 135 82C132 62 122 52 100 52C78 52 68 62 65 82Z" fill="#c89648"/><path d="M110 28C134 34 140 58 135 82C132 66 124 56 110 53Z" fill="#8a6230" opacity=".7"/>` + visor('#2a6ad0') };
   return frame(k, 600, 800, '#ffb870', dockDefs(k),
-    dockBg(k) + `<g filter="url(#${k}f)">${put(398, 350, 1.72, -7, bust('#e8eef4', RV, `<path d="M82 146Q100 170 118 146Z" fill="${RAFE.sk}"/><path d="M78 146Q100 176 122 146" fill="none" stroke="#2a6ad0" stroke-width="4"/>`, '#ffb870'))}</g>` +
-    `<g filter="url(#${k}f)">${put(204, 424, 1.6, 8, bust('#2a8a7a', D, `<path d="M70 148Q100 192 130 148L120 146Q100 172 80 146Z" fill="${DANA.sk}"/>`))}</g>` +
+    dockBg(k) + `<g filter="url(#${k}f)">${put(452, 356, 1.72, -5, bust('#e8eef4', RV, `<path d="M82 146Q100 170 118 146Z" fill="${RAFE.sk}"/><path d="M78 146Q100 176 122 146" fill="none" stroke="#2a6ad0" stroke-width="4"/>`, '#ffb870'))}</g>` +
+    `<g filter="url(#${k}f)">${put(164, 430, 1.6, 4, bust('#2a8a7a', D, `<path d="M70 148Q100 192 130 148L120 146Q100 172 80 146Z" fill="${DANA.sk}"/>`))}</g>` +
     tableTop(k) + `<g transform="translate(300 734)"><ellipse rx="96" ry="22" fill="#f4f0e6"/><ellipse rx="96" ry="22" fill="none" stroke="#c8c0b0" stroke-width="2"/><path d="M-36-4L24-46L44-6Z" fill="#4a2414"/><path d="M-36-4L44-6V8L-36 10Z" fill="#2e140a"/><path d="M-22-14L32-22" stroke="#f4e6d0" stroke-width="5"/><circle cx="20" cy="-48" r="9" fill="#e0283a"/><path d="M20-56q4-8 10-8" stroke="#3a7a2a" stroke-width="2.500" fill="none"/><path d="M-60 6Q-30 14 0 8" stroke="#b8323a" stroke-width="4" fill="none" stroke-linecap="round"/></g>` +
     `<g stroke="#d8dce4" stroke-width="6" stroke-linecap="round"><path d="M206 706L262 728M400 700L344 726"/></g><ellipse cx="268" cy="730" rx="11" ry="7" fill="#d8dce4" transform="rotate(20 268 730)"/><ellipse cx="338" cy="728" rx="11" ry="7" fill="#d8dce4" transform="rotate(-24 338 728)"/>` +
     `<g filter="url(#${k}f)"><g fill="${DANA.sk}">${hand(196, 700, -70, DANA.sh, 1.5)}</g><g fill="${RAFE.sk}">${hand(412, 694, 68, RAFE.sh, 1.7)}</g></g>`, 0.6);
@@ -437,9 +435,9 @@ function keycard(): string {
     `<circle cx="300" cy="258" r="9" fill="#0a2c30"/><circle cx="298" cy="256" r="3" fill="#7ae0d4"/><rect x="430" y="400" width="52" height="150" rx="8" fill="#2a2a30"/><circle cx="456" cy="424" r="5" fill="#4aff7a"/><rect x="436" y="486" width="76" height="18" rx="9" fill="#c8ced6"/>` +
     `<g filter="url(#${k}f)"><path d="M150 800L176 640Q200 596 260 600L350 640L330 800Z" fill="${S}"/><g transform="rotate(-7 300 500)"><rect x="196" y="318" width="170" height="60" rx="8" fill="#19b3a6"/><rect x="150" y="350" width="270" height="250" rx="6" fill="url(#${k}p)"/></g></g>` +
     `<g transform="rotate(-7 300 500)"><rect x="210" y="330" width="60" height="8" fill="#fff" opacity=".5"/><path d="M150 356Q285 388 420 356" fill="none" stroke="#b8ae94" stroke-width="2"/>${tx(285, 428, 26, 'LAKEVIEW INN', '#0f6a6c', 'letter-spacing="3"')}<path d="M196 444q14-10 28 0t28 0t28 0t28 0t28 0t28 0" fill="none" stroke="#19b3a6" stroke-width="3"/>` +
-    `<text x="170" y="484" font-size="13" fill="#7a7260" ${SANS}>GUEST / ROOM</text>${tx(285, 524, 31, 'MR. &amp; MRS. SMITH', '#1a2a8a', 'transform="rotate(-3 285 520)"', HAND)}${tx(285, 572, 40, '— 214', '#1a2a8a', 'transform="rotate(-3 285 566)"', HAND)}<path d="M180 536Q290 524 392 532" stroke="#1a2a8a" stroke-width="2" fill="none" opacity=".6"/></g>` +
-    `<g filter="url(#${k}f)" fill="${S}"><rect x="108" y="520" width="118" height="50" rx="25" transform="rotate(-24 167 545)"/><rect x="330" y="640" width="96" height="42" rx="21" transform="rotate(-20 378 661)"/><rect x="336" y="690" width="90" height="40" rx="20" transform="rotate(-14 381 710)"/></g>` +
-    `<path d="M196 508Q216 494 226 508Q222 528 204 532Q192 524 196 508Z" fill="#e8496a"/><path d="M200 510Q210 502 220 508" stroke="#fff" stroke-width="2.500" fill="none" opacity=".6"/>`, 0.55);
+    `<text x="170" y="484" font-size="13" fill="#7a7260" ${SANS}>GUEST / ROOM</text>${tx(285, 524, 28, 'MR. &amp; MRS. SMITH', '#1a2a8a', 'transform="rotate(-3 285 520)" textLength="230" lengthAdjust="spacingAndGlyphs"', HAND)}${tx(285, 572, 40, '— 214', '#1a2a8a', 'transform="rotate(-3 285 566)"', HAND)}<path d="M180 536Q290 524 392 532" stroke="#1a2a8a" stroke-width="2" fill="none" opacity=".6"/></g>` +
+    `<g filter="url(#${k}f)" fill="${S}"><rect x="96" y="596" width="118" height="50" rx="25" transform="rotate(-24 155 621)"/><rect x="330" y="640" width="96" height="42" rx="21" transform="rotate(-20 378 661)"/><rect x="336" y="690" width="90" height="40" rx="20" transform="rotate(-14 381 710)"/></g>` +
+    `<g transform="translate(-12 76)"><path d="M196 508Q216 494 226 508Q222 528 204 532Q192 524 196 508Z" fill="#e8496a"/><path d="M200 510Q210 502 220 508" stroke="#fff" stroke-width="2.500" fill="none" opacity=".6"/></g>`, 0.55);
 }
 
 // ---------- cg3_ph_lot (KEY CLUE, recovered) ----------
@@ -453,7 +451,7 @@ function lot(): string {
     lg(`${k}a`, '#3a3848', '#17161e') + glow(`${k}c`, '#ffd98a', 0.95) + glow(`${k}n`, '#3ae0d0', 0.6),
     `<rect width="800" height="600" fill="url(#${k}s)"/><path d="M0 250Q200 210 400 236Q600 214 800 246V300H0Z" fill="#1c1630"/>` +
     `<rect x="20" y="170" width="760" height="130" fill="#d8ccb4"/><rect x="20" y="170" width="760" height="130" fill="#2a1c3a" opacity=".45"/><path d="M10 170H790L770 150H30Z" fill="#5a2a22"/><path d="M20 236H780" stroke="#3a2a2a" stroke-width="5"/><path d="M20 240H780" stroke="#e8e0d0" stroke-width="2" opacity=".5"/>${doors}` +
-    `<circle cx="660" cy="118" r="90" fill="url(#${k}n)"/><rect x="560" y="96" width="200" height="44" rx="6" fill="#0c1c24" stroke="#3ae0d0" stroke-width="3"/>${tx(660, 127, 23, 'LAKEVIEW INN', '#8af6ea')}<path d="M640 140V170M680 140V170" stroke="#1c1c22" stroke-width="5"/>` +
+    `<circle cx="590" cy="118" r="90" fill="url(#${k}n)"/><rect x="490" y="96" width="200" height="44" rx="6" fill="#0c1c24" stroke="#3ae0d0" stroke-width="3"/>${tx(590, 127, 23, 'LAKEVIEW INN', '#8af6ea')}<path d="M570 140V170M610 140V170" stroke="#1c1c22" stroke-width="5"/>` +
     `<rect y="300" width="800" height="300" fill="url(#${k}a)"/><path d="M60 300L-40 470M230 300L170 470M570 300L630 470M740 300L840 470" stroke="#e8e0c8" stroke-width="4" opacity=".4"/>` +
     `<ellipse cx="430" cy="432" rx="230" ry="16" fill="#000" opacity=".5"/><g filter="url(#${k}f)"><path d="M224 418V352Q224 340 238 338L330 334L352 282Q356 272 370 272H470Q482 272 488 282L512 334L612 338Q630 340 632 354V418Z" fill="#eef0f2"/></g>` +
     `<path d="M224 392H632V418H224Z" fill="#8a9098"/><path d="M364 286H414V334H342ZM424 286H472L496 334H424Z" fill="#ffe6a8"/><circle cx="430" cy="310" r="50" fill="url(#${k}c)" opacity=".8"/>` +
@@ -463,6 +461,240 @@ function lot(): string {
     `<path d="M0 0H800V40Q400 16 0 40Z" fill="#0a0a10"/><path d="M0 0H50L20 600H0ZM800 0H750L780 600H800Z" fill="#0a0a10"/><rect x="330" y="26" width="140" height="44" rx="12" fill="#0c0c14"/><rect x="338" y="32" width="124" height="32" rx="8" fill="#3a3040"/><path d="M400 0V28" stroke="#0c0c14" stroke-width="10"/>` +
     `<path d="M0 520Q400 470 800 520V600H0Z" fill="#0c0c12"/><path d="M0 520Q400 470 800 520" fill="none" stroke="#ff9a5a" stroke-width="2" opacity=".5"/><path d="M60 600Q90 500 220 496Q340 500 360 600" fill="none" stroke="#1c1c26" stroke-width="26"/><path d="M120 560L560 496" stroke="#14141c" stroke-width="7" stroke-linecap="round"/>` +
     `<path d="M150 0L330 0L120 470L20 470Z" fill="#fff" opacity=".05"/>`, 0.6, 0.18);
+}
+
+// ---------- drawn emoji for overlays ----------
+const eMonkey = (x: number, y: number, s: number): string =>
+  at(x, y, s, 0, '<circle cx="-13" cy="-2" r="6" fill="#8a5a36"/><circle cx="13" cy="-2" r="6" fill="#8a5a36"/><circle r="13" fill="#8a5a36"/><ellipse cy="3" rx="9" ry="8" fill="#e8c8a0"/><path d="M-4 7Q0 10 4 7" stroke="#5a3a22" stroke-width="1.500" fill="none"/><ellipse cx="-5" cy="-2" rx="6" ry="5" fill="#6a4226" transform="rotate(-20 -5 -2)"/><ellipse cx="5" cy="-2" rx="6" ry="5" fill="#6a4226" transform="rotate(20 5 -2)"/>');
+const eTeary = (x: number, y: number, s: number): string =>
+  at(x, y, s, 0, '<circle r="14" fill="#ffc83a"/><circle cx="-5.500" cy="-2" r="4.500" fill="#fff"/><circle cx="5.500" cy="-2" r="4.500" fill="#fff"/><circle cx="-5.500" cy="-1.500" r="2.600" fill="#3a2a1a"/><circle cx="5.500" cy="-1.500" r="2.600" fill="#3a2a1a"/><path d="M-9 3q3 3 7 0M2 3q4 3 7 0" stroke="#58b8f0" stroke-width="2" fill="none"/><path d="M-4 8Q0 6 4 8" stroke="#8a4a1a" stroke-width="1.600" fill="none" stroke-linecap="round"/><path d="M-10-8l6-2M10-8l-6-2" stroke="#8a4a1a" stroke-width="1.500" stroke-linecap="round"/>');
+
+// ---------- cg3_ph_video (recovered thumbnail) ----------
+function video(): string {
+  const k = 'cg3_ph_video';
+  return frame(k, 800, 600, '#ffb060',
+    lg(`${k}w`, '#0a0a18', '#14122a') + lg(`${k}cu`, '#e8904a', '#8a3a4a') + glow(`${k}t`, '#5a8cff', 0.6) + lg(`${k}bd`, '#7a8ec8', '#1c2040'),
+    `<rect width="800" height="600" fill="url(#${k}w)"/><rect x="400" y="20" width="370" height="400" fill="url(#${k}cu)"/>` +
+    `<path d="M430 20V420M470 20V420M512 20V420M556 20V420M600 20V420M646 20V420M690 20V420M732 20V420" stroke="#5a2030" stroke-width="7" opacity=".5"/><path d="M450 20V420M490 20V420M534 20V420M578 20V420M622 20V420M668 20V420M710 20V420M752 20V420" stroke="#ffd0a0" stroke-width="4" opacity=".3"/><rect x="390" y="10" width="390" height="14" fill="#0a0a12"/>` +
+    `<g filter="url(#${k}f)" fill="#0b0912"><path d="M494 420V250Q494 214 528 206L544 196Q526 176 530 150Q536 116 566 116Q592 118 598 146Q604 124 624 122Q650 124 652 152Q654 176 640 192L656 204Q690 214 690 250V420Z"/><path d="M596 150Q604 176 592 190M552 258Q600 250 640 262" stroke="#ffb060" stroke-width="2" fill="none" opacity=".6"/><path d="M540 150Q520 190 540 216" stroke="#0b0912" stroke-width="18" fill="none" stroke-linecap="round"/></g>` +
+    `<path d="M0 150L70 172V330L0 356Z" fill="#dff0ff"/><circle cx="20" cy="250" r="430" fill="url(#${k}t)"/>` +
+    `<g filter="url(#${k}f)"><rect x="296" y="330" width="80" height="110" fill="#1c1626"/><rect x="330" y="250" width="8" height="84" fill="#0c0a12"/><path d="M300 190H368L384 256H284Z" fill="#2a2234"/></g>${paddle(372, 250, 0.9, 16, '#17806a', '#c8ffe8')}<path d="M352 196Q372 180 380 204" fill="none" stroke="#0c0a12" stroke-width="4"/>` +
+    `<path d="M0 420Q200 380 420 404Q620 380 800 420V600H0Z" fill="url(#${k}bd)"/><g fill="none" stroke-linecap="round"><path d="M40 470Q160 420 260 470Q360 520 470 452Q560 410 700 470M120 540Q240 490 360 548Q480 580 620 520Q700 490 780 520M300 420Q380 450 470 420" stroke="#101430" stroke-width="16" opacity=".55"/><path d="M40 462Q160 412 260 462Q360 512 470 444Q560 402 700 462M120 532Q240 482 360 540Q480 572 620 512" stroke="#c8d8ff" stroke-width="5" opacity=".6"/></g>` +
+    `<ellipse cx="170" cy="410" rx="120" ry="40" fill="#8aa0d8" transform="rotate(-8 170 410)"/><path d="M80 400Q170 380 250 410" stroke="#dfe8ff" stroke-width="5" fill="none" opacity=".6"/>` +
+    `<rect width="800" height="600" fill="#000" opacity=".2"/><circle cx="400" cy="300" r="62" fill="#000" opacity=".5"/><circle cx="400" cy="300" r="62" fill="none" stroke="#fff" stroke-width="5"/><path d="M380 266L434 300L380 334Z" fill="#fff"/>` +
+    `<rect x="24" y="24" width="190" height="52" rx="26" fill="#000" opacity=".6"/><text x="48" y="60" font-size="30" fill="#fff" ${SANS} font-weight="700">oops</text>${eMonkey(170, 50, 1.25)}` +
+    `<rect x="40" y="556" width="720" height="6" rx="3" fill="#fff" opacity=".3"/><rect x="40" y="556" width="90" height="6" rx="3" fill="#ff4a6a"/><text x="760" y="544" font-size="20" fill="#fff" ${SANS} font-weight="700" text-anchor="end">0:47</text>`, 0.65, 0.22);
+}
+
+// ---------- cg3_ph_mirror (recovered) ----------
+function mirror(): string {
+  const k = 'cg3_ph_mirror';
+  const P = '#ff4f93';
+  return frame(k, 600, 800, '#ffd9a0',
+    lg(`${k}m`, '#7a8a92', '#2e3a44', 1, 1) + glow(`${k}l`, '#fff2d0', 0.7) + lg(`${k}c`, '#e8e2d8', '#a8a094'),
+    `<rect width="600" height="800" fill="#c2b49c"/><path d="M0 0H600V800H0Z" fill="#4a3a30" opacity=".3"/><rect x="36" y="30" width="528" height="580" rx="10" fill="#e8dcc0"/><rect x="50" y="44" width="500" height="552" fill="url(#${k}m)"/>` +
+    `<g opacity=".55"><path d="M50 150H550M50 260H550M50 370H550M50 480H550M150 44V596M270 44V596M390 44V596M510 44V596" stroke="#aabac2" stroke-width="2" opacity=".5"/><rect x="400" y="120" width="120" height="300" fill="#f4f0e8"/><path d="M400 150H520" stroke="#19b3a6" stroke-width="8"/><rect x="390" y="104" width="140" height="10" rx="5" fill="#c8ced6"/><rect x="70" y="60" width="150" height="536" fill="#19b3a6" opacity=".5"/><circle cx="196" cy="340" r="8" fill="#c8a04a"/></g>` +
+    `<circle cx="300" cy="44" r="300" fill="url(#${k}l)" opacity=".7"/><rect x="180" y="12" width="240" height="26" rx="13" fill="#fff6e0"/>` +
+    `<g ${HAND} font-weight="700" fill="${P}" text-anchor="middle" stroke="${P}" stroke-width="2" stroke-linejoin="round"><text x="290" y="226" font-size="78" transform="rotate(-5 290 226)">THIRD</text><text x="292" y="318" font-size="78" transform="rotate(-4 292 318)">SHOT</text><text x="232" y="412" font-size="78" transform="rotate(-3 232 412)">DROP</text><text x="330" y="520" font-size="74" transform="rotate(-6 330 520)">— R</text></g>` +
+    `<g transform="translate(440 384) rotate(28)" fill="none" stroke="${P}" stroke-width="9" stroke-linecap="round"><rect x="-26" y="-62" width="52" height="124" rx="26"/><path d="M-8-30v2M8-8v2M-8 16v2M8 36v2"/></g>` +
+    `<g transform="translate(150 500) rotate(-18)" fill="${P}" opacity=".9"><path d="M-30 0Q-14-16 0-6Q14-16 30 0Q0 6-30 0Z"/><path d="M-28 6Q0 12 28 6Q0 30-28 6Z"/></g>` +
+    `<path d="M50 44H260L120 596H50Z" fill="#fff" opacity=".07"/><path d="M380 44H430L290 596H240Z" fill="#fff" opacity=".05"/>` +
+    `<path d="M0 640H600V800H0Z" fill="url(#${k}c)"/><path d="M0 640H600" stroke="#fff" stroke-width="3" opacity=".6"/><ellipse cx="300" cy="760" rx="190" ry="60" fill="#f6f4ee"/><ellipse cx="300" cy="768" rx="160" ry="44" fill="#c8c8c0"/>` +
+    `<g filter="url(#${k}f)"><path d="M280 700V640Q280 610 320 610H340V632H322Q304 632 304 646V700Z" fill="#c8ced6"/><rect x="266" y="690" width="52" height="16" rx="6" fill="#aab0b8"/>` +
+    `<g transform="translate(492 690) rotate(74)"><rect x="-10" y="-8" width="20" height="50" rx="3" fill="#1c1c22"/><rect x="-10" y="-14" width="20" height="10" fill="#c8a04a"/><path d="M-7-14V-34L7-26V-14Z" fill="${P}"/></g>` +
+    `<rect x="60" y="676" width="64" height="34" rx="6" fill="#f4f0e4"/></g>${tx(92, 698, 9, 'LAKEVIEW INN', '#0f6a6c')}`, 0.55);
+}
+
+// ---------- cg3_ph_rules (KEY CLUE, recovered screenshot) ----------
+function rules(): string {
+  const k = 'cg3_ph_rules';
+  const T = (x: number, y: number, size: number, s: string, fill: string, w = 400, anchor = 'start'): string =>
+    `<text x="${x}" y="${y}" font-size="${size}" fill="${fill}" ${SANS} font-weight="${w}" text-anchor="${anchor}">${s}</text>`;
+  let cal = '';
+  const days = 'SMTWTFS';
+  for (let i = 0; i < 7; i++) cal += T(84 + i * 72, 628, 16, days[i], '#8a8a94', 700, 'middle');
+  for (let d = 1; d <= 20; d++) {
+    const col = d % 7;
+    const cx = 84 + col * 72, cy = 668 + Math.floor(d / 7) * 52;
+    if (col === 4) cal += `<circle cx="${cx}" cy="${cy - 7}" r="21" fill="#8a4a22"/>`;
+    cal += T(cx, cy, 20, String(d), col === 4 ? '#fff' : '#2a2a34', col === 4 ? 700 : 400, 'middle');
+  }
+  return frame(k, 600, 800, '#fff', lg(`${k}b`, '#f4f4f8', '#e4e6ee'),
+    `<rect width="600" height="800" fill="url(#${k}b)"/>${T(40, 44, 20, '7:12', '#1c1c24', 700)}<rect x="518" y="28" width="38" height="18" rx="5" fill="none" stroke="#1c1c24" stroke-width="2"/><rect x="521" y="31" width="22" height="12" rx="2" fill="#1c1c24"/><path d="M470 44v-6M478 44v-10M486 44v-14M494 44v-18" stroke="#1c1c24" stroke-width="4"/>` +
+    `${T(40, 104, 38, 'Calendar', '#1c1c24', 700)}${T(560, 100, 20, 'Inbox (1)', '#e0483a', 400, 'end')}` +
+    `<rect x="28" y="134" width="544" height="440" rx="24" fill="#000" opacity=".1" transform="translate(0 5)"/><rect x="28" y="134" width="544" height="440" rx="24" fill="#fff"/>` +
+    `<rect x="54" y="160" width="62" height="62" rx="14" fill="#fff" stroke="#d8d8e0" stroke-width="2"/><path d="M54 182V174Q54 160 68 160H102Q116 160 116 174V182Z" fill="#e0483a"/>${T(85, 213, 26, '2', '#1c1c24', 700, 'middle')}` +
+    `${T(134, 186, 15, 'CALENDAR INVITATION', '#8a8a94', 700)}${T(134, 212, 15, 'Jun 2 · 7:10 PM', '#8a8a94')}` +
+    `${T(54, 270, 27, 'Doug Hoyt shared the calendar', '#1c1c24', 700)}${T(54, 310, 29, '“Dana’s Thursdays', '#8a4a22', 700)}${eBall(346, 300, 1.25)}${T(368, 310, 29, '”', '#8a4a22', 700)}${T(390, 310, 27, 'with you', '#1c1c24', 700)}` +
+    `<rect x="54" y="336" width="250" height="40" rx="20" fill="#e6f4ea"/><circle cx="76" cy="356" r="7" fill="#2a9a4a"/>${T(92, 363, 20, 'Permission: Can edit', '#1c6a34', 700)}` +
+    `<path d="M54 398H86Q54 398 54 420V470Q54 492 76 492H524Q546 492 546 470V420Q546 398 524 398Z" fill="#eef0f6"/><rect x="54" y="398" width="6" height="94" rx="3" fill="#2a6ad0"/>` +
+    `${T(78, 436, 23, '“so we’re organized about it', '#2a2a34')}${eThumb(436, 424, 0.62)}${T(78, 472, 23, 'I’m a systems guy”', '#2a2a34')}` +
+    `<rect x="54" y="510" width="238" height="46" rx="12" fill="#2a6ad0"/>${T(173, 541, 21, 'Accept', '#fff', 700, 'middle')}<rect x="308" y="510" width="238" height="46" rx="12" fill="#eef0f6"/>${T(427, 541, 21, 'Decline', '#e0483a', 700, 'middle')}` +
+    `<rect x="28" y="592" width="544" height="230" rx="24" fill="#fff"/>${cal}`, 0.12, 0.04);
+}
+
+// ---------- cg3_ph_lucy (a wholesome school portrait) ----------
+function lucy(): string {
+  const k = 'cg3_ph_lucy';
+  return frame(k, 600, 800, '#fff0d8',
+    lg(`${k}b`, '#3a6ab0', '#1c3a78', 1, 1) + glow(`${k}m`, '#8ab8f0', 0.55) + glow(`${k}d`, '#12285a', 0.5),
+    `<rect width="600" height="800" fill="url(#${k}b)"/><circle cx="170" cy="200" r="220" fill="url(#${k}m)"/><circle cx="470" cy="420" r="240" fill="url(#${k}m)"/><circle cx="420" cy="120" r="180" fill="url(#${k}d)"/><circle cx="110" cy="560" r="220" fill="url(#${k}d)"/><circle cx="300" cy="330" r="260" fill="url(#${k}m)"/>` +
+    `<g filter="url(#${k}f)">${put(300, 360, 2.25, 2, bust('#f6c832', LUCY, `<path d="M82 146Q100 164 118 146Z" fill="${LUCY.sk}"/><path d="M79 146Q100 168 121 146" fill="none" stroke="#19b3a6" stroke-width="4"/>`))}</g>` +
+    paddle(270, 626, 0.62, -28, '#19b3a6', '#fff') + paddle(330, 626, 0.62, 28, '#ef5a6a', '#fff') + ball(300, 650, 11) +
+    `<rect x="14" y="14" width="572" height="772" fill="none" stroke="#f4f0e6" stroke-width="28"/><rect x="150" y="716" width="300" height="56" rx="28" fill="#000" opacity=".55"/><text x="180" y="756" font-size="34" fill="#fff" ${SANS} font-weight="700">2nd grade</text>${eTeary(414, 744, 1.35)}`, 0.3, 0.12);
+}
+
+// ---------- cg3_ph_box ----------
+function box(): string {
+  const k = 'cg3_ph_box';
+  const leaf = (x: number, y: number, r: number): string => `<ellipse cx="${x}" cy="${y}" rx="34" ry="17" transform="rotate(${r} ${x} ${y})"/>`;
+  return frame(k, 600, 800, '#ffe2b0',
+    lg(`${k}d`, '#4a5a48', '#232c26', 1, 1) + glow(`${k}l`, '#ffe2b0', 0.6) + lg(`${k}bx`, '#c89a62', '#9a7040') + lg(`${k}fl`, '#6a5a4a', '#2a221c'),
+    `<rect width="600" height="800" fill="#b8a88e"/><rect width="600" height="800" fill="#2a1c1c" opacity=".35"/><rect x="150" y="-10" width="400" height="610" fill="#e0d4bc"/><rect x="170" y="-10" width="360" height="600" fill="url(#${k}d)"/>` +
+    `<path d="M200 30H500V250H200ZM200 290H500V560H200Z" fill="none" stroke="#141c18" stroke-width="5" opacity=".6"/><circle cx="350" cy="60" r="330" fill="url(#${k}l)"/><circle cx="494" cy="330" r="15" fill="#c8a04a"/><circle cx="350" cy="96" r="6" fill="#141c18"/>` +
+    `<g transform="rotate(-4 350 170)"><rect x="296" y="124" width="108" height="92" fill="#f6f0e0"/><rect x="336" y="116" width="28" height="16" fill="#e8d88a" opacity=".85"/>${tx(350, 198, 64, '3B', '#1c1c24', '', HAND)}</g>` +
+    `<rect y="596" width="600" height="204" fill="url(#${k}fl)"/><path d="M0 596H600" stroke="#1c1410" stroke-width="6"/><path d="M196 650H564L590 790H170Z" fill="#8a6a40"/><path d="M196 650H564L590 790H170Z" fill="none" stroke="#3a2a18" stroke-width="6" stroke-dasharray="3 9"/>` +
+    `<g filter="url(#${k}f)"><path d="M70 596L84 740H164L178 596Z" fill="#b8643a"/><rect x="62" y="582" width="124" height="26" rx="6" fill="#c8744a"/></g><path d="M124 584Q118 470 130 330" stroke="#4a3420" stroke-width="7" fill="none"/>` +
+    `<g fill="#2f7a3a">${leaf(92, 500, -30)}${leaf(160, 470, 30)}${leaf(86, 420, 20)}${leaf(166, 390, -40)}${leaf(100, 344, -20)}${leaf(156, 316, 40)}${leaf(126, 280, -80)}</g><g fill="#1c5a2a">${leaf(150, 520, 50)}${leaf(80, 462, -60)}${leaf(176, 430, 10)}</g>` +
+    `<ellipse cx="380" cy="752" rx="170" ry="16" fill="#000" opacity=".45"/><g filter="url(#${k}f)"><path d="M240 560L520 548L530 744L250 752Z" fill="url(#${k}bx)"/><path d="M240 560L290 520L560 510L520 548Z" fill="#dab07a"/><path d="M520 548L560 510L568 700L530 744Z" fill="#7a5630"/></g>` +
+    `<path d="M366 556L372 750M270 540L540 529" stroke="#b08a54" stroke-width="16" opacity=".8"/>` +
+    `<g transform="rotate(-2 386 650)"><rect x="262" y="590" width="250" height="130" fill="#fbf8f0"/><text x="274" y="610" font-size="11" fill="#6a6a6a" ${SANS}>FROM</text><text x="274" y="636" font-size="24" fill="#14141c" ${SANS} font-weight="700">BLUE BOX LLC</text><path d="M274 660H322M312 650L324 660L312 670" stroke="#14141c" stroke-width="5" fill="none"/><text x="336" y="664" font-size="11" fill="#6a6a6a" ${SANS}>SHIP TO</text><text x="274" y="696" font-size="25" fill="#14141c" ${SANS} font-weight="700">R. CASTELLANO</text><path d="M440 644v26M446 644v26M450 644v26M458 644v26M462 644v26M470 644v26M476 644v26M480 644v26M488 644v26M494 644v26M498 644v26" stroke="#14141c" stroke-width="3"/><text x="274" y="713" font-size="10" fill="#6a6a6a" ${SANS}>MAPLEWOOD FLATS · UNIT 3B</text></g>`, 0.55);
+}
+
+// ---------- cg3_ph_mel_wine (CLUE: Mel's story) ----------
+function melWine(): string {
+  const k = 'cg3_ph_mel_wine';
+  let bottles = '';
+  for (let i = 0; i < 6; i++) bottles += `<g transform="translate(${44 + i * 42} 0)" fill="${['#2a4a2a', '#4a1c2a', '#1c3a2a', '#5a2a1a', '#2a4a2a', '#4a1c2a'][i]}"><rect x="-13" y="150" width="26" height="80" rx="6"/><rect x="-5" y="116" width="10" height="40"/><rect x="-13" y="180" width="26" height="24" fill="#e8dcc0"/><rect x="-13" y="300" width="26" height="80" rx="6"/><rect x="-5" y="266" width="10" height="40"/><rect x="-13" y="330" width="26" height="24" fill="#d8b46a"/></g>`;
+  const chalk = `fill="#f4f0e6" ${HAND} font-weight="700" text-anchor="middle"`;
+  return frame(k, 600, 800, '#ffb0c0',
+    lg(`${k}w`, '#4a1c34', '#1c0c1c') + glow(`${k}l`, '#ffb070', 0.7) + glow(`${k}p`, '#ff4a9a', 0.4) + lg(`${k}c`, '#7a4a2a', '#2e1a10'),
+    `<rect width="600" height="800" fill="url(#${k}w)"/><rect x="20" y="232" width="250" height="12" fill="#2a1418"/><rect x="20" y="382" width="250" height="12" fill="#2a1418"/>${bottles}` +
+    `<rect x="274" y="24" width="310" height="262" fill="#6a4a2a"/><rect x="286" y="36" width="286" height="238" fill="#1c2420"/><g ${chalk}><text x="429" y="94" font-size="38" fill="#ffd0e0" textLength="232" lengthAdjust="spacingAndGlyphs">CORKSCREW</text><text x="429" y="152" font-size="31">TRIVIA</text><text x="429" y="194" font-size="31" textLength="170" lengthAdjust="spacingAndGlyphs">THURSDAY</text><text x="429" y="252" font-size="42" fill="#ffe28a">NOV 12</text></g><path d="M330 110H528M330 210H528" stroke="#f4f0e6" stroke-width="3" stroke-dasharray="14 6" opacity=".7"/>` +
+    `<path d="M150 0V60M440 0V30" stroke="#0c060c" stroke-width="4"/><path d="M124 60H176L190 100H110Z" fill="#ffd9a0"/><circle cx="150" cy="110" r="230" fill="url(#${k}l)"/><circle cx="520" cy="500" r="300" fill="url(#${k}p)"/>` +
+    `<g filter="url(#${k}f)"><g fill="${MEL.sk}">${limb([330, 560, 34], [452, 620, 26], [474, 510, 20])}</g>${put(250, 420, 1.75, -4, bust('#14101c', MEL, `<path d="M72 148Q100 196 128 148Z" fill="${MEL.sk}"/><path d="M100 172Q118 160 128 148L122 146Q112 160 100 166Z" fill="#000" opacity=".2"/>`))}</g>` +
+    wglass(474, 462, 2.6, '#8a1030', true) + `<g filter="url(#${k}f)" fill="${MEL.sk}"><rect x="446" y="466" width="52" height="19" rx="9.500"/><rect x="448" y="488" width="50" height="19" rx="9.500"/><rect x="450" y="510" width="46" height="18" rx="9"/></g>` +
+    `<path d="M0 700Q300 670 600 700V800H0Z" fill="url(#${k}c)"/><path d="M0 700Q300 670 600 700" fill="none" stroke="#ffc0a0" stroke-width="3" opacity=".6"/><g transform="translate(110 730) rotate(-6)"><rect x="-60" y="-22" width="120" height="44" rx="4" fill="#f6f0e0"/>${tx(0, -3, 13, 'TEAM NAME:', '#6a5a4a')}${tx(0, 15, 15, 'just mel :)', '#1a2a8a', '', HAND)}</g>` +
+    `<g transform="translate(470 742)"><ellipse rx="56" ry="12" fill="#f4f0e6"/><g fill="#5fae3a"><ellipse cx="-20" cy="-6" rx="9" ry="7"/><ellipse cx="0" cy="-8" rx="9" ry="7"/><ellipse cx="20" cy="-6" rx="9" ry="7"/></g></g>`, 0.6);
+}
+
+// ---------- hidden album ----------
+const BUST = '<circle cx="-29" cy="84" r="33"/><circle cx="29" cy="84" r="33"/>';
+const bra = (c: string, trim: string): string =>
+  `<path d="M-58 62L-40 2M58 62L40 2" stroke="${c}" stroke-width="4" fill="none"/><path d="M-60 104Q0 122 60 104L58 116Q0 132-58 116Z" fill="${c}"/>` +
+  [-1, 1].map((m) => `<g transform="scale(${m} 1)"><path d="M-65 78Q-60 58-40 56Q-16 60-1 80Q1 106-10 116Q-30 128-56 116Q-68 100-65 78Z" fill="${c}"/><path d="M-58 70Q-40 60-22 66Q-10 72-4 82" fill="none" stroke="${trim}" stroke-width="4" stroke-dasharray="1 6" stroke-linecap="round"/></g>`).join('') +
+  `<path d="M-4 96h8" stroke="${trim}" stroke-width="5" stroke-linecap="round"/>`;
+const brief = (c: string, trim: string): string =>
+  `<path d="M-79 214Q-40 232 0 234Q40 232 79 214L82 240Q40 254 9 278Q0 283-9 278Q-40 254-82 240Z" fill="${c}"/><path d="M-78 221Q-40 239 0 241Q40 239 78 221" fill="none" stroke="${trim}" stroke-width="4" stroke-dasharray="1 6" stroke-linecap="round"/>`;
+const foot = (x: number, y: number, m = 1): string => `<path transform="translate(${x} ${y}) scale(${m} 1)" d="M-12 0L12-2L16 44Q12 62-2 62Q-12 52-8 30Z"/>`;
+const legs = (sh: string): string =>
+  `${limb([-41, 252, 42], [-44, 420, 25], [-44, 572, 13])}${limb([41, 252, 42], [54, 416, 25], [36, 566, 13])}${foot(-44, 574)}${foot(36, 568, -1)}` +
+  `<path d="M-40 420q6 8 0 16M56 416q-6 8 0 16" stroke="${sh}" stroke-width="2.500" fill="none" opacity=".6"/>`;
+const mirrorFrame = (c: string, d: string): string => `<rect x="9" y="9" width="582" height="782" fill="none" stroke="${c}" stroke-width="18"/><rect x="20" y="20" width="560" height="760" fill="none" stroke="${d}" stroke-width="3"/><path d="M60 40L150 40L40 240L40 110Z" fill="#fff" opacity=".07"/>`;
+const flash = (k: string, x: number, y: number): string => `<circle cx="${x}" cy="${y}" r="56" fill="url(#${k}fl)"/>${star(x, y, 34)}`;
+const WET = '#6a4622';
+const DANA_WET: Face = {
+  ...DANA, lid: 1.9, shadow: '#b0566a', mouth: lips('#d0506a', '#7a2038') + '<path d="M112 114q3-1 4-5" stroke="#7a2038" stroke-width="1.500"/>',
+  back: `<path d="M61 92C52 30 148 30 139 92Q146 126 138 152Q100 164 62 152Q54 126 61 92Z" fill="${WET}"/><path d="M110 34C148 40 144 90 139 92Q146 126 138 152Q124 158 112 158Z" fill="#000" opacity=".28"/>`,
+  front: `<path d="M65 90C58 40 84 29 100 29C118 29 142 40 135 90C132 66 122 50 104 46C86 50 68 62 65 90Z" fill="${WET}"/><path d="M72 62Q84 42 104 38M112 44Q126 52 131 72M68 78Q70 96 66 116M134 80Q132 100 136 120" fill="none" stroke="#c8a064" stroke-width="2" stroke-linecap="round" opacity=".8"/>`,
+};
+
+function hoodieHer(): string {
+  const k = 'cg3_ph_hoodie_her';
+  const S = DANA.sk, G = '#9a9fab', GD = '#6c7286';
+  const H: Face = {
+    ...DANA, lid: 1.7, shadow: '#b0566a', rim: '#ff9ab8', mouth: '',
+    back: `<path d="M46 104C30 6 170 6 154 104Q158 140 134 156H66Q42 140 46 104Z" fill="${G}"/><path d="M110 22C168 30 160 90 154 104Q158 140 134 156H112Z" fill="#000" opacity=".25"/>`,
+    front: DANA_HAIR + `<path d="M56 108C44 26 156 26 144 108C142 62 126 44 100 44C74 44 58 62 56 108Z" fill="${GD}"/><path d="M72 56Q66 76 70 92" stroke="${HAIR}" stroke-width="5" fill="none" stroke-linecap="round"/>`,
+  };
+  const fig =
+    `<g filter="url(#${k}f)"><g fill="${S}">${legs(DANA.sh)}</g>` +
+    `<g fill="${G}">${limb([-82, 22, 30], [-134, 96, 27], [-112, -6, 23])}<path d="M-92 2Q-44-22 0-18Q44-22 92 2Q106 120 100 250Q102 330 96 344Q0 362-96 344Q-102 330-100 250Q-106 120-92 2Z"/></g>` +
+    `<path d="M-96 326Q0 344 96 326L96 344Q0 362-96 344Z" fill="${GD}"/><path d="M-56 262Q-60 210-30 200H30Q60 210 56 262Q0 274-56 262Z" fill="${GD}" opacity=".55"/></g>` +
+    `<path d="M-14 16Q-18 80-12 120M14 16Q18 70 12 104" stroke="#e8eaf0" stroke-width="3.500" fill="none" stroke-linecap="round"/><g transform="translate(46 96) rotate(-3)">${tx(0, 0, 30, '12', '#1a2244')}</g>` +
+    `<path d="M-70 60Q-60 180-74 300M70 70Q62 190 76 300" stroke="${GD}" stroke-width="3" fill="none" opacity=".6"/>` +
+    hd(4, HY, HS, 6, H) + phone(-112, -62, -8, '#1c1c26', S) +
+    `<g filter="url(#${k}f)" fill="${G}">${limb([82, 22, 30], [128, 104, 27], [34, -22, 25])}<ellipse cx="22" cy="-30" rx="27" ry="23" transform="rotate(-30 22 -30)"/></g><path d="M40-6Q20-2 2-22" stroke="${GD}" stroke-width="3" fill="none"/>`;
+  return frame(k, 600, 800, '#ff9ab8',
+    lg(`${k}w`, '#2c1430', '#120814') + glow(`${k}l`, '#ff7a5a', 0.7) + glow(`${k}p`, '#ff3a8a', 0.5) + glow(`${k}fl`, '#fff', 0.95),
+    `<rect width="600" height="800" fill="url(#${k}w)"/><rect y="640" width="600" height="160" fill="#1c0c18"/><path d="M0 640H600" stroke="#0c0408" stroke-width="6"/>` +
+    `<circle cx="520" cy="330" r="240" fill="url(#${k}l)"/><path d="M490 300H550L566 372H474Z" fill="#ffc890"/><rect x="514" y="372" width="12" height="130" fill="#1c0c14"/><rect x="460" y="500" width="130" height="140" fill="#3a1c2c"/>` +
+    `<path d="M-20 520H230V640H-20Z" fill="#4a1c3a"/><path d="M-20 490Q110 460 240 494V560Q110 540-20 560Z" fill="#e8d0d4"/><path d="M-20 556Q110 536 240 556V580Q110 560-20 580Z" fill="#a8808c"/><path d="M30 500Q90 520 150 496M60 530Q130 544 200 520" stroke="#a8808c" stroke-width="4" fill="none"/>` +
+    `<circle cx="100" cy="200" r="260" fill="url(#${k}p)"/><path d="M0 90Q150 130 300 96Q450 130 600 90" fill="none" stroke="#1c0c14" stroke-width="2"/><g fill="#ff8ab0"><circle cx="60" cy="102" r="5"/><circle cx="140" cy="112" r="5"/><circle cx="220" cy="108" r="5"/><circle cx="380" cy="108" r="5"/><circle cx="460" cy="112" r="5"/><circle cx="540" cy="102" r="5"/></g>` +
+    paddle(520, 700, 1, 24, '#19b3a6', '#fff') + `<ellipse cx="300" cy="770" rx="130" ry="15" fill="#000" opacity=".45"/>` + at(300, 236, 0.9, -2, fig) + flash(k, 196, 176) + mirrorFrame('#3a2a34', '#7a5a6a'), 0.6);
+}
+
+function hRafe(): string {
+  const k = 'cg3_ph_h_rafe';
+  const S = RAFE.sk, SH = RAFE.sh;
+  const R2: Face = { ...RAFE, rim: '#dff0ff', lid: 1.2, mouth: smirk('#7a3a34') + '<path d="M92 116.500Q100 119 109 114.500" stroke="#fff" stroke-width="1.400"/>' };
+  const light = (x: number): string => `<path d="M${x} 0V250" stroke="#1c2434" stroke-width="10"/><rect x="${x - 46}" y="34" width="92" height="40" rx="6" fill="#2a3448"/><g fill="#fff"><circle cx="${x - 26}" cy="54" r="12"/><circle cx="${x}" cy="54" r="12"/><circle cx="${x + 26}" cy="54" r="12"/></g><circle cx="${x}" cy="54" r="230" fill="url(#${k}fl)"/>`;
+  const fig =
+    paddle(118, -84, 1.3, 38, '#2ad0a0', '#fff') +
+    `<g filter="url(#${k}f)"><g fill="${S}">${limb([-36, 330, 34], [-44, 470, 24], [-42, 600, 15])}${limb([36, 330, 34], [50, 470, 24], [44, 600, 15])}${limb([-82, 28, 24], [-112, 126, 19], [-78, 214, 15])}${hand(-70, 222, 60, SH, 1.3)}` +
+    `<path d="${TM}"/>${limb([82, 28, 24], [138, 78, 20], [106, -8, 15])}${hand(104, -18, 190, SH, 1.3)}</g>` +
+    `<path d="M-58 204Q0 218 58 204L76 372H8L0 310L-8 372H-76Z" fill="#1c2a5a"/><path d="M-58 204Q0 218 58 204L60 222Q0 236-60 222Z" fill="#e8a020"/><path d="M-60 214Q-96 250-88 330L-62 336Z" fill="#f2f2ee"/></g>` +
+    `<g fill="none" stroke="${SH}" stroke-width="2.600" stroke-linecap="round" opacity=".8"><path d="M-56 8Q-32 14-10 6M56 8Q32 14 10 6M-60 80Q-30 98-3 82M60 80Q30 98 3 82M0 44V84M0 104V184M-28 120Q-14 126 0 122Q14 126 28 120M-27 148Q-14 154 0 150Q14 154 27 148M-25 176Q-13 181 0 178Q13 181 25 176M0 196v6"/></g>` +
+    `<g fill="none" stroke="#fff" stroke-linecap="round" opacity=".4"><path d="M-64 30Q-50 16-30 18M-52 62Q-36 50-16 56M-74 60Q-80 90-74 116" stroke-width="6"/></g><g fill="#dff4ff" opacity=".85"><path d="M-30 110q-3 6 0 8q3-2 0-8ZM22 60q-3 6 0 8q3-2 0-8ZM40 150q-3 6 0 8q3-2 0-8ZM-10 30q-3 6 0 8q3-2 0-8Z"/></g>` +
+    hd(2, HY, HS, -4, R2) + '<g fill="#dff4ff" opacity=".85" transform="translate(-30 -84)"><path d="M0 0q-3 6 0 8q3-2 0-8Z"/></g>';
+  return frame(k, 600, 800, '#dff0ff',
+    lg(`${k}s`, '#060a1c', '#182448') + lg(`${k}c`, '#1c7a86', '#0a2e3c') + glow(`${k}fl`, '#cfe6ff', 0.65) + glow(`${k}h`, '#9ac8ff', 0.4) +
+    `<pattern id="${k}fn" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0H22M0 0V22" stroke="#6a7a9a" stroke-width="1.500" opacity=".5"/></pattern>`,
+    `<rect width="600" height="800" fill="url(#${k}s)"/><g fill="#fff" opacity=".7"><circle cx="300" cy="40" r="1.500"/><circle cx="220" cy="110" r="1.200"/><circle cx="390" cy="130" r="1.500"/><circle cx="330" cy="200" r="1.200"/></g>` +
+    `<rect y="250" width="600" height="250" fill="url(#${k}fn)"/><path d="M0 250H600" stroke="#6a7a9a" stroke-width="4"/>${light(96)}${light(510)}` +
+    `<rect y="500" width="600" height="300" fill="url(#${k}c)"/><path d="M-80 800L140 500H460L680 800Z" fill="#2a6ab0" opacity=".5"/><path d="M140 500L-80 800M460 500L680 800M0 610H600M300 610V800" stroke="#fff" stroke-width="5" opacity=".75" fill="none"/>` +
+    `<path d="M20 470V560M580 470V560" stroke="#0c1018" stroke-width="8"/><rect x="20" y="478" width="560" height="64" fill="#0c1018" opacity=".55"/><path d="M20 478H580" stroke="#fff" stroke-width="6"/>${ball(470, 716, 15)}` +
+    `<ellipse cx="300" cy="420" rx="230" ry="360" fill="url(#${k}h)"/>` + at(292, 250, 0.98, 2, fig), 0.65);
+}
+
+function hRobe(): string {
+  const k = 'cg3_ph_h_robe';
+  const S = DANA.sk, W = '#f6f2ea', WD = '#c8c0b4';
+  const D: Face = { ...DANA_WET, rim: '#fff0d8' };
+  const fig =
+    `<g filter="url(#${k}f)"><g fill="${S}">${limb([-40, 400, 30], [-44, 470, 24], [-44, 600, 14])}${limb([40, 400, 30], [52, 470, 24], [38, 600, 14])}<path d="${TF}"/>${limb([64, 26, 18], [112, 104, 15], [80, 150, 13])}</g>` +
+    `<g fill="${W}">${limb([-84, 30, 28], [-132, 100, 27], [-112, 6, 22])}<path d="M-76 2Q-44-16-24-8L2 92L86 48Q104 46 108 80L112 250Q118 380 104 430H-100Q-114 380-106 250L-94 60Q-94 16-76 2Z"/>${limb([108, 96, 27], [74, 164, 25])}</g></g>` +
+    `<path d="M-24-8L2 92L-8 150M2 92L86 48M-60 170Q-66 300-58 428M56 176Q66 300 60 428M2 190V428" fill="none" stroke="${WD}" stroke-width="4" stroke-linecap="round" opacity=".8"/><path d="M-30-6L-2 90L-6 96L-40 0ZM0 96L84 52L88 62L4 104Z" fill="${WD}" opacity=".7"/>` +
+    `<path d="M-100 150Q0 172 106 150L108 172Q0 194-102 172Z" fill="${WD}"/><path d="M-10 162Q-30 200-22 240M4 164Q24 196 14 236" stroke="${WD}" stroke-width="10" fill="none" stroke-linecap="round"/><circle cx="-2" cy="164" r="10" fill="#b0a89c"/>` +
+    `<g transform="translate(-46 112) rotate(-3)"><path d="M-32-15q8-6 16 0t16 0t16 0t16 0" fill="none" stroke="#19b3a6" stroke-width="2.200"/>${tx(0, 0, 12, 'LAKEVIEW', '#0f8a80', 'textLength="66"')}${tx(0, 14, 12, 'INN', '#0f8a80', 'letter-spacing="3"')}</g>` +
+    `<g stroke="#d02a3a" stroke-width="2.600" stroke-linecap="round" fill="none"><path d="M52 6Q60 20 76 28M46 14Q56 28 72 36M42 24Q52 36 66 44"/></g><path d="M40 0Q60 22 82 30" stroke="#f08a8a" stroke-width="12" opacity=".25" fill="none" stroke-linecap="round"/>` +
+    `<path d="M18 30Q8 50 12 70" stroke="${DANA.sh}" stroke-width="2.500" fill="none" opacity=".6"/><path d="M34 6Q50 0 64 8" stroke="#fff" stroke-width="5" opacity=".35" fill="none" stroke-linecap="round"/>` +
+    `<g transform="translate(46 150) rotate(6) scale(1.15)"><path d="M-22-34H22L17 30H-17Z" fill="#19b3a6"/><path d="M4-34H22L17 30H2Z" fill="#000" opacity=".2"/><path d="M-20-10H20L19 8H-19Z" fill="#c89a62"/><ellipse cy="-34" rx="24" ry="7" fill="#fbfaf6"/><ellipse cy="-36" rx="18" ry="4" fill="#e4e0d8"/><path d="M-22-33Q-13-40-6-34Q-13-27-22-33Z" fill="#e0486a"/></g><g filter="url(#${k}f)" fill="${S}"><rect x="44" y="140" width="36" height="13" rx="6.500"/><rect x="46" y="155" width="34" height="13" rx="6.500"/><rect x="48" y="170" width="30" height="12" rx="6"/></g>` +
+    hd(2, HY, HS, -5, D) + phone(-112, -50, -8, '#e8496a', S);
+  return frame(k, 600, 800, '#fff0d8',
+    lg(`${k}w`, '#c8d4d0', '#6a7c80') + glow(`${k}l`, '#fff6e0', 0.85) + glow(`${k}st`, '#fff', 0.45) + glow(`${k}fl`, '#fff', 0.95) + glow(`${k}p`, '#ff8aa0', 0.3),
+    `<rect width="600" height="800" fill="url(#${k}w)"/><path d="M0 120H600M0 240H600M0 360H600M0 480H600M0 600H600M100 0V800M220 0V800M340 0V800M460 0V800M580 0V800" stroke="#fff" stroke-width="2" opacity=".25"/>` +
+    `<rect x="420" y="60" width="160" height="230" fill="#fff6e0"/><path d="M420 60H580V290H420ZM500 60V290M420 175H580" fill="none" stroke="#8a9a9a" stroke-width="8"/><circle cx="500" cy="170" r="330" fill="url(#${k}l)"/>` +
+    `<rect x="30" y="250" width="150" height="10" rx="5" fill="#c8ced6"/><rect x="46" y="256" width="118" height="210" fill="#f6f2ea"/><rect x="46" y="420" width="118" height="12" fill="#19b3a6"/><path d="M86 256V466M124 256V466" stroke="#c8c0b4" stroke-width="3"/>` +
+    `<circle cx="420" cy="620" r="260" fill="url(#${k}p)"/><ellipse cx="300" cy="790" rx="150" ry="14" fill="#000" opacity=".3"/>` + at(306, 262, 0.96, 2, fig) +
+    `<circle cx="120" cy="640" r="170" fill="url(#${k}st)"/><circle cx="500" cy="700" r="190" fill="url(#${k}st)"/><circle cx="330" cy="60" r="150" fill="url(#${k}st)"/>` + flash(k, 200, 204) + mirrorFrame('#d8d0c0', '#8a8272'), 0.45);
+}
+
+function hTryon(): string {
+  const k = 'cg3_ph_h_tryon';
+  const S = DANA.sk, SH = DANA.sh, E = '#12a070', ED = '#0a6a4a';
+  const D: Face = { ...DANA2, rim: '#ffb0c8', lid: 1.5, shadow: '#b0566a', mouth: lips('#d0506a', '#7a2038') };
+  const defs =
+    `<g id="${k}A" filter="url(#${k}f)" fill="${S}"><path d="${TF}"/>${BUST}${legs(SH)}</g>` +
+    `<g id="${k}B"><g filter="url(#${k}f)" fill="${S}">${limb([62, 24, 17], [122, 110, 14], [80, 196, 10])}${hand(76, 204, 30, SH)}${limb([-62, 24, 17], [-114, 92, 14], [-96, -14, 10])}</g>${phone(-100, -56, -8, '#e8496a', S)}${hd(4, HY, HS, 4, D)}</g>`;
+  const body = (wear: string): string =>
+    `<use href="#${k}A"/>${wear}<path d="M-48 8Q-28 14-8 6M48 8Q28 14 8 6M0 186v9M-14 150Q-10 170-12 190M14 150Q10 170 12 190" fill="none" stroke="${SH}" stroke-width="2.500" stroke-linecap="round" opacity=".6"/><use href="#${k}B"/>`;
+  const sport =
+    `<path d="M-64 44L-46-2H-26Q0 36 26-2H46L64 44Q70 92 60 122Q0 136-60 122Q-70 92-64 44Z" fill="${E}"/><path d="M-60 110Q0 124 60 110L60 122Q0 136-60 122Z" fill="${ED}"/><path d="M-26-2Q0 36 26-2" fill="none" stroke="#b8ffe0" stroke-width="3"/>` +
+    `<path d="M-80 208Q0 222 80 208L84 262L82 338H8L0 292L-8 338H-82L-84 262Z" fill="${E}"/><path d="M-80 208Q0 222 80 208L81 224Q0 238-81 224Z" fill="${ED}"/><path d="M-70 240L-76 338M70 240L76 338" stroke="#b8ffe0" stroke-width="3" fill="none"/>`;
+  const lace = bra('#16121c', '#8a7a98') + brief('#16121c', '#8a7a98') + `<path d="M-40 2Q-36-10-30-14M40 2Q36-10 30-14" stroke="#16121c" stroke-width="4" fill="none"/>`;
+  const tag = (x: number, y: number, x0: number, y0: number, rot: number): string =>
+    `<path d="M${x0} ${y0}Q${(x0 + x) / 2 + 10} ${(y0 + y) / 2} ${x} ${y - 20}" fill="none" stroke="#f4f0e6" stroke-width="2"/><g transform="translate(${x} ${y}) rotate(${rot})"><rect x="-56" y="-20" width="112" height="40" rx="4" fill="#f6f0e4"/><circle cx="-46" cy="-10" r="3.500" fill="#2a1a24"/>${tx(2, 6, 15, 'LACE THEORY', '#2a1a24', 'letter-spacing=".5"')}</g>`;
+  const room = (x: number, c1: string): string =>
+    `<rect x="${x}" width="300" height="800" fill="url(#${k}w)"/><rect x="${x}" y="640" width="300" height="160" fill="#1c0c18"/><circle cx="${x + 150}" cy="330" r="300" fill="url(#${c1})"/><path d="M${x} 560H${x + 300}V640H${x}Z" fill="#4a1c3a"/><path d="M${x} 530Q${x + 150} 510 ${x + 300} 534V590Q${x + 150} 570 ${x} 590Z" fill="#e8d0d4"/>`;
+  const num = (x: number, n: string): string => `<circle cx="${x}" cy="56" r="26" fill="#000" opacity=".55"/>${tx(x, 68, 34, n, '#fff')}`;
+  return frame(k, 600, 800, '#ffb0c8',
+    lg(`${k}w`, '#34162e', '#120814') + glow(`${k}a`, '#ff7a5a', 0.5) + glow(`${k}b`, '#ff3a8a', 0.5) + glow(`${k}fl`, '#fff', 0.95) + defs,
+    room(0, `${k}a`) + room(300, `${k}b`) +
+    `<g transform="translate(60 590) rotate(-8)"><path d="M-34-50H34L40 40H-40Z" fill="#f6c8d8"/><path d="M-16-50Q0-84 16-50" fill="none" stroke="#2a1a24" stroke-width="3"/>${tx(0, -8, 11, 'LACE', '#2a1a24')}${tx(0, 8, 11, 'THEORY', '#2a1a24')}</g>` +
+    `<ellipse cx="150" cy="776" rx="100" ry="12" fill="#000" opacity=".45"/><ellipse cx="450" cy="776" rx="100" ry="12" fill="#000" opacity=".45"/>` +
+    at(152, 260, 0.82, -1, body(sport)) + at(452, 260, 0.82, 1, body(lace)) + tag(226, 510, 216, 440, -6) + tag(520, 392, 500, 338, 6) +
+    flash(k, 72, 214) + flash(k, 372, 214) + `<rect x="296" width="8" height="800" fill="#f4f0e6"/>${num(44, '1')}${num(344, '2')}`, 0.5);
 }
 
 export const caught3Art: Record<string, string> = {
@@ -477,4 +709,14 @@ export const caught3Art: Record<string, string> = {
   cg3_ph_couch: couch(),
   cg3_ph_keycard: keycard(),
   cg3_ph_lot: lot(),
+  cg3_ph_video: video(),
+  cg3_ph_mirror: mirror(),
+  cg3_ph_rules: rules(),
+  cg3_ph_lucy: lucy(),
+  cg3_ph_box: box(),
+  cg3_ph_mel_wine: melWine(),
+  cg3_ph_hoodie_her: hoodieHer(),
+  cg3_ph_h_rafe: hRafe(),
+  cg3_ph_h_robe: hRobe(),
+  cg3_ph_h_tryon: hTryon(),
 };

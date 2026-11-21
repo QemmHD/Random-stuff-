@@ -14,8 +14,9 @@ import { avatarArt } from './avatars';
 import { extraArt } from './extra';
 import { hiddenArt } from './hidden';
 import { hiddenArt2 } from './hidden2';
+import { caught3Art } from './caught3';
 
-const REGISTRY: Record<string, string> = { ...extraArt, ...iconArt, ...avatarArt, ...case1Art, ...case2Art, ...case3Art, ...case4Art, ...case5Art, ...case6Art, ...case7Art, ...case8Art, ...case9Art, ...ownerArt, ...hiddenArt, ...hiddenArt2 };
+const REGISTRY: Record<string, string> = { ...extraArt, ...iconArt, ...avatarArt, ...case1Art, ...case2Art, ...case3Art, ...case4Art, ...case5Art, ...case6Art, ...case7Art, ...case8Art, ...case9Art, ...ownerArt, ...hiddenArt, ...hiddenArt2, ...caught3Art };
 const urlCache = new Map<string, string>();
 
 export function registerArt(more: Record<string, string>): void {

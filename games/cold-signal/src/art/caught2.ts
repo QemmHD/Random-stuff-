@@ -8,6 +8,8 @@ const HAND = 'font-family="Marker Felt, Chalkboard SE, Comic Sans MS, sans-serif
 const R = (v: number): number => Math.round(v * 10) / 10;
 const tx = (x: number, y: number, size: number, s: string, fill: string, extra = '', font = SANS): string =>
   `<text x="${x}" y="${y}" font-size="${size}" fill="${fill}" ${font} font-weight="700" text-anchor="middle" ${extra}>${s}</text>`;
+const txs = (x: number, y: number, size: number, s: string, fill: string, extra = '', font = SANS): string =>
+  `<text x="${x}" y="${y}" font-size="${size}" fill="${fill}" ${font} ${extra}>${s}</text>`;
 const lg = (id: string, a: string, b: string, x2 = 0, y2 = 1): string =>
   `<linearGradient id="${id}" x1="0" y1="0" x2="${x2}" y2="${y2}"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>`;
 const glow = (id: string, c: string, a = 0.8): string =>
@@ -220,7 +222,7 @@ const cover = (k: string): string => frame(k, 600, 800, '#8fd8ff',
   tx(326, 295, 10.5, 'WYETH MOTOR LODGE', '#ff9ac0', 'letter-spacing=".4"') + tx(326, 312, 10, '— VACANCY —', '#7ff0ff', 'letter-spacing="1"') +
   `<g fill="#ffd98a"><rect x="270" y="366" width="5" height="4"/><rect x="282" y="366" width="5" height="4"/><rect x="530" y="370" width="5" height="4"/></g>` +
   `<path d="M250 150H560V400H250ZM405 150V400M250 275H560" fill="none" stroke="#2c2a4a" stroke-width="9"/><rect x="238" y="398" width="334" height="12" fill="#34325a"/>` +
-  `<path d="M214 130H270Q280 280 252 420H214Z" fill="#2a2850"/><path d="M596 130H544Q532 280 560 420H596Z" fill="#222044"/><rect x="204" y="124" width="400" height="10" rx="5" fill="#3a3866"/>` +
+  `<path d="M214 130H252Q258 280 240 420H214Z" fill="#2a2850"/><path d="M596 130H544Q532 280 560 420H596Z" fill="#222044"/><rect x="204" y="124" width="400" height="10" rx="5" fill="#3a3866"/>` +
   `<path d="M0 800L250 400H560L420 800Z" fill="#6a8ad8" opacity=".06"/>` +
   // bed + sleeper facing the wall
   `<rect x="-10" y="330" width="60" height="330" rx="14" fill="#241c34"/><rect x="-10" y="520" width="450" height="130" fill="#141226"/>` +
@@ -264,7 +266,7 @@ const wallLock = (k: string): string => { const S = '#f3cbab', D = '#c98d70'; re
   // tea
   `<g transform="translate(70 150) scale(.82)"><ellipse cx="8" cy="14" rx="78" ry="74" fill="#000" opacity=".35" filter="url(#${k}b)"/><circle r="74" fill="#e9e2d2"/><circle r="74" fill="none" stroke="#b8ae98" stroke-width="3"/><path d="M40-40Q84-70 92-24Q94 6 52 20" fill="none" stroke="#f4eee0" stroke-width="15" stroke-linecap="round"/><circle r="54" fill="#f8f3e6"/><circle r="45" fill="url(#${k}t)"/><path d="M-30-14Q-14-36 14-34" fill="none" stroke="#fff" stroke-width="5" opacity=".4" stroke-linecap="round"/><path d="M20-30Q60 20 30 96" fill="none" stroke="#f4f0e4" stroke-width="2"/><rect x="14" y="92" width="30" height="36" rx="3" fill="#c9737f" transform="rotate(-14 29 110)"/></g>` +
   // arm
-  `<g transform="translate(300 585) rotate(18) scale(1.3)"><g opacity=".5" filter="url(#${k}b)" transform="translate(22 18)"><path d="M-195 30C-205-80-235-200-218-300Q-200-362 0-366Q195-356 208-290C218-180 198-80 192 30L240 900H-240Z"/></g>` +
+  `<g transform="translate(300 650) rotate(18) scale(1.3)"><g opacity=".5" filter="url(#${k}b)" transform="translate(22 18)"><path d="M-195 30C-205-80-235-200-218-300Q-200-362 0-366Q195-356 208-290C218-180 198-80 192 30L240 900H-240Z"/></g>` +
   `<g filter="url(#${k}f)" fill="${S}">${limb([170, -130, 60], [282, -236, 47], [326, -350, 38])}${limb([-165, -300, 45], [-186, -432, 40], [-196, -548, 34])}${limb([-62, -330, 49], [-70, -500, 44], [-74, -645, 38])}${limb([48, -335, 51], [52, -520, 45], [54, -675, 39])}${limb([155, -315, 49], [168, -480, 43], [176, -615, 37])}` +
   `<path d="M-192 420C-190 260-198 120-190 20C-200-80-232-200-216-300Q-200-362 0-366Q192-356 206-290C216-180 196-80 190 20C198 120 190 260 192 420Z"/></g>` +
   `<g fill="none" stroke="${D}" stroke-linecap="round" opacity=".7"><path d="M-205-430q20 8 38 0M-112-500q42 12 82 0M8-520q44 12 88 0M126-480q42 10 82 0M236-250q28-4 52-34" stroke-width="4"/><path d="M-120-300Q-110-200-60-120M-10-330Q0-220 10-130M96-320Q90-220 70-130" stroke-width="5" opacity=".45"/><path d="M-150 70Q0 104 150 70" stroke-width="4" opacity=".5"/></g>` +
@@ -326,11 +328,190 @@ const cg2Map = (k: string): string => frame(k, 800, 600, '#fff',
   mapIcon(704, 72, '<path d="M-22 8L-14-18L-6 8ZM10 8L19-22L28 8Z" fill="#3f6a3a"/><path d="M-11 8V-3H11V8Z" fill="#8a5a30"/><path d="M-14-2L0-14L14-2Z" fill="#5a3418"/><path d="M-11 0H11M-11 4H11" stroke="#5a3418" stroke-width="1"/><rect x="-2" y="1" width="5" height="7" fill="#ffd36a"/>') +
   `<g transform="translate(52 60)"><circle r="20" fill="#fbf4e4" stroke="#8a7a5a" stroke-width="1.500"/><path d="M0-16L5 0H-5Z" fill="#c0503a"/><path d="M0 16L5 0H-5Z" fill="#5a5a5a"/></g>`, 0.25);
 
+// ---------- photos ----------
+const flute = (x: number, y: number, rot: number): string => at(x, y, 1, rot,
+  '<path d="M0 6V46M-12 48H12" stroke="#f4ead0" stroke-width="3" stroke-linecap="round" opacity=".8"/><path d="M-10-46Q-13 0 0 8Q13 0 10-46Z" fill="#ffe9a8" opacity=".55" stroke="#fff6d8" stroke-width="1.500"/><path d="M-9-24Q-10 0 0 6Q10 0 9-24Z" fill="#ffcf5a" opacity=".85"/><path d="M-5-40V-8" stroke="#fff" stroke-width="2" opacity=".7"/><g fill="#fff"><circle cx="2" cy="-14" r="1.200"/><circle cx="-3" cy="-6" r="1"/><circle cx="4" cy="-20" r="1"/></g>');
+const dockMini = (k: string, w: number, h: number): string => {
+  const g = greg(laugh('#7a3a30'), 1.6), n = nora(laugh('#7a2436'), false, 2.3);
+  return `<rect width="${w}" height="${h}" fill="url(#${k}s)"/><circle cx="${w * 0.3}" cy="${h * 0.4}" r="26" fill="#fff8e0"/>${orb(w * 0.3, h * 0.4, 120, `${k}g`, 0.8)}<path d="M0 ${h * 0.5}Q${w / 2} ${h * 0.44} ${w} ${h * 0.5}V${h * 0.53}H0Z" fill="#8a4a3a" opacity=".8"/>` +
+    `<path d="M${w * 0.34} ${h * 0.62}H${w * 0.66}L${w * 1.1} ${h}H${-w * 0.1}Z" fill="#8a5428"/>` +
+    bust(w * 0.32, h * 0.8, 0.5, -2, g, `<path d="${CL}" fill="#27375a"/><path d="M-20-8L0 110L20-8Q0 14-20-8Z" fill="#fbf6ea"/><path d="M-8 6H8L12 96L0 112L-12 96Z" fill="#b8566a"/>`, k, 10) +
+    bust(w * 0.68, h * 0.82, 0.48, 2, n, `<path d="${CL}" fill="${n.sk}"/><path d="M-66 76Q-34 50 0 78Q34 50 66 76L78 264H-78Z" fill="#fffaf0"/>`, k, -9, '<path d="M-50-150Q0-190 50-150L70 60H-70Z" fill="#fff" opacity=".3"/>');
+};
+const SUNSET = (k: string): string => `<linearGradient id="${k}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2823c"/><stop offset=".48" stop-color="#ffd98a"/><stop offset=".5" stop-color="#f09a4a"/><stop offset="1" stop-color="#8a3a3a"/></linearGradient>` + glow(`${k}g`, '#fff6d0', 1);
+const phWedding = (k: string): string => frame(k, 600, 800, '#ffe2a0',
+  SUNSET(k) + lg(`${k}w`, '#b8cfe0', '#e9e2d2') + lg(`${k}m`, '#d9dde2', '#8a9098', 1, 1) + `<clipPath id="${k}c"><rect width="250" height="320"/></clipPath><filter id="${k}b"><feGaussianBlur stdDeviation="9"/></filter>`,
+  `<rect width="600" height="800" fill="url(#${k}w)"/><g filter="url(#${k}b)"><circle cx="120" cy="330" r="110" fill="#7a9a6a"/><circle cx="470" cy="280" r="140" fill="#8aa878"/><circle cx="300" cy="420" r="90" fill="#c98a4a"/><rect y="470" width="600" height="160" fill="#9ab08a"/></g>` +
+  `<path d="M300 0V640M0 250H600" stroke="#f4f0e6" stroke-width="22"/><path d="M0 0H600V640H0Z" fill="none" stroke="#f4f0e6" stroke-width="44"/><rect y="620" width="600" height="180" fill="#f4f0e6"/><rect y="620" width="600" height="14" fill="#fff"/><rect y="700" width="600" height="100" fill="#d9d2c2"/>` +
+  `<g transform="translate(300 400) rotate(-3)"><path d="M-150 250L-190 262H180L150 250Z" fill="#000" opacity=".25"/><rect x="-162" y="-230" width="324" height="476" rx="8" fill="url(#${k}m)"/><rect x="-162" y="-230" width="324" height="476" rx="8" fill="none" stroke="#fff" stroke-width="2" opacity=".7"/><rect x="-130" y="-200" width="260" height="330" fill="#1c1410"/>` +
+  `<g transform="translate(-125 -195)" clip-path="url(#${k}c)">${dockMini(k, 250, 320)}<path d="M0 0H110L40 320H0Z" fill="#fff" opacity=".13"/></g>` +
+  `<rect x="-136" y="158" width="272" height="58" rx="5" fill="#c8a85a" stroke="#7a5a1a" stroke-width="2"/>${tx(0, 195, 22, 'N &amp; G — 11.28.2016', '#4a3208', 'letter-spacing=".5"', SERIF)}</g>` +
+  `<g transform="translate(508 640)"><path d="M-36-50H36L28 0H-28Z" fill="#c0704a"/><rect x="-40" y="-58" width="80" height="12" rx="3" fill="#d98a5a"/><g fill="#5a9a6a"><ellipse cx="-16" cy="-74" rx="10" ry="22" transform="rotate(-24 -16 -74)"/><ellipse cx="16" cy="-74" rx="10" ry="22" transform="rotate(24 16 -74)"/><ellipse cy="-84" rx="10" ry="26"/></g></g>` +
+  `<g transform="translate(86 628)" fill="none" stroke="#3a2016" stroke-width="5"><rect x="-40" y="-26" width="34" height="24" rx="9" fill="#fff" fill-opacity=".3"/><rect x="2" y="-26" width="34" height="24" rx="9" fill="#fff" fill-opacity=".3"/><path d="M-6-16h8M-40-18L-56 2M36-18L52 2"/></g>`, 0.4);
+
+const velaBg = (k: string): string =>
+  `<rect width="600" height="800" fill="url(#${k}w)"/><path d="M60 420V170Q60 60 170 60Q280 60 280 170V420Z" fill="#141a3a"/><g filter="url(#${k}b)"><circle cx="110" cy="250" r="16" fill="#ffd36a"/><circle cx="210" cy="300" r="20" fill="#ff8a5a"/><circle cx="160" cy="180" r="13" fill="#9fd0ff"/><circle cx="240" cy="210" r="11" fill="#ffd36a"/><circle cx="430" cy="150" r="26" fill="#ffb04a"/><circle cx="540" cy="250" r="20" fill="#ffb04a"/><circle cx="500" cy="80" r="14" fill="#ff8a5a"/><circle cx="350" cy="230" r="12" fill="#ffd98a"/></g>` +
+  `<path d="M60 420V170Q60 60 170 60Q280 60 280 170V420M170 60V420" fill="none" stroke="#5a3424" stroke-width="10"/>`;
+const velaTable = (k: string, cx: number, extra = ''): string =>
+  `<path d="M-10 700Q300 664 610 700V800H-10Z" fill="#f4ead8"/><path d="M-10 700Q300 664 610 700V716Q300 680-10 716Z" fill="#fff" opacity=".7"/>${extra}` +
+  `<g transform="translate(${cx} 706)">${orb(0, -40, 150, `${k}g`, 0.75)}<path d="M-20-44H20L16 20H-16Z" fill="#ffd98a" opacity=".35" stroke="#fff3d0" stroke-width="2"/><rect x="-9" y="-26" width="18" height="42" rx="3" fill="#fff6e0"/><path d="M0-30Q-9-44 0-62Q9-44 0-30Z" fill="#ffb02a"/><path d="M0-32Q-4-40 0-50Q4-40 0-32Z" fill="#fff6d0"/></g>` +
+  `<g transform="translate(520 716) rotate(4)"><path d="M-30 30L-22-34H22L30 30Z" fill="#fffdf5" stroke="#c8a85a" stroke-width="3"/>${tx(0, 16, 46, '12', '#3a2416', '', SERIF)}</g>`;
+const VELA_DEFS = (k: string): string => lg(`${k}w`, '#5a2420', '#1c0c10') + glow(`${k}g`, '#ffc86a', 0.8) + glow(`${k}c`, '#8fd8ff', 0.7) + `<filter id="${k}b"><feGaussianBlur stdDeviation="7"/></filter>`;
+const phUsVela = (k: string): string => { const g = greg('<path d="M91 118Q100 120 109 117" stroke="#7a3a30" stroke-width="2.400"/>', 2.5, BROW), n = nora(lips('#c4566a', '#7a2436', true)); return frame(k, 600, 800, '#ffcf8a', VELA_DEFS(k),
+  velaBg(k) +
+  bust(440, 520, 1.5, 3, g, vest(), k, 12, `${orb(-30, 96, 130, `${k}c`, 0.8)}<g transform="translate(-34 100) rotate(-14)"><rect x="-24" y="-40" width="48" height="84" rx="8" fill="#12141c"/><rect x="-20" y="-35" width="40" height="74" rx="5" fill="#cfeeff"/></g>${hand(-12, 128, 150, g.sk, g.sh, 1.5)}`) +
+  bust(196, 590, 1.85, -3, n, cardigan(), k, -5, `<g filter="url(#${k}f)"><g fill="#e2cfae">${limb([-84, 44, 26], [-150, 150, 24], [-200, 260, 22])}</g></g>`) +
+  velaTable(k, 350, `<g opacity=".8"><path d="M286 640Q280 690 300 700Q320 690 314 640Z" fill="#7a1428" stroke="#fff" stroke-opacity=".5" stroke-width="2"/><path d="M300 700V740M284 742H316" stroke="#fff" stroke-width="3" opacity=".7"/></g>`), 0.6); };
+
+const phVelaB = (k: string): string => { const b = bernard('<path d="M88 114Q100 124 112 114" stroke="#3a1c14" stroke-width="2.600"/><path d="M90 115Q100 120 110 115" stroke="#fff" stroke-width="2"/>', 1.5), n = nora(grin('#7a2436')); return frame(k, 600, 800, '#ffcf8a', VELA_DEFS(k),
+  velaBg(k) +
+  bust(436, 540, 1.55, 3, b, tweed(), k, -6, `<g filter="url(#${k}f)"><g fill="#5a4636">${limb([-78, 40, 25], [-110, 120, 22], [-88, 40, 18])}</g></g>${hand(-88, 20, 10, b.sk, b.sh, 1.4)}${flute(-88, -22, 14)}`) +
+  bust(180, 590, 1.8, -3, n, cardigan('#3f6a8a'), k, 6, `<g filter="url(#${k}f)"><g fill="#e2cfae">${limb([78, 44, 25], [112, 110, 22], [84, 20, 18])}</g></g>${hand(84, 2, -10, n.sk, n.sh, 1.4)}${flute(84, -40, -14)}<path d="M100-108l8-12M112-98l14-6M92-116l2-14" stroke="#fff6d0" stroke-width="2.500" stroke-linecap="round"/>`) +
+  velaTable(k, 60, `<g transform="translate(300 742) rotate(-7)"><rect x="-152" y="-48" width="310" height="104" fill="#000" opacity=".25"/><rect x="-158" y="-54" width="310" height="104" rx="3" fill="#d9b06a"/><path d="M-158-54L-3 4L152-54" fill="none" stroke="#a8803a" stroke-width="3"/><rect x="-148" y="6" width="290" height="34" fill="none" stroke="#a81c2c" stroke-width="3"/>${tx(-3, 29, 15.5, 'HARTWELL &amp; FINCH — CONTRACT', '#a81c2c', 'letter-spacing=".5"')}<rect x="-158" y="50" width="310" height="7" fill="#8a6a2a"/></g>`), 0.6); };
+
+const phCabin = (k: string): string => frame(k, 800, 600, '#ffd98a',
+  `<linearGradient id="${k}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2450"/><stop offset=".6" stop-color="#8a4a7a"/><stop offset="1" stop-color="#f09a5a"/></linearGradient>` + glow(`${k}g`, '#ffc86a', 0.9) + glow(`${k}t`, '#7fe0f0', 0.8) + `<clipPath id="${k}c"><rect width="800" height="400"/></clipPath><filter id="${k}b"><feGaussianBlur stdDeviation="8"/></filter>`,
+  `<rect width="800" height="600" fill="#fbfaf6"/><g clip-path="url(#${k}c)"><rect width="800" height="400" fill="url(#${k}s)"/><g fill="#fff" opacity=".8"><circle cx="90" cy="50" r="1.500"/><circle cx="230" cy="90" r="1.200"/><circle cx="420" cy="40" r="1.500"/><circle cx="610" cy="70" r="1.200"/><circle cx="720" cy="30" r="1.500"/></g>` +
+  `<path d="M0 290L60 180L90 250L150 130L200 250L240 200L290 300L800 300L760 200L720 270L670 140L620 260L590 220L560 300Z" fill="#14202c"/><path d="M0 300H800V400H0Z" fill="#1c2a2c"/><path d="M0 330Q400 300 800 340V400H0Z" fill="#26342e"/>` +
+  `<g transform="translate(350 300)">${orb(0, -40, 220, `${k}g`, 0.5)}<path d="M-150 30V-70H150V30Z" fill="#7a4a24"/><g stroke="#4a2a10" stroke-width="3"><path d="M-150-50H150M-150-30H150M-150-10H150M-150 10H150"/></g><path d="M-176-64L0-170L176-64L150-64L0-150L-150-64Z" fill="#3a2010"/><path d="M-150-64L0-150L150-64Z" fill="#5a3418"/><rect x="80" y="-176" width="26" height="60" fill="#4a3a34"/>` +
+  `<g fill="#ffd36a"><rect x="-120" y="-46" width="56" height="46"/><rect x="64" y="-46" width="56" height="46"/><path d="M-18-130H18V-96H-18Z"/></g><path d="M-92-46V0M-120-23H-64M92-46V0M64-23H120" stroke="#7a4a24" stroke-width="3"/><rect x="-24" y="-40" width="48" height="70" fill="#3a2010"/><circle cx="14" cy="0" r="3" fill="#ffd36a"/><rect x="-190" y="30" width="380" height="14" fill="#4a2a10"/>` +
+  `<path d="M-190-74Q-100-50-10-74Q80-50 190-74" fill="none" stroke="#2a1c10" stroke-width="1.500"/><g fill="#fff3b0">${[-160, -120, -80, -40, 30, 70, 110, 150].map((x) => `<circle cx="${x}" cy="${-62 + Math.abs((x % 90) / 9)}" r="3"/>`).join('')}</g></g>` +
+  `<g transform="translate(600 346)">${orb(0, -10, 130, `${k}t`, 0.7)}<path d="M-96-14Q0-40 96-14V36Q0 56-96 36Z" fill="#6a3c1c"/><ellipse cy="-14" rx="96" ry="22" fill="#8a5428"/><ellipse cy="-14" rx="82" ry="16" fill="#5fd0e0"/><ellipse cx="-20" cy="-18" rx="30" ry="5" fill="#fff" opacity=".5"/><g stroke="#3a1c0c" stroke-width="2"><path d="M-60 6V44M-20 10V50M20 10V50M60 6V44"/></g>` +
+  `<g fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".3" filter="url(#${k}b)"><path d="M-40-30q-20-30 0-60t0-60M10-30q-20-30 0-60t0-70M50-30q-20-30 0-50t0-50"/></g></g></g>` +
+  `<rect width="800" height="46" fill="#000" opacity=".25"/><path d="M26 23l10-10M26 23l10 10" stroke="#fff" stroke-width="3.500" stroke-linecap="round"/><path d="M764 16q-10-10-16 0q-2 8 16 20q18-12 16-20q-6-10-16 0Z" fill="none" stroke="#fff" stroke-width="2.500"/>${tx(400, 30, 15, '1 / 14', '#fff')}` +
+  txs(30, 452, 34, 'PINE HOLLOW CABINS', '#1c2a2c', 'font-weight="700" letter-spacing="1"') + txs(30, 484, 18, 'Cabin 4 “The Lantern” · private hot tub · sleeps 2', '#5a6a6a') +
+  `<rect x="30" y="514" width="250" height="56" rx="10" fill="#fff4d8" stroke="#e0b040" stroke-width="2.500"/>${tx(155, 551, 27, 'Nov 27–29', '#3a2a08')}<rect x="300" y="514" width="200" height="56" rx="10" fill="#1f9a5a"/>${tx(400, 552, 28, '✓ BOOKED', '#fff', 'letter-spacing="1"')}` +
+  txs(770, 540, 30, '$612', '#1c2a2c', 'font-weight="700" text-anchor="end"') + txs(770, 564, 14, '2 nights · paid', '#5a6a6a', 'text-anchor="end"'), 0.2);
+
+const phKeycard = (k: string): string => frame(k, 600, 800, '#ffd98a',
+  lg(`${k}d`, '#4a2a1c', '#20100c', 1, 1) + glow(`${k}g`, '#ffc878', 0.7) + lg(`${k}c`, '#f6efdc', '#e0d2b0') + `<filter id="${k}b"><feGaussianBlur stdDeviation="10"/></filter>`,
+  `<rect width="600" height="800" fill="url(#${k}d)"/>${orb(140, 120, 520, `${k}g`, 0.8)}` +
+  `<g transform="rotate(-5 300 420)"><rect x="66" y="96" width="440" height="620" fill="#000" opacity=".4" filter="url(#${k}b)"/><rect x="72" y="80" width="430" height="620" fill="#e6e0d0"/><rect x="62" y="72" width="430" height="620" fill="#f1ece0"/><rect x="52" y="62" width="430" height="620" fill="#fffdf6"/>` +
+  tx(267, 118, 19.5, 'TIDEWATER HEAT #10 — AUDIO SCRIPT', '#1c1c24', 'letter-spacing=".4"') + `<path d="M84 132H450" stroke="#1c1c24" stroke-width="2"/>` + txs(84, 160, 13, 'CH. 9 — “THE HAYLOFT” · narrator: D. Rush · pg 201', '#6a6a72') +
+  `<g stroke="#b8b4a8" stroke-width="5" stroke-linecap="round">${[190, 214, 238, 262, 310, 334, 358, 600, 624, 648].map((y, i) => `<path d="M84 ${y}H${450 - ((i * 53) % 110)}"/>`).join('')}</g><rect x="80" y="228" width="250" height="20" fill="#ffe94a" opacity=".5"/>` +
+  txs(340, 300, 20, '(breathy!)', '#c0283a', 'transform="rotate(-6 340 300)"', HAND) + txs(92, 400, 18, 'slower — let it land', '#c0283a', '', HAND) + `</g>` +
+  // key-card sleeve
+  `<g transform="translate(318 520) rotate(9)"><rect x="-150" y="-86" width="316" height="200" fill="#000" opacity=".4" filter="url(#${k}b)"/><rect x="-96" y="-128" width="200" height="120" rx="10" fill="#14323a"/><rect x="-96" y="-104" width="200" height="16" fill="#d8b25a"/><rect x="-160" y="-100" width="320" height="200" rx="6" fill="url(#${k}c)"/><path d="M-160-100H160L130-72H-130Z" fill="#d9caa4"/>` +
+  `<path d="M0-54l9 14h-18Z" fill="#b08a2a"/><circle cy="-58" r="4" fill="#b08a2a"/>${tx(0, -14, 22, 'HOTEL CORVINA', '#8a6a1a', 'letter-spacing="5"', SERIF)}<path d="M-120 0H120" stroke="#c8b88a" stroke-width="1.500"/>` +
+  tx(0, 48, 34, 'MRS. SMITH — 512', '#1c3a8a', 'transform="rotate(-3)"', HAND) + `<path d="M-128 62Q0 74 126 54" fill="none" stroke="#1c3a8a" stroke-width="2.500" stroke-linecap="round"/>${tx(0, 86, 11, 'Thursdays · do not disturb', '#8a7a5a')}</g>` +
+  // throat spray
+  `<g transform="translate(476 220) rotate(24)"><rect x="-28" y="-40" width="70" height="170" rx="20" fill="#000" opacity=".4" filter="url(#${k}b)"/><rect x="-32" y="-50" width="64" height="160" rx="18" fill="#2f8a8a"/><rect x="-32" y="-10" width="64" height="86" fill="#f4fbf8"/>${tx(0, 22, 13, 'VOCALEZE', '#1c5a5a')}${tx(0, 40, 10.5, 'throat spray', '#1c5a5a')}${tx(0, 60, 9, 'honey · sage', '#b08a2a')}<rect x="-16" y="-82" width="32" height="34" rx="5" fill="#e9eef0"/><path d="M-16-76H-40V-64H-16Z" fill="#e9eef0"/><path d="M-22-36V96" stroke="#fff" stroke-width="5" opacity=".3" stroke-linecap="round"/></g>`, 0.55);
+
+const shoe = (x: number, y: number, s: number, rot: number, flip = 1): string => at(x, y, s, rot,
+  `<g transform="scale(${flip} 1)"><path d="M6 0C-2-44 18-66 50-66H72C84-44 112-32 152-28Q172-22 172 0Z" fill="#e23d3a"/><path d="M6 0C-2-44 18-66 46-66L42 0Z" fill="#1f3a6a"/><path d="M112-33Q150-30 170-14L172 0H104Z" fill="#1f3a6a"/><path d="M50-66H72C80-48 96-38 116-33L104-12Q70-22 50-66Z" fill="#f6efdc"/>` +
+  `<path d="M60-56L84-52M66-46L92-42M74-37L102-33" stroke="#fff" stroke-width="4" stroke-linecap="round"/><rect x="0" y="-2" width="174" height="14" rx="6" fill="#f6efdc"/><path d="M20-50Q40-60 60-58" fill="none" stroke="#fff" stroke-width="4" opacity=".35" stroke-linecap="round"/></g>`);
+const priceTag = (x: number, y: number, rot: number): string => at(x, y, 1, rot,
+  `<path d="M0 0Q-20-30-10-60" fill="none" stroke="#f4ead0" stroke-width="2"/><path d="M-96 0H96V58H-96L-110 29Z" fill="#fffbe8" stroke="#b8a878" stroke-width="2"/><circle cx="-96" cy="29" r="4" fill="#3a2a1a"/>${tx(4, 24, 14.5, 'STRIKE FORCE LANES', '#c0281c', 'letter-spacing=".5"')}${tx(4, 48, 20, '— $54.99 —', '#1c1c24')}`);
+const phShoes = (k: string): string => frame(k, 800, 600, '#fff',
+  lg(`${k}c`, '#5a5c64', '#2a2c34') + glow(`${k}g`, '#fff', 0.55) + `<filter id="${k}b"><feGaussianBlur stdDeviation="10"/></filter>`,
+  `<rect width="800" height="600" fill="#0c0c12"/><path d="M40 110H760L800 520H0Z" fill="url(#${k}c)"/>${orb(400, 330, 420, `${k}g`, 1)}<path d="M40 110H760L746 200H54Z" fill="#1c1c24"/>` +
+  `<path d="M-10-10H810V90Q400 130-10 90Z" fill="#7a1c24"/><path d="M-10 78Q400 118 810 78V96Q400 136-10 96Z" fill="#14141a"/><path d="M-10 520H810V610H-10Z" fill="#8a2028"/><path d="M-10 520H810V540H-10Z" fill="#14141a"/><rect x="330" y="556" width="140" height="34" rx="4" fill="#f4f0e0"/>${tx(400, 580, 20, 'DRMHVN 1', '#1c2a5a', 'letter-spacing="2"')}` +
+  `<g transform="translate(120 240)"><path d="M-80 0Q-80-70 0-70Q80-70 80 0V120H-80Z" fill="#3a4a5a"/><path d="M-40-66Q0-130 40-66" fill="none" stroke="#1c2a3a" stroke-width="10"/><path d="M-80 30H80" stroke="#1c2a3a" stroke-width="5"/></g>` +
+  `<g opacity=".4" filter="url(#${k}b)"><ellipse cx="300" cy="452" rx="170" ry="26"/><ellipse cx="520" cy="384" rx="140" ry="22"/><ellipse cx="704" cy="440" rx="60" ry="18"/></g>` +
+  shoe(640, 372, 1.45, -6, -1) + shoe(150, 440, 1.7, 3) + priceTag(300, 486, 4) + priceTag(500, 236, -10) +
+  `<g transform="translate(704 344) scale(.88)"><rect x="-22" y="-146" width="44" height="40" rx="6" fill="#f4d8a0"/><rect x="-10" y="-166" width="20" height="24" fill="#e9eef0"/><path d="M-48-110Q0-126 48-110L54 96Q0 112-54 96Z" fill="#f9c8d4"/><path d="M-48-110Q0-126 48-110L50-40Q0-26-50-40Z" fill="#fde6c0" opacity=".7"/><rect x="-42" y="-34" width="84" height="92" rx="6" fill="#fffaf0"/>` +
+  `${tx(0, 0, 17, 'VANILLA', '#b0507a', 'letter-spacing="1"', SERIF)}${tx(0, 22, 17, 'DREAMS', '#b0507a', 'letter-spacing="1"', SERIF)}${tx(0, 42, 9, 'body mist', '#8a6a5a')}<path d="M-38-100V84" stroke="#fff" stroke-width="6" opacity=".45" stroke-linecap="round"/></g>`, 0.75);
+
+// ---------- bare-shouldered bodies (origin = pit of the neck) ----------
+const TF = 'M-15-44V-8Q-34-2-58 6Q-70 10-70 26L-56 60C-62 84-42 118-38 146C-40 176-79 194-81 240V262H81V240C79 194 40 176 38 146C42 118 62 84 56 60L70 26Q70 10 58 6Q34-2 15-8V-44Z';
+const TM = 'M-17-44V-10Q-40-4-70 4Q-84 8-84 28L-70 70C-70 110-56 150-54 190V262H54V190C56 150 70 110 70 70L84 28Q84 8 70 4Q40-4 17-10V-44Z';
+const marks = (c: string): string =>
+  `<g fill="none" stroke="${c}" stroke-width="2.500" stroke-linecap="round" opacity=".8"><path d="M-48 8Q-28 14-8 6M48 8Q28 14 8 6M0 58Q-2 68 0 78"/></g><path d="M-50 60Q-38 50-22 54M14 56Q26 50 40 54" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".28"/>`;
+const SLIP = 'M-60 64Q-34 46-2 82Q34 46 60 64C64 90 44 120 40 146C42 176 80 194 84 240L92 336H-92L-84 240C-80 194-42 176-40 146C-44 120-64 90-60 64Z';
+const lace = (d: string, c: string, w = 5): string => `<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-dasharray="1 6.500" stroke-linecap="round"/>`;
+const sheen = (d: string, w = 6, o = 0.3): string => `<path d="${d}" fill="none" stroke="#fff" stroke-width="${w}" stroke-linecap="round" opacity="${o}"/>`;
+const flash = (x: number, y: number, id: string): string => `${orb(x, y, 90, id, 1)}<path d="M${x} ${y - 60}L${x + 6} ${y - 6}L${x + 60} ${y}L${x + 6} ${y + 6}L${x} ${y + 60}L${x - 6} ${y + 6}L${x - 60} ${y}L${x - 6} ${y - 6}Z" fill="#fff"/>`;
+
+const bike = (x: number, y: number, s: number): string => at(x, y, s, 0,
+  '<g fill="none" stroke="#1a0c2c" stroke-width="12" stroke-linecap="round"><path d="M-50 0L-10-90L40-20M-10-90L-22-130M-44-130H0M40-20L60-120M40-124H84M-80 30H90"/></g><circle cx="46" cy="-6" r="42" fill="#1a0c2c"/><circle cx="46" cy="-6" r="42" fill="none" stroke="#c060ff" stroke-width="3" opacity=".7"/><circle cx="46" cy="-6" r="10" fill="#c060ff" opacity=".5"/>');
+const phBeaSpin = (k: string): string => { const f = bea(lips('#e0507a', '#8a2040', true)); return frame(k, 600, 800, '#ff7ae0',
+  lg(`${k}w`, '#3a1466', '#12062a') + glow(`${k}g`, '#ff4fd0', 0.7) + glow(`${k}c`, '#5fe0ff', 0.6) + `<filter id="${k}b"><feGaussianBlur stdDeviation="5"/></filter>`,
+  `<rect width="600" height="800" fill="url(#${k}w)"/><path d="M0 560H600V800H0Z" fill="#0c0420"/>${orb(480, 120, 360, `${k}g`, 0.7)}${orb(60, 600, 300, `${k}c`, 0.5)}` +
+  `<g filter="url(#${k}b)"><path d="M0 86H600" stroke="#ff4fd0" stroke-width="7"/><path d="M0 560H600" stroke="#5fe0ff" stroke-width="5"/></g><path d="M0 86H600" stroke="#ffd0f4" stroke-width="2"/><path d="M0 560H600" stroke="#dff8ff" stroke-width="1.500"/>` +
+  `<rect x="34" y="124" width="318" height="132" rx="10" fill="#0c0420" stroke="#5a2a9a" stroke-width="3"/><g filter="url(#${k}b)" opacity=".9">${tx(193, 190, 46, 'PEDALHAUS', '#ff4fd0', 'letter-spacing="2"')}${tx(193, 232, 23, 'THURSDAY 7PM', '#5fe0ff', 'letter-spacing="3"')}</g>${tx(193, 190, 46, 'PEDALHAUS', '#ffe0f8', 'letter-spacing="2"')}${tx(193, 232, 23, 'THURSDAY 7PM', '#e6fbff', 'letter-spacing="3"')}` +
+  bike(470, 520, 1) + bike(90, 540, 0.9) + bike(560, 600, 1.3) +
+  `<g transform="translate(290 520) scale(1.7)"><g filter="url(#${k}f)">${at(0, HY, HS, -5, `<g transform="translate(-100 -85)">${f.back ?? ''}</g>`)}<g fill="${f.sk}"><path d="${CL}"/>${limb([74, 34, 22], [128, 96, 18], [118, 6, 15])}</g><path d="M-46 2Q-38 52-68 98L-76 264H76L68 98Q38 52 46 2L30-2Q0 44-30-2Z" fill="#1fb5a8"/>${neck(f.sk, f.sh)}` +
+  `<g fill="${f.sk}">${limb([112, -4, 7.500], [102, -44, 6.500])}${limb([122, -4, 7.500], [134, -42, 6.500])}<circle cx="118" cy="0" r="15"/></g></g>${sheen('M-70 30Q-80 60-76 100', 5, 0.35)}<path d="M-30 4Q0 40 30 4" fill="none" stroke="#0e7d74" stroke-width="4"/><path d="M-48 10Q-28 16-8 8" fill="none" stroke="${f.sh}" stroke-width="2.500" stroke-linecap="round" opacity=".7"/>` +
+  `${at(0, HY, HS, -5, `<g transform="translate(-100 -85)">${face(f, false)}</g>`)}</g>` +
+  `<path d="M40 800Q60 700 180 716L420 716Q540 700 560 800" fill="none" stroke="#0a0414" stroke-width="30" stroke-linecap="round"/><path d="M60 770Q80 706 180 712" fill="none" stroke="#c060ff" stroke-width="3" opacity=".7"/><rect x="236" y="664" width="128" height="76" rx="10" fill="#0a0414" stroke="#5a2a9a" stroke-width="3"/><rect x="246" y="674" width="108" height="56" rx="5" fill="#12305a"/>${tx(300, 700, 22, '92 RPM', '#7ff0ff')}${tx(300, 722, 13, '31:07 · 412 cal', '#b8e8ff')}` +
+  `${hand(150, 712, 190, f.sk, f.sh, 2.4)}<rect width="600" height="800" fill="#b040ff" opacity=".12"/>`, 0.6); };
+
+const phTiffani = (k: string): string => { const f = tiffani(lips('#e23d5a', '#8a1c34'), 1.5), R1 = '#e8486a', R2 = '#b02a4a'; return frame(k, 600, 800, '#fff6e0',
+  lg(`${k}w`, '#7a5234', '#4a2e1c') + glow(`${k}g`, '#fff', 0.9) + glow(`${k}l`, '#ffc86a', 0.8) + lg(`${k}m`, '#c8a050', '#7a5a20', 1, 1) + `<clipPath id="${k}c"><rect x="26" y="26" width="548" height="652"/></clipPath><filter id="${k}b"><feGaussianBlur stdDeviation="8"/></filter>`,
+  `<rect width="600" height="800" fill="url(#${k}m)"/><g clip-path="url(#${k}c)"><rect width="600" height="700" fill="url(#${k}w)"/><g stroke="#3a2214" stroke-width="3" opacity=".6">${[80, 140, 200, 260, 320, 380, 440, 500, 560].map((x) => `<path d="M${x} 0V520"/>`).join('')}</g><rect y="520" width="600" height="180" fill="#5a3a4a"/>` +
+  `${orb(80, 330, 190, `${k}l`, 0.8)}<path d="M50 300L66 240H112L128 300Z" fill="#ffe6a8"/><rect x="84" y="300" width="10" height="70" fill="#3a2a1a"/><rect x="26" y="370" width="130" height="150" fill="#3a2418"/>` +
+  `<rect x="150" y="96" width="150" height="110" fill="#d9c8a0" stroke="#3a2214" stroke-width="8"/><path d="M158 180Q200 130 240 170Q270 150 292 176V198H158Z" fill="#5a8a8a"/><circle cx="270" cy="130" r="12" fill="#ffb04a"/>` +
+  `<path d="M26 470Q140 440 250 480V700H26Z" fill="#2f7a7a"/><g fill="#ff9a4a" opacity=".85"><circle cx="70" cy="520" r="14"/><circle cx="150" cy="560" r="16"/><circle cx="60" cy="620" r="15"/><circle cx="200" cy="640" r="13"/></g><g fill="#ffd36a"><circle cx="70" cy="520" r="5"/><circle cx="150" cy="560" r="6"/><circle cx="60" cy="620" r="5"/><circle cx="200" cy="640" r="5"/></g>` +
+  // chair + Greg's vest
+  `<g transform="translate(476 330)"><path d="M-74-110V370M74-110V370" stroke="#2a1a10" stroke-width="12"/><path d="M-80 190H80V214H-80Z" fill="#3a2418"/><g filter="url(#${k}f)"><path d="M-84-104Q-40-128 0-104Q40-128 84-104L92 150H-92Z" fill="#8b9199"/></g><path d="M-22-112L0-74L22-112Q40-122 54-114L30-50H-30L-54-114Q-40-122-22-112Z" fill="#a4aab2"/><path d="M0-74V150" stroke="#5c626a" stroke-width="4" stroke-dasharray="3 3"/>` +
+  `<path d="M-84-104Q-96-20-70 40M84-104Q96-20 70 40" fill="none" stroke="#6c727a" stroke-width="4"/><path d="M-92 150H92" stroke="#6c727a" stroke-width="6"/>${GREGTAG(-42, 10, 2)}${sheen('M-60-90Q-70-20-66 60', 6, 0.25)}</g>` +
+  // Tiffani
+  `<g transform="translate(262 292) scale(1.3)"><g filter="url(#${k}f)">${at(0, HY, HS, -6, `<g transform="translate(-100 -85)">${f.back ?? ''}</g>`)}<path d="M-60 8Q-90 14-96 44L-128 340H-70L-52 150ZM60 8Q90 14 96 44L124 340H70L52 150Z" fill="${R2}"/>` +
+  `<g fill="${f.sk}">${limb([-44, 250, 42], [-46, 400, 36])}${limb([44, 250, 42], [50, 400, 36])}<path d="${TF}"/></g><path d="${SLIP}" fill="#17121a"/><g fill="${R1}">${limb([-70, 28, 22], [-122, 120, 19], [-86, 186, 15])}${limb([70, 28, 22], [124, 96, 19], [100, 14, 15])}<path d="M-34-6Q-60 0-78 12L-64 70Q-46 30-30 6ZM34-6Q60 0 78 12L64 70Q46 30 30 6Z"/></g></g>` +
+  `${marks(f.sh)}<path d="M-40 4L-34 58M40 4L34 58" stroke="#17121a" stroke-width="3.500"/>${lace('M-58 66Q-34 50-2 84Q34 50 58 66', '#f0c8d0')}${lace('M-90 330H90', '#f0c8d0', 7)}${sheen('M-20 120Q-30 180-56 230', 7, 0.16)}${sheen('M-108 60Q-120 120-100 170', 6, 0.35)}${sheen('M100 50Q118 80 112 110', 6, 0.35)}` +
+  `<path d="M-64 70Q-80 200-70 340M64 70Q80 200 70 340" fill="none" stroke="#ff9ab0" stroke-width="3" opacity=".7"/>${hand(-80, 196, 60, f.sk, f.sh, 1.2)}${at(0, HY, HS, -6, `<g transform="translate(-100 -85)">${face(f, false)}</g>`)}${phone(98, -30, 8, '#f4d0d8', f.sk)}</g>` +
+  flash(382, 240, `${k}g`) + `<path d="M26 26H240L120 678H26Z" fill="#fff" opacity=".06"/></g><rect x="26" y="26" width="548" height="652" fill="none" stroke="#5a3e10" stroke-width="4"/>` +
+  // dresser top + key fob
+  `<rect y="690" width="600" height="110" fill="#5a3420"/><rect y="690" width="600" height="10" fill="#8a5a38"/><g transform="translate(400 746) rotate(-8)"><ellipse cx="6" cy="10" rx="120" ry="22" fill="#000" opacity=".35" filter="url(#${k}b)"/><circle cx="-112" cy="0" r="13" fill="none" stroke="#c9ccd1" stroke-width="4"/><path d="M-170-6H-124V6H-140V14H-150V6H-170Z" fill="#c9ccd1"/>` +
+  `<path d="M-100 0L-70-34H96Q110-34 110-20V20Q110 34 96 34H-70Z" fill="#1f8a8a" stroke="#0e5a5a" stroke-width="3"/>${tx(-6, -6, 13.5, 'WYETH MOTOR LODGE', '#fff', 'letter-spacing=".5"')}${tx(-6, 24, 26, '· 6 ·', '#ffe08a')}</g>` +
+  `<g transform="translate(110 742) rotate(70)"><rect x="-9" y="-30" width="18" height="44" rx="3" fill="#1c1c24"/><rect x="-7" y="-46" width="14" height="18" rx="5" fill="#e23d5a"/></g>` +
+  `<circle cx="540" cy="64" r="26" fill="#0c0c12" opacity=".5"/><circle cx="540" cy="64" r="26" fill="none" stroke="#2fd15a" stroke-width="6"/><path d="M540 48l4.700 10.500l11.300 1.200l-8.500 7.600l2.500 11.200l-10-5.800l-10 5.800l2.500-11.200l-8.500-7.600l11.300-1.200Z" fill="#2fd15a"/>`, 0.5); };
+
+const QUILT = (k: string): string => `<pattern id="${k}q" width="44" height="44" patternUnits="userSpaceOnUse"><rect width="44" height="44" fill="#f1ece0"/><path d="M0 0L44 44M44 0L0 44" stroke="#cfc6b2" stroke-width="2"/><circle cx="22" cy="22" r="2.500" fill="#b8ae98"/></pattern>`;
+const mattress = (k: string, x: number, y: number, w: number, h: number, rot: number): string =>
+  `<g transform="rotate(${rot} ${x + w / 2} ${y + h})"><rect x="${x + 10}" y="${y + 8}" width="${w}" height="${h}" rx="16" fill="#000" opacity=".25"/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="16" fill="url(#${k}q)" stroke="#5a7aa8" stroke-width="5"/><rect x="${x + w - 26}" y="${y}" width="26" height="${h}" rx="12" fill="#000" opacity=".12"/></g>`;
+const micStand = (x: number, y: number, s: number): string => at(x, y, s, 0,
+  '<path d="M0 0V250M-60 280L0 240L60 280M0 240V284" fill="none" stroke="#16181e" stroke-width="7" stroke-linecap="round"/><rect x="-17" y="-64" width="34" height="76" rx="15" fill="#aab2bc"/><rect x="-17" y="-64" width="34" height="42" rx="15" fill="#3a4048"/><path d="M-11-56V-28M0-58V-26M11-56V-28" stroke="#8a929c" stroke-width="2"/><path d="M-24-4H24" stroke="#16181e" stroke-width="7"/><path d="M0 30Q60 30 62-20" fill="none" stroke="#16181e" stroke-width="4"/><circle cx="62" cy="-34" r="46" fill="#0c0c12" opacity=".5"/><circle cx="62" cy="-34" r="46" fill="none" stroke="#16181e" stroke-width="6"/><path d="M34-62L90-6M24-34H100M62-72V4M34-6L90-62" stroke="#16181e" stroke-width="1.500" opacity=".7"/>');
+const phSuite = (k: string): string => { const f = dev(grin('#5a2a1c')); return frame(k, 800, 600, '#ffd98a',
+  QUILT(k) + lg(`${k}w`, '#b8a68a', '#8a7a62') + lg(`${k}c`, '#4a5a5e', '#2a3438') + glow(`${k}g`, '#ffd98a', 0.8),
+  `<rect width="800" height="420" fill="url(#${k}w)"/><rect y="400" width="800" height="200" fill="url(#${k}c)"/><rect y="0" width="800" height="30" fill="#e9e2d2"/>${orb(120, 120, 300, `${k}g`, 0.8)}` +
+  `<path d="M-30 20L70 60V470L-30 560Z" fill="url(#${k}q)" stroke="#5a7aa8" stroke-width="5"/><path d="M830 20L730 60V470L830 560Z" fill="url(#${k}q)" stroke="#5a7aa8" stroke-width="5"/><path d="M830 20L730 60V470L830 560Z" fill="#000" opacity=".25"/>` +
+  mattress(k, 84, 60, 200, 350, -3) + mattress(k, 296, 50, 210, 360, 2) + mattress(k, 516, 62, 200, 348, -2) +
+  `<path d="M100 20L96 60H130L126 20Z" fill="#ffe6a8"/>` +
+  // desk, laptop, pages
+  `<rect x="60" y="400" width="250" height="16" fill="#5a3a24"/><path d="M76 416V560M294 416V560" stroke="#3a2416" stroke-width="10"/><g transform="translate(150 400)"><path d="M-60 0L-52-80H60L64 0Z" fill="#20232b"/><path d="M-52-74H56L59-6H-55Z" fill="#0c1c24"/><path d="M-46-40h8l4-18l6 34l6-28l5 20l6-30l6 36l5-22l6 12l6-24l6 30l6-10h8" fill="none" stroke="#3fe08a" stroke-width="2.500"/><rect x="-70" y="-4" width="140" height="8" rx="3" fill="#3a3f4c"/></g>` +
+  `<g transform="translate(256 388)"><rect x="-38" y="-18" width="76" height="30" fill="#d9d2c2"/><rect x="-40" y="-26" width="76" height="12" fill="#f1ece0"/><rect x="-36" y="-34" width="76" height="12" fill="#fffdf6" transform="rotate(-4)"/><path d="M-28-28h54M-28-23h40" stroke="#9aa3ad" stroke-width="1.500" transform="rotate(-4)"/></g>` +
+  micStand(430, 280, 1) + `<ellipse cx="430" cy="566" rx="80" ry="10" fill="#000" opacity=".3"/>` +
+  `<g transform="translate(540 300)"><path d="M0 60V260M-40 270L0 250L40 270" stroke="#16181e" stroke-width="6" fill="none"/><rect x="-44" y="-10" width="88" height="76" fill="#16181e"/><rect x="-38" y="-18" width="76" height="72" fill="#fffdf6"/><path d="M-28-4h56M-28 8h56M-28 20h40M-28 32h52" stroke="#9aa3ad" stroke-width="2.500"/></g>` +
+  bust(650, 440, 1.5, 0, f, hoodie('#2c3440', '#1c222c'), k, 4, `<g filter="url(#${k}f)"><g fill="#2c3440">${limb([-78, 40, 24], [-112, 110, 20], [-100, 50, 17])}</g></g>${thumb(-100, 30, 1.25, f.sk, f.sh)}`), 0.45); };
+
+const HEADSET = '<path d="M59 92C50 8 150 8 141 92" fill="none" stroke="#20232b" stroke-width="7"/><rect x="50" y="78" width="19" height="38" rx="9" fill="#20232b"/><rect x="131" y="78" width="19" height="38" rx="9" fill="#20232b"/><path d="M54 86v22M146 86v22" stroke="#e23d5a" stroke-width="2.500"/>';
+const phMic = (k: string): string => { const n = nora(grin('#7a2436'), true, 0.9, HEADSET), bsk = '#7d4b31';
+  const b = bernard('<path d="M88 115Q94 121 100 117Q106 121 112 114" stroke="#3a1c14" stroke-width="2.600"/>', 2.3, `<path d="M100 80L130 74L138 104L112 110Z" fill="#fff"/><path d="M112 90L130 84M114 98L134 94" stroke="#c9d3da" stroke-width="1.500"/><path d="M110 104Q124 98 136 104L134 124Q120 130 110 120Z" fill="${bsk}"/><path d="M118 106v16M126 105v17" stroke="#4c2a1b" stroke-width="1.500" opacity=".7"/>`);
+  return frame(k, 600, 800, '#ffd98a', QUILT(k) + glow(`${k}g`, '#ffd98a', 0.7),
+  `<rect width="600" height="800" fill="url(#${k}q)"/><rect width="600" height="800" fill="#5a3a24" opacity=".4"/><path d="M296 0V800" stroke="#5a7aa8" stroke-width="8"/><path d="M270 0H322V800H270Z" fill="#000" opacity=".2"/>${orb(520, 80, 380, `${k}g`, 0.9)}` +
+  bust(140, 400, 1.3, -3, b, tweed(), k, 8) +
+  micStand(470, 470, 1.7) +
+  bust(318, 610, 1.85, 2, n, cardigan(), k, -4, `<g filter="url(#${k}f)"><g fill="#e2cfae">${limb([-84, 44, 26], [-130, 130, 23], [-96, 96, 18])}</g></g>`) +
+  `<g transform="translate(128 706) rotate(-10)"><rect x="-96" y="-116" width="200" height="250" fill="#000" opacity=".3"/><rect x="-104" y="-124" width="200" height="250" fill="#fffdf6"/>${tx(-4, -92, 13.5, 'TIDEWATER HEAT #10', '#1c1c24')}${tx(-4, -74, 11, 'CH. 31 — THE END', '#6a6a72')}<g stroke="#b8b4a8" stroke-width="5" stroke-linecap="round"><path d="M-84-50H76M-84-30H76M-84-10H50M-84 10H76M-84 30H66"/></g><path d="M-70 60Q-40 44-10 60T50 60" fill="none" stroke="#c0283a" stroke-width="3"/>${txs(-70, 92, 22, 'DONE!!', '#c0283a', '', HAND)}</g>${hand(206, 742, -120, n.sk, n.sh, 2.6)}`, 0.5); };
+
+const monkey = (x: number, y: number, s: number): string => at(x, y, s, 0, '<circle cx="-11" cy="-2" r="5" fill="#8a5a30"/><circle cx="11" cy="-2" r="5" fill="#8a5a30"/><circle r="11" fill="#8a5a30"/><ellipse cy="3" rx="7.500" ry="6.500" fill="#e8c8a0"/><path d="M-3 6Q0 8 3 6" fill="none" stroke="#5a3418" stroke-width="1.200"/><ellipse cx="-4.500" cy="-2" rx="5" ry="4" fill="#c99a6a"/><ellipse cx="4.500" cy="-2" rx="5" ry="4" fill="#c99a6a"/>');
+const phVideo = (k: string): string => frame(k, 800, 600, '#ffc878',
+  QUILT(k) + glow(`${k}g`, '#ffb85a', 0.85) + lg(`${k}t`, '#000', '#000') + `<filter id="${k}b"><feGaussianBlur stdDeviation="3"/></filter>`,
+  `<rect width="800" height="600" fill="#0e0a14"/><g opacity=".2">${mattress(k, 40, 60, 220, 380, -3)}${mattress(k, 290, 50, 220, 390, 2)}${mattress(k, 540, 64, 220, 376, -2)}</g><rect y="430" width="800" height="170" fill="#0a080e"/>` +
+  `${orb(700, 250, 380, `${k}g`, 0.8)}<path d="M664 250L680 190H730L746 250Z" fill="#ffe6b0"/><rect x="700" y="250" width="8" height="190" fill="#1a1016"/>` +
+  `<g fill="#07050a">${micStand(330, 250, 1.25)}</g><g filter="url(#${k}f)" fill="#0b0810" transform="translate(500 330) rotate(-7) scale(1.45)"><g transform="translate(0 ${HY}) rotate(-10) scale(${HS}) translate(-100 -85)"><circle cx="107" cy="31" r="16"/><path d="M63 102C54 52 78 35 100 35C122 35 146 52 137 102Z"/><path d="${HEAD}"/><path d="M124 86l10-3" stroke="#0b0810" stroke-width="3"/></g><path d="${CL}"/><path d="M-16-50H16V0H-16Z"/>${limb([-84, 44, 26], [-96, 120, 22], [-24, -22, 17])}<circle cx="-18" cy="-30" r="19"/></g>` +
+  `<path d="M270 380q-14-10-6-24M250 392q-22-14-12-38" fill="none" stroke="#ffc878" stroke-width="3" opacity=".0"/><g stroke="#ffe6b0" stroke-width="4" stroke-linecap="round" opacity=".7"><path d="M556 150l10-18M580 166l20-10M534 144l-2-20"/></g>` +
+  `<rect width="800" height="600" fill="#1a1030" opacity=".25"/><rect width="800" height="70" fill="#000" opacity=".5"/>${monkey(250, 38, 1.3)}${txs(28, 46, 28, 'ch 9 take 4', '#fff', 'font-weight="700"')}` +
+  `<circle cx="400" cy="300" r="58" fill="#000" opacity=".5"/><circle cx="400" cy="300" r="58" fill="none" stroke="#fff" stroke-width="4"/><path d="M382 268V332L434 300Z" fill="#fff"/>` +
+  `<rect x="28" y="560" width="744" height="5" rx="2.500" fill="#fff" opacity=".35"/><circle cx="28" cy="562.500" r="8" fill="#fff"/><rect x="700" y="516" width="72" height="30" rx="6" fill="#000" opacity=".6"/>${tx(736, 538, 18, '1:12', '#fff')}`, 0.75);
+
 export const caught2Art: Record<string, string> = {
   cg2_cover: cover('cg2_cover'),
   cg2_wall_lock: wallLock('cg2_wall_lock'),
   cg2_wall_home: wallHome('cg2_wall_home'),
   cg2_map: cg2Map('cg2_map'),
+  cg2_ph_wedding: phWedding('cg2_ph_wedding'),
+  cg2_ph_us_vela: phUsVela('cg2_ph_us_vela'),
+  cg2_ph_vela_b: phVelaB('cg2_ph_vela_b'),
+  cg2_ph_cabin: phCabin('cg2_ph_cabin'),
+  cg2_ph_keycard: phKeycard('cg2_ph_keycard'),
+  cg2_ph_shoes: phShoes('cg2_ph_shoes'),
+  cg2_ph_bea_spin: phBeaSpin('cg2_ph_bea_spin'),
+  cg2_ph_tiffani: phTiffani('cg2_ph_tiffani'),
+  cg2_ph_suite: phSuite('cg2_ph_suite'),
+  cg2_ph_mic: phMic('cg2_ph_mic'),
+  cg2_ph_video: phVideo('cg2_ph_video'),
   av_cg2_nora: avNora('av_cg2_nora'),
   av_cg2_greg: avGreg('av_cg2_greg'),
   av_cg2_mystery: avMystery('av_cg2_mystery'),
