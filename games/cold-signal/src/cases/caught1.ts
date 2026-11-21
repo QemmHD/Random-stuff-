@@ -65,6 +65,8 @@ export const caught1: CaseFile = {
     { id: 'feld', name: 'Dr. Feld (work)', avatar: 'av_cg1_feld', number: '(555) 212-7000', label: 'Bright Smile Dental' },
     { id: 'mami', name: 'Mami ❤️', avatar: 'av_cg1_mami', number: '(555) 212-1957', label: 'Mom' },
     { id: 'family', name: 'Moreno Family 🏡', avatar: 'av_cg1_family', number: '(555) 212-0000', label: 'group · 9' },
+    { id: 'dez', name: "Dez (T's bff) 🙄", avatar: 'av_cg_bff', number: '(555) 212-3339', label: "Trent's best friend" },
+    { id: 'doorcam', name: 'Doorcam — Brookline #12', avatar: 'av_cg1_doorcam', number: 'Doorcam' },
     { id: 'findmy', name: "Find My — message from Jessa's iPad", avatar: 'av_cg1_jessa', number: 'Find My' },
   ],
 
@@ -154,6 +156,16 @@ export const caught1: CaseFile = {
         { from: 'me', text: 'jules is gay mami', t: '2026-11-09T10:10' },
         { from: 'them', text: 'Jules is NOT gay. I have eyes. He fixed my gutter in a tank top and looked at you the whole time like you were the last tamale at Christmas.', t: '2026-11-09T10:11', clue: 'mami_knows' },
         { from: 'them', text: 'I am lighting a candle for you. And a smaller one for the juice boy.', t: '2026-11-09T10:16', clue: 'mami_knows' },
+      ],
+    },
+    {
+      id: 'th_dez', contact: 'dez', messages: [
+        { from: 'them', text: "hey it's dez. trent's friend. the one with the wings. so. I saw you and jules at the car wash. the brushes were going jess", t: '2026-11-15T14:10', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: "dez please. I'm going to tell him. after the anniversary. please", t: '2026-11-15T14:18', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "ok. I'm not getting in the middle. I told him jules is 'zero threat' again tonight. he said it four times so I said it once. that's all I'm doing", t: '2026-11-15T21:40', clue: 'dez_knew', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "he asked me if paint and sip is 'a real thing'. I said my cousin goes. I don't have a cousin. you owe me so many wings. you owe me a wing EMPIRE", t: '2026-11-17T19:02', clue: 'dez_knew', deletedUntil: 'recovered:msgfrag' },
+        { from: 'me', text: 'thank you. I mean it. I know he trusts you more than anyone', t: '2026-11-17T19:10', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: "yeah. that's the part that makes me want to throw up. monday, jess. you tell him monday or I do", t: '2026-11-17T19:12', clue: 'dez_knew', deletedUntil: 'recovered:msgfrag' },
       ],
     },
     {
@@ -332,6 +344,13 @@ export const caught1: CaseFile = {
     { id: 'mami_knows', title: "Mami: 'Jules is NOT gay'", text: "Her mother: 'He fixed my gutter in a tank top and looked at you the whole time like you were the last tamale at Christmas.'", kind: 'person', art: 'av_cg1_mami' },
     { id: 'feld_texts', title: "Dr. Feld: 'Need you tonight'", text: "Her boss, Monday 20:29: 'Need you tonight. Bring the good gloves.' 'Don't tell my wife.'", kind: 'person', art: 'av_cg1_feld' },
     { id: 'feld_clear', title: 'The hockey player', text: "Dr. Feld's emergency was an after-hours root canal on a hockey player who bit through his mouthguard. His wife thinks he's retired from emergencies.", kind: 'event', art: 'av_cg1_feld' },
+    { id: 'aftermath', title: "'this morning was 🥺'", text: "Morning after: 'can't walk straight lmao', 'keep the shirt', pancakes shaped like Marco, a scratch the guys at the station asked about, lipstick on his collar, lipstick on his mirror ('MRS SMITH WAS HERE'), and a whispered 2 a.m. voice note about her fig perfume.", kind: 'event', art: 'cg1_ph_pancakes' },
+    { id: 'our_song', title: 'She gave him your song', text: "Deleted: she sends Jules 'Slow Tide' — the song you slow-danced to at your birthday — 'it's us'. 'It was never his song. He thinks it's about the ocean.'", kind: 'document' },
+    { id: 'nightstand', title: 'His watch, your nightstand', text: "Recovered, Nov 8, 23:50 — the night you were at the supplement expo: two wine glasses and a red-strapped dive watch on the nightstand in YOUR bedroom.", kind: 'object', art: 'cg1_ph_nightstand' },
+    { id: 'lingerie_haul', title: "$389 of lingerie you've never seen", text: "Lace Theory: three sets, shipped to Calloway Lofts 4B, 'for your eyes only. literally only.' Try-on selfies sent to Jules. Plus Velvet Rope: cherry massage oil and a MR. & MRS. SMITH robe set.", kind: 'object', art: 'cg1_ph_h_tryon' },
+    { id: 'things_list', title: "'things J does (that T doesn't)'", text: "Her note: 'remembers what I wore last tuesday', 'doesn't count. out loud. ever', 'kisses my forehead like he means it, not like I'm his niece', 'has never called me champ'.", kind: 'document' },
+    { id: 'noise', title: 'Third noise complaint, 4C', text: "Calloway Lofts: third complaint about Unit 4B, Wednesday 22:40–23:05 — 'rhythmic thumping', 'a dog barking in encouragement', 'someone shouting ENGINE NINE'. 4C is sixty-eight.", kind: 'document' },
+    { id: 'dez_knew', title: 'Dez knew', text: "Deleted thread with your best friend Dez: he saw them at the car wash, told you 'zero threat' anyway, invented a cousin who goes to Paint & Sip. 'Monday, jess. you tell him monday or I do.'", kind: 'person', art: 'av_cg_bff' },
     { id: 'jules_live', title: "Jules, live: 'wear the coat'", text: "Jules, while you're holding her phone: 'if trent has this: hi trent!! so gay bro. if he doesn't: saturday, mrs smith, wear the coat. just the coat.'", kind: 'person', art: 'av_cg1_jules' },
   ],
 
@@ -343,7 +362,7 @@ export const caught1: CaseFile = {
         { id: 'no', label: 'No — she really is that into lighthouses' },
         { id: 'emotional', label: 'Only emotionally — nothing physical' },
       ],
-      answer: 'yes', evidence: ['bed_selfie', 'helmet_selfie', 'not_gay', 'pros_cons', 'jules_live', 'pulse_spike', 'hotel_smith'],
+      answer: 'yes', evidence: ['bed_selfie', 'helmet_selfie', 'not_gay', 'pros_cons', 'jules_live', 'pulse_spike', 'hotel_smith', 'aftermath', 'nightstand', 'noise', 'lingerie_haul'],
       explain: "A duvet selfie, two toothbrushes in his cup, a hidden selfie in his helmet and his bathroom, and a fitness band that clocked nine minutes at 160 bpm in his loft. The lighthouses were never the point.",
     },
     {
@@ -354,7 +373,7 @@ export const caught1: CaseFile = {
         { id: 'kayla', label: 'Kayla, her work wife', art: 'av_cg1_kayla' },
         { id: 'nobody', label: "Nobody. You're just paranoid" },
       ],
-      answer: 'jules', evidence: ['not_gay', 'helmet_selfie', 'bed_selfie', 'jules_live', 'pros_cons', 'roses', 'mami_knows', 'family_outrage', 'same_booth'],
+      answer: 'jules', evidence: ['not_gay', 'helmet_selfie', 'bed_selfie', 'jules_live', 'pros_cons', 'roses', 'mami_knows', 'family_outrage', 'same_booth', 'nightstand', 'things_list'],
       explain: "Jules told you he was gay at a barbecue to dodge a fight and kept it up for fourteen months. Mami saw through it from under a gutter, Tía Rosa from a car wash. Dr. Feld was doing a root canal.",
     },
     {
@@ -365,7 +384,7 @@ export const caught1: CaseFile = {
         { id: 'dental', label: 'Bright Smile Dental, after hours' },
         { id: 'velvet', label: 'Only ever at the Velvet Fern' },
       ],
-      answer: 'lofts', evidence: ['loft_stops', 'location_off', 'helmet_selfie', 'bed_selfie', 'paint_alibi', 'hotel_smith', 'pulse_spike'],
+      answer: 'lofts', evidence: ['loft_stops', 'location_off', 'helmet_selfie', 'bed_selfie', 'paint_alibi', 'hotel_smith', 'pulse_spike', 'noise'],
       explain: 'Her phone idles a minute outside the studio, then spends four hours at Calloway Lofts with your location sharing paused. Saturday is booked at the Marisol under Smith.',
     },
     {
@@ -376,8 +395,19 @@ export const caught1: CaseFile = {
         { id: 'work', label: 'She said she was working late with Dr. Feld' },
         { id: 'none', label: "They didn't. You just never looked" },
       ],
-      answer: 'cover', evidence: ['not_gay', 'paint_alibi', 'ghost_painter', 'marco_dog', 'trent_pays', 'location_off', 'pros_cons'],
+      answer: 'cover', evidence: ['not_gay', 'paint_alibi', 'ghost_painter', 'marco_dog', 'trent_pays', 'location_off', 'pros_cons', 'dez_knew'],
       explain: "The 'boyfriend' was a dog, the classes were never attended, every lighthouse came out of his loft, and her location went dark for exactly one person. You paid for the alibi. Twice.",
+    },
+    {
+      id: 'q_cover', prompt: 'Who has been covering for them — to your face?',
+      options: [
+        { id: 'nobody', label: 'Nobody. They did it alone' },
+        { id: 'kayla', label: 'Kayla', art: 'av_cg1_kayla' },
+        { id: 'mami', label: 'Mami', art: 'av_cg1_mami' },
+        { id: 'dez', label: 'Dez. Your best friend', art: 'av_cg_bff' },
+      ],
+      answer: 'dez', evidence: ['dez_knew'],
+      explain: "Kayla and Mami knew and told HER off. Dez knew and told YOU 'zero threat' — and made up a cousin to back up Paint & Sip.",
     },
   ],
 
@@ -387,7 +417,9 @@ export const caught1: CaseFile = {
     { id: 'e1_findmy', kind: 'text', when: ['recovered:photos'], delayMs: 5000, thread: 'th_findmy', contact: 'findmy', text: "This iPhone was marked as misplaced. Message from Jessa: 'babe?? where'd you put my phone 🥺 it's not on the nightstand. I can hear it buzzing'" },
     { id: 'e1_h_off', kind: 'handler', when: ['recovered:msgfrag'], delayMs: 4000, text: "(The shower just turned off.) BRO. the water stopped?? you have like four minutes. she has to do the hair turban thing first. that's at least 90 seconds. MOVE." },
     { id: 'e1_jules', kind: 'text', when: ['recovered:msgfrag'], delayMs: 9000, thread: 'th_jules', contact: 'jules', clue: 'jules_live', text: "jess?? if trent has ur phone: hi trent!! so gay bro 🌈 love that for us. if he DOESN'T: saturday, mrs smith, wear the coat. just the coat. i'll bring marco's bow tie for me" },
-    { id: 'e1_h_door', kind: 'handler', when: ['unlocked'], minPins: 14, delayMs: 3000, text: "(You hear the bathroom door.) ok. OK. phone face DOWN. breathe. you've got enough. you've got WAY more than enough. file it in your head — who, where, how — before you open your mouth. I'm so sorry man. I'm coming over with wings." },
+    { id: 'e1_doorcam', kind: 'text', when: ['pinned:hotel_smith'], delayMs: 7000, thread: 'th_doorcam', contact: 'doorcam', text: "Person detected at Front Door (02:31). A man in a red Engine 9 hoodie, holding a French bulldog, is reaching for the doorbell. He stops. He hangs a small paper bag on the handle. He leaves." },
+    { id: 'e1_h_dez', kind: 'handler', when: ['recovered:msgfrag'], minPins: 12, delayMs: 12000, text: "ok. before you scroll any further in her texts. there's a thread with me in it. I knew, man. since the car wash. I told you 'zero threat' and I knew. I told her monday or I'd tell you. I'm so sorry. I'm still coming with wings. you don't have to open the door." },
+    { id: 'e1_h_door', kind: 'handler', when: ['unlocked'], minPins: 18, delayMs: 3000, text: "(You hear the bathroom door.) ok. OK. phone face DOWN. breathe. you've got enough. you've got WAY more than enough. file it in your head — who, where, how — before you open your mouth. I'm so sorry man. I'm coming over with wings." },
   ],
 
   hints: [
@@ -409,8 +441,8 @@ export const caught1: CaseFile = {
     solved: [
       "She came out in a towel and a hair turban and found you sitting on the edge of the bed with her phone in your hand and the hallway light on all seven lighthouses. You didn't yell. You said, 'Booth four, Jess.' She sat down. The turban came undone. Neither of you fixed it.",
       "You asked one question: 'Is he gay?' She said, 'No.' You said, 'I asked him four times.' She said, 'I know, babe. He said it was the worst part.' Somehow that was the part that made you cry.",
-      "Dez came over at 3:30 with wings and a Bluetooth speaker and played sad songs until the neighbours banged on the wall. On Saturday, Jessa didn't go to the Marisol. Jules went alone, in the XL robe, and posted 'self-care 🕯️'. Tía Rosa commented 'LIAR' in all caps. Abuela liked it.",
-      "Jessa moved to Calloway Lofts 4B with seven lighthouses she didn't paint. You kept the hallway hooks. Brushstrokes refunded your $240 and handed you eight blank canvases. You took the class yourself. You've painted eleven lighthouses. They're good. They're about loneliness. Gerald the turkey was served at Thanksgiving at Dez's mom's, and everyone agreed he was zero threat.",
+      "Dez came over at 3:30 with wings and stood on the mat outside, not knocking. You opened the door eventually. You ate the wings in silence. Around four he said, 'I should've told you at the car wash.' You said, 'Yeah.' He said, 'Zero threat, huh.' You both laughed, which was worse. On Saturday, Jessa didn't go to the Marisol. Jules went alone, in the XL robe, and posted 'self-care 🕯️'. Tía Rosa commented 'LIAR' in all caps. Abuela liked it.",
+      "Jessa moved to Calloway Lofts 4B with seven lighthouses she didn't paint. You kept the hallway hooks. Brushstrokes refunded your $240 and handed you eight blank canvases. You took the class yourself. You've painted eleven lighthouses. They're good. They're about loneliness. The paper bag Jules hung on the door handle at 02:31 held her gold earring and a note: 'sorry man.' Gerald the turkey was served at Thanksgiving at Dez's mom's. Dez carved.",
     ],
     partial: [
       "You blew it.",

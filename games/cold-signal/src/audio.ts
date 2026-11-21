@@ -125,6 +125,47 @@ class AudioEngine {
   }
 
   private ambMood: 'menu' | 'case' | 'tense' = 'menu';
+  private beatTimer = 0;
+  private bpm = 0;
+  private showerNodes: AudioNode[] = [];
+
+  /** Heartbeat loop (Caught mode). bpm 0 stops it. */
+  heartbeat(bpm: number): void {
+    this.bpm = bpm;
+    if (!bpm) { clearTimeout(this.beatTimer); this.beatTimer = 0; return; }
+    if (this.beatTimer) return;
+    const beat = () => {
+      if (!this.bpm) return;
+      if (this.ctx && !this.muted && this.musicOn) {
+        this.tone(58, 0.16, 'sine', 0.22, 0, 40);
+        this.tone(52, 0.14, 'sine', 0.15, 0.17, 38);
+      }
+      this.beatTimer = window.setTimeout(beat, 60000 / this.bpm);
+    };
+    beat();
+  }
+
+  /** Running-shower wash behind the investigation. */
+  shower(on: boolean): void {
+    const c = this.ctx, bus = this.ambBus;
+    for (const n of this.showerNodes) { try { (n as AudioScheduledSourceNode).stop?.(); } catch { /* stopped */ } n.disconnect(); }
+    this.showerNodes = [];
+    if (!on || !c || !bus || !this.noiseBuf) return;
+    const s = c.createBufferSource();
+    s.buffer = this.noiseBuf; s.loop = true;
+    const f = c.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 2400; f.Q.value = 0.4;
+    const g = c.createGain(); g.gain.value = 0.06;
+    s.connect(f).connect(g).connect(bus);
+    s.start();
+    this.showerNodes = [s, f, g];
+  }
+
+  door(): void {
+    if (!this.ctx || this.muted) return;
+    this.noise(0.25, 0.12, 300, 2, 0, 'lowpass');
+    this.tone(90, 0.3, 'square', 0.05, 0.05, 60);
+    this.noise(0.12, 0.08, 1800, 3, 0.3);
+  }
 
   /** Generative ambient bed: low drone + sea-like filtered noise. */
   ambient(mood: 'menu' | 'case' | 'tense'): void {

@@ -96,6 +96,17 @@ function threadView(g: Game, threadId: string): View {
         if (recovered) row.prepend(h('div', { class: 'bubble-meta' }, recoveredTag(), h('span', { class: 'muted' }, clock(m.t))));
         wrap.appendChild(row);
       }
+      if (g.typing.has(threadId)) wrap.appendChild(h('div', { class: 'bubble-row them' }, h('div', { class: 'bubble them typing' }, h('i'), h('i'), h('i'))));
+      if (g.c.mode === 'caught') {
+        const lastLive = [...g.live].reverse().find((l) => l.thread === threadId);
+        if (lastLive) {
+          wrap.appendChild(h('div', { class: 'seen-receipt' }, `Seen ${clock(g.nowStamp())}`));
+          if (!g.has(`seen-live:${lastLive.id}`)) {
+            g.markSeenFlag(`seen-live:${lastLive.id}`);
+            setTimeout(() => g.pushHandler(S.seenDread[Math.floor(Math.random() * S.seenDread.length)]), 900);
+          }
+        }
+      }
       const compose = h('button', { class: 'compose', type: 'button', onclick: () => { audio.play('error'); flyToast(compose, S.cantSend); } }, h('span', null, S.textMessage), glyph('send'));
       if (!g.has('tip:bubbles')) { wrap.insertBefore(h('div', { class: 'thread-tip' }, glyph('pin'), S.bubbleTip), wrap.children[1] ?? null); g.markSeenFlag('tip:bubbles'); }
       wrap.appendChild(compose);

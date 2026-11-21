@@ -52,7 +52,9 @@ describe('Game', () => {
     g.set('unlocked');
     g.set('recovered:msgfrag');
     g.set('note:n_insurance');
-    vi.advanceTimersByTime(8000);
+    vi.advanceTimersByTime(7100);
+    expect(g.typing.has('th_mara')).toBe(true); // "typing…" before delivery
+    vi.advanceTimersByTime(3000);
     expect(g.has('event:e_mara')).toBe(true);
     const t = g.threads().find((x) => x.id === 'th_mara');
     expect(t?.messages.length).toBe(1);

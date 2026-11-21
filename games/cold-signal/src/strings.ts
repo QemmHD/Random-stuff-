@@ -98,6 +98,12 @@ export const S = {
   photoDevice: 'Source',
   allPhotos: 'Recents',
   recoveredAlbum: 'Recovered by TRACE',
+  seenDread: [
+    'bro. BRO. he can see you read that. it says SEEN.',
+    'you opened it?? it shows as read now. if he texts her "?" we are DEAD',
+    'ok don\u2019t panic but the read receipt is on. he knows someone saw it.',
+  ],
+  lowBattery: (n: number) => `Low Battery — ${n}% remaining`,
   hiddenAlbum: 'Hidden',
   hiddenLocked: (n: number) => `${n} items · locked with the device passcode`,
   hiddenPrompt: 'This album is locked. Enter the device passcode.',

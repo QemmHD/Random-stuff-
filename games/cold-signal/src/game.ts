@@ -87,6 +87,8 @@ export class Game {
   private listeners: ((e: GameEvent) => void)[] = [];
   private scheduled = new Map<string, number>();
   readonly running = new Map<string, { start: number; dur: number }>();
+  /** Threads where the other person is "typing…" right now. */
+  readonly typing = new Set<string>();
   private clueMap: Map<string, Clue>;
   private disposed = false;
 
@@ -310,6 +312,14 @@ export class Game {
     const ev = this.c.events.find((e) => e.id === eventId);
     if (!ev || this.flags.has(`event:${ev.id}`)) return;
     const t = this.nowStamp();
+    if (ev.kind === 'text' && !this.typing.has(ev.thread) && !this.flags.has(`typed:${ev.id}`)) {
+      // Show "typing…" first, then deliver.
+      this.typing.add(ev.thread);
+      this.flags.add(`typed:${ev.id}`);
+      this.emit({ kind: 'change' });
+      window.setTimeout(() => { if (this.disposed) return; this.typing.delete(ev.thread); this.fire(eventId); }, 2600);
+      return;
+    }
     if (ev.kind === 'text') {
       const msg: LiveMsg = { id: ev.id, thread: ev.thread, contact: ev.contact, text: ev.text, t, clue: ev.clue };
       this.live.push(msg);
@@ -367,6 +377,7 @@ export class Game {
   }
 
   battery(): number {
+    if (this.c.mode === 'caught') return Math.max(2, 17 - Math.floor(this.totalPlayMs() / 90000));
     return Math.max(4, 23 - Math.floor(this.totalPlayMs() / 150000));
   }
 

@@ -85,6 +85,10 @@ export class Phone {
     const now = this.game.nowStamp();
     this.statusTime.textContent = clock(now);
     const b = this.game.battery();
+    if (this.game.c.mode === 'caught' && b <= 10 && !this.game.has(`lowbatt:${b <= 5 ? 5 : 10}`) && this.mode !== 'lock') {
+      this.game.markSeenFlag(`lowbatt:${b <= 5 ? 5 : 10}`);
+      this.banner('trace', S.lowBattery(b), () => {});
+    }
     this.statusBatt.replaceChildren(h('span', { class: `batt${b <= 10 ? ' low' : ''}` }, h('i', { style: `width:${b}%` })), `${b}%`);
     const lockClock = this.layer.querySelector('.lock-clock');
     if (lockClock) lockClock.textContent = clock(now);

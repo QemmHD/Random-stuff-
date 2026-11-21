@@ -156,7 +156,9 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
   const unsub = game.on((e) => {
     if (e.kind === 'handler') { renderComms(); handlerToast(e.msg.text); }
     if (e.kind === 'change' || e.kind === 'pinned') updateHud();
-    if (e.kind === 'text') { audio.ambient('tense'); setTimeout(() => audio.ambient('case'), 30000); }
+    if (e.kind === 'text') { audio.ambient('tense'); setTimeout(() => audio.ambient('case'), 30000); dreadCue(e.msg.text); }
+    if (e.kind === 'handler') dreadCue(e.msg.text);
+    if (caught && (e.kind === 'pinned' || e.kind === 'change')) audio.heartbeat(beatFor());
   });
   updateHud();
 
@@ -177,6 +179,19 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
   requestAnimationFrame(fit);
 
   audio.ambient('case');
+  const caught = c.mode === 'caught';
+  const beatFor = () => 62 + Math.min(70, game.progress().found * 5);
+  if (caught) {
+    root.classList.add('mode-caught');
+    audio.heartbeat(beatFor());
+    if (!game.has('sfx:shower-off')) audio.shower(true);
+  }
+  const dreadCue = (text: string) => {
+    if (!caught) return;
+    if (/shower.{0,20}(off|stop)|water.{0,12}(off|stop)/i.test(text) && !game.has('sfx:shower-off')) { game.markSeenFlag('sfx:shower-off'); audio.shower(false); audio.play('stinger'); }
+    if (/\bdoor\b|doorbell|footsteps|keys/i.test(text)) audio.door();
+    root.classList.remove('flicker'); void root.offsetWidth; root.classList.add('flicker');
+  };
   game.checkEvents();
   // First-time intro toast
   if (game.handler.length === 1 && !game.has('unlocked') && window.innerWidth <= 1280) setTimeout(() => handlerToast(c.handlerIntro), 900);
@@ -196,6 +211,8 @@ export function investigate(c: CaseFile, nav: { toFiles: () => void; toEpilogue:
       ro.disconnect();
       window.removeEventListener('resize', fit);
       window.removeEventListener('keydown', onKey);
+      audio.heartbeat(0);
+      audio.shower(false);
       phone.dispose();
       docked.dispose();
       overlayBoard?.board.dispose();
