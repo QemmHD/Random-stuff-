@@ -384,7 +384,9 @@ export class Phone {
         pinchStart = Math.hypot(a.x - b.x, a.y - b.y);
         pinchZoom = zoom;
       }
-      dragging = true; moved = false; sx = e.clientX - tx; sy = e.clientY - ty;
+      dragging = true; moved = false;
+      const k0 = stage.offsetWidth / Math.max(1, stage.getBoundingClientRect().width);
+      sx = e.clientX - tx / k0; sy = e.clientY - ty / k0;
     });
     stage.addEventListener('pointermove', (e) => {
       if (!pointers.has(e.pointerId)) return;
@@ -397,7 +399,8 @@ export class Phone {
         return;
       }
       if (!dragging || zoom === 1) return;
-      const nx = e.clientX - sx, ny = e.clientY - sy;
+      const k = stage.offsetWidth / Math.max(1, stage.getBoundingClientRect().width);
+      const nx = (e.clientX - sx) * k, ny = (e.clientY - sy) * k;
       if (Math.abs(nx - tx) + Math.abs(ny - ty) > 2) moved = true;
       tx = nx; ty = ny;
       apply();
@@ -412,8 +415,9 @@ export class Phone {
         if (zoom > 1) { zoom = 1; tx = 0; ty = 0; }
         else {
           zoom = 2.6;
-          tx = -(e.clientX - r.left - r.width / 2) * (zoom - 1);
-          ty = -(e.clientY - r.top - r.height / 2) * (zoom - 1);
+          const k = stage.offsetWidth / Math.max(1, r.width); // phone may be CSS-scaled
+          tx = -(e.clientX - r.left - r.width / 2) * k * (zoom - 1);
+          ty = -(e.clientY - r.top - r.height / 2) * k * (zoom - 1);
         }
         img.classList.add('anim');
         setTimeout(() => img.classList.remove('anim'), 260);

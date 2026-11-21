@@ -77,6 +77,7 @@ export class Game {
   private scheduled = new Map<string, number>();
   readonly running = new Map<string, { start: number; dur: number }>();
   private clueMap: Map<string, Clue>;
+  private disposed = false;
 
   constructor(c: CaseFile) {
     this.c = c;
@@ -123,6 +124,10 @@ export class Game {
   }
 
   dispose(): void {
+    // Finish in-flight TRACE jobs now so a late timer can't write over a newer session's save.
+    for (const id of this.running.keys()) this.flags.add(`recovered:${id}`);
+    this.running.clear();
+    this.disposed = true;
     this.save();
     for (const t of this.scheduled.values()) clearTimeout(t);
     this.scheduled.clear();
@@ -230,6 +235,7 @@ export class Game {
     this.running.set(jobId, { start: performance.now(), dur: job.durationMs });
     this.emit({ kind: 'change' });
     window.setTimeout(() => {
+      if (this.disposed) return;
       this.running.delete(jobId);
       this.set(`recovered:${jobId}`);
       this.emit({ kind: 'trace-done', jobId, label: job.label });

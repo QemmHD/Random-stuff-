@@ -79,3 +79,20 @@ describe('Game', () => {
     expect(g.hint()).toMatch(/Messages/);
   });
 });
+
+describe('Game lifecycle', () => {
+  it('leaving mid-TRACE completes the job and late timers do not clobber saves', () => {
+    store.clear();
+    vi.useFakeTimers();
+    const g = new Game(case1);
+    g.set('unlocked');
+    g.startTrace('photos');
+    g.dispose();
+    const g2 = new Game(case1);
+    expect(g2.has('recovered:photos')).toBe(true);
+    g2.pin('lab_data');
+    vi.advanceTimersByTime(10000);
+    const g3 = new Game(case1);
+    expect(g3.isPinned('lab_data')).toBe(true);
+  });
+});
