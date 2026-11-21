@@ -52,12 +52,17 @@ await shot('05-home');
 async function pinAll() {
   // Only real case clues (data-pin without the "n:" player-note prefix).
   const real = ':not(.on):not([data-pin^="n:"])';
-  for (let i = 0; i < 40; i++) {
-    const row = page.locator(`${top} .bubble-row:not(.show-pin):has(.pin-btn${real}) .bubble`).first();
-    if (await row.count()) { await row.click(); await page.waitForTimeout(80); }
-    const b = page.locator(`.phone-overlay .pin-btn${real}, ${top} .pin-btn${real}`).first();
-    if (!(await b.count())) return;
-    await b.scrollIntoViewIfNeeded(); await b.click(); await page.waitForTimeout(90);
+  for (let i = 0; i < 60; i++) {
+    try {
+      const row = page.locator(`${top} .bubble-row:not(.show-pin):has(.pin-btn${real}) .bubble`).first();
+      if (await row.count()) { await row.click({ timeout: 3000 }); await page.waitForTimeout(120); }
+      const b = page.locator(`.phone-overlay .pin-btn${real}, ${top} .bubble-row.show-pin .pin-btn${real}, ${top} :not(.bubble-row) > .pin-btn${real}`).first();
+      if (!(await b.count())) return;
+      await b.scrollIntoViewIfNeeded({ timeout: 3000 }); await b.click({ timeout: 3000 }); await page.waitForTimeout(120);
+    } catch {
+      // the view re-renders after a pin; just look again
+      await page.waitForTimeout(250);
+    }
   }
 }
 const home = async () => { await page.locator('.home-indicator').click(); await sleep(450); };
