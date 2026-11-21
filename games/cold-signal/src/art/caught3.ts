@@ -274,17 +274,17 @@ function wallLock(): string {
     `<rect x="44" y="456" width="512" height="532" fill="#f4eedc"/><rect x="44" y="456" width="512" height="532" fill="url(#${k}pp)"/><rect x="56" y="476" width="488" height="68" fill="#1f5a3a"/>${pine(84)}${pine(516)}` +
     tx(300, 521, 26, 'ROLLING PINES GOLF CLUB', '#fff', 'letter-spacing=".5"') + tx(300, 588, 30, 'D. HOYT — 6/14/19', '#1a3aa8', '', HAND) + `<path d="M150 598H450" stroke="#1c2a20" stroke-width="1.500"/>` +
     table(T1, 0) + table(T2, 9) + ring(493, T1 + 2 * RH + 40, 40, 0) + ring(493, T2 + 2 * RH + 40, 40, 140) +
-    `<text x="66" y="972" font-size="13" fill="#5a5a48" ${SANS}>ATTEST ________________   BEST ROUND EVER. FRAMED BY DOUG.</text>` +
+    `<text x="66" y="972" font-size="13" fill="#5a5a48" ${SANS}>BEST ROUND EVER. FRAMED BY DOUG.</text>` +
     `<path d="M44 456H240L120 988H44Z" fill="#fff" opacity=".05"/>`;
   const peg =
     `<rect width="600" height="1300" fill="#8a6a46"/><rect width="600" height="1300" fill="url(#${k}h)"/><rect width="600" height="1300" fill="url(#${k}sh)"/>` +
     `<circle cx="300" cy="120" r="620" fill="url(#${k}l)"/>` +
     `<g opacity=".9"><path d="M70 330V250" stroke="#2a2a30" stroke-width="5"/><path d="M52 250Q70 236 88 250L84 262Q70 254 56 262Z" fill="#9aa0a8"/><rect x="62" y="262" width="16" height="120" rx="6" fill="#9aa0a8"/><rect x="62" y="262" width="7" height="120" fill="#c8ced6"/>` +
     `<path d="M500 240V400" stroke="#b8bcc4" stroke-width="7"/><path d="M500 400Q500 428 470 430H452Q444 424 452 414H478Q488 412 490 400Z" fill="#c8ced6"/><rect x="492" y="232" width="16" height="60" rx="5" fill="#1c1c22"/></g>` +
-    `<rect y="1090" width="600" height="26" fill="#4a3420"/><rect y="1116" width="600" height="10" fill="#000" opacity=".4"/>` +
-    `<g transform="translate(130 1090)"><ellipse cx="0" cy="-2" rx="54" ry="8" fill="#000" opacity=".4"/><path d="M38-70Q74-66 66-36Q58-14 36-18" fill="none" stroke="#1f4f8a" stroke-width="11"/><rect x="-44" y="-92" width="86" height="92" rx="8" fill="#1f4f8a"/><rect x="14" y="-92" width="28" height="92" rx="8" fill="#000" opacity=".25"/><ellipse cx="-1" cy="-91" rx="42" ry="8" fill="#3a2010"/>${pinn(-10, -42, 1.5)}</g>` +
-    `<g transform="translate(424 1090)"><path d="M-70 0V-80Q-70-96-54-96H54Q70-96 70-80V0Z" fill="#cfe6ff" opacity=".22"/><path d="M-70 0V-80Q-70-96-54-96H54Q70-96 70-80V0" fill="none" stroke="#e6f2ff" stroke-width="3" opacity=".6"/><g fill="#f4f4ee"><circle cx="-42" cy="-20" r="19"/><circle cx="0" cy="-20" r="19"/><circle cx="42" cy="-20" r="19"/><circle cx="-21" cy="-54" r="19"/><circle cx="21" cy="-54" r="19"/></g><g fill="#000" opacity=".16"><circle cx="-36" cy="-14" r="13"/><circle cx="6" cy="-14" r="13"/><circle cx="48" cy="-14" r="13"/><circle cx="-15" cy="-48" r="13"/><circle cx="27" cy="-48" r="13"/></g><path d="M-56-84V-20" stroke="#fff" stroke-width="5" opacity=".4" stroke-linecap="round"/></g>` +
-    `<path d="M250 1090l8-34 8 34ZM282 1090l8-34 8 34Z" fill="#e8496a"/><path d="M300 436V414" stroke="#2a2a30" stroke-width="5"/><circle cx="300" cy="412" r="7" fill="#b8bcc4"/>`;
+    `<rect y="1160" width="600" height="26" fill="#4a3420"/><rect y="1186" width="600" height="10" fill="#000" opacity=".4"/>` +
+    `<g transform="translate(130 1160)"><ellipse cx="0" cy="-2" rx="54" ry="8" fill="#000" opacity=".4"/><path d="M38-70Q74-66 66-36Q58-14 36-18" fill="none" stroke="#1f4f8a" stroke-width="11"/><rect x="-44" y="-92" width="86" height="92" rx="8" fill="#1f4f8a"/><rect x="14" y="-92" width="28" height="92" rx="8" fill="#000" opacity=".25"/><ellipse cx="-1" cy="-91" rx="42" ry="8" fill="#3a2010"/>${pinn(-10, -42, 1.5)}</g>` +
+    `<g transform="translate(424 1160)"><path d="M-70 0V-80Q-70-96-54-96H54Q70-96 70-80V0Z" fill="#cfe6ff" opacity=".22"/><path d="M-70 0V-80Q-70-96-54-96H54Q70-96 70-80V0" fill="none" stroke="#e6f2ff" stroke-width="3" opacity=".6"/><g fill="#f4f4ee"><circle cx="-42" cy="-20" r="19"/><circle cx="0" cy="-20" r="19"/><circle cx="42" cy="-20" r="19"/><circle cx="-21" cy="-54" r="19"/><circle cx="21" cy="-54" r="19"/></g><g fill="#000" opacity=".16"><circle cx="-36" cy="-14" r="13"/><circle cx="6" cy="-14" r="13"/><circle cx="48" cy="-14" r="13"/><circle cx="-15" cy="-48" r="13"/><circle cx="27" cy="-48" r="13"/></g><path d="M-56-84V-20" stroke="#fff" stroke-width="5" opacity=".4" stroke-linecap="round"/></g>` +
+    `<path d="M250 1160l8-34 8 34ZM282 1160l8-34 8 34Z" fill="#e8496a"/><path d="M300 436V414" stroke="#2a2a30" stroke-width="5"/><circle cx="300" cy="412" r="7" fill="#b8bcc4"/>`;
   return frame(k, 600, 1300, '#ffd9a0',
     `<pattern id="${k}h" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="4.500" fill="#3a2814"/><circle cx="21" cy="21.500" r="3" fill="#1c1208"/></pattern>` +
     `<pattern id="${k}pp" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M0 7L7 0" stroke="#b8a878" stroke-width=".6" opacity=".35"/></pattern>` +
@@ -345,10 +345,136 @@ function mapArt(): string {
     `<g transform="translate(60 60)" opacity=".7"><circle r="22" fill="none" stroke="#5a6c94" stroke-width="2"/><path d="M0-17L5 0L0 17L-5 0Z" fill="#8a9cc4"/><path d="M0-17L5 0H-5Z" fill="#e8496a"/></g>`, 0.5, 0.1);
 }
 
+// ---------- cg3_ph_scorecard (the garage) ----------
+function garage(): string {
+  const k = 'cg3_ph_scorecard';
+  const bag = (x: number, c: string, d: string, rot: number): string =>
+    at(x, 420, 1, rot, `<path d="M-10-250L-16-196M4-262L2-196M18-246L16-196" stroke="#b8bcc4" stroke-width="5"/><path d="M-22-262Q-8-272-4-254L-14-244ZM-6-274Q10-282 12-264L2-256ZM12-258Q28-264 28-246L18-240Z" fill="#d8dce4"/><rect x="-34" y="-200" width="68" height="200" rx="16" fill="${c}"/><rect x="6" y="-200" width="28" height="200" rx="14" fill="${d}"/><rect x="-34" y="-200" width="68" height="18" rx="8" fill="${d}"/><rect x="-26" y="-120" width="36" height="60" rx="8" fill="${d}"/><path d="M-34-170Q-56-110-34-50" fill="none" stroke="${d}" stroke-width="7"/>`);
+  const card = `<g transform="translate(400 150)"><rect x="-58" y="-46" width="116" height="92" fill="#3a2716"/><rect x="-50" y="-38" width="100" height="76" fill="#f4eedc"/><rect x="-46" y="-34" width="92" height="13" fill="#1f5a3a"/><path d="M-46-10H46M-46-2H46M-46 6H46M-46 18H46M-46 26H46M-46 34H46M-30-10V6M-30 18V34M-14-10V6M2-10V6M18-10V6M34-10V34M-14 18V34M2 18V34M18 18V34" stroke="#1c2a20" stroke-width="1"/><circle cx="38" cy="4" r="6" fill="#7a4a1e"/><circle cx="38" cy="30" r="6" fill="#7a4a1e"/></g>`;
+  return frame(k, 800, 600, '#dfeaff',
+    lg(`${k}w`, '#5a626e', '#2c3038') + lg(`${k}fl`, '#4a4e58', '#1c1e26') + glow(`${k}l`, '#e6f0ff', 0.55) + lg(`${k}wh`, '#f0eee6', '#8a8a86', 1, 0) +
+    `<pattern id="${k}h" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2.200" fill="#2a1c0e"/></pattern>`,
+    `<rect width="800" height="600" fill="url(#${k}w)"/><rect y="410" width="800" height="190" fill="url(#${k}fl)"/><path d="M0 410H800" stroke="#14161c" stroke-width="5"/><path d="M200 600L330 410M620 600L560 410" stroke="#000" stroke-width="2" opacity=".3"/>` +
+    `<rect x="250" y="20" width="300" height="12" rx="6" fill="#f4faff"/><ellipse cx="400" cy="30" rx="380" ry="230" fill="url(#${k}l)"/>` +
+    `<rect x="232" y="56" width="340" height="200" fill="#8a6a46"/><rect x="232" y="56" width="340" height="200" fill="url(#${k}h)"/>${card}<path d="M270 90V190" stroke="#b8bcc4" stroke-width="7"/><path d="M258 90Q270 78 282 90" fill="none" stroke="#b8bcc4" stroke-width="7"/><rect x="496" y="84" width="14" height="100" rx="4" fill="#e8843a"/><path d="M503 184V226" stroke="#c8ced6" stroke-width="5"/><path d="M530 100h24v60h-24Z" fill="none" stroke="#f2c832" stroke-width="5"/>` +
+    `<g filter="url(#${k}f)">${bag(86, '#1f4f8a', '#16365e', -5)}${bag(178, '#a8323a', '#6e1c24', 4)}` +
+    `<rect x="246" y="292" width="100" height="122" rx="6" fill="#d8dce0"/><rect x="664" y="96" width="104" height="318" rx="22" fill="url(#${k}wh)"/>` +
+    `<path d="M398 392L640 392L654 404H384Z" fill="#4a6a4a"/><path d="M384 404H654V416H384Z" fill="#32492f"/><path d="M400 414L440 470M440 414L400 470M600 414L640 470M640 414L600 470" stroke="#9aa0a8" stroke-width="6" stroke-linecap="round"/>` +
+    `<path d="M500 366Q580 356 646 372L652 398H496Z" fill="#8a3448"/><ellipse cx="436" cy="378" rx="46" ry="20" fill="#f2f0ea"/></g>` +
+    `<path d="M246 340H346" stroke="#8a9098" stroke-width="3"/><rect x="330" y="302" width="6" height="28" rx="3" fill="#6a7078"/><rect x="262" y="306" width="22" height="16" fill="#f2c832"/><circle cx="302" cy="318" r="8" fill="#e8496a"/><rect x="276" y="262" width="20" height="30" rx="4" fill="#c8a03a"/><rect x="276" y="270" width="20" height="8" fill="#fff"/>` +
+    `<path d="M690 96V40M736 96V20" stroke="#b87a4a" stroke-width="9"/><rect x="690" y="230" width="52" height="40" fill="#f2c832"/><path d="M696 242H736M696 252H726" stroke="#3a3a34" stroke-width="3"/><circle cx="716" cy="390" r="8" fill="#b8323a"/>` +
+    `<path d="M520 372L640 374M530 384L646 388M560 362L562 398M610 364L616 398" stroke="#c86a7a" stroke-width="2.500" opacity=".6"/><path d="M400 366Q420 360 444 364" stroke="#fff" stroke-width="3" opacity=".6" fill="none" stroke-linecap="round"/>` +
+    `<rect x="606" y="300" width="22" height="30" rx="3" fill="#e8e8e4"/><path d="M612 310v8M622 310v8" stroke="#3a3a3a" stroke-width="2"/><rect x="610" y="322" width="14" height="14" rx="3" fill="#f4f4f4"/><path d="M617 336Q620 366 584 362Q560 360 552 378" fill="none" stroke="#f4f4f4" stroke-width="3"/><rect x="524" y="372" width="34" height="14" rx="3" fill="#14141c" transform="rotate(8 541 379)"/><rect x="527" y="374" width="28" height="9" fill="#6a90d8" transform="rotate(8 541 379)"/>` +
+    `<path d="M452 462Q470 452 486 462V470H452ZM494 466Q512 456 528 466V474H494Z" fill="#6a5a48"/><ellipse cx="520" cy="476" rx="170" ry="12" fill="#000" opacity=".3"/><ellipse cx="130" cy="424" rx="110" ry="10" fill="#000" opacity=".35"/>`, 0.6);
+}
+
+// ---------- Dockside Grill window table (shared by cg3_ph_us_dock / cg3_ph_dock_r) ----------
+function dockBg(k: string): string {
+  return `<rect width="600" height="800" fill="#2a1410"/><rect x="40" y="40" width="520" height="440" fill="url(#${k}sky)"/><rect x="40" y="300" width="520" height="180" fill="url(#${k}sea)"/>` +
+    `<path d="M40 300Q140 270 240 292Q340 276 430 294Q500 280 560 296V306H40Z" fill="#1a1838"/><g fill="#ffd98a"><circle cx="90" cy="294" r="2.500"/><circle cx="150" cy="288" r="2"/><circle cx="270" cy="290" r="2.500"/><circle cx="480" cy="290" r="2"/><circle cx="530" cy="293" r="2.500"/></g>` +
+    `<circle cx="430" cy="318" r="70" fill="url(#${k}bg)"/><path d="M430 396Q424 430 432 470" stroke="#ff5a4a" stroke-width="10" opacity=".4" fill="none" stroke-linecap="round"/>` +
+    `<g transform="translate(430 366) rotate(5)"><path d="M-22 22Q0 34 22 22L15-12H-15Z" fill="#d8262a"/><path d="M2-12H15L22 22Q12 30 2 30Z" fill="#000" opacity=".25"/><path d="M-12-12L-7-44H7L12-12Z" fill="none" stroke="#d8262a" stroke-width="5"/><rect x="-18" y="2" width="36" height="7" fill="#f4f4f0"/><circle cy="-50" r="8" fill="#fff6d8"/></g><circle cx="427" cy="316" r="22" fill="url(#${k}bg)"/>` +
+    `<path d="M40 40H560V480H40Z" fill="none" stroke="#3a2016" stroke-width="22"/><path d="M300 40V480M40 190H560" stroke="#3a2016" stroke-width="12"/><path d="M40 190H560" stroke="#6a4028" stroke-width="2"/>` +
+    `<path d="M30 70Q160 120 300 76Q440 120 570 70" fill="none" stroke="#1c0e0a" stroke-width="2"/><g fill="#ffe6a8"><circle cx="80" cy="88" r="6"/><circle cx="150" cy="100" r="6"/><circle cx="224" cy="94" r="6"/><circle cx="376" cy="94" r="6"/><circle cx="450" cy="100" r="6"/><circle cx="520" cy="88" r="6"/></g>` +
+    `<circle cx="150" cy="100" r="60" fill="url(#${k}wm)"/><circle cx="450" cy="100" r="60" fill="url(#${k}wm)"/><rect y="480" width="600" height="320" fill="#3a1c14"/><rect width="600" height="800" fill="url(#${k}am)"/>`;
+}
+const dockDefs = (k: string): string =>
+  `<linearGradient id="${k}sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c1c4a"/><stop offset=".45" stop-color="#6a3a6a"/><stop offset=".6" stop-color="#e8784a"/></linearGradient>` +
+  lg(`${k}sea`, '#3a3a6a', '#12122c') + glow(`${k}bg`, '#ff5a3a', 0.85) + glow(`${k}wm`, '#ffd08a', 0.5) + lg(`${k}am`, '#ff9a4a', '#ff9a4a').replace('offset="0" stop-color="#ff9a4a"', 'offset="0" stop-color="#ff9a4a" stop-opacity="0"').replace('offset="1" stop-color="#ff9a4a"', 'offset="1" stop-color="#ff9a4a" stop-opacity=".14"') + lg(`${k}tb`, '#7a4a2a', '#3a2010');
+const tableTop = (k: string): string => `<path d="M-20 690Q300 650 620 690V800H-20Z" fill="url(#${k}tb)"/><path d="M-20 690Q300 650 620 690" fill="none" stroke="#ffc88a" stroke-width="3" opacity=".5"/>`;
+
+function usDock(): string {
+  const k = 'cg3_ph_us_dock';
+  const D: Face = { ...DANA2, rim: '#ffb870' };
+  return frame(k, 600, 800, '#ffb870', dockDefs(k),
+    dockBg(k) + `<g filter="url(#${k}f)">${put(404, 392, 1.62, 4, bust(POLO, DOUG, collar('#2a62a8', '#16365e') + pinn(60, 182, 0.95), '#ffb870'))}</g>` +
+    `<g filter="url(#${k}f)">${put(196, 420, 1.6, -5, bust('#f2ead8', D, `<path d="M74 147Q100 186 126 147L120 146Q100 170 80 146Z" fill="${DANA.sk}"/><path d="M92 176l8 8 8-8" fill="none" stroke="#e8c050" stroke-width="2"/>`))}</g>` +
+    tableTop(k) + wglass(74, 716, 1.5, '#f2d88a') + `<g transform="translate(300 730)"><ellipse rx="70" ry="16" fill="#f4f0e6"/><ellipse cx="-10" cy="-6" rx="38" ry="9" fill="#c8843a"/><path d="M10-10l30-6M14-2l30 0" stroke="#e8c050" stroke-width="5" stroke-linecap="round"/></g>` +
+    `<g filter="url(#${k}f)">${thumb(520, 640, 2.3, 6, DOUG.sk, DOUG.sh)}<path d="M478 800V730Q480 700 506 700H548Q572 702 574 730V800Z" fill="${POLO}"/></g>`, 0.6);
+}
+
+function dockR(): string {
+  const k = 'cg3_ph_dock_r';
+  const D: Face = { ...DANA2, rim: '#ffb870', mouth: laugh('#8a3a40', '#d0506a'), lid: 0.1 };
+  const RV: Face = { ...RAFE, rim: '#ffb870', mouth: laugh('#7a3a34'), lid: 0.2,
+    front: `<path d="M65 82C58 36 86 26 100 26C116 26 142 36 135 82C132 62 122 52 100 52C78 52 68 62 65 82Z" fill="#c89648"/><path d="M110 28C134 34 140 58 135 82C132 66 124 56 110 53Z" fill="#8a6230" opacity=".7"/>` + visor('#2a6ad0') };
+  return frame(k, 600, 800, '#ffb870', dockDefs(k),
+    dockBg(k) + `<g filter="url(#${k}f)">${put(398, 350, 1.72, -7, bust('#e8eef4', RV, `<path d="M82 146Q100 170 118 146Z" fill="${RAFE.sk}"/><path d="M78 146Q100 176 122 146" fill="none" stroke="#2a6ad0" stroke-width="4"/>`, '#ffb870'))}</g>` +
+    `<g filter="url(#${k}f)">${put(204, 424, 1.6, 8, bust('#2a8a7a', D, `<path d="M70 148Q100 192 130 148L120 146Q100 172 80 146Z" fill="${DANA.sk}"/>`))}</g>` +
+    tableTop(k) + `<g transform="translate(300 734)"><ellipse rx="96" ry="22" fill="#f4f0e6"/><ellipse rx="96" ry="22" fill="none" stroke="#c8c0b0" stroke-width="2"/><path d="M-36-4L24-46L44-6Z" fill="#4a2414"/><path d="M-36-4L44-6V8L-36 10Z" fill="#2e140a"/><path d="M-22-14L32-22" stroke="#f4e6d0" stroke-width="5"/><circle cx="20" cy="-48" r="9" fill="#e0283a"/><path d="M20-56q4-8 10-8" stroke="#3a7a2a" stroke-width="2.500" fill="none"/><path d="M-60 6Q-30 14 0 8" stroke="#b8323a" stroke-width="4" fill="none" stroke-linecap="round"/></g>` +
+    `<g stroke="#d8dce4" stroke-width="6" stroke-linecap="round"><path d="M206 706L262 728M400 700L344 726"/></g><ellipse cx="268" cy="730" rx="11" ry="7" fill="#d8dce4" transform="rotate(20 268 730)"/><ellipse cx="338" cy="728" rx="11" ry="7" fill="#d8dce4" transform="rotate(-24 338 728)"/>` +
+    `<g filter="url(#${k}f)"><g fill="${DANA.sk}">${hand(196, 700, -70, DANA.sh, 1.5)}</g><g fill="${RAFE.sk}">${hand(412, 694, 68, RAFE.sh, 1.7)}</g></g>`, 0.6);
+}
+
+// ---------- cg3_ph_couch (KEY CLUE) ----------
+function couch(): string {
+  const k = 'cg3_ph_couch';
+  const G = '#9a9fab', GD = '#70768a';
+  return frame(k, 800, 600, '#ffd08a',
+    lg(`${k}w`, '#1a1830', '#2c2440') + glow(`${k}l`, '#ffc070', 0.75) + glow(`${k}t`, '#5a8cff', 0.4) + lg(`${k}tb`, '#6a4226', '#2e1a0e'),
+    `<rect width="800" height="600" fill="url(#${k}w)"/><rect y="430" width="800" height="170" fill="#14101e"/><circle cx="0" cy="330" r="420" fill="url(#${k}t)"/>` +
+    `<rect x="600" y="60" width="130" height="100" fill="#221c34" stroke="#4a3a2a" stroke-width="6"/><path d="M612 148L640 110L660 130L690 96L720 148Z" fill="#3a4a5a"/>` +
+    `<circle cx="716" cy="210" r="300" fill="url(#${k}l)"/><path d="M676 190H756L776 264H656Z" fill="#ffe2b0"/><rect x="710" y="264" width="12" height="180" fill="#2a2030"/><ellipse cx="716" cy="446" rx="40" ry="8" fill="#2a2030"/>` +
+    `<g filter="url(#${k}f)"><rect x="110" y="170" width="560" height="220" rx="40" fill="#45416a"/><rect x="134" y="330" width="512" height="90" rx="18" fill="#56517e"/><rect x="134" y="400" width="512" height="44" rx="8" fill="#2c2948"/><rect x="606" y="250" width="86" height="200" rx="32" fill="#4c4874"/><rect x="88" y="250" width="86" height="200" rx="32" fill="#4c4874"/></g><path d="M392 180V330" stroke="#2a2844" stroke-width="5"/>` +
+    `<ellipse cx="520" cy="300" rx="70" ry="52" fill="#b8643a"/><path d="M520 248A70 52 0 0 1 520 352A90 70 0 0 0 520 248Z" fill="#000" opacity=".22"/>` +
+    `<g filter="url(#${k}f)"><path d="M40 300Q30 250 62 232L92 330L70 420Q44 400 40 300Z" fill="${GD}"/><path d="M250 240Q286 262 280 330L262 430Q246 440 232 426L226 300Z" fill="${GD}"/>` +
+    `<path d="M62 232Q100 208 150 212Q210 208 250 240Q262 330 246 452Q150 470 60 448Q46 330 62 232Z" fill="${G}"/><path d="M96 214Q150 180 212 216Q190 262 150 264Q112 262 96 214Z" fill="${GD}"/><path d="M112 220Q150 200 194 222Q178 248 150 250Q124 248 112 220Z" fill="#565c70"/></g>` +
+    `<path d="M62 430Q150 446 246 434" fill="none" stroke="${GD}" stroke-width="12"/><g transform="translate(154 336) rotate(-2) scale(1.12)">${c12('#1a2244')}</g>` +
+    `<ellipse cx="400" cy="590" rx="330" ry="20" fill="#000" opacity=".5"/><path d="M130 492H690L740 560H80Z" fill="url(#${k}tb)"/><path d="M80 560H740V582H80Z" fill="#1c1008"/><path d="M130 492H690" stroke="#ffc88a" stroke-width="3" opacity=".6"/>` +
+    wglass(470, 500, 1.5, '#7a1028', true) + wglass(556, 508, 1.5, '#7a1028') + `<ellipse cx="470" cy="538" rx="26" ry="5" fill="#000" opacity=".3"/><ellipse cx="556" cy="546" rx="26" ry="5" fill="#000" opacity=".3"/>` +
+    `<g transform="translate(300 528) rotate(-8)"><path d="M-96-9Q-50-16-24-11V11Q-50 15-96 9ZM24-11Q56-16 100-6V12Q56 16 24 11Z" fill="#d8202e"/><path d="M-96 2Q-50-4-24 1V11Q-50 15-96 9ZM24 1Q56-4 100 4V12Q56 16 24 11Z" fill="#8a0e18"/><g fill="#5a0810"><circle cx="-80" r="2.500"/><circle cx="-66" r="2.500"/><circle cx="-52" r="2.500"/></g><ellipse rx="30" ry="21" fill="#c8ced6"/><ellipse rx="24" ry="16" fill="#101624"/><path d="M0 0L0-11M0 0L10 4" stroke="#fff" stroke-width="2.500" stroke-linecap="round"/><rect x="29" y="-4" width="8" height="8" rx="2" fill="#c8ced6"/><path d="M-18-8Q-6-16 10-12" stroke="#fff" stroke-width="2" opacity=".5" fill="none"/></g>`, 0.6);
+}
+
+// ---------- cg3_ph_keycard ----------
+function keycard(): string {
+  const k = 'cg3_ph_keycard';
+  const S = DANA.sk;
+  return frame(k, 600, 800, '#ffe2b0',
+    lg(`${k}d`, '#27b0a4', '#0f5a5c', 1, 1) + glow(`${k}l`, '#ffd08a', 0.8) + lg(`${k}p`, '#fbf6e8', '#d8ceb4', 1, 1),
+    `<rect width="600" height="800" fill="#c8b89a"/><path d="M0 0H600V800H0Z" fill="#3a3028" opacity=".35"/><rect x="70" y="20" width="460" height="800" fill="#e8dcc0"/><rect x="92" y="42" width="416" height="780" fill="url(#${k}d)"/>` +
+    `<path d="M124 76H476V330H124ZM124 366H476V800H124Z" fill="none" stroke="#0a4448" stroke-width="5" opacity=".6"/><path d="M128 80H472" stroke="#7ae0d4" stroke-width="3" opacity=".5"/>` +
+    `<circle cx="300" cy="120" r="260" fill="url(#${k}l)" opacity=".7"/><rect x="226" y="126" width="148" height="78" rx="8" fill="#c8a04a"/><rect x="232" y="132" width="136" height="66" rx="5" fill="#1c140c"/>${tx(300, 185, 56, '214', '#f2d27a')}` +
+    `<circle cx="300" cy="258" r="9" fill="#0a2c30"/><circle cx="298" cy="256" r="3" fill="#7ae0d4"/><rect x="430" y="400" width="52" height="150" rx="8" fill="#2a2a30"/><circle cx="456" cy="424" r="5" fill="#4aff7a"/><rect x="436" y="486" width="76" height="18" rx="9" fill="#c8ced6"/>` +
+    `<g filter="url(#${k}f)"><path d="M150 800L176 640Q200 596 260 600L350 640L330 800Z" fill="${S}"/><g transform="rotate(-7 300 500)"><rect x="196" y="318" width="170" height="60" rx="8" fill="#19b3a6"/><rect x="150" y="350" width="270" height="250" rx="6" fill="url(#${k}p)"/></g></g>` +
+    `<g transform="rotate(-7 300 500)"><rect x="210" y="330" width="60" height="8" fill="#fff" opacity=".5"/><path d="M150 356Q285 388 420 356" fill="none" stroke="#b8ae94" stroke-width="2"/>${tx(285, 428, 26, 'LAKEVIEW INN', '#0f6a6c', 'letter-spacing="3"')}<path d="M196 444q14-10 28 0t28 0t28 0t28 0t28 0t28 0" fill="none" stroke="#19b3a6" stroke-width="3"/>` +
+    `<text x="170" y="484" font-size="13" fill="#7a7260" ${SANS}>GUEST / ROOM</text>${tx(285, 524, 31, 'MR. &amp; MRS. SMITH', '#1a2a8a', 'transform="rotate(-3 285 520)"', HAND)}${tx(285, 572, 40, '— 214', '#1a2a8a', 'transform="rotate(-3 285 566)"', HAND)}<path d="M180 536Q290 524 392 532" stroke="#1a2a8a" stroke-width="2" fill="none" opacity=".6"/></g>` +
+    `<g filter="url(#${k}f)" fill="${S}"><rect x="108" y="520" width="118" height="50" rx="25" transform="rotate(-24 167 545)"/><rect x="330" y="640" width="96" height="42" rx="21" transform="rotate(-20 378 661)"/><rect x="336" y="690" width="90" height="40" rx="20" transform="rotate(-14 381 710)"/></g>` +
+    `<path d="M196 508Q216 494 226 508Q222 528 204 532Q192 524 196 508Z" fill="#e8496a"/><path d="M200 510Q210 502 220 508" stroke="#fff" stroke-width="2.500" fill="none" opacity=".6"/>`, 0.55);
+}
+
+// ---------- cg3_ph_lot (KEY CLUE, recovered) ----------
+function lot(): string {
+  const k = 'cg3_ph_lot';
+  const door = (x: number, y: number): string => `<rect x="${x}" y="${y}" width="22" height="40" fill="#19b3a6"/><rect x="${x + 28}" y="${y + 4}" width="26" height="20" fill="#ffd98a" opacity=".7"/>`;
+  let doors = '';
+  for (let i = 0; i < 9; i++) doors += door(40 + i * 82, 186) + door(40 + i * 82, 252);
+  return frame(k, 800, 600, '#ffb060',
+    `<linearGradient id="${k}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1a48"/><stop offset=".3" stop-color="#7a3a6a"/><stop offset=".5" stop-color="#f08a4a"/></linearGradient>` +
+    lg(`${k}a`, '#3a3848', '#17161e') + glow(`${k}c`, '#ffd98a', 0.95) + glow(`${k}n`, '#3ae0d0', 0.6),
+    `<rect width="800" height="600" fill="url(#${k}s)"/><path d="M0 250Q200 210 400 236Q600 214 800 246V300H0Z" fill="#1c1630"/>` +
+    `<rect x="20" y="170" width="760" height="130" fill="#d8ccb4"/><rect x="20" y="170" width="760" height="130" fill="#2a1c3a" opacity=".45"/><path d="M10 170H790L770 150H30Z" fill="#5a2a22"/><path d="M20 236H780" stroke="#3a2a2a" stroke-width="5"/><path d="M20 240H780" stroke="#e8e0d0" stroke-width="2" opacity=".5"/>${doors}` +
+    `<circle cx="660" cy="118" r="90" fill="url(#${k}n)"/><rect x="560" y="96" width="200" height="44" rx="6" fill="#0c1c24" stroke="#3ae0d0" stroke-width="3"/>${tx(660, 127, 23, 'LAKEVIEW INN', '#8af6ea')}<path d="M640 140V170M680 140V170" stroke="#1c1c22" stroke-width="5"/>` +
+    `<rect y="300" width="800" height="300" fill="url(#${k}a)"/><path d="M60 300L-40 470M230 300L170 470M570 300L630 470M740 300L840 470" stroke="#e8e0c8" stroke-width="4" opacity=".4"/>` +
+    `<ellipse cx="430" cy="432" rx="230" ry="16" fill="#000" opacity=".5"/><g filter="url(#${k}f)"><path d="M224 418V352Q224 340 238 338L330 334L352 282Q356 272 370 272H470Q482 272 488 282L512 334L612 338Q630 340 632 354V418Z" fill="#eef0f2"/></g>` +
+    `<path d="M224 392H632V418H224Z" fill="#8a9098"/><path d="M364 286H414V334H342ZM424 286H472L496 334H424Z" fill="#ffe6a8"/><circle cx="430" cy="310" r="50" fill="url(#${k}c)" opacity=".8"/>` +
+    `<path d="M378 334Q376 300 392 296Q408 300 406 334Z" fill="#1c1a22"/><circle cx="392" cy="304" r="12" fill="#2a2630"/><path d="M384 310Q392 306 400 310" stroke="#0c0a10" stroke-width="3" fill="none"/><g transform="translate(456 332) scale(.42)"><path d="M-70 0H70L60 18H-60Z" fill="#14141a"/><ellipse cx="0" cy="-22" rx="44" ry="28" fill="#a85a18"/><path d="M-66 0Q-66-62 0-64Q66-62 66 0Z" fill="#fff" opacity=".45"/><path d="M-66 0Q-66-62 0-64Q66-62 66 0" fill="none" stroke="#fff" stroke-width="5"/></g><path d="M404 328Q420 322 432 330" stroke="#2a2630" stroke-width="8" stroke-linecap="round" fill="none"/>` +
+    `<path d="M418 286V418M338 338H508" stroke="#9aa0a8" stroke-width="2.500"/><rect x="430" y="344" width="16" height="5" rx="2" fill="#6a7078"/><circle cx="290" cy="418" r="34" fill="#14141a"/><circle cx="290" cy="418" r="15" fill="#8a9098"/><circle cx="566" cy="418" r="34" fill="#14141a"/><circle cx="566" cy="418" r="15" fill="#8a9098"/><rect x="620" y="356" width="12" height="16" fill="#e03a3a"/><rect x="224" y="352" width="10" height="14" fill="#ffe6a8"/>` +
+    `<rect x="346" y="350" width="150" height="46" rx="5" fill="#1f4f8a"/><path d="M358 372L366 362L374 372" fill="none" stroke="#f2b632" stroke-width="3"/>${tx(430, 370, 16, 'PINNACLE', '#fff', 'letter-spacing="1"')}${tx(421, 389, 15, 'GUTTERS', '#f2b632', 'letter-spacing="2"')}` +
+    `<path d="M0 0H800V40Q400 16 0 40Z" fill="#0a0a10"/><path d="M0 0H50L20 600H0ZM800 0H750L780 600H800Z" fill="#0a0a10"/><rect x="330" y="26" width="140" height="44" rx="12" fill="#0c0c14"/><rect x="338" y="32" width="124" height="32" rx="8" fill="#3a3040"/><path d="M400 0V28" stroke="#0c0c14" stroke-width="10"/>` +
+    `<path d="M0 520Q400 470 800 520V600H0Z" fill="#0c0c12"/><path d="M0 520Q400 470 800 520" fill="none" stroke="#ff9a5a" stroke-width="2" opacity=".5"/><path d="M60 600Q90 500 220 496Q340 500 360 600" fill="none" stroke="#1c1c26" stroke-width="26"/><path d="M120 560L560 496" stroke="#14141c" stroke-width="7" stroke-linecap="round"/>` +
+    `<path d="M150 0L330 0L120 470L20 470Z" fill="#fff" opacity=".05"/>`, 0.6, 0.18);
+}
+
 export const caught3Art: Record<string, string> = {
   ...avatars(),
   cg3_cover: cover(),
   cg3_wall_lock: wallLock(),
   cg3_wall_home: wallHome(),
   cg3_map: mapArt(),
+  cg3_ph_scorecard: garage(),
+  cg3_ph_us_dock: usDock(),
+  cg3_ph_dock_r: dockR(),
+  cg3_ph_couch: couch(),
+  cg3_ph_keycard: keycard(),
+  cg3_ph_lot: lot(),
 };
