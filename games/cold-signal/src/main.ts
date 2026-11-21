@@ -55,6 +55,6 @@ document.addEventListener('visibilitychange', () => {
 (window as unknown as { __cs: unknown }).__cs = { toFiles, openCase, CASES };
 toTitle();
 
-if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+if (import.meta.env.PROD && 'serviceWorker' in navigator && !(window as unknown as { __CS_NO_SW?: boolean }).__CS_NO_SW) {
   window.addEventListener('load', () => { navigator.serviceWorker.register('./sw.js').catch(() => { /* offline support is optional */ }); });
 }
