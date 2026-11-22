@@ -22,10 +22,6 @@ export const alexis: Portrait = { ...deb, skin: '#b87c62', shade: '#80555e', hai
 export const tash: Portrait = { ...riley, style: 'sweep', hair: '#42282d', shirt: '#b55146' };
 
 export const caught4Art: Record<string, string> = {
-  cg4_cover: scene('cg4_cover', 600, 800, '#7d4657', '#162231', `
-    <path d="M41 0v800M538 0v800M0 98h600M0 640h600" stroke="#efa972" stroke-opacity=".45" stroke-width="15"/>
-    <circle cx="290" cy="275" r="216" fill="#de9470" opacity=".22"/>${person(-65, -6, 3.6, tanner)}
-    ${label(300, 690, 42, 'NO DAYS OFF', '#ebb69d')}${bag}`),
   cg4_wall_lock: scene('cg4_wall_lock', 600, 800, '#4a7276', '#33293e', gym + person(62, 27, 2.6, tanner) + lip + ink + bag),
   cg4_wall_home: scene('cg4_wall_home', 600, 800, '#472b45', '#162431', `
     <path d="M-199 695L651 137M-125 781l819-535M116 800l569-382" stroke="#ab566a" opacity=".35" stroke-width="36"/>

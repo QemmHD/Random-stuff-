@@ -28,7 +28,14 @@ const hairShape: Record<Portrait['style'], string> = {
   bob: 'M48 152L48 84Q45 31 84 27Q144 17 153 76L156 148Q137 159 125 144L136 97 132 66Q100 63 91 52Q78 79 62 81L73 151Q62 157 48 152Z',
 };
 
-export function person(x: number, y: number, scale: number, p: Portrait, shoulders = true): string {
+const mouths = [
+  'M89 129Q102 136 115 126',
+  'M90 129Q102 125 112 129',
+  'M86 128Q98 141 112 130',
+  'M91 126q10 3 21-3',
+];
+
+export function person(x: number, y: number, scale: number, p: Portrait, shoulders = true, expression = 0): string {
   return `<g transform="translate(${x} ${y}) scale(${scale})">
     ${shoulders ? `<path d="M7 210Q12 169 55 156L84 143H118L145 156Q189 169 194 210Z" fill="${p.shirt}"/>
     <path d="M143 158Q185 169 194 210H147L123 172Z" fill="#0c1121" opacity=".3"/>` : ''}
@@ -41,7 +48,7 @@ export function person(x: number, y: number, scale: number, p: Portrait, shoulde
     <path d="M71 88Q79 84 88 88M112 88Q121 84 130 89" fill="none" stroke="${p.hair}" stroke-width="3.6" stroke-linecap="round"/>
     <path d="M70 98Q80 91 89 99M111 99Q121 92 130 99" fill="#f9ecdb" stroke="#2d2430" stroke-width="2.4"/>
     <circle cx="81" cy="97" r="3" fill="#302330"/><circle cx="121" cy="98" r="3" fill="#352532"/>
-    <path d="M100 99L95 115Q99 118 105 116M89 129Q102 136 115 126" fill="none" stroke="#632f39" stroke-width="2.7" stroke-linecap="round"/>
+    <path d="M100 99L95 115Q99 118 105 116${mouths[expression]}" fill="none" stroke="#632f39" stroke-width="2.7" stroke-linecap="round"/>
     ${p.glasses ? '<path d="M65 92h28v13H70zM107 92h28l-5 13h-23zM93 96h14" fill="none" stroke="#292738" stroke-width="3"/>' : ''}
   </g>`;
 }

@@ -14,9 +14,9 @@ export const caught6: CaseFile = {
   status: 'SUSPECTED CHEATER',
   deviceCondition: 'CHARGER UNPLUGGED · 18% BATTERY · WATER RUNNING UPSTAIRS',
   opening: [
-    { art: 'cg6_wall_home', caption: 'The florist tied a card to your sample centerpiece. FAMILY OF THE GROOM. Your mother hasn’t seen it yet.' },
-    { art: 'cg6_cover', caption: 'Upstairs, Sofia starts the water. You can hear her humming the song you picked for the first dance.' },
-    { art: 'cg6_wall_lock', caption: 'Iris’s text lights up the room. “Did Cal give Daniel the lake version?”', sound: 'notify' },
+    { art: 'cg6_cover', motion: 'stairlight', caption: 'The florist left a sample centerpiece by the stairs. Your mother hasn’t seen the dress yet. Nobody knows where to put either of them.' },
+    { art: 'cg6_open_water', motion: 'steam', caption: 'Upstairs, Sofia starts the water. You can hear her humming the song you picked for the first dance.' },
+    { art: 'cg6_open_signal', motion: 'screen', caption: 'Iris’s text lights up the room. “Did Cal give Daniel the lake version?”', sound: 'notify' },
   ],
   briefing: [
     '2:13 a.m., three weeks before the wedding. Sofia leaves her phone on the charger and goes upstairs to wash the florist’s glitter out of her hair. The screen lights up. Iris wants to know whether Cal gave you “the lake version.” Cal is your best man.',
@@ -91,7 +91,7 @@ export const caught6: CaseFile = {
     ...portraitStudies(6, '2026-10-01T20:00'),
     { id: 'cg6_ph_lake', art: 'cg6_ph_lake', t: '2026-07-12T20:34', place: 'Lake Briar', orientation: 'landscape', caption: 'Original capture: July 12. A cabin deck, green leaves, sparklers and a red cooler. Shared to Glimpse on November 13.', clue: 'lake_stock' },
     { id: 'cg6_ph_match', art: 'cg6_ph_match', t: '2026-11-14T07:06', place: 'Meridian Hotel', orientation: 'portrait', caption: 'A Meridian matchbook propping open a paper key sleeve marked 608. Two coffee cups and a gold tie bar behind it.' },
-    { id: 'cg6_ph_suit', art: 'cg6_ph_suit', t: '2026-11-13T22:47', place: 'Meridian Hotel, 608', orientation: 'portrait', deletedUntil: 'recovered:photos', caption: 'Cal in shirtsleeves pouring two glasses, his tagged BEST MAN garment bag on the door. A second key card lies on Sofia’s coat.', clue: 'suit_bag' },
+    { id: 'cg6_ph_suit', art: 'cg6_ph_suit', t: '2026-11-13T22:47', place: 'Meridian Hotel, 608', orientation: 'portrait', deletedUntil: 'recovered:photos', caption: 'Cal sits on the edge of a hotel bed in shirtsleeves, his tie undone. Two half-filled glasses and a hanging garment bag tagged BEST MAN.', clue: 'suit_bag' },
     { id: 'cg6_ph_cake', art: 'cg6_ph_cake', t: '2026-06-28T20:17', place: 'Neve’s apartment', orientation: 'landscape', caption: 'The uncropped DIVORCE PARTY shot. The cake reads GOOD LUCK WITH THE MEDIATOR; the icing is doing its best.', clue: 'cake' },
     { id: 'cg6_ph_chart', art: 'cg6_ph_chart', t: '2026-11-20T23:10', place: 'Home', orientation: 'landscape', caption: 'Pencil on a first-table seating chart. The best man’s place is crossed out. In the margin, “ask about postponing, not table move”.', clue: 'headcount' },
   ],

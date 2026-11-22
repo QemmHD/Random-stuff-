@@ -14,9 +14,9 @@ export const caught5: CaseFile = {
   status: 'SUSPECTED CHEATER',
   deviceCondition: 'ON THE KITCHEN COUNTER · 24% BATTERY · SHOWER RUNNING',
   opening: [
-    { art: 'cg5_ph_mug', caption: 'You set out her mug. After eleven years you still turn the chip toward the wall.' },
-    { art: 'cg5_ph_key', caption: 'A brass key drops out of her coat. You know the shape of the number before you turn it over.', sound: 'tap' },
-    { art: 'cg5_wall_home', caption: 'Her phone lights up on the counter. For half a second you think it’s yours.', sound: 'notify' },
+    { art: 'cg5_open_counter', motion: 'steam', caption: 'You set out her mug. After eleven years you still turn the chip toward the wall.' },
+    { art: 'cg5_open_courtyard', motion: 'rain', caption: 'A brass key drops out of her coat. You picture the wet pavement at Switchback before you can read the tag.', sound: 'tap' },
+    { art: 'cg5_open_signal', motion: 'screen', caption: 'Her phone lights up on the counter. For half a second you think it’s yours.', sound: 'notify' },
   ],
   briefing: [
     '2:06 a.m. Mara comes in from another Friday pledge drive and goes straight to the shower. You put her coat away. A brass room key falls into your hand. You know exactly how much noise it’ll make on the counter. You put it down on a dish towel.',

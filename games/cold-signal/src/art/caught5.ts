@@ -13,11 +13,6 @@ const motel = '<path d="M0 192l212-91 239 101 349 5v232H0z" fill="#3e2943"/><pat
 const keyShape = '<path d="M196 277a52 52 0 1 0 4 69l171 40 15-38-33-8-6 17-21-5 5-16-128-31Z" fill="#b07846" stroke="#e6b97d" stroke-width="5"/><circle cx="163" cy="319" r="16" fill="#59414b"/><ellipse cx="290" cy="320" rx="92" ry="46" transform="rotate(12 290 320)" fill="none" stroke="#d3ad82" stroke-width="9"/>';
 
 export const caught5Art: Record<string, string> = {
-  cg5_cover: scene('cg5_cover',600,800,'#9b4e61','#191d35',`
-    <circle cx="301" cy="298" r="231" fill="#df8067" opacity=".23"/><path d="M24 624V102H565V624" fill="none" stroke="#e37868" stroke-width="10" opacity=".55"/>
-    ${person(-62,-16,3.58,mara)}<path d="M52 534q86-108 149 4v109H52z" fill="#242030" stroke="#ac7380" stroke-width="10"/>
-    <path d="M72 564h109m-109 32h109m-49 47v76" stroke="#a87985" stroke-width="7"/><path d="M312 696h238" stroke="#f5a76e" stroke-width="6"/>
-    ${label(425,738,25,'WMAR · OVERNIGHTS','#e6b39e')}`),
   cg5_wall_lock: scene('cg5_wall_lock',600,800,'#735b70','#242436',`
     ${radio}${controls}${label(300,407,36,'MUTE','#ffceaa')}
     ${label(300,578,21,'PHONE WORDS · VANITY NUMBER GUIDE','#f0c69c')}

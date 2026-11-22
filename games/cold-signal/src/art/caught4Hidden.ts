@@ -19,12 +19,6 @@ export const caught4HiddenArt: Record<string, string> = {
     <path d="M68 596l440-109 56 137L85 737Z" fill="#594956" stroke="#ba8887" stroke-width="15"/>
     <path d="M285 462l96 29 43-220 58 7-28 266-102 70-175-31z" fill="#302939"/><path d="M433 275q70-58 34-158" fill="none" stroke="#d3a691" stroke-width="9"/>
     <g transform="rotate(-24 183 489)">${person(13,381,1.62,{ ...kenna, shirt: '#292432' })}</g>`),
-  cg4_ph_h_robe: scene('cg4_ph_h_robe',600,800,'#be8b73','#52364c',`
-    <rect x="66" y="80" width="471" height="644" rx="22" fill="#b29394" stroke="#e0c0aa" stroke-width="14"/>
-    <path d="M335 393h179v173H335Z" fill="#d8c1bb"/>${person(382,382,.47,tanner)}${person(50,112,2.07,{ ...kenna, shirt: kenna.skin })}
-    <path d="M190 443q-6 19-5 34m8-30q-4 17-3 26" fill="none" stroke="#ad6870" stroke-width="3.5" stroke-linecap="round" opacity=".67"/>
-    <path d="M172 447l87 37 99-48 68 286H96Z" fill="#eee0d2"/><path d="M172 447l101 189 85-200" fill="none" stroke="#baa5a1" stroke-width="11"/>
-    ${label(326,580,18,'CANYON ROSE','#675366')}<path d="M367 493h75v56q-40 29-75-2Z" fill="#f0d2ad"/><path d="M371 495h23" stroke="#b34c66" stroke-width="8"/>`),
   cg4_ph_h_red: scene('cg4_ph_h_red',600,800,'#ac6774','#39283e',`
     <path d="M24 68h259v667H24zm293 0h259v667H317z" fill="#826379" stroke="#e7b3a3" stroke-width="8"/>
     ${person(21,108,1.32,kenna)}${person(314,105,1.32,kenna)}

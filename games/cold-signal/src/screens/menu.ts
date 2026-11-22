@@ -213,7 +213,9 @@ export function openingScreen(raw: CaseFile, onBegin: () => void): HTMLElement {
         h('button', { class: 'btn ghost', type: 'button', onclick: finish }, S.skipOpening))));
   const showShot = () => {
     const shot = shots[index];
+    picture.dataset.motion = shot.motion ?? '';
     picture.replaceChildren(artImg(shot.art));
+    if (shot.motion) picture.appendChild(h('span', { class: 'opening-motion' }));
     caption.textContent = shot.caption;
     next.textContent = index + 1 === shots.length ? S.beginInvestigation : S.nextShot;
     if (shot.sound) audio.play(shot.sound);

@@ -236,7 +236,12 @@ export interface CaseFile {
   deviceCondition?: string;
   briefing: string[];
   /** Optional scene shown on a fresh start, before the phone appears. */
-  opening?: { art: string; caption: string; sound?: 'tap' | 'notify' | 'stinger' }[];
+  opening?: {
+    art: string;
+    caption: string;
+    sound?: 'tap' | 'notify' | 'stinger';
+    motion?: 'pillow' | 'buzz' | 'screen' | 'rain' | 'steam' | 'stairlight';
+  }[];
   /** Caught starts with running water unless the owner is somewhere else. */
   quietStart?: boolean;
   phoneDate: string; // date shown on the phone clock, 'YYYY-MM-DD'

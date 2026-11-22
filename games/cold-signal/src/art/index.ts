@@ -22,8 +22,10 @@ import { caught4HiddenArt } from './caught4Hidden';
 import { caught5Art } from './caught5';
 import { caught6Art } from './caught6';
 import { caughtStudiesArt } from './caughtStudies';
+import { caughtOpeningsArt } from './caughtOpenings';
+import { caughtStillsArt } from './caughtStills';
 
-const REGISTRY: Record<string, string> = { ...extraArt, ...iconArt, ...avatarArt, ...case1Art, ...case2Art, ...case3Art, ...case4Art, ...case5Art, ...case6Art, ...case7Art, ...case8Art, ...case9Art, ...ownerArt, ...hiddenArt, ...hiddenArt2, ...caught3Art, ...caught2Art, ...caught1Art, ...caught4Art, ...caught4HiddenArt, ...caught5Art, ...caught6Art, ...caughtStudiesArt };
+const REGISTRY: Record<string, string> = { ...extraArt, ...iconArt, ...avatarArt, ...case1Art, ...case2Art, ...case3Art, ...case4Art, ...case5Art, ...case6Art, ...case7Art, ...case8Art, ...case9Art, ...ownerArt, ...hiddenArt, ...hiddenArt2, ...caught3Art, ...caught2Art, ...caught1Art, ...caught4Art, ...caught4HiddenArt, ...caught5Art, ...caught6Art, ...caughtStudiesArt, ...caughtOpeningsArt, ...caughtStillsArt };
 const urlCache = new Map<string, string>();
 
 export function registerArt(more: Record<string, string>): void {
