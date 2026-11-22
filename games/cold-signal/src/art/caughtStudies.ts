@@ -58,6 +58,11 @@ function draw(key: string, { portrait: p, backdrop, accent, fullChest, turn = 0,
     <circle cx="197" cy="${y - 1}" r="2.1"/><circle cx="212" cy="${y - 1}" r="2.1"/>
     <circle cx="388" cy="${y - 1}" r="2.1"/><circle cx="403" cy="${y - 1}" r="2.1"/>
   </g>`;
+  const sheer = `<g>
+    <path d="M128 445Q201 486 292 478Q391 472 457 442L470 611Q396 645 298 629Q200 617 124 630Z" fill="${accent}" opacity=".18"/>
+    <path d="M128 445Q201 486 292 478Q391 472 457 442M124 630Q200 617 298 629Q396 645 470 611" fill="none" stroke="${accent}" stroke-width="4" opacity=".48"/>
+    <path d="M129 469Q232 526 460 464M127 490Q236 543 462 490M126 512Q236 560 466 514M125 537Q240 575 467 540M124 560Q246 598 468 565M124 588Q251 618 469 590" fill="none" stroke="${accent}" stroke-width="1" opacity=".17"/>
+  </g>`;
   const hoop = `<path d="M391 ${y}a5 6 0 1 0 9 0" fill="none" stroke="#eaca91" stroke-width="2.3" stroke-linecap="round"/>`;
   return scene(key, 600, 800, backdrop, '#211e34', `
     <circle cx="301" cy="294" r="220" fill="${accent}" opacity=".19"/>
@@ -77,6 +82,7 @@ function draw(key: string, { portrait: p, backdrop, accent, fullChest, turn = 0,
       </g>
       <g fill="#4e2939" opacity=".7"><ellipse cx="204" cy="${y}" rx="5" ry="3.5"/><ellipse cx="396" cy="${y}" rx="5" ry="3.5"/></g>
       ${jewelry === 'silver-bars' ? bars : jewelry === 'gold-ring' ? hoop : ''}
+      ${fullChest && jewelry ? sheer : ''}
       <path d="M43 681q126-27 232 0t278-20v139H43Z" fill="${backdrop}"/>
       <path d="M43 712q127-33 224-6t288-13" fill="none" stroke="${accent}" stroke-width="12" opacity=".32"/>
     </g>`);

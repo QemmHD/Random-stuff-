@@ -219,4 +219,4 @@ Recurring: **Dana** is 41, an athletic physical therapist with a high ponytail a
 - Contacts: `av_cg6_dan`, `av_cg6_iris`, `av_cg6_cal`, `av_cg6_neve`, `av_cg6_party`. Dez uses the shared avatar.
 - Photos: `cg6_ph_lake` (July trees and sparklers), `cg6_ph_match` (two coffees and 608 sleeve), `cg6_ph_suit` (Cal and BEST MAN bag, recovered), `cg6_ph_cake` (the uncropped divorce-party cake), `cg6_ph_chart` (Cal’s place crossed out).
 
-C4–C6 also include the adult cast’s optional topless figure studies in Hidden. Their keys use `cgN_study_` followed by the subject ID in `cases/caughtPortraits.ts`. Selected portraits show fabric pressure marks or small body jewelry. The studies carry no report evidence.
+C4–C6 also include the adult cast’s optional topless figure studies in Hidden. Their keys use `cgN_study_` followed by the subject ID in `cases/caughtPortraits.ts`. Selected portraits show fabric pressure marks or small body jewelry beneath a sheer fabric layer. The studies carry no report evidence.
