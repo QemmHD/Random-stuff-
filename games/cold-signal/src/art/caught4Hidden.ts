@@ -12,6 +12,7 @@ export const caught4HiddenArt: Record<string, string> = {
     <path d="M233 329q-93 20-101 114l32 117 56-29 9 96h151l18-115 47 31 28-128q-26-67-104-86l-57 45z" fill="#d39373"/>
     <path d="M307 372v69m-87-26q29 36 75 27m25 1q43 7 74-27m-167 82q32 23 62 20m39-1q37-5 61-26" fill="none" stroke="#9e5a59" stroke-width="6" opacity=".7"/>
     <ellipse cx="250" cy="439" rx="10" ry="7" fill="#a9615b"/><ellipse cx="369" cy="439" rx="10" ry="7" fill="#a9615b"/><ellipse cx="250" cy="439" rx="3" ry="2.5" fill="#834e4e"/><ellipse cx="369" cy="439" rx="3" ry="2.5" fill="#834e4e"/>
+    <path d="M234 569q69 20 145 0m-133-5q59 13 119 0" fill="none" stroke="#a15f5d" stroke-width="3.5" stroke-linecap="round" opacity=".52"/>
     <path d="M210 587q125 32 202-2l13 156H196Z" fill="#eee1d6"/><path d="M209 608q92 20 178-5l-21 118" fill="none" stroke="#b9a6a7" stroke-width="10"/>
     <g transform="translate(30 66) scale(.66)">${ink}</g>`),
   cg4_ph_h_reformer: scene('cg4_ph_h_reformer',600,800,'#80596e','#282338',`
@@ -20,7 +21,8 @@ export const caught4HiddenArt: Record<string, string> = {
     <g transform="rotate(-24 183 489)">${person(13,381,1.62,{ ...kenna, shirt: '#292432' })}</g>`),
   cg4_ph_h_robe: scene('cg4_ph_h_robe',600,800,'#be8b73','#52364c',`
     <rect x="66" y="80" width="471" height="644" rx="22" fill="#b29394" stroke="#e0c0aa" stroke-width="14"/>
-    <path d="M335 393h179v173H335Z" fill="#d8c1bb"/>${person(382,382,.47,tanner)}${person(50,112,2.07,kenna)}
+    <path d="M335 393h179v173H335Z" fill="#d8c1bb"/>${person(382,382,.47,tanner)}${person(50,112,2.07,{ ...kenna, shirt: kenna.skin })}
+    <path d="M190 443q-6 19-5 34m8-30q-4 17-3 26" fill="none" stroke="#ad6870" stroke-width="3.5" stroke-linecap="round" opacity=".67"/>
     <path d="M172 447l87 37 99-48 68 286H96Z" fill="#eee0d2"/><path d="M172 447l101 189 85-200" fill="none" stroke="#baa5a1" stroke-width="11"/>
     ${label(326,580,18,'CANYON ROSE','#675366')}<path d="M367 493h75v56q-40 29-75-2Z" fill="#f0d2ad"/><path d="M371 495h23" stroke="#b34c66" stroke-width="8"/>`),
   cg4_ph_h_red: scene('cg4_ph_h_red',600,800,'#ac6774','#39283e',`

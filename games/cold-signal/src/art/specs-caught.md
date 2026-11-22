@@ -205,7 +205,7 @@ Recurring: **Dana** is 41, an athletic physical therapist with a high ponytail a
 - Contacts: `av_cg4_riley`, `av_cg4_kenna`, `av_cg4_legends`, `av_cg4_brody`, `av_cg4_marcus`, `av_cg4_kyle`, `av_cg4_mama`, `av_cg4_sienna`, `av_cg4_alexis`, `av_cg4_alt`, `av_cg4_bff`, `av_cg4_findmy`.
 - Camera and thread photos: `cg4_ph_mirror` (tattoo and lipstick), `cg4_ph_us_brunch` (Riley’s bare ring finger), `cg4_ph_sedona` (sunset, robes and summit lanyard), `cg4_ph_sheets` (cat, hoodie and pilates ring), `cg4_ph_mama_ring` (size 5), `cg4_ph_lot` (CoreWorks from Tanner’s truck).
 - Recovered: `cg4_ph_couch` (glasses, throw and pilates socks), `cg4_ph_bed` (Tanner and Kenna under covers), `cg4_ph_video` (silhouettes and a pilates ring), `cg4_ph_locker` (timeline and velvet box), `cg4_ph_mirror_lips` (lipstick note).
-- Hidden: `cg4_ph_h_hoodie`, `cg4_ph_h_towel`, `cg4_ph_h_reformer`, `cg4_ph_h_robe`, `cg4_ph_h_red`. Tanner’s towel portrait includes bare-chest detail.
+- Hidden: `cg4_ph_h_hoodie`, `cg4_ph_h_towel`, `cg4_ph_h_reformer`, `cg4_ph_h_robe`, `cg4_ph_h_red`. Tanner’s towel portrait includes bare-chest detail and a faint towel imprint. Kenna’s robe portrait shows a shoulder-strap imprint.
 
 ## C5 — Mutual Auditing
 
@@ -219,4 +219,4 @@ Recurring: **Dana** is 41, an athletic physical therapist with a high ponytail a
 - Contacts: `av_cg6_dan`, `av_cg6_iris`, `av_cg6_cal`, `av_cg6_neve`, `av_cg6_party`. Dez uses the shared avatar.
 - Photos: `cg6_ph_lake` (July trees and sparklers), `cg6_ph_match` (two coffees and 608 sleeve), `cg6_ph_suit` (Cal and BEST MAN bag, recovered), `cg6_ph_cake` (the uncropped divorce-party cake), `cg6_ph_chart` (Cal’s place crossed out).
 
-C4–C6 also include the adult cast’s optional topless figure studies in Hidden. Their keys use `cgN_study_` followed by the subject ID in `cases/caughtPortraits.ts`. The studies are illustrations and carry no report evidence.
+C4–C6 also include the adult cast’s optional topless figure studies in Hidden. Their keys use `cgN_study_` followed by the subject ID in `cases/caughtPortraits.ts`. Selected portraits show fabric pressure marks or small body jewelry. The studies carry no report evidence.
