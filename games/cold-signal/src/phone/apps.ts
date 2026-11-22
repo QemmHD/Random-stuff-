@@ -43,12 +43,13 @@ function messagesList(g: Game): View {
         const m = last(t);
         const unread = g.unread.has(t.id);
         const hasRecovered = t.messages.some((x) => x.deletedUntil);
+        const photo = g.visiblePhoto(m.photo);
         return tapRow(() => phone.push(threadView(g, t.id)),
           unread ? h('span', { class: 'unread-dot' }) : h('span', { class: 'unread-dot off' }),
           avatar(c.avatar, 46),
           h('div', { class: 'row-main' },
             h('div', { class: 'row-top' }, h('b', null, c.name), h('span', { class: 'muted' }, listLabel(m.t, g.nowStamp()))),
-            h('div', { class: 'row-sub' }, hasRecovered ? glyph('restore', 'tiny cyan') : null, m.from === 'me' ? 'You: ' : '', m.photo ? '📷 Photo' : m.text)),
+            h('div', { class: 'row-sub' }, hasRecovered ? glyph('restore', 'tiny cyan') : null, t.sourceLabel ? `${t.sourceLabel} · ` : '', m.from === 'me' ? 'You: ' : '', photo?.frames?.length ? S.recoveredClip : photo ? '📷 Photo' : m.text)),
           glyph('chevron_right', 'chev'));
       }));
     },
@@ -62,6 +63,7 @@ function last(t: Thread) {
 function threadView(g: Game, threadId: string): View {
   const thread0 = g.threads().find((t) => t.id === threadId);
   const c = contactOf(g, thread0?.contact ?? threadId);
+  const source = thread0?.sourceLabel ?? c.label;
   return {
     key: `thread:${threadId}`, title: c.name, app: 'messages',
     render: (phone) => {
@@ -69,25 +71,30 @@ function threadView(g: Game, threadId: string): View {
       g.markRead(threadId);
       const thread = g.threads().find((t) => t.id === threadId);
       const wrap = h('div', { class: 'thread' },
-        h('div', { class: 'thread-head' }, avatar(c.avatar, 64), h('b', null, c.name), h('span', { class: 'muted' }, c.label ? `${c.label} · ${c.number}` : c.number)));
+        h('div', { class: 'thread-head' }, avatar(c.avatar, 64), h('b', null, c.name), h('span', { class: 'muted' }, source ? `${source} · ${c.number}` : c.number)));
       let prevT = '';
+      let sharedClip: HTMLButtonElement | undefined;
       const liveIds = new Set(g.live.filter((l) => l.thread === threadId).map((l) => l.t + l.text));
       for (const m of thread?.messages ?? []) {
+        const photo = g.visiblePhoto(m.photo);
         if (!prevT || !sameDay(prevT, m.t) || gapMinutes(prevT, m.t) > 90) {
           wrap.appendChild(h('div', { class: 'day-sep' }, `${listLabel(m.t, g.nowStamp())} ${clock(m.t)}`));
         }
         prevT = m.t;
         const recovered = !!m.deletedUntil;
         const isLive = liveIds.has(m.t + m.text);
+        const attachment = photo ? photoThumb(phone, photo, 'bubble-photo') : null;
+        if (attachment && photo?.frames?.length) sharedClip = attachment;
         const bubble = h('div', { class: `bubble ${m.from}${recovered ? ' recovered' : ''}${isLive ? ' live' : ''}` },
-          m.photo ? photoThumb(g, phone, m.photo, 'bubble-photo') : null,
+          attachment,
           m.text ? h('span', null, m.text) : null,
         );
         const who = m.from === 'me' ? g.c.owner.name.split(' ')[0] : c.name;
-        const ref = { key: `${threadId}@${m.t}@${m.text.slice(0, 12)}`, title: `${who}: "${clip(m.text || 'Photo', 34)}"`, text: `${who}, ${stamp(m.t)}: ${m.text || '(photo)'}`, kind: 'event' as const };
+        const description = m.text || photo?.caption || 'Photo';
+        const ref = { key: `${threadId}@${m.t}@${m.text.slice(0, 12) || m.photo || ''}`, title: `${who}: "${clip(description, 34)}"`, text: `${who}, ${stamp(m.t)}: ${description}`, kind: 'event' as const };
         const pin = pinButton(g, m.clue, true, ref);
         // Photo bubbles open the viewer on tap, so their pin is always visible.
-        const row = h('div', { class: `bubble-row ${m.from}${pin?.classList.contains('on') || m.photo ? ' show-pin' : ''}` }, bubble, pin);
+        const row = h('div', { class: `bubble-row ${m.from}${pin?.classList.contains('on') || photo ? ' show-pin' : ''}` }, bubble, pin);
         bubble.addEventListener('click', () => {
           wrap.querySelectorAll('.bubble-row.show-pin').forEach((r) => { if (r !== row && !r.querySelector('.pin-btn.on')) r.classList.remove('show-pin'); });
           row.classList.toggle('show-pin');
@@ -107,6 +114,14 @@ function threadView(g: Game, threadId: string): View {
           }
         }
       }
+      if (sharedClip) {
+        const attachment = sharedClip;
+        wrap.appendChild(h('button', { class: 'thread-clip-jump', type: 'button', onclick: () => {
+          audio.play('tap');
+          attachment.scrollIntoView({ block: 'center' });
+          attachment.focus({ preventScroll: true });
+        } }, S.jumpToClip));
+      }
       const compose = h('button', { class: 'compose', type: 'button', onclick: () => { audio.play('error'); flyToast(compose, S.cantSend); } }, h('span', null, S.textMessage), glyph('send'));
       if (!g.has('tip:bubbles')) { wrap.insertBefore(h('div', { class: 'thread-tip' }, glyph('pin'), S.bubbleTip), wrap.children[1] ?? null); g.markSeenFlag('tip:bubbles'); }
       wrap.appendChild(compose);
@@ -125,10 +140,10 @@ function gapMinutes(a: string, b: string): number {
 }
 
 // ======================= PHOTOS =======================
-function photoThumb(g: Game, phone: Phone, photoId: string, cls = 'thumb'): HTMLElement {
-  const p = g.c.photos.find((x) => x.id === photoId);
-  if (!p) return h('span');
-  return h('button', { class: cls, type: 'button', onclick: (e: Event) => { e.stopPropagation(); audio.play('tap'); phone.viewArt(p.art, p); } }, artImg(p.art));
+function photoThumb(phone: Phone, p: Photo, cls: string): HTMLButtonElement {
+  const name = p.frames?.length ? S.recoveredClip : S.openPhoto;
+  return h('button', { class: cls, type: 'button', 'aria-label': name, onclick: (e: Event) => { e.stopPropagation(); audio.play('tap'); phone.viewArt(p.art, p); } },
+    artImg(p.art), p.frames?.length ? h('span', { class: 'ph-clip' }, S.recoveredClip) : null);
 }
 
 function photosView(g: Game): View {
@@ -284,6 +299,7 @@ function mailView(g: Game, m: Mail): View {
     key: `mailv:${m.id}`, title: '', app: 'mail',
     render: (phone) => {
       g.markSeen(m.id);
+      const attachment = m.attachment && g.c.photos.find((p) => p.id === m.attachment);
       const c = h('article', { class: 'mail' },
         h('h2', null, m.subject),
         h('div', { class: 'mail-from' },
@@ -291,8 +307,8 @@ function mailView(g: Game, m: Mail): View {
           h('div', null, h('b', null, m.from), h('div', { class: 'muted' }, m.fromAddr), h('div', { class: 'muted' }, `To: ${m.to}`)),
           h('span', { class: 'muted small' }, stamp(m.t))),
         ...m.body.split('\n').map((line) => (line ? h('p', null, line) : h('br'))),
-        m.attachment ? h('div', { class: 'mail-att' }, h('span', { class: 'muted' }, S.attachment), photoThumb(g, phone, m.attachment, 'att-thumb')) : null,
-        h('div', { class: 'note-pin' }, pinButton(g, m.clue, false, { key: m.id, title: `Mail: ${clip(m.subject, 30)}`, text: `${m.from}, ${stamp(m.t)}: ${clip(m.body.replace(/\n+/g, ' '), 140)}`, kind: 'document', art: m.attachment ? g.c.photos.find((p) => p.id === m.attachment)?.art : undefined })),
+        attachment ? h('div', { class: 'mail-att' }, h('span', { class: 'muted' }, S.attachment), photoThumb(phone, attachment, 'att-thumb')) : null,
+        h('div', { class: 'note-pin' }, pinButton(g, m.clue, false, { key: m.id, title: `Mail: ${clip(m.subject, 30)}`, text: `${m.from}, ${stamp(m.t)}: ${clip(m.body.replace(/\n+/g, ' '), 140)}`, kind: 'document', art: attachment ? attachment.art : undefined })),
       );
       return c;
     },

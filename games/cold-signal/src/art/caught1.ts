@@ -917,6 +917,16 @@ function hTowel(): string {
     steam(k, [[90, 220, 90], [470, 620, 90], [120, 760, 80], [420, 80, 70], [300, 800, 80], [560, 300, 50]], 0.42), 0.55);
 }
 
+function studyHead(f: Face) {
+  return { skin: f.sk, shade: f.sh, draw: (tilt: number) => hd(300, 194, 2.83, tilt, f) };
+}
+
+export const caught1StudyHeads = {
+  jessa: studyHead(JESSA),
+  trent: studyHead(TRENT),
+  jules: studyHead(JULES),
+};
+
 export const caught1Art: Record<string, string> = {
   av_cg_bff: avDez(),
   av_cg1_jessa: avJessa(),

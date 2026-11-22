@@ -97,9 +97,34 @@ async function rows(fn) {
   }
 }
 let checkedClip = false;
+let sharedClipOpened = false;
 const expectsClip = c.photos.some((photo) => photo.frames?.length);
+const sharedClip = c.photos.find((photo) => photo.frames?.some((frame) => frame.reveal));
 async function pass(round) {
-  await openApp('messages'); await rows(async (i) => { if (round === 0 && i === 0) await shot('06-thread'); }); await home();
+  await openApp('messages');
+  await rows(async (i) => {
+    if (round === 0 && i === 0) await shot('06-thread');
+    if (!sharedClip || sharedClipOpened) return;
+    const attachment = page.locator(`${top} .bubble-photo`).getByText('Recovered clip', { exact: true });
+    if (!(await attachment.count())) return;
+    if (round === 0) throw new Error('Clip appeared in Messages before TRACE');
+    await page.getByRole('button', { name: 'Jump to recovered clip' }).click();
+    await attachment.locator('..').evaluate((button) => {
+      if (document.activeElement !== button) throw new Error('Jump did not focus the shared clip');
+    });
+    await attachment.click();
+    if (await page.locator('.zv-clip-notes .zv-cap').isVisible()) throw new Error('File notes spoiled the clip before playback');
+    const slider = page.getByRole('slider', { name: 'Clip frame' });
+    await slider.press('ArrowRight');
+    const frame = sharedClip.frames[1].label;
+    await page.locator('.zv-frame-label', { hasText: frame }).waitFor();
+    await page.locator('.zv-img').evaluate((img) => img.decode());
+    await shot('06b-shared-clip');
+    sharedClipOpened = true;
+    await page.locator('.zv-close').click();
+    await sleep(280);
+  });
+  await home();
   await openApp('photos');
   if (await page.locator(`${top} .ph-hidden`).count()) {
     await page.locator(`${top} .ph-hidden`).click(); await sleep(300);
@@ -168,6 +193,7 @@ for (let round = 0; round < 4; round++) {
 }
 await sleep(4000);
 if (expectsClip && !checkedClip) throw new Error('Recovered clip was never played');
+if (sharedClip && !sharedClipOpened) throw new Error('Recovered clip was never opened from Messages');
 await shot('12-endstate');
 await page.locator('.hud-btn', { hasText: 'Board' }).click(); await sleep(700);
 await shot('13-board');

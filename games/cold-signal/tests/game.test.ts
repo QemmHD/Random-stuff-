@@ -12,6 +12,7 @@ Object.assign(globalThis, {
 
 const { Game, getProgress } = await import('../src/game');
 const { case1 } = await import('../src/cases/case1');
+const { caught1 } = await import('../src/cases/caught1');
 
 describe('Game', () => {
   beforeEach(() => { store.clear(); vi.useFakeTimers(); });
@@ -37,6 +38,22 @@ describe('Game', () => {
     vi.advanceTimersByTime(6000);
     expect(g.has('recovered:photos')).toBe(true);
     expect(g.visible(key)).toBe(true);
+  });
+
+  it('restores a shared clip only after both recoveries and preserves it on reload', () => {
+    const g = new Game(caught1);
+    const photo = 'cg1_ph_video';
+    const shared = (game: InstanceType<typeof Game>) => game.threads()
+      .find((thread) => thread.id === 'th_jules')?.messages.some((m) => m.photo === photo);
+    g.set('recovered:msgfrag');
+    expect(shared(g)).toBe(false);
+    expect(g.visiblePhoto(photo)).toBeUndefined();
+    g.set('recovered:photos');
+    g.dispose();
+    const reopened = new Game(caught1);
+    expect(shared(reopened)).toBe(true);
+    expect(reopened.visiblePhoto(photo)?.frames).toHaveLength(3);
+    reopened.dispose();
   });
 
   it('gates TRACE jobs on leads', () => {

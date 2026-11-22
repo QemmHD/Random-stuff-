@@ -224,3 +224,17 @@ C4–C6 also include the adult cast’s optional topless figure studies in Hidde
 The C4–C6 art revision adds six individually composed noir stills traced into self-contained SVG files in `caught-stills/`. The Leg Day and Final Headcount covers also open their cases. Mutual Auditing uses the nighttime courtyard as the memory between its two kitchen shots. The other new opening beats are in `caughtOpenings.ts`. Shot-specific motion includes the phone’s pulse, courtyard rain, steam and the sweep of light across the landing. Figure studies use alternate framing, expressions and backgrounds tied to each case.
 
 TRACE can also surface short playable frame sequences in the Leg Day bedroom, the Switchback courtyard and the Meridian room. The Photos viewer supports playback and frame-by-frame scrubbing.
+
+
+## Affair clips
+
+Every Caught case has a three-frame clip shared in Messages and recoverable in Photos. The footage is fictional. The wide views show the two adults in their clothes and match the rooms and dates in the case records. The middle frame is the reveal.
+
+- C1 uses the easels and lighthouse paintings in Calloway 4B.
+- C2 uses Greg’s bowling shoes and the numbered door at the Wyeth. The footage in Nora’s Suite 512 is a separate record.
+- C3 uses Lakeview 214 and the television as the room’s main light. The shared calendar establishes who arranged the meeting.
+- C4 uses Kenna’s bedroom window and the pilates ring on the bedpost. The Sedona photo remains a different night.
+- C5 stages Mara and Theo at the kitchen drawer. Lena’s separate AfterHours screenshot uses Ellis’s stated relationship status.
+- C6 stages Sofia and Cal beside the BEST MAN garment bag. The folio and venue deadline remain separate records.
+
+C1–C3 also have optional upper-body figure studies of the adult principals in the locked digital sketchbooks.

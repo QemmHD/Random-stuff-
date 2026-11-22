@@ -1,3 +1,4 @@
+import { encounterFrames } from './caughtMedia';
 import type { CaseFile } from '../types';
 import { portraitStudies } from './caughtPortraits';
 
@@ -76,6 +77,7 @@ export const caught6: CaseFile = {
       { from: 'them', t: '2026-10-29T22:42', text: 'I want you to come back tomorrow. That’s why.', deletedUntil: 'recovered:chat', clue: 'first_kiss' },
       { from: 'them', t: '2026-11-13T21:34', text: 'Checked in. Meridian 608. I gave the desk my name for key two. There’s a suit bag on the rack. We don’t have to talk about it.', deletedUntil: 'recovered:chat', clue: 'cal_room' },
       { from: 'me', t: '2026-11-13T21:37', text: 'Hang it on the back of the door. Take the tie off too. I want to kiss you without looking at the thing I picked for him to wear.', deletedUntil: 'recovered:chat' },
+      { from: 'me', text: '', t: '2026-11-13T22:49', photo: 'cg6_ph_room_clip', deletedUntil: 'recovered:chat' },
       { from: 'me', t: '2026-11-14T07:15', text: 'Last night counted, Cal. I don’t care how charmingly you say “mistake.”', deletedUntil: 'recovered:chat', clue: 'morning' },
       { from: 'them', t: '2026-11-14T07:17', text: 'I know. I’m still in the room. I made two coffees. One is where your ring sat all night.', deletedUntil: 'recovered:chat' },
       { from: 'them', t: '2026-11-16T19:30', text: 'Dropped the casserole off. He asked how I was. I just stood there holding the fucking lid.' },
@@ -91,6 +93,7 @@ export const caught6: CaseFile = {
     ...portraitStudies(6, '2026-10-01T20:00'),
     { id: 'cg6_ph_lake', art: 'cg6_ph_lake', t: '2026-07-12T20:34', place: 'Lake Briar', orientation: 'landscape', caption: 'Original capture: July 12. A cabin deck, green leaves, sparklers and a red cooler. Shared to Glimpse on November 13.', clue: 'lake_stock' },
     { id: 'cg6_ph_match', art: 'cg6_ph_match', t: '2026-11-14T07:06', place: 'Meridian Hotel', orientation: 'portrait', caption: 'A Meridian matchbook propping open a paper key sleeve marked 608. Two coffee cups and a gold tie bar behind it.' },
+    { id: 'cg6_ph_room_clip', art: 'cg6_encounter_0', t: '2026-11-13T22:46', place: 'Meridian Hotel, 608', orientation: 'landscape', caption: 'Sofia and Cal kiss beside the garment bag tagged BEST MAN. The clip was sent from Sofia’s phone to Cal’s three minutes later.', clue: 'suit_bag', deletedUntil: 'recovered:photos', frames: encounterFrames(6) },
     { id: 'cg6_ph_suit', art: 'cg6_ph_suit', t: '2026-11-13T22:47', place: 'Meridian Hotel, 608', orientation: 'portrait', deletedUntil: 'recovered:photos', caption: 'In the final recovered frame, Cal sits on a hotel bed in shirtsleeves, his tie undone. Two half-filled glasses and a hanging garment bag tagged BEST MAN.', clue: 'suit_bag', frames: [
       { art: 'cg6_clip_hall', label: 'Meridian · room 608' },
       { art: 'cg6_clip_tag', label: 'The BEST MAN garment tag' },

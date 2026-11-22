@@ -1,3 +1,4 @@
+import { encounterFrames } from './caughtMedia';
 import type { CaseFile } from '../types';
 import { portraitStudies } from './caughtPortraits';
 
@@ -58,6 +59,7 @@ export const caught5: CaseFile = {
       { from: 'them', t: '2026-10-02T22:08', text: 'Theo Voss, incidentally. You can say my full name out loud. We’ve walked past the lobby piano six times. I have never touched it.', deletedUntil: 'recovered:threads', clue: 'theo' },
       { from: 'me', t: '2026-10-02T22:10', text: 'I named you Tuning because I wanted to see you again and couldn’t think of a reason. I don’t even have a piano.', deletedUntil: 'recovered:threads' },
       { from: 'them', t: '2026-10-02T22:12', text: 'I know. I kissed you against the kitchen counter. You caught my shirt in the drawer and neither of us stopped to get it out.', deletedUntil: 'recovered:threads', clue: 'kitchen' },
+      { from: 'them', text: '', t: '2026-10-02T22:13', photo: 'cg5_ph_kitchen_clip', deletedUntil: 'recovered:threads' },
       { from: 'me', t: '2026-10-02T22:14', text: 'Don’t say kitchen. I have to make eggs in there in the morning.', deletedUntil: 'recovered:threads' },
       { from: 'them', t: '2026-11-13T23:02', text: '4 again? One radiator, two settings. Off and ham.' },
       { from: 'me', t: '2026-11-13T23:06', text: 'I hear they do rooms by the hour. Who the hell takes an hour to eat a ham?' },
@@ -81,7 +83,7 @@ export const caught5: CaseFile = {
       { from: 'me', t: '2026-11-19T17:28', text: 'Ellis said you had the team score sheets. Can you send me one from November? I want to frame a high score.' },
       { from: 'them', t: '2026-11-19T17:35', text: 'They keep those at the desk.' },
       { from: 'me', t: '2026-11-19T17:36', text: 'That’s funny. They said the league moved to Tuesdays in July.' },
-      { from: 'them', t: '2026-11-19T18:52', text: 'I’m sorry, Mara. We were in room 11. It started in August. He told me you two were separated and still doing holidays.', clue: 'lena', deletedUntil: 'recovered:threads' },
+      { from: 'them', t: '2026-11-19T18:52', text: 'I’m sorry, Mara. We were in room 11. It started in August. He told me you two were separated and still doing holidays.', clue: 'lena', photo: 'cg5_ph_dating', deletedUntil: 'recovered:threads' },
     ] },
   ],
   photos: [
@@ -94,6 +96,8 @@ export const caught5: CaseFile = {
       { art: 'cg5_ph_car', label: 'Room 04 reflected in the glass' },
     ] },
     { id: 'cg5_ph_booth', art: 'cg5_ph_booth', t: '2026-11-20T14:10', place: 'WMAR', orientation: 'landscape', caption: 'Nico loading the overnight replay into the scheduler. The clock on the wall says 2:10 p.m.' },
+    { id: 'cg5_ph_kitchen_clip', art: 'cg5_encounter_0', t: '2026-10-02T21:11', place: 'Home — kitchen', orientation: 'landscape', caption: 'Theo’s clip shows him and Mara kissing at their kitchen counter. The drawer is still open. The file was sent to Mara’s phone at 22:13.', clue: 'kitchen', deletedUntil: 'recovered:threads', frames: encounterFrames(5) },
+    { id: 'cg5_ph_dating', art: 'cg5_ph_dating', t: '2026-11-19T18:52', place: 'Sent by Lena Price', orientation: 'portrait', caption: 'Screenshot of Ellis’s archived AfterHours profile. It lists his relationship status as separated. Lena attached it to her reply to Mara.', clue: 'lena', deletedUntil: 'recovered:threads' },
     { id: 'cg5_ph_mug', art: 'cg5_ph_mug', t: '2026-09-25T06:47', place: 'Home', orientation: 'landscape', caption: 'An old anniversary mug with a fresh chip. The print says THE BELLS, EST. 2015.', clue: 'mug' },
   ],
   notes: [

@@ -697,6 +697,16 @@ function hTryon(): string {
     flash(k, 72, 214) + flash(k, 372, 214) + `<rect x="296" width="8" height="800" fill="#f4f0e6"/>${num(44, '1')}${num(344, '2')}`, 0.5);
 }
 
+function studyHead(f: Face) {
+  return { skin: f.sk, shade: f.sh, draw: (tilt: number) => hd(300, 194, 2.83, tilt, f) };
+}
+
+export const caught3StudyHeads = {
+  dana: studyHead(DANA2),
+  doug: studyHead(({...DOUG, mouth: smirk('#805242')})),
+  rafe: studyHead(RAFE),
+};
+
 export const caught3Art: Record<string, string> = {
   ...avatars(),
   cg3_cover: cover(),

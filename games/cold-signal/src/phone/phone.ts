@@ -376,7 +376,12 @@ export class Phone {
   viewArt(artId: string, photo?: Photo): void {
     const img = h('img', { src: artUrl(artId), alt: '', draggable: 'false', class: 'zv-img' });
     const stage = h('div', { class: 'zv-stage' }, img);
-    const clip = photo?.frames?.length ? recoveredClip(photo.frames, img) : null;
+    const clip = photo?.frames?.length ? recoveredClip(photo.frames, img, () => {
+      const flag = `seen:clip-reveal:${photo.id}`;
+      if (this.game.has(flag)) return;
+      this.game.markSeenFlag(flag);
+      audio.play('stinger');
+    }) : null;
     if (photo?.censor) {
       const bar = h('div', { class: 'censor-bar big' }, S.censoredLong);
       stage.appendChild(bar);
@@ -448,18 +453,19 @@ export class Phone {
     let info: HTMLElement | null = null;
     if (photo) {
       const game = this.game;
+      const caption = photo.caption ? h('p', { class: 'zv-cap' }, photo.caption) : null;
       info = h('div', { class: 'zv-info' },
         h('div', { class: 'zv-row' }, h('span', null, S.photoTaken), h('b', null, `${longDate(photo.t)} · ${clock(photo.t)}`)),
         h('div', { class: 'zv-row' }, h('span', null, S.photoPlace), h('b', null, photo.place)),
         photo.device ? h('div', { class: 'zv-row' }, h('span', null, S.photoDevice), h('b', null, photo.device)) : null,
-        photo.caption ? h('p', { class: 'zv-cap' }, photo.caption) : null,
+        clip && caption ? h('details', { class: 'zv-clip-notes' }, h('summary', null, S.clipNotes), caption) : caption,
         h('div', { class: 'zv-actions' }, game.isNewlyRecovered(photo) ? recoveredTag() : null, pinButton(game, photo.clue, false, { key: photo.id, title: `Photo: ${photo.place.length > 26 ? photo.place.slice(0, 25) + '…' : photo.place}`, text: `${photo.place}, ${longDate(photo.t)} ${clock(photo.t)}.`, kind: 'object', art: photo.art })),
       );
       game.markSeen(photo.id);
     }
     const close = h('button', { class: 'zv-close', type: 'button', 'aria-label': S.close, onclick: () => { clip?.stop(); audio.play('close'); viewer.classList.add('leave'); setTimeout(() => viewer.remove(), 250); } }, glyph('close'));
     const viewer = h('div', { class: `zoom-viewer${photo ? '' : ' bare'}` }, stage, close, clip?.el, info,
-      h('div', { class: 'zv-tip' }, glyph('zoom'), 'Tap to zoom · drag to pan'));
+      clip ? null : h('div', { class: 'zv-tip' }, glyph('zoom'), 'Tap to zoom · drag to pan'));
     this.overlay.replaceChildren(viewer);
     apply();
   }

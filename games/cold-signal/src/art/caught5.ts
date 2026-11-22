@@ -13,6 +13,18 @@ const motel = '<path d="M0 192l212-91 239 101 349 5v232H0z" fill="#3e2943"/><pat
 const keyShape = '<path d="M196 277a52 52 0 1 0 4 69l171 40 15-38-33-8-6 17-21-5 5-16-128-31Z" fill="#b07846" stroke="#e6b97d" stroke-width="5"/><circle cx="163" cy="319" r="16" fill="#59414b"/><ellipse cx="290" cy="320" rx="92" ry="46" transform="rotate(12 290 320)" fill="none" stroke="#d3ad82" stroke-width="9"/>';
 
 export const caught5Art: Record<string, string> = {
+  cg5_ph_dating: scene('cg5_ph_dating',480,640,'#215e62','#153238',`
+    <rect x="20" y="20" width="440" height="600" rx="26" fill="#f4e7d5"/>
+    <path d="M20 54q0-34 34-34h372q34 0 34 34v62H20Z" fill="#28464c"/>
+    <path d="M55 89a22 22 0 0 1 15-32A20 20 0 0 0 89 89a22 22 0 0 1-34 0Z" fill="#eccb8a"/>
+    ${label(240,85,28,'AfterHours','#f5e2c5')}
+    <rect x="48" y="140" width="384" height="295" rx="13" fill="#a48486"/>
+    <path d="M48 375q195-102 384 0v60H48Z" fill="#71596a"/>
+    ${person(92,140,1.47,ellis)}
+    ${label(240,482,34,'Ellis Bell','#292d3b')}
+    ${label(240,527,23,'Relationship status','#43545a')}
+    <rect x="148" y="545" width="184" height="39" rx="19" fill="#d0e3dc"/>
+    ${label(240,572,24,'Separated','#263e46')}`),
   cg5_wall_lock: scene('cg5_wall_lock',600,800,'#735b70','#242436',`
     ${radio}${controls}${label(300,407,36,'MUTE','#ffceaa')}
     ${label(300,578,21,'PHONE WORDS · VANITY NUMBER GUIDE','#f0c69c')}

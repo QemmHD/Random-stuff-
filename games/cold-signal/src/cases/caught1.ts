@@ -1,3 +1,5 @@
+import { encounterFrames } from './caughtMedia';
+import { portraitStudies } from './caughtPortraits';
 import type { CaseFile } from '../types';
 
 // CAUGHT C1 — ZERO THREAT
@@ -103,6 +105,8 @@ export const caught1: CaseFile = {
         { from: 'them', text: 'you stole a bathrobe from a hotel we checked into as the smiths. we are not good people, mrs smith', t: '2026-11-01T11:23' },
         { from: 'them', text: "wednesday 🎨 still on? i'll paint the lighthouse, you just show up and look artistic. or show up and look like nothing. nothing is also good", t: '2026-11-04T17:30' },
         { from: 'me', text: "u are a gift. trent says hi btw. he wants to know if marco is 'into lifting'", t: '2026-11-04T17:31' },
+        { from: 'me', text: '', t: '2026-11-11T22:32', photo: 'cg1_ph_bed', deletedUntil: 'recovered:msgfrag' },
+        { from: 'them', text: '', t: '2026-11-12T00:02', photo: 'cg1_ph_video', deletedUntil: 'recovered:msgfrag' },
         { from: 'them', text: 'marco is into chicken and lying on his back with his legs in the air. so is his dad, for the record', t: '2026-11-04T17:33' },
         { from: 'them', text: "trent asked me AGAIN at the gym if i'm 'still gay'. i said 'so gay, bro'. then he asked me to rate his abs. i said 6. he cried a little. i've been gay for fourteen months for you, jess, and the hardest part is lying to a man that sincere", t: '2026-11-11T22:58', clue: 'not_gay', deletedUntil: 'recovered:msgfrag' },
         { from: 'me', text: "u are not gay. u are a liar with incredible forearms 😘 and a fireman's carry that should be illegal", t: '2026-11-11T23:01', clue: 'not_gay', deletedUntil: 'recovered:msgfrag' },
@@ -161,7 +165,7 @@ export const caught1: CaseFile = {
       ],
     },
     {
-      id: 'th_jules_dm', contact: 'jules', messages: [
+      id: 'th_jules_dm', contact: 'jules', sourceLabel: 'Glimpse DMs', messages: [
         { from: 'them', text: "[Glimpse DM] hey! trent's friend from the barbecue. you left your sunglasses on my grill 😎 also you were right about the potato salad. it was a crime", t: '2026-08-30T21:10', clue: 'first_dm', deletedUntil: 'recovered:dms' },
         { from: 'me', text: "[Glimpse DM] haha you're funny. keep the sunglasses, they look better on a fireman", t: '2026-08-30T21:40', clue: 'first_dm', deletedUntil: 'recovered:dms' },
         { from: 'them', text: "[Glimpse DM] can I tell you something weird. I'm not actually gay. trent asked and I panicked and now it's been like a year", t: '2026-09-05T23:58', clue: 'first_dm', deletedUntil: 'recovered:dms' },
@@ -289,6 +293,7 @@ export const caught1: CaseFile = {
   ],
 
   photos: [
+    ...portraitStudies(1, '2026-08-08T16:30'),
     { id: 'cg1_ph_lighthouse', art: 'cg1_ph_lighthouse', t: '2026-11-05T09:00', place: 'Brookline Apartments', orientation: 'landscape', caption: 'An apartment hallway. Seven framed canvases, each a lighthouse, hung in a row. A label-maker sticker on one frame.' },
     { id: 'cg1_ph_us_fern', art: 'cg1_ph_us_fern', t: '2026-11-07T20:40', place: 'The Velvet Fern — booth 4', orientation: 'portrait', caption: 'Selfie in a green velvet booth: a woman and a man in a tank top, his arm around her, a martini and fries on the table. A brass plate on the booth reads 4.', clue: 'same_booth' },
     { id: 'cg1_ph_fern_j', art: 'cg1_ph_fern_j', t: '2026-11-14T21:05', place: 'The Velvet Fern — booth 4', orientation: 'portrait', caption: "Selfie in the same green velvet booth: the same woman and a second man in a flannel shirt, her legs across his lap, two martinis. A brass plate on the booth reads 4.", clue: 'same_booth' },
@@ -300,7 +305,7 @@ export const caught1: CaseFile = {
     { id: 'cg1_ph_easels', art: 'cg1_ph_easels', t: '2026-11-12T10:40', place: 'Calloway Lofts, Unit 4B', orientation: 'landscape', caption: 'Recovered. A brick-walled loft: several easels holding near-identical lighthouse paintings, paint palettes, a fire helmet on a coat hook, a woman\'s bra over one easel. Deleted Nov 12.', clue: 'ghost_painter', deletedUntil: 'recovered:photos' },
     { id: 'cg1_ph_bed', art: 'cg1_ph_bed', t: '2026-11-11T22:30', place: 'Calloway Lofts, Unit 4B', orientation: 'portrait', caption: 'Recovered. Selfie: two people tangled under a white duvet, flushed faces and bare shoulders, a French bulldog wedged between them. Deleted Nov 11.', clue: 'bed_selfie', deletedUntil: 'recovered:photos' },
     { id: 'cg1_ph_sink', art: 'cg1_ph_sink', t: '2026-11-18T22:40', place: 'Calloway Lofts, Unit 4B', orientation: 'landscape', caption: 'Recovered. A bathroom sink: two toothbrushes in one cup, a pink one and a red one, a lipstick, a hair tie on the tap. Deleted Nov 18.', clue: 'bed_selfie', deletedUntil: 'recovered:photos' },
-    { id: 'cg1_ph_video', art: 'cg1_ph_video', t: '2026-11-11T23:58', place: 'Calloway Lofts, Unit 4B', orientation: 'landscape', caption: "Recovered video thumbnail; video data unrecoverable. Title: 'last night 🙈'. A dim room lit by a candle and a streetlight: rumpled white sheets, two silhouettes against a window, a fire helmet on the bedpost. Deleted Nov 12.", clue: 'bed_selfie', deletedUntil: 'recovered:photos' },
+    { id: 'cg1_ph_video', art: 'cg1_encounter_0', t: '2026-11-11T23:58', place: 'Calloway Lofts, Unit 4B', orientation: 'landscape', caption: 'A phone propped beside paint jars records Jessa and Jules kissing in the loft. The half-painted lighthouse is behind them. The clip was sent just after midnight.', clue: 'bed_selfie', deletedUntil: 'recovered:photos', frames: encounterFrames(1) },
     { id: 'cg1_ph_mirror', art: 'cg1_ph_mirror', t: '2026-11-12T07:50', place: 'Calloway Lofts, Unit 4B', orientation: 'portrait', caption: 'Recovered. A fogged bathroom mirror with writing in red lipstick and a lipstick kiss mark. Deleted Nov 12.', clue: 'aftermath', deletedUntil: 'recovered:photos' },
     { id: 'cg1_ph_nightstand', art: 'cg1_ph_nightstand', t: '2026-11-08T23:50', place: 'Brookline Apartments — bedroom', orientation: 'portrait', caption: "Recovered. A bedside table in low lamplight: two wine glasses, one with a lipstick print, and a large men's dive watch with a red strap. A protein-shaker bottle on the floor beside the bed. Deleted Nov 9.", clue: 'nightstand', deletedUntil: 'recovered:photos' },
     { id: 'cg1_ph_keycard', art: 'cg1_ph_keycard', t: '2026-10-31T23:10', place: 'Hotel Marisol', orientation: 'portrait', caption: 'A hotel key card in a paper sleeve with a handwritten name and room number, held between two fingers with red nails; a white robe sleeve in frame.', clue: 'hotel_smith' },
@@ -494,6 +499,10 @@ export const caught1: CaseFile = {
     { id: 'denver', title: 'The Denver secret', text: "Dec 3, 6:10 a.m. flight to DEN: an interview at Front Range Pediatric Dental. 'nobody knows about denver... if I get it I go alone.' She's telling you it's a CE conference.", kind: 'event' },
     { id: 'dez_knew', title: 'Dez knew', text: "Deleted thread with your best friend Dez: he saw them at the car wash, told you 'zero threat' anyway, invented a cousin who goes to Paint & Sip. 'Monday, jess. you tell him monday or I do.'", kind: 'person', art: 'av_cg_bff' },
     { id: 'jules_live', title: "Jules, live: 'wear the coat'", text: "Jules, while you're holding her phone: 'if trent has this: hi trent!! so gay bro. if he doesn't: saturday, mrs smith, wear the coat. just the coat.'", kind: 'person', art: 'av_cg1_jules' },
+  ],
+
+  comparisons: [
+    { title: 'Wednesday art class', clues: ['trent_pays', 'bed_selfie'], finding: 'Trent paid for class. Jessa and Jules recorded the clip in the loft where Jules was making the paintings Trent hung at home.' },
   ],
 
   questions: [

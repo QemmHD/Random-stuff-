@@ -1,5 +1,5 @@
 // Case session: flags, pins, live events, TRACE jobs, hints, save/load.
-import type { CaseFile, Clue, Msg, Thread } from './types';
+import type { CaseFile, Clue, Msg, Photo, Thread } from './types';
 import { viewCase } from './mature';
 
 export interface Pin { id: string; x: number; y: number }
@@ -165,6 +165,10 @@ export class Game {
     return !item.deletedUntil || this.flags.has(item.deletedUntil);
   }
 
+  visiblePhoto(id: string | undefined): Photo | undefined {
+    return id ? this.c.photos.find((photo) => photo.id === id && this.visible(photo)) : undefined;
+  }
+
   set(flag: string): void {
     if (this.flags.has(flag)) return;
     this.flags.add(flag);
@@ -256,9 +260,10 @@ export class Game {
 
   // ---------- threads (case + live) ----------
   threads(): Thread[] {
+    const visibleMessage = (m: Msg) => this.visible(m) && (!m.photo || m.text || m.clue || this.visiblePhoto(m.photo));
     const list: Thread[] = this.c.threads.map((t) => ({
       ...t,
-      messages: [...t.messages.filter((m) => this.visible(m)), ...this.live.filter((l) => l.thread === t.id).map(liveToMsg)],
+      messages: [...t.messages.filter(visibleMessage), ...this.live.filter((l) => l.thread === t.id).map(liveToMsg)],
     }));
     for (const l of this.live) {
       if (!list.some((t) => t.id === l.thread)) list.push({ id: l.thread, contact: l.contact, messages: [] });

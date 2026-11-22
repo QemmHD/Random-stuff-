@@ -40,6 +40,7 @@ export interface Msg {
 export interface Thread {
   id: string;
   contact: string; // contact id
+  sourceLabel?: string;
   messages: Msg[];
 }
 
@@ -59,7 +60,7 @@ export interface Photo {
   /** Draw a comedic CENSORED bar over the image (implied, never shown). */
   censor?: boolean;
   /** Ordered surviving frames from the recovered motion file. */
-  frames?: { art: string; label: string }[];
+  frames?: { art: string; label: string; reveal?: boolean }[];
 }
 
 export interface Note {

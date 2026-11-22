@@ -1,3 +1,5 @@
+import { encounterFrames } from './caughtMedia';
+import { portraitStudies } from './caughtPortraits';
 import type { CaseFile } from '../types';
 
 // CAUGHT C2 — MYSTERY MAN
@@ -180,7 +182,7 @@ export const caught2: CaseFile = {
         { from: 'them', text: '[Tiffani Boone]: Reminder: NO inflatables on lawns before Dec 1. Yes, Gary, that includes the turkey.', t: '2026-11-15T09:00' },
         { from: 'them', text: '[Gary #9]: the turkey is festive tiffani', t: '2026-11-15T09:04' },
         { from: 'them', text: '[Tiffani Boone]: The turkey is fourteen feet tall, Gary.', t: '2026-11-15T09:05' },
-        { from: 'them', text: "[Tiffani Boone]: greg u left ur bowling shoes in my car AGAIN 😘 tags still on lol. room 6 tues? i'll bring the vanilla. wear the vest. JUST the vest", t: '2026-11-17T23:12', clue: 'tiffani_slip', deletedUntil: 'recovered:unsent' },
+        { from: 'them', text: "[Tiffani Boone]: greg u left ur bowling shoes in my car AGAIN 😘 tags still on lol. room 6 tues? i'll bring the vanilla. wear the vest. JUST the vest", t: '2026-11-17T23:12', photo: 'cg2_ph_wyeth_clip', clue: 'tiffani_slip', deletedUntil: 'recovered:unsent' },
         { from: 'them', text: "[Tiffani Boone]: also my legs are still shaking from last week. you said you can't dance. you LIED", t: '2026-11-17T23:12', clue: 'tiffani_slip', deletedUntil: 'recovered:unsent' },
         { from: 'them', text: "[Tiffani Boone]: and we need to talk tues. I'm late. and before you ask, gary's had the snip since 2019 so 🙃", t: '2026-11-17T23:13', clue: 'snip', deletedUntil: 'recovered:unsent' },
         { from: 'them', text: '[Tiffani Boone]: WRONG CHAT. how do you delete for everyone. DELETE', t: '2026-11-17T23:13', clue: 'tiffani_slip', deletedUntil: 'recovered:unsent' },
@@ -212,6 +214,7 @@ export const caught2: CaseFile = {
   ],
 
   photos: [
+    ...portraitStudies(2, '2026-08-08T16:30'),
     { id: 'cg2_ph_bea_spin', art: 'cg2_ph_bea_spin', t: '2026-11-05T19:30', place: 'PedalHaus Spin Studio', orientation: 'portrait', caption: "From Bea's Glimpse story. A sweaty woman on a spin bike in a dark studio lit with purple lights, giving the camera a peace sign. Nobody else she knows is visible." },
     { id: 'cg2_ph_wedding', art: 'cg2_ph_wedding', t: '2026-11-01T10:00', place: 'Maple Court', orientation: 'portrait', caption: 'A framed wedding photo propped on a windowsill: a couple on a dock, the man laughing mid-sentence. A date engraved on the frame.' },
     { id: 'cg2_ph_us_vela', art: 'cg2_ph_us_vela', t: '2026-11-07T20:15', place: 'Ristorante Vela — table 12', orientation: 'portrait', caption: 'Selfie at a candlelit restaurant table: a woman smiling, a man in a fleece vest looking at his own phone. A numbered table card reads 12.' },
@@ -223,6 +226,7 @@ export const caught2: CaseFile = {
     { id: 'cg2_ph_suite', art: 'cg2_ph_suite', t: '2026-11-12T18:58', place: 'Hotel Corvina, Suite 512', orientation: 'landscape', caption: 'Recovered. A hotel suite with mattresses propped against every wall, a microphone with a pop filter on a stand, a laptop and a stack of printed pages. A young man in headphones gives a thumbs-up. Deleted Nov 12.', clue: 'recording_booth', deletedUntil: 'recovered:photos' },
     { id: 'cg2_ph_mic', art: 'cg2_ph_mic', t: '2026-11-19T21:55', place: 'Hotel Corvina, Suite 512', orientation: 'portrait', caption: 'Recovered. Selfie: a woman in headphones and a cardigan in front of a microphone, holding a printed page; an older man in a bow tie wipes his eyes behind her. Deleted Nov 19.', clue: 'recording_booth', deletedUntil: 'recovered:photos' },
     { id: 'cg2_ph_video', art: 'cg2_ph_video', t: '2026-11-05T21:40', place: 'Hotel Corvina, Suite 512', orientation: 'landscape', caption: "Recovered video thumbnail; video data unrecoverable. Title: 'ch 9 take 4 🙈'. A dim suite, a silhouette of a woman with one hand over her mouth, laughing, beside a microphone stand; mattresses on the walls. Deleted Nov 5.", clue: 'recording_booth', deletedUntil: 'recovered:photos' },
+    { id: 'cg2_ph_wyeth_clip', art: 'cg2_encounter_0', t: '2026-11-17T21:38', place: 'Wyeth Motor Lodge, Room 6', orientation: 'landscape', caption: 'The video Tiffani deleted from the HOA thread. Greg and Tiffani kiss inside Room 6. The bowling shoes are by the door.', clue: 'tiffani_slip', deletedUntil: 'recovered:unsent', frames: encounterFrames(2) },
     // Hidden album
     { id: 'cg2_ph_h_proof', art: 'cg2_ph_h_proof', t: '2026-11-16T23:10', place: 'Maple Court', orientation: 'portrait', hidden: true, caption: 'Hidden album. A printed book page proof on a bedspread, with a red pen and a cup of tea.', clue: 'hidden_dedication' },
     { id: 'cg2_ph_h_lace', art: 'cg2_ph_h_lace', t: '2026-11-04T22:30', place: 'Maple Court', orientation: 'portrait', hidden: true, caption: 'Hidden album. A woman in a black lace bodysuit and an open silk robe takes a mirror selfie, holding a small gift card to the camera. A wrapped box on the bed. Not sent to anyone.', clue: 'lingerie_receipt' },
@@ -379,6 +383,10 @@ export const caught2: CaseFile = {
     { id: 'tiffani_slip', title: "'room 6 tues? wear the vest'", text: "Unsent from the HOA group, Tuesday 23:12: 'greg u left ur bowling shoes in my car AGAIN... room 6 tues? wear the vest. JUST the vest.' 'my legs are still shaking.' Then: 'WRONG CHAT.'", kind: 'document', art: 'av_cg2_tiffani' },
     { id: 'tiffani_test', title: 'Two lines, 01:52', text: "Tiffani, to Nora's phone, while you're holding it: a positive pregnancy test. 'Greg isn't answering. I think he'd want to know first.'", kind: 'event', art: 'av_cg2_tiffani' },
     { id: 'snip', title: "'gary's had the snip since 2019'", text: "The last unsent HOA message: 'we need to talk tues. I'm late. and before you ask, gary's had the snip since 2019.'", kind: 'document', art: 'av_cg2_tiffani' },
+  ],
+
+  comparisons: [
+    { title: 'The joint card', clues: ['motel_charges', 'tiffani_slip'], finding: 'The joint statement pays for Room 6. The recovered HOA clip puts Greg and Tiffani inside it.' },
   ],
 
   questions: [

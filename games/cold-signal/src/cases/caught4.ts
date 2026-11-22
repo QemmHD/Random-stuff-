@@ -1,3 +1,4 @@
+import { encounterFrames } from './caughtMedia';
 import type { CaseFile } from '../types';
 import { portraitStudies } from './caughtPortraits';
 
@@ -113,6 +114,7 @@ export const caught4: CaseFile = {
         { from: 'them', text: "scottsdale 😇 or should I say sedona 😏 I packed the red thing. and the other red thing", t: '2026-10-08T21:40', clue: 'conference_fake' },
         { from: 'me', text: "she thinks I'm at a trainer summit learning about 'kettlebell periodization'. I printed a lanyard kev. I PRINTED A LANYARD", t: '2026-10-08T21:42', clue: 'conference_fake' },
         { from: 'them', text: "your lanyard is the hottest thing about you. after everything else", t: '2026-10-08T21:43' },
+        { from: 'me', text: '', t: '2026-10-10T23:14', photo: 'cg4_ph_bed', deletedUntil: 'recovered:photos' },
         { from: 'me', text: "she's on shift ❤️ come over? door's open", t: '2026-11-04T19:04', clue: 'juxtapose' },
         { from: 'them', text: "your place?? with her stuff everywhere? 😬", t: '2026-11-04T19:05', clue: 'your_couch' },
         { from: 'me', text: "it's MY place. she's just on the lease. bring wine. not the cheap one. ok the cheap one", t: '2026-11-04T19:06', clue: 'your_couch' },
@@ -127,6 +129,7 @@ export const caught4: CaseFile = {
         { from: 'them', text: "she won't. you're careful. you're the most careful man I've ever met. you have TWO glimpse accounts", t: '2026-11-18T19:31', clue: 'second_account' },
         { from: 'me', text: "parking. heart's going. still. after five months", t: '2026-11-19T19:08' },
         { from: 'them', text: "door's open 🔓", t: '2026-11-19T19:08' },
+        { from: 'them', text: '', t: '2026-11-19T21:42', photo: 'cg4_ph_video', deletedUntil: 'recovered:photos' },
         { from: 'me', text: "my legs won't work again. I'm sitting in my truck in your lot like a man who just did 10 sets of lunges. which I have never done", t: '2026-11-19T22:51', clue: 'aftermath' },
         { from: 'me', text: "I can still smell you on me. vanilla. if she gets home early I'm cooked", t: '2026-11-19T22:52', clue: 'aftermath' },
         { from: 'them', text: "she never gets home early. you said. 7 to 7. she's a machine 😌", t: '2026-11-19T22:53', clue: 'aftermath' },
@@ -229,7 +232,7 @@ export const caught4: CaseFile = {
       ],
     },
     {
-      id: 'th_alt_dms', contact: 'kev', messages: [
+      id: 'th_alt_dms', contact: 'kev', sourceLabel: 'Glimpse DMs', messages: [
         { from: 'them', text: "[Glimpse DM → @coach.t.unfiltered] ok this account is unhinged. 9 followers?? who are the other 8", t: '2026-09-12T23:02', clue: 'second_account', deletedUntil: 'recovered:dms' },
         { from: 'me', text: "[Glimpse DM] you, the 3 boys, 2 bots, a protein brand and my mom. she followed it by accident. I can't remove her. she'd notice", t: '2026-09-12T23:05', clue: 'second_account', deletedUntil: 'recovered:dms' },
         { from: 'them', text: "[Glimpse DM] your MOM follows your thirst account??", t: '2026-09-12T23:05', deletedUntil: 'recovered:dms' },
@@ -262,11 +265,7 @@ export const caught4: CaseFile = {
     // recovered (Photos — Recently Deleted)
     { id: 'cg4_ph_couch', art: 'cg4_ph_couch', t: '2026-11-04T22:30', place: 'Home — Linden Court Apartments', orientation: 'landscape', caption: "Recovered. YOUR living room at night: two wine glasses on your coffee table, one with a pink lipstick print; your knitted throw blanket in a heap; a pair of grippy pilates socks on the rug; your framed graduation photo face-down on the shelf. Deleted Nov 5, 06:50.", clue: 'your_couch', deletedUntil: 'recovered:photos' },
     { id: 'cg4_ph_bed', art: 'cg4_ph_bed', t: '2026-10-10T23:10', place: 'Canyon Rose Resort, Sedona', orientation: 'portrait', caption: "Recovered. Selfie under a white duvet in a hotel bed: a man and a woman with a high ponytail, flushed, bare shoulders, laughing; a conference lanyard hanging off the headboard. Deleted Oct 12.", clue: 'bed_selfie', deletedUntil: 'recovered:photos' },
-    { id: 'cg4_ph_video', art: 'cg4_ph_video', t: '2026-11-19T21:40', place: 'Vale residence, Unit 2C', orientation: 'landscape', caption: "Partial video recovered. Three surviving frames. Title: 'leg day 🦵🙈'. A dim bedroom lit by a candle: rumpled sheets, two silhouettes kissing against the window, a pilates ring hanging from the bedpost. Deleted Nov 19.", clue: 'bed_selfie', deletedUntil: 'recovered:photos', frames: [
-      { art: 'cg4_clip_room', label: 'Vale residence · bedroom' },
-      { art: 'cg4_clip_pair', label: 'A kiss by the window' },
-      { art: 'cg4_ph_video', label: 'The pilates ring on the bedpost' },
-    ] },
+    { id: 'cg4_ph_video', art: 'cg4_encounter_0', t: '2026-11-19T21:40', place: 'Vale residence, Unit 2C', orientation: 'landscape', caption: 'File title: “leg day 🦵🙈”. Kenna’s clip shows her kissing Tanner by the window. The pilates ring hangs from the bedpost. She sent him the clip two minutes later.', clue: 'bed_selfie', deletedUntil: 'recovered:photos', frames: encounterFrames(4) },
     { id: 'cg4_ph_locker', art: 'cg4_ph_locker', t: '2026-11-12T06:10', place: 'IronHaus Gym — locker 14', orientation: 'portrait', caption: "Recovered. An open gym locker: a velvet ring box, a printed spreadsheet taped inside the door titled 'TIMELINE', a pink hair tie on the hook. Deleted Nov 12.", clue: 'exit_plan', deletedUntil: 'recovered:photos' },
     { id: 'cg4_ph_mirror_lips', art: 'cg4_ph_mirror_lips', t: '2026-10-11T08:20', place: 'Canyon Rose Resort, Sedona', orientation: 'portrait', caption: "Recovered. A hotel bathroom mirror with writing in pink lipstick and a kiss mark. Deleted Oct 11.", clue: 'aftermath', deletedUntil: 'recovered:photos' },
     // hidden album
@@ -427,7 +426,7 @@ export const caught4: CaseFile = {
     { id: 'drift', title: 'Three years, in his texts', text: "2024: 'you're the best thing that ever happened to my life and my macros.' 2025: a whispered voice note about protein pancakes. August: 'k'. 'tired babe. leg day. 👍' Nov 15: you PaySnapped him half the rent and his protein.", kind: 'event', art: 'av_cg4_riley' },
     { id: 'tells', title: 'The tells', text: "A StreamBox profile 'Kenna 🧘‍♀️' on YOUR household plan, on device 'VALE 2C TV'. His truck paired with 'Kenna's iPhone' (44 auto-connects). A dozen white roses 'for my favorite rep' the night you started your shift.", kind: 'document' },
     { id: 'memory', title: "Auto-Memory: 'Red Rock Weekend'", text: "Photos made a Memory at 02:00 yesterday: 'Red Rock Weekend' — Sedona, two robes, a lanyard, a woman with a ponytail in 12 photos. Same email: On This Day, 2 years ago — 'Riley's birthday 🎂'. Share with: Kev · Riley.", kind: 'event' },
-    { id: 'bed_selfie', title: 'Sedona, under the duvet', text: "Recovered: Tanner and Kenna under a hotel duvet in Sedona, the summit lanyard on the headboard; a 'leg day 🦵🙈' video thumbnail from last night.", kind: 'event', art: 'cg4_ph_bed' },
+    { id: 'bed_selfie', title: 'Sedona, under the duvet', text: "Recovered: Tanner and Kenna under a hotel duvet in Sedona, the summit lanyard on the headboard; a 'leg day 🦵🙈' clip shows them kissing at Kenna’s place on Nov 19.", kind: 'event', art: 'cg4_ph_bed' },
     { id: 'hidden_hoodie', title: 'Your hoodie lives here now', text: "Hidden album: Kenna in his IronHaus hoodie and nothing visibly else — 'your hoodie lives here now'. The hoodie you bought him for Christmas.", kind: 'object', art: 'cg4_ph_h_hoodie' },
     { id: 'bros_doubt', title: "Big Marc is out", text: "Big Marc: 'bro that's actually evil. riley drove me to the ER when I dropped a plate on my foot. she brought me a pudding... I'm not spotting this one.'", kind: 'person', art: 'av_cg4_marcus' },
     { id: 'alexis_side', title: "Alexis has screenshots", text: "Brody: 'alexis read my phone... she screenshotted the ring part.' Deleted voicemail from Alexis: 'You have until the end of the month to tell Riley, or I'll do it... I work in HR. I document everything.'", kind: 'person', art: 'av_cg4_alexis' },

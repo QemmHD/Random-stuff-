@@ -4,7 +4,7 @@ import { S } from '../strings';
 import type { Photo } from '../types';
 
 /** Controls the image viewer's surviving frames. Playback only starts on request. */
-export function recoveredClip(frames: NonNullable<Photo['frames']>, image: HTMLImageElement): {
+export function recoveredClip(frames: NonNullable<Photo['frames']>, image: HTMLImageElement, onReveal: () => void): {
   el: HTMLElement;
   stop: () => void;
 } {
@@ -21,6 +21,7 @@ export function recoveredClip(frames: NonNullable<Photo['frames']>, image: HTMLI
     progress.value = String(index);
     progress.setAttribute('aria-valuetext', `${index + 1} / ${frames.length} · ${current.label}`);
     label.textContent = `${index + 1} / ${frames.length} · ${current.label}`;
+    if (current.reveal) onReveal();
   };
 
   const stop = () => {

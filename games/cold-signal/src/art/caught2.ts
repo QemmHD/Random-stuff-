@@ -561,6 +561,16 @@ const phTest = (k: string): string => frame(k, 600, 800, '#fff',
   `<g transform="translate(214 716) rotate(-8)"><rect x="-150" y="-14" width="330" height="56" rx="26" opacity=".3" filter="url(#${k}b)"/><rect x="-170" y="-30" width="330" height="60" rx="28" fill="#fff"/><rect x="-170" y="-30" width="330" height="60" rx="28" fill="none" stroke="#c9d3da" stroke-width="3"/><path d="M60-30H132Q160-30 160 0Q160 30 132 30H60Z" fill="#e86a9a"/><rect x="-96" y="-18" width="110" height="36" rx="8" fill="#f1ece6" stroke="#8a9098" stroke-width="2.500"/><rect x="-24" y="-14" width="7" height="28" fill="#d0206a"/>` +
   `${tx(-20, -34, 12, 'C', '#8a9098')}${tx(-62, -34, 12, 'T', '#8a9098')}<rect x="-150" y="-12" width="30" height="24" rx="8" fill="#f1ece6" stroke="#c9d3da" stroke-width="2"/><path d="M-160-22H50" stroke="#fff" stroke-width="5" opacity=".8" stroke-linecap="round"/></g>`, 0.4);
 
+function studyHead(f: Face) {
+  return { skin: f.sk, shade: f.sh, draw: (tilt: number) => `<g transform="translate(300 194) rotate(${tilt}) scale(2.83) translate(-100 -85)">${face(f)}</g>` };
+}
+
+export const caught2StudyHeads = {
+  nora: studyHead(nora(smirk('#804738'))),
+  greg: studyHead(greg(smirk('#7f5040'))),
+  tiffani: studyHead(tiffani(smirk('#9b515c'))),
+};
+
 export const caught2Art: Record<string, string> = {
   cg2_cover: cover('cg2_cover'),
   cg2_wall_lock: wallLock('cg2_wall_lock'),

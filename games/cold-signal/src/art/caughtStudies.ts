@@ -6,6 +6,8 @@ import { person, scene, type Portrait } from './caughtScenes';
 
 const dez: Portrait = { skin: '#8d594c', shade: '#593947', hair: '#201925', shirt: '#3a3f52', style: 'crop' };
 
+type Chapter = 4 | 5 | 6;
+
 interface Study {
   portrait: Portrait;
   backdrop: string;
@@ -46,7 +48,7 @@ const poses = {
     neve: { portrait: neve, backdrop: '#915d68', accent: '#e8bfac', fullChest: true, turn: 3 },
     dez: { portrait: dez, backdrop: '#5a687d', accent: '#c0dfdc', turn: -3 },
   },
-} satisfies { [N in keyof typeof studySubjects]: Record<keyof typeof studySubjects[N], Study> };
+} satisfies { [N in Chapter]: Record<keyof typeof studySubjects[N], Study> };
 
 // Vary the camera height, framing, and expression as well as the cast's palette.
 const framings = [
@@ -72,7 +74,7 @@ const backdrops = {
     <path d="M58 0q109 176 51 431t25 450m421-881q-100 217-43 432t-25 453" fill="none" stroke="#a48988" stroke-width="8" opacity=".4"/>`,
 };
 
-function draw(key: string, chapter: keyof typeof studySubjects, frameIndex: number, { portrait: p, backdrop, accent, fullChest, turn = 0, strapMarks, jewelry }: Study): string {
+function draw(key: string, chapter: Chapter, frameIndex: number, { portrait: p, backdrop, accent, fullChest, turn = 0, strapMarks, jewelry }: Study): string {
   const frame = framings[frameIndex % framings.length];
   const head = `<g transform="rotate(${frame.head} 300 330)">${person(65, -11, 2.35, p, false, frame.expression)}</g>`;
   const chest = fullChest

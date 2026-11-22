@@ -1,3 +1,5 @@
+import { encounterFrames } from './caughtMedia';
+import { portraitStudies } from './caughtPortraits';
 import type { CaseFile } from '../types';
 
 // CAUGHT C3 — FANTASY LEAGUE
@@ -144,6 +146,7 @@ export const caught3: CaseFile = {
         { from: 'them', text: "you remember tuesday. the green sports bra. you said 'it's just a sports bra rafe'. it was not just a sports bra dana", t: '2026-11-11T22:55' },
         { from: 'them', text: "lakeview. 214. door's unlocked. I got the good pillows and the stupid little chocolates you like", t: '2026-11-12T18:58', clue: 'lakeview' },
         { from: 'me', text: 'parking now. there is a truck in the lot that looks like doug\'s. it\'s not doug\'s. doug doesn\'t eat in his car', t: '2026-11-12T19:01', clue: 'chicken' },
+        { from: 'me', text: '', t: '2026-11-12T21:32', photo: 'cg3_ph_video', deletedUntil: 'recovered:photos' },
         { from: 'me', text: 'omg my legs', t: '2026-11-12T22:18' },
         { from: 'me', text: "I'm still shaking. how am I supposed to act normal at dinner. he's making his chili. he'll give me a thumbs up over the chili", t: '2026-11-12T22:25', clue: 'aftermath' },
         { from: 'them', text: "[voice note, 0:12] '[laughs softly] act normal. compliment the chili. don't limp. you're limping, aren't you. [laughs] okay. drive safe. text me when you're home. text me even if it's just a dot.'", t: '2026-11-12T22:27' },
@@ -225,6 +228,7 @@ export const caught3: CaseFile = {
   ],
 
   photos: [
+    ...portraitStudies(3, '2026-08-08T16:30'),
     { id: 'cg3_ph_lucy', art: 'cg3_ph_lucy', t: '2026-10-02T15:00', place: 'Received from Rafe 🥒', orientation: 'portrait', caption: "Received. A child's school portrait: a gap-toothed girl in a pickleball T-shirt against a blue backdrop. A text overlay: '2nd grade'.", clue: 'rafe_family' },
     { id: 'cg3_ph_box', art: 'cg3_ph_box', t: '2026-11-07T16:40', place: 'Received from Rafe 🥒', orientation: 'portrait', caption: 'Received. A plain brown box with no logo on an apartment doormat beside a potted ficus; a hand-lettered sign on the door: 3B.', clue: 'blue_box' },
     { id: 'cg3_ph_mel_wine', art: 'cg3_ph_mel_wine', t: '2026-11-12T20:40', place: 'Corkscrew Wine Bar', orientation: 'portrait', caption: "From Mel's Glimpse story. A woman alone at a wine-bar counter raising a glass; a chalkboard behind her lists tonight's date and a trivia night.", clue: 'mel_cover' },
@@ -234,7 +238,7 @@ export const caught3: CaseFile = {
     { id: 'cg3_ph_couch', art: 'cg3_ph_couch', t: '2026-11-13T23:30', place: 'Briar Glen — living room', orientation: 'landscape', caption: "A living-room couch at night: a grey hoodie draped over the arm, the back printed with a surname and the number 12. A men's watch with a red strap on the coffee table beside two wine glasses.", clue: 'hoodie' },
     { id: 'cg3_ph_keycard', art: 'cg3_ph_keycard', t: '2026-11-12T18:59', place: 'Lakeview Inn', orientation: 'portrait', caption: 'A hotel key card in a paper sleeve with a handwritten room number and surname, held up in front of a door numbered 214.', clue: 'lakeview' },
     { id: 'cg3_ph_lot', art: 'cg3_ph_lot', t: '2026-11-12T19:00', place: 'Lakeview Inn — parking lot', orientation: 'landscape', caption: 'Recovered. Through a windshield at dusk: a pickup truck across the lot with a Pinnacle Gutters magnet on the door; a figure inside holding something round in a plastic dome. Deleted Nov 12.', clue: 'chicken', deletedUntil: 'recovered:photos' },
-    { id: 'cg3_ph_video', art: 'cg3_ph_video', t: '2026-11-12T21:30', place: 'Lakeview Inn, Room 214', orientation: 'landscape', caption: "Recovered video thumbnail; video data unrecoverable. Title: 'oops 🙈'. A dark hotel room lit by a TV: rumpled sheets, two silhouettes against a curtain, a pickleball paddle on the lamp. Deleted Nov 13.", clue: 'aftermath', deletedUntil: 'recovered:photos' },
+    { id: 'cg3_ph_video', art: 'cg3_encounter_0', t: '2026-11-12T21:30', place: 'Lakeview Inn, Room 214', orientation: 'landscape', caption: 'File title: “oops 🙈”. The bedside television lights Dana and Rafe as they kiss. The room number is visible on the open door. Dana sent the clip to Rafe two minutes later.', clue: 'aftermath', deletedUntil: 'recovered:photos', frames: encounterFrames(3) },
     { id: 'cg3_ph_mirror', art: 'cg3_ph_mirror', t: '2026-11-13T07:45', place: 'Lakeview Inn, Room 214', orientation: 'portrait', caption: 'Recovered. A hotel bathroom mirror with a message in pink lipstick and a drawn pickle. Deleted Nov 13.', clue: 'aftermath', deletedUntil: 'recovered:photos' },
     { id: 'cg3_ph_rules', art: 'cg3_ph_rules', t: '2026-06-02T19:12', place: 'Screenshot', orientation: 'portrait', caption: "Recovered screenshot of a shared-calendar invitation: 'Doug Hoyt shared the calendar \"Dana's Thursdays 🏈\" with you. Permission: can edit.' Deleted Jun 3.", clue: 'shared_calendar', deletedUntil: 'recovered:photos' },
     // Hidden album
@@ -386,6 +390,10 @@ export const caught3: CaseFile = {
     { id: 'rafe_wrong', title: "Rafe's wrong recipient", text: "While you're holding her phone, Rafe sends Dana a text meant for Tara: 'can you take lucy thursday night? I've got a thing. I'll explain. love to her ❤️' — then 'dana sorry. that was for tara. that's the thing. you're the thing.'", kind: 'person', art: 'av_cg3_rafe' },
     { id: 'ending_it', title: "'I'm saying stop. Thursday.'", text: "Dana to Rafe: 'thursday I need to talk to you... it's about doug.' To her friends: 'I'm ending it. he's not fine. he's sleeping in the garage.' Calendar Nov 26: 'courts — talk to R. it's done. for D.'", kind: 'event' },
     { id: 'refund', title: 'She paid you back', text: "Nov 16: Dana PaySnaps you $1,419 — every room you ever paid for — 'refund. you don't have to pay for this anymore. please talk to me'.", kind: 'document' },
+  ],
+
+  comparisons: [
+    { title: 'The shared calendar', clues: ['shared_calendar', 'aftermath'], finding: 'The calendar Doug created lists the same room where Dana and Rafe filmed the kiss. Doug was the one who arranged the Thursdays.' },
   ],
 
   questions: [
