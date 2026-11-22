@@ -96,6 +96,8 @@ async function rows(fn) {
     await back();
   }
 }
+let checkedClip = false;
+const expectsClip = c.photos.some((photo) => photo.frames?.length);
 async function pass(round) {
   await openApp('messages'); await rows(async (i) => { if (round === 0 && i === 0) await shot('06-thread'); }); await home();
   await openApp('photos');
@@ -106,7 +108,25 @@ async function pass(round) {
     if (round === 0) await shot('07b-hidden');
   }
   const n = await page.locator(`${top} .ph-tile`).count();
-  for (let i = 0; i < n; i++) { await page.locator(`${top} .ph-tile`).nth(i).click(); await sleep(250); if (round === 0 && i === 3) await shot('07-photo'); await pinAll(); await page.locator('.zv-close').click(); await sleep(260); }
+  for (let i = 0; i < n; i++) {
+    await page.locator(`${top} .ph-tile`).nth(i).click();
+    await sleep(250);
+    if (round === 0 && i === 3) await shot('07-photo');
+    if (!checkedClip && await page.locator('.zv-clip').count()) {
+      const slider = page.getByRole('slider', { name: 'Clip frame' });
+      await slider.press('ArrowRight');
+      await page.waitForFunction(() => document.querySelector('.zv-frame-label')?.textContent?.startsWith('2 /'));
+      await slider.press('Home');
+      await page.locator('.zv-clip').getByRole('button', { name: 'Play', exact: true }).click();
+      await page.waitForFunction(() => document.querySelector('.zv-frame-label')?.textContent?.startsWith('2 /'));
+      await page.locator('.zv-clip').getByRole('button', { name: 'Pause', exact: true }).click();
+      await shot('07c-clip');
+      checkedClip = true;
+    }
+    await pinAll();
+    await page.locator('.zv-close').click();
+    await sleep(260);
+  }
   await home();
   await openApp('notes'); await rows(); await home();
   await openApp('mail');
@@ -147,9 +167,16 @@ for (let round = 0; round < 4; round++) {
   await sleep(9000); // let live events land
 }
 await sleep(4000);
+if (expectsClip && !checkedClip) throw new Error('Recovered clip was never played');
 await shot('12-endstate');
 await page.locator('.hud-btn', { hasText: 'Board' }).click(); await sleep(700);
 await shot('13-board');
+if (c.comparisons?.length) {
+  await page.locator('.board-overlay').getByRole('button', { name: 'Compare records' }).click();
+  await page.locator('.board-overlay .ev-compare-finding').first().waitFor();
+  await shot('13b-comparison');
+  await page.locator('.board-overlay').getByRole('dialog', { name: 'Compare records' }).getByRole('button', { name: 'Close', exact: true }).click();
+}
 await page.keyboard.press('b'); await sleep(300);
 await page.locator('.hud-btn.report').click(); await sleep(500);
 const clueTitle = (id) => c.clues.find((k) => k.id === id).title;

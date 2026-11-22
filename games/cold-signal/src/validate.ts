@@ -45,7 +45,16 @@ export function validateCase(c: CaseFile): string[] {
     contact(`thread ${t.id}`, t.contact);
     t.messages.forEach((m, i) => { clue(`${t.id}#${i}`, m.clue); flag(`${t.id}#${i}`, m.deletedUntil); time(`${t.id}#${i}`, m.t); if (m.photo && !photoIds.has(m.photo)) errs.push(`${t.id}#${i}: unknown photo ${m.photo}`); });
   }
-  for (const p of c.photos) { clue(p.id, p.clue); flag(p.id, p.deletedUntil); time(p.id, p.t); }
+  for (const p of c.photos) {
+    clue(p.id, p.clue);
+    flag(p.id, p.deletedUntil);
+    time(p.id, p.t);
+    if (p.frames && p.frames.length < 2) errs.push(`${p.id}: clip needs at least two frames`);
+  }
+  for (const pair of c.comparisons ?? []) {
+    if (pair.clues[0] === pair.clues[1]) errs.push(`${pair.title}: comparison repeats a clue`);
+    pair.clues.forEach((id) => clue(pair.title, id));
+  }
   for (const n of c.notes) { clue(n.id, n.clue); flag(n.id, n.deletedUntil); time(n.id, n.t); }
   for (const m of c.mail) { clue(m.id, m.clue); flag(m.id, m.deletedUntil); time(m.id, m.t); if (m.attachment && !photoIds.has(m.attachment)) errs.push(`${m.id}: unknown attachment`); }
   for (const call of c.calls) { contact('call', call.contact); time('call', call.t); }

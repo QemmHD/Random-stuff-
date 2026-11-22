@@ -91,7 +91,11 @@ export const caught6: CaseFile = {
     ...portraitStudies(6, '2026-10-01T20:00'),
     { id: 'cg6_ph_lake', art: 'cg6_ph_lake', t: '2026-07-12T20:34', place: 'Lake Briar', orientation: 'landscape', caption: 'Original capture: July 12. A cabin deck, green leaves, sparklers and a red cooler. Shared to Glimpse on November 13.', clue: 'lake_stock' },
     { id: 'cg6_ph_match', art: 'cg6_ph_match', t: '2026-11-14T07:06', place: 'Meridian Hotel', orientation: 'portrait', caption: 'A Meridian matchbook propping open a paper key sleeve marked 608. Two coffee cups and a gold tie bar behind it.' },
-    { id: 'cg6_ph_suit', art: 'cg6_ph_suit', t: '2026-11-13T22:47', place: 'Meridian Hotel, 608', orientation: 'portrait', deletedUntil: 'recovered:photos', caption: 'Cal sits on the edge of a hotel bed in shirtsleeves, his tie undone. Two half-filled glasses and a hanging garment bag tagged BEST MAN.', clue: 'suit_bag' },
+    { id: 'cg6_ph_suit', art: 'cg6_ph_suit', t: '2026-11-13T22:47', place: 'Meridian Hotel, 608', orientation: 'portrait', deletedUntil: 'recovered:photos', caption: 'In the final recovered frame, Cal sits on a hotel bed in shirtsleeves, his tie undone. Two half-filled glasses and a hanging garment bag tagged BEST MAN.', clue: 'suit_bag', frames: [
+      { art: 'cg6_clip_hall', label: 'Meridian · room 608' },
+      { art: 'cg6_clip_tag', label: 'The BEST MAN garment tag' },
+      { art: 'cg6_ph_suit', label: 'Cal, the garment bag and two glasses' },
+    ] },
     { id: 'cg6_ph_cake', art: 'cg6_ph_cake', t: '2026-06-28T20:17', place: 'Neve’s apartment', orientation: 'landscape', caption: 'The uncropped DIVORCE PARTY shot. The cake reads GOOD LUCK WITH THE MEDIATOR; the icing is doing its best.', clue: 'cake' },
     { id: 'cg6_ph_chart', art: 'cg6_ph_chart', t: '2026-11-20T23:10', place: 'Home', orientation: 'landscape', caption: 'Pencil on a first-table seating chart. The best man’s place is crossed out. In the margin, “ask about postponing, not table move”.', clue: 'headcount' },
   ],
@@ -193,6 +197,11 @@ export const caught6: CaseFile = {
     { id: 'wrong_cal', title: 'Cal’s rehearsal for Daniel', text: 'Cal accidentally sent Sofia his draft admission. He names the October kiss and room 608.', kind: 'person', art: 'av_cg6_cal' },
     { id: 'neve_live', title: 'Neve confirms the weekend was staged', text: 'Neve confirms she worked, Iris stayed in town, and the picture was recycled at Sofia’s request.', kind: 'person', art: 'av_cg6_neve' },
   ],
+  comparisons: [
+    { title: 'The lake weekend', clues: ['lake_alibi', 'cancel_cabin'], finding: 'The cabin was canceled a week before the weekend. The trip could not take place as booked.' },
+    { title: 'The second key', clues: ['hotel', 'suit_bag'], finding: 'The folio records a second key. The recovered clip shows who was with Sofia.' },
+  ],
+
   questions: [
     { id: 'q6_lake', prompt: 'What happened to the bachelorette at Lake Briar?', options: [{ id: 'held', label: 'It went ahead, but Sofia left early' }, { id: 'staged', label: 'The cabin was canceled and old photos covered for it' }, { id: 'date', label: 'It moved to the wedding weekend' }], answer: 'staged', evidence: ['lake_stock', 'neve_live'], explain: 'Iris used a July lake photo to make the November weekend look real. The booking had already been canceled.' },
     { id: 'q6_where', prompt: 'Where did Sofia actually spend Friday night?', options: [{ id: 'home', label: 'Neve’s apartment' }, { id: 'hall', label: 'Foundry Hall' }, { id: 'hotel', label: 'Room 608 at the Meridian' }], answer: 'hotel', evidence: ['hotel', 'cal_room', 'paid_room'], explain: 'The hotel billed Sofia for 608 and issued two keys. Her location history confirms the overnight stay.' },

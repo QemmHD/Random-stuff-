@@ -27,6 +27,7 @@ export class Board {
     const head = h('div', { class: 'board-head' },
       h('div', { class: 'bh-title' }, glyph('board'), h('b', null, S.boardTitle), h('span', { class: 'bh-count' })),
       h('div', { class: 'bh-actions' },
+        game.c.comparisons?.length ? h('button', { class: 'bh-compare', type: 'button', 'aria-label': S.compareRecords, hidden: true, onclick: () => this.showComparisons() }, S.compareShort) : null,
         h('button', { class: 'bh-tidy', type: 'button', onclick: () => { audio.play('page'); game.tidyPins(); } }, S.tidy),
         opts.onClose ? h('button', { class: 'icon-btn', type: 'button', 'aria-label': S.close, onclick: () => opts.onClose?.() }, glyph('close')) : null));
     this.el = h('section', { class: `board${opts.docked ? ' docked' : ''}` }, head, this.surface);
@@ -47,6 +48,7 @@ export class Board {
     const g = this.game;
     this.surface.classList.toggle('flow', this.flow);
     this.el.querySelector('.bh-tidy')?.toggleAttribute('hidden', this.flow);
+    this.el.querySelector('.bh-compare')?.toggleAttribute('hidden', !this.availableComparisons().length);
     const count = this.el.querySelector('.bh-count');
     if (count) count.textContent = S.pinnedCount(g.pins.length);
     [...this.surface.querySelectorAll('.ev-card, .empty')].forEach((n) => n.remove());
@@ -149,6 +151,40 @@ export class Board {
       h('button', { type: 'button', onclick: () => { this.connectFrom = ''; this.banner?.remove(); this.render(); } }, S.cancel));
     this.el.appendChild(this.banner);
     this.render();
+  }
+
+  private availableComparisons() {
+    return (this.game.c.comparisons ?? []).filter((pair) => pair.clues.some((id) => this.game.isPinned(id)));
+  }
+
+  private showComparisons(): void {
+    const pairs = this.availableComparisons();
+    if (!pairs.length) return;
+    audio.play('page');
+    this.detail?.remove();
+    const close = () => {
+      overlay.classList.add('leave');
+      setTimeout(() => overlay.remove(), 220);
+      this.el.querySelector<HTMLButtonElement>('.bh-compare')?.focus();
+    };
+    const entries = pairs.map((pair) => {
+      const [first, second] = pair.clues.map((id) => this.game.isPinned(id) ? this.game.clue(id) : undefined);
+      return h('article', { class: 'ev-compare-pair' },
+        h('h4', null, pair.title),
+        h('div', { class: 'ev-compare-sources' }, ...[first, second].map((clue) =>
+          h('div', { class: 'ev-compare-source' },
+            clue ? h('b', null, clue.title) : null,
+            h('p', null, clue?.text ?? S.compareOther)))),
+        first && second ? h('p', { class: 'ev-compare-finding' }, pair.finding) : null);
+    });
+    const dismiss = h('button', { class: 'btn', type: 'button', onclick: close }, S.close);
+    const overlay = h('div', { class: 'ev-detail' },
+      h('section', { class: 'evd-card ev-compare', role: 'dialog', 'aria-label': S.compareRecords },
+        h('header', null, h('h3', null, S.compareRecords), dismiss), ...entries));
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    this.detail = overlay;
+    this.el.appendChild(overlay);
+    dismiss.focus();
   }
 
   private showDetail(id: string): void {

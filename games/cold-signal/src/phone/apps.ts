@@ -144,6 +144,7 @@ function photosView(g: Game): View {
       const rec = own.filter((p) => p.deletedUntil && g.visible(p) && !p.hidden).sort(byTimeAsc);
       const tile = (p: Photo) => h('button', { class: `ph-tile${g.has(`seen:${p.id}`) ? '' : ' unseen'}${p.censor ? ' censored' : ''}`, type: 'button', onclick: () => { audio.play('tap'); phone.viewArt(p.art, p); } },
         artImg(p.art),
+        p.frames?.length ? h('span', { class: 'ph-clip' }, S.recoveredClip) : null,
         p.censor ? h('span', { class: 'censor-bar' }, S.censored) : null,
         g.isPinned(p.clue ?? `n:${p.id}`) ? h('span', { class: 'ph-pin' }, glyph('pin')) : null);
       const pendingDeleted = own.filter((p) => p.deletedUntil && !g.visible(p)).length;

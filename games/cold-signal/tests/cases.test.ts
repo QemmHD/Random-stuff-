@@ -50,7 +50,7 @@ describe.each(CAUGHT.filter((c) => c.opening?.length).map((c) => [c.id, c] as co
       c.cover, c.lock.wallpaper, c.homeWallpaper, c.map.art, c.handler?.avatar,
       ...(c.opening ?? []).map((shot) => shot.art),
       ...c.contacts.map((contact) => contact.avatar),
-      ...c.photos.map((photo) => photo.art),
+      ...c.photos.flatMap((photo) => [photo.art, ...(photo.frames ?? []).map((frame) => frame.art)]),
       ...c.clues.map((clue) => clue.art),
       ...c.questions.flatMap((question) => question.options.map((option) => option.art)),
     ];

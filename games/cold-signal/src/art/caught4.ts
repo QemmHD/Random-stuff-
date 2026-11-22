@@ -82,7 +82,7 @@ export const caught4Art: Record<string, string> = {
   cg4_ph_video: scene('cg4_ph_video',800,600,'#594354','#201929',`
     <rect x="200" y="80" width="394" height="346" fill="#aa8176"/><path d="M397 80v350M200 254h394" stroke="#564356" stroke-width="11"/>
     <path d="M235 460q-10-105 65-130-5-69 46-62 55 8 40 70 83 16 93 122m-77 0q6-95 66-123-13-65 36-71 55-2 48 67 62 35 60 127z" fill="#38283a"/>
-    <path d="M39 514q135-99 345-42t382-13v141H39Z" fill="#8c6472"/><circle cx="400" cy="300" r="50" fill="#222033" opacity=".78"/><path d="M389 275l34 25-34 25Z" fill="#f0d9cc"/><ellipse cx="668" cy="474" rx="43" ry="68" fill="none" stroke="#d69a95" stroke-width="9"/>`),
+    <path d="M39 514q135-99 345-42t382-13v141H39Z" fill="#8c6472"/><ellipse cx="668" cy="474" rx="43" ry="68" fill="none" stroke="#d69a95" stroke-width="9"/>`),
   cg4_ph_locker: scene('cg4_ph_locker',600,800,'#5e7474','#252339',`
     <path d="M109 58h392v675H109z" fill="#34434c" stroke="#9ba8a1" stroke-width="14"/><path d="M112 64l-72 62v539l72 65" fill="#6b8181"/>
     <rect x="206" y="141" width="243" height="238" fill="#e9ccab"/>${label(326,184,26,'TIMELINE','#553d51')}

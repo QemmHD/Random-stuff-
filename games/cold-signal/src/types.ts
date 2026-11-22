@@ -58,6 +58,8 @@ export interface Photo {
   hidden?: boolean;
   /** Draw a comedic CENSORED bar over the image (implied, never shown). */
   censor?: boolean;
+  /** Ordered surviving frames from the recovered motion file. */
+  frames?: { art: string; label: string }[];
 }
 
 export interface Note {
@@ -268,6 +270,8 @@ export interface CaseFile {
   wifi: WifiNet[];
   trace: TraceJob[];
   clues: Clue[];
+  /** Records that can be read side by side once the player has pinned them. */
+  comparisons?: { title: string; clues: [string, string]; finding: string }[];
   questions: Question[];
   events: LiveEvent[];
   hints: Hint[];

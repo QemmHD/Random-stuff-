@@ -222,3 +222,5 @@ Recurring: **Dana** is 41, an athletic physical therapist with a high ponytail a
 C4–C6 also include the adult cast’s optional topless figure studies in Hidden. Their keys use `cgN_study_` followed by the subject ID in `cases/caughtPortraits.ts`. Selected portraits show fabric pressure marks or small body jewelry beneath a sheer fabric layer. The studies carry no report evidence.
 
 The C4–C6 art revision adds six individually composed noir stills traced into self-contained SVG files in `caught-stills/`. The Leg Day and Final Headcount covers also open their cases. Mutual Auditing uses the nighttime courtyard as the memory between its two kitchen shots. The other new opening beats are in `caughtOpenings.ts`. Shot-specific motion includes the phone’s pulse, courtyard rain, steam and the sweep of light across the landing. Figure studies use alternate framing, expressions and backgrounds tied to each case.
+
+TRACE can also surface short playable frame sequences in the Leg Day bedroom, the Switchback courtyard and the Meridian room. The Photos viewer supports playback and frame-by-frame scrubbing.

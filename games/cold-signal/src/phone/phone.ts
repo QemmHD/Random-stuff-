@@ -9,6 +9,7 @@ import { S } from '../strings';
 import { clock, longDate, stamp } from '../time';
 import { avatar, contactOf, pinButton, recoveredTag } from './widgets';
 import { appRoot, searchView } from './apps';
+import { recoveredClip } from './recoveredClip';
 
 export interface View {
   key: string;
@@ -375,6 +376,7 @@ export class Phone {
   viewArt(artId: string, photo?: Photo): void {
     const img = h('img', { src: artUrl(artId), alt: '', draggable: 'false', class: 'zv-img' });
     const stage = h('div', { class: 'zv-stage' }, img);
+    const clip = photo?.frames?.length ? recoveredClip(photo.frames, img) : null;
     if (photo?.censor) {
       const bar = h('div', { class: 'censor-bar big' }, S.censoredLong);
       stage.appendChild(bar);
@@ -455,8 +457,8 @@ export class Phone {
       );
       game.markSeen(photo.id);
     }
-    const close = h('button', { class: 'zv-close', type: 'button', 'aria-label': S.close, onclick: () => { audio.play('close'); viewer.classList.add('leave'); setTimeout(() => viewer.remove(), 250); } }, glyph('close'));
-    const viewer = h('div', { class: `zoom-viewer${photo ? '' : ' bare'}` }, stage, close, info,
+    const close = h('button', { class: 'zv-close', type: 'button', 'aria-label': S.close, onclick: () => { clip?.stop(); audio.play('close'); viewer.classList.add('leave'); setTimeout(() => viewer.remove(), 250); } }, glyph('close'));
+    const viewer = h('div', { class: `zoom-viewer${photo ? '' : ' bare'}` }, stage, close, clip?.el, info,
       h('div', { class: 'zv-tip' }, glyph('zoom'), 'Tap to zoom · drag to pan'));
     this.overlay.replaceChildren(viewer);
     apply();

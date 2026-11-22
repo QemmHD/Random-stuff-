@@ -88,7 +88,11 @@ export const caught5: CaseFile = {
     ...portraitStudies(5, '2026-10-01T20:00'),
     { id: 'cg5_ph_key', art: 'cg5_ph_key', t: '2026-11-20T23:11', place: 'Switchback Motor Court', orientation: 'landscape', caption: 'Stamped brass key tag: SWITCHBACK · 04. A second cup on the windowsill.', clue: 'key' },
     { id: 'cg5_ph_screen', art: 'cg5_ph_screen', t: '2026-11-06T23:43', place: 'Home', orientation: 'portrait', hidden: true, deletedUntil: 'recovered:images', caption: 'Photo of Ellis’s phone. Incoming from Lena: “11 again next Friday? I left my scarf at the desk.” The lock screen says November 6, 23:42. Taken on Mara’s phone.', clue: 'snooped' },
-    { id: 'cg5_ph_car', art: 'cg5_ph_car', t: '2026-11-13T23:48', place: 'Switchback Motor Court', orientation: 'landscape', hidden: true, deletedUntil: 'recovered:images', caption: 'Through a rain-streaked windshield: Ellis’s car outside 11. Reflected in the glass, the red 04 of the room Mara is standing in.', clue: 'same_motel' },
+    { id: 'cg5_ph_car', art: 'cg5_ph_car', t: '2026-11-13T23:48', place: 'Switchback Motor Court', orientation: 'landscape', hidden: true, deletedUntil: 'recovered:images', caption: 'Recovered motion photo through rain-streaked glass: Ellis’s car outside 11. Reflected in the glass, the red 04 of the room Mara is standing in.', clue: 'same_motel', frames: [
+      { art: 'cg5_clip_court', label: 'Switchback courtyard' },
+      { art: 'cg5_clip_car', label: 'Ellis’s car opposite room 11' },
+      { art: 'cg5_ph_car', label: 'Room 04 reflected in the glass' },
+    ] },
     { id: 'cg5_ph_booth', art: 'cg5_ph_booth', t: '2026-11-20T14:10', place: 'WMAR', orientation: 'landscape', caption: 'Nico loading the overnight replay into the scheduler. The clock on the wall says 2:10 p.m.' },
     { id: 'cg5_ph_mug', art: 'cg5_ph_mug', t: '2026-09-25T06:47', place: 'Home', orientation: 'landscape', caption: 'An old anniversary mug with a fresh chip. The print says THE BELLS, EST. 2015.', clue: 'mug' },
   ],
@@ -189,6 +193,11 @@ export const caught5: CaseFile = {
     { id: 'desk_live', title: 'The desk confirms 11', text: 'Ellis Bell and Lena Price are both listed on folio 11. The scarf is Lena’s.', kind: 'document' },
     { id: 'lena_live', title: 'Lena won’t cover', text: 'Lena refuses to go along with the bowling story and confirms room 11.', kind: 'person', art: 'av_cg5_lena' },
   ],
+  comparisons: [
+    { title: 'Friday bowling', clues: ['bowling', 'league_cancel'], finding: 'The regular league had already moved to Tuesdays. A Friday score sheet would need a different explanation.' },
+    { title: 'The Friday broadcast', clues: ['replay', 'room4'], finding: 'The unattended recording covers the same evening as the visit to Switchback.' },
+  ],
+
   questions: [
     { id: 'q5_theo', prompt: 'Who has Mara been seeing?', options: [{ id: 'theo', label: 'Theo Voss, saved as Tuning' }, { id: 'nico', label: 'Nico, her board operator' }, { id: 'desk', label: 'The front desk clerk' }], answer: 'theo', evidence: ['theo', 'folio'], explain: 'The deleted thread identifies Theo by name and confirms the kitchen kiss. The same name appears on the split motel folio.' },
     { id: 'q5_cover', prompt: 'How did Mara free up her Fridays?', options: [{ id: 'replay', label: 'She aired a replay while claiming to run the pledge drive' }, { id: 'switch', label: 'She traded shifts with Bea' }, { id: 'live', label: 'She broadcast live from room 04' }], answer: 'replay', evidence: ['replay', 'drive_calendar'], explain: 'The scheduler confirms the show ran unattended from an afternoon recording.' },

@@ -262,7 +262,11 @@ export const caught4: CaseFile = {
     // recovered (Photos — Recently Deleted)
     { id: 'cg4_ph_couch', art: 'cg4_ph_couch', t: '2026-11-04T22:30', place: 'Home — Linden Court Apartments', orientation: 'landscape', caption: "Recovered. YOUR living room at night: two wine glasses on your coffee table, one with a pink lipstick print; your knitted throw blanket in a heap; a pair of grippy pilates socks on the rug; your framed graduation photo face-down on the shelf. Deleted Nov 5, 06:50.", clue: 'your_couch', deletedUntil: 'recovered:photos' },
     { id: 'cg4_ph_bed', art: 'cg4_ph_bed', t: '2026-10-10T23:10', place: 'Canyon Rose Resort, Sedona', orientation: 'portrait', caption: "Recovered. Selfie under a white duvet in a hotel bed: a man and a woman with a high ponytail, flushed, bare shoulders, laughing; a conference lanyard hanging off the headboard. Deleted Oct 12.", clue: 'bed_selfie', deletedUntil: 'recovered:photos' },
-    { id: 'cg4_ph_video', art: 'cg4_ph_video', t: '2026-11-19T21:40', place: 'Vale residence, Unit 2C', orientation: 'landscape', caption: "Recovered video thumbnail; video data unrecoverable. Title: 'leg day 🦵🙈'. A dim bedroom lit by a candle: rumpled sheets, two silhouettes against a window, a pilates ring hanging from the bedpost. Deleted Nov 19.", clue: 'bed_selfie', deletedUntil: 'recovered:photos' },
+    { id: 'cg4_ph_video', art: 'cg4_ph_video', t: '2026-11-19T21:40', place: 'Vale residence, Unit 2C', orientation: 'landscape', caption: "Partial video recovered. Three surviving frames. Title: 'leg day 🦵🙈'. A dim bedroom lit by a candle: rumpled sheets, two silhouettes kissing against the window, a pilates ring hanging from the bedpost. Deleted Nov 19.", clue: 'bed_selfie', deletedUntil: 'recovered:photos', frames: [
+      { art: 'cg4_clip_room', label: 'Vale residence · bedroom' },
+      { art: 'cg4_clip_pair', label: 'A kiss by the window' },
+      { art: 'cg4_ph_video', label: 'The pilates ring on the bedpost' },
+    ] },
     { id: 'cg4_ph_locker', art: 'cg4_ph_locker', t: '2026-11-12T06:10', place: 'IronHaus Gym — locker 14', orientation: 'portrait', caption: "Recovered. An open gym locker: a velvet ring box, a printed spreadsheet taped inside the door titled 'TIMELINE', a pink hair tie on the hook. Deleted Nov 12.", clue: 'exit_plan', deletedUntil: 'recovered:photos' },
     { id: 'cg4_ph_mirror_lips', art: 'cg4_ph_mirror_lips', t: '2026-10-11T08:20', place: 'Canyon Rose Resort, Sedona', orientation: 'portrait', caption: "Recovered. A hotel bathroom mirror with writing in pink lipstick and a kiss mark. Deleted Oct 11.", clue: 'aftermath', deletedUntil: 'recovered:photos' },
     // hidden album
@@ -432,6 +436,10 @@ export const caught4: CaseFile = {
     { id: 'mama_wrong', title: "Mom's lemon bars", text: "While you hold his phone, Mama Deb texts him something meant for Kenna: 'Kenna sweetie! Lemon bars for Thanksgiving... Don't tell Tanner I told you about Tulum 🤫💍.' Then: 'Oops!! That was for Kenna!!'", kind: 'person', art: 'av_cg4_mama' },
     { id: 'alexis', title: 'Alexis, live', text: "An unknown number at 1:50 a.m.: Alexis, Brody's girlfriend. 'brody's car just drove past your building and he says riley's car is in the lot. if she's there and awake: riley, I'm so sorry. the ring isn't yours. I have screenshots.'", kind: 'person', art: 'av_cg4_alexis' },
     { id: 'kenna_live', title: "Kenna, live: 'out by jan 1'", text: "Kev, while you hold his phone: 'did you tell your ex she needs to be out by jan 1? I'm not doing another christmas with her air fryer on the counter 🙄'", kind: 'person', art: 'av_cg4_kenna' },
+  ],
+
+  comparisons: [
+    { title: 'The training summit', clues: ['conference_fake', 'bed_selfie'], finding: 'The stated work trip overlaps two independent records from Sedona.' },
   ],
 
   questions: [

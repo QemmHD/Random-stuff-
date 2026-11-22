@@ -98,6 +98,10 @@ export const S = {
   photoPlace: 'Location',
   photoTaken: 'Taken',
   photoDevice: 'Source',
+  recoveredClip: 'Recovered clip',
+  clipPlay: 'Play',
+  clipPause: 'Pause',
+  clipFrame: 'Clip frame',
   allPhotos: 'Recents',
   recoveredAlbum: 'Recovered by TRACE',
   seenDread: [
@@ -179,6 +183,9 @@ export const S = {
 
   // board / report
   boardTitle: 'Evidence Board',
+  compareRecords: 'Compare records',
+  compareShort: 'Compare',
+  compareOther: 'Pin another record to finish this comparison.',
   boardEmpty: 'Nothing pinned yet. Look for the pin button on messages, photos, notes and more.',
   unpin: 'Remove',
   tidy: 'Tidy',
